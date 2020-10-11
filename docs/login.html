@@ -10,67 +10,42 @@
   <link rel="stylesheet" href="assets/css/Footer-Basic.css" />
   <link rel="stylesheet" href="assets/css/styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Piazzolla:wght@200&display=swap" rel="stylesheet">
 </head>
 
-<body style="background:url('./assets/images/login-bg.png'); background-size: 100%;">
-  <!--- <div class = "login-container">
-      <h1>Welcome back!</h1>
-      <form>
-        <div class="username">
-            <label>Username</label>  
-            <input type="text">
-        </div>
-        <div class="password">
-            <label>Password</label>  
-            <input type="password">  
-        </div>
-        <button class="btn btn-primary">Log in</button>
-      </form>
-  </div> !--->
-  <!--
-    <div class="row">
-        <div class="test col-4 offset-5">
-            <h1>Welcome back!</h1>
-            <form>
-                <div class="username">
-                    <label>Username</label>  
-                    <input type="text">
-                </div>
-                <div class="password">
-                    <label>Password</label>  
-                    <input type="password">  
-                </div>
-                <button class="btn btn-primary">Log in</button>
-            </form>
-        </div>
-  </div>
-  -->
-
+<body class="log-in-body">
   <div class="row justify-content-center mt-5 mx-auto">
-    <div class="login-container px-4 py-4 text-center">
-    <!--<div class="row mx-auto mt-5">
-        <div class="login-container col-lg-4 offset-lg-4 py-3 text-center">
-        --><h1>Welcome back!</h1>
-      <form>
-        <div class="username">
-            <label>Username</label>  
-            <input type="text">
-        </div>
-        <div class="password">
-            <label>Password</label>  
-            <input type="password">  
-        </div>
-        <button class="btn btn-primary">Log in</button>
-        <button class="btn btn-danger">Forgot password</button>
+    <div class="login-container px-5 py-4 text-center">
+        <h2>Welcome back!</h2>
+        <form>
+            <div class="login-el">
+                <svg width="1.75em" height="1.75em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+                    <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+                </svg>
+                <input type="email" placeholder="e-mail address" required="" autofocus="" autocomplete="on">
+            </div>
+            <div class="login-el">
+                <svg width="1.75em" height="1.75em" viewBox="0 0 16 16" class="bi bi-key" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
+                    <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+                <input type="password" placeholder="password" required="">  
+            </div>
+            <div class="login-el" style="text-align: left;">
+                <input class="large-checkbox" type="checkbox">
+                Remember me
+            </div>
+            <button class="btn btn-primary" style="width: 100%;">Log in</button>
+            <div class="login-el2">
+                <a href>Don't have an account?</a>
+                <a href>Forgot password?</a>
+            </div>
       </form>
     </div>
   </div>
 
-  
-        
-    
-  
-  
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

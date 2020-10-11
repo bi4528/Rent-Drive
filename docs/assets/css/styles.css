@@ -1,5 +1,32 @@
+.log-in-body {
+    background:url("../images/login-bg.png") no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Piazzolla', serif;
+    
+}
+
 .login-container {
-    border-radius: 1cm;
+    background-color: white;
+    border-radius: 2cm;
+    border-color: turquoise;
     border-style: solid;
-    box-shadow: 0px 0px 10px 0px black;
+    box-shadow: 0px 0px 10px 0px white;
+}
+
+.login-el {
+    margin: 20px;
+}
+
+.login-el2 {
+    margin-top: 10px;
+}
+
+svg{
+    margin-right: 10px;
+}
+
+
+.large-checkbox{
+  display: inline-block;
+  vertical-align: middle;
 }
