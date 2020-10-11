@@ -1,3 +1,12 @@
+h2 {
+    font-weight: bold;
+}
+
+button {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
 .log-in-body {
     background:url("../images/login-bg.png") no-repeat center center fixed;
     background-size: cover;
