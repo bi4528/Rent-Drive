@@ -1,7 +1,7 @@
-html, body {
+/*html, body {
     overflow-x: hidden !important;
     overflow-y: hidden !important;
-}
+}*/
 
 h2 {
 font-weight: bold;
@@ -61,3 +61,25 @@ display: inline-block;
 vertical-align: middle;
 }
 
+/* */
+
+.avatar {
+    border-radius: 50%;
+}
+
+/*mogoče vpliva na login register? 
+.row {
+    margin: 10px;
+}*/
+
+table, th, td {
+    padding: 10px;
+}
+
+.user {
+    font-weight: bold;
+}
+
+.comment {
+    font-style: italic;
+}
