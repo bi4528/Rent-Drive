@@ -110,25 +110,25 @@
           <i class="far fa-star"></i>
         </div>
       </div>
-
-      <!--- opis-->
-      <div class="row justify-content-center m-3">
-        <div class="desc">
-          <h3 style="display: inline;">Description:</h3>
-          <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti expedita obcaecati repudiandae labore
-            quae, quo eaque dolorem consequuntur nemo dignissimos cumque est non reprehenderit officiis id sit. Nobis
-            impedit voluptatem, aperiam beatae illum pariatur doloribus, quo consectetur commodi nulla maiores, unde
-            voluptates fugit accusamus in atque vitae nam reiciendis cumque.</span>
+      
+      <!--- lastnik in opis-->
+      <div class="row m-3">
+        <div class="col col-sm col-md-2 ">
+          <img class="avatar " src="assets/images/avatarOwner.jpg">
+        </div>    
+        <div class="col-8 col-sm-8 col-md-8">
+          <div class="card mb-3">
+            <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem magni doloribus, repellendus impedit vero voluptatum voluptates vitae, molestias dignissimos natus ab dolorem assumenda ut iusto quaerat quod fugiat perspiciatis et maiores. Sed commodi ea assumenda rerum distinctio delectus accusantium, fugit quam error, id excepturi expedita, quaerat alias velit officiis quo?</p>
+                <footer class="blockquote-footer">JoshSmith213</footer>
+              </blockquote>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!--- lastnik-->
-      <div class="row justify-content-center m-3">
-        <div class="host">
-          <img class="avatar" src="assets/images/avatarOwner.jpg">
-          <h5>JoshSmith213</h5>
-        </div>
-      </div>
+      <!--- lastnosti-->
       <div class="features m-3">
         <h3 style="display: inline;">Features:</h3>
         <i class="fas fa-gas-pump"></i>
@@ -145,22 +145,23 @@
       <!--- izposodi-->
       <div class="book justify-content-center m-3" style="display: block;">
         <form>
-          <div>
-            <label for="date">From</label>
-            <input type="datetime-local" name="date">
+          <div class="form-group w-25">
+          <label for="date">From</label>
+          <input type="datetime-local" class="form-control" name="date">
           </div>
-          <div>
-            <label for="date">To</label>
-            <input type="datetime-local" name="date">
+          <div class="form-group w-25">
+          <label for="date">To</label>
+          <input type="datetime-local" class="form-control" name="date">
           </div>
-          <div>
-            <label for="location">Location of pickup & return</label>
-            <input type="text" name="location">
+          <div class="form-group w-25">
+          <label for="location">Location of pickup & return</label>
+          <input type="text" class="form-control" name="location">
           </div>
-        </form>
-        <div class="price">
-          <h5>169.75$</h5>
-        </div>
+          </form>
+          <div class="price form-group w-25">
+            <h5 style="display: inline; padding-right: 10px;">169.75$</h5>
+            <button type="submit" class="btn btn-primary">Book</button>
+          </div>
       </div>
 
       <!--- recenzije-->
