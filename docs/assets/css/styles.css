@@ -3,6 +3,10 @@
     overflow-y: hidden !important;
 }*/
 
+body {
+    font-family: 'Piazzolla', serif;
+}
+
 h2 {
 font-weight: bold;
 }
@@ -65,6 +69,7 @@ vertical-align: middle;
 
 .avatar {
     border-radius: 50%;
+    border: solid black 5px;
 }
 
 /*mogoče vpliva na login register? 
@@ -73,6 +78,8 @@ vertical-align: middle;
 }*/
 
 table, th, td {
+    text-align: center;
+    border-bottom: 1px solid #000;
     padding: 10px;
 }
 
