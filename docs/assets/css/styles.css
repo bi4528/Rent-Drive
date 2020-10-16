@@ -1,0 +1,29 @@
+#podatki_uporabnika {
+    float: left;
+    margin-right: 20px;
+    margin-top: 30px;
+}
+
+.slika_uporabnika {
+    width: 300px;
+    height: 300px;
+}
+
+.top-spacing {
+    margin-top: 10px;
+}
+
+#vozila_uporabnika {
+    margin-top: 30px;
+}
+
+.card_auto {
+    padding: 5px;
+    margin-bottom: 20px;
+    border-color: rgb(255, 255, 255);
+    border-width: 0px !important;
+}
+
+.card_auto_najemi_button {
+    margin-top: 5px;
+}
