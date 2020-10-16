@@ -13,69 +13,171 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <style type="text/css">
+    .navbar-main{
+      background-color:#7DB46CFF
+    }
+    
+    .navbar-category{
+      border-bottom: 1px solid #a6a6a6;
+      width:100%;
+    }
+    
+    .container-background{
+      position: relative;
+      max-width: 100%;
+      
+    }
+    .lambo-image{
+      width: 100%;
+      height: 650px;
+      background: url('./assets/images/lambo.jpg') no-repeat center;
+      background-size: cover;
+      opacity: 0.8;
+    }
+    .filter{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .arrow-down{
+      position: relative;
+      top: 5px;
+    }
+    
+    </style>
 </head>
 
-<body>
-  <nav class="navbar navbar-light navbar-expand-md sticky-top justify-content-between" style="background-color:#7DB46CFF">
+<body style="background-color: #E7EBE0FF">
+  <nav class="navbar navbar-main navbar-expand-lg sticky-top justify-content-between">
     <div class="container-fluid">
-      <a class="navbar-brand logo" href="#"><img src="./assets/images/LogoMakr-2mdxmh.png" class="m-0"></a>
+      <a class="navbar-brand logo img-fluid= img-responsive m-0" href="#"><img src="./assets/images/Logo.png" heigth="10px" width="170px"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navcol-1" aria-controls="navcol-1" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="sr-only">Toggle navigation</span><img src="./assets/images/m.png"></a>
+        <span class="sr-only">Toggle navigation</span><img src="./assets/images/menu-bars-icon.png"></a>
       </button>
       <div class="collapse navbar-collapse" id="navcol-1">
-        <ul class="nav navbar-nav ml-auto" style="font-size: 1.3em">
+        <ul class="nav navbar-nav ml-auto" style="font-size: 1.2em">
           <li class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link active" href="home.html" style="color: rgba(255, 255, 255, 0.9)"><i class="fa fa-home fa-fw"
-                aria-hidden="true"></i>Home</a>
+            <a class="nav-link active" href="home.html" style="color: rgba(255, 255, 255, 0.9)"><i class="material-icons fa-fw align-middle" aria-hidden="true">collections</i> Catalogue</a>
           </li>
           <li class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" href="nearby.html" style="color: rgba(255, 255, 255, 0.9)"><i class="fa fa-map-marker fa-fw"
-                aria-hidden="true"></i>Nearby</a>
+            <a class="nav-link" href="nearby.html" style="color: rgba(255, 255, 255, 0.9)"><i class="material-icons fa-fw align-middle" aria-hidden="true">near_me</i> Nearby</a>
           </li>
           <li class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" href="calendar.html" style="color: rgba(255, 255, 255, 0.9)"><i class="fa fa-calendar fa-fw"
-                aria-hidden="true"></i>Calendar</a>
+            <a class="nav-link" href="calendar.html" style="color: rgba(255, 255, 255, 0.9)"><i class="material-icons fa-fw align-middle" aria-hidden="true">add_to_photos</i> List your car</a>
           </li>
           <li class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" href="profile.html" style="color: rgba(255, 255, 255, 0.9)"><i class="fa fa-user fa-fw"
-                aria-hidden="true"></i>Profile</a>
+            <a class="nav-link" href="profile.html" style="color: rgba(255, 255, 255, 0.9)"><i class="material-icons fa-fw align-middle" aria-hidden="true">account_box</i> My profile</a>
           </li>
           <li class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" href="search.html" style="color: rgba(255, 255, 255, 0.9)"><i class="fa fa-search fa-fw"
-                aria-hidden="true"></i>Search</a>
+            <a class="nav-link" href="search.html" style="color: rgba(255, 255, 255, 0.9)"><i class="material-icons fa-fw align-middle" aria-hidden="true">search</i> Search</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+  
   <main>
-    <div class="container-fluid padding">
-    <div class="row padding">
-      <div class="col-md-6 p-4">
-        <div class="card">
-          <h3 class="card-title">Marcheivanovski</h3>
-          <img class="card-img-top p-4" src="./assets/images/subaru.jpg">
-          <div class="card body">
-            <p class="card-text"><b>Caption:</b> Have a look at this subaru, jdm all the way</p>
+    <div class="container-background">
+      <div class="lambo-image">
+          <div class="form-row filter">
+            <div class="col-auto">
+              <label><strong>Location pick-up:</strong><input type="text" class="form-control" placeholder="City"></label>
+            </div>
+            <div class="col-auto">
+              <label><strong>Date from:</strong><input type="date" class="form-control"/></label>
+            </div>
+            <div class="col-auto">
+              <label><strong>Date to:</strong><input type="date" class="form-control" /></label>
+            </div>
+            <div class="col-auto">
+              <br><button type="submit" class="btn btn-light">Filter</button>
+            </div>
             
+          </div>
+      </div>
+    </div>
+    
+    <br>
+    
+    <div class="container-fluid">
+      <nav class="navbar navbar-category navbar-expand-lg justify-content-between">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <p style="font-size: 1.2em">Category <span class="material-icons arrow-down">expand_more</span></p>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav" style="font-size: 1.5em">
+            <li class="nav-item mx-md-4 px-md-4 active">
+              <a class="nav-link" href="#" style="color: #0d0d0d">Hatchback<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item mx-md-4">
+              <a class="nav-link" href="#" style="color: #0d0d0d">Saloon</a>
+            </li>
+            <li class="nav-item mx-md-4">
+              <a class="nav-link" href="#" style="color: #0d0d0d">Caravan</a>
+            </li>
+            <li class="nav-item mx-md-4">
+              <a class="nav-link" href="#" style="color: #0d0d0d">Coupe</a>
+            </li>
+            <li class="nav-item mx-md-4">
+              <a class="nav-link" href="#" style="color: #0d0d0d">SUV</a>
+            </li>
+            <li class="nav-item mx-md-4">
+              <a class="nav-link" href="#" style="color: #0d0d0d">Pick-up</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    
+    
+    <div class="container-fluid padding row mx-auto">
+      
+      <div class="col-md-6 col-lg-4 p-3">
+        <div class="card" style="background-color:#ABD6DFFF">
+          <h3 class="card-header"> Nino_brezac</h3>
+          <img class="card-img-top" src="./assets/images/subaru.jpg">
+          <div class="card-body">
+            <p class="card-text p-0"><b>Caption:</b> Have a look at this subaru, jdm all the way</p>
           </div>
         </div>
       </div>
       
-        <div class="col-md-6 p-4">
-          <div class="card">
-            <h3 class="card-title">Nino_brezac</h3>
-            <img class="card-img-top p-4" src="./assets/images/ferrari.jpg">
-            <div class="card body">
-              <p class="card-text"><b>Caption:</b> Have a look at this subaru, jdm all the way</p>
-            </div>
+      <div class="col-md-6 col-lg-4 p-3">
+        <div class="card" style="background-color:#ABD6DFFF">
+          <h3 class="card-header"> Nino_brezac</h3>
+          <img class="card-img-top" src="./assets/images/subaru.jpg">
+          <div class="card-body">
+            <p class="card-text p-0"><b>Caption:</b> Have a look at this subaru, jdm all the way</p>
           </div>
         </div>
+      </div>
+      
+      <div class="col-md-6 col-lg-4 p-3">
+        <div class="card" style="background-color:#ABD6DFFF">
+          <h3 class="card-header"> Nino_brezac</h3>
+          <img class="card-img-top" src="./assets/images/subaru.jpg">
+          <div class="card-body">
+            <p class="card-text p-0"><b>Caption:</b> Have a look at this subaru, jdm all the way</p>
+          </div>
+        </div>
+      </div>
+        
+      <div class="col-md-6 col-lg-4 p-3">
+        <div class="card" style="background-color:#ABD6DFFF">
+          <h3 class="card-header"> Nino_brezac</h3>
+          <img class="card-img-top" src="./assets/images/subaru.jpg">
+          <div class="card-body">
+            <p class="card-text p-0"><b>Caption:</b> Have a look at this subaru, jdm all the way</p>
+          </div>
+        </div>
+      </div>
+        
       
       
       
       
-    </div>
     </div>  
   </main>
   <div class="footer-basic">
