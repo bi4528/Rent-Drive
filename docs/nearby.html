@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="assets/css/Footer-Basic.css" />
   <link rel="stylesheet" href="assets/css/styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="assets/css/book.css" />
 </head>
 
 <body>
@@ -47,8 +48,45 @@
   </nav>
   <main>
     <section class="container">
-      <h1>Welcome in Nearby</h1>
-      <p>Helloo World lets goooooooooooo</p>
+      <div class="row">
+        <h1 class="title">Book Your Vehicle</h1>
+      </div>
+      <div class="row">
+          <div class="col-*-*">
+            <button type="button" class="step-button" id="TIME">
+                      <span class="step-num-circle">1</span>
+                      <span class="step-label">Choose Time&Date</span>
+            </button>
+          </div>
+          <div class="col-*-*">
+             <img src="assets/pictures/koledar.png" alt="Koledar">
+          </div>
+      </div>
+      <hr class="line">
+      <div class="row">
+          <div class="col-*-*">
+          <button type="button" class="step-button" id="TIME">
+                    <span class="step-num-circle">2</span>
+                    <span class="step-label">Available Nearby</span>
+          </button>
+          </div>
+          <div class="col-*-*">
+             <img src="assets/pictures/LBCmap.png" alt="Mapa" width="300" height="200">
+          </div>
+      </div>
+      <hr class="line">
+      <div class="row">
+          <div class="col-*-*">
+          <button type="button" class="step-button" id="TIME">
+                    <span class="step-num-circle">3</span>
+                    <span class="step-label">Apply</span>
+          </button>
+          </div>
+          <div class="col-*-*">
+             <img src="assets/pictures/chevrolet-corvette.jpg" alt="Avto" width="300" height="200">
+          </div>
+      </div>
+    </section>
   </main>
   <div class="footer-basic">
     <footer>
@@ -69,6 +107,43 @@
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="assets/bs-stepper/js/bs-stepper.min.js"></script>
+  <script>
+  
+      var cal = document.getElementById('TIME-part');
+      var map = document.getElementById('MAP-part');
+      var stepperNode1 = document.getElementById('TIME-part-trigger')
+      
+      cal.style.display = "none";
+      map.style.display = "none";
+
+       stepperNode1.addEventListener('click', function (event) {
+         console.log("123")
+          if (cal.style.display === "none") {
+            cal.style.display = "block";
+          } else {
+            cal.style.display = "none";
+          }
+      })
+      
+      var stepperNode2 = document.getElementById('MAP-part-trigger')
+
+       stepperNode2.addEventListener('click', function (event) {
+         console.log("345")
+         if (map.style.display === "none") {
+            map.style.display = "block";
+          } else {
+            map.style.display = "none";
+          }
+      })
+      
+      var stepperNode3 = document.getElementById('PROFILE_PREVIEW-part-trigger')
+
+       stepperNode3.addEventListener('click', function (event) {
+         console.log("dfg")
+      })
+      
+    </script>
 </body>
 
 </html>
