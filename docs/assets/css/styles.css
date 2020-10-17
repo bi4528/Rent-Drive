@@ -7,6 +7,10 @@
     margin-bottom: 30px;
 }
 
+#edit_uporabnik {
+    margin-top: 30px;
+}
+
 .slika_uporabnika {
     width: 100%;
     max-width: 250px;
@@ -42,4 +46,15 @@
 
 .centered {
     text-align: center;
+}
+
+.shrani_podatke_gumb {
+    float: right;
+}
+
+.shrani_sliko_uporabnika {
+    display: block !important;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
 }
