@@ -11,20 +11,6 @@ text-transform: uppercase;
 font-weight: bold;
 }
 
-.log-in-body {
-background:url("../images/login-bg.jpg") no-repeat center center fixed;
-background-size: contain;
-background-position: bottom left;
-font-family: 'Piazzolla', serif;
-}
-
-.register-body{
-background:url("../images/register-bg2.png") no-repeat center center fixed;
-background-size: contain;
-background-position: bottom right;
-font-family: 'Piazzolla', serif;
-}
-
 .login-container, .register-container, .forgot-pw-container {
 background-color: white;
 border-radius: 2cm;
@@ -32,7 +18,8 @@ border-width: 0.5cm;
 border-color: tomato;
 border-style: solid;
 box-shadow: 0px 0px 16px 4px;
-padding: 20px;
+padding: 15px;
+z-index: 1;
 }
 
 .register-container {
@@ -76,6 +63,7 @@ height:1.75em;
 .avatar {
     border-radius: 50%;
     border: solid black 5px;
+    margin-bottom: 10px;
 }
 
 /*mogoče vpliva na login register? 
@@ -95,13 +83,4 @@ table, th, td {
 
 .comment {
     font-style: italic;
-}
-
-/* forgotpassword.html*/
-
-.forgot-pw-body{
-    background:url("../images/forgot-password-bg.jpg") no-repeat center center fixed;
-background-size: contain;
-background-position: bottom;
-font-family: 'Piazzolla', serif;
 }
