@@ -1,12 +1,24 @@
+
 #podatki_uporabnika {
     float: left;
     margin-right: 20px;
     margin-top: 30px;
+    overflow: hidden;
+    margin-bottom: 30px;
 }
 
 .slika_uporabnika {
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    max-width: 250px;
+    min-width: 150px;
+    display:block;
+    margin:auto;
+
+}
+
+.slika_auto {
+    width: 100%;
+    height: auto;
 }
 
 .top-spacing {
@@ -26,4 +38,8 @@
 
 .card_auto_najemi_button {
     margin-top: 5px;
+}
+
+.centered {
+    text-align: center;
 }
