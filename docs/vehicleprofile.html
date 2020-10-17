@@ -90,17 +90,18 @@
       </a>
     </div>
 
-    <div class="container">
+    <div class="container-fluid p-5">
       <!--- ime-->
       <div class="row justify-content-center m-3">
         <div class="name">
+          
           <h2 style="display: inline; margin-right: 10px ;">Tesla Model 3 2019</h2>
           <i class="far fa-heart"></i>
         </div>
       </div>
 
       <!--- ocena-->
-      <div class="row justify-content-center m-3">
+      <div class="row justify-content-center m-4">
         <div class="rating">
           <h3 style="display: inline;">Rating:</h3>
           <i class="fas fa-star"></i>
@@ -110,17 +111,25 @@
           <i class="far fa-star"></i>
         </div>
       </div>
-      
+
       <!--- lastnik in opis-->
       <div class="row m-3">
-        <div class="col col-sm col-md-2 ">
+        <div class="col-sm-12 col-md-4 ">
           <img class="avatar " src="assets/images/avatarOwner.jpg">
-        </div>    
-        <div class="col-8 col-sm-8 col-md-8">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item contact-details"><i class="fas fa-phone"></i>+38670789654</li>
+            <li class="list-group-item contact-details"><i class="far fa-envelope"></i>josh_smith@gmail.com</li>
+            <li class="list-group-item contact-details"><i class="far fa-map"></i>Koper, Slovenia</li>
+          </ul>
+        </div>
+        <div class="col-sm-12 col-md-8">
           <div class="card mb-3">
-            <div class="card-body">
+            <div class="card-body desc">
               <blockquote class="blockquote mb-0">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem magni doloribus, repellendus impedit vero voluptatum voluptates vitae, molestias dignissimos natus ab dolorem assumenda ut iusto quaerat quod fugiat perspiciatis et maiores. Sed commodi ea assumenda rerum distinctio delectus accusantium, fugit quam error, id excepturi expedita, quaerat alias velit officiis quo?</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem magni doloribus, repellendus impedit
+                  vero voluptatum voluptates vitae, molestias dignissimos natus ab dolorem assumenda ut iusto quaerat
+                  quod fugiat perspiciatis et maiores. Sed commodi ea assumenda rerum distinctio delectus accusantium,
+                  fugit quam error, id excepturi expedita, quaerat alias velit officiis quo?</p>
                 <footer class="blockquote-footer">JoshSmith213</footer>
               </blockquote>
             </div>
@@ -128,118 +137,105 @@
         </div>
       </div>
 
-      <!--- lastnosti-->
-      <div class="features m-3">
-        <h3 style="display: inline;">Features:</h3>
-        <i class="fas fa-gas-pump"></i>
-        <i class="far fa-snowflake"></i>
-        <i class="fas fa-charging-station"></i>
-        <i class="fab fa-accessible-icon"></i>
-        <i class="fas fa-tachometer-alt"></i>
-        <i class="fab fa-bluetooth"></i>
-        <i class="far fa-map"></i>
-        <i class="fab fa-usb"></i>
-        <i class="fas fa-user-graduate"></i>
-      </div>
-
-      <!--- izposodi-->
-      <div class="book justify-content-center m-3" style="display: block;">
-        <form>
-          <div class="form-group w-25">
-          <label for="date">From</label>
-          <input type="datetime-local" class="form-control" name="date">
-          </div>
-          <div class="form-group w-25">
-          <label for="date">To</label>
-          <input type="datetime-local" class="form-control" name="date">
-          </div>
-          <div class="form-group w-25">
-          <label for="location">Location of pickup & return</label>
-          <input type="text" class="form-control" name="location">
-          </div>
+      <!--- lastnosti in izposodi-->
+      <div class="row m-3 mt-5">
+        <h3 >Features:</h3>
+        <div class="features col-sm-3">
+          <div><i class="far fa-snowflake"></i> <span class="text-success">air conditioning</span></div>
+          <div><i class="fas fa-charging-station"></i>electric</div>
+          <div><i class="fab fa-accessible-icon"></i><span class="text-danger">not accessible</span></div>
+          <div><i class="fas fa-tachometer-alt"></i>209 km/h</div>
+          <div><i class="fas fa-suitcase"></i>luggage 425 l</div>
+          <div><i class="fas fa-door-closed"></i>4 doors</div>
+        </div>
+        <div class="features col-sm-3">
+          <div><i class="fab fa-bluetooth"></i><span class="text-success">bluetooth support</span></div>
+          <div><i class="far fa-map"></i><span class="text-success">GPS</span></div>
+          <div><i class="fab fa-usb"></i><span class="text-success">USB support</span></div>
+          <div><i class="fas fa-user-graduate"></i>18+</div>
+        </div>
+        
+        <div class="book col-sm-8 col-md-4 mt-4" >
+          <form>
+            <div class="form-group">
+              <label for="date">From</label>
+              <input type="datetime-local" class="form-control" name="date">
+            </div>
+            <div class="form-group">
+              <label for="date">To</label>
+              <input type="datetime-local" class="form-control" name="date">
+            </div>
+            <div class="form-group"><label for="cars">Location of pickup & return</label>
+              <select name="cars" id="cars">
+                <option>Vojkovo nabrežje, Koper</option>
+                <option>Ankaranska cesta 5d, Koper</option>
+              </select></div>
           </form>
-          <div class="price form-group w-25">
-            <h5 style="display: inline; padding-right: 10px;">169.75$</h5>
+          <div class="price form-group ">
+            <h5 style="display: inline; padding-right: 5px;">170€ (85€/ day)</h5>
             <button type="submit" class="btn btn-primary">Book</button>
           </div>
+        </div>
       </div>
 
       <!--- recenzije-->
-      <div class=" reviews m-3">
-        <table style="border: 1px black;">
-          <thead>
-            <th colspan="2">
-              Users
-            </th>
-            <th>
-              Rating
-            </th>
-            <th>
-              Comments
-            </th>
-          </thead>
-          <tr class="review">
-            <td class="profile" colspan="2">
-              <img class="avatar" src="assets/images/avatarUser.png">
-              <strong>nino</strong>
-            </td>
-            <td class="stars">
-              <span><i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="far fa-star"></i>
-                <i class="far fa-star"></i>
-              </span>
-            </td>
-            <td class="comment">hmm</td>
-          </tr>
-          <tr class="review">
-            <td class="profile" colspan="2">
-              <img class="avatar" src="assets/images/avatarUser.png">
-              <strong>marko</strong>
-            </td>
-            <td class="stars">
-              <span><i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="far fa-star"></i>
-              </span>
-            </td>
-            <td class="comment">very nice</td>
-          </tr>
-          <tr class="review">
-            <td class="profile" colspan="2">
-              <img class="avatar" src="assets/images/avatarUser.png">
-              <strong>bojan</strong>
-            </td>
-            <td class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="far fa-star"></i>
-            </td>
-            <td class="comment">wow</td>
-            <hr>
-          </tr>
-          <tr class="review">
-            <td class="profile" colspan="2">
-              <img class="avatar" src="assets/images/avatarUser.png">
-              <strong>matej</strong>
-            </td>
-            <td class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </td>
-            <td class="comment">genius</td>
-          </tr>
-        </table>
+      <div class="row justify-content-center">
+        <div class=" reviews m-3">
+          <table style="border: 1px black;">
+            <thead>
+              <th colspan="2">Users</th>
+              <th>Rating</th>
+              <th>Comments</th>
+            </thead>
+            <tr class="review" >
+              <td class="profile" colspan="2">
+                <img class="avatar" src="assets/images/avatarUser.png">
+                <strong>nino</strong>
+              </td>
+              <td class="stars">
+                <span>
+                  <p>★★★☆☆</p>
+                </span>
+              </td>
+              <td class="comment">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo recusandae distinctio incidunt? Nihil magni qui, ad dolorum atque rem consequuntur?</td>
+            </tr>
+            <tr class="review">
+              <td class="profile" colspan="2">
+                <img class="avatar" src="assets/images/avatarUser.png">
+                <strong>marko</strong>
+              </td>
+              <td class="stars">
+                <span>
+                  <p>★★★★☆</p>
+                </span>
+              </td>
+              <td class="comment">very nice</td>
+            </tr>
+            <tr class="review">
+              <td class="profile" colspan="2">
+                <img class="avatar" src="assets/images/avatarUser.png">
+                <strong>bojan</strong>
+              </td>
+              <td class="stars">
+                <p>★★★★☆</p>
+              </td>
+              <td class="comment">wow</td>
+              <hr>
+            </tr>
+            <tr class="review">
+              <td class="profile" colspan="2">
+                <img class="avatar" src="assets/images/avatarUser.png">
+                <strong>matej</strong>
+              </td>
+              <td class="stars">
+                <p>★★★★★</p>
+              </td>
+              <td class="comment">genius</td>
+            </tr>
+          </table>
+        </div>
+
       </div>
-    </div>
   </main>
 
   <!-- konec vsebine-->
