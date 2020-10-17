@@ -1,8 +1,3 @@
-/*html, body {
-    overflow-x: hidden !important;
-    overflow-y: hidden !important;
-}*/
-
 body {
     font-family: 'Piazzolla', serif;
 }
@@ -30,7 +25,7 @@ background-position: bottom right;
 font-family: 'Piazzolla', serif;
 }
 
-.login-container, .register-container {
+.login-container, .register-container, .forgot-pw-container {
 background-color: white;
 border-radius: 2cm;
 border-width: 0.5cm;
@@ -44,14 +39,22 @@ padding: 20px;
     border-color: mediumspringgreen;
 }
 
+.forgot-pw-container {
+    border-color: orange;
+}
 
-.login-el {
+
+.login-el, .register-el, .forgot-pw-el {
 margin: 20px;
 }
 
 
 .log-in-body a {
 color:red;
+}
+
+.forgot-pw-body a {
+    color: darkslateblue;
 }
 
 .log-in-body svg, .register-body svg{
@@ -61,11 +64,14 @@ height:1.75em;
 }
 
 .large-checkbox{
-display: inline-block;
-vertical-align: middle;
+    display: inline;
+    vertical-align: middle;
+    width:18px;
+    height:18px;
+    padding-right: 15px;
 }
 
-/* */
+/* vehicleprofile.html */
 
 .avatar {
     border-radius: 50%;
@@ -89,4 +95,13 @@ table, th, td {
 
 .comment {
     font-style: italic;
+}
+
+/* forgotpassword.html*/
+
+.forgot-pw-body{
+    background:url("../images/forgot-password-bg.jpg") no-repeat center center fixed;
+background-size: contain;
+background-position: bottom;
+font-family: 'Piazzolla', serif;
 }
