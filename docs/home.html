@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-  <title>CarsMeetClone2</title>
+  <title>Rent&Drive</title>
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
   <link rel="stylesheet" href="assets/fonts/ionicons.min.css" />
   <link rel="stylesheet" href="assets/css/Footer-Basic.css" />
@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style type="text/css">
     .navbar-main{
       background-color:#7DB46CFF
@@ -45,7 +46,11 @@
       position: relative;
       top: 5px;
     }
-    
+    .carousel-controls{
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
     </style>
 </head>
 
@@ -132,55 +137,151 @@
     </div>
     
     
-    <div class="container-fluid padding row mx-auto">
-      
-      <div class="col-md-6 col-lg-4 p-3">
-        <div class="card" style="background-color:#ABD6DFFF">
-          <h3 class="card-header"> Nino_brezac</h3>
-          <img class="card-img-top" src="./assets/images/subaru.jpg">
-          <div class="card-body">
-            <p class="card-text p-0"><b>Caption:</b> Have a look at this subaru, jdm all the way</p>
-          </div>
-        </div>
+    <br>
+    <!--SLIDER-->
+    <div id="multi-item-example" class="carousel slide carousel-multi-item mt-4 mt-sm-4" data-ride="carousel">
+      <!--Controls-->
+      <div class="controls-top carousel-controls">
+        <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-circle-left fa-3x p-2 p-sm-3" style="color:grey;"></i></a>
+        <a class="btn-floating" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-circle-right fa-3x p-2 p-sm-3" style="color:grey;"></i></a>
       </div>
-      
-      <div class="col-md-6 col-lg-4 p-3">
-        <div class="card" style="background-color:#ABD6DFFF">
-          <h3 class="card-header"> Nino_brezac</h3>
-          <img class="card-img-top" src="./assets/images/subaru.jpg">
-          <div class="card-body">
-            <p class="card-text p-0"><b>Caption:</b> Have a look at this subaru, jdm all the way</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-md-6 col-lg-4 p-3">
-        <div class="card" style="background-color:#ABD6DFFF">
-          <h3 class="card-header"> Nino_brezac</h3>
-          <img class="card-img-top" src="./assets/images/subaru.jpg">
-          <div class="card-body">
-            <p class="card-text p-0"><b>Caption:</b> Have a look at this subaru, jdm all the way</p>
-          </div>
-        </div>
-      </div>
+      <!--/.Controls-->
+    
+      <!--Indicators-->
+      <!--/.Indicators-->
+    
+      <br>
+      <div class="carousel-inner" role="listbox">
+    
         
-      <div class="col-md-6 col-lg-4 p-3">
-        <div class="card" style="background-color:#ABD6DFFF">
-          <h3 class="card-header"> Nino_brezac</h3>
-          <img class="card-img-top" src="./assets/images/subaru.jpg">
-          <div class="card-body">
-            <p class="card-text p-0"><b>Caption:</b> Have a look at this subaru, jdm all the way</p>
+        <div class="carousel-item active">
+    
+          <div class="col-md-3" style="float:left" >
+           <div class="card mb-2">
+              <img class="card-img-top"
+                src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
+              <div class="card-body">
+                <h4 class="card-title">Chevrolet Aveo</h4>
+                <p class="card-text">Renting my beauty. Well looked after always clean come and pick it up.</p>
+                <a class="btn btn-light rounded border-secondary">Book for only 30$/day</a>
+              </div>
+            </div>
           </div>
+    
+          <div class="col-md-3" style="float:left">
+            <div class="card mb-2">
+              <img class="card-img-top"
+                src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
+              <div class="card-body">
+                <h4 class="card-title">BMW 1 series</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
+                <a class="btn btn-light rounded border-secondary">Book for only 60$/day</a>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-md-3" style="float:left">
+            <div class="card mb-2">
+              <img class="card-img-top"
+                src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
+              <div class="card-body">
+                <h4 class="card-title">Mercedes A-class</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
+                <a class="btn btn-light rounded border-secondary">Book for only 40$/day</a>
+              </div>
+            </div>
+          </div>
+          
+           <div class="col-md-3" style="float:left">
+           <div class="card mb-2">
+              <img class="card-img-top"
+                src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
+              <div class="card-body">
+                <h4 class="card-title">Maserati</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
+                <a class="btn btn-light rounded border-secondary">Book for only 110$/day</a>
+              </div>
+            </div>
+          </div>
+    
         </div>
-      </div>
         
-      
-      
-      
-      
+    
+        
+        <div class="carousel-item">
+    
+          <div class="col-md-3" style="float:left">
+            <div class="card mb-2">
+              <img class="card-img-top"
+                src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" alt="Card image cap">
+              <div class="card-body">
+                <h4 class="card-title">Lamborghini</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
+                <a class="btn btn-light rounded border-secondary">Book for only 200$/day</a>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-md-3" style="float:left">
+            <div class="card mb-2">
+              <img class="card-img-top"
+                src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg" alt="Card image cap">
+              <div class="card-body">
+                <h4 class="card-title">Smart ForTwo</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
+                <a class="btn btn-light rounded border-secondary">Book for only 20$/day</a>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-md-3" style="float:left">
+            <div class="card mb-2">
+              <img class="card-img-top"
+                src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg" alt="Card image cap">
+              <div class="card-body">
+                <h4 class="card-title">Renault Megane</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
+                <a class="btn btn-light rounded border-secondary">Book for only 40$/day</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-3" style="float:left">
+            <div class="card mb-2">
+              <img class="card-img-top"
+                src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg" alt="Card image cap">
+              <div class="card-body">
+                <h4 class="card-title">Peugeot 508</h4>
+                <p class="card-text">Some quick example text to build on the card title.</p>
+                <a class="btn btn-light rounded border-secondary">Book for only 70$/day</a>
+              </div>
+            </div>
+          </div>
+    
+        </div>
+        
+        <ol class="carousel-indicators">
+          <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+          <li data-target="#multi-item-example" data-slide-to="1"></li>
+        </ol>
+    
+      </div>
+    
+    </div>
+    <!--/.Carousel Wrapper-->
     </div>  
+    
+    
   </main>
-  <div class="footer-basic">
+  
+  
+  <div class="footer-basic" style="background-color: #e6ffe6">
     <footer>
       <div class="social">
         <a><i class="icon ion-social-instagram"></i></a><a><i
@@ -196,6 +297,7 @@
       <p class="copyright">Oranžni FRI (Skupina 01) © 2020</p>
     </footer>
   </div>
+  
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
