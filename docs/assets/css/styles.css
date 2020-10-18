@@ -106,7 +106,7 @@
 .lambo-image{
   width: 100%;
   height: 650px;
-  background: url('./assets/images/lambo.jpg') no-repeat center;
+  background: url('../images/lambo.jpg') no-repeat center;
   background-size: cover;
   opacity: 0.8;
 }
@@ -124,4 +124,113 @@
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+body {
+    font-family: 'Piazzolla', serif;
+}
+
+h2 {
+font-weight: bold;
+}
+
+.log-in-body button {
+text-transform: uppercase;
+font-weight: bold;
+}
+
+.login-container, .register-container, .forgot-pw-container {
+background-color: white;
+border-radius: 2cm;
+border-width: 0.5cm;
+border-color: tomato;
+border-style: solid;
+box-shadow: 0px 0px 16px 4px;
+padding: 15px;
+z-index: 1;
+}
+
+.register-container {
+    border-color: mediumspringgreen;
+}
+
+.forgot-pw-container {
+    border-color: orange;
+}
+
+
+.login-el, .register-el, .forgot-pw-el {
+margin: 20px;
+}
+
+
+.log-in-body a {
+color:red;
+}
+
+.forgot-pw-body a {
+    color: darkslateblue;
+}
+
+.log-in-body svg, .register-body svg{
+margin-right: 5.2px;
+width:1.75em; 
+height:1.75em;
+}
+
+.large-checkbox{
+    display: inline;
+    vertical-align: middle;
+    width:18px;
+    height:18px;
+    padding-right: 15px;
+}
+
+/* vehicleprofile.html */
+
+.avatar {
+    border-radius: 50%;
+    border: solid black 5px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+/*mogoče vpliva na login register? 
+.row {
+    margin: 10px;
+}*/
+
+table, th, td {
+    text-align: center;
+    border-bottom: 1px solid #000;
+    padding: 10px;
+}
+
+.user {
+    font-weight: bold;
+}
+
+.comment {
+    font-style: italic;
+}
+
+.fas, .far, .fab {
+    margin-right: 8px;
+}
+
+.desc{
+    font-size: 1.15rem;
+    text-align: justify;
+}
+
+.features {
+    font-size: 1.15rem;
+}
+
+.contact-details {
+    padding-left:0px;
+}
+
+.text-success, .text-danger {
+    font-family: 'Piazzolla', serif;
 }
