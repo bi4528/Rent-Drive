@@ -46,46 +46,63 @@
   </nav>
   <main>
     <section class="container">
-      <div id="podatki_uporabnika" class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-        <img class="rounded-circle slika_uporabnika" src="./assets/images/oseba_template.jpg" alt="Slika profila">
-        <h3 class="top-spacing centered"> <span id="ime_uporabnika">Bine</span> <span id="priimek_uporabnika">Bine</span></h3>
-        <p id="mail_uporabnika" class="centered">ee1234@gmail.com</p>
-        <p id="telefonska_stevilka_uporabika" class="centered">+386123123123</p>
-        <p id_="kraj_uporabnika" class="centered">Ljubljana, Slovenija</p>
-        <button type="button" class="btn btn-primary btn-block" onclick="location.href='edit_profile.html'">Uredi</button>
-        <button type="button" class="btn btn-danger btn-block" onclick="location.href='home.html'">Odjava</button>
-      </div>
-      
-      <div id="vozila_uporabnika">
-        <h2>Moja vozila</h2>
-        <div class="row">
-          <div class="card col-12 col-sm-12 col-md-6 col-lg-5 col-xl-4 card_auto">
-            <img class="card-img-top slika_auto" src="./assets/images/car_4.jpg" alt="Slika avta">
-            <div class="card-body">
-              <h5 class="card-text">2020 Toyota Supra</h5>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="far fa-star"></i>
-              <i class="far fa-star"></i>
-              <button type="button" class="btn btn-primary btn-block card_auto_najemi_button">Najemi</button>
-              <button type="button" class="btn btn-danger btn-block">Odstrani</button>
+      <div id="edit_uporabnik" class="col-12">
+        <button type="button" class="btn btn-primary shrani_podatke_gumb" onclick="location.href='profile.html'">Shrani</button>
+        <h2>Uredi tvoj profil</h2>
+        <form>
+            <div class="form-group">
+              <div style="min-height:45px">
+              <label>Slika uporabnika:</label>
+              </div>
+              <img class="rounded-circle slika_uporabnika" src="./assets/images/oseba_template.jpg" alt="Slika profila">
+              <button type="button" class="btn btn-warning shrani_sliko_uporabnika">Izberi sliko</button>
             </div>
-          </div>
-          <div class="card col-12 col-sm-12 col-md-6 col-lg-5 col-xl-4 card_auto">
-            <img class="card-img-top slika_auto" src="./assets/images/car_5.jpg" alt="Slika avta">
-            <div class="card-body">
-              <h5 class="card-text">Mercedes-AMG E63 S Wagon</h5>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <button type="button" class="btn btn-primary btn-block card_auto_najemi_button">Najemi</button>
-              <button type="button" class="btn btn-danger btn-block">Odstrani</button>
+            <div class="form-group">
+              <label>Ime:</label>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-user" aria-hidden="true"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Ime" aria-label="Ime" aria-describedby="basic-addon1" value="Bine">
+                </div>
             </div>
-          </div>
-        </div>
+            <div class="form-group">
+              <label>Priimek:</label>
+                 <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-user" aria-hidden="true"></i></span>
+                  </div>
+                  <input type="text" class="form-control" id="priimek_uporabnika" placeholder="Priimek" aria-label="Priimek" aria-describedby="basic-addon1"  value="Bine">
+                </div>
+            </div>
+            <div class="form-group">
+              <label>Mail:</label>
+                 <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                  </div>
+                  <input type="text" class="form-control" id="mail_uporabnika" placeholder="vasa_mail@karkoli.net" aria-label="Priimekj" aria-describedby="basic-addon1"  value="ee1234@gmail.com">
+                </div>
+            </div>
+            <div class="form-group">
+              <label>Telefonska številka:</label>
+                 <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                  </div>
+                  <input type="text" class="form-control" id="telefon_uporabnika" placeholder="+386123123123" value="+386123123123">
+                </div>
+            </div>
+            <div class="form-group">
+              <label>Kraj izposoje:</label>
+                 <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                  </div>
+                  <input type="text" class="form-control" id="kraj_uporabnika" placeholder="Prosim vpišite kraj izposoje vaših vozil" aria-label="kraj_izposoje" aria-describedby="basic-addon1" value="Ljubljana, Slovenija">
+                </div>
+            </div>
+        </form>
         
       </div>
   </main>
