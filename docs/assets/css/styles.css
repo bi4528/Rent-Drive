@@ -126,10 +126,6 @@
   transform: translate(-50%, -50%);
 }
 
-body {
-    font-family: 'Piazzolla', serif;
-}
-
 h2 {
 font-weight: bold;
 }
@@ -166,6 +162,10 @@ margin: 20px;
 
 .log-in-body a {
 color:red;
+}
+
+body {
+    font-family: 'Piazzolla', serif !important;
 }
 
 .forgot-pw-body a {
@@ -233,4 +233,9 @@ table, th, td {
 
 .text-success, .text-danger {
     font-family: 'Piazzolla', serif;
+}
+
+.stars_auto {
+    margin-left:0px !important;
+    margin-bottom:10px;
 }
