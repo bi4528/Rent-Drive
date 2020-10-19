@@ -9,39 +9,35 @@
   <link rel="stylesheet" href="assets/fonts/ionicons.min.css" />
   <link rel="stylesheet" href="assets/css/Footer-Basic.css" />
   <link rel="stylesheet" href="assets/css/styles.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Piazzolla:wght@200&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/b1b4a222c5.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #ab2828">
+  <nav class="navbar navbar-main navbar-expand-lg sticky-top justify-content-between">
     <div class="container-fluid">
-      <a class="navbar-brand logo" style="color: rgba(255, 255, 255, 0.9)">Cars Meet Clone</a><button
-        data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1">
-        <span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+      <a class="navbar-brand logo img-fluid= img-responsive m-0" href="#"><img src="./assets/images/Logo.png" heigth="10px" width="170px"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navcol-1" aria-controls="navcol-1" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span><img src="./assets/images/menu-bars-icon.png"></a>
       </button>
       <div class="collapse navbar-collapse" id="navcol-1">
-        <ul class="nav navbar-nav ml-auto">
-          <li class="nav-item" role="presentation">
-            <a class="nav-link active" href="home.html" style="color: rgba(255, 255, 255, 0.9)"><i
-                class="fa fa-home fa-fw" aria-hidden="true"></i>Home</a>
+        <ul class="nav navbar-nav ml-auto" style="font-size: 1.2em">
+          <li class="nav-item mx-md-2" role="presentation">
+            <a class="nav-link active" href="home.html" style="color: rgba(255, 255, 255, 0.9)"><i class="material-icons fa-fw align-middle" aria-hidden="true">collections</i> Catalogue</a>
           </li>
-          <li class="nav-item" role="presentation">
-            <a class="nav-link" href="nearby.html" style="color: rgba(255, 255, 255, 0.9)"><i
-                class="fa fa-map-marker fa-fw" aria-hidden="true"></i>Nearby</a>
+          <li class="nav-item mx-md-2" role="presentation">
+            <a class="nav-link" href="nearby.html" style="color: rgba(255, 255, 255, 0.9)"><i class="material-icons fa-fw align-middle" aria-hidden="true">near_me</i> Nearby</a>
           </li>
-          <li class="nav-item" role="presentation">
-            <a class="nav-link" href="calendar.html" style="color: rgba(255, 255, 255, 0.9)"><i
-                class="fa fa-calendar fa-fw" aria-hidden="true"></i>Calendar</a>
+          <li class="nav-item mx-md-2" role="presentation">
+            <a class="nav-link" href="calendar.html" style="color: rgba(255, 255, 255, 0.9)"><i class="material-icons fa-fw align-middle" aria-hidden="true">add_to_photos</i> List your car</a>
           </li>
-          <li class="nav-item" role="presentation">
-            <a class="nav-link" href="profile.html" style="color: rgba(255, 255, 255, 0.9)"><i class="fa fa-user fa-fw"
-                aria-hidden="true"></i>Profile</a>
+          <li class="nav-item mx-md-2" role="presentation">
+            <a class="nav-link" href="profile.html" style="color: rgba(255, 255, 255, 0.9)"><i class="material-icons fa-fw align-middle" aria-hidden="true">account_box</i> My profile</a>
           </li>
-          <li class="nav-item" role="presentation">
-            <a class="nav-link" href="search.html" style="color: rgba(255, 255, 255, 0.9)"><i class="fa fa-search fa-fw"
-                aria-hidden="true"></i>Search</a>
+          <li class="nav-item mx-md-2" role="presentation">
+            <a class="nav-link" href="search.html" style="color: rgba(255, 255, 255, 0.9)"><i class="material-icons fa-fw align-middle" aria-hidden="true">search</i> Search</a>
           </li>
         </ul>
       </div>
@@ -90,19 +86,18 @@
       </a>
     </div>
 
-    <div class="container-fluid p-5">
+    <div class="container-fluid pt-5 pb-3">
       <!--- ime-->
-      <div class="row justify-content-center m-3">
+      <div class="row justify-content-center ml-3">
         <div class="name">
-          
           <h2 style="display: inline; margin-right: 10px ;">Tesla Model 3 2019</h2>
           <i class="far fa-heart"></i>
         </div>
       </div>
 
       <!--- ocena-->
-      <div class="row justify-content-center m-4">
-        <div class="rating">
+      <div class="row mt-3 mb-3 ml-0.5 justify-content-center">
+        <div class="rating" >
           <h3 style="display: inline;">Rating:</h3>
           <i class="fas fa-star"></i>
           <i class="fas fa-star"></i>
@@ -115,14 +110,14 @@
       <!--- lastnik in opis-->
       <div class="row m-3">
         <div class="col-sm-12 col-md-4 ">
-          <img class="avatar " src="assets/images/avatarOwner.jpg">
+          <a href="profile.html"><img class="avatar" src="assets/images/oseba_template.jpg"></a>
           <ul class="list-group list-group-flush">
             <li class="list-group-item contact-details"><i class="fas fa-phone"></i>+38670789654</li>
             <li class="list-group-item contact-details"><i class="far fa-envelope"></i>josh_smith@gmail.com</li>
             <li class="list-group-item contact-details"><i class="far fa-map"></i>Koper, Slovenia</li>
           </ul>
         </div>
-        <div class="col-sm-12 col-md-8">
+        <div class="col-sm-12 col-md-7 offset-md-1">
           <div class="card mb-3">
             <div class="card-body desc">
               <blockquote class="blockquote mb-0">
@@ -189,8 +184,8 @@
             </thead>
             <tr class="review" >
               <td class="profile" colspan="2">
-                <img class="avatar" src="assets/images/avatarUser.png">
-                <strong>nino</strong>
+                <a href="tuji_profile.html"><img class="avatar" src="assets/images/oseba_template_2.jpg"></a>
+                <strong>Marko Šter</strong>
               </td>
               <td class="stars">
                 <span>

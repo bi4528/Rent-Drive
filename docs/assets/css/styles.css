@@ -154,6 +154,17 @@ z-index: 1;
     border-color: orange;
 }
 
+#submit-register {
+  font-size: x-large;
+}
+
+#submit-forgot {
+  font-size: x-large;
+}
+
+#submit-login {
+  font-size: x-large;
+}
 
 .login-el, .register-el, .forgot-pw-el {
 margin: 20px;
@@ -193,6 +204,8 @@ height:1.75em;
     border: solid black 5px;
     margin-bottom: 10px;
     margin-right: 10px;
+    width: 150px;
+    height: 150px;
 }
 
 /*mogoče vpliva na login register? 
