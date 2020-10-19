@@ -1,3 +1,7 @@
+body {
+  font-family: 'Piazzolla', serif !important;
+}
+
 #podatki_uporabnika {
     float: left;
     margin-right: 20px;
@@ -173,10 +177,6 @@ margin: 20px;
 
 .log-in-body a {
 color:red;
-}
-
-body {
-    font-family: 'Piazzolla', serif !important;
 }
 
 .forgot-pw-body a {
