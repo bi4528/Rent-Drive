@@ -158,6 +158,17 @@ z-index: 1;
     border-color: orange;
 }
 
+#submit-register {
+  font-size: x-large;
+}
+
+#submit-forgot {
+  font-size: x-large;
+}
+
+#submit-login {
+  font-size: x-large;
+}
 
 .login-el, .register-el, .forgot-pw-el {
 margin: 20px;
