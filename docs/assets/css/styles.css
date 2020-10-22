@@ -177,12 +177,16 @@ z-index: 1;
 margin: 20px;
 }
 
+.btn-info {
+  width: 250px;
+  height: 40px;
+}
 
-.log-in-body a {
+.login-el a {
 color:red;
 }
 
-.forgot-pw-body a {
+.forgot-pw-el a {
     color: darkslateblue;
 }
 
@@ -260,7 +264,6 @@ table, th, td {
 }
 
 .panel-title {
-    font-family: 'Verdana', serif;
     font-size: 24px;
     background-color: blue;
 }
