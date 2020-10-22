@@ -129,7 +129,10 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
+body {
+    font-family: 'Piazzolla', serif;
+    background-color: #E7EBE0FF
+}
 h2 {
 font-weight: bold;
 }
@@ -248,7 +251,6 @@ table, th, td {
     font-family: 'Piazzolla', serif;
 }
 
-<<<<<<< HEAD
 .panel {
     margin-top: 5.2px;
     margin-bottom: 10px;
@@ -269,9 +271,7 @@ table, th, td {
     overflow: hidden;
     object-fit: cover;
 }
-=======
 .stars_auto {
     margin-left:0px !important;
     margin-bottom:10px;
 }
->>>>>>> 042ae2240648310ab9fdf0f0e4c4162ff9843a36
