@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Piazzolla:wght@200&display=swap" rel="stylesheet">
 </head>
 
-<body style="background-color: #E7EBE0FF">
+<body>
   <nav class="navbar navbar-main navbar-expand-lg sticky-top justify-content-between">
     <div class="container-fluid">
       <a class="navbar-brand logo img-fluid= img-responsive m-0" href="#"><img src="./assets/images/Logo.png" width="170px"></a>
@@ -99,24 +99,20 @@
     
     
     <br>
-    <!--SLIDER-->
+    
     <div id="multi-item-example" class="carousel slide carousel-multi-item mt-4 mt-sm-4" data-ride="carousel">
-      <!--Controls-->
+      
       <div class="controls-top carousel-controls">
         <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fas fa-chevron-circle-left fa-3x p-2 p-sm-3" style="color:grey;"></i></a>
         <a class="btn-floating" href="#multi-item-example" data-slide="next"><i class="fas fa-chevron-circle-right fa-3x p-2 p-sm-3" style="color:grey;"></i></a>
       </div>
-      <!--/.Controls-->
-    
-      <!--Indicators-->
-      <!--/.Indicators-->
+      
     
       <br>
       <div class="carousel-inner" role="listbox">
     
         
         <div class="carousel-item active">
-    
           <div class="col-md-3" style="float:left" >
            <div class="card mb-2">
               <img class="card-img-top"
@@ -226,15 +222,24 @@
     
         </div>
         
-        <ol class="carousel-indicators">
-          <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
-          <li data-target="#multi-item-example" data-slide-to="1"></li>
-        </ol>
+        <div class="carousel-item">
+          <div class="col-md-3" style="float:left">
+            <div class="card mb-2">
+              <img class="card-img-top"
+                src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg" alt="Card image cap">
+              <div class="card-body">
+                <h4 class="card-title">Peugeot 508</h4>
+                <p class="card-text">Some quick example text to build on the card title.</p>
+                <a class="btn btn-light rounded border-secondary">Book for only 70$/day</a>
+              </div>
+            </div>
+          </div>
+        </div>
     
       </div>
     
     </div>
-    <!--/.Carousel Wrapper-->
+   
     </div>  
     
   </main>
