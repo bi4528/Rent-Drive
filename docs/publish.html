@@ -8,25 +8,14 @@
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
   <link rel="stylesheet" href="assets/fonts/ionicons.min.css" />
   <link rel="stylesheet" href="assets/css/Footer-Basic.css" />
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="./assets/css/styles.css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <style type="text/css">
-    .navbar-main{
-      background-color:#7DB46CFF
-    }
-    
-    .navbar-category{
-      border-bottom: 1px solid #a6a6a6;
-      width:100%;
-    }
-    </style>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 
-<body style="background-color: #E7EBE0FF">
+<body>
   <nav class="navbar navbar-main navbar-expand-lg sticky-top justify-content-between">
     <div class="container-fluid">
       <a class="navbar-brand logo img-fluid= img-responsive m-0" href="#"><img src="./assets/images/Logo.png" heigth="10px" width="170px"></a>
@@ -56,10 +45,193 @@
   </nav>
   
   
-  </body>
+  <div class="container mt-3 mt-sm-4">
+      <H2 style="border-bottom: 1px solid #a6a6a6; width:100%;">Publish your vehicle:</H2>
+      <form>
+        
+        <div class="py-3 py-sm-4">
+          <H4 class="col-sm-12">Upload a photo:</H4>
+          <div class="form-group border border-dark rounded p-2">
+              <label for="exampleFormControlFile1">Upload pictures from your car:</label>
+              <input type="file" class="form-control-file" id="exampleFormControlFile1">
+          </div>
+        </div>
+        
+        <div class="form-row align-items-center">
+            <H4 class="col-sm-12 pt-2 pt-sm-2">General info:</H4>
+            <div class="input-group col-sm-12 col-md-6 pt-2 pt-sm-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Make:</span>
+              </div>
+              <input type="text" aria-label="Make" class="form-control">
+            </div>
+        
+            <div class="input-group col-sm-12 col-md-6 pt-2 pt-sm-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Model:</span>
+              </div>
+              <input type="text" aria-label="Model" class="form-control">
+            </div>
+            
+            <div class="input-group col-sm-12 col-md-6 pt-2 pt-sm-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Type of fuel:</span>
+              </div>
+              <select class="form-control">
+                <option>Petrol</option>
+                <option>Diesel</option>
+                <option>Hybrid</option>
+                <option>Electric</option>
+                <option>LPG</option>
+              </select>
+            </div>
+            
+            <div class="input-group col-sm-12 col-md-6 pt-2 pt-sm-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Vehichle type:</span>
+              </div>
+              <select class="form-control">
+                <option>Saloon</option>
+                <option>Estate</option>
+                <option>Hatchback</option>
+                <option>Coupe</option>
+                <option>SUV</option>
+                <option>Pick-up</option>
+              </select>
+            </div>
+            
+            <div class="input-group col-sm-6 col-md-4 pt-2 pt-sm-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Horsepower:</span>
+              </div>
+              <input type="text" aria-label="Model" class="form-control">
+            </div>
+            
+            <div class="input-group col-sm-6 col-md-4 pt-2 pt-sm-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Max-speed:</span>
+              </div>
+              <input type="text" aria-label="Model" class="form-control">
+            </div>
+            
+            <div class="input-group col-sm-6 col-md-4 pt-2 pt-sm-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Acceleration 0-100 km/h:</span>
+              </div>
+              <input type="text" aria-label="Model" class="form-control">
+            </div>
+            
+            
+            <div class="input-group col-sm-6 col-md-4 pt-2 pt-sm-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Fuel consumption:</span>
+              </div>
+              <input type="text" aria-label="Model" class="form-control">
+            </div>
+            
+            <div class="input-group col-sm-6 col-md-4 pt-2 pt-sm-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Number of seats:</span>
+              </div>
+              <input type="text" aria-label="Model" class="form-control">
+            </div>
+            
+            <div class="input-group col-sm-6 col-md-4 pt-2 pt-sm-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Number of doors:</span>
+              </div>
+              <input type="text" aria-label="Model" class="form-control">
+            </div>
+            
+            <H4 class="col-sm-12 pt-2 pt-sm-2">Features:</H4>
+            <div class="custom-control custom-checkbox col-xs-6 col-sm-4 col-md-2 mx-4">
+              <input type="checkbox" class="custom-control-input" id="AirConditioning">
+              <label class="custom-control-label" for="AirConditioning">A/C (air conditioning)</label>
+            </div>
+            <div class="custom-control custom-checkbox col-xs-6 col-sm-4 col-md-2  mx-4">
+              <input type="checkbox" class="custom-control-input" id="Navigation">
+              <label class="custom-control-label" for="Navigation">Navigation</label>
+            </div>
+            <div class="custom-control custom-checkbox col-xs-6 col-sm-4 col-md-2  mx-4">
+              <input type="checkbox" class="custom-control-input" id="USB">
+              <label class="custom-control-label" for="USB">USB</label>
+            </div>
+            <div class="custom-control custom-checkbox col-xs-6 col-sm-4 col-md-2  mx-4">
+              <input type="checkbox" class="custom-control-input" id="AUX">
+              <label class="custom-control-label" for="AUX">AUX</label>
+            </div>
+            <div class="custom-control custom-checkbox col-xs-6 col-sm-4 col-md-2  mx-4">
+              <input type="checkbox" class="custom-control-input" id="Bluetooth">
+              <label class="custom-control-label" for="Bluetooth">Bluetooth</label>
+            </div>
+            <div class="custom-control custom-checkbox col-xs-6 col-sm-4 col-md-2  mx-4">
+              <input type="checkbox" class="custom-control-input" id="Parking-sensors">
+              <label class="custom-control-label" for="Parking-sensors">Parking Sensors</label>
+            </div>
+            <div class="custom-control custom-checkbox col-xs-6 col-sm-4 col-md-2  mx-4">
+              <input type="checkbox" class="custom-control-input" id="Auto-pilot">
+              <label class="custom-control-label" for="Auto-pilot">Auto-pilot</label>
+            </div>
+            
+            <H4 class="col-sm-12 pt-2 pt-sm-2">Additional info:</H4>
+            <div class="input-group col-sm-12">
+              <textarea class="form-control" id="TextArea" rows="3"></textarea>
+            </div>
+            
+            <H4 class="col-sm-12 pt-2 pt-sm-2">Location & price:</H4>
+            
+            <div class="input-group col-sm-12 col-lg-6 pt-2 pt-sm-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Adress:</span>
+              </div>
+                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+            </div>
+            
+            <div class="input-group col-sm-6 col-lg-3 pt-2 pt-sm-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text">City:</span>
+              </div>
+              <input type="text" aria-label="Model" class="form-control">
+            </div>
+            
+            <div class="input-group col-sm-6 col-lg-3 pt-2 pt-sm-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text">ZIP:</span>
+              </div>
+              <input type="text" aria-label="Model" class="form-control">
+            </div>
+            
+            <div class="input-group col-sm-12 col-lg-5 pt-2 pt-sm-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Price per day:</span>
+              </div>
+              <input type="text" aria-label="Model" class="form-control" id="inputPrice">
+            </div>
+            
+            <div class="input-group col-sm-12 col-lg-7 pt-2 pt-sm-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Contact number:</span>
+              </div>
+              <input type="text" aria-label="Model" class="form-control">
+            </div>
+            
+            <div class="row col-12 py-4 justify-content-center">
+                <div class="col-1">
+                  <button type="button" class="btn btn-lg btn-secondary">Submit</button>
+                </div>
+            </div>  
+            
+            
+            
+          </div>
+      
+    </form>
+  </div>
   
   
-  <div class="footer-basic" style="background-color: #e6ffe6">
+  
+  
+   <div class="footer-basic" style="background-color: #e6ffe6">
     <footer>
       <div class="social">
         <a><i class="icon ion-social-instagram"></i></a><a><i
@@ -79,5 +251,8 @@
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+  
+  </body>
   </html>
   
