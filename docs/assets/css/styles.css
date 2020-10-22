@@ -1,3 +1,7 @@
+body {
+  font-family: 'Piazzolla', serif !important;
+}
+
 #podatki_uporabnika {
     float: left;
     margin-right: 20px;
@@ -126,10 +130,6 @@
   transform: translate(-50%, -50%);
 }
 
-body {
-    font-family: 'Piazzolla', serif;
-}
-
 h2 {
 font-weight: bold;
 }
@@ -158,6 +158,17 @@ z-index: 1;
     border-color: orange;
 }
 
+#submit-register {
+  font-size: x-large;
+}
+
+#submit-forgot {
+  font-size: x-large;
+}
+
+#submit-login {
+  font-size: x-large;
+}
 
 .login-el, .register-el, .forgot-pw-el {
 margin: 20px;
@@ -193,6 +204,8 @@ height:1.75em;
     border: solid black 5px;
     margin-bottom: 10px;
     margin-right: 10px;
+    width: 150px;
+    height: 150px;
 }
 
 /*mogoče vpliva na login register? 
@@ -235,6 +248,7 @@ table, th, td {
     font-family: 'Piazzolla', serif;
 }
 
+<<<<<<< HEAD
 .panel {
     margin-top: 5.2px;
     margin-bottom: 10px;
@@ -255,3 +269,9 @@ table, th, td {
     overflow: hidden;
     object-fit: cover;
 }
+=======
+.stars_auto {
+    margin-left:0px !important;
+    margin-bottom:10px;
+}
+>>>>>>> 042ae2240648310ab9fdf0f0e4c4162ff9843a36

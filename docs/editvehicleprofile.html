@@ -9,39 +9,45 @@
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css" />
     <link rel="stylesheet" href="assets/css/Footer-Basic.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Piazzolla:wght@200&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/b1b4a222c5.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #ab2828">
+    <nav class="navbar navbar-main navbar-expand-lg sticky-top justify-content-between">
         <div class="container-fluid">
-            <a class="navbar-brand logo" style="color: rgba(255, 255, 255, 0.9)">Cars Meet Clone</a><button
-                data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1">
-                <span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+            <a class="navbar-brand logo img-fluid= img-responsive m-0" href="#"><img src="./assets/images/Logo.png"
+                    heigth="10px" width="170px"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navcol-1"
+                aria-controls="navcol-1" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="sr-only">Toggle navigation</span><img src="./assets/images/menu-bars-icon.png"></a>
             </button>
             <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation">
+                <ul class="nav navbar-nav ml-auto" style="font-size: 1.2em">
+                    <li class="nav-item mx-md-2" role="presentation">
                         <a class="nav-link active" href="home.html" style="color: rgba(255, 255, 255, 0.9)"><i
-                                class="fa fa-home fa-fw" aria-hidden="true"></i>Home</a>
+                                class="material-icons fa-fw align-middle" aria-hidden="true">collections</i>
+                            Catalogue</a>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item mx-md-2" role="presentation">
                         <a class="nav-link" href="nearby.html" style="color: rgba(255, 255, 255, 0.9)"><i
-                                class="fa fa-map-marker fa-fw" aria-hidden="true"></i>Nearby</a>
+                                class="material-icons fa-fw align-middle" aria-hidden="true">near_me</i> Nearby</a>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item mx-md-2" role="presentation">
                         <a class="nav-link" href="calendar.html" style="color: rgba(255, 255, 255, 0.9)"><i
-                                class="fa fa-calendar fa-fw" aria-hidden="true"></i>Calendar</a>
+                                class="material-icons fa-fw align-middle" aria-hidden="true">add_to_photos</i> List your
+                            car</a>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item mx-md-2" role="presentation">
                         <a class="nav-link" href="profile.html" style="color: rgba(255, 255, 255, 0.9)"><i
-                                class="fa fa-user fa-fw" aria-hidden="true"></i>Profile</a>
+                                class="material-icons fa-fw align-middle" aria-hidden="true">account_box</i> My
+                            profile</a>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item mx-md-2" role="presentation">
                         <a class="nav-link" href="search.html" style="color: rgba(255, 255, 255, 0.9)"><i
-                                class="fa fa-search fa-fw" aria-hidden="true"></i>Search</a>
+                                class="material-icons fa-fw align-middle" aria-hidden="true">search</i> Search</a>
                     </li>
                 </ul>
             </div>
@@ -90,10 +96,10 @@
             </a>
         </div>
 
-        <div class="container-fluid p-5">
+        <div class="container-fluid pt-5 pb-3">
             <!---slike-->
-            <div class="row m-2">
-                <div class="col-12  ">
+            <div class="row m-2 justify-content-center">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
                     <form>
                         <div class="form-group">
                             <label for="images">Upload vehicle images</label>
@@ -101,9 +107,12 @@
                         </div>
                     </form>
                 </div>
-                <!--- ime-->
-                <div class="col-12 m-2 mx-auto">
-                    <div class="name input-group w-25">
+            </div>
+
+            <!--- ime-->
+            <div class="row m-2 justify-content-center">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
+                    <div class="name input-group w-25 ">
                         <div class="input-group-prepend ">
                             <span class="input-group-text">
                                 <h4>Vehicle name</h4>
@@ -129,13 +138,7 @@
             <!--- lastnik in opis-->
             <div class="row m-3">
                 <div class="col-sm-12 col-md-4 ">
-                    <img class="avatar " src="assets/images/avatarOwner.jpg">
-                    <form>
-                        <div class="form-group">
-                            <label for="images">Upload avatar</label>
-                            <input type="file" class="form-control-file" id="avatar">
-                        </div>
-                    </form>
+                    <a href="profile.html"><img class="avatar" src="assets/images/oseba_template.jpg"></a>
                     <div class="name input-group ">
                         <div class="input-group-prepend ">
                             <span class="input-group-text">Phone</span>
@@ -152,25 +155,22 @@
                     </div>
                 </div>
 
-                <div class="col-sm-12 col-md-8">
+                <div class="col-sm-12 col-md-7 offset-md-1">
                     <div class="card mb-3">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Description:</span>
                             </div>
-                            <textarea class="form-control"></textarea>
+                            <textarea class="form-control" style="height:200px;"></textarea>
                         </div>
-                        <!--<div class="card-body desc">
-              <textarea rows="6" cols="100" placeholder="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem magni doloribus, repellendus impedit vero voluptatum voluptates vitae, molestias dignissimos natus ab dolorem assumenda ut iusto quaerat quod fugiat perspiciatis et maiores. Sed commodi ea assumenda rerum distinctio delectus accusantium, fugit quam error, id excepturi expedita, quaerat alias velit officiis quo?"></textarea>
-            </div>-->
                     </div>
                 </div>
             </div>
 
             <!--- lastnosti in izposodi-->
-            <div class="row m-3 mt-5">
+            <div class="row m-3 mt-5 mb-4">
                 <h3>Features:</h3>
-                <div class="features col-sm-3">
+                <div class="features col-sm-3 mb-3">
                     <div><i class="far fa-snowflake"></i> <span class="text-success">air conditioning</span></div>
                     <div><i class="fas fa-charging-station"></i>electric</div>
                     <div><i class="fab fa-accessible-icon"></i><span class="text-danger">not accessible</span></div>
@@ -178,14 +178,14 @@
                     <div><i class="fas fa-suitcase"></i>luggage 425 l</div>
                     <div><i class="fas fa-door-closed"></i>4 doors</div>
                 </div>
-                <div class="features col-sm-3">
+                <div class="features col-sm-3 mb-3">
                     <div><i class="fab fa-bluetooth"></i><span class="text-success">bluetooth support</span></div>
                     <div><i class="far fa-map"></i><span class="text-success">GPS</span></div>
                     <div><i class="fab fa-usb"></i><span class="text-success">USB support</span></div>
                     <div><i class="fas fa-user-graduate"></i>18+</div>
                 </div>
 
-                <div class="book col-sm-8 col-md-4 mt-4">
+                <div class="book col-sm-8 col-md-4">
                     <form>
                         <div class="form-group">
                             <label for="date">Select period of rental</label>
@@ -209,7 +209,7 @@
             </div>
 
             <div class="row justify-content-center">
-                <button class="btn btn-primary w-25">Save changes</button>
+                <a href="vehicleprofile.html"><button id="save-changes" class="btn btn-primary">Save changes</button></a>
             </div>
 
         </div>
