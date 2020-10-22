@@ -234,3 +234,24 @@ table, th, td {
 .text-success, .text-danger {
     font-family: 'Piazzolla', serif;
 }
+
+.panel {
+    margin-top: 5.2px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 14px;
+}
+
+.panel-title {
+    font-family: 'Verdana', serif;
+    font-size: 24px;
+    background-color: blue;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 200px;
+    overflow: hidden;
+    object-fit: cover;
+}
