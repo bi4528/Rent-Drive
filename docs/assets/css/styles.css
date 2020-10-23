@@ -59,12 +59,28 @@
 }
 
 .navbar-main{
-  background-color:#7DB46CFF
+    background-color:#7DB46CFF
+}
+.navbar-main a{
+    color: rgba(255, 255, 255, 0.9)
+}
+
+.navbar-main ul{
+    font-size: 1.2em
 }
 
 .navbar-category{
   border-bottom: 1px solid #a6a6a6;
   width:100%;
+}
+.navbar-category ul{
+    font-size: 1.5em
+}
+.navbar-category p{
+    font-size: 1.2em
+}
+.navbar-category a{
+    color: #0d0d0d
 }
 
 .container-background{
