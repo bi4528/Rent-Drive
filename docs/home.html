@@ -69,7 +69,7 @@
     <div class="container-fluid">
       <nav class="navbar navbar-category navbar-expand-lg justify-content-between">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <strong>Category <span class="material-icons arrow-down">expand_more</span></strong>
+          <text>Category<i class="fas fa-angle-down px-2" style="color:#595959;"></i></text>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
@@ -99,11 +99,11 @@
     
     <br>
     
-    <div id="catalogue-cars" class="carousel slide carousel-multi-item mt-4 mt-sm-4" data-ride="carousel">
+    <div id="catalogue-cars" class="carousel slide carousel-multi-item mt-4" data-ride="carousel">
       
       <div class="controls-top carousel-controls">
-        <a class="btn-floating" href="#catalogue-cars" data-slide="prev"><i class="fas fa-chevron-circle-left fa-3x p-2 p-sm-3" style="color:grey;"></i></a>
-        <a class="btn-floating" href="#catalogue-cars" data-slide="next"><i class="fas fa-chevron-circle-right fa-3x p-2 p-sm-3" style="color:grey;"></i></a>
+        <a class="btn-floating" href="#catalogue-cars" data-slide="prev"><i class="fas fa-long-arrow-alt-left fa-3x p-2" style="color:#595959;"></i></a>
+        <a class="btn-floating" href="#catalogue-cars" data-slide="next"><i class="fas fa-long-arrow-alt-right fa-3x p-2" style="color:#595959;"></i></a>
       </div>
       
     
@@ -236,21 +236,45 @@
         </div>
     
       </div>
+      <div class="controls-top carousel-controls col-12 w-100 mb-3 py-3">
+        <a class="btn-floating col-6" href="#catalogue-cars" data-slide="prev"><i class="fas fa-chevron-left fa-3x p-2 float-left" style="color:#595959;"></i></a>
+        <a class="btn-floating col-6" href="#catalogue-cars" data-slide="next"><i class="fas fa-chevron-right fa-3x p-2 float-right" style="color:#595959;"></i></a>
+      </div>
     
     </div>
-    
   </main>
   
   
-  <div class="footer-basic">
+  <div class="footer-basic pt-4 w-100">
     <footer>
-      <ul class="list-inline">
-        <li class="list-inline-item"><a href="home.html">Home</a></li>
-        <li class="list-inline-item"><a href="nearby.html">Nearby</a></li>
-        <li class="list-inline-item"><a href="publish.html">List your car</a></li>
-        <li class="list-inline-item"><a href="profile.html">My profile</a></li>
-        <li class="list-inline-item"><a href="search.html">Search</a></li>
-      </ul>
+      <div class="row">
+        
+        <div class="col-md-4 w-100 h-100" style="display:table-cell; vertical-align:middle; text-align:center">
+          <img src="./assets/images/Logo.png" class="footer-logo" width="200px" alt="Rent&Drive">
+          <p>If you need any help feel free to contact us on:</p>
+          <ul>
+            <li ><a href="">mi2583@student.uni-lj.si</a></li>
+            <li ><a href="">mk9693@student.uni-lj.si</a></li>
+            <li ><a href="">nb9762@student.uni-lj.si</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-md-4 text-center">
+          <p class="py-4"> Never forget to respect others people personal cars. Try to keep them clean, take care of them like if it was yours. Give it back the way it was given to you.
+          Also always respect the road safety regulations, rules and signs. Stay safe and have a good time.</p>
+        </div>
+        
+        <div class="col-md-4">
+          <ul>
+            <li ><a href="home.html">Home</a></li>
+            <li ><a href="nearby.html">Nearby</a></li>
+            <li ><a href="publish.html">List your car</a></li>
+            <li ><a href="profile.html">My profile</a></li>
+            <li ><a href="search.html">Search</a></li>
+          </ul>
+        </div>
+      
+      </div>
       <p class="copyright">Oranžni FRI (Skupina 01) © 2020</p>
     </footer>
   </div>

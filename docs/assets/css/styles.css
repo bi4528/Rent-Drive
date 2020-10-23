@@ -59,14 +59,14 @@
 }
 
 .navbar-main{
-    background-color:#7DB46CFF
+    background-color:#7DB46CFF;
 }
 .navbar-main a{
-    color: rgba(255, 255, 255, 0.9)
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .navbar-main ul{
-    font-size: 1.2em
+    font-size: 1.2em;
 }
 
 .navbar-category{
@@ -74,13 +74,22 @@
   width:100%;
 }
 .navbar-category ul{
-    font-size: 1.5em
+    font-size: 1.5em;
 }
-.navbar-category strong{
-    font-size: 1.2em
+.navbar-category text{
+    font-size: 1.5em;
 }
 .navbar-category a{
     color: #0d0d0d
+}
+
+.footer-basic{
+    border-top: 1px solid #a6a6a6;
+    background-color: #101820FF;
+    color: white
+}
+.footer-logo{
+    
 }
 
 .container-background{
