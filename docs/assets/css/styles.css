@@ -76,7 +76,7 @@
 .navbar-category ul{
     font-size: 1.5em
 }
-.navbar-category p{
+.navbar-category strong{
     font-size: 1.2em
 }
 .navbar-category a{
@@ -283,4 +283,8 @@ table, th, td {
 .stars_auto {
     margin-left:0px !important;
     margin-bottom:10px;
+}
+
+.carousel-catalogue .visina{
+    
 }
