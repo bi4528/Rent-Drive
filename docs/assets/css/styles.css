@@ -189,6 +189,10 @@ z-index: 1;
   font-size: x-large;
 }
 
+#reset-password{
+    border-color: #7DB46CFF;
+}
+
 .login-el, .register-el, .forgot-pw-el {
 margin: 20px;
 }
