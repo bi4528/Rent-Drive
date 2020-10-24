@@ -280,15 +280,8 @@ table, th, td {
 
 .panel-title {
     font-size: 24px;
-    background-color: blue;
 }
 
-.profile-pic {
-    width: 150px;
-    height: 200px;
-    overflow: hidden;
-    object-fit: cover;
-}
 .stars_auto {
     margin-left:0px !important;
     margin-bottom:10px;
@@ -296,4 +289,20 @@ table, th, td {
 
 .carousel-catalogue .visina{
     
+}
+
+.card-link{
+    font-weight: bold;
+    color:#7DB46CFF;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 30vh;
+    object-fit: contain;
+    padding: 4px;
+}
+
+.card-title{
+    font-weight: bold;
 }
