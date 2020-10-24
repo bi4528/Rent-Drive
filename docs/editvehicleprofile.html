@@ -131,20 +131,11 @@
             <div class="row m-3">
                 <div class="col-sm-12 col-md-4 ">
                     <a href="profile.html"><img class="avatar" src="assets/images/oseba_template.jpg"></a>
-                    <div class="name input-group ">
-                        <div class="input-group-prepend ">
-                            <span class="input-group-text">Phone</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="+38670789654">
-                    </div>
-                    <div class="input-group-prepend ">
-                        <span class="input-group-text">E-mail</span>
-                        <input type="text" class="form-control" placeholder="josh_smith@gmail.com">
-                    </div>
-                    <div class="input-group-prepend ">
-                        <span class="input-group-text">Location</span>
-                        <input type="text" class="form-control" placeholder="Koper,Slovenia">
-                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item contact-details"><i class="fas fa-phone"></i>+38670789654</li>
+                        <li class="list-group-item contact-details"><i class="far fa-envelope"></i>josh_smith@gmail.com</li>
+                        <li class="list-group-item contact-details"><i class="far fa-map"></i>Koper, Slovenia</li>
+                      </ul>
                 </div>
 
                 <div class="col-sm-12 col-md-7 offset-md-1">
@@ -162,44 +153,108 @@
             <!--- lastnosti in izposodi-->
             <div class="row m-3 mt-5 mb-4">
                 <h3>Features:</h3>
-                <div class="features col-sm-3 mb-3">
-                    <div><i class="far fa-snowflake"></i> <span class="text-success">air conditioning</span></div>
-                    <div><i class="fas fa-charging-station"></i>electric</div>
-                    <div><i class="fab fa-accessible-icon"></i><span class="text-danger">not accessible</span></div>
-                    <div><i class="fas fa-tachometer-alt"></i>209 km/h</div>
-                    <div><i class="fas fa-suitcase"></i>luggage 425 l</div>
-                    <div><i class="fas fa-door-closed"></i>4 doors</div>
+                <div class="features col-sm-3">
+                      <div class="custom-control custom-checkbox   mx-2">
+                        <input type="checkbox" class="custom-control-input" id="AirConditioning" checked>
+                        <label class="custom-control-label" for="AirConditioning">A/C</label>
+                      </div>
+                      <div class="custom-control custom-checkbox   mx-2">
+                        <input type="checkbox" class="custom-control-input" id="Navigation" checked>
+                        <label class="custom-control-label" for="Navigation">Navigation</label>
+                      </div>
+                      <div class="custom-control custom-checkbox   mx-2">
+                        <input type="checkbox" class="custom-control-input" id="USB" checked>
+                        <label class="custom-control-label" for="USB">USB</label>
+                      </div>
+                      <div class="custom-control custom-checkbox   mx-2">
+                        <input type="checkbox" class="custom-control-input" id="AUX">
+                        <label class="custom-control-label" for="AUX">AUX</label>
+                      </div>
+                      <div class="custom-control custom-checkbox   mx-2">
+                        <input type="checkbox" class="custom-control-input" id="Bluetooth" checked>
+                        <label class="custom-control-label" for="Bluetooth">Bluetooth</label>
+                      </div>
+                      <div class="custom-control custom-checkbox   mx-2">
+                        <input type="checkbox" class="custom-control-input" id="Parking-sensors">
+                        <label class="custom-control-label" for="Parking-sensors">Parking Sensors</label>
+                      </div>
+                      <div class="custom-control custom-checkbox   mx-2">
+                        <input type="checkbox" class="custom-control-input" id="Auto-pilot" checked>
+                        <label class="custom-control-label" for="Auto-pilot">Auto-pilot</label>
+                      </div>
                 </div>
-                <div class="features col-sm-3 mb-3">
-                    <div><i class="fab fa-bluetooth"></i><span class="text-success">bluetooth support</span></div>
-                    <div><i class="far fa-map"></i><span class="text-success">GPS</span></div>
-                    <div><i class="fab fa-usb"></i><span class="text-success">USB support</span></div>
-                    <div><i class="fas fa-user-graduate"></i>18+</div>
+                <div class="features col-sm-3">
+                    <div class="custom-control custom-checkbox   mx-2">
+                        <input type="checkbox" class="custom-control-input" id="Accessibility">
+                        <label class="custom-control-label" for="Accessibility">Accessibility</label>
+                    </div>
+                    <div class="custom-control custom-checkbox   mx-2">
+                        <input type="checkbox" class="custom-control-input" id="Electric" checked>
+                        <label class="custom-control-label" for="Electric">Electric</label>
+                    </div>
                 </div>
 
                 <div class="book col-sm-8 col-md-4">
-                    <form>
-                        <div class="form-group">
-                            <label for="date">Select period of rental</label>
-                            <input type="datetime-local" class="form-control" name="date">
+                    <div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon1"><i class="fas fa-tachometer-alt" aria-hidden="true"></i></span>
+                            </div>
+                            <input type="number" class="form-control" placeholder="top-speed (km/h)" aria-label="Ime" aria-describedby="basic-addon1" value="top-speed (km/h)">
                         </div>
-                        <div class="form-group">
-                            <label for="date">To</label>
-                            <input type="datetime-local" class="form-control" name="date">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon1"><i class="fas fa-door-closed" aria-hidden="true"></i></span>
+                            </div>
+                            <input type="number" class="form-control" placeholder="door-count" aria-label="Ime" aria-describedby="basic-addon1" value="door-count">
                         </div>
-                        <div class="form-group"><label for="cars">Location of pickup & return</label>
-                            <select name="cars" id="cars">
-                                <option>Vojkovo nabrežje, Koper</option>
-                                <option>Ankaranska cesta 5d, Koper</option>
-                            </select></div>
-                    </form>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-graduate" aria-hidden="true"></i></span>
+                            </div>
+                            <input type="number" class="form-control" placeholder="age" aria-label="Ime" aria-describedby="basic-addon1" value="age">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon1"><i class="fas fa-suitcase" aria-hidden="true"></i></span>
+                            </div>
+                            <input type="number" class="form-control" placeholder="luggage (l)" aria-label="Ime" aria-describedby="basic-addon1" value="luggage (l)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-3 ml-4 mb-4">
+                <form>
+                    <div class="form-group">
+                        <label for="date">Select period of rental</label>
+                        <input type="datetime-local" class="form-control" name="date">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">To</label>
+                        <input type="datetime-local" class="form-control" name="date">
+                    </div>
+                    
+                    <div class="form-group"><label for="cars">Location of pickup & return</label>
+                        <div class="custom-control custom-checkbox mx-2">
+                            <input type="checkbox" class="custom-control-input" id="location-1" checked>
+                            <label class="custom-control-label" for="location-1">Vojkovo nabrežje, Koper</label>
+                          </div>
+                          <div class="custom-control custom-checkbox mx-2 mb-3">
+                            <input type="checkbox" class="custom-control-input" id="location-2" checked>
+                            <label class="custom-control-label" for="location-2">Ankaranska cesta 5d, Koper</label>
+                          </div>
+                          <div class="form-group mb-2">
+                              <input class="form-control-inline mb-2 w-100" type="text" id ="input">
+                              <button class="form-control btn btn-primary" id ="add" type="submit">Add location</button>
+                          </div>    
+                    </div>
                     <div class="input-group-prepend ">
                         <span class="input-group-text">Price (per day)</span>
                         <input type="text" class="form-control" placeholder="50€">
                     </div>
-                </div>
+                </form>
+                
             </div>
-
             <div class="row justify-content-center">
                 <a href="vehicleprofile.html"><button id="save-changes" class="btn btn-primary">Save changes</button></a>
             </div>
@@ -209,35 +264,38 @@
 
     <!-- konec vsebine-->
 
-    <div class="footer-basic pt-4 w-100">
+    <div class="footer-basic mt-4 pt-4 w-100">
         <footer>
-          <div class="row">
+          <div class="container">
             
-            <div class="col-md-4 w-100 h-100" style="display:table-cell; vertical-align:middle; text-align:center">
-              <img src="./assets/images/Logo.png" class="footer-logo" width="200px" alt="Rent&Drive">
-              <p>If you need any help feel free to contact us on:</p>
-              <ul>
-                <li ><a href="">mi2583@student.uni-lj.si</a></li>
-                <li ><a href="">mk9693@student.uni-lj.si</a></li>
-                <li ><a href="">nb9762@student.uni-lj.si</a></li>
-              </ul>
+            <div class="row">
+              <div class="col-md-4 w-100 h-100" style="display:table-cell; vertical-align:middle; text-align:center">
+                <img src="./assets/images/Logo.png" class="footer-logo" width="200px" alt="Rent&Drive">
+                <p>If you need any help feel free to contact us on:</p>
+                <ul>
+                  <li><a href="">mi2583@student.uni-lj.si</a></li>
+                  <li><a href="">mk9693@student.uni-lj.si</a></li>
+                  <li><a href="">nb9762@student.uni-lj.si</a></li>
+                </ul>
+              </div>
+    
+              <div class="col-md-4 text-center">
+                <p class="py-4 text-justify"> Don't forget: respect personal cars of others. Try to keep them clean, take care of
+                  them like if it was yours. Give it back the way it was given to you.
+                  Always respect the road safety regulations, rules and signs. Stay safe and have a good time.</p>
+              </div>
+    
+              <div class="col-md-3">
+                <ul>
+                  <li><a href="home.html">Home</a></li>
+                  <li><a href="nearby.html">Nearby</a></li>
+                  <li><a href="publish.html">List your car</a></li>
+                  <li><a href="profile.html">My profile</a></li>
+                  <li><a href="search.html">Search</a></li>
+                </ul>
+              </div>
+    
             </div>
-            
-            <div class="col-md-4 text-center">
-              <p class="py-4"> Never forget to respect others people personal cars. Try to keep them clean, take care of them like if it was yours. Give it back the way it was given to you.
-              Also always respect the road safety regulations, rules and signs. Stay safe and have a good time.</p>
-            </div>
-            
-            <div class="col-md-4">
-              <ul>
-                <li ><a href="home.html">Home</a></li>
-                <li ><a href="nearby.html">Nearby</a></li>
-                <li ><a href="publish.html">List your car</a></li>
-                <li ><a href="profile.html">My profile</a></li>
-                <li ><a href="search.html">Search</a></li>
-              </ul>
-            </div>
-          
           </div>
           <p class="copyright">Oranžni FRI (Skupina 01) © 2020</p>
         </footer>
