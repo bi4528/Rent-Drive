@@ -306,3 +306,14 @@ table, th, td {
 .card-title{
     font-weight: bold;
 }
+
+.car_image_home {
+    height: 150px;
+    object-fit: cover;
+}
+
+.car_image_search {
+    height: 150px;
+    object-fit: cover;
+}
+
