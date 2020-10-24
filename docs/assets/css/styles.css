@@ -88,8 +88,8 @@
     background-color: #101820FF;
     color: white
 }
-.footer-logo{
-    
+.footer-basic .text-center, .footer-basic .ul-list{
+    margin: auto;
 }
 
 .container-background{
@@ -287,10 +287,6 @@ table, th, td {
     margin-bottom:10px;
 }
 
-.carousel-catalogue .visina{
-    
-}
-
 .card-link{
     font-weight: bold;
     color:#7DB46CFF;
@@ -308,12 +304,12 @@ table, th, td {
 }
 
 .car_image_home {
-    height: 150px;
+    height: 200px;
     object-fit: cover;
 }
 
 .car_image_search {
-    height: 150px;
+    height: 200px;
     object-fit: cover;
 }
 
