@@ -1,58 +1,86 @@
 # Spletno programiranje 2020/2021
 
-Dokumentacija lastnega projekta pri predmetu **Spletno programiranje** v študijskem letu **2020/2021**.
+Lastni projekt pri predmetu **Spletno programiranje** v študijskem letu **2020/2021**.
 
-Navodila:
-V repozitoriju ustvarite mapo z imenom docs, kamor boste shranili rezultate 1. LP. Za vsak pogled, ki ga boste izdelali v okviru lastnega projekta, morate pripraviti po eno zaslonsko masko, ki jo shranite v obliki ločene HTML datoteke. Zaslonske maske pripravite za vsaj 3 različne tipe naprav (npr. namizni računalnik, tablico oz. mobilni telefon v ležečem načinu in mobilni telefon v pokončnem načinu). Pri opredelitvi uporabniškega vmesnika si pomagajte z Bootstrap gradniki, kar je bilo predstavljeno na predavanju P1.1, ki je na voljo v poglavju 1. Pri tem upoštevajte, da v skladu z vašim projektom izdelate zaslonske maske vsaj sledečih tipov:
-prijava/registracija uporabnika,
-dodajanje elementa,
-izpis seznama elementov in master/detail vzorec,
-brisanje elementa,
-pregled in urejanje elementa,
-iskanje,
-integracija aplikacije z zunanjim virom (lahko nadgradite eno izmed obstoječih zaslonskih mask).
-V korenski mapi repozitorija v datoteki README.md na kratko opišite vašo aplikacijo (glejte primere opisov projektov v poglavju 3.7 in v dokument vključite povezave na zaslonske maske. Zaslonske maske vaše aplikacij predstavite s statičnimi HTML stranmi. Na HTML strani (npr. spletni obrazci, seznam vrednosti v tabeli iptd.) podatke vključite kot vnaprej definirane42 in se naj ne spreminjajo dinamično, saj boste to funkcionalnost dopolnili v naslednjih korakih izdelave aplikacije. Kjer je predvideno dinamično spreminjanje vsebine, le-to na strani ustrezno označite, kar boste implementirali kasneje. Za vsako zaslonsko masko je potrebno opisati njene funkcionalnosti.
+## 1. LP - Osnutek aplikacije in wireframe model
+
+Ideja projekta je porazdeljeni *Rent-a-car*. Kdorkoli se lahko v aplikacijo brezplačno registrira. Vsak uporabnik lahko najame vozilo za izbrani termin in lahko nudi svoja vozila za najem. Ogled vozil je možen vsem, najem pa le registriranim uporabnikom.
+
+Vse strani vsebujejo footer, navbar pa vsebujejo vse strani razen register.html, login.html, forgotpassword.html in resetpassword.html.
+
+Navbar se razlikuje, če je uporabnik prijavljen ali ne. Če uporabnik ni prijavljen, navbar vsebuje gumbe Home, Nearby, Add your vehicle, Register, Login, Search.
+Če pa uporabnik je prijavljen navbar vsebuje gumbe **Home**, **Nearby**, **Add your vehicle**, **Profile**, **Search**. Za 1.LP bomo prikazali strani, kot da je uporabnik prijavljen v sistem.
+
+Navbar in footer ves čas omogočajo uporabnikom prehod na prej naštete strani **Home**, **Nearby**, **Add your vehicle**, **Profile**, **Search**.
+
+Strani so sledeče:
+
+## [home.html](home.html): 
+Home.html je glavna stran aplikacije. Uporabnik lahko poišče aute za najem. Uporabnik filtrira aute s pomočjo kraja (npr. Ljubljana), datuma ter s klikom na zaželeno kategorijo auta. Kategorije so Hatchback, Saloon, Caravan, Coupe, SUV in Pick-up. Auti so prikazani v spodnji polovici strani z uporabo
+carousel strukture. Uporabnik z klikom na puščice se premika levo in desno. Po določenem času bo se animacija automatsko zagnala in prikazala aute na naslednji (desni) strani.
+
+## [nearby.html](nearby.html):
+Nearby.html omogoča uporabniku ogled autov, ki so v bližini z uporabo mape. Na strani je tudi prikazan promet za izbrano okolico v mapo. Z klikom na zaželeni auto se odpre profil tega auta. Ta funkcionalnost bo implementirana v prihodnjih fazah projekta - gre za našo izbiro API-ja projekta.
+
+## [publish.html](publish.html):
+Publish.html omogoča uporabniku vnos svojega auta za najem. Uporabnik lahko vnese sliko, podatke o avtomobilu, lokacijo najema, dodatne informacije za avto (npr. pravila), izbere featurje avta in določi ceno.
+
+S klikom na gumb "Submit" uporabnik shrani podatke ter objavi avto na spletni strani.
+
+## [profile.html](profile.html):
+Profile.html je stran, ki prikaže informacije o uporabniku in njegovih vozilih. Prikazane informacije uporabnika so ime, priimek, lokacija, mail, telefon in slika. Vsak prikazan auto na strani je možno urediti s klikom na gumb **Edit** in odstraniti s klikom na gumb Remove.
+Uporabnik lahko spremeni podetke s klikom na **Edit** in lahko zaključi sejo s klikom na gumb Log out. Klikom na avtomobil se odpre vehicleprofile.html s podatki o avtomobilu.
+
+## [edit_profile.html](edit_profile.html):
+Edit_profile.html je stran, ki je dostopna le obstoječim uporabnikom. Omogoča jim spremembo osebnih podatkov (imena, priimka, e-mail naslova, telefonske številke in kraja). Uporabnik lahko tudi spremeni svoj trenutni avatar, s klikom na gumb **Choose image** lahko naloži novo sliko ki bo uporabljena kot njegov avatar. Svoje spremembe uporabnik potrdi klikom na gumb **Save**, ki ga pripelje nazaj na lastni profil na [profile.html](profile.html).
+
+## [search.html](search.html):
+Search.html je stran ki omogoča iskanje avtomobilov in uporabnikov. S klikom na avtomobil se odpre [vehicleprofile.html](vehicleprofile.html), ki vsebuje podatke o avtomobilu. S klikom na uporabnika se odpre [tuji_profile.html](tuji_profile.html) s podatki o uporabniku.
+
+## [vehicleprofile.html](vehicleprofile.html):
+Vehicleprofile.html je stran ki prikazuje razne podatke o vozilu ki je za najem. Tukaj je: zaporedje fotografij v "carousel-u", kratek opis vozila, seznam ključnih lastnosti (klima, pogon, maksimalna hitrost, navigacija, bluetooth podpora itd.). 
+
+Prikazan je tudi profil najemnika in njegove osnovne informacije (telefonska številka, e-mail naslov in kraj). Izpolnjevanjem polja za vnos datuma, ure in lokacije ter klikom na gumb **Book** uporabnik pride korak bližje najemu, na stran [book.html](book.html). 
+
+Poleg tega, stran vsebuje možnost všečkanja (čist zgoraj poleg imena), povprečno oceno (takoj za tem) in recenzije na koncu strani. Vsaka recenzija vsebuje avatar avtorja, njegovo oceno od 1 do 5 in kratek komentar.
+
+## [editvehicleprofile.html](editvehicleprofile.html):
+Editvehicleprofile.html je stran ki je dostopna samo lastnikom vozil (osebe ki imajo tako uporabniški račun kot avto dano v najem). Uporabnikom je omogočeno ažuriranje podatkov vozila in sicer lahko spremenijo: naložene fotografije vozila, njegovo ime, opis, razne lastnosti, dostopni period najema, mogoče lokacije prevzema vozila, ceno najema. Le-te spremembe uporabniki uveljavijo s klikom na gumb, ki jih pripelje nazaj na [profil vozila](vehicleprofile.html).
+
+## [book.html](book.html):
+Book.html je stran čigav namen je izpis podrobnosti najema vozila. Nudi bodisi preklic, bodisi potrditev najema. Še enkrat so prikazane izbrane podrobnosti prevzema (lokacija in čas) , opis najemnika in lastnega profila (e-mail naslov, ime, priimek, kraj).
+
+## [register.html](register.html):
+Register.html je stran preko katere uporabnik ustvari uporabniški račun. Stran zahteva e-mail naslov, geslo, ime in priimek. Ponuja tudi prehod nazaj na [homepage](home.html) in [login stran](login.html).
+
+## [login.html](login.html):
+Login.html je stran preko katere se uporabnik prijavi na spletno stran. Stran zahteva e-mail naslov in geslo, ime in priimek. Ponuja tudi opcijo **remember me** ter vrnitev na [homepage](home.html).
+
+## [forgotpassword.html](forgotpassword.html):
+Forgotpassword.html je stran dostopna samo uporabnikom. Omogoča opcijo resetiranja gesla, uporabnik vpiše svoj e-mail naslov, in po kratkem času dobi sporočilo z navodili kako nastaviti novo geslo. Nudi tudi opcijo prehoda na [homepage](home.html) in [login stran](login.html).
+
+## [reset-password.html](reset-password.html):
+Reset-password.html je stran do katere se lahko pride zgolj preko prejetega e-mail sporočila (generiran na strani [forgotpassword.html](forgotpassword.html)). Tukaj uporabnik upiše svoje novo geslo, ga ponovi in na koncu potrdi. Mogoč je tudi prehod na [homepage](home.html) in [login stran](login.html).
 
 
-Alternativne ideje: 
-Rent-a-car (spremljanje vozil prek Mapsa, katalog vozil za izposojo, klik na vozilo pokaže podrobnosti, sortiranje vozil po letniku/ceni/itd., uporabnik lahko stranka ali admin, dodajanje novih vozil, brisanje vozil), Avtošola, Ski dnevnik (weather api, uporabniki lahko učitelji ali učenci)
+## Razlike brskalnikov:
+*TODO*
+
+## 2. LP
+
+Dinamična spletna aplikacija z logiko na strani strežnika
 
 
-Ideje za ime: Avtofil, Avto-entuziast, Autorgolio, Autus, Cars & Drivers, Only Cars, Car World, HypeDrivers, Auto addicts, Highway, CarNet, CarWay, Petrolicious, Diesel Drink, Broom Broom, Carma
+## 3. LP
 
-API-ji:
-https://api.auto-data.net/ - sijajna zbirka tehničnih podatkov o avtih, vendar plačljiva :c
-https://www.carmd.com/car-image-api/ - slike avtomobilov, vendar prek 25 poizvedb postane tudi plačljiv
-https://github.com/zejn/prometapi - slovenski API ki vleče kar nekaj podatkov s promet.si (kamere, števci prometa, burja, parkirišča, dogodki na cestah, BicikeLJ)
-https://edmundsapi-preprod.github.io/api-documentation/vehicle/ - tehnični podatki, ne dela?
-https://vpic.nhtsa.dot.gov/api/ - tehnični podatki
-Google Maps oz. Google Places - če prav razumem lahko prikažemo zanimive točke v bližini (atribut type = car_dealer, car_rental, car_repair, car_wash, park, parking, rv_park), verjetno najboljša opcija
+Dinamična spletna aplikacija s podatkovno bazo
 
-funkcionalnosti CarMeets aplikacije - klubi/skupine, pregled lastnih vozil in dodatkov, dvojezičnost, google translate postov
 
-feed glavna stran (Home) - pregled slik, pregled objav, like opcija, komentar opcija, dodaj/briši/uredi objavo, iskanje objave (kronološko, po lajkih, po osebah)  - Marko
+## 4. LP
 
-maps (Nearby) - avtopralnice, vulkanizerji, avto-servis,bencinske črpalke, avto-kozmetika. electric charges.  Google Maps API, opcija spremljanja lokacije prijateljev - Bojan
+SPA aplikacija na eni strani
 
-Buttons for nearby:
-service station
-gas station
-car-shops
-registration
-meet-ups
------ko klikneš event - opis, slike, tip eventa, kdo se je ali se bo udeležil
 
-stran za registracijo (Registration) - uporabnik, geslo, ponovi geslo, sign-up - Nino
+## 5. LP
 
-stran za prijava- Become a member (Log In) - uporabnik + geslo (podatkovna baza hrani uporabnike), sign-up - Nino
-
-koledar (Calendar) - sam koledar?, poseben div prihajajoči dogodki, dodaj dogodek(popup/modal), knjižnice import pa roka, - Nino
-
-profil lastnik - ime, priimek, vzdevek, najljubše avto, avti v lasti, preference, teme ki jim sledi uporabnik, slike, log out, delete profile - Matej
-
-profil ne lastnik/prijatelj - ime, priimek, vzdevek, najljubše avto, avti v lasti, preference, teme ki jim sledi uporabnik, slike, follow, unfollow - Matej
-deals + shop (Shop) - razni popusti ter merchandise - Bojan
-
-informativna stran o podjetju (About us) - osnovni podatki o nam, fake naslov, fake telefonska številka, copyright itd. - Matej
-
-Opis projekta: TODO
+Varnostno zaščitena progresivna aplikacija
