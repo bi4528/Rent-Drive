@@ -67,7 +67,7 @@ Reset-password.html je stran do katere se lahko pride zgolj preko prejetega e-ma
 
 
 ## Razlike brskalnikov:
-Spletna stran je temeljena na Google Chrome brskalniku. V nadaljevanju primerjamo njen izgled na le-tem z Mozillo Firefox in Microsoft Edgom. 
+Spletna stran je temeljena na Google Chrome brskalniku. V nadaljevanju primerjamo njen izgled na le-tem z Mozillo Firefox, Brave in Microsoft Edgom. 
 
 ### Firefox:
 Splošno: Font v besedilih je dokaj bolj odebeljen in ostrejši.
@@ -92,6 +92,9 @@ Splošno: Font v besedilih je dokaj bolj odebeljen in ostrejši.
 4. [vehicleprofile.html](vehicleprofile.html) - font za opis vozil bolj odebeljen, koledar ikonica drugačna
 5. [editvehicleprofile.html](editvehicleprofile.html) - koledar ikonica drugačna
 6. [search.html](search.html) - font pri opisih vozil bolj odebeljen
+
+### Brave:
+Ni večjih razlik z Google Chrome.
 
 ## 2. LP
 
