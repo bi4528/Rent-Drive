@@ -35,7 +35,7 @@ Uporabnik lahko spremeni podatke s klikom na **Edit** in lahko zaključi sejo s 
 Edit_profile.html je stran, ki je dostopna le obstoječim uporabnikom. Omogoča jim spremembo osebnih podatkov (imena, priimka, e-mail naslova, telefonske številke in kraja). Uporabnik lahko tudi spremeni svoj trenutni avatar, s klikom na gumb **Choose image** lahko naloži novo sliko ki bo uporabljena kot njegov avatar. Svoje spremembe uporabnik potrdi klikom na gumb **Save**, ki ga pripelje nazaj na lastni profil na [profile.html](profile.html).
 
 ## [search.html](search.html):
-Search.html je stran ki omogoča iskanje avtomobilov in uporabnikov. S klikom na avtomobil se odpre [vehicleprofile.html](vehicleprofile.html), ki vsebuje podatke o avtomobilu. S klikom na uporabnika se odpre [tuji_profile.html](tuji_profile.html) s podatki o uporabniku.
+Search.html je stran ki omogoča iskanje avtomobilov. S klikom na avtomobil se odpre [vehicleprofile.html](vehicleprofile.html), ki vsebuje podatke o avtomobilu. S klikom na uporabnika se odpre [tuji_profile.html](tuji_profile.html) s podatki o uporabniku.
 
 ## [vehicleprofile.html](vehicleprofile.html):
 Vehicleprofile.html je stran ki prikazuje razne podatke o vozilu ki je za najem. Tukaj je: zaporedje fotografij v "carousel-u", povprečna ocena in "favorite" opcija (srček), kratek opis vozila, seznam ključnih lastnosti (klima, pogon, maksimalna hitrost, navigacija, bluetooth podpora itd.). 
@@ -65,6 +65,8 @@ Forgotpassword.html je stran dostopna samo uporabnikom. Omogoča opcijo resetira
 ## [reset-password.html](reset-password.html):
 Reset-password.html je stran do katere se lahko pride zgolj preko prejetega e-mail sporočila (generiran na strani [forgotpassword.html](forgotpassword.html)). Tukaj uporabnik upiše svoje novo geslo, ga ponovi in na koncu potrdi. Mogoč je tudi prehod na [homepage](home.html) in [login stran](login.html).
 
+## [review.html](review.html):
+Review.html je stran do katere uporabnik pride preko maila, ko vrne avto nazaj oz. ko se najem konča. Uporabnik lahko oceni najem in napiše kratek komentar. Ko klikne submit se prikaže [vehicleprofile](vehicleprofile.html). 
 
 ## Razlike brskalnikov:
 Spletna stran je temeljena na Google Chrome brskalniku. V nadaljevanju primerjamo njen izgled na le-tem z Mozillo Firefox, Brave in Microsoft Edgom. 
