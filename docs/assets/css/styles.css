@@ -195,6 +195,10 @@ z-index: 1;
     border-color: rgb(125,180,108);
 }
 
+#confirmed{
+   border-color: #331551;
+}
+
 .login-el, .register-el, .forgot-pw-el {
 margin: 20px;
 }
@@ -202,6 +206,7 @@ margin: 20px;
 .btn-info {
   width: 250px;
   height: 40px;
+  margin: 0px 0px 10px 0px;
 }
 
 .login-el a {
@@ -340,4 +345,3 @@ table, th, td {
   background-color: rgb(125,180,108);
   color: white;
 }
-
