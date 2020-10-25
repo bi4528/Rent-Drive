@@ -54,7 +54,7 @@
             id="priimek_uporabnika">Smith</span></h3>
         <p id="mail_uporabnika" class="centered">josh_smith@gmail.com</p>
         <p id="telefonska_stevilka_uporabika" class="centered">+38670789654</p>
-        <p id_="kraj_uporabnika" class="centered">Koper, Slovenia</p>
+        <p id="kraj_uporabnika" class="centered">Koper, Slovenia</p>
         <button type="button" class="btn btn-primary btn-block"
           onclick="location.href='edit_profile.html'">Edit</button>
         <button type="button" class="btn btn-danger btn-block" onclick="location.href='home.html'">Log out</button>
@@ -113,10 +113,7 @@
 
       </div>
 
-      <div id="vozila_uporabnika">
-        <div id="podatki_uporabnika" class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-          <!--filler-->
-        </div>
+      <div id="favourite_vozila_uporabnika">
         <h2>Favorite vehicles</h2>
         <div class="row">
           <div class="card col-12 col-sm-12 col-md-7 col-lg-5 col-xl-4 card_auto">
@@ -133,18 +130,31 @@
               </div>
             </div>
           </div>
+          <div class="card col-12 col-sm-12 col-md-7 col-lg-5 col-xl-4 card_auto">
+            <a href="vehicleprofile.html"><img class="card-img-top slika_auto" src="./assets/images/car_1.jpg"
+                alt="Slika avta"></a>
+            <div class="card-body">
+              <h5 class="card-text">Ferrari Pista</h5>
+              <div class="row width-100 stars_auto">
+                <i class="fas fa-star fa-xs"></i>
+                <i class="fas fa-star fa-xs"></i>
+                <i class="fas fa-star fa-xs"></i>
+                <i class="fas fa-star fa-xs"></i>
+                <i class="far fa-star fa-xs"></i>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
     </section>
   </main>
-  <br clear="all" />
   
   <div class="footer-basic pt-4 w-100">
     <footer>
       <div class="container-fluid">
           <div class="row">
-          <div class="col-md-4 w-100 h-100 " style="display:table-cell; vertical-align:middle; text-align:center">
+          <div class="col-md-4 w-100 h-100 footer-left">
             <img src="./assets/images/Logo.png" class="footer-logo" width="200" alt="Rent&Drive">
             <p class="pt-2">If you need any further help feel free to contact us on:</p>
             <ul>
