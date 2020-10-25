@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-  <title>CarsMeetClone2</title>
+  <title>Nearby</title>
   <link rel="stylesheet" href="assets/css/Footer-Basic.css" />
   <link rel="stylesheet" href="assets/css/styles.css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -19,9 +19,9 @@
 <body>
   <nav class="navbar navbar-main navbar-expand-lg sticky-top justify-content-between">
     <div class="container-fluid">
-      <a class="navbar-brand logo img-fluid= img-responsive m-0" href="home.html"><img src="./assets/images/Logo.png" width="170px"></a>
+      <a class="navbar-brand logo img-fluid= img-responsive m-0" href="home.html"><img src="./assets/images/Logo.png" width="170" alt="Rent&Drive"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navcol-1" aria-controls="navcol-1" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="sr-only">Toggle navigation</span><img src="./assets/images/menu-bars-icon.png">
+        <span class="sr-only">Toggle navigation</span><img src="./assets/images/menu-bars-icon.png" alt="Expand">
       </button>
       <div class="collapse navbar-collapse" id="navcol-1">
         <ul class="nav navbar-nav ml-auto">
@@ -46,63 +46,68 @@
   </nav>
   
   <main>
-    <section class="container">
+    <section class="container panel">
       <div class="row">
-        <h1 class="title">Book Your Vehicle</h1>
+  <div class="col-sm-6">
+    <div class="card h-100">
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">Choose a vehicle nearby:</h5>
+        <p class="card-text">Select location on map:</p>
+        <img src="assets/images/lj-center.jpg" class="img-fluid" style="z-index: 0;" alt="...">
+          <a href="#" class="button mt-auto button1">Show available vehicles</a>
       </div>
-      <div class="row">
-          <div class="col-*-*">
-            <button type="button" class="step-button" id="TIME">
-                      <span class="step-num-circle">1</span>
-                      <span class="step-label">Choose Time&Date</span>
-            </button>
-          </div>
-          <div class="col-*-*">
-             <img src="assets/images/koledar.png" alt="Koledar">
-          </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card h-100">
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">Weather forecast:</h5>
+        <p class="card-text">Weather forecast for selected area:</p>
+        <img src="assets/images/vreme.png" class="img-fluid" style="z-index: 0;" alt="...">
+          <a href="#" class="button mt-auto button1">Show weather forecast</a>
       </div>
-      <hr class="line">
-      <div class="row">
-          <div class="col-*-*">
-          <button type="button" class="step-button" id="TIME">
-                    <span class="step-num-circle">2</span>
-                    <span class="step-label">Available Nearby</span>
-          </button>
-          </div>
-          <div class="col-*-*">
-             <img src="assets/images/LBCmap.png" alt="Mapa" width="300" height="200">
-          </div>
-      </div>
-      <hr class="line">
-      <div class="row">
-          <div class="col-*-*">
-          <button type="button" class="step-button" id="TIME">
-                    <span class="step-num-circle">3</span>
-                    <span class="step-label">Apply</span>
-          </button>
-          </div>
-          <div class="col-*-*">
-             <img src="assets/images/chevrolet-corvette.jpg" alt="Avto" width="300" height="200">
-          </div>
-      </div>
+    </div>
+  </div>
+</div>
     </section>
   </main>
-  <div class="footer-basic">
+  <div class="footer-basic pt-4 w-100">
     <footer>
-      <div class="social">
-        <a><i class="icon ion-social-instagram"></i></a><a><i
-            class="icon ion-social-snapchat"></i></a><a><i class="icon ion-social-twitter"></i></a><a
-          ><i class="icon ion-social-facebook"></i></a>
+      <div class="container-fluid">
+          <div class="row">
+          <div class="col-md-4 w-100 h-100 " style="display:table-cell; vertical-align:middle; text-align:center">
+            <img src="./assets/images/Logo.png" class="footer-logo" width="200" alt="Rent&Drive">
+            <p class="pt-2">If you need any further help feel free to contact us on:</p>
+            <ul>
+              <li><a href="mailto:mi2583@student.uni-lj.si">mi2583@student.uni-lj.si</a></li>
+              <li><a href="mailto:mk9693@student.uni-lj.si">mk9693@student.uni-lj.si</a></li>
+              <li><a href="mailto:nb9762@student.uni-lj.si">nb9762@student.uni-lj.si</a></li>
+              <li><a href="mailto:bi4528@student.uni-lj.si">bi4528@student.uni-lj.si</a></li>
+            </ul>
+          </div>
+          
+          <div class="col-md-4 text-center">
+            <p class="pt-4"> Never forget to respect others people personal cars. Try to keep them clean, take care of them like if it was yours. Give it back the way it was given to you.
+            Also always respect the road safety regulations, rules and signs. Stay safe and have a good time.</p>
+          </div>
+          
+          <div class="col-md-4 ul-list">
+            <ul>
+              <li ><a href="home.html">Home</a></li>
+              <li ><a href="nearby.html">Nearby</a></li>
+              <li ><a href="publish.html">List your car</a></li>
+              <li ><a href="profile.html">My profile</a></li>
+              <li ><a href="search.html">Search</a></li>
+            </ul>
+          </div>
+        
+          </div>
+        <p class="copyright">Oranžni FRI (Skupina 01) © 2020</p>
       </div>
-      <ul class="list-inline">
-        <li class="list-inline-item"><a href="home.html">Home</a></li>
-        <li class="list-inline-item"><a href="nearby.html">Nearby</a></li>
-        <li class="list-inline-item"><a href="calendar.html">Calendar</a></li>
-        <li class="list-inline-item"><a href="profile.html">Profile</a></li>
-      </ul>
-      <p class="copyright">Oranžni FRI (Skupina 01) © 2020</p>
     </footer>
   </div>
+  
+  
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
     crossorigin="anonymous"></script>

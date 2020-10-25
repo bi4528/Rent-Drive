@@ -88,8 +88,8 @@
     background-color: #101820FF;
     color: white
 }
-.footer-logo{
-    
+.footer-basic .text-center, .footer-basic .ul-list{
+    margin: auto;
 }
 
 .container-background{
@@ -189,6 +189,10 @@ z-index: 1;
   font-size: x-large;
 }
 
+#reset-password{
+    border-color: #7DB46CFF;
+}
+
 .login-el, .register-el, .forgot-pw-el {
 margin: 20px;
 }
@@ -280,30 +284,59 @@ table, th, td {
 
 .panel-title {
     font-size: 24px;
-    background-color: blue;
 }
 
-.profile-pic {
-    width: 150px;
-    height: 200px;
-    overflow: hidden;
-    object-fit: cover;
-}
 .stars_auto {
     margin-left:0px !important;
     margin-bottom:10px;
 }
 
-.carousel-catalogue .visina{
-    
+.card-link{
+    font-weight: bold;
+    color:#7DB46CFF;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 30vh;
+    object-fit: contain;
+    padding: 4px;
+}
+
+.card-title{
+    font-weight: bold;
 }
 
 .car_image_home {
-    height: 150px;
+    height: 200px;
     object-fit: cover;
 }
 
 .car_image_search {
-    height: 150px;
+    height: 200px;
     object-fit: cover;
+}
+
+.button {
+  border: none;
+  color: transparent;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 2px 2px 2px; !important
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #7DB46CFF;
+}
+
+.button1:hover {
+  background-color: #7DB46CFF;
+  color: white;
 }

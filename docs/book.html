@@ -12,32 +12,31 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Piazzolla:wght@200&display=swap" rel="stylesheet">
-
 </head>
 
 <body>
   <nav class="navbar navbar-main navbar-expand-lg sticky-top justify-content-between">
     <div class="container-fluid">
-      <a class="navbar-brand logo img-fluid= img-responsive m-0" href="home.html"><img src="./assets/images/Logo.png" width="170px"></a>
+      <a class="navbar-brand logo img-fluid= img-responsive m-0" href="home.html"><img src="./assets/images/Logo.png" width="170" alt="Rent&Drive"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navcol-1" aria-controls="navcol-1" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="sr-only">Toggle navigation</span><img src="./assets/images/menu-bars-icon.png">
+        <span class="sr-only">Toggle navigation</span><img src="./assets/images/menu-bars-icon.png" alt="Expand">
       </button>
       <div class="collapse navbar-collapse" id="navcol-1">
-        <ul class="nav navbar-nav ml-auto" style="font-size: 1.2em">
+        <ul class="nav navbar-nav ml-auto">
           <li class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link active" href="home.html" style="color: rgba(255, 255, 255, 0.9)"><i class="material-icons fa-fw align-middle" aria-hidden="true">collections</i> Catalogue</a>
+            <a class="nav-link active" href="home.html"><i class="material-icons fa-fw align-middle" aria-hidden="true">collections</i> Catalogue</a>
           </li>
           <li class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" href="nearby.html" style="color: rgba(255, 255, 255, 0.9)"><i class="material-icons fa-fw align-middle" aria-hidden="true">near_me</i> Nearby</a>
+            <a class="nav-link" href="nearby.html"><i class="material-icons fa-fw align-middle" aria-hidden="true">near_me</i> Nearby</a>
           </li>
           <li class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" href="publish.html" style="color: rgba(255, 255, 255, 0.9)"><i class="material-icons fa-fw align-middle" aria-hidden="true">add_to_photos</i> List your car</a>
+            <a class="nav-link" href="publish.html"><i class="material-icons fa-fw align-middle" aria-hidden="true">add_to_photos</i> List your car</a>
           </li>
           <li class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" href="profile.html" style="color: rgba(255, 255, 255, 0.9)"><i class="material-icons fa-fw align-middle" aria-hidden="true">account_box</i> My profile</a>
+            <a class="nav-link" href="profile.html"><i class="material-icons fa-fw align-middle" aria-hidden="true">account_box</i> My profile</a>
           </li>
           <li class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" href="search.html" style="color: rgba(255, 255, 255, 0.9)"><i class="material-icons fa-fw align-middle" aria-hidden="true">search</i> Search</a>
+            <a class="nav-link" href="search.html"><i class="material-icons fa-fw align-middle" aria-hidden="true">search</i> Search</a>
           </li>
         </ul>
       </div>
@@ -64,14 +63,18 @@
             		<li class="list-group-item">Return Location: Jurija Gagarina 113, Belgrade</li>
             	  </ul>
             	  <div class="card-body">
-            		<a href="#" class="card-link">Card link</a>
-            		<a href="#" class="card-link">Another link</a>
+            		<a href="#" class="card-link text-primary stretched-link" id="return-link">
+            		<i class="fas fa-caret-left"></i>
+            		  Return</a>
+          		  	<a href="#" class="card-link text-success float-right" id="confirm-link">
+            		<i class="fas fa-caret-right"></i>
+            		  Confirm</a>
             	  </div>
         </div>
       </div>
         <div class="col-sm-4">
           <div class="card">
-              <img src="assets/images/franka-potente-8052.jpg" class="profile-pic center" alr="Marina">
+              <img src="assets/images/franka-potente-8052.jpg" class="card-img-top" alt="Marina">
             	<div class="card-body">
             	  <h5 class="card-title">Owner</h5>
             	  <p class="card-text">Note: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -83,14 +86,15 @@
             		<li class="list-group-item">Location: Belgrade, Serbia</li>
             	  </ul>
             	  <div class="card-body">
-            		<a href="#" class="card-link">Card link</a>
-            		<a href="#" class="card-link">Another link</a>
+            		<a href="#" class="card-link stretched-link text-primary"> 
+            		  <i class="fas fa-caret-up"></i>
+          		    Check profile</a>
             	  </div>
           </div>
         </div>
         <div class="col-sm-4">
           <div class="card">
-              <img src="assets/images/207447_vuk_ff.jpg" class="profile-pic center" alt="Vuk">
+              <img src="assets/images/207447_vuk_ff.jpg" class="card-img-top" alt="Vuk">
             	<div class="card-body">
             	  <h5 class="card-title">My Profile</h5>
             	  <p class="card-text">Note: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -102,8 +106,9 @@
             		<li class="list-group-item">Location: Belgrade, Serbia</li>
             	  </ul>
             	  <div class="card-body">
-            		<a href="#" class="card-link">Card link</a>
-            		<a href="#" class="card-link">Another link</a>
+            		<a href="#" class="card-link stretched-link text-primary">
+            		  <i class="fas fa-caret-up"></i>
+            		  Edit profile</a>
           	  </div>
           </div>
         </div>
@@ -117,35 +122,37 @@
   
   <div class="footer-basic pt-4 w-100">
     <footer>
-      <div class="row">
+      <div class="container-fluid">
+          <div class="row">
+          <div class="col-md-4 w-100 h-100 " style="display:table-cell; vertical-align:middle; text-align:center">
+            <img src="./assets/images/Logo.png" class="footer-logo" width="200" alt="Rent&Drive">
+            <p class="pt-2">If you need any further help feel free to contact us on:</p>
+            <ul>
+              <li><a href="mailto:mi2583@student.uni-lj.si">mi2583@student.uni-lj.si</a></li>
+              <li><a href="mailto:mk9693@student.uni-lj.si">mk9693@student.uni-lj.si</a></li>
+              <li><a href="mailto:nb9762@student.uni-lj.si">nb9762@student.uni-lj.si</a></li>
+              <li><a href="mailto:bi4528@student.uni-lj.si">bi4528@student.uni-lj.si</a></li>
+            </ul>
+          </div>
+          
+          <div class="col-md-4 text-center">
+            <p class="pt-4"> Never forget to respect others people personal cars. Try to keep them clean, take care of them like if it was yours. Give it back the way it was given to you.
+            Also always respect the road safety regulations, rules and signs. Stay safe and have a good time.</p>
+          </div>
+          
+          <div class="col-md-4 ul-list">
+            <ul>
+              <li ><a href="home.html">Home</a></li>
+              <li ><a href="nearby.html">Nearby</a></li>
+              <li ><a href="publish.html">List your car</a></li>
+              <li ><a href="profile.html">My profile</a></li>
+              <li ><a href="search.html">Search</a></li>
+            </ul>
+          </div>
         
-        <div class="col-md-4 w-100 h-100" style="display:table-cell; vertical-align:middle; text-align:center">
-          <img src="./assets/images/Logo.png" class="footer-logo" width="200px" alt="Rent&Drive">
-          <p>If you need any help feel free to contact us on:</p>
-          <ul>
-            <li ><a href="">mi2583@student.uni-lj.si</a></li>
-            <li ><a href="">mk9693@student.uni-lj.si</a></li>
-            <li ><a href="">nb9762@student.uni-lj.si</a></li>
-          </ul>
-        </div>
-        
-        <div class="col-md-4 text-center">
-          <p class="py-4"> Never forget to respect others people personal cars. Try to keep them clean, take care of them like if it was yours. Give it back the way it was given to you.
-          Also always respect the road safety regulations, rules and signs. Stay safe and have a good time.</p>
-        </div>
-        
-        <div class="col-md-4">
-          <ul>
-            <li ><a href="home.html">Home</a></li>
-            <li ><a href="nearby.html">Nearby</a></li>
-            <li ><a href="publish.html">List your car</a></li>
-            <li ><a href="profile.html">My profile</a></li>
-            <li ><a href="search.html">Search</a></li>
-          </ul>
-        </div>
-      
+          </div>
+        <p class="copyright">Oranžni FRI (Skupina 01) © 2020</p>
       </div>
-      <p class="copyright">Oranžni FRI (Skupina 01) © 2020</p>
     </footer>
   </div>
   
