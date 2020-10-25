@@ -48,7 +48,10 @@ Poleg tega, stran vsebuje možnost všečkanja (čist zgoraj poleg imena), povpr
 Editvehicleprofile.html je stran ki je dostopna samo lastnikom vozil (osebe ki imajo tako uporabniški račun kot avto dano v najem). Uporabnikom je omogočeno ažuriranje podatkov vozila in sicer lahko spremenijo: naložene fotografije vozila, njegovo ime, opis, razne lastnosti, dostopni period najema, mogoče lokacije prevzema vozila, ceno najema. Le-te spremembe uporabniki uveljavijo s klikom na gumb, ki jih pripelje nazaj na [profil vozila](vehicleprofile.html).
 
 ## [book.html](book.html):
-Book.html je stran čigav namen je izpis podrobnosti najema vozila. Nudi bodisi preklic, bodisi potrditev najema. Še enkrat so prikazane izbrane podrobnosti prevzema (lokacija in čas) , opis najemnika in lastnega profila (e-mail naslov, ime, priimek, kraj) in omogoča prek povezave dostop do celotnega [profila lastnik](tuji_profile.html) in strani za spremenitev osebnih podatkov na lastnem profilu [edit_profile.html](edit_profile.html).
+Book.html je stran čigav namen je izpis podrobnosti najema vozila. Nudi bodisi preklic, bodisi potrditev najema. Preklic vodi nazaj na [profil vozila](vehicleprofile.html), potrditev pa na [confirm.html](confirm.html). Na strani so še enkrat so prikazane izbrane podrobnosti prevzema (lokacija in čas), opis najemnika in lastnega profila (e-mail naslov, ime, priimek, kraj) in omogoča prek povezave dostop do celotnega [profila lastnik](tuji_profile.html) in strani za spremenitev osebnih podatkov na lastnem profilu [edit_profile.html](edit_profile.html).
+
+## [confirm.html](reset-password.html):
+Confirm.html je stran, ki prikaže uporabniku obvestilo, če je njegov najem uspešno potrjen. Do nje uporabnik lahko pride, če je potrdil svoj najem na strani [book](book.html). Nudi povezavo do strani [homepage](home.html).
 
 ## [register.html](register.html):
 Register.html je stran preko katere uporabnik ustvari uporabniški račun. Stran zahteva e-mail naslov, geslo, ime in priimek. Ponuja tudi prehod nazaj na [homepage](home.html) in [login stran](login.html).
@@ -61,9 +64,6 @@ Forgotpassword.html je stran dostopna samo uporabnikom. Omogoča opcijo resetira
 
 ## [reset-password.html](reset-password.html):
 Reset-password.html je stran do katere se lahko pride zgolj preko prejetega e-mail sporočila (generiran na strani [forgotpassword.html](forgotpassword.html)). Tukaj uporabnik upiše svoje novo geslo, ga ponovi in na koncu potrdi. Mogoč je tudi prehod na [homepage](home.html) in [login stran](login.html).
-
-## [confirm.html](reset-password.html):
-Confirm.html je stran, ki prikaže uporabniku obvestilo, če je njegov najem uspešno potrjen. Do nje uporabnik lahko pride, če je potrdil svoj najem na strani [book](book.html).
 
 
 ## Razlike brskalnikov:
