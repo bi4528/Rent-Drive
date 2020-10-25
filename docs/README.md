@@ -28,8 +28,8 @@ Publish.html omogoča uporabniku vnos svojega auta za najem. Uporabnik lahko vne
 S klikom na gumb "Submit" uporabnik shrani podatke ter objavi avto na spletni strani.
 
 ## [profile.html](profile.html):
-Profile.html je stran, ki prikaže informacije o uporabniku in njegovih vozilih. Prikazane informacije uporabnika so ime, priimek, lokacija, mail, telefon in slika. Vsak prikazan auto na strani je možno urediti s klikom na gumb **Edit** in odstraniti s klikom na gumb Remove.
-Uporabnik lahko spremeni podetke s klikom na **Edit** in lahko zaključi sejo s klikom na gumb Log out. Klikom na avtomobil se odpre vehicleprofile.html s podatki o avtomobilu.
+Profile.html je stran, ki prikaže informacije o uporabniku in njegovih vozilih. Prikazane informacije uporabnika so ime, priimek, lokacija, mail, telefon in slika. Vsak prikazan auto na strani je možno urediti s klikom na gumb **Edit** in odstraniti s klikom na gumb Remove. Klikom na avtomobil se odpre [vehicleprofile.html](vehicleprofile.html) s podatki o avtomobilu. Poleg lastnih vozil, prikazano so tudi priljubljena vozila (**favorite**).
+Uporabnik lahko spremeni podatke s klikom na **Edit** in lahko zaključi sejo s klikom na gumb Log out.
 
 ## [edit_profile.html](edit_profile.html):
 Edit_profile.html je stran, ki je dostopna le obstoječim uporabnikom. Omogoča jim spremembo osebnih podatkov (imena, priimka, e-mail naslova, telefonske številke in kraja). Uporabnik lahko tudi spremeni svoj trenutni avatar, s klikom na gumb **Choose image** lahko naloži novo sliko ki bo uporabljena kot njegov avatar. Svoje spremembe uporabnik potrdi klikom na gumb **Save**, ki ga pripelje nazaj na lastni profil na [profile.html](profile.html).
@@ -38,11 +38,11 @@ Edit_profile.html je stran, ki je dostopna le obstoječim uporabnikom. Omogoča 
 Search.html je stran ki omogoča iskanje avtomobilov in uporabnikov. S klikom na avtomobil se odpre [vehicleprofile.html](vehicleprofile.html), ki vsebuje podatke o avtomobilu. S klikom na uporabnika se odpre [tuji_profile.html](tuji_profile.html) s podatki o uporabniku.
 
 ## [vehicleprofile.html](vehicleprofile.html):
-Vehicleprofile.html je stran ki prikazuje razne podatke o vozilu ki je za najem. Tukaj je: zaporedje fotografij v "carousel-u", kratek opis vozila, seznam ključnih lastnosti (klima, pogon, maksimalna hitrost, navigacija, bluetooth podpora itd.). 
+Vehicleprofile.html je stran ki prikazuje razne podatke o vozilu ki je za najem. Tukaj je: zaporedje fotografij v "carousel-u", povprečna ocena in "favorite" opcija (srček), kratek opis vozila, seznam ključnih lastnosti (klima, pogon, maksimalna hitrost, navigacija, bluetooth podpora itd.). 
 
 Prikazan je tudi profil najemnika in njegove osnovne informacije (telefonska številka, e-mail naslov in kraj). Izpolnjevanjem polja za vnos datuma, ure in lokacije ter klikom na gumb **Book** uporabnik pride korak bližje najemu, na stran [book.html](book.html). 
 
-Poleg tega, stran vsebuje možnost všečkanja (čist zgoraj poleg imena), povprečno oceno (takoj za tem) in recenzije na koncu strani. Vsaka recenzija vsebuje avatar avtorja, njegovo oceno od 1 do 5 in kratek komentar.
+Poleg tega, stran vsebuje možnost všečkanja (čist zgoraj poleg imena), povprečno oceno (takoj za tem) in recenzije na koncu strani. Vsaka recenzija vsebuje avatar avtorja, njegovo oceno od 1 do 5 in kratek komentar. Klik na avatar uporabnika pripelje do njegovega [profila](tuji_profile.html).
 
 ## [editvehicleprofile.html](editvehicleprofile.html):
 Editvehicleprofile.html je stran ki je dostopna samo lastnikom vozil (osebe ki imajo tako uporabniški račun kot avto dano v najem). Uporabnikom je omogočeno ažuriranje podatkov vozila in sicer lahko spremenijo: naložene fotografije vozila, njegovo ime, opis, razne lastnosti, dostopni period najema, mogoče lokacije prevzema vozila, ceno najema. Le-te spremembe uporabniki uveljavijo s klikom na gumb, ki jih pripelje nazaj na [profil vozila](vehicleprofile.html).
@@ -67,6 +67,8 @@ Reset-password.html je stran do katere se lahko pride zgolj preko prejetega e-ma
 
 
 ## Razlike brskalnikov:
+Spletna stran je temeljena na Google Chrome brskalniku. V nadaljevanju primerjamo njen izgled na le-tem z Mozillo Firefox in Microsoft Edgom. 
+
 ### Firefox:
 Splošno: Font v besedilih je dokaj bolj odebeljen in ostrejši.
 1. [home.html](home.html) - črka "w" v Smart ForTwo izgleda drugače. Font spodaj slik.
@@ -82,6 +84,14 @@ Splošno: Font v besedilih je dokaj bolj odebeljen in ostrejši.
 11. [forgotpassword.html](forgotpassword.html) - font, **recover password** gumb izgleda večji, povezava na login stran druge nianse modre
 12. [register.html](register.html) - font, **register** gumb izgleda večji, povezavi na strani druge nianse modre
 13. [reset-password.html](reset-password.html) - font
+
+### Microsoft Edge:
+1. [home.html](home.html) - koledar ikonica drugačna
+2. [publish.html](publish.html) - koledar ikonica drugačna
+3. [profile.html](profile.html) in [tuji_profile.html](tuji_profile.html) - font za nazive vozil bolj odebeljen
+4. [vehicleprofile.html](vehicleprofile.html) - font za opis vozil bolj odebeljen, koledar ikonica drugačna
+5. [editvehicleprofile.html](editvehicleprofile.html) - koledar ikonica drugačna
+6. [search.html](search.html) - font pri opisih vozil bolj odebeljen
 
 ## 2. LP
 
