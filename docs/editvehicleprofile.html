@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <title>Edit vehicle profile</title>
+    <link rel="shortcut icon" type="image/icon" href="assets/favicon/favicon.ico"/>
     <link rel="stylesheet" href="assets/css/Footer-Basic.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -118,7 +119,7 @@
             <!--- ocena-->
             <div class="row justify-content-center m-4">
                 <div class="rating">
-                    <h3 style="display: inline;">Rating:</h3>
+                    <h3 class="inline">Rating:</h3>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -144,7 +145,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Description:</div>
                             </div>
-                            <textarea class="form-control" style="height:200px;"></textarea>
+                            <textarea class="form-control height-dvesto"></textarea>
                         </div>
                     </div>
                 </div>
@@ -227,11 +228,11 @@
                 <form action="vehicleprofile.html">
                     <div class="form-group">
                         <label for="date-from">Select period of rental</label>
-                        <input type="datetime-local" class="form-control" id="date-from">
+                        <input type="date" class="form-control" id="date-from">
                     </div>
                     <div class="form-group">
                         <label for="date-to">To</label>
-                        <input type="datetime-local" class="form-control" id="date-to">
+                        <input type="date" class="form-control" id="date-to">
                     </div>
                     
                     <div class="form-group"><label>Location of pickup & return</label>
@@ -253,13 +254,11 @@
                         <input type="text" class="form-control" placeholder="50€">
                     </div>
                 </form>
-                
             </div>
             <div class="row justify-content-center">
-                <input type="submit" id="save-changes" class="btn btn-primary" value="Save changes">
+              <a href="vehicleprofile.html"><button id="save-changes" class="btn btn-primary">Save changes</button></a>
             </div>
-
-        </div>
+          </div>
     </main>
 
     <!-- konec vsebine-->

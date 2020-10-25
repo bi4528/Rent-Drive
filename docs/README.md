@@ -6,7 +6,7 @@ Lastni projekt pri predmetu **Spletno programiranje** v študijskem letu **2020/
 
 Ideja projekta je porazdeljeni *Rent-a-car*. Kdorkoli se lahko v aplikacijo brezplačno registrira. Vsak uporabnik lahko najame vozilo za izbrani termin in lahko nudi svoja vozila za najem. Ogled vozil je možen vsem, najem pa le registriranim uporabnikom.
 
-Vse strani vsebujejo footer, navbar pa vsebujejo vse strani razen register.html, login.html, forgotpassword.html in resetpassword.html.
+Vse strani vsebujejo favicon, footer, navbar pa vsebujejo vse strani razen register.html, login.html, forgotpassword.html in resetpassword.html.
 
 Navbar se razlikuje, če je uporabnik prijavljen ali ne. Če uporabnik ni prijavljen, navbar vsebuje gumbe **Home**, **Nearby**, **List your car**, **Register/Login**, **Search**.
 Če pa uporabnik je prijavljen navbar vsebuje gumbe **Home**, **Nearby**, **List your car**, **Profile**, **Search**. Za 1.LP bomo prikazali strani, kot da je uporabnik prijavljen v sistem.
