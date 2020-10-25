@@ -20,7 +20,7 @@ Home.html je glavna stran aplikacije. Uporabnik lahko poišče aute za najem. Up
 carousel strukture. Uporabnik z klikom na puščice se premika levo in desno. Po določenem času bo se animacija automatsko zagnala in prikazala aute na naslednji (desni) strani. S klikom na izbrani auto se prikaže nova stran s podatki tega (Master/detail).
 
 ## [nearby.html](nearby.html):
-Nearby.html omogoča uporabniku ogled autov, ki so v bližini z uporabo mape. Na strani je tudi prikazan promet za izbrano okolico v mapo. Z klikom na zaželeni auto se odpre profil tega auta. Ta funkcionalnost bo implementirana v prihodnjih fazah projekta - gre za našo izbiro API-ja projekta.
+Nearby.html omogoča uporabniku ogled autov, ki so v bližini z uporabo mape. Z klikom na zaželeni auto se odpre profil tega auta. Stran tudi omogoča ogled vremenske napovedi za izbrano lokacijo. Ti dve funkcionalnosti bosta implementirani v prihodnjih fazah projekta - gre za našo izbiro API-jev projekta.
 
 ## [publish.html](publish.html):
 Publish.html omogoča uporabniku vnos svojega auta za najem. Uporabnik lahko vnese sliko, podatke o avtomobilu, lokacijo najema, dodatne informacije za avto (npr. pravila), izbere featurje avta in določi ceno.
@@ -48,7 +48,7 @@ Poleg tega, stran vsebuje možnost všečkanja (čist zgoraj poleg imena), povpr
 Editvehicleprofile.html je stran ki je dostopna samo lastnikom vozil (osebe ki imajo tako uporabniški račun kot avto dano v najem). Uporabnikom je omogočeno ažuriranje podatkov vozila in sicer lahko spremenijo: naložene fotografije vozila, njegovo ime, opis, razne lastnosti, dostopni period najema, mogoče lokacije prevzema vozila, ceno najema. Le-te spremembe uporabniki uveljavijo s klikom na gumb, ki jih pripelje nazaj na [profil vozila](vehicleprofile.html).
 
 ## [book.html](book.html):
-Book.html je stran čigav namen je izpis podrobnosti najema vozila. Nudi bodisi preklic, bodisi potrditev najema. Še enkrat so prikazane izbrane podrobnosti prevzema (lokacija in čas) , opis najemnika in lastnega profila (e-mail naslov, ime, priimek, kraj).
+Book.html je stran čigav namen je izpis podrobnosti najema vozila. Nudi bodisi preklic, bodisi potrditev najema. Še enkrat so prikazane izbrane podrobnosti prevzema (lokacija in čas) , opis najemnika in lastnega profila (e-mail naslov, ime, priimek, kraj) in omogoča prek povezave dostop do celotnega [profila lastnik](tuji_profile.html) in strani za spremenitev osebnih podatkov na lastnem profilu [edit_profile.html](edit_profile.html).
 
 ## [register.html](register.html):
 Register.html je stran preko katere uporabnik ustvari uporabniški račun. Stran zahteva e-mail naslov, geslo, ime in priimek. Ponuja tudi prehod nazaj na [homepage](home.html) in [login stran](login.html).
@@ -61,6 +61,9 @@ Forgotpassword.html je stran dostopna samo uporabnikom. Omogoča opcijo resetira
 
 ## [reset-password.html](reset-password.html):
 Reset-password.html je stran do katere se lahko pride zgolj preko prejetega e-mail sporočila (generiran na strani [forgotpassword.html](forgotpassword.html)). Tukaj uporabnik upiše svoje novo geslo, ga ponovi in na koncu potrdi. Mogoč je tudi prehod na [homepage](home.html) in [login stran](login.html).
+
+## [confirm.html](reset-password.html):
+Confirm.html je stran, ki prikaže uporabniku obvestilo, če je njegov najem uspešno potrjen. Do nje uporabnik lahko pride, če je potrdil svoj najem na strani [book](book.html).
 
 
 ## Razlike brskalnikov:
