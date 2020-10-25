@@ -179,6 +179,26 @@ z-index: 1;
     border-color: orange;
 }
 
+.inline {
+    display: inline;
+}
+
+.z-img {
+    z-index: 0;
+}
+
+.height-dvesto {
+    height:200px !important;
+}
+
+.car-name {
+    margin-right: 10px;
+}
+
+.price-number {
+    padding-right: 5px;">
+}
+
 #submit-register {
   font-size: x-large;
 }
