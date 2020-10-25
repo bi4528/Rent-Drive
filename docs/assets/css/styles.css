@@ -345,3 +345,19 @@ table, th, td {
   background-color: rgb(125,180,108);
   color: white;
 }
+
+.footer-left{
+    display:table-cell;
+    vertical-align:middle; 
+    text-align:center
+}
+.carousel-arrows{
+    color:rgb(89,89,89);
+}
+.publish-h2{
+    border-bottom: 1px solid #a6a6a6;
+    width:100%;   
+}
+.reset-content{
+    clear:both
+}
