@@ -21,7 +21,8 @@
 
 .slika_auto {
     width: 100%;
-    height: auto;
+    height: 200px !important;
+    object-fit: cover !important;
 }
 
 .top-spacing {

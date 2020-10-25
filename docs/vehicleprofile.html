@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
@@ -59,22 +59,22 @@
       </ol>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img class=" d-block w-100" src="assets/images/tesla1.jpg">
+          <img class=" d-block w-100" src="assets/images/tesla1.jpg" alt="car-photo">
         </div>
         <div class="carousel-item">
-          <img class=" d-block w-100" src="assets/images/tesla2.jpg">
+          <img class=" d-block w-100" src="assets/images/tesla2.jpg" alt="car-photo">
         </div>
         <div class="carousel-item">
-          <img class=" d-block w-100" src="assets/images/tesla3.jpg">
+          <img class=" d-block w-100" src="assets/images/tesla3.jpg" alt="car-photo">
         </div>
         <div class="carousel-item">
-          <img class=" d-block w-100" src="assets/images/tesla4.jpg">
+          <img class=" d-block w-100" src="assets/images/tesla4.jpg" alt="car-photo">
         </div>
         <div class="carousel-item">
-          <img class=" d-block w-100" src="assets/images/tesla5.jpg">
+          <img class=" d-block w-100" src="assets/images/tesla5.jpg" alt="car-photo">
         </div>
         <div class="carousel-item">
-          <img class=" d-block w-100" src="assets/images/tesla6.jpg">
+          <img class=" d-block w-100" src="assets/images/tesla6.jpg" alt="car-photo">
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -111,7 +111,7 @@
       <!--- lastnik in opis-->
       <div class="row m-3">
         <div class="col-sm-12 col-md-4 ">
-          <a href="profile.html"><img class="avatar" src="assets/images/oseba_template.jpg"></a>
+          <a href="profile.html"><img class="avatar" src="assets/images/oseba_template.jpg" alt="avatar"></a>
           <ul class="list-group list-group-flush">
             <li class="list-group-item contact-details"><i class="fas fa-phone"></i>+38670789654</li>
             <li class="list-group-item contact-details"><i class="far fa-envelope"></i>josh_smith@gmail.com</li>
@@ -153,12 +153,12 @@
         <div class="book col-sm-8 col-md-4 mt-4" >
           <form action="book.html">
             <div class="form-group">
-              <label for="date">From</label>
-              <input type="datetime-local" class="form-control" name="date">
+              <label for="date-from">From</label>
+              <input id="date-from" type="datetime-local" class="form-control" name="date">
             </div>
             <div class="form-group">
-              <label for="date">To</label>
-              <input type="datetime-local" class="form-control" name="date">
+              <label for="date-to">To</label>
+              <input id="date-to" type="datetime-local" class="form-control" name="date">
             </div>
             <div class="form-group"><label for="cars">Location of pickup & return</label>
               <select name="cars" id="cars">
@@ -167,7 +167,7 @@
               </select></div>
               <div class="price form-group ">
                 <h5 style="display: inline; padding-right: 5px;">170€ (85€/ day)</h5>
-                <input type="submit" class="btn btn-primary" value="Book"></input>
+                <input type="submit" class="btn btn-primary" value="Book">
               </div>
           </form>
         </div>
@@ -177,53 +177,52 @@
       <div class="row justify-content-center">
         <div class=" reviews m-3">
           <table style="border: 1px black;">
-            <thead>
-              <th colspan="2">Users</th>
-              <th>Rating</th>
-              <th>Comments</th>
-            </thead>
+            <tr>
+              <td colspan="2">Users</td>
+              <td>Rating</td>
+              <td>Comments</td>
+            </tr>
             <tr class="review" >
               <td class="profile" colspan="2">
-                <a href="tuji_profile.html"><img class="avatar" src="assets/images/oseba_template_2.jpg"></a>
+                <a href="tuji_profile.html"><img class="avatar" src="assets/images/oseba_template_2.jpg" alt="avatar"></a>
                 <strong>Marko Šter</strong>
               </td>
               <td class="stars">
                 <span>
-                  <p>★★★☆☆</p>
+                  ★★★☆☆
                 </span>
               </td>
               <td class="comment">Everything is immaculate and well kept, hats off to the renting crew, but I guess I just don't fancy electric cars it seems.</td>
             </tr>
             <tr class="review">
               <td class="profile" colspan="2">
-                <img class="avatar" src="assets/images/avatarUser.png">
+                <img class="avatar" src="assets/images/avatarUser.png" alt="avatar">
                 <strong>Marko</strong>
               </td>
               <td class="stars">
                 <span>
-                  <p>★★★★☆</p>
+                  ★★★★☆
                 </span>
               </td>
               <td class="comment">The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.</td>
             </tr>
             <tr class="review">
               <td class="profile" colspan="2">
-                <img class="avatar" src="assets/images/avatarUser.png">
+                <img class="avatar" src="assets/images/avatarUser.png" alt="avatar">
                 <strong>Bojan</strong>
               </td>
               <td class="stars">
-                <p>★★★★☆</p>
+                ★★★★☆
               </td>
               <td class="comment">Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!</td>
-              <hr>
             </tr>
             <tr class="review">
               <td class="profile" colspan="2">
-                <img class="avatar" src="assets/images/avatarUser.png">
+                <img class="avatar" src="assets/images/avatarUser.png" alt="avatar" >
                 <strong>Matej</strong>
               </td>
               <td class="stars">
-                <p>★★★★★</p>
+                ★★★★★
               </td>
               <td class="comment">The car is pure genius.</td>
             </tr>
@@ -231,6 +230,7 @@
         </div>
 
       </div>
+    </div>  
   </main>
 
   <!-- konec vsebine-->
