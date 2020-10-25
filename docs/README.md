@@ -17,7 +17,7 @@ Strani so sledeče:
 
 ## [home.html](home.html): 
 Home.html je glavna stran aplikacije. Uporabnik lahko poišče aute za najem. Uporabnik filtrira aute s pomočjo kraja (npr. Ljubljana), datuma ter s klikom na zaželeno kategorijo auta. Kategorije so Hatchback, Saloon, Caravan, Coupe, SUV in Pick-up. Auti so prikazani v spodnji polovici strani z uporabo
-carousel strukture. Uporabnik z klikom na puščice se premika levo in desno. Po določenem času bo se animacija automatsko zagnala in prikazala aute na naslednji (desni) strani.
+carousel strukture. Uporabnik z klikom na puščice se premika levo in desno. Po določenem času bo se animacija automatsko zagnala in prikazala aute na naslednji (desni) strani. S klikom na izbrani auto se prikaže nova stran s podatki tega (Master/detail).
 
 ## [nearby.html](nearby.html):
 Nearby.html omogoča uporabniku ogled autov, ki so v bližini z uporabo mape. Na strani je tudi prikazan promet za izbrano okolico v mapo. Z klikom na zaželeni auto se odpre profil tega auta. Ta funkcionalnost bo implementirana v prihodnjih fazah projekta - gre za našo izbiro API-ja projekta.
