@@ -67,7 +67,21 @@ Reset-password.html je stran do katere se lahko pride zgolj preko prejetega e-ma
 
 
 ## Razlike brskalnikov:
-*TODO*
+### Firefox:
+Splošno: Font v besedilih je dokaj bolj odebeljen in ostrejši.
+1. [home.html](home.html) - črka "w" v Smart ForTwo izgleda drugače. Font spodaj slik.
+2. [nearby.html](nearby.html) - črka "v" v vehicle, črka "y" v nearby, črka "w" v weather.
+3. [publish.html](publish.html) - prostor za nalaganje slik drugačen, piše "Browse" namesto "Choose files". Skrajni desni del polje za selektiranje izgleda rahlo drugače. Oznake za polja so kanček bolj temno sive. Polje za vnos datuma sploh ni podprto
+4. [profile.html](profile.html) in [tuji_profile.html](tuji_profile.html) - font 
+5. [vehicleprofile.html](vehicleprofile.html) - polje za vnos datuma sploh ni podprto
+6.[editvehicleprofile.html](editvehicleprofile.html) - font, puščice za številke vedno prikazane pri top-speed, age, luggage, door-count (na Chromu samo ob hoveru), polje za vnos datuma sploh ni podprto, prostor za nalaganje slik drugačen, piše "Browse" namesto "Choose files" 
+7. [edit_profile.html](edit_profile.html) - gumb choose image bolj rumen, font
+8. [search.html](search.html) - veliko posameznih črk izgleda "čudno" (v, w, a)
+9. [book.html](book.html) - font, par posameznih črk izgleda "čudno" (v, w, a)
+10. [login.html](login.html) - **log in gumb** izgleda večji, kljukica v **remember me** drugačna
+11. [forgotpassword.html](forgotpassword.html) - font, **recover password** gumb izgleda večji, povezava na login stran druge nianse modre
+12. [register.html](register.html) - font, **register** gumb izgleda večji, povezavi na strani druge nianse modre
+13. [reset-password.html](reset-password.html) - font
 
 ## 2. LP
 
