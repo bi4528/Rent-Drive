@@ -8,19 +8,19 @@ Ideja projekta je porazdeljeni *Rent-a-car*. Kdorkoli se lahko v aplikacijo brez
 
 Vse strani vsebujejo footer, navbar pa vsebujejo vse strani razen register.html, login.html, forgotpassword.html in resetpassword.html.
 
-Navbar se razlikuje, če je uporabnik prijavljen ali ne. Če uporabnik ni prijavljen, navbar vsebuje gumbe Home, Nearby, Add your vehicle, Register, Login, Search.
-Če pa uporabnik je prijavljen navbar vsebuje gumbe **Home**, **Nearby**, **Add your vehicle**, **Profile**, **Search**. Za 1.LP bomo prikazali strani, kot da je uporabnik prijavljen v sistem.
+Navbar se razlikuje, če je uporabnik prijavljen ali ne. Če uporabnik ni prijavljen, navbar vsebuje gumbe **Home**, **Nearby**, **List your car**, **Register/Login**, **Search**.
+Če pa uporabnik je prijavljen navbar vsebuje gumbe **Home**, **Nearby**, **List your car**, **Profile**, **Search**. Za 1.LP bomo prikazali strani, kot da je uporabnik prijavljen v sistem.
 
-Navbar in footer ves čas omogočajo uporabnikom prehod na prej naštete strani **Home**, **Nearby**, **Add your vehicle**, **Profile**, **Search**.
+Navbar in footer ves čas omogočajo uporabnikom prehod na prej naštete strani **Home**, **Nearby**, **List your car**, **Profile**, **Search**.
 
 Strani so sledeče:
 
 ## [home.html](home.html): 
 Home.html je glavna stran aplikacije. Uporabnik lahko poišče aute za najem. Uporabnik filtrira aute s pomočjo kraja (npr. Ljubljana), datuma ter s klikom na zaželeno kategorijo auta. Kategorije so Hatchback, Saloon, Caravan, Coupe, SUV in Pick-up. Auti so prikazani v spodnji polovici strani z uporabo
-carousel strukture. Uporabnik z klikom na puščice se premika levo in desno. Po določenem času bo se animacija automatsko zagnala in prikazala aute na naslednji (desni) strani. S klikom na izbrani auto se prikaže nova stran s podatki tega (Master/detail).
+cards znotraj carousel strukture. Uporabnik z klikom na puščice se premika levo in desno. Po določenem času bo se animacija automatsko zagnala in prikazala aute na naslednji (desni) strani. S klikom na izbrani auto se prikaže nova stran s podatki tega (Master/detail).
 
 ## [nearby.html](nearby.html):
-Nearby.html omogoča uporabniku ogled autov, ki so v bližini z uporabo mape. Z klikom na zaželeni auto se odpre profil tega auta. Stran tudi omogoča ogled vremenske napovedi za izbrano lokacijo. Ti dve funkcionalnosti bosta implementirani v prihodnjih fazah projekta - gre za našo izbiro API-jev projekta.
+Nearby.html omogoča uporabniku ogled autov, ki so v bližini z uporabo mape. S klikom na zaželeni auto se odpre profil tega auta. Stran tudi omogoča ogled vremenske napovedi za izbrano lokacijo. Ti dve funkcionalnosti bosta implementirani v prihodnjih fazah projekta - gre za našo izbiro API-jev projekta.
 
 ## [publish.html](publish.html):
 Publish.html omogoča uporabniku vnos svojega auta za najem. Uporabnik lahko vnese sliko, podatke o avtomobilu, lokacijo najema, dodatne informacije za avto (npr. pravila), izbere featurje avta in določi ceno.
