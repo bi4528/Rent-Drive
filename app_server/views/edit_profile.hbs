@@ -1,0 +1,63 @@
+<main>
+<section class="container">
+  <div id="edit_uporabnik" class="col-12">
+    <button type="button" class="btn btn-primary shrani_podatke_gumb" onclick="location.href='profile.html'">Save</button>
+    <h2>Edit your profile</h2>
+    <form>
+        <div class="form-group">
+          <div style="min-height:45px">
+          <label>Profile picture:</label>
+          </div>
+          <img class="rounded-circle slika_uporabnika" src="{{profile_picture}}" alt="Slika profila">
+          <button type="button" class="btn btn-warning shrani_sliko_uporabnika">Choose image</button>
+        </div>
+        <div class="form-group">
+          <label>Firstname:</label>
+          <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" ><i class="fa fa-user" aria-hidden="true"></i></span>
+              </div>
+              <input type="text" class="form-control" placeholder="Ime" aria-label="Ime" value="{{firstname}}">
+            </div>
+        </div>
+        <div class="form-group">
+          <label>Lastname:</label>
+             <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" ><i class="fa fa-user" aria-hidden="true"></i></span>
+              </div>
+              <input type="text" class="form-control" id="priimek_uporabnika" placeholder="Priimek" aria-label="Priimek" value="{{lastname}}">
+            </div>
+        </div>
+        <div class="form-group">
+          <label>Mail:</label>
+             <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" ><i class="fa fa-envelope" aria-hidden="true"></i></span>
+              </div>
+              <input type="text" class="form-control" id="mail_uporabnika" placeholder="your_mail@karkoli.net" aria-label="Priimek"  value="{{mail}}">
+            </div>
+        </div>
+        <div class="form-group">
+          <label>Phone number:</label>
+             <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" ><i class="fa fa-phone" aria-hidden="true"></i></span>
+              </div>
+              <input type="text" class="form-control" id="telefon_uporabnika" placeholder="+386123123123" value="{{phone_number}}">
+            </div>
+        </div>
+        <div class="form-group">
+          <label>Location:</label>
+             <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" ><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+              </div>
+              <input type="text" class="form-control" id="kraj_uporabnika" placeholder="Prosim vpišite kraj izposoje vaših vozil" aria-label="kraj_izposoje" value="{{location}}">
+            </div>
+        </div>
+    </form>
+    
+  </div>
+  </section>
+</main>
