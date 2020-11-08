@@ -1,0 +1,55 @@
+<main>
+  <section class="container">
+    <div id="podatki_uporabnika" class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+      <img class="rounded-circle slika_uporabnika" src="{{profile_picture}}" alt="Slika profila">
+      <h3 class="top-spacing centered"> <span id="ime_uporabnika">{{firstname}}</span> <span
+          id="priimek_uporabnika">{{lastname}}</span></h3>
+      <p id="mail_uporabnika" class="centered">{{mail}}</p>
+      <p id="telefonska_stevilka_uporabika" class="centered">{{phone_number}}</p>
+      <p id="kraj_uporabnika" class="centered">{{location}}</p>
+    </div>
+
+    <div id="vozila_uporabnika">
+      <h2>My vehicles</h2>
+      <div class="row">
+        {{#each owned_cars}}
+        <div class="card col-12 col-sm-12 col-md-6 col-lg-5 col-xl-4 card_auto">
+          <img class="card-img-top slika_auto" src="{{this.image}}" alt="Slika avta">
+          <div class="card-body">
+            <h5 class="card-text">{{this.name}}</h5>
+            <div class="row width-100 stars_auto">
+              <i class="fas fa-star fa-xs"></i>
+              <i class="fas fa-star fa-xs"></i>
+              <i class="fas fa-star fa-xs"></i>
+              <i class="fas fa-star fa-xs"></i>
+              <i class="far fa-star fa-xs"></i>
+            </div>
+            <button type="button" class="btn btn-primary btn-block card_auto_Rent_button">Rent</button>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+
+    <div id="favourite_vozila_uporabnika">
+      <h2>Favorite vehicles</h2>
+      <div class="row">
+        {{#each favourite_cars}}
+        <div class="card col-12 col-sm-6 col-md-4 col-lg-3 card_auto">
+          <a href="vehicleprofile.html"><img class="card-img-top slika_auto" src="{{this.image}}" alt="Slika avta"></a>
+          <div class="card-body">
+            <h5 class="card-text">{{this.name}}</h5>
+            <div class="row width-100 stars_auto">
+              <i class="fas fa-star fa-xs"></i>
+              <i class="fas fa-star fa-xs"></i>
+              <i class="fas fa-star fa-xs"></i>
+              <i class="fas fa-star fa-xs"></i>
+              <i class="far fa-star fa-xs"></i>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </section>
+</main>

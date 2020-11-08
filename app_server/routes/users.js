@@ -1,9 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+const ctrlUser = require("../controllers/user")
 
+/* GET users listing. */
+
+router.get('/my', ctrlUser.profile);
+router.get('/edit', ctrlUser.edit_profile);
+router.get('/other', ctrlUser.tuji_profile);
+    
 module.exports = router;
