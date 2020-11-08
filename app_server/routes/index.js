@@ -9,8 +9,4 @@ router.get('/publish', ctrlMain.publish);
 router.get('/search', ctrlMain.search);
 router.get('/review', ctrlMain.review);
 
-
-
-
-
 module.exports = router;

@@ -13,6 +13,8 @@ var app = express();
 app.set('views', path.join(__dirname, 'app_server','views'));
 app.set('view engine', 'hbs');
 
+require('./app_server/views/helpers/hbsh.js');
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

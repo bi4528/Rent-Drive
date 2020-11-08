@@ -1,6 +1,7 @@
+var dataJSON = require('../models/avti-seznam.json');
 /* GET home page */
 const home = (req, res) => {
-    res.render('home', { title: 'Express' });
+    res.render('home', dataJSON);
 };
 
 const publish = (req, res) => {
@@ -8,12 +9,12 @@ const publish = (req, res) => {
 };
 
 const search = (req, res) => {
-    res.render('search');
+    res.render('search', dataJSON);
 };
 
 const review = (req, res) => {
     res.render('review');
-}
+};
 
 module.exports = {
     home,
