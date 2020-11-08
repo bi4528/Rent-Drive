@@ -5,8 +5,8 @@ const ctrlUser = require("../controllers/user")
 
 /* GET users listing. */
 
-router.get('/profile', ctrlUser.profile);
-router.get('/edit_profile', ctrlUser.edit_profile);
-router.get('/tuji_profile', ctrlUser.tuji_profile);
+router.get('/my', ctrlUser.profile);
+router.get('/edit', ctrlUser.edit_profile);
+router.get('/other', ctrlUser.tuji_profile);
     
 module.exports = router;

@@ -1,4 +1,3 @@
-
 <main>
   <section class="container">
     <div id="podatki_uporabnika" class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
@@ -8,15 +7,14 @@
       <p id="mail_uporabnika" class="centered">{{mail}}</p>
       <p id="telefonska_stevilka_uporabika" class="centered">{{phone_number}}</p>
       <p id="kraj_uporabnika" class="centered">{{location}}</p>
-      <button type="button" class="btn btn-primary btn-block"
-        onclick="location.href='edit_profile.html'">Edit</button>
+      <button type="button" class="btn btn-primary btn-block" onclick="location.href='edit_profile.html'">Edit</button>
       <button type="button" class="btn btn-danger btn-block" onclick="location.href='home.html'">Log out</button>
     </div>
 
     <div id="vozila_uporabnika">
       <h2>My vehicles</h2>
       <div class="row">
-      {{#each owned_cars}}
+        {{#each owned_cars}}
         <div class="card col-12 col-sm-12 col-md-7 col-lg-5 col-xl-4 card_auto">
           <img class="card-img-top slika_auto" src="{{this.image}}" alt="Slika avta">
           <div class="card-body">
@@ -41,10 +39,9 @@
       <div class="row">
         {{#each favourite_cars}}
         <div class="card col-12 col-sm-6 col-md-4 col-lg-3 card_auto">
-          <a href="vehicleprofile.html"><img class="card-img-top slika_auto" src="./assets/images/tesla1.jpg"
-              alt="Slika avta"></a>
+          <a href="vehicleprofile.html"><img class="card-img-top slika_auto" src="{{this.image}}" alt="Slika avta"></a>
           <div class="card-body">
-            <h5 class="card-text">Tesla Model 3 2019</h5>
+            <h5 class="card-text">{{this.name}}</h5>
             <div class="row width-100 stars_auto">
               <i class="fas fa-star fa-xs"></i>
               <i class="fas fa-star fa-xs"></i>
