@@ -386,3 +386,7 @@ table, th, td {
 .reset-content{
     clear:both
 }
+
+.hidden {
+    visibility: hidden;
+}

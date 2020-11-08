@@ -1,16 +1,17 @@
 <main>
   <section class="container">
     <div id="edit_uporabnik" class="col-12">
-      <button type="button" class="btn btn-primary shrani_podatke_gumb"
+      <button type="button" onclick="save_button_clicked()" class="btn btn-primary shrani_podatke_gumb"
         onclick="location.href='profile.html'">Save</button>
       <h2>Edit your profile</h2>
-      <form>
+      <form method="post" action="/users/my/edit">
         <div class="form-group">
           <div style="min-height:45px">
             <label>Profile picture:</label>
           </div>
-          <img class="rounded-circle slika_uporabnika" src="{{profile_picture}}" alt="Slika profila">
+          <img name="profile_picture" class="rounded-circle slika_uporabnika" src="{{profile_picture}}" alt="Slika profila">
           <button type="button" class="btn btn-warning shrani_sliko_uporabnika">Choose image</button>
+          <input type="file">
         </div>
         <div class="form-group">
           <label>Firstname:</label>
@@ -18,7 +19,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
             </div>
-            <input type="text" class="form-control" placeholder="Ime" aria-label="Ime" value="{{firstname}}">
+            <input type="text" class="form-control" placeholder="firstname" aria-label="firstname" name="firstname" value="{{firstname}}">
           </div>
         </div>
         <div class="form-group">
@@ -27,7 +28,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
             </div>
-            <input type="text" class="form-control" id="priimek_uporabnika" placeholder="Priimek" aria-label="Priimek"
+            <input type="text" class="form-control" id="priimek_uporabnika" placeholder="lastname" name="lastname" aria-label="lastname"
               value="{{lastname}}">
           </div>
         </div>
@@ -37,8 +38,8 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></span>
             </div>
-            <input type="text" class="form-control" id="mail_uporabnika" placeholder="your_mail@karkoli.net"
-              aria-label="Priimek" value="{{mail}}">
+            <input type="text" class="form-control" id="mail_uporabnika" placeholder="your_mail@karkoli.net" name="mail"
+              aria-label="email" value="{{mail}}">
           </div>
         </div>
         <div class="form-group">
@@ -47,7 +48,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-phone" aria-hidden="true"></i></span>
             </div>
-            <input type="text" class="form-control" id="telefon_uporabnika" placeholder="+386123123123"
+            <input type="text" class="form-control" id="telefon_uporabnika" placeholder="+386123123123" name="phone_number"
               value="{{phone_number}}">
           </div>
         </div>
@@ -58,11 +59,16 @@
               <span class="input-group-text"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
             </div>
             <input type="text" class="form-control" id="kraj_uporabnika"
-              placeholder="Prosim vpišite kraj izposoje vaših vozil" aria-label="kraj_izposoje" value="{{location}}">
+              placeholder="Prosim vpišite kraj izposoje vaših vozil" aria-label="location" name="location" value="{{location}}">
           </div>
         </div>
+
+        <button type="submit" id="submit_form_button" class="hidden"></button>
       </form>
 
     </div>
   </section>
 </main>
+
+<script src="/public/javascripts/edit_profile.js"></script>
+<script src="/public/javascripts/validate.js"></script>
