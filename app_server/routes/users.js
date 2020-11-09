@@ -6,6 +6,7 @@ const ctrlUser = require("../controllers/user")
 /* GET users listing. */
 
 router.get('/my', ctrlUser.profile);
+router.get('/my/edit', ctrlUser.edit_profile_action);
 router.get('/edit', ctrlUser.edit_profile);
 router.get('/other', ctrlUser.tuji_profile);
     
