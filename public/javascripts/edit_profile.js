@@ -4,11 +4,12 @@ function save_button_clicked() {
     
     var form = document.querySelector("form");
     form.addEventListener("submit", function(event){
-        var firstname = document.getElementsByName("firstname").innerText;
-        var lastname = document.getElementsByName("lastname").innerText;
-        var mail = document.getElementsByName("mail").innerText;
-        var location = document.getElementsByName("location").innerText;
-        var phone_number = document.getElementsByName("phone_number").innerText;
+        var firstname = document.getElementsByName("firstname")[0].value;
+        var lastname = document.getElementsByName("lastname")[0].value;
+        var mail = document.getElementsByName("mail")[0].value;
+        var location = document.getElementsByName("location")[0].value;
+        var phone_number = document.getElementsByName("phone_number")[0].value;
+        console.log(firstname, lastname, mail, location, phone_number);
         
         if (!validate_first_name(firstname)) {
             alert("Firstname is not valid");
