@@ -52,5 +52,6 @@ const tuji_profile = (req, res) => {
 module.exports = {
     profile,
     edit_profile,
-    tuji_profile
+    tuji_profile,
+    edit_profile_action
 };
