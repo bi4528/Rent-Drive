@@ -1,0 +1,56 @@
+{
+    "title": "Seznam avtomobilov",
+    "cars": [
+        {
+            "model": "Chevrolet Aveo",
+            "description": "Renting my beauty. Well looked after always clean come and pick it up.",
+            "price": 30,
+            "image": "/images/car_1.jpg"
+        }, {
+            "model": "Tesla Model 3 2019",
+            "description": "Step into the future with our beautiful electric four-door fastback sedan.",
+            "price": 85,
+            "image": "/images/tesla1.jpg"
+        }, {
+            "model": "Mercedes A-class",
+            "description": "Fast, small and nimble. You know what the logo means, its mercedes.",
+            "price": 50,
+            "image": "/images/car_2.jpg"
+        }, {
+            "model": "Maserati",
+            "description": "This is a true sports car over here, no joke. Comes with a beautiful engine, interior.",
+            "price": 110,
+            "image": "/images/car_3.jpg"
+        }, {
+            "model": "Lamborghini",
+            "description": "Can you ever not want a supercar? Its everyone's dream. You will remember it.",
+            "price": 250,
+            "image": "/images/car_4.jpg"
+        }, {
+            "model": "Smart ForTwo",
+            "description": "Small and easy to park, cheap on fuel loads of fun.",
+            "price": 25,
+            "image": "/images/car_5.jpg"
+        }, {
+            "model": "Renault Megane",
+            "description": "Quite a good city and highway car. If you have a family it has plenty of space.",
+            "price": 40,
+            "image": "/images/car_4.jpg"
+        }, {
+            "model": "Peugeot 508",
+            "description": "It is the best of France, good looks and beautiful driving experience.",
+            "price": 70,
+            "image": "/images/car_3.jpg"
+        }, {
+            "model": "Audi a6 caravan S-line",
+            "description": "Its the utimate do everything car. Dads and families love it.",
+            "price": 80,
+            "image": "/images/car_1.jpg"
+        }, {
+            "model": "BMW X5",
+            "description": "Car is perfect, big so you do not worry about cerbs. Bunch of space inside i love it.",
+            "price": 70,
+            "image": "/images/car_1.jpg"
+        }
+    ]
+}
