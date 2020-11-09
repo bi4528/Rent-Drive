@@ -14,6 +14,11 @@ const profile = (req, res) => {
     });
 };
 
+const edit_profile_action = (req, res) => {
+    console.log(req);
+};
+
+
 const edit_profile = (req, res) => {
     res.render('edit_profile', { firstname: 'Tone', lastname: 'Bine', mail:'josh_smith@gmail.com', phone_number:'+38670789654', location: 'Koper, Slovenia', profile_picture: '/images/car_1.jpg',
     
