@@ -1,12 +1,12 @@
 <div class="container mt-3 mt-sm-4">
     <H2 class="publish-h2">Publish your vehicle:</H2>
-    <form id="list-your-car">
+    <form method="post" action="/submitcar" id="list-your-car">
 
         <div class="py-3 py-sm-4">
             <H4 class="col-sm-12">Upload a photo:</H4>
             <div class="form-group border border-dark rounded p-2">
                 <label for="exampleFormControlFile1">Upload pictures from your car:</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image">
             </div>
         </div>
 
@@ -41,7 +41,7 @@
 
             <div class="input-group col-sm-12 col-md-6 pt-2 pt-sm-2">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" >Vehichle type:</span>
+                    <span class="input-group-text">Vehichle type:</span>
                 </div>
                 <select class="form-control" tabindex=4 name="category">
                     <option>Saloon</option>
@@ -137,7 +137,8 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">Adress:</span>
                 </div>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" tabindex=12 name="addres">
+                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" tabindex=12
+                    name="addres">
             </div>
 
             <div class="input-group col-sm-6 col-lg-3 pt-2 pt-sm-2">
@@ -178,7 +179,9 @@
 
             <div class="row col-12 py-4 justify-content-center">
                 <div class="col-1">
-                    <a href="/"><button type="submit" class="btn btn-lg btn-secondary" tabindex=19>Submit</button></a>
+                    <a href="/">
+                        <button type="submit" class="btn btn-lg btn-secondary" tabindex=19>Submit</button>
+                    </a>
                 </div>
             </div>
 

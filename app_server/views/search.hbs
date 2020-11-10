@@ -2,23 +2,23 @@
 
     <div class="row m-2 justify-content-center">
         <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control mr-sm-2 q" type="search" placeholder="Search" aria-label="Search">
         </div>
         <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-outline-success my-2 my-sm-0 searchbutton" type="button">Search</button>
         </div>
     </div>
 
 
     <div class="row">
         {{#each cars as |car|}}
-        <div class="col-md-4 col-lg-3 my-3 float-left">
+        <div class="col-md-4 col-lg-3 my-3 float-left searchcard" >
             <div class="card">
                 
                 <img class="card-img-top car_image_search" src="{{car.image}}" alt="Car image">
                 <div class="card-body">
-                    <h4 class="card-title">{{car.model}}</h4>
-                    <p class="card-text">{{car.description}}</p>
+                    <h4 class="card-title model" >{{car.model}}</h4>
+                    <p class="card-text description" >{{car.description}}</p>
                     <a class="btn btn-light rounded border-secondary">Book for only {{car.price}}$/day</a>
                 </div>
                 
@@ -29,3 +29,5 @@
 
     <div class="reset-content"></div>
 </div>
+
+<script src="/javascripts/search.js"></script>

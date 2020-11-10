@@ -1,6 +1,6 @@
 const email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const password_regex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
-const make_regex= /\b[a-z]+\b/g;
+const make_regex= /\b[a-z]+\b/i;
 
 function validate_first_name(name) {
     return validate_not_empty_string(name);
@@ -81,7 +81,6 @@ function validate_phone(phone){
 
 
 let formPublish=document.getElementById("list-your-car");
-
 formPublish["typeoffuel"].addEventListener("change", function(){
     formPublish["consumption"].disabled=true;
 });
@@ -140,7 +139,6 @@ formPublish.addEventListener("submit", function(dogodek){
         errors+="Phone number must have only numbers and an optional + at the beginning.\n";
         writeError=true;
     }
-
     
     if(writeError){
         alert(errors);

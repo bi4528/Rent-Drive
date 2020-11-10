@@ -14,7 +14,15 @@ var app = express();
 app.set('views', path.join(__dirname, 'app_server','views'));
 app.set('view engine', 'hbs');
 
+//To je marko dodal
 require('./app_server/views/helpers/hbsh.js');
+app.post('/', indexRouter);
+const multer = require("multer");
+const upload = multer({
+    dest: "./public/images/"
+});
+app.post('/', upload.single('image') ,indexRouter);
+//
 
 app.use(logger('dev'));
 app.use(express.json());

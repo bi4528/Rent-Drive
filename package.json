@@ -12,6 +12,7 @@
     "hbs": "^4.1.1",
     "http-errors": "*",
     "morgan": "*",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "multer": "*"
   }
 }
