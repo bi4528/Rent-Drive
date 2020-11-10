@@ -2,17 +2,14 @@
     <!--- galerija-->
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+        {{#each indicators}}
+        <li data-target="#carouselExampleIndicators" data-slide-to="{{num}}" {{active}}></li>
+        {{/each}}
       </ol>
       <div class="carousel-inner">
-        {{#each car_photos}}
-        <div class="carousel-item active">
-          <img class=" d-block w-100" src="{{car_photo}}" alt="car-photo">
+        {{#each car_photos as |car_photo|}}
+        <div class="carousel-item {{car_photo.active}}">
+          <img class=" d-block w-100" src="{{car_photo.image}}" alt="car-photo">
         </div>
         {{/each}}
       </div>
@@ -31,7 +28,7 @@
       <div class="row justify-content-center ml-3">
         <div class="name">
           <h2 class="inline car-name" >{{car_name}}</h2>
-          <i class="far fa-heart"></i>
+          <i id="favorite" class="far fa-heart"></i>
         </div>
       </div>
 
@@ -84,7 +81,7 @@
         </div>
         
         <div class="book col-sm-8 col-md-4 mt-4" >
-          <form action="book.html">
+          <form action="book.html" id="date-form">
             <div class="form-group">
               <label for="date-from">From</label>
               <input id="date-from" type="date" class="form-control" name="date">
@@ -95,11 +92,15 @@
             </div>
             <div class="form-group"><label for="cars">Location of pickup & return</label>
               <select name="cars" id="cars">
-                <option>Vojkovo nabrežje, Koper</option>
-                <option>Ankaranska cesta 5d, Koper</option>
+                {{#each pickup_locations}}
+                <option>{{location_name}}</option>
+                {{/each}}
               </select></div>
               <div class="price form-group ">
-                <h5 class="inline price-number">170€ (85€/ day)</h5>
+                <h5 class="inline font-weight-bold" id="price"></h5>
+                <h5 class="inline"> (</h5>
+                <h5 class="inline" id="daily-price">{{price}}</h5>
+                <h5 class="inline">/day)</h5>
                 <input type="submit" class="btn btn-primary" value="Book">
               </div>
           </form>
@@ -115,18 +116,18 @@
               <td>Rating</td>
               <td>Comments</td>
             </tr>
-            {{#each review}}
+            {{#each reviews}}
             <tr class="review">
               <td class="profile" colspan="2">
-                <a href="/users/other$id={{this.id}}"><img class="avatar" src="{{this.image}}" alt="avatar"></a>
+                <a href="/users/other$id={{id}}"><img class="avatar" src="{{image}}" alt="avatar"></a>
                 <strong>{{username}}</strong>
               </td>
               <td class="stars">
                 <span>
-                  {{this.rating}}
+                  {{rating}}
                 </span>
               </td>
-              <td class="comment">{{this.comment}}</td>
+              <td class="comment">{{comment}}</td>
             </tr>
             {{/each}}
           </table>
@@ -135,3 +136,6 @@
       </div>
     </div>  
   </main>
+
+  <script src="/javascripts/vehicleprofile.js"></script>
+  <script src="/javascripts/validate.js"></script>

@@ -77,8 +77,11 @@ function validate_phone(phone){
     return /\b[0-9]+\b/.test(phone);
 }
 
-
-
+function validate_dates(date1, date2) {
+    var date1 = new Date(date1);
+    var date2 = new Date(date2);
+    return date2>=date1;
+}
 
 let formPublish=document.getElementById("list-your-car");
 formPublish["typeoffuel"].addEventListener("change", function(){
