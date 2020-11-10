@@ -21,7 +21,7 @@ const review = (req, res) => {
 const submitcar = (req, res) => {
     //console.log(req);
     dataJSON.cars.push(JSON.parse(JSON.stringify(req.body)));
-    fs.writeFile('app_server/models/avti-seznam.json', JSON.stringify(dataJSON), 'utf-8', function (err, data) {
+    fs.writeFile('app_server/models/avti-seznam.json', JSON.stringify(dataJSON,null,'\t'), 'utf-8', function (err, data) {
         if (err) throw err;
         console.log('Done!');
     });
