@@ -5,6 +5,9 @@ const ctrlUser = require("../controllers/user")
 
 /* GET users listing. */
 
+router.get('/register',ctrlUser.register);
+router.get('/login',ctrlUser.login);
+router.get('/forgotpassword',ctrlUser.forgotpassword);
 router.get('/my', ctrlUser.profile);
 router.post('/my/edit', ctrlUser.edit_profile_action);
 router.get('/edit', ctrlUser.edit_profile);

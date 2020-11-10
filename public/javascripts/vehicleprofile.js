@@ -35,6 +35,7 @@ document.getElementById("favorite").addEventListener("click",function(){
     if (this.className =="far fa-heart"){
         this.className = "fas fa-heart";
         //TODO: add to favorite list
+        //post action vehicles/favorites ali XMLHttpRequest + parametri, asinhrono!!
     } else {
         this.className = "far fa-heart";
         //TODO: remove from favorite list

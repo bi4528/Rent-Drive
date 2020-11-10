@@ -2,6 +2,12 @@
   <div class="row justify-content-center mt-4">
     <div class="login-container col-9 col-md-6 col-xl-5 text-center">
       <h2>Welcome back!</h2>
+      <div id="alert" class="alert alert-danger alert-dismissible fade show" role="alert" hidden>
+        <p></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <form method="post" action="/">
         <div class="login-el">
           <label for="e-mail">
@@ -11,7 +17,7 @@
               </path>
             </svg>
           </label>
-          <input id="e-mail" type="email" class="w-75" placeholder="email" required autofocus="">
+          <input id="mail" type="email" class="w-75" placeholder="email" required autofocus="">
         </div>
         <div class="login-el">
           <label for="password">
@@ -46,3 +52,5 @@
     </div>
   </div>
 </div>
+<script src="/javascripts/validate.js"></script>
+<script src="/javascripts/login.js"></script>
