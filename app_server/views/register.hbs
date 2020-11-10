@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row justify-content-center mt-3">
+        <div class="register-container col-9 col-md-6 col-xl-5 text-center">
+            <h2>Please fill in your details!</h2>
+            <form method="POST" action="/account/login">
+                <div class="register-el">
+                    <i class="fas fa-pen"></i>
+                    <input type="text" class="w-75" placeholder="first name" required autofocus="" autocomplete="on">
+                </div>
+                <div class="register-el">
+                    <i class="fas fa-pen"></i>
+                    <input type="text" class="w-75" placeholder="last name" required autocomplete="on">
+                </div>
+                <div class="register-el">
+                    <i class="far fa-envelope"></i>
+                    <input type="email" class="w-75" placeholder="e-mail address" required>
+                </div>
+                <div class="register-el">
+                    <i class="fas fa-key"></i>
+                    <input type="password" class="w-75" placeholder="password" required>
+                </div>
+                <div class="register-el">
+                    <i class="fas fa-key"></i>
+                    <input type="password" class="w-75" placeholder="repeat password" required>
+                </div>
+                <input id="submit-register" type="submit" class="btn btn-success w-75" value="Register">
+                <div class="register-el">
+                    <a href="/account/login">Already have an account?</a>
+                </div>
+                <div>
+                    <a href="/">Back to homepage</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <img src="/images/register-bg.png" class="img-fluid reg-img" alt="...">
+        </div>
+    </div>
+</div>
