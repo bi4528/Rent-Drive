@@ -13,6 +13,7 @@
     "http-errors": "*",
     "morgan": "*",
     "nodemon": "^2.0.6",
-    "multer": "*"
+    "multer": "*",
+    "nodemailer": "*"
   }
 }

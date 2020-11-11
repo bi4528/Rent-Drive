@@ -21,6 +21,8 @@ const forgotpassword = (req, res) => {
 
 const forgot_password_recover = (req, res) => {
 
+    const email_recover_password = req.body.email
+
 
     var transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -32,7 +34,7 @@ const forgot_password_recover = (req, res) => {
 
     var mailOptions = {
         from: 'skupina01.sp@gmail.com',
-        to: 'skupina01.sp@gmail.com',
+        to: email_recover_password,
         subject: 'Recover Password - Rent&Drive',
         text: 'Click on this link'
     };
