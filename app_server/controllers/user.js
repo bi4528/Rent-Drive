@@ -1,5 +1,6 @@
 var nodemailer = require('nodemailer');
 
+
 /* GET profile.hbs */
 const login = (req, res) => {
     res.render('login', {
@@ -36,7 +37,7 @@ const forgot_password_recover = (req, res) => {
         from: 'skupina01.sp@gmail.com',
         to: email_recover_password,
         subject: 'Recover Password - Rent&Drive',
-        text: 'Click on this link'
+        text: 'Click on this link generate reset password link'
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
@@ -44,6 +45,7 @@ const forgot_password_recover = (req, res) => {
             console.log(error);
         } else {
             console.log('Email sent: ' + info.response);
+            login(req, res);
         }
     });
 }
