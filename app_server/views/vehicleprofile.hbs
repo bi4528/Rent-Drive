@@ -1,142 +1,134 @@
 <main>
-    <!--- galerija-->
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        {{#each indicators}}
-        <li data-target="#carouselExampleIndicators" data-slide-to="{{num}}" {{active}}></li>
-        {{/each}}
-      </ol>
-      <div class="carousel-inner">
-        {{#each car_photos as |car_photo|}}
-        <div class="carousel-item {{car_photo.active}}">
-          <img class=" d-block w-100" src="{{car_photo.image}}" alt="car-photo">
-        </div>
-        {{/each}}
+  <!--- galerija-->
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      {{#each indicators}}
+      <li data-target="#carouselExampleIndicators" data-slide-to="{{num}}" {{active}}></li>
+      {{/each}}
+    </ol>
+    <div class="carousel-inner">
+      {{#each car_photos as |car_photo|}}
+      <div class="carousel-item {{car_photo.active}}">
+        <img class=" d-block w-100" src="{{car_photo.image}}" alt="car-photo">
       </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
+      {{/each}}
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+  <div class="container-fluid pt-5 pb-3">
+    <!--- ime-->
+    <div class="row justify-content-center ml-3">
+      <div class="name">
+        <h2 class="inline car-name">{{car_name}}</h2>
+        <i id="favorite" class="far fa-heart"></i>
+      </div>
     </div>
 
-    <div class="container-fluid pt-5 pb-3">
-      <!--- ime-->
-      <div class="row justify-content-center ml-3">
-        <div class="name">
-          <h2 class="inline car-name" >{{car_name}}</h2>
-          <i id="favorite" class="far fa-heart"></i>
-        </div>
+    <!--- ocena-->
+    <div class="row mt-3 mb-3 ml-0.5 justify-content-center">
+      <div class="rating">
+        <h3 class="inline">Rating:</h3>
+        {{{avg_rating}}}
       </div>
+    </div>
 
-      <!--- ocena-->
-      <div class="row mt-3 mb-3 ml-0.5 justify-content-center">
-        <div class="rating" >
-          <h3 class="inline">Rating:</h3>
-          {{{avg_rating}}}
-        </div>
+    <!--- lastnik in opis-->
+    <div class="row m-3">
+      <div class="col-sm-12 col-md-4 ">
+        <!--href="users/other$id={{user_id}}"-->
+        <a href="users/other"><img class="avatar" src="{{avatar}}" alt="avatar"></a>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item contact-details"><i class="fas fa-phone"></i>{{phone_number}}</li>
+          <li class="list-group-item contact-details"><i class="far fa-envelope"></i>{{email}}</li>
+          <li class="list-group-item contact-details"><i class="far fa-map"></i>{{location}}</li>
+        </ul>
       </div>
-
-      <!--- lastnik in opis-->
-      <div class="row m-3">
-        <div class="col-sm-12 col-md-4 ">
-          <!--href="users/other$id={{user_id}}"-->
-          <a href="users/other"><img class="avatar" src="{{avatar}}" alt="avatar"></a>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item contact-details"><i class="fas fa-phone"></i>{{phone_number}}</li>
-            <li class="list-group-item contact-details"><i class="far fa-envelope"></i>{{email}}</li>
-            <li class="list-group-item contact-details"><i class="far fa-map"></i>{{location}}</li>
-          </ul>
-        </div>
-        <div class="col-sm-12 col-md-7 offset-md-1">
-          <div class="card mb-3">
-            <div class="card-body desc">
-              <blockquote class="blockquote mb-0">
-                <p>{{description}}</p>
-                <footer class="blockquote-footer">{{username}}</footer>
-              </blockquote>
-            </div>
+      <div class="col-sm-12 col-md-7 offset-md-1">
+        <div class="card mb-3">
+          <div class="card-body desc">
+            <blockquote class="blockquote mb-0">
+              <p>{{description}}</p>
+              <footer class="blockquote-footer">{{username}}</footer>
+            </blockquote>
           </div>
         </div>
       </div>
+    </div>
 
-      <!--- lastnosti in izposodi-->
-      <div class="row m-3 mt-5">
-        <h3 >Features:</h3>
-        <div class="features col-sm-3">
-          <div><i class="far fa-snowflake"></i> <span class="text-success">air conditioning</span></div>
-          <div><i class="fas fa-charging-station"></i>electric</div>
-          <div><i class="fab fa-accessible-icon"></i><span class="text-danger">not accessible</span></div>
-          <div><i class="fas fa-tachometer-alt"></i>209 km/h</div>
-          <div><i class="fas fa-suitcase"></i>luggage 425 l</div>
-          <div><i class="fas fa-door-closed"></i>4 doors</div>
-        </div>
-        <div class="features col-sm-3">
-          <div><i class="fab fa-bluetooth"></i><span class="text-success">bluetooth support</span></div>
-          <div><i class="far fa-map"></i><span class="text-success">GPS</span></div>
-          <div><i class="fab fa-usb"></i><span class="text-success">USB support</span></div>
-          <div><i class="fas fa-user-graduate"></i>18+</div>
-        </div>
-        
-        <div class="book col-sm-8 col-md-4 mt-4" >
-          <form action="book.html" id="date-form">
-            <div class="form-group">
-              <label for="date-from">From</label>
-              <input id="date-from" type="date" class="form-control" name="date">
-            </div>
-            <div class="form-group">
-              <label for="date-to">To</label>
-              <input id="date-to" type="date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}" class="form-control" name="date">
-            </div>
-            <div class="form-group"><label for="cars">Location of pickup & return</label>
-              <select name="cars" id="cars">
-                {{#each pickup_locations}}
-                <option>{{location_name}}</option>
-                {{/each}}
-              </select></div>
-              <div class="price form-group ">
-                <h5 class="inline font-weight-bold" id="price"></h5>
-                <h5 class="inline"> (</h5>
-                <h5 class="inline" id="daily-price">{{price}}</h5>
-                <h5 class="inline">/day)</h5>
-                <input type="submit" class="btn btn-primary" value="Book">
-              </div>
-          </form>
-        </div>
+    <!--- lastnosti in izposodi-->
+    <div class="row m-3 mt-5">
+      <h3>Features:</h3>
+      <div class="features col-sm-3">
+        <div><i class="far fa-snowflake"></i> <span class="text-success">air conditioning</span></div>
+        <div><i class="fab fa-bluetooth"></i><span class="text-success">bluetooth support</span></div>
+        <div><i class="far fa-map"></i><span class="text-success">GPS</span></div>
+        <div><i class="fab fa-usb"></i><span class="text-success">USB support</span></div>
+        <br>
+        <div><i class="fab fa-accessible-icon"></i><span class="text-danger">not accessible</span></div>
+        <br>
+      </div>
+      <div class="features col-sm-3">
+        <div><i class="fas fa-charging-station"></i>electric</div>
+        <div><i class="fas fa-tachometer-alt"></i>209 km/h</div>
+        <div><i class="fas fa-suitcase"></i>luggage 425 l</div>
+        <div><i class="fas fa-door-closed"></i>4 doors</div>
+        <div><i class="fas fa-user-graduate"></i>18+</div>
       </div>
 
-      <!--- recenzije-->
-      <div class="row justify-content-center">
-        <div class=" reviews m-3">
-          <table>
-            <tr>
-              <td colspan="2">Users</td>
-              <td>Rating</td>
-              <td>Comments</td>
-            </tr>
-            {{#each reviews}}
-            <tr class="review">
-              <td class="profile" colspan="2">
-                <a href="/users/other$id={{id}}"><img class="avatar" src="{{image}}" alt="avatar"></a>
-                <strong>{{username}}</strong>
-              </td>
-              <td class="stars">
-                <span>
-                  {{rating}}
-                </span>
-              </td>
-              <td class="comment">{{comment}}</td>
-            </tr>
-            {{/each}}
-          </table>
-        </div>
-
+      <div class="book col-sm-8 col-md-4 mt-4">
+        <form action="book.html" id="date-form">
+          <div class="form-group">
+            <label for="date-from">From</label>
+            <input id="date-from" type="date" class="form-control" name="date">
+          </div>
+          <div class="form-group">
+            <label for="date-to">To</label>
+            <input id="date-to" type="date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}" class="form-control"
+              name="date">
+          </div>
+          <div class="form-group"><label for="cars">Location of pickup & return</label>
+            <select name="cars" id="cars">
+              {{#each pickup_locations}}
+              <option>{{location_name}}</option>
+              {{/each}}
+            </select></div>
+          <div class="price form-group ">
+            <h5 class="inline font-weight-bold" id="price"></h5>
+            <h5 class="inline"> (</h5>
+            <h5 class="inline" id="daily-price">{{price}}</h5>
+            <h5 class="inline">/day)</h5>
+            <input type="submit" class="btn btn-primary" value="Book">
+          </div>
+        </form>
       </div>
-    </div>  
-  </main>
+    </div>
 
-  <script src="/javascripts/vehicleprofile.js"></script>
-  <script src="/javascripts/validate.js"></script>
+    <!--- recenzije-->
+
+    <div class="row justify-content-center">
+      <div class=" reviews m-3">
+        <table id="t">
+          <tr>
+            <td colspan="2">Users</td>
+            <td>Rating</td>
+            <td>Comments</td>
+          </tr>
+          {{{helper reviews}}}
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<scriptss src="/javascripts/vehicleprofile.js"></scriptss>
+<script src="/javascripts/validate.js"></script>

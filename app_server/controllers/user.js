@@ -52,12 +52,12 @@ const forgot_password_recover = (req, res) => {
 
 const profile = (req, res) => {
     res.render('profile', {
-        firstname: 'Tone',
-        lastname: 'Bine',
+        firstname: 'Josh',
+        lastname: 'Smith',
         mail: 'josh_smith@gmail.com',
         phone_number: '+38670789654',
         location: 'Koper, Slovenia',
-        profile_picture: '/images/car_1.jpg',
+        profile_picture: '/images/oseba_template.jpg',
 
         owned_cars: [{
                 name: 'ferrari',
