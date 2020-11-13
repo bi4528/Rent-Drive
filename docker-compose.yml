@@ -1,0 +1,23 @@
+version: '3.5'
+
+services:
+  node-api:
+    container_name: sp-rentdrive-app
+    restart: always
+    ports:
+      - "3000:3000"
+    image: sp-rentdrive-node-js
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    command: "npm start"
+    networks:
+      - sp-network
+
+networks:
+  sp-network:
+    name: sp-network
+    driver: bridge

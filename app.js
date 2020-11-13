@@ -8,6 +8,7 @@ var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
 var vehiclesRouter = require('./app_server/routes/vehicles');
 var accountRouter = require('./app_server/routes/accounts')
+var reviewRouter = require('./app_server/routes/reviews')
 
 var app = express();
 
@@ -17,12 +18,11 @@ app.set('view engine', 'hbs');
 
 //To je marko dodal
 require('./app_server/views/helpers/hbsh.js');
-app.post('/', indexRouter);
 const multer = require("multer");
 const upload = multer({
     dest: "./public/images/"
 });
-app.post('/', upload.single('image') ,indexRouter);
+//app.post('/', upload.single('image') ,indexRouter);
 //
 
 app.use(logger('dev'));
@@ -35,6 +35,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/vehicles', vehiclesRouter);
 app.use('/account', accountRouter);
+app.use('/review', reviewRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

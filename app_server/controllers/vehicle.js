@@ -1,3 +1,6 @@
+var fs = require('fs');
+var dataJSON = require('../models/avti-seznam.json');
+
 /* GET vehicleprofile.hbs */
 const vehicleprofile = (req, res) => {
     res.render('vehicleprofile', 
@@ -19,6 +22,24 @@ const vehicleprofile = (req, res) => {
     });
 };
 
+const publish = (req, res) => {
+    res.render('publish');
+};
+
+const submitcar = (req, res) => {
+    //console.log(req);
+    dataJSON.cars.push(JSON.parse(JSON.stringify(req.body)));
+    fs.writeFile('app_server/models/avti-seznam.json', JSON.stringify(dataJSON,null,'\t'), 'utf-8', function (err, data) {
+        if (err) throw err;
+        console.log('Done!');
+    });
+
+    res.render('home', dataJSON);
+}
+
+
 module.exports = {
-    vehicleprofile
+    vehicleprofile,
+    publish,
+    submitcar
 };

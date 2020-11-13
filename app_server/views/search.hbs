@@ -10,14 +10,14 @@
     </div>
 
 
-    <div class="row">
+    <div class="row containercards">
         {{#each cars as |car|}}
         <div class="col-md-4 col-lg-3 my-3 float-left searchcard" >
             <div class="card">
                 
                 <img class="card-img-top car_image_search" src="{{car.image}}" alt="Car image">
                 <div class="card-body">
-                    <h4 class="card-title model" >{{car.model}}</h4>
+                    <h4 class="card-title model" >{{car.make}} {{car.model}}</h4>
                     <p class="card-text description" >{{car.description}}</p>
                     <a class="btn btn-light rounded border-secondary">Book for only {{car.price}}$/day</a>
                 </div>

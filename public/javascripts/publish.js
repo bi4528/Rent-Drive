@@ -1,7 +1,12 @@
 
 let formPublish=document.getElementById("list-your-car");
-formPublish["typeoffuel"].addEventListener("change", function(){
-    formPublish["consumption"].disabled=true;
+formPublish["typeoffuel"].addEventListener("change", function(dogodek){
+    if(formPublish["typeoffuel"].value=="Electric"){
+        formPublish["consumption"].disabled=true;
+    }
+    else{
+        formPublish["consumption"].disabled=false;
+    }
 });
 
 formPublish.addEventListener("submit", function(dogodek){
