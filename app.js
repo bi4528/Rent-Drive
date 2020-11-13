@@ -17,6 +17,7 @@ app.set('view engine', 'hbs');
 //To je marko dodal
 require('./app_server/views/helpers/hbsh.js');
 require('./app_server/views/helpers/commenthelper.js');
+require('./app_server/views/helpers/stars.js');
 app.post('/', indexRouter);
 const multer = require("multer");
 const upload = multer({

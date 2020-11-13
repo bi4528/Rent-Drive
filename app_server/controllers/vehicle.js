@@ -1,7 +1,11 @@
-/* GET vehicleprofile.hbs */
+var fs = require('fs');
+var dataJSON = require('../models/avti-seznam.json')
+
 const vehicleprofile = (req, res) => {
-    res.render('vehicleprofile', 
-    {   car_name: 'Tesla Model 3 2019',
+
+    console.log(dataJSON.cars[dataJSON.cars.length-1]);
+    res.render('vehicleprofile', dataJSON.cars[dataJSON.cars.length-1]
+    /*{   car_name: 'Tesla Model 3 2019',
         phone_number: '+38670789654',
         email: 'josh_smith@gmail.com',
         location: 'Koper, Slovenia',
@@ -15,7 +19,9 @@ const vehicleprofile = (req, res) => {
         reviews: [{username: 'Marko Šter', rating: '★★★☆☆', comment:'Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.', img:'../images/oseba_template_2.jpg'},
     {username: 'Marko Šter', rating: '★★★☆☆', comment:'Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.', img:'../images/oseba_template_2.jpg'}],
         pickup_locations: [{location_name:"Vojkovo nabrežje 1, Koper"},{location_name:"Ankaranska cesta 5d, Koper"}]
-    });
+    }*/
+
+    );
 };
 
 module.exports = {

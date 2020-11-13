@@ -1,9 +1,6 @@
 const hbs = require('hbs');
 hbs.registerHelper('helper', (vsebina) => {
   let rezultat ="";
-  console.log(vsebina);
-  console.log(vsebina.length);
-  console.log(vsebina.img);
   for (i = 0; i < vsebina.length; i++) {
     rezultat += "<tr class='review'><td class='profile' colspan='2'>";
     rezultat += "<img class='avatar' src='" + vsebina[i].img + "'>";
