@@ -97,7 +97,46 @@
 				"2020-11-10",
 				"2020-11-24"
 			]
-		}
-	],
+		},
+		{
+			"image": "",
+			"make": "Tesla",
+			"model": "Model 3 2019",
+			"typeoffuel": "electric",
+			"category": "Hatchback",
+			"hp": "450",
+			"maxspeed": "209",
+			"acceleration": "9.0",
+			"consumption": "6.8",
+			"seats": "5",
+			"doors": "4",
+			"AirConditioning": "on",
+			"Navigation": "on",
+			"bluetooth": "on",
+			"parkingsensors": "on",
+			"description": "Step into the future with our beautiful electric four-door fastback sedan. Enjoy your trip without engine noise, listening to music on Spotify or your favourite podcast. Equipped with Autopilot, it'll reduce your driving fatigue and you will arrive at your destination relaxed and ready for action. Make your driving enjoyable, drive a Tesla - we are sure your experience will be something to remember.",
+			
+			"pickup_locations": [{"adres":"Vojkovo nabrežje 1","city":"Koper, Slovenia","zip":"5304"},{"adres":"Ankaranska cesta 5d","city":"Koper, Slovenia","zip":"5304"}],
+			"location":"Koper, Slovenia",
+
+			"price": "85",
+			"number": "+38670789654",
+			"date": [
+			"2020-11-10",
+			"2020-11-24"
+			],
+			
+			"avatar": "/images/oseba_template.jpg",
+			"username": "JoshSmith213",
+			"email": "josh_smith@gmail.com",
+			"car_photos": [{"image": "../images/tesla1.jpg","active":"active"},{"image":"../images/tesla2.jpg"},{"image":"../images/tesla3.jpg"},{"image":"../images/tesla4.jpg"},{"image":"../images/tesla5.jpg"},{"image":"../images/tesla4.jpg"},{"image":"../images/tesla6.jpg"}],
+			"indicators": [{"num": "0", "active":"class='active'"},{"num": "1"},{"num": "2"},{"num": "3"},{"num": "4"},{"num": "5"}],
+			"reviews": [{"username": "Marko Šter", "rating": "★★★☆☆", "comment":"Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.", "img":"../images/oseba_template_2.jpg"},
+				{"username": "Marko", "rating": "★★★★☆", "comment":"The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.", "img":"../images/oseba_template_2.jpg"}
+				,{"username": "Bojan", "rating": "★★★★☆", "comment":"Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!", "img":"../images/oseba_template_2.jpg"},
+				{"username":"Matej", "rating":"★★★★★", "comment":"The car is pure genius.","img":"../images/oseba_template_2.jpg"}],									
+			"avg_rating": "4"
+
+	}],
 	"_locals": {}
 }

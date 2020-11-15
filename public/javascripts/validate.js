@@ -1,17 +1,23 @@
 const email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const password_regex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
 const make_regex= /\b[a-z]+\b/i;
+const word_regex = /\b[a-z || A-Z]+\b/;
+const phone_regex = /((?:\+|00)[17](?: |\-)?|(?:\+|00)[1-9]\d{0,2}(?: |\-)?|(?:\+|00)1\-\d{3}(?: |\-)?)?(0\d|\([0-9]{3}\)|[1-9]{0,3})(?:((?: |\-)[0-9]{2}){4}|((?:[0-9]{2}){4})|((?: |\-)[0-9]{3}(?: |\-)[0-9]{4})|([0-9]{7}))/;
 
 function validate_first_name(name) {
-    return validate_not_empty_string(name);
+    return validate_not_empty_string(name) && validate_word(name);
 }
 
 function validate_phone_number(number) {
-    return validate_not_empty_string(number);
+    return validate_not_empty_string(number) && phone_regex.test(number);
 }
 
 function validate_last_name(name) {
-    return validate_not_empty_string(name);
+    return validate_not_empty_string(name) && validate_word(name);
+}
+
+function validate_word(name) {
+    return name!= null && word_regex.test(name);
 }
 
 function validate_not_empty_string(name) {

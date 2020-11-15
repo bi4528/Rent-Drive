@@ -3,8 +3,10 @@ var dataJSON = require('../models/avti-seznam.json');
 
 /* GET vehicleprofile.hbs */
 const vehicleprofile = (req, res) => {
-    res.render('vehicleprofile', 
-    {   car_name: 'Tesla Model 3 2019',
+
+    console.log(dataJSON.cars[dataJSON.cars.length-1]);
+    res.render('vehicleprofile', dataJSON.cars[dataJSON.cars.length-1]
+    /*{   car_name: 'Tesla Model 3 2019',
         phone_number: '+38670789654',
         email: 'josh_smith@gmail.com',
         location: 'Koper, Slovenia',
@@ -15,11 +17,12 @@ const vehicleprofile = (req, res) => {
         price: '85€',
         car_photos: [{image: '../images/tesla1.jpg',active:'active'},{image:'../images/tesla2.jpg'},{image:'../images/tesla3.jpg'},{image:'../images/tesla4.jpg'},{image:'../images/tesla5.jpg'},{image:'../images/tesla4.jpg'},{image:'../images/tesla6.jpg'}],
         indicators: [{num: "0", active:"class='active'"},{num: "1"},{num: "2"},{num: "3"},{num: "4"},{num: "5"}],
-        rewiews: [
-        {   username: 'Marko Šter', rating: '★★★☆☆', comment:"Everything is immaculate and well kept, hats off to the renting crew, but I guess I just don't fancy electric cars it seems.", image:'images/oseba_template_2.jpg'},
-        ],
+        reviews: [{username: 'Marko Šter', rating: '★★★☆☆', comment:'Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.', img:'../images/oseba_template_2.jpg'},
+    {username: 'Marko Šter', rating: '★★★☆☆', comment:'Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.', img:'../images/oseba_template_2.jpg'}],
         pickup_locations: [{location_name:"Vojkovo nabrežje 1, Koper"},{location_name:"Ankaranska cesta 5d, Koper"}]
-    });
+    }*/
+
+    );
 };
 
 const publish = (req, res) => {

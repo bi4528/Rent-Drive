@@ -2,30 +2,37 @@
     <div class="row justify-content-center mt-3">
         <div class="register-container col-9 col-md-6 col-xl-5 text-center">
             <h2>Please fill in your details!</h2>
-            <form method="POST" action="/account/login">
+            <div id="alert" class="alert alert-warning alert-dismissible fade show" role="alert" hidden>
+                <p></p>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="/users/login">
                 <div class="register-el">
                     <i class="fas fa-pen"></i>
-                    <input type="text" class="w-75" placeholder="first name" required autofocus="" autocomplete="on">
+                    <input id="firstname" type="text" class="w-75" placeholder="first name" required autofocus=""
+                        autocomplete="on">
                 </div>
                 <div class="register-el">
                     <i class="fas fa-pen"></i>
-                    <input type="text" class="w-75" placeholder="last name" required autocomplete="on">
+                    <input id="lastname" type="text" class="w-75" placeholder="last name" required autocomplete="on">
                 </div>
                 <div class="register-el">
                     <i class="far fa-envelope"></i>
-                    <input type="email" class="w-75" placeholder="e-mail address" required>
+                    <input id="mail" type="email" class="w-75" placeholder="e-mail address" required>
                 </div>
                 <div class="register-el">
                     <i class="fas fa-key"></i>
-                    <input type="password" class="w-75" placeholder="password" required>
+                    <input id="password" type="password" class="w-75" placeholder="password" required>
                 </div>
                 <div class="register-el">
                     <i class="fas fa-key"></i>
-                    <input type="password" class="w-75" placeholder="repeat password" required>
+                    <input id="repeat-password" type="password" class="w-75" placeholder="repeat password" required>
                 </div>
                 <input id="submit-register" type="submit" class="btn btn-success w-75" value="Register">
                 <div class="register-el">
-                    <a href="/account/login">Already have an account?</a>
+                    <a href="login">Already have an account?</a>
                 </div>
                 <div>
                     <a href="/">Back to homepage</a>
@@ -41,3 +48,5 @@
         </div>
     </div>
 </div>
+<script src="/javascripts/validate.js"></script>
+<script src="/javascripts/register.js"></script>
