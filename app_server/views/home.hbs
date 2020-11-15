@@ -3,17 +3,19 @@
         <div class="lambo-image">
             <div class="form-row filter">
                 <div class="col-auto">
-                    <label><strong>Location pick-up:</strong><input type="text" class="form-control"
+                    <label><strong>Location pick-up (city):</strong><input type="text" class="form-control filterCity"
                             placeholder="City"></label>
                 </div>
                 <div class="col-auto">
-                    <label><strong>Date from:</strong><input type="date" class="form-control" /></label>
+                    <label><strong>Date from:</strong><input type="date" class="form-control dateFrom" /></label>
                 </div>
                 <div class="col-auto">
-                    <label><strong>Date to:</strong><input type="date" class="form-control" /></label>
+                    <label><strong>Date to:</strong><input type="date" class="form-control dateTo" /></label>
                 </div>
                 <div class="col-auto">
-                    <br><button type="submit" class="btn btn-light">Filter</button>
+                    <br><a class="filterlink" href="">
+                        <button type="button" class="btn btn-light filterbutton">Filter</button>
+                        </a>
                 </div>
 
             </div>
@@ -31,22 +33,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item mx-md-4 active">
-                        <a class="nav-link" href="#">Hatchback<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/search?category=Hatchback">Hatchback<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item mx-md-4">
-                        <a class="nav-link" href="#">Saloon</a>
+                        <a class="nav-link" href="/search?category=Saloon">Saloon</a>
                     </li>
                     <li class="nav-item mx-md-4">
-                        <a class="nav-link" href="#">Caravan</a>
+                        <a class="nav-link" href="/search?category=Caravan">Caravan</a>
                     </li>
                     <li class="nav-item mx-md-4">
-                        <a class="nav-link" href="#">Coupe</a>
+                        <a class="nav-link" href="/search?category=Coupe">Coupe</a>
                     </li>
                     <li class="nav-item mx-md-4">
-                        <a class="nav-link" href="#">SUV</a>
+                        <a class="nav-link" href="/search?category=SUV">SUV</a>
                     </li>
                     <li class="nav-item mx-md-4">
-                        <a class="nav-link" href="#">Pick-up</a>
+                        <a class="nav-link" href="/search?category=Pick-up">Pick-up</a>
                     </li>
                 </ul>
             </div>
@@ -205,3 +207,6 @@
 
     </div>
 </main>
+
+
+<script src="/javascripts/home.js"></script>

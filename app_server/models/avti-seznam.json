@@ -3,76 +3,136 @@
 	"cars": [
 		{
 			"make": "Chevrolet",
-			"model": "Chevrolet",
+			"model": "Aveo",
 			"description": "Renting my beauty. Well looked after always clean come and pick it up.",
 			"price": 30,
-			"image": "/images/car_1.jpg"
+			"image": "/images/aveo.jpg",
+			"city": "Ljubljana",
+			"category": "Hatchback",
+			"date": [
+				"2020-10-10",
+				"2020-11-24"
+				]
 		},
 		{
 			"make": "Tesla",
 			"model": "Model 3 2019",
 			"description": "Step into the future with our beautiful electric four-door fastback sedan.",
 			"price": 85,
-			"image": "/images/tesla1.jpg"
+			"image": "/images/tesla1.jpg",
+			"city": "Ljubljana",
+			"category": "Hatchback",
+			"date": [
+				"2020-9-10",
+				"2020-9-24"
+				]
 		},
 		{
 			"make": "Mercedes",
 			"model": "A-class",
+			"category": "Saloon",
 			"description": "Fast, small and nimble. You know what the logo means, its mercedes.",
 			"price": 50,
-			"image": "/images/car_2.jpg"
+			"image": "/images/aclass.jpg",
+			"city": "Ljubljana",
+			"date": [
+				"2020-11-20",
+				"2020-11-24"
+				]
 		},
 		{
 			"make": "Maserati",
-			"model": "Quatroporte",
+			"model": "Quattroporte",
 			"description": "This is a true sports car over here, no joke. Comes with a beautiful engine, interior.",
 			"price": 110,
-			"image": "/images/car_3.jpg"
+			"image": "/images/maserati.jpg",
+			"category": "Saloon",
+			"city": "Ljubljana",
+			"date": [
+				"2020-12-1",
+				"2020-12-24"
+				]
 		},
 		{
 			"make": "Lamborghini",
 			"model": "Aventador",
 			"description": "Can you ever not want a supercar? Its everyone's dream. You will remember it.",
 			"price": 250,
-			"image": "/images/car_4.jpg"
+			"image": "/images/aventador.jpg",
+			"category": "Coupe",
+			"city": "Ljubljana",
+			"date": [
+				"2020-12-10",
+				"2020-12-24"
+				]
 		},
 		{
 			"make": "Smart",
 			"model": "ForTwo",
 			"description": "Small and easy to park, cheap on fuel loads of fun.",
 			"price": 25,
-			"image": "/images/car_5.jpg"
+			"image": "/images/smart.jpg",
+			"city": "Ljubljana",
+			"category": "Coupe",
+			"date": [
+				"2020-1-10",
+				"2020-12-24"
+				]
 		},
 		{
 			"make": "Renault",
 			"model": "Megane",
 			"description": "Quite a good city and highway car. If you have a family it has plenty of space.",
 			"price": 40,
-			"image": "/images/car_4.jpg"
+			"image": "/images/megane.jpg",
+			"city": "Ljubljana",
+			"category": "Hatchback",
+			"date": [
+				"2021-1-1",
+				"2021-2-24"
+				]
 		},
 		{
 			"make": "Peugeot",
 			"model": "508",
 			"description": "It is the best of France, good looks and beautiful driving experience.",
 			"price": 70,
-			"image": "/images/car_3.jpg"
+			"image": "/images/508.jpg",
+			"category": "Saloon",
+			"city": "Ljubljana",
+			"date": [
+				"2020-7-10",
+				"2020-12-24"
+				]
 		},
 		{
 			"make": "Audi",
 			"model": "a6 caravan S-line",
 			"description": "Its the utimate do everything car. Dads and families love it.",
 			"price": 80,
-			"image": "/images/car_1.jpg"
+			"image": "/images/a6.jpg",
+			"category": "Caravan",
+			"city": "Ljubljana",
+			"date": [
+				"2020-4-10",
+				"2020-12-24"
+				]
 		},
 		{
 			"make": "BMW",
 			"model": "X5",
 			"description": "Car is perfect, big so you do not worry about cerbs. Bunch of space inside i love it.",
 			"price": 70,
-			"image": "/images/car_1.jpg"
+			"image": "/images/x5.jpg",
+			"category": "SUV",
+			"city": "Ljubljana",
+			"date": [
+				"2020-6-10",
+				"2020-12-24"
+				]
 		},
 		{
-			"image": "",
+			"image": "/images/megane.jpg",
 			"make": "Renault",
 			"model": "Megane",
 			"typeoffuel": "Petrol",
@@ -114,6 +174,7 @@
 			"Navigation": "on",
 			"bluetooth": "on",
 			"parkingsensors": "on",
+			"city": "Ljubljana",
 			"description": "Step into the future with our beautiful electric four-door fastback sedan. Enjoy your trip without engine noise, listening to music on Spotify or your favourite podcast. Equipped with Autopilot, it'll reduce your driving fatigue and you will arrive at your destination relaxed and ready for action. Make your driving enjoyable, drive a Tesla - we are sure your experience will be something to remember.",
 			
 			"pickup_locations": [{"adres":"Vojkovo nabrežje 1","city":"Koper, Slovenia","zip":"5304"},{"adres":"Ankaranska cesta 5d","city":"Koper, Slovenia","zip":"5304"}],
