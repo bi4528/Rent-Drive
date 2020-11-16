@@ -38,11 +38,15 @@ const submitcar = (req, res) => {
     });
 
     res.render('home', dataJSON);
-}
+};
 
+const editvehicleprofile = (req,res) => {
+    res.render('editvehicleprofile',dataJSON.cars[dataJSON.cars.length-1]);
+};
 
 module.exports = {
     vehicleprofile,
     publish,
-    submitcar
+    submitcar,
+    editvehicleprofile
 };
