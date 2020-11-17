@@ -6,7 +6,6 @@ form.addEventListener("submit", function (event) {
     var mail = document.getElementById("mail").value;
     var password = document.getElementById("password").value;
     var repeatPassword = document.getElementById("repeat-password").value;
-    console.log(firstname, lastname, mail, password, repeatPassword);
 
     if (!validate_first_name(firstname)) {
         alertMessage("First name not valid!");
@@ -28,7 +27,6 @@ form.addEventListener("submit", function (event) {
         alertMessage("Password is not valid");
         event.preventDefault();
     }
-    console.log(event.returnValue);
 });
 
 function alertMessage(message) {
@@ -50,6 +48,12 @@ document.getElementById("lastname").addEventListener("change", function (event) 
     }
 });
 
+document.getElementById("username").addEventListener("change", function (event) {
+    if (!validate_no_spaces(this.value)) {
+        alertMessage("Username not valid!");
+    }
+});
+
 document.getElementById("mail").addEventListener("change", function (event) {
     if (!validate_email(this.value)) {
         alertMessage("E-mail name not valid!");
@@ -67,18 +71,3 @@ document.getElementById("repeat-password").addEventListener("change", function (
         alertMessage("Password not valid!");
     }
 });
-
-/*document.querySelector("form").addEventListener("change", function (event) {
-    var password = document.getElementById("password").value;
-    var repeatPassword = document.getElementById("repeat-password").value;
-    if (password != repeatPassword) {
-        console.log("not the same");
-    } else if (validate_password(password)){
-        console.log("good");
-    } else {
-        var alert = document.getElementById("alert");
-        alert.hidden=false;
-        alert.childNodes[1].innerHTML="Password not valid!";
-        $(".alert-dismissible").fadeOut(2000);
-    }
-});*/

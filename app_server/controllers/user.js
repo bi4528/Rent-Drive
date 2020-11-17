@@ -1,5 +1,7 @@
 var nodemailer = require('nodemailer');
-
+var dataJSON = require('../models/avti-seznam.json');
+var usersJSON = require('../models/users.json');
+var fs = require('fs');
 
 /* GET profile.hbs */
 const login = (req, res) => {
@@ -8,8 +10,36 @@ const login = (req, res) => {
     });
 };
 
+const login_attempt = (req, res) => {
+    console.log(usersJSON.users);
+    var success = false;
+    for (var i = 0; i < usersJSON.users.length; i++) {
+        //console.log(usersJSON.users[i].email);
+        //console.log(usersJSON.users[i].password);
+        if(usersJSON.users[i].email == req.body.email && usersJSON.users[i].password==req.body.password) {
+            success = true;
+            break;
+        }
+    }
+    if (success) res.render('home', dataJSON);
+    else {
+        res.render('login',  {layout: 'account-layout.hbs'});
+    } 
+};
+
 const register = (req, res) => {
     res.render('register', {
+        layout: 'account-layout.hbs'
+    });
+};
+
+const register_attempt = (req,res) => {
+    usersJSON.users.push(JSON.parse(JSON.stringify(req.body)));
+    console.log(usersJSON.users);
+    fs.writeFile('app_server/models/users.json', JSON.stringify(usersJSON,null,'\t'), function (err) {
+        if (err) throw err;
+    });
+    res.render('login', {
         layout: 'account-layout.hbs'
     });
 };
@@ -21,7 +51,6 @@ const forgotpassword = (req, res) => {
 };
 
 const forgot_password_recover = (req, res) => {
-
     const email_recover_password = req.body.email
 
 
@@ -60,22 +89,22 @@ const profile = (req, res) => {
         profile_picture: '/images/oseba_template.jpg',
 
         owned_cars: [{
-                name: 'ferrari',
-                image: '/images/car_2.jpg'
-            },
-            {
-                name: 'mustang',
-                image: "/images/car_3.jpg"
-            }
+            name: 'ferrari',
+            image: '/images/car_2.jpg'
+        },
+        {
+            name: 'mustang',
+            image: "/images/car_3.jpg"
+        }
         ],
         favourite_cars: [{
-                name: 'ferrari',
-                image: '/images/car_2.jpg'
-            },
-            {
-                name: 'mustang',
-                image: "/images/car_3.jpg"
-            }
+            name: 'ferrari',
+            image: '/images/car_2.jpg'
+        },
+        {
+            name: 'mustang',
+            image: "/images/car_3.jpg"
+        }
         ]
 
     });
@@ -96,22 +125,22 @@ const edit_profile = (req, res) => {
         profile_picture: '/images/car_1.jpg',
 
         owned_cars: [{
-                name: 'ferrari',
-                image: '/images/car_2.jpg'
-            },
-            {
-                name: 'mustang',
-                image: "/images/car_3.jpg"
-            }
+            name: 'ferrari',
+            image: '/images/car_2.jpg'
+        },
+        {
+            name: 'mustang',
+            image: "/images/car_3.jpg"
+        }
         ],
         favourite_cars: [{
-                name: 'ferrari',
-                image: '/images/car_2.jpg'
-            },
-            {
-                name: 'mustang',
-                image: "/images/car_3.jpg"
-            }
+            name: 'ferrari',
+            image: '/images/car_2.jpg'
+        },
+        {
+            name: 'mustang',
+            image: "/images/car_3.jpg"
+        }
         ]
 
     });
@@ -127,22 +156,22 @@ const tuji_profile = (req, res) => {
         profile_picture: '/images/car_1.jpg',
 
         owned_cars: [{
-                name: 'ferrari',
-                image: '/images/car_2.jpg'
-            },
-            {
-                name: 'mustang',
-                image: "/images/car_3.jpg"
-            }
+            name: 'ferrari',
+            image: '/images/car_2.jpg'
+        },
+        {
+            name: 'mustang',
+            image: "/images/car_3.jpg"
+        }
         ],
         favourite_cars: [{
-                name: 'ferrari',
-                image: '/images/car_2.jpg'
-            },
-            {
-                name: 'mustang',
-                image: "/images/car_3.jpg"
-            }
+            name: 'ferrari',
+            image: '/images/car_2.jpg'
+        },
+        {
+            name: 'mustang',
+            image: "/images/car_3.jpg"
+        }
         ]
 
     });
@@ -150,7 +179,9 @@ const tuji_profile = (req, res) => {
 
 module.exports = {
     login,
+    login_attempt,
     register,
+    register_attempt,
     forgotpassword,
     profile,
     edit_profile,
