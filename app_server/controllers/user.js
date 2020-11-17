@@ -1,4 +1,14 @@
 var nodemailer = require('nodemailer');
+const axios = require('axios');
+var apiParametri = {
+    streznik: 'http://localhost:' + (process.env.PORT || 3000)
+};
+if (process.env.NODE_ENV === 'production') {
+    apiParametri.streznik = 'https://rent&drive.herokuapp.com'; //POPRAVI CE NI PRAVILNO IME
+}
+
+const mainController = require('./main');
+
 
 
 /* GET profile.hbs */
@@ -6,6 +16,75 @@ const login = (req, res) => {
     res.render('login', {
         layout: 'account-layout.hbs'
     });
+};
+
+const user_login = (req, res) => {
+    mail = req.params.mail;
+    password = req.params.password;
+
+    axios
+        .get(apiParametri.streznik + '/api/user/check_login', {
+            params: req.params
+        })
+        .then((user_id) => {
+            if (user_id && user_id != null) {
+                req.session.user_id= user_id;
+                mainController.home(req, res);
+            } else {
+                res.send(500).json("Error mail or password not correct");
+            }
+        })
+        .catch(() => {
+            res.send(500).json("Error mail or password not correct");
+        });
+};
+
+const user_register = (req, res) => {
+
+    check_if_email_exists(req, res, function(exists){
+        axios.post(apiParametri.streznik + '/api/user/my', {
+                params: req.params
+            })
+            .then((user) => {
+                if (done == true) {
+                    req.session.user_id = user.id;
+                    mainController.home(req, res);
+                } else {
+                    res.send(500).json("Error mail or password not correct");
+                }
+            })
+            .catch(() => {
+                res.send(500).json("Error while creating new user");
+            });
+    });
+
+    
+};
+
+const check_if_email_exists = (req, res, callback) => {
+    axios.get(apiParametri.streznik + '/api/user/check_mail', {
+            params: req.params
+        })
+        .then((exists) => {
+            callback(exists);
+        })
+        .catch(() => {
+            res.send(500).json("Mail already exists");
+        });
+};
+
+const user_logout = (req, res) => {
+    if (req.session) {
+        req.session.destroy(function (err) {
+            if (err) {
+                res.send(500).json("Cannot destroy session");
+            } else {
+                mainController.home(req, res);
+            }
+        });
+    } else {
+        res.send(200).json("No session logged");
+    }
 };
 
 const register = (req, res) => {
@@ -156,5 +235,8 @@ module.exports = {
     edit_profile,
     tuji_profile,
     edit_profile_action,
-    forgot_password_recover
+    forgot_password_recover,
+    user_login,
+    user_logout,
+    user_register
 };
