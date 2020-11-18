@@ -74,7 +74,14 @@ const search = (req, res) => {
     }
 };
 
+const nearby = (req, res) => {
+    res.render('nearby', {
+        layout: 'layout.hbs'
+    });
+};
+
 module.exports = {
     home,
-    search
+    search,
+    nearby
 };
