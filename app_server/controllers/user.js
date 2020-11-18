@@ -177,6 +177,12 @@ const tuji_profile = (req, res) => {
     });
 };
 
+const confirm = (req, res) => {
+    res.render('confirm', {
+        layout: 'account-layout.hbs'
+    });
+};
+
 module.exports = {
     login,
     login_attempt,
@@ -187,5 +193,6 @@ module.exports = {
     edit_profile,
     tuji_profile,
     edit_profile_action,
-    forgot_password_recover
+    forgot_password_recover,
+    confirm
 };

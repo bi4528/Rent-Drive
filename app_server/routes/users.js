@@ -15,5 +15,6 @@ router.get('/my', ctrlUser.profile);
 router.post('/my/edit', ctrlUser.edit_profile_action);
 router.get('/edit', ctrlUser.edit_profile);
 router.get('/other', ctrlUser.tuji_profile);
+router.get('/confirm', ctrlUser.confirm);
     
 module.exports = router;
