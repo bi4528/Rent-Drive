@@ -189,12 +189,27 @@ const confirm = (req, res) => {
     });
 };
 
+const resetpassword = (req, res) => {
+    res.render('resetpassword', {
+        layout: 'account-layout.hbs'
+    });
+};
+
+const resetpassword_submit = (req, res) => {
+    console.log(req);
+    res.render('login', {
+        layout: 'account-layout.hbs'
+    });
+};
+
 module.exports = {
     login,
     login_attempt,
     register,
     register_attempt,
     forgotpassword,
+    resetpassword,
+    resetpassword_submit,
     profile,
     edit_profile,
     tuji_profile,

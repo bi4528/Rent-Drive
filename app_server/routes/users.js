@@ -11,6 +11,8 @@ router.get('/login',ctrlUser.login);
 router.post('/login',ctrlUser.login_attempt);
 router.get('/forgotpassword',ctrlUser.forgotpassword);
 router.post('/forgotpassword', ctrlUser.forgot_password_recover);
+router.get('/resetpassword', ctrlUser.resetpassword);
+router.post('/resetpassword', ctrlUser.resetpassword_submit);
 router.get('/my', ctrlUser.profile);
 router.post('/my/edit', ctrlUser.edit_profile_action);
 router.get('/edit', ctrlUser.edit_profile);
