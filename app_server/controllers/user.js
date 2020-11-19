@@ -42,20 +42,24 @@ const user_login = (req, res) => {
 const user_register = (req, res) => {
 
     check_if_email_exists(req, res, function(exists){
-        axios.post(apiParametri.streznik + '/api/user/my', {
-                params: req.params
-            })
-            .then((user) => {
-                if (done == true) {
-                    req.session.user_id = user.id;
-                    mainController.home(req, res);
-                } else {
-                    res.send(500).json("Error mail or password not correct");
-                }
-            })
-            .catch(() => {
-                res.send(500).json("Error while creating new user");
-            });
+        if(!exists){
+            axios.post(apiParametri.streznik + '/api/user/my', {
+                    params: req.params
+                })
+                .then((user) => {
+                    if (user != null) {
+                        req.session.user_id = user.id;
+                        mainController.home(req, res);
+                    } else {
+                        res.send(500).json("Error mail or password not correct");
+                    }
+                })
+                .catch(() => {
+                    res.send(500).json("Error while creating new user");
+                });
+        } else {
+
+        }
     });
 
     

@@ -25,7 +25,7 @@ app.use(session({
     maxAge: 60000,
     secure: true
   }
-}))
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server','views'));

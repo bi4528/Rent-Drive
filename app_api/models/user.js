@@ -24,18 +24,10 @@ const userSchema = new mongoose.Schema({
         type: String
     }, location: {
         type: String
-    }
+    }, favouriteVehicles:[favouriteSchema]
 });
 
 const favouriteSchema = new mongoose.Schema({
-    id: {
-        type: String,
-        required: true
-    },
-    user_id: {
-        type: String,
-        required: true
-    },
     vehicle_id: {
         type: String,
         required: true
@@ -43,4 +35,3 @@ const favouriteSchema = new mongoose.Schema({
 });
 
 mongoose.model('User', userSchema, 'Users');
-mongoose.model('Favourite', favouriteSchema, 'Favourites');

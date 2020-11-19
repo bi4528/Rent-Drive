@@ -3,6 +3,18 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const validate = require('./../../public/javascripts/validate')
 
+const get_all_users = (req, res) => {
+    User.exec((error, user) => {
+        if (!user) {
+            return res.status(404).json({
+                "message": "User not found."
+            });
+        } else if (error) {
+            return res.status(500).json(error);
+        }
+        res.status(200).json(user);
+    });
+};
 
 const create_new_user = (req, res) => {
     var firstname = req.params.firstname;
@@ -74,7 +86,45 @@ const get_user_data = (req, res) => {
     });
 };
 
-const updated_profile_data = (req, res) => {};
+const updated_profile_data = (req, res) => {
+
+    var firstname = req.params.firstname;
+    var lastname = req.params.lastname;
+    var phone_number = req.params.phone_number;
+    var email = req.params.email;
+    var location = req.params.location;
+    var password = req.params.password;
+    var profile_picture = req.params.profile_picture;
+
+    if (!req.params.idUser) {
+        return res.status(404).json({
+            "message": "No given user id"
+        });
+    }
+    User.findById(req.params.idUser).exec((error, user) => {
+        if (!user) {
+            return res.status(404).json({
+                "message": "No user found!"
+            });
+        } else if (error) {
+            return res.status(500).json(error);
+        }
+        user.firstname = firstname;
+        user.lastname = lastname;
+        user.email = email;
+        user.phone_number = phone_number;
+        user.location = location;
+        user.password = password;
+        user.profile_picture = profile_picture;
+        user.save((error, user) => {
+            if (error) {
+                res.status(404).json(error);
+            } else {
+                res.status(200).json(user);
+            }
+        });
+    });
+};
 
 const check_if_user_exists = (req, res) => {
     User.find({
@@ -103,13 +153,12 @@ const check_if_mail_exists = (req, res) => {
     });
 };
 
-
-
 module.exports = {
     get_user_data,
     remove_user,
     create_new_user,
     updated_profile_data,
     check_if_user_exists,
-    check_if_mail_exists
+    check_if_mail_exists,
+    get_all_users
 };
