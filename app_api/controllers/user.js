@@ -24,6 +24,7 @@ const create_new_user = (req, res) => {
     var location = req.params.location;
     var password = req.params.password;
     var profile_picture = req.params.profile_picture;
+    var favourite_vehicles_ids = req.params.favourite_vehicles_ids;
 
     if (!validate.validate_first_name(firstname)) {
         res.status(404).json({
@@ -53,7 +54,8 @@ const create_new_user = (req, res) => {
             email = email,
             location = location,
             password = password,
-            profile_picture = profile_picture
+            profile_picture = profile_picture,
+            favourite_vehicles_ids = favourite_vehicles_ids
         }, (error, user) => {
             if (error) {
                 res.status(400).json(error);
@@ -95,6 +97,7 @@ const updated_profile_data = (req, res) => {
     var location = req.params.location;
     var password = req.params.password;
     var profile_picture = req.params.profile_picture;
+    var favourite_vehicles_ids = req.params.favourite_vehicles_ids;
 
     if (!req.params.idUser) {
         return res.status(404).json({
@@ -116,6 +119,7 @@ const updated_profile_data = (req, res) => {
         user.location = location;
         user.password = password;
         user.profile_picture = profile_picture;
+        user.favourite_vehicles_ids = favourite_vehicles_ids;
         user.save((error, user) => {
             if (error) {
                 res.status(404).json(error);
@@ -153,6 +157,59 @@ const check_if_mail_exists = (req, res) => {
     });
 };
 
+const add_favourite_vehicle = (req, res) => {
+    User.findById(req.params.idUser).exec((error, user) => {
+        if (!user) {
+            return res.status(404).json({
+                "message": "User not found."
+            });
+        } else if (error) {
+            return res.status(500).json(error);
+        }
+        user.favourite_vehicles_ids.push(req.body.favourite_vehicles_id);
+        user.save((error, user) => {
+            if (error) {
+                res.status(404).json(error);
+            } else {
+                res.status(200).json(user);
+            }
+        });
+    });
+};
+
+const remove_favourite_vehicle = (req, res) => {
+    User.findById(req.params.idUser).exec((error, user) => {
+        if (!user) {
+            return res.status(404).json({
+                "message": "User not found."
+            });
+        } else if (error) {
+            return res.status(500).json(error);
+        }
+        user.favourite_vehicles_ids.remove(req.body.favourite_vehicles_id);
+        user.save((error, user) => {
+            if (error) {
+                res.status(404).json(error);
+            } else {
+                res.status(200).json(user);
+            }
+        });
+    });
+};
+
+const get_favourite_vehicles = (req, res) => {
+    User.findById(req.params.idUser).exec((error, user) => {
+        if (!user) {
+            return res.status(404).json({
+                "message": "User not found."
+            });
+        } else if (error) {
+            return res.status(500).json(error);
+        }
+        res.status(200).json(user.favourite_vehicles_ids);
+    });
+};
+
 module.exports = {
     get_user_data,
     remove_user,
@@ -160,5 +217,8 @@ module.exports = {
     updated_profile_data,
     check_if_user_exists,
     check_if_mail_exists,
-    get_all_users
+    get_all_users,
+    add_favourite_vehicle,
+    remove_favourite_vehicle,
+    get_favourite_vehicles
 };

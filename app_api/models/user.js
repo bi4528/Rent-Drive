@@ -24,13 +24,8 @@ const userSchema = new mongoose.Schema({
         type: String
     }, location: {
         type: String
-    }, favouriteVehicles:[favouriteSchema]
-});
-
-const favouriteSchema = new mongoose.Schema({
-    vehicle_id: {
-        type: String,
-        required: true
+    }, favourite_vehicles_ids: {
+        type: [String]
     }
 });
 
