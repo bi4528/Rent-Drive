@@ -1,6 +1,7 @@
 var nodemailer = require('nodemailer');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const Vehicle = mongoose.model('Vehicle');
 const validate = require('./../../public/javascripts/validate')
 
 const get_all_users = (req, res) => {
@@ -198,7 +199,7 @@ const remove_favourite_vehicle = (req, res) => {
 };
 
 const get_favourite_vehicles = (req, res) => {
-    User.findById(req.params.idUser).exec((error, user) => {
+    User.findById(req.params.idUser).select('favourite_vehicles_ids').exec((error, user) => {
         if (!user) {
             return res.status(404).json({
                 "message": "User not found."
@@ -206,7 +207,38 @@ const get_favourite_vehicles = (req, res) => {
         } else if (error) {
             return res.status(500).json(error);
         }
-        res.status(200).json(user.favourite_vehicles_ids);
+
+        Vehicle.find({
+            id: {
+                $in: user.favourite_vehicles_ids
+            }
+        }).exec((error, vehicles) => {
+            if (!vehicles) {
+                return res.status(404).json({
+                    "message": "vehicles not found."
+                });
+            } else if (error) {
+                return res.status(500).json(error);
+            }
+            res.status(200).json(vehicles);
+        });
+    });
+};
+
+const get_vehicles_of_user = (req, res) => {
+    Vehicle.find({
+        owner_id: {
+            $in: req.params.idUser
+        }
+    }).exec((error, vehicles) => {
+        if (!vehicles) {
+            return res.status(404).json({
+                "message": "Vehicles not found."
+            });
+        } else if (error) {
+            return res.status(500).json(error);
+        }
+        res.status(200).json(vehicles);
     });
 };
 
@@ -220,5 +252,6 @@ module.exports = {
     get_all_users,
     add_favourite_vehicle,
     remove_favourite_vehicle,
-    get_favourite_vehicles
+    get_favourite_vehicles,
+    get_vehicles_of_user
 };

@@ -18,7 +18,7 @@ services:
       - sp-network
   mongo-db:
     image: mongo
-    container_name: sp-rentdrive-app
+    container_name: sp-rentdrive-mongodb
     ports:
       - "27017-27019:27017-27019"
     networks:

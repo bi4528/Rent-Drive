@@ -134,34 +134,56 @@ const forgot_password_recover = (req, res) => {
 }
 
 const profile = (req, res) => {
-    res.render('profile', {
-        firstname: 'Josh',
-        lastname: 'Smith',
-        mail: 'josh_smith@gmail.com',
-        phone_number: '+38670789654',
-        location: 'Koper, Slovenia',
-        profile_picture: '/images/oseba_template.jpg',
+    axios.get(apiParametri.streznik + '/api/users/' + req.body.idUser, {
+            params: req.params
+        })
+        .then((user) => {
+            axios.get(apiParametri.streznik + '/api/users/' + req.body.idUser + '/vehicles', {
+                    params: req.params
+                })
+                .then((vehicles) => {
 
-        owned_cars: [{
-                name: 'ferrari',
-                image: '/images/car_2.jpg'
-            },
-            {
-                name: 'mustang',
-                image: "/images/car_3.jpg"
-            }
-        ],
-        favourite_cars: [{
-                name: 'ferrari',
-                image: '/images/car_2.jpg'
-            },
-            {
-                name: 'mustang',
-                image: "/images/car_3.jpg"
-            }
-        ]
+                    vehicles = vehicles.map(function (vehicle) {
+                        return { name: vehicle.model + " " + vehicle.make, image: vehicle.image }
+                    });
 
-    });
+                    axios.get(apiParametri.streznik + '/api/users/' + req.body.idUser + '/favourite_vehicles', {
+                            params: req.params
+                        })
+                        .then((favourite_vehicles) => {
+                            favourite_vehicles = favourite_vehicles.map(function (favourite_vehicle) {
+                                return {
+                                    name: favourite_vehicle.model + " " + favourite_vehicle.make,
+                                    image: favourite_vehicle.image
+                                }
+                            });
+
+                            res.render('profile', {
+                                firstname: user.firstname,
+                                lastname: user.lastname,
+                                mail: user.email,
+                                phone_number: user.phone_number,
+                                location: user.location,
+                                profile_picture: user.profile_picture,
+
+                                owned_cars: vehicles,
+                                favourite_cars: favourite_vehicles
+
+                            });
+                        })
+                        .catch(() => {
+                            res.send(500).json("Error while searching user");
+                        });
+            })
+            .catch(() => {
+                res.send(500).json("Error while searching user");
+            });
+            
+        })
+        .catch(() => {
+            res.send(500).json("Error while searching user");
+        });
+    
 };
 
 const edit_profile_action = (req, res) => {
@@ -170,6 +192,7 @@ const edit_profile_action = (req, res) => {
 
 
 const edit_profile = (req, res) => {
+
     res.render('edit_profile', {
         firstname: 'Tone',
         lastname: 'Bine',
