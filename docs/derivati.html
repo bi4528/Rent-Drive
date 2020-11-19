@@ -1,5 +1,9 @@
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset='utf-8'>
+    <title>HTTP zahteva</title>
+
     <!-- Prevedeni in minimizirani slogi CSS verzije 4.5.2 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
@@ -29,36 +33,13 @@
             crossorigin=""></script>
 
 </head>
-<main>
-    <section class="container panel">
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="card h-100">
-                    <div class="card-body d-inline-flex flex-column">
-                        <h5 class="card-title">Choose a vehicle nearby:</h5>
-                        <p class="card-text">Select location on map:</p>
-                        <div class="row w-100 mx-auto">
-                            <!--<div class="col-4 overflow-auto" name="seznam" style="overflow-y: scroll; height: 100vh;"></div>-->
-                            <div class="col-12" id="mapa_id" style="height: 50vh;
-                             padding-left: 0px; padding-right: 0px; max-height: 100% !important;"></div>
-                        </div>
-                        <a href="#" class="button mt-auto button1">Show available vehicles</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="card h-100">
-                    <div class="card-body d-inline-flex flex-column">
-                        <h5 class="card-title">Weather forecast:</h5>
-                        <p class="card-text">Weather forecast for selected area:</p>
-                        <img src="/images/vreme.png" class="img-fluid" alt="...">
-                        <a href="#" class="button mt-auto button1">Show weather forecast</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
+<body>
+<div class="row w-100">
+    <div class="col-4 overflow-auto" name="seznam" style="overflow-y: scroll;height: 100vh;"></div>
+    <div class="col-8" id="mapa_id" style="padding-left: 0px; padding-right: 0px; max-height: 100% !important;"></div>
+    <noga class="col-12">&copy; Spletno Programiranje</noga>
+</div>
+
 <script>
     // seznam z markerji na mapi
     var markerji = [];
@@ -113,6 +94,19 @@
         markerji.push(marker);
     }
 
+    function dodajStile() {
+        var noga = document.getElementsByTagName("noga")[0];
+        noga.style.position = "fixed";
+        noga.style.bottom = 0;
+        noga.style.color = "white";
+        noga.style.fontFamily = "Courier New";
+        document.body.style.backgroundColor = "#576aba";
+
+        seznam = document.getElementsByName("seznam")[0];
+        seznam.style.backgroundColor = "#329ec2";
+        seznam.style.height = "calc(100vh - " + noga.offsetHeight + "px)";
+    }
+
     function naloziVsebino() {
 
         // Sinhrona zahteva
@@ -133,5 +127,9 @@
     }
 
     pripraviMapo();
+    dodajStile();
     naloziVsebino();
 </script>
+
+</body>
+</html>
