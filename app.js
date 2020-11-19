@@ -7,9 +7,25 @@ var logger = require('morgan');
 var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
 var vehiclesRouter = require('./app_server/routes/vehicles');
-var reviewRouter = require('./app_server/routes/reviews')
+
+var reviewRouter = require('./app_server/routes/reviews');
+
+require('./app_api/models/db');
+var usersApi = require('./app_api/routes/users');
 
 var app = express();
+
+// Session
+var session = require('express-session');
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 60000,
+    secure: true
+  }
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server','views'));
@@ -37,6 +53,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/vehicles', vehiclesRouter);
 app.use('/review', reviewRouter);
+
+app.use('/api/users', usersApi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

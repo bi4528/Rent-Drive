@@ -1,4 +1,15 @@
 var nodemailer = require('nodemailer');
+const axios = require('axios');
+var apiParametri = {
+    streznik: 'http://localhost:' + (process.env.PORT || 3000)
+};
+if (process.env.NODE_ENV === 'production') {
+    apiParametri.streznik = 'https://rent&drive.herokuapp.com'; //POPRAVI CE NI PRAVILNO IME
+}
+
+const mainController = require('./main');
+
+
 var dataJSON = require('../models/avti-seznam.json');
 var usersJSON = require('../models/users.json');
 var fs = require('fs');
@@ -8,6 +19,79 @@ const login = (req, res) => {
     res.render('login', {
         layout: 'account-layout.hbs'
     });
+};
+
+const user_login = (req, res) => {
+    mail = req.params.mail;
+    password = req.params.password;
+
+    axios
+        .get(apiParametri.streznik + '/api/user/check_login', {
+            params: req.params
+        })
+        .then((user_id) => {
+            if (user_id && user_id != null) {
+                req.session.user_id= user_id;
+                mainController.home(req, res);
+            } else {
+                res.send(500).json("Error mail or password not correct");
+            }
+        })
+        .catch(() => {
+            res.send(500).json("Error mail or password not correct");
+        });
+};
+
+const user_register = (req, res) => {
+
+    check_if_email_exists(req, res, function(exists){
+        if(!exists){
+            axios.post(apiParametri.streznik + '/api/user/my', {
+                    params: req.params
+                })
+                .then((user) => {
+                    if (user != null) {
+                        req.session.user_id = user.id;
+                        mainController.home(req, res);
+                    } else {
+                        res.send(500).json("Error mail or password not correct");
+                    }
+                })
+                .catch(() => {
+                    res.send(500).json("Error while creating new user");
+                });
+        } else {
+
+        }
+    });
+
+    
+};
+
+const check_if_email_exists = (req, res, callback) => {
+    axios.get(apiParametri.streznik + '/api/user/check_mail', {
+            params: req.params
+        })
+        .then((exists) => {
+            callback(exists);
+        })
+        .catch(() => {
+            res.send(500).json("Mail already exists");
+        });
+};
+
+const user_logout = (req, res) => {
+    if (req.session) {
+        req.session.destroy(function (err) {
+            if (err) {
+                res.send(500).json("Cannot destroy session");
+            } else {
+                mainController.home(req, res);
+            }
+        });
+    } else {
+        res.send(200).json("No session logged");
+    }
 };
 
 const login_attempt = (req, res) => {
@@ -80,34 +164,56 @@ const forgot_password_recover = (req, res) => {
 }
 
 const profile = (req, res) => {
-    res.render('profile', {
-        firstname: 'Josh',
-        lastname: 'Smith',
-        mail: 'josh_smith@gmail.com',
-        phone_number: '+38670789654',
-        location: 'Koper, Slovenia',
-        profile_picture: '/images/oseba_template.jpg',
+    axios.get(apiParametri.streznik + '/api/users/' + req.body.idUser, {
+            params: req.params
+        })
+        .then((user) => {
+            axios.get(apiParametri.streznik + '/api/users/' + req.body.idUser + '/vehicles', {
+                    params: req.params
+                })
+                .then((vehicles) => {
 
-        owned_cars: [{
-            name: 'ferrari',
-            image: '/images/car_2.jpg'
-        },
-        {
-            name: 'mustang',
-            image: "/images/car_3.jpg"
-        }
-        ],
-        favourite_cars: [{
-            name: 'ferrari',
-            image: '/images/car_2.jpg'
-        },
-        {
-            name: 'mustang',
-            image: "/images/car_3.jpg"
-        }
-        ]
+                    vehicles = vehicles.map(function (vehicle) {
+                        return { name: vehicle.model + " " + vehicle.make, image: vehicle.image }
+                    });
 
-    });
+                    axios.get(apiParametri.streznik + '/api/users/' + req.body.idUser + '/favourite_vehicles', {
+                            params: req.params
+                        })
+                        .then((favourite_vehicles) => {
+                            favourite_vehicles = favourite_vehicles.map(function (favourite_vehicle) {
+                                return {
+                                    name: favourite_vehicle.model + " " + favourite_vehicle.make,
+                                    image: favourite_vehicle.image
+                                }
+                            });
+
+                            res.render('profile', {
+                                firstname: user.firstname,
+                                lastname: user.lastname,
+                                mail: user.email,
+                                phone_number: user.phone_number,
+                                location: user.location,
+                                profile_picture: user.profile_picture,
+
+                                owned_cars: vehicles,
+                                favourite_cars: favourite_vehicles
+
+                            });
+                        })
+                        .catch(() => {
+                            res.send(500).json("Error while searching user");
+                        });
+            })
+            .catch(() => {
+                res.send(500).json("Error while searching user");
+            });
+            
+        })
+        .catch(() => {
+            res.send(500).json("Error while searching user");
+        });
+    
 };
 
 const edit_profile_action = (req, res) => {
@@ -116,6 +222,7 @@ const edit_profile_action = (req, res) => {
 
 
 const edit_profile = (req, res) => {
+
     res.render('edit_profile', {
         firstname: 'Tone',
         lastname: 'Bine',
@@ -215,6 +322,9 @@ module.exports = {
     tuji_profile,
     edit_profile_action,
     forgot_password_recover,
+    user_login,
+    user_logout,
+    user_register,
     book,
     confirm
 };

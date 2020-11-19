@@ -15,6 +15,7 @@ const home = (req, res) => {
 };
 
 const search = (req, res) => {
+    
     const keyWord= req.query.value;
     const city=req.query.city;
     const dateFrom=req.query.dateFrom;
