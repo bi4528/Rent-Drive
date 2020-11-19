@@ -10,7 +10,7 @@ var vehiclesRouter = require('./app_server/routes/vehicles');
 var accountRouter = require('./app_server/routes/accounts');
 var reviewRouter = require('./app_server/routes/reviews');
 
-var reviewsApi = require('./app_api/routes/reviews');
+require('./app_api/models/db');
 var usersApi = require('./app_api/routes/users');
 
 var app = express();
@@ -56,7 +56,6 @@ app.use('/account', accountRouter);
 app.use('/review', reviewRouter);
 
 app.use('/api/users', usersApi);
-app.use('/api/review', reviewsApi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -48,14 +48,14 @@ const create_new_user = (req, res) => {
         });
     } else {
         User.create({
-            firstname = firstname,
-            lastname = lastname,
-            phone_number = phone_number,
-            email = email,
-            location = location,
-            password = password,
-            profile_picture = profile_picture,
-            favourite_vehicles_ids = favourite_vehicles_ids
+            firstname : firstname,
+            lastname : lastname,
+            phone_number : phone_number,
+            email : email,
+            location : location,
+            password : password,
+            profile_picture : profile_picture,
+            favourite_vehicles_ids : favourite_vehicles_ids
         }, (error, user) => {
             if (error) {
                 res.status(400).json(error);

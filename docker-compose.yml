@@ -16,6 +16,13 @@ services:
     command: "npm start"
     networks:
       - sp-network
+  mongo-db:
+    image: mongo
+    container_name: sp-rentdrive-app
+    ports:
+      - "27017-27019:27017-27019"
+    networks:
+      - sp-network
 
 networks:
   sp-network:

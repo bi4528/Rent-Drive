@@ -6,14 +6,17 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "axios": "*",
     "cookie-parser": "*",
     "debug": "*",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "hbs": "^4.1.1",
     "http-errors": "*",
+    "mongoose": "^5.10.15",
     "morgan": "*",
-    "nodemon": "^2.0.6",
     "multer": "*",
-    "nodemailer": "*"
+    "nodemailer": "*",
+    "nodemon": "^2.0.6"
   }
 }
