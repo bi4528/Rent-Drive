@@ -1,4 +1,5 @@
 var form = document.querySelector("form");
+
 form.addEventListener("submit", function (event) {
     var mail = document.getElementById("mail").value;
     var password = document.getElementById("password").value;
@@ -6,12 +7,14 @@ form.addEventListener("submit", function (event) {
     if (!validate_email(mail)) {
         alertMessage("Wrong password or mail!");
         event.preventDefault();
-    }
+    } else
     if (!validate_password(password)) {
         alertMessage("Wrong password or mail!");
         event.preventDefault();
-    }
-    console.log(event.returnValue);
+    }else 
+    form.submit();
+    //console.log(event.returnValue);
+    //return password;
 });
 
 function alertMessage(message) {

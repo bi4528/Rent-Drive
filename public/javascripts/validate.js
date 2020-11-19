@@ -3,6 +3,7 @@ const password_regex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[
 const make_regex= /\b[a-z]+\b/i;
 const word_regex = /\b[a-z || A-Z]+\b/;
 const phone_regex = /((?:\+|00)[17](?: |\-)?|(?:\+|00)[1-9]\d{0,2}(?: |\-)?|(?:\+|00)1\-\d{3}(?: |\-)?)?(0\d|\([0-9]{3}\)|[1-9]{0,3})(?:((?: |\-)[0-9]{2}){4}|((?:[0-9]{2}){4})|((?: |\-)[0-9]{3}(?: |\-)[0-9]{4})|([0-9]{7}))/;
+const no_spaces = /^\S*$/;
 
 function validate_first_name(name) {
     return validate_not_empty_string(name) && validate_word(name);
@@ -87,4 +88,8 @@ function validate_dates(date1, date2) {
     var date1 = new Date(date1);
     var date2 = new Date(date2);
     return date2>=date1;
+}
+
+function validate_no_spaces(word){
+    return no_spaces.test(word);
 }

@@ -8,7 +8,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form method="post" action="/">
+      <form method="POST" action="/users/login">
         <div class="login-el">
           <label for="e-mail">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
@@ -17,7 +17,7 @@
               </path>
             </svg>
           </label>
-          <input id="mail" type="email" class="w-75" placeholder="email" required autofocus="">
+          <input id="mail" type="email" name="email" class="w-75" placeholder="email" required autofocus="" autocomplete="email">
         </div>
         <div class="login-el">
           <label for="password">
@@ -27,7 +27,7 @@
               </path>
             </svg>
           </label>
-          <input id="password" type="password" class="w-75" placeholder="password" required>
+          <input id="password" type="password" name="password" class="w-75" placeholder="password" required autocomplete="current-password">
         </div>
         <input type="checkbox" class="large-checkbox">
         <label>

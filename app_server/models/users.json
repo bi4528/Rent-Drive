@@ -1,0 +1,53 @@
+{
+	"users": [
+		{
+			"firstname": "Nino",
+			"lastname": "Brezac",
+			"username": "nino1",
+			"email": "nino.brezac@gmail.com",
+			"password": "N1no123"
+		},
+		{
+			"firstname": "Bojan",
+			"lastname": "Ilić",
+			"username": "bojan1",
+			"email": "bojan.ilic@gmail.com",
+			"password": "B0jan123"
+		},
+		{
+			"firstname": "Matej",
+			"lastname": "Kalc",
+			"username": "mat3j1",
+			"email": "matej.kalc@gmail.com",
+			"password": "Mat3j123"
+		},
+		{
+			"firstname": "Marko",
+			"lastname": "Ivanovski",
+			"username": "mark01",
+			"email": "marko.ivanovski@gmail.com",
+			"password": "Mark0123"
+		},
+		{
+			"firstname": "John",
+			"lastname": "Cena",
+			"username ": "johncena1",
+			"email": "tuturutu@wwe.com",
+			"password": "youcantseem3"
+		},
+		{
+			"firstname": "Shaquille",
+			"lastname": "O'Neal",
+			"email": "shaq@nba.com",
+			"username": "bigshaq",
+			"password": "Shaq123"
+		},
+		{
+			"firstname": "Larry",
+			"lastname": "O'Brien",
+			"email": "larry@nba.com",
+			"username": "larry1",
+			"password": "Larry123"
+		}
+	]
+}
