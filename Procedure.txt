@@ -29,10 +29,11 @@ Pozdravljeni, se sprasujes zakaj nodemon ali npm start ne dela? Tukaj bos dobil 
 
 5) Kako se zažene lokalno okolje?
     Rešitev:
-    nodmeon
-    npm start
+    npm install
+    nodmeon ali npm start
 
 6) Kako preverim če sem povezan na bazo v atlas?
+    npm install
     docker exec -it sp-rentdrive-mongodb bash -c "mongo \"mongodb+srv://rentdrive.cwg3m.mongodb.net/RentDrive\" --username app"
     password: iREGJfmWnYg4EuGn
 
