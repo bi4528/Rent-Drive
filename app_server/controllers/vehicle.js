@@ -4,7 +4,7 @@ var dataJSON = require('../models/avti-seznam.json');
 /* GET vehicleprofile.hbs */
 const vehicleprofile = (req, res) => {
 
-    console.log(dataJSON.cars[dataJSON.cars.length-1]);
+    //console.log(dataJSON.cars[dataJSON.cars.length-1]);
     res.render('vehicleprofile', dataJSON.cars[dataJSON.cars.length-1]
     /*{   car_name: 'Tesla Model 3 2019',
         phone_number: '+38670789654',
@@ -44,9 +44,16 @@ const editvehicleprofile = (req,res) => {
     res.render('editvehicleprofile',dataJSON.cars[dataJSON.cars.length-1]);
 };
 
+const vehicleprofile_book = (req,res) => {
+    console.log(req.body);
+    //console.log(req.session.user_id);
+    res.render('book',req.body);
+};
+
 module.exports = {
     vehicleprofile,
     publish,
     submitcar,
-    editvehicleprofile
+    editvehicleprofile,
+    vehicleprofile_book
 };
