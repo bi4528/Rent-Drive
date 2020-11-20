@@ -63,9 +63,26 @@ formPublish.addEventListener("submit", function(dogodek){
         errors+="Phone number must have only numbers and an optional + at the beginning.\n";
         writeError=true;
     }
-    
     if(writeError){
         alert(errors);
         dogodek.preventDefault();
     }
 });
+
+function appendToForm (){
+    var dateForm = document.getElementById("list-your-car");
+    var zip = document.getElementById("zip");
+    var address = document.getElementById("address");
+    var city = document.getElementById("city");
+    
+    var location = address.value +", " + zip.value +" " + city.value+ ", Slovenia";
+    addHiddenInput(dateForm,location,"pickup_locations");
+}
+
+function addHiddenInput(form, string, inputName){
+    var child = document.createElement('input');
+    child.setAttribute("type", "hidden");
+    child.setAttribute("name",inputName);
+    child.setAttribute("value",string);
+    form.appendChild(child);
+}

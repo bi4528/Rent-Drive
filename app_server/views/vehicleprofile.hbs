@@ -44,7 +44,7 @@
     <div class="row m-3">
       <div class="col-sm-12 col-md-4 ">
         <!--href="users/other$id={{user_id}}"-->
-        <a href="users/other"><img class="avatar" src="{{avatar}}" alt="avatar"></a>
+        <a href="/users/other"><img class="avatar" src="{{avatar}}" alt="avatar"></a>
         <ul class="list-group list-group-flush">
           <li class="list-group-item contact-details"><i class="fas fa-phone"></i>{{number}}</li>
           <li class="list-group-item contact-details"><i class="far fa-envelope"></i>{{email}}</li>
@@ -94,11 +94,13 @@
             <input id="date-to" type="date" class="form-control" min="{{date.[0]}}" name="date">
           </div>
           <div class="form-group"><label for="cars">Location of pickup &amp; return</label>
-            <select name="pickup_locations" id="cars">
+           
+           <select name="pickup_locations" id="cars">
               {{#each pickup_locations}}
               <option>{{adres}}, {{zip}} {{city}}</option>
               {{/each}}
-            </select></div>
+            </select> -->
+          </div>
           <div class="price form-group ">
             <h5 class="inline font-weight-bold" id="price"></h5>
             <h5 class="inline"> (</h5>
