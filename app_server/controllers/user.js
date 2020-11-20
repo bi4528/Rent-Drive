@@ -95,7 +95,7 @@ const user_logout = (req, res) => {
 };
 
 const login_attempt = (req, res) => {
-    console.log(usersJSON.users);
+    //console.log(usersJSON.users);
     var success = false;
     for (var i = 0; i < usersJSON.users.length; i++) {
         //console.log(usersJSON.users[i].email);
