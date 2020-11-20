@@ -1,0 +1,55 @@
+Pozdravljeni, se sprasujes zakaj nodemon ali npm start ne dela? Tukaj bos dobil resitev oziroma ukaze za popravila.
+
+0) To begin. Nisi se zagnal docker? Nisi se ustavril lokalne baze? Slabo.
+    Rešitev:
+    docker-compose up --no-start
+    docker start sp-rentdrive-mongodb
+
+1) Ce si obupan, pa pise da port 3000 je in use, je mozno da si je ustvaril nek proces z nodemon in se ni pravilno ustavil.
+    Rešitev: pstree pa pkill process
+    Rešitev za hakerje: reštartaj računalnik
+
+2) Še vedno ne dela? si se seznanil z tehnologijo docker? Vsakič ki želiš rabit bazo potrebuješ nek ukaze
+    Reštev: docker-compose start za Windows sudo docker-compose start za Linux
+
+3) Nič ne dela? Prava katastropa? Rad bi ustvaril lokalno bazo znova? 
+    Rešitev:
+    docker-compose stop
+    docker-compose down
+    docker-compose up --no-start
+    docker start sp-rentdrive-mongodb
+
+    Opcijsko za testiranje pravilnega delovanja baze:
+    docker exec -it sp-rentdrive-mongodb mongo
+
+
+4) Kako se zažene produkcijsko okolje?
+    Rešitev:
+    NODE_ENV='production' MONGODB_CLOUD_URI='mongodb+srv://app:iREGJfmWnYg4EuGn@rentdrive.cwg3m.mongodb.net/RentDrive?retryWrites=true&w=majority' nodemon
+
+5) Kako se zažene lokalno okolje?
+    Rešitev:
+    npm install
+    nodmeon ali npm start
+
+6) Kako preverim če sem povezan na bazo v atlas?
+    npm install
+    docker exec -it sp-rentdrive-mongodb bash -c "mongo \"mongodb+srv://rentdrive.cwg3m.mongodb.net/RentDrive\" --username app"
+    password: iREGJfmWnYg4EuGn
+
+7) Pfff Heroku ne dela. Kako se povezem na rentdrive na heroku?
+    Rešitev:
+    (ce nisi povezan) heroku login -i
+    heroku git:remote -a rentdrive-sp
+
+8) Stran na heroku ni v produkcijskem okolju? (To ni potrebno nikoli zagnat, ker je že v produkcijskem okolju)
+    Rešitev:
+    heroku config:set NODE_ENV='production' -a rentdrive-sp
+
+9) Heroku ni povezan na atlas mongo bazo? LMAO
+    Rešitev:
+    heroku config:set MONGODB_CLOUD_URI='mongodb+srv://app:iREGJfmWnYg4EuGn@rentdrive.cwg3m.mongodb.net/RentDrive?retryWrites=true&w=majority'
+
+Prišel si do konca, če si med programiranjem uporabil še kakšen ukaz, ki ni zgoraj naveden, ga lahko kar dodaš ;)
+
+

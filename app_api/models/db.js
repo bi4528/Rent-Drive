@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 var dbURI = 'mongodb://localhost/Rent&Drive';
 if (process.env.NODE_ENV === 'production') {
+    console.log("Trying connection to Mongodb Atlas");
     dbURI = process.env.MONGODB_CLOUD_URI;
 }
 mongoose.connect(dbURI, {
@@ -12,41 +13,41 @@ mongoose.connect(dbURI, {
 });
 
 mongoose.connection.on('connected', () => {
-    console.log(`Mongoose je povezan na ${dbURI}.`);
+    console.log(`Mongoose is connected to ${dbURI}.`);
 });
 
-mongoose.connection.on('error', napaka => {
-    console.log('Mongoose napaka pri povezavi: ', napaka);
+mongoose.connection.on('error', error => {
+    console.log('Mongoose error on connection: ', error);
   });
 
 mongoose.connection.on('disconnected', () => {
-    console.log('Mongoose ni povezan.');
+    console.log('Mongoose is not connected.');
 });
 
-const pravilnaZaustavitev = (sporocilo, povratniKlic) => {
+const pravilnaZaustavitev = (message, povratniKlic) => {
     mongoose.connection.close(() => {
-        console.log(`Mongoose je zaprl povezavo preko '${sporocilo}'`);
+        console.log(`Mongoose closed the connection with '${message}'`);
         povratniKlic();
     });
 };
 
 // Ponovni zagon nodemon
 process.once('SIGUSR2', () => {
-    pravilnaZaustavitev('nodemon ponovni zagon', () => {
+    pravilnaZaustavitev('nodemon restart', () => {
         process.kill(process.pid, 'SIGUSR2');
     });
 });
 
 // Izhod iz aplikacije
 process.on('SIGINT', () => {
-    pravilnaZaustavitev('izhod iz aplikacije', () => {
+    pravilnaZaustavitev('exit from application', () => {
         process.exit(0);
     });
 });
 
 // Izhod iz aplikacije na Heroku
 process.on('SIGTERM', () => {
-    pravilnaZaustavitev('izhod iz aplikacije na Heroku', () => {
+    pravilnaZaustavitev('exit from application on Heroku', () => {
         process.exit(0);
     });
 });
