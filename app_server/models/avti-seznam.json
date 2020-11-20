@@ -159,7 +159,7 @@
 			]
 		},
 		{
-			"image": "",
+			"image": "/images/tesla1.jpg",
 			"make": "Tesla",
 			"model": "Model 3 2019",
 			"typeoffuel": "electric",
@@ -186,7 +186,7 @@
 			"2020-11-10",
 			"2020-11-24"
 			],
-			
+
 			"avatar": "/images/oseba_template.jpg",
 			"username": "JoshSmith213",
 			"email": "josh_smith@gmail.com",

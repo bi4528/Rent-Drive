@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 
-var dbURI = 'mongodb://localhost/Rent&Drive';
+var dbURI = 'mongodb://localhost/RentDrive';
 if (process.env.NODE_ENV === 'production') {
     console.log("Trying connection to Mongodb Atlas");
     dbURI = process.env.MONGODB_CLOUD_URI;
 }
+
 mongoose.connect(dbURI, {
     useNewUrlParser: true,
     useCreateIndex: true,
