@@ -2,12 +2,14 @@
   <div class="row justify-content-center mt-4">
     <div class="login-container col-9 col-md-6 col-xl-5 text-center">
       <h2>Welcome back!</h2>
+      {{#if failed_login}}
       <div id="alert" class="alert alert-danger alert-dismissible fade show" role="alert" hidden>
         <p></p>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      {{/if}}
       <form method="POST" action="/users/login">
         <div class="login-el">
           <label for="e-mail">

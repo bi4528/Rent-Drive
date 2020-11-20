@@ -16,6 +16,7 @@ Pozdravljeni, se sprasujes zakaj nodemon ali npm start ne dela? Tukaj bos dobil 
     Rešitev:
     docker-compose stop
     docker-compose down
+    docker-compose build
     docker-compose up --no-start
     docker start sp-rentdrive-mongodb
 

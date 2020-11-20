@@ -46,7 +46,7 @@ const user_register = (req, res) => {
 
     check_if_email_exists(req, res, function(exists){
         if(!exists){
-            axios.post(apiParametri.streznik + '/api/user/my', {
+            axios.post(apiParametri.streznik + '/api/users/', {
                     params: req.params
                 })
                 .then((user) => {
@@ -61,7 +61,7 @@ const user_register = (req, res) => {
                     res.send(500).json("Error while creating new user");
                 });
         } else {
-
+            //IZPISI NAPAKO
         }
     });
 
@@ -107,7 +107,7 @@ const login_attempt = (req, res) => {
     }
     if (success) res.render('home', dataJSON);
     else {
-        res.render('login',  {layout: 'account-layout.hbs'});
+        res.render('login',  {layout: 'account-layout.hbs', failed_login: true});
     } 
 };
 

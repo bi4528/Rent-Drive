@@ -12,8 +12,9 @@ const get_all_users = (req, res) => {
             });
         } else if (error) {
             return res.status(500).json(error);
+        } else {
+            res.status(200).json(user);
         }
-        res.status(200).json(user);
     });
 };
 
@@ -166,15 +167,16 @@ const add_favourite_vehicle = (req, res) => {
             });
         } else if (error) {
             return res.status(500).json(error);
+        } else {
+            user.favourite_vehicles_ids.push(req.body.favourite_vehicles_id);
+            user.save((error, user) => {
+                if (error) {
+                    res.status(404).json(error);
+                } else {
+                    res.status(200).json(user);
+                }
+            });
         }
-        user.favourite_vehicles_ids.push(req.body.favourite_vehicles_id);
-        user.save((error, user) => {
-            if (error) {
-                res.status(404).json(error);
-            } else {
-                res.status(200).json(user);
-            }
-        });
     });
 };
 
