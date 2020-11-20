@@ -3,7 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "vehicles-import": "docker cp ./app_api/models/vehicles-test.json sp-rentdrive-mongodb:/vehicles-test.json ; docker exec -it sp-rentdrive-mongodb mongoimport --db RentDrive --collection Vehicles --mode upsert --upsertFields make --jsonArray --file vehicles-test.json; docker exec -it sp-rentdrive-mongodb rm -rf vehicles-test.json; docker exec -it sp-rentdrive-mongodb bash -c \"mongo RentDrive --eval 'db.Vehicles.find().forEach(function(dokument) { for (var i = 0; i < dokument.reviews.length; i++) { dokument.reviews[i]._id = ObjectId() } db.Vehicles.update({ \"_id\" : dokument._id }, dokument) })'\"",
+    "vehicles-delete": "docker exec -it sp-rentdrive-mongodb bash -c \"mongo RentDrive --eval 'db.Vehicles.remove({})'\"",
+    "vehicles-show": "docker exec -it sp-rentdrive-mongodb bash -c \"mongo RentDrive --eval 'db.Vehicles.find()'\""
+  },
+  "engines": {
+    "node": ">=14.15.0",
+    "npm": ">=6.14.8"
   },
   "dependencies": {
     "axios": "*",

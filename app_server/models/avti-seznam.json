@@ -159,6 +159,7 @@
 			]
 		},
 		{
+
 			"features": {
 				"typeoffuel": "electric",
 				"category": "Hatchback",
@@ -179,6 +180,9 @@
 				"luggage": "425",
 				"min-age": "18"
 			},
+
+			"image": "/images/tesla1.jpg",
+
 			"make": "Tesla",
 			"model": "Model 3 2019",
 			"description": "Step into the future with our beautiful electric four-door fastback sedan. Enjoy your trip without engine noise, listening to music on Spotify or your favourite podcast. Equipped with Autopilot, it'll reduce your driving fatigue and you will arrive at your destination relaxed and ready for action. Make your driving enjoyable, drive a Tesla - we are sure your experience will be something to remember.",
@@ -278,33 +282,30 @@
 			"avg_rating": "4"
 		},
 		{
-			"car-photos": [
-				"img1.jpg",
-				"img2.jpg"
-			],
-			"make": "dasd",
-			"model": "bjk",
+			"image": "",
+			"make": "Porsche",
+			"model": "911",
 			"typeoffuel": "Petrol",
-			"category": "Saloon",
-			"hp": "4",
-			"maxspeed": "64",
-			"acceleration": "64",
-			"consumption": "5",
-			"seats": "5",
-			"doors": "5",
-			"luggage": "5",
-			"age": "15",
-			"description": "dasd",
-			"address": "Nino Road 2",
-			"city": "Ninotown",
+			"category": "Coupe",
+			"hp": "450",
+			"maxspeed": "290",
+			"acceleration": "3.5",
+			"consumption": "15.3",
+			"seats": "2",
+			"doors": "2",
+			"AirConditioning": "on",
+			"Navigation": "on",
+			"bluetooth": "on",
+			"description": "All ne 911, wanna try it?",
+			"addres": "Ulica",
+			"city": "Grad",
 			"zip": "1000",
-			"price": "12",
-			"number": "+387603327793",
+			"price": "200",
+			"number": "36337676",
 			"date": [
-				"2020-11-18",
-				"2020-11-26"
-			],
-			"pickup_locations": "Nino Road 2, 1000, Ninotown, Slovenia"
+				"2020-11-26",
+				"2020-12-07"
+			]
 		}
 	],
 	"_locals": {}
