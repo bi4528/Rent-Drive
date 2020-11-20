@@ -15,9 +15,9 @@ mongoose.connection.on('connected', () => {
     console.log(`Mongoose je povezan na ${dbURI}.`);
 });
 
-mongoose.connection.on('error', () => {
-    console.log('Mongoose napaka pri povezavi: ');//, napaka);
-});
+mongoose.connection.on('error', napaka => {
+    console.log('Mongoose napaka pri povezavi: ', napaka);
+  });
 
 mongoose.connection.on('disconnected', () => {
     console.log('Mongoose ni povezan.');
