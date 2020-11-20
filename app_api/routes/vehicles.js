@@ -10,6 +10,7 @@ router.get('/:id', ctrlVehicles.vehiclesFind);
 router.put('/:id', ctrlVehicles.vehiclesUpdate);
 router.delete('/:id', ctrlVehicles.vehiclesDelete);
 
+/* Reviews */
 router.get('/:id/reviews/', ctrlReviews.reviewsAll);
 router.post('/:id/reviews/', ctrlReviews.reviewsUpload);
 router.get('/:idVehicle/reviews/:idReview', ctrlReviews.reviewsFind);
