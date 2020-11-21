@@ -6,16 +6,16 @@
         <div class="row">
             <div class="col-sm-4">
                 <div class="card">
-                    <img src="/images/nissan-pixo.jpg" class="card-img-top" alt="Nissan">
+                    <img src="{{vehicle_picture}}" class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title">Booking information</h5>
                         <p class="card-text">Note: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Pickup Date: 2020-11-20</li>
-                        <li class="list-group-item">Pickup Location: Palmira Toljatija 52, Belgrade</li>
-                        <li class="list-group-item">Return Date: 2020-11-28</li>
-                        <li class="list-group-item">Return Location: Jurija Gagarina 113, Belgrade</li>
+                        <li class="list-group-item">Pick-up date: {{date.[0]}}</li>
+                        <li class="list-group-item">Location: {{pickup_locations}}</li>
+                        <li class="list-group-item">Return date: {{date.[1]}}</li>
+                        <li class="list-group-item">Daily price: {{daily-price}}</li>
                     </ul>
                     <div class="card-body">
                             <a href="/vehicles/other" class="card-link text-primary" id="return-link">

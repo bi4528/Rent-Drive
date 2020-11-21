@@ -20,7 +20,7 @@ router.get('/profiles/:idUser', ctrlUser.profile);
 router.get('/my', ctrlUser.logged_user_profile);
 router.put('/edit', ctrlUser.edit_profile_action);
 router.get('/edit', ctrlUser.edit_profile);
-//router.get('/book', ctrlUser.book);
-//router.get('/confirm', ctrlUser.confirm);
+router.get('/book', ctrlUser.book);
+router.get('/confirm', ctrlUser.confirm);
     
 module.exports = router;
