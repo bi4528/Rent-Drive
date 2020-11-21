@@ -50,13 +50,6 @@ const user_login = (req, res) => {
 };
 
 const user_register = (req, res) => {
-<<<<<<< HEAD
-
-    check_if_email_exists(req, res, function(exists){
-        if(!exists){
-            axios.post(apiParametri.streznik + '/api/users/', {
-                    params: req.params
-=======
     check_if_email_exists(req, res, function (exists) {
         
         if (exists == null || !exists) {
@@ -68,7 +61,6 @@ const user_register = (req, res) => {
                         password: req.body.password,
                         firstname: req.body.firstname,
                     }
->>>>>>> matej
                 })
                 .then((user) => {
                     if (user != null) {
@@ -120,13 +112,8 @@ const user_logout = (req, res) => {
     }
 };
 
-<<<<<<< HEAD
-const login_attempt = (req, res) => {
-    //console.log(usersJSON.users);
-=======
 /*const login_attempt = (req, res) => {
     console.log(usersJSON.users);
->>>>>>> matej
     var success = false;
     for (var i = 0; i < usersJSON.users.length; i++) {
         //console.log(usersJSON.users[i].email);
