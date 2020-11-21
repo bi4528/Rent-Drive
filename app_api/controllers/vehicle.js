@@ -1,11 +1,18 @@
 const mongoose = require('mongoose');
 const Vehicle = mongoose.model('Vehicle');
 
+function isEmpty(str) {
+    return (!str || 0 === str.length);
+}
+function isLater(str1, str2) {
+    return new Date(str1) >= new Date(str2);
+}
+
 const vehiclesAll = (req, res) => {
     Vehicle
         .find()
-        .exec((err, data) => {
-            if (!data) {
+        .exec((err, dataJSON) => {
+            if (!dataJSON) {
                 return res.status(404).json({
                     "sporočilo":
                         "Ne najdem lokacije s podanim enoličnim identifikatorjem idLokacije."
@@ -15,15 +22,61 @@ const vehiclesAll = (req, res) => {
                 console.err(err);
                 res.status(404).json({ "sporočilo": "Napaka pri poizvedbi: " + err });
             } else {
-                res.status(200).json(data);
+                //res.status(200).json(data);
+                const keyWord = req.query.value;
+                const city = req.query.city;
+                const dateFrom = req.query.dateFrom;
+                const dateTo = req.query.dateTo;
+                const category = req.query.category;
+
+                //console.log(city + " " + dateFrom + " " + dateTo);
+
+                if (isEmpty(keyWord) && isEmpty(city) && isEmpty(category)) {
+                    //dataJSON.filter = "<H3>No filter applied</H3>";
+                    //res.render('search', dataJSON);
+                    res.status(200).json(dataJSON);
+                }
+                else if (!isEmpty(keyWord)) {
+                    newData = [];
+                    dataJSON.forEach(function (item, index) {
+                        if (item.model.toLowerCase().includes(keyWord.toLowerCase()) || item.make.toLowerCase().includes(keyWord.toLowerCase())) {
+                            newData.push(item);
+                        }
+                    });
+                    res.status(200).json(newData);
+                    //res.render('search', newData);
+                }
+                else if (!isEmpty(city)) {
+                    newData = [];
+                    dataJSON.forEach(function (item, index) {
+                        //console.log(typeof(item.date[0])+" "+typeof(dateFrom));
+                        //console.log(item.date[0]+" "+dateFrom);
+                        if (item.city.localeCompare(city) == 0 && isLater(dateFrom, item.date[0]) && isLater(item.date[1], dateTo)) {
+                            newData.push(item);
+                        }
+                    });
+                    //res.render('search', newData);
+                    res.status(200).json(newData);
+                }
+                else if (!isEmpty(category)) {
+                    newData = [];
+                    dataJSON.forEach(function (item, index) {
+                        if (item.category.localeCompare(category) == 0) {
+                            newData.push(item);
+                        }
+                    });
+                    //res.render('search', newData);
+                    res.status(200).json(newData);
+                }
             }
         });
 };
 
+
+
 const vehiclesUpload = (req, res) => {
-    console.log(req.body);
     Vehicle.create({
-        image: req.body.image,
+        //image: req.body.image,
         make: req.body.make,
         model: req.body.model,
         typeoffuel: req.body.typeoffuel,
@@ -44,7 +97,7 @@ const vehiclesUpload = (req, res) => {
         description: req.body.description,
         address: req.body.address,
         city: req.body.city,
-        zip: parseInteger(req.body.zip),
+        zip: parseInt(req.body.zip),
         price: parseFloat(req.body.price),
         number: req.body.number,
         date: req.body.date,

@@ -1,4 +1,7 @@
 <main>
+    {{#if error}}
+    <div class="alert alert-warning">{{error}}</div>
+    {{else}}
     <div class="container-background">
         <div class="lambo-image">
             <div class="form-row filter">
@@ -210,3 +213,4 @@
 
 
 <script src="/javascripts/home.js"></script>
+{{/if}}

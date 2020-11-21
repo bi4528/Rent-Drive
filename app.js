@@ -18,7 +18,7 @@ var app = express();
 // Session
 var session = require('express-session');
 
-console.log("SSessionnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+console.log("Welcome to PHD MATEJ KALC'S SESSION");
 app.use(session({
   secret: 'keyboard cat',
   resave: true,

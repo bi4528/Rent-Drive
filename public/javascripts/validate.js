@@ -93,6 +93,7 @@ function validate_vehicle_luggage(l) {
 }
 
 
+
 function validate_vehicle_price_per_day(price_per_day) {
     return price_per_day >= 0;
 }

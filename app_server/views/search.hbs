@@ -1,5 +1,7 @@
 <div class="container-fluid">
-
+    {{#if error}}
+    <div class="alert alert-warning">{{error}}</div>
+    {{else}}
     <div class="row m-2 justify-content-center">
         <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
             <input class="form-control mr-sm-2 q" type="text" placeholder="Search" aria-label="Search">
@@ -32,6 +34,7 @@
     </div>
 
     <div class="reset-content"></div>
+    {{/if}}
 </div>
 
 <script src="/javascripts/search.js"></script>

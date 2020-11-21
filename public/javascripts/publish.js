@@ -68,7 +68,7 @@ formPublish.addEventListener("submit", function(dogodek){
         dogodek.preventDefault();
     }
 });
-
+/*
 function appendToForm (){
     var form = document.getElementById("list-your-car").children[1];
     var zip = document.getElementById("zip");
@@ -105,3 +105,4 @@ function addHiddenInputWithParent(form, address, zip, city){
     form.appendChild(parent);
     //debugger;
 }
+*/

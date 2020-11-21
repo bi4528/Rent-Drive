@@ -1,11 +1,25 @@
+//const { default: Axios } = require('axios');
 var fs = require('fs');
+
+var appiParams = {
+    server: 'http://localhost:' + (process.env.PORT || 3000)
+};
+if (process.env.NODE_ENV === 'production') {
+    appiParams.server = 'https://rentdrive-sp.herokuapp.com/';
+}
+const axios = require('axios').create({
+    baseURL: appiParams.server,
+    timeout: 5000
+});
+
+
 var dataJSON = require('../models/avti-seznam.json');
 
 /* GET vehicleprofile.hbs */
 const vehicleprofile = (req, res) => {
     debugger;
-    console.log(dataJSON.cars[dataJSON.cars.length-1]);
-    res.render('vehicleprofile', dataJSON.cars[dataJSON.cars.length-1]
+    console.log(dataJSON.cars[dataJSON.cars.length - 1]);
+    res.render('vehicleprofile', dataJSON.cars[dataJSON.cars.length - 1]
     );
 };
 
@@ -15,22 +29,57 @@ const publish = (req, res) => {
 
 const submitcar = (req, res) => {
     //console.log(req.body);
-    dataJSON.cars.push(JSON.parse(JSON.stringify(req.body)));
+    /*dataJSON.cars.push(JSON.parse(JSON.stringify(req.body)));
     fs.writeFile('app_server/models/avti-seznam.json', JSON.stringify(dataJSON,null,'\t'), 'utf-8', function (err, data) {
         if (err) throw err;
         console.log('Done!');
     });
-
-    res.render('home', dataJSON);
+    res.render('home', dataJSON);*/
+    //console.log(req.body);
+    axios({
+        method: 'post',
+        url: '/api/vehicles',
+        data: {
+            image: req.body.image,
+            make: req.body.make,
+            model: req.body.model,
+            typeoffuel: req.body.typeoffuel,
+            category: req.body.category,
+            hp: req.body.hp,
+            maxspeed: req.body.maxspeed,
+            acceleration: req.body.acceleration,
+            consumption: req.body.consumption,
+            seats: (req.body.seats),
+            doors: (req.body.doors),
+            AirConditioning: req.body.AirConditioning,
+            Navigation: req.body.Navigation,
+            USB: req.body.USB,
+            AUX: req.body.AUX ,
+            autopilot: req.body.autopilot ,
+            bluetooth: req.body.bluetooth ,
+            parkingsensors: req.body.parkingsensors,
+            description: req.body.description,
+            address: req.body.address,
+            city: req.body.city,
+            zip: req.body.zip,
+            price: req.body.price,
+            number: req.body.number,
+            date: req.body.date
+        }
+    }). then(() => {
+        res.redirect('/vehicles/other');
+    }).catch((err) => {
+        console.log("NAPAKA");
+    })
 };
 
-const editvehicleprofile = (req,res) => {
-    res.render('editvehicleprofile',dataJSON.cars[dataJSON.cars.length-1]);
+const editvehicleprofile = (req, res) => {
+    res.render('editvehicleprofile', dataJSON.cars[dataJSON.cars.length - 1]);
 };
 
-const vehicleprofile_book = (req,res) => {
+const vehicleprofile_book = (req, res) => {
     console.log(req.body);
-    res.render('book',req.body);
+    res.render('book', req.body);
 };
 
 module.exports = {
@@ -38,5 +87,5 @@ module.exports = {
     publish,
     submitcar,
     editvehicleprofile,
-    vehicleprofile_book
+    vehicleprofile_book,
 };
