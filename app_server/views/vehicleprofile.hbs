@@ -44,7 +44,7 @@
     <div class="row m-3">
       <div class="col-sm-12 col-md-4 ">
         <!--href="users/other$id={{user_id}}"-->
-        <a href="users/other"><img class="avatar" src="{{avatar}}" alt="avatar"></a>
+        <a href="/users/other"><img class="avatar" src="{{avatar}}" alt="avatar"></a>
         <ul class="list-group list-group-flush">
           <li class="list-group-item contact-details"><i class="fas fa-phone"></i>{{number}}</li>
           <li class="list-group-item contact-details"><i class="far fa-envelope"></i>{{email}}</li>
@@ -66,25 +66,12 @@
     <!--- lastnosti in izposodi-->
     <div class="row m-3 mt-5">
       <h3>Features:</h3>
-      <div class="features col-sm-3">
-        <div><i class="far fa-snowflake"></i> <span class="text-success">air conditioning</span></div>
-        <div><i class="fab fa-bluetooth"></i><span class="text-success">bluetooth support</span></div>
-        <div><i class="far fa-map"></i><span class="text-success">GPS</span></div>
-        <div><i class="fab fa-usb"></i><span class="text-success">USB support</span></div>
-        <br>
-        <div><i class="fab fa-accessible-icon"></i><span class="text-danger">not accessible</span></div>
-        <br>
-      </div>
-      <div class="features col-sm-3">
-        <div><i class="fas fa-charging-station"></i>electric</div>
-        <div><i class="fas fa-tachometer-alt"></i>209 km/h</div>
-        <div><i class="fas fa-suitcase"></i>luggage 425 l</div>
-        <div><i class="fas fa-door-closed"></i>4 doors</div>
-        <div><i class="fas fa-user-graduate"></i>18+</div>
-      </div>
-
+      {{{featurehelper AirConditioning bluetooth Navigation usb aux parkingsensors autopilot accessibility}}}
+      <br>
+      {{{featurehelper2 maxspeed hp typeoffuel acceleration seats doors consumption minage luggage}}}
+      
       <div class="book col-sm-8 col-md-4 mt-4">
-        <form action="book.html" id="date-form">
+        <form method="POST" action="/vehicles/other" id="date-form" onsubmit="appendToForm()">
           <div class="form-group">
             <label for="date-from">From</label>
             <input id="date-from" type="date" class="form-control" name="date" min="{{date.[0]}}" max="{{date.[1]}}">
@@ -94,17 +81,19 @@
             <input id="date-to" type="date" class="form-control" min="{{date.[0]}}" name="date">
           </div>
           <div class="form-group"><label for="cars">Location of pickup &amp; return</label>
-            <select name="cars" id="cars">
+           <select name="pickup_locations" id="cars">
               {{#each pickup_locations}}
-              <option>{{adres}}, {{zip}} {{city}}</option>
+              <option>{{address}}, {{zip}} {{city}}</option>
               {{/each}}
-            </select></div>
+            </select>
+          </div>
           <div class="price form-group ">
             <h5 class="inline font-weight-bold" id="price"></h5>
             <h5 class="inline"> (</h5>
-            <h5 class="inline" id="daily-price">{{price}}€</h5>
+            <!--<input class="inline" id="daily-price" name="priceValue" id="priceValue" value="{{price}}€" readonly> -->
+            <h5 class="inline" id="daily-price" name="daily-price">{{price}}€</h5>
             <h5 class="inline">/day)</h5>
-            <input type="submit" class="btn btn-primary" value="Book">
+            <input id="submit-button" type="submit" class="btn btn-primary" value="Book" disabled="true">
           </div>
         </form>
       </div>

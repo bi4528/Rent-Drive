@@ -7,11 +7,11 @@ var logger = require('morgan');
 var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
 var vehiclesRouter = require('./app_server/routes/vehicles');
-
 var reviewRouter = require('./app_server/routes/reviews');
 
 require('./app_api/models/db');
 var usersApi = require('./app_api/routes/users');
+var vehicleApi = require('./app_api/routes/vehicles');
 
 var app = express();
 
@@ -35,7 +35,8 @@ app.set('view engine', 'hbs');
 require('./app_server/views/helpers/hbsh.js');
 require('./app_server/views/helpers/commenthelper.js');
 require('./app_server/views/helpers/stars.js');
-//app.post('/', indexRouter);
+require('./app_server/views/helpers/featurehelper.js');
+require('./app_server/views/helpers/featurehelper2.js');
 const multer = require("multer");
 const upload = multer({
     dest: "./public/images/"
@@ -55,6 +56,7 @@ app.use('/vehicles', vehiclesRouter);
 app.use('/review', reviewRouter);
 
 app.use('/api/users', usersApi);
+app.use('/api/vehicles', vehicleApi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
