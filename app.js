@@ -17,9 +17,11 @@ var app = express();
 
 // Session
 var session = require('express-session');
+
+console.log("SSessionnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
 app.use(session({
   secret: 'keyboard cat',
-  resave: false,
+  resave: true,
   saveUninitialized: true,
   cookie: {
     maxAge: 60000,

@@ -11,7 +11,10 @@ function isLater(str1, str2)
 
 /* GET home page */
 const home = (req, res) => {
-    res.render('home', dataJSON);
+    var newDataJSON = dataJSON;
+    console.log(req.session);
+    newDataJSON.user_logged = req.session.user_id != null;
+    res.render('home', newDataJSON);
 };
 
 const search = (req, res) => {
@@ -40,6 +43,7 @@ const search = (req, res) => {
                 newData.cars.push(item);
             }
         });
+
         res.render('search',newData);
 
     }
@@ -77,7 +81,8 @@ const search = (req, res) => {
 
 const nearby = (req, res) => {
     res.render('nearby', {
-        layout: 'layout.hbs'
+        layout: 'layout.hbs',
+        user_logged: req.session.user_id != null
     });
 };
 

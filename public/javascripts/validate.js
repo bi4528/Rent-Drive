@@ -8,8 +8,15 @@ const no_spaces = /^\S*$/;
 function validate_first_name(name) {
     return validate_not_empty_string(name) && validate_word(name);
 }
+exports.validate_first_name = function (name) {
+    return validate_not_empty_string(name) && validate_word(name);
+}
 
 function validate_phone_number(number) {
+    return validate_not_empty_string(number) && phone_regex.test(number);
+}
+
+exports.validate_phone_number = function (number) {
     return validate_not_empty_string(number) && phone_regex.test(number);
 }
 
@@ -17,11 +24,23 @@ function validate_last_name(name) {
     return validate_not_empty_string(name) && validate_word(name);
 }
 
+exports.validate_last_name = function (name) {
+    return validate_not_empty_string(name) && validate_word(name);
+}
+
 function validate_word(name) {
     return name!= null && word_regex.test(name);
 }
 
+exports.validate_word = function (name) {
+    return name != null && word_regex.test(name);
+}
+
 function validate_not_empty_string(name) {
+    return name != null && name.length > 0;
+}
+
+exports.validate_not_empty_string = function (name) {
     return name != null && name.length > 0;
 }
 
@@ -29,7 +48,15 @@ function validate_location(location) {
     return validate_not_empty_string(location);
 }
 
+exports.validate_location = function (location) {
+    return validate_not_empty_string(location);
+}
+
 function validate_email(email) {
+    return validate_not_empty_string(email) && email_regex.test(email.toLowerCase())
+}
+
+exports.validate_email = function (email) {
     return validate_not_empty_string(email) && email_regex.test(email.toLowerCase())
 }
 
@@ -42,6 +69,10 @@ function validate_email(email) {
 */
 
 function validate_password(password) {
+    return validate_not_empty_string(password) && password_regex.test(password);
+}
+
+exports.validate_password = function (password) {
     return validate_not_empty_string(password) && password_regex.test(password);
 }
 

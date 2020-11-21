@@ -4,4 +4,10 @@ Odgovor:
     req.session.user_id
 2)  Ko se uporabnik logouta se seja uniči.
     req.session.destroy()
+<<<<<<< HEAD
 3) Če je uporabnik logiran se v navbar prikaže myprofile, sicer se prikažeta Login in Register
+=======
+3) Če je uporabnik logiran se v navbar prikaže myprofile, sicer se prikažeta Login in Register
+4) Ko uporabnik klikne na gumb "book" v vehicleprofile ga spusti naprej če in samo če je uporabnik logiran, sicer je gumb disablan
+5) programer lahko vidi na strani strežnika če je uporabnik logiran ko req.session.user_id != null
+>>>>>>> matej

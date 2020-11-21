@@ -22,61 +22,87 @@ const login = (req, res) => {
 };
 
 const user_login = (req, res) => {
-    mail = req.params.mail;
-    password = req.params.password;
+    var email = req.body.email;
+    var password = req.body.password;
 
-    axios
-        .get(apiParametri.streznik + '/api/user/check_login', {
-            params: req.params
-        })
-        .then((user_id) => {
-            if (user_id && user_id != null) {
-                req.session.user_id= user_id;
-                mainController.home(req, res);
-            } else {
-                res.send(500).json("Error mail or password not correct");
+    axios.get(apiParametri.streznik + '/api/users/check/exists', {
+            params: {
+                email: email,
+                password: password
             }
         })
-        .catch(() => {
-            res.send(500).json("Error mail or password not correct");
+        .then((user_id) => {
+            if (user_id != null) {
+                req.session.user_id = user_id.data;
+                req.session.save(function (err) {
+                    if (err) console.log(err);
+                    res.redirect('/');
+                });
+                
+            } else {
+                res.sendStatus(500).json("Error mail or password not correct");
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+            login(req, res);
         });
 };
 
 const user_register = (req, res) => {
+<<<<<<< HEAD
 
     check_if_email_exists(req, res, function(exists){
         if(!exists){
             axios.post(apiParametri.streznik + '/api/users/', {
                     params: req.params
+=======
+    check_if_email_exists(req, res, function (exists) {
+        
+        if (exists == null || !exists) {
+            axios.post(apiParametri.streznik + '/api/users', {
+                    params: {
+                        firstname: req.body.firstname,
+                        lastname:req.body.lastname,
+                        email:req.body.email,
+                        password: req.body.password,
+                        firstname: req.body.firstname,
+                    }
+>>>>>>> matej
                 })
                 .then((user) => {
                     if (user != null) {
-                        req.session.user_id = user.id;
-                        mainController.home(req, res);
+                        console.log(user.data);
+                        req.session.user_id = user.data._id;
+                        req.session.save(function (err) {
+                            if(err) console.log(err);
+                            res.redirect('/');
+                        });
+                        res.end();
                     } else {
-                        res.send(500).json("Error mail or password not correct");
+                        res.sendStatus(500).json("Error mail or password not correct");
                     }
                 })
                 .catch(() => {
-                    res.send(500).json("Error while creating new user");
+                    res.sendStatus(500).json("Error while creating new user");
                 });
         } else {
             //IZPISI NAPAKO
         }
     });
-
-    
 };
 
 const check_if_email_exists = (req, res, callback) => {
-    axios.get(apiParametri.streznik + '/api/user/check_mail', {
-            params: req.params
+    axios.get(apiParametri.streznik + '/api/users/check/exists_mail', {
+            params: {
+                email: req.body.email
+            }
         })
         .then((exists) => {
             callback(exists);
         })
         .catch(() => {
-            res.send(500).json("Mail already exists");
+            callback(null);
         });
 };
 
@@ -84,18 +110,23 @@ const user_logout = (req, res) => {
     if (req.session) {
         req.session.destroy(function (err) {
             if (err) {
-                res.send(500).json("Cannot destroy session");
+                res.sendStatus(500).json("Cannot destroy session");
             } else {
                 mainController.home(req, res);
             }
         });
     } else {
-        res.send(200).json("No session logged");
+        res.sendStatus(200).json("No session logged");
     }
 };
 
+<<<<<<< HEAD
 const login_attempt = (req, res) => {
     //console.log(usersJSON.users);
+=======
+/*const login_attempt = (req, res) => {
+    console.log(usersJSON.users);
+>>>>>>> matej
     var success = false;
     for (var i = 0; i < usersJSON.users.length; i++) {
         //console.log(usersJSON.users[i].email);
@@ -109,7 +140,7 @@ const login_attempt = (req, res) => {
     else {
         res.render('login',  {layout: 'account-layout.hbs', failed_login: true});
     } 
-};
+};*/
 
 const register = (req, res) => {
     res.render('register', {
@@ -117,7 +148,7 @@ const register = (req, res) => {
     });
 };
 
-const register_attempt = (req,res) => {
+/*const register_attempt = (req,res) => {
     usersJSON.users.push(JSON.parse(JSON.stringify(req.body)));
     console.log(usersJSON.users);
     fs.writeFile('app_server/models/users.json', JSON.stringify(usersJSON,null,'\t'), function (err) {
@@ -126,7 +157,7 @@ const register_attempt = (req,res) => {
     res.render('login', {
         layout: 'account-layout.hbs'
     });
-};
+};*/
 
 const forgotpassword = (req, res) => {
     res.render('forgotpassword', {
@@ -163,21 +194,35 @@ const forgot_password_recover = (req, res) => {
     });
 }
 
-const profile = (req, res) => {
-    axios.get(apiParametri.streznik + '/api/users/' + req.body.idUser, {
+
+const logged_user_profile = (req, res) => {
+    var id = req.session.user_id;
+    console.log(req.session);
+    console.log(req.session.user_id);
+    profile(req, res, id);
+};
+
+const profile = (req, res, idUserT) => {
+    var idUser = idUserT != null ? idUserT : req.body.idUser;
+    console.log(idUser);
+    console.log(req.body);
+    axios.get(apiParametri.streznik + '/api/users/' + idUser, {
             params: req.params
         })
         .then((user) => {
-            axios.get(apiParametri.streznik + '/api/users/' + req.body.idUser + '/vehicles', {
+            axios.get(apiParametri.streznik + '/api/users/' + idUser + '/vehicles', {
                     params: req.params
                 })
                 .then((vehicles) => {
 
                     vehicles = vehicles.map(function (vehicle) {
-                        return { name: vehicle.model + " " + vehicle.make, image: vehicle.image }
+                        return {
+                            name: vehicle.model + " " + vehicle.make,
+                            image: vehicle.image
+                        }
                     });
 
-                    axios.get(apiParametri.streznik + '/api/users/' + req.body.idUser + '/favourite_vehicles', {
+                    axios.get(apiParametri.streznik + '/api/users/' + idUser + '/favourite_vehicles', {
                             params: req.params
                         })
                         .then((favourite_vehicles) => {
@@ -202,18 +247,18 @@ const profile = (req, res) => {
                             });
                         })
                         .catch(() => {
-                            res.send(500).json("Error while searching user");
+                            res.sendStatus(500).json("Error while searching user");
                         });
-            })
-            .catch(() => {
-                res.send(500).json("Error while searching user");
-            });
-            
+                })
+                .catch(() => {
+                    res.sendStatus(500).json("Error while searching user");
+                });
+
         })
         .catch(() => {
-            res.send(500).json("Error while searching user");
+            res.sendStatus(500).json("Error while searching user");
         });
-    
+
 };
 
 const edit_profile_action = (req, res) => {
@@ -232,22 +277,22 @@ const edit_profile = (req, res) => {
         profile_picture: '/images/car_1.jpg',
 
         owned_cars: [{
-            name: 'ferrari',
-            image: '/images/car_2.jpg'
-        },
-        {
-            name: 'mustang',
-            image: "/images/car_3.jpg"
-        }
+                name: 'ferrari',
+                image: '/images/car_2.jpg'
+            },
+            {
+                name: 'mustang',
+                image: "/images/car_3.jpg"
+            }
         ],
         favourite_cars: [{
-            name: 'ferrari',
-            image: '/images/car_2.jpg'
-        },
-        {
-            name: 'mustang',
-            image: "/images/car_3.jpg"
-        }
+                name: 'ferrari',
+                image: '/images/car_2.jpg'
+            },
+            {
+                name: 'mustang',
+                image: "/images/car_3.jpg"
+            }
         ]
 
     });
@@ -263,22 +308,22 @@ const tuji_profile = (req, res) => {
         profile_picture: '/images/car_1.jpg',
 
         owned_cars: [{
-            name: 'ferrari',
-            image: '/images/car_2.jpg'
-        },
-        {
-            name: 'mustang',
-            image: "/images/car_3.jpg"
-        }
+                name: 'ferrari',
+                image: '/images/car_2.jpg'
+            },
+            {
+                name: 'mustang',
+                image: "/images/car_3.jpg"
+            }
         ],
         favourite_cars: [{
-            name: 'ferrari',
-            image: '/images/car_2.jpg'
-        },
-        {
-            name: 'mustang',
-            image: "/images/car_3.jpg"
-        }
+                name: 'ferrari',
+                image: '/images/car_2.jpg'
+            },
+            {
+                name: 'mustang',
+                image: "/images/car_3.jpg"
+            }
         ]
 
     });
@@ -311,9 +356,9 @@ const resetpassword_submit = (req, res) => {
 
 module.exports = {
     login,
-    login_attempt,
+    //login_attempt,
     register,
-    register_attempt,
+    //register_attempt,
     forgotpassword,
     resetpassword,
     resetpassword_submit,
@@ -326,5 +371,6 @@ module.exports = {
     user_logout,
     user_register,
     book,
-    confirm
+    confirm,
+    logged_user_profile
 };
