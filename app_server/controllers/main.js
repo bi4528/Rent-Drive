@@ -1,6 +1,8 @@
 const e = require('express');
 var fs = require('fs');
 var dataJSON = require('../models/avti-seznam.json');
+var locationJSON = require('../models/avti-seznam-cords.json');
+
 function isEmpty(str) {
     return (!str || 0 === str.length);
 }
@@ -80,8 +82,9 @@ const search = (req, res) => {
 };
 
 const nearby = (req, res) => {
+
     res.render('nearby', {
-        layout: 'layout.hbs',
+        cars: JSON.stringify(locationJSON.cars),
         user_logged: req.session.user_id != null
     });
 };

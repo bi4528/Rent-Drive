@@ -1,0 +1,123 @@
+{
+	"title": "Seznam avtomobilov",
+	"cars": [
+		{
+			"make": "Chevrolet",
+			"model": "Chevrolet",
+			"description": "Renting my beauty. Well looked after always clean come and pick it up.",
+			"price": 30,
+			"image": "/images/car_1.jpg",
+			"LNG": 14.504623450499663,
+			"LAT": 46.05685717599027
+		},
+		{
+			"make": "Tesla",
+			"model": "Model 3 2019",
+			"description": "Step into the future with our beautiful electric four-door fastback sedan.",
+			"price": 85,
+			"image": "/images/tesla1.jpg",
+			"LNG": 14.498993767997026,
+			"LAT": 46.05772344875981
+		},
+		{
+			"make": "Mercedes",
+			"model": "A-class",
+			"description": "Fast, small and nimble. You know what the logo means, its mercedes.",
+			"price": 50,
+			"image": "/images/car_2.jpg",
+			"LNG": 14.521684503273134,
+			"LAT": 46.07017401357237
+		},
+		{
+			"make": "Maserati",
+			"model": "Quatroporte",
+			"description": "This is a true sports car over here, no joke. Comes with a beautiful engine, interior.",
+			"price": 110,
+			"image": "/images/car_3.jpg",
+			"LNG": 14.494777020829416,
+			"LAT": 46.046745937019296
+		},
+		{
+			"make": "Lamborghini",
+			"model": "Aventador",
+			"description": "Can you ever not want a supercar? Its everyone's dream. You will remember it.",
+			"price": 250,
+			"image": "/images/car_4.jpg",
+			"LAT": 46.05457608272044,
+			"LNG": 14.56792917727201
+		},
+		{
+			"make": "Smart",
+			"model": "ForTwo",
+			"description": "Small and easy to park, cheap on fuel loads of fun.",
+			"price": 25,
+			"image": "/images/car_5.jpg",
+			"LNG": 14.49552512875633,
+			"LAT": 46.04689319459773
+		},
+		{
+			"make": "Renault",
+			"model": "Megane",
+			"description": "Quite a good city and highway car. If you have a family it has plenty of space.",
+			"price": 40,
+			"image": "/images/car_4.jpg",
+			"LNG": 14.510577452854157,
+			"LAT": 46.06169643927583
+		},
+		{
+			"make": "Peugeot",
+			"model": "508",
+			"description": "It is the best of France, good looks and beautiful driving experience.",
+			"price": 70,
+			"image": "/images/car_3.jpg",
+			"LNG": 14.508102821009976,
+			"LAT": 46.062369652042726
+		},
+		{
+			"make": "Audi",
+			"model": "a6 caravan S-line",
+			"description": "Its the utimate do everything car. Dads and families love it.",
+			"price": 80,
+			"image": "/images/car_1.jpg",
+			"LNG": 14.4895613277762,
+			"LAT": 46.068739752732
+		},
+		{
+			"make": "BMW",
+			"model": "X5",
+			"description": "Car is perfect, big so you do not worry about cerbs. Bunch of space inside i love it.",
+			"price": 70,
+			"image": "/images/car_1.jpg",
+			"LNG": 14.508555600844169,
+			"LAT": 46.05356302199612
+		},
+		{
+			"image": "",
+			"make": "Renault",
+			"model": "Megane",
+			"typeoffuel": "Petrol",
+			"category": "Hatchback",
+			"hp": "110",
+			"maxspeed": "180",
+			"acceleration": "9.0",
+			"consumption": "6.8",
+			"seats": "5",
+			"doors": "3",
+			"AirConditioning": "on",
+			"Navigation": "on",
+			"bluetooth": "on",
+			"parkingsensors": "on",
+			"description": "Welcome to my car",
+			"addres": "Mencingerjeva",
+			"city": "Ljubljana",
+			"zip": "1000",
+			"price": "50",
+			"number": "36337676",
+			"date": [
+				"2020-11-10",
+				"2020-11-24"
+			]
+		}
+	],
+	"_locals": {}
+}
