@@ -159,41 +159,36 @@
 			]
 		},
 		{
-
-			"features": {
-				"typeoffuel": "electric",
-				"category": "Hatchback",
-				"hp": "450",
-				"maxspeed": "209",
-				"acceleration": "9.0",
-				"consumption": "6.8",
-				"seats": "5",
-				"doors": "4",
-				"AirConditioning": "on",
-				"Navigation": "on",
-				"bluetooth": "on",
-				"parkingsensors": "on",
-				"usb": "on",
-				"aux": "on",
-				"auto-pilot": "on",
-				"accessibility": "on",
-				"luggage": "425",
-				"min-age": "18"
-			},
-
+			"typeoffuel": "electric",
+			"category": "Hatchback",
+			"hp": "450",
+			"maxspeed": "209",
+			"acceleration": "9.0",
+			"consumption": "6.8",
+			"seats": "5",
+			"doors": "4",
+			"AirConditioning": "on",
+			"Navigation": "on",
+			"bluetooth": "on",
+			"parkingsensors": "on",
+			"usb": "on",
+			"aux": "on",
+			"auto-pilot": "on",
+			"accessibility": "off",
+			"luggage": "425",
+			"minage": "18",
 			"image": "/images/tesla1.jpg",
-
 			"make": "Tesla",
 			"model": "Model 3 2019",
 			"description": "Step into the future with our beautiful electric four-door fastback sedan. Enjoy your trip without engine noise, listening to music on Spotify or your favourite podcast. Equipped with Autopilot, it'll reduce your driving fatigue and you will arrive at your destination relaxed and ready for action. Make your driving enjoyable, drive a Tesla - we are sure your experience will be something to remember.",
 			"pickup_locations": [
 				{
-					"adres": "Vojkovo nabrežje 1",
+					"address": "Vojkovo nabrežje 1",
 					"city": "Koper, Slovenia",
 					"zip": "5304"
 				},
 				{
-					"adres": "Ankaranska cesta 5d",
+					"address": "Ankaranska cesta 5d",
 					"city": "Koper, Slovenia",
 					"zip": "5304"
 				}

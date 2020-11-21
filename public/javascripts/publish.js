@@ -70,19 +70,38 @@ formPublish.addEventListener("submit", function(dogodek){
 });
 
 function appendToForm (){
-    var dateForm = document.getElementById("list-your-car");
+    var form = document.getElementById("list-your-car").children[1];
     var zip = document.getElementById("zip");
     var address = document.getElementById("address");
     var city = document.getElementById("city");
     
     var location = address.value +", " + zip.value +" " + city.value+ ", Slovenia";
-    addHiddenInput(dateForm,location,"pickup_locations");
+    addHiddenInputWithParent(form,address.value,zip.value,city.value);
 }
 
-function addHiddenInput(form, string, inputName){
-    var child = document.createElement('input');
-    child.setAttribute("type", "hidden");
-    child.setAttribute("name",inputName);
-    child.setAttribute("value",string);
-    form.appendChild(child);
+function addHiddenInputWithParent(form, address, zip, city){
+    var parent = document.createElement('div');
+    parent.setAttribute("type", "hidden");
+    parent.setAttribute("name", "pickup_locations");
+    parent.classList.add("input-group");
+    var child1 = document.createElement('input');
+    child1.setAttribute("type", "hidden");
+    child1.setAttribute("name","address");
+    child1.setAttribute("value",address);
+    child1.classList.add("form-control");
+    parent.appendChild(child1);
+    var child2 = document.createElement('input');
+    child2.setAttribute("type", "hidden");
+    child2.setAttribute("name","zip");
+    child2.setAttribute("value",zip);
+    child2.classList.add("form-control");
+    parent.appendChild(child2);
+    var child3 = document.createElement('input');
+    child3.setAttribute("type", "hidden");
+    child3.setAttribute("name","city");
+    child3.setAttribute("value",city);
+    child3.classList.add("form-control");
+    parent.appendChild(child3);
+    form.appendChild(parent);
+    //debugger;
 }

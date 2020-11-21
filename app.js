@@ -35,6 +35,8 @@ app.set('view engine', 'hbs');
 require('./app_server/views/helpers/hbsh.js');
 require('./app_server/views/helpers/commenthelper.js');
 require('./app_server/views/helpers/stars.js');
+require('./app_server/views/helpers/featurehelper.js');
+require('./app_server/views/helpers/featurehelper2.js');
 const multer = require("multer");
 const upload = multer({
     dest: "./public/images/"

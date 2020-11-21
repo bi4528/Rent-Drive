@@ -21,6 +21,7 @@ const vehiclesAll = (req, res) => {
 };
 
 const vehiclesUpload = (req, res) => {
+    console.log(req.body);
     Vehicle.create({
         image: req.body.image,
         make: req.body.make,
@@ -31,8 +32,8 @@ const vehiclesUpload = (req, res) => {
         maxspeed: parseFloat(req.body.maxspeed),
         acceleration: parseFloat(req.body.acceleration),
         consumption: parseFloat(req.body.consumption),
-        seats: parseFloat(req.body.seats),
-        doors: parseFloat(req.body.doors),
+        seats: parseInt(req.body.seats),
+        doors: parseInt(req.body.doors),
         AirConditioning: req.body.AirConditioning == null ? "0" : "1",
         Navigation: req.body.Navigation == null ? "0" : "1",
         USB: req.body.USB == null ? "0" : "1",
@@ -41,9 +42,9 @@ const vehiclesUpload = (req, res) => {
         bluetooth: req.body.bluetooth == null ? "0" : "1",
         parkingsensors: req.body.parkingsensors == null ? "0" : "1",
         description: req.body.description,
-        addres: req.body.addres,
+        address: req.body.address,
         city: req.body.city,
-        zip: parseFloat(req.body.zip),
+        zip: parseInteger(req.body.zip),
         price: parseFloat(req.body.price),
         number: req.body.number,
         date: req.body.date,
