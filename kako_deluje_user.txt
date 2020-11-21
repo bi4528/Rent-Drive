@@ -1,0 +1,9 @@
+Vprašanje: Kako aplikacija obremenjuje uporabnika? Kako vidi če je logiran ali ne?
+Odgovor:
+1)  Ko se uporabnik logira se v seji shrani njegov user_id.
+    req.session.user_id
+2)  Ko se uporabnik logouta se seja uniči.
+    req.session.destroy()
+3) Če je uporabnik logiran se v navbar prikaže myprofile, sicer se prikažeta Login in Register
+4) Ko uporabnik klikne na gumb "book" v vehicleprofile ga spusti naprej če in samo če je uporabnik logiran, sicer je gumb disablan
+5) programer lahko vidi na strani strežnika če je uporabnik logiran ko req.session.user_id != null

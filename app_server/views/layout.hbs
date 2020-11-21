@@ -40,10 +40,21 @@
             <a class="nav-link" href="/vehicles/publish"><i class="material-icons fa-fw align-middle"
                 aria-hidden="true">add_to_photos</i> List your car</a>
           </li>
+          {{#if user_logged}}
           <li class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" href="/users/my"><i class="material-icons fa-fw align-middle"
-                aria-hidden="true">account_box</i> My profile</a>
+            <a class="nav-link" href="/users/my"><i class="material-icons fa-fw align-middle" aria-hidden="true">account_box</i>
+              My profile</a>
           </li>
+          {{else}}
+          <li class="nav-item mx-md-2" role="presentation">
+            <a class="nav-link" href="/users/register"><i class="material-icons fa-fw align-middle"
+                aria-hidden="true">account_box</i> Register</a>
+          </li>
+          <li class="nav-item mx-md-2" role="presentation">
+            <a class="nav-link" href="/users/login"><i class="material-icons fa-fw align-middle"
+                aria-hidden="true">account_box</i> Login</a>
+          </li>
+          {{/if}}
           <li class="nav-item mx-md-2" role="presentation">
             <a class="nav-link" href="/search"><i class="material-icons fa-fw align-middle"
                 aria-hidden="true">search</i> Search</a>
