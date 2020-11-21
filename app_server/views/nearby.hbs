@@ -1,3 +1,4 @@
+
 <head>
     <meta charset='utf-8'>
     <!-- Prevedeni in minimizirani slogi CSS verzije 4.5.2 -->
@@ -42,7 +43,7 @@
                             <div class="col-12" id="mapa_id" style="height: 50vh;
                              padding-left: 0px; padding-right: 0px; max-height: 100% !important;"></div>
                         </div>
-                        <a href="#" class="button mt-auto button1">Show available vehicles</a>
+                        <a href="#" class="button mt-auto button1" cars={{{cars}}} id="show_vehicles">Show available vehicles</a>
                     </div>
                 </div>
             </div>
@@ -59,79 +60,39 @@
         </div>
     </section>
 </main>
-<script>
+<script type='text/javascript'>
+
+    var cars={{{cars}}}
     // seznam z markerji na mapi
     var markerji = [];
 
     // objekt mapa (Map)
     var mapa;
 
-    const FRI_LAT = 46.052076;
-    const FRI_LNG = 14.466812;
+    const KONG_LAT = 46.050166466
+    const KONG_LNG = 14.502164658
 
-    const FE_LAT = 46.0446209;
-    const FE_LNG = 14.489393;
+    // Ustvarimo objekt mapa ter dodamo osnovne lastnosti mapi
+    mapa = L.map('mapa_id', {
+        center: L.latLng(KONG_LAT, KONG_LNG),
+        zoom: 12
+    });
 
-    function pridobiKoordinateTocke(geometrija) {
-        if (geometrija.tip == "Tocka")
-            return [geometrija.koordinate[1], geometrija.koordinate[0]];
-        if (geometrija.tip == "Poligon")
-            return [geometrija.koordinate[0][0][1], geometrija.koordinate[0][0][0]];
-        if (geometrija.tip == "MultiPoligon")
-            return [geometrija.koordinate[0][0][0][1], geometrija.koordinate[0][0][0][0]];
-        else
-            throw new Error("Nepodprt format koordinate: " + JSON.stringify(geometrija));
-    }
+    // Ustvarimo prikazni sloj mape
+    var layer = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 
-    function preberiNiz(niz) {
-        return niz ? niz : "";
-    }
+    // Prikazni sloj dodamo na mapo
+    mapa.addLayer(layer);
 
-    function pripraviMapo() {
-        // Ustvarimo objekt mapa ter dodamo osnovne lastnosti mapi
-        mapa = L.map('mapa_id', {
-            center: L.latLng(FRI_LAT, FRI_LNG),
-            zoom: 9
-        });
+    document.getElementById("show_vehicles").addEventListener("click", function () {
 
-        // Ustvarimo prikazni sloj mape
-        var layer = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+        cars.forEach(function (car) {
 
-        // Prikazni sloj dodamo na mapo
-        mapa.addLayer(layer);
-
-        // Ročno dodamo fakulteto za računalništvo in informatiko na mapo
-        var marker = L.marker([FRI_LAT, FRI_LNG]).addTo(mapa);
-
-        // Izpišemo želeno sporočilo v oblaček
-        marker.bindPopup("<div>Tukaj se nahaja FRI</div>").openPopup();
-
-        // Podobno dodamo še faulteto za elektrotehniko na mapo
-        var marker = L.marker([FE_LAT, FE_LNG]).addTo(mapa);
-        marker.bindPopup("<div>Tukaj se nahaja FE</div>");
+            var marker = L.marker([car.LAT, car.LNG]).addTo(mapa);
+            marker.bindPopup("<div>Tukaj se nahaja "+ car.make + " " + car.model + "</div>").openPopup();
+        })
 
         markerji.push(marker);
-    }
+    })
 
-    function naloziVsebino() {
-
-        // Sinhrona zahteva
-        var sinhronaZahteva = new XMLHttpRequest();
-        sinhronaZahteva.open("GET", "/podatki", false);
-        sinhronaZahteva.send(null);
-
-        var jsonRezultati = JSON.parse(sinhronaZahteva.responseText);
-        jsonRezultati.forEach(function (objekt) {
-
-            function dodajpresledek(obj, obj2) {
-                return obj.length > 0 && obj2.length > 0 ? " " : "";
-            }
-
-            // primer dodajanja elementa HR na osnovnih HTML element BODY.
-            document.body.appendChild(document.createElement("hr"));
-        });
-    }
-
-    pripraviMapo();
-    naloziVsebino();
 </script>
