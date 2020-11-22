@@ -54,3 +54,22 @@ Pozdravljeni, se sprasujes zakaj nodemon ali npm start ne dela? Tukaj bos dobil 
 Prišel si do konca, če si med programiranjem uporabil še kakšen ukaz, ki ni zgoraj naveden, ga lahko kar dodaš ;)
 
 
+
+
+UVOZ api/models/vehicle-test.json v lokalna baza
+
+docker cp ./app_api/models/vehicles-test.json sp-rentdrive-mongodb:/vehicles-test.json
+
+docker exec -it sp-rentdrive-mongodb mongoimport --db RentDrive --collection Vehicles --mode upsert --upsertFields make --jsonArray --file vehicles-test.json
+
+docker exec -it sp-rentdrive-mongodb rm -rf vehicles-test.json
+
+docker exec -it sp-rentdrive-mongodb mongo
+use RentDrive
+db.Vehicles.find().forEach(function(dokument) {
+for (var i = 0; i < dokument.reviews.length; i++) {
+dokument.reviews[i]._id = ObjectId()
+}
+db.Vehicles.update({ "_id" : dokument._id }, dokument)
+})
+

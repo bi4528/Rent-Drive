@@ -22,7 +22,7 @@ function isEmpty(str) {
 /* GET home page */
 const home = (req, res) => {
     axios
-        .get('/api/vehicles/')
+        .get('/api/vehicles')
         .then((odgovor) => {
             let sporocilo = odgovor.data.length ? null : "No cars found.";
             showVehiclesHome(req, res, odgovor.data, sporocilo);
@@ -34,6 +34,7 @@ const home = (req, res) => {
 
 const showVehiclesHome = (req, res, data, sporocilo) => {
     res.render('home', {
+        
         "title": "Seznam avtomobilov",
         "cars": data,
         "error": sporocilo
@@ -150,6 +151,23 @@ const showVehiclesSearch = (req, res, data, sporocilo) => {
 };
 
 const nearby = (req, res) => {
+
+    /*
+    axios
+        .get('/api/vehicles')
+        .then((odgovor) => {
+            let sporocilo = odgovor.data.length ? null : "No cars found.";
+            locationJSON.cars=odgovor.data;
+            dobis lng in lat preko zunajni API nad locationJSON.adress
+            locationJSON.lat=
+            locationJSON.lng=
+
+        })
+        .catch(() => {
+            showVehiclesHome(req, res, [], "Mistake on API side when searching.");
+        });   
+    */
+
 
     res.render('nearby', {
         cars: JSON.stringify(locationJSON.cars),
