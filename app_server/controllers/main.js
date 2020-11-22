@@ -1,5 +1,6 @@
 const e = require('express');
 var fs = require('fs');
+var weatherJSON = require('../models/weather-api.json');
 
 var appiParams = {
     server: 'http://localhost:' + (process.env.PORT || 3000)
@@ -168,9 +169,9 @@ const nearby = (req, res) => {
         });   
     */
 
-
     res.render('nearby', {
         cars: JSON.stringify(locationJSON.cars),
+        weather: weatherJSON,
         user_logged: req.session.user_id != null
     });
 };

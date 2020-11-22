@@ -391,3 +391,32 @@ table, th, td {
 .hidden {
     visibility: hidden;
 }
+
+.weatherstack{
+
+    background-color:rgb(227,255,210);
+
+}
+
+.weatherstack.location {
+
+    font-weight: bold;
+    font-size:24px
+
+
+}
+.weatherstack.temperature {
+
+    font-weight: bold;
+    font-size:24px
+
+}
+.weatherstack.time {
+
+    font-size:16px
+
+}
+
+.weatherstack.description {
+    font-size:24px
+}

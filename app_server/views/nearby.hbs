@@ -49,11 +49,36 @@
             </div>
             <div class="col-sm-6">
                 <div class="card h-100">
-                    <div class="card-body d-inline-flex flex-column">
-                        <h5 class="card-title">Weather forecast:</h5>
-                        <p class="card-text">Weather forecast for selected area:</p>
-                        <img src="/images/vreme.png" class="img-fluid" alt="...">
-                        <a href="#" class="button mt-auto button1">Show weather forecast</a>
+                    <div class="card-body d-inline-flex flex-column ">
+                        <h5 class="card-title">Current Weather in Ljubljana:</h5>
+                        <p class="card-text">Powered by <a href="https://weatherstack.com/">weatherstack.com</a></p>
+                        <!--<img src="/images/vreme.png" class="img-fluid" alt="...">-->
+                        <div class="card-body weatherstack">
+
+                            <div id="location" class="row no-gutters weatherstack location">{{weather.location.name}}, {{weather.location.country}}</div>
+                            <div id="localtime" class="row no-gutters weatherstack time">{{weather.location.localtime}}</div>
+
+                            <hr/>
+
+                            <div id="weather_descriptions" class="row no-gutters weatherstack description">{{weather.current.weather_descriptions}}</div>
+                            <div class="row no-gutters weatherstack">
+
+                                <div class="col-sm-4 ">
+                                    <img id="weather_icon" src="{{weather.current.weather_icons.[0]}}" class="img-fluid" alt="...">
+                                    <span class="weatherstack temperature">{{weather.current.temperature}}&#8451;</span>
+                                </div>
+                                <ul class="col-sm-4 list-group">
+                                    <li id="wind_speed" class="list-group-item d-flex p-1 border-1 list-group-item-dark" ><b>Wind&nbsp;speed: </b>{{weather.current.wind_speed}}</li>
+                                    <li id="wind_degree" class="list-group-item d-flex p-1 border-1 list-group-item-dark"><b>Wind&nbsp;degree: </b>{{weather.current.wind_degree}}</li>
+                                    <li id="wind_dir" class="list-group-item d-flex p-1 border-1 list-group-item-dark"><b>Wind&nbsp;direction: </b>{{weather.current.wind_dir}}</li>
+                                    <li id="pressure" class="list-group-item d-flex p-1 border-1 list-group-item-info"><b>Pressure: </b>{{weather.current.pressure}}</li>
+                                    <li id="humidity" class="list-group-item d-flex p-1 border-1 list-group-item-info"><b>Humidity: </b>{{weather.current.humidity}}</li>
+                                    <li id="uv_index" class="list-group-item d-flex p-1 border-1 list-group-item-danger"><b>Uv_index: </b>{{weather.current.uv_index}}</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <a href="#" class="button mt-auto button1" id="show_weather">Show Current Weather</a>
                     </div>
                 </div>
             </div>
@@ -61,7 +86,15 @@
     </section>
 </main>
 <script type='text/javascript'>
-
+    /*
+    const Http = new XMLHttpRequest();
+    const url='http://open.mapquestapi.com/geocoding/v1/address?key=7VWv1A4oIlOF80mOVTkI0LHdiJr8V5EP&location=1600+Pennsylvania+Ave+NW,Washington,DC,20500';
+    Http.open("GET", url);
+    Http.send();
+    Http.onreadystatechange = (e) => {
+        console.log(Http.responseText);
+    }
+*/
     var cars={{{cars}}}
     // seznam z markerji na mapi
     var markerji = [];
@@ -86,8 +119,8 @@
 
     document.getElementById("show_vehicles").addEventListener("click", function () {
 
-        cars.forEach(function (car) {
 
+        cars.forEach(function (car) {
             var marker = L.marker([car.LAT, car.LNG]).addTo(mapa);
             marker.bindPopup("<div>Tukaj se nahaja "+ car.make + " " + car.model + "</div>").openPopup();
         })
@@ -95,4 +128,7 @@
         markerji.push(marker);
     })
 
+
+
 </script>
+<script src="/javascripts/weather.js"></script>
