@@ -50,9 +50,15 @@ const user_login = (req, res) => {
 };
 
 const user_register = (req, res) => {
-    check_if_email_exists(req, res, function (exists) {
+    check_if_email_exists(req, res, function (exists, error) {
         
-        if (exists == null || !exists) {
+        if (error) {
+            console.log(error);
+            res.render('register', {
+                layout: 'account-layout.hbs',
+                alert_error: "Napaka na strani streznika."
+            });
+        } else if (!exists) {
             axios.post(apiParametri.streznik + '/api/users', {
                     params: {
                         firstname: req.body.firstname,
@@ -62,24 +68,26 @@ const user_register = (req, res) => {
                         firstname: req.body.firstname,
                     }
                 })
-                .then((user) => {
-                    if (user != null) {
-                        console.log(user.data);
-                        req.session.user_id = user.data._id;
-                        req.session.save(function (err) {
-                            if(err) console.log(err);
-                            res.redirect('/');
-                        });
-                        res.end();
+                .then((response) => {
+                    if (response.data != null) {
+                        res.redirect('/');
                     } else {
+                        console.log(response.data);
                         res.sendStatus(500).json("Error mail or password not correct");
                     }
                 })
-                .catch(() => {
-                    res.sendStatus(500).json("Error while creating new user");
+                .catch((error) => {
+                    console.log(error);
+                    res.render('register', {
+                        layout: 'account-layout.hbs',
+                        alert_error: "Napaka med ustvarjaljem uporabnika."
+                    });
                 });
         } else {
-
+            res.render('register', {
+                layout: 'account-layout.hbs',
+                alert_error: "Uporabnik s tem mailom ze obstaja."
+            });
         }
     });
 };
@@ -90,11 +98,11 @@ const check_if_email_exists = (req, res, callback) => {
                 email: req.body.email
             }
         })
-        .then((exists) => {
-            callback(exists);
+        .then((odgovor) => {
+            callback(odgovor.data, null);
         })
-        .catch(() => {
-            callback(null);
+        .catch((error) => {
+            callback(null, error);
         });
 };
 
@@ -125,7 +133,7 @@ const user_logout = (req, res) => {
     }
     if (success) res.render('home', dataJSON);
     else {
-        res.render('login',  {layout: 'account-layout.hbs'});
+        res.render('login',  {layout: 'account-layout.hbs', failed_login: true});
     } 
 };*/
 

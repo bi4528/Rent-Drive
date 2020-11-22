@@ -150,13 +150,14 @@ const check_if_user_exists = (req, res) => {
 };
 
 const check_if_mail_exists = (req, res) => {
+    console.log("Checking if mail:" + req.query.email + " exists");
     User.find({
-        email: req.params.email
+        email: req.query.email
     }).exec((napaka, user) => {
         if (napaka) {
             return res.status(500).json(napaka);
         } else {
-            return res.status(200).json(user != null);
+            return res.status(200).json(user != null ? user.length > 0 : false);
         }
     });
 };
