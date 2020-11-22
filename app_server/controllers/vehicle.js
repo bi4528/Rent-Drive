@@ -23,6 +23,20 @@ const vehicleprofile = (req, res) => {
     );
 };
 
+const vehicleprofile2 = (req, res) => {
+    axios
+        .get('/api/vehicles/'+req.params.id)
+        .then ((odgovor) => {
+            //console.log(odgovor.data);
+            showvehicleprofile(req, res, odgovor.data);
+        });
+        
+};
+
+const showvehicleprofile = (req, res, data) =>{
+    res.render('vehicleprofile', data);
+};
+
 const publish = (req, res) => {
     res.render('publish');
 };
@@ -88,4 +102,5 @@ module.exports = {
     submitcar,
     editvehicleprofile,
     vehicleprofile_book,
+    vehicleprofile2
 };

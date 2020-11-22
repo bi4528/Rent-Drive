@@ -275,32 +275,6 @@
 				}
 			],
 			"avg_rating": "4"
-		},
-		{
-			"image": "",
-			"make": "Porsche",
-			"model": "911",
-			"typeoffuel": "Petrol",
-			"category": "Coupe",
-			"hp": "450",
-			"maxspeed": "290",
-			"acceleration": "3.5",
-			"consumption": "15.3",
-			"seats": "2",
-			"doors": "2",
-			"AirConditioning": "on",
-			"Navigation": "on",
-			"bluetooth": "on",
-			"description": "All ne 911, wanna try it?",
-			"addres": "Ulica",
-			"city": "Grad",
-			"zip": "1000",
-			"price": "200",
-			"number": "36337676",
-			"date": [
-				"2020-11-26",
-				"2020-12-07"
-			]
 		}
 	],
 	"_locals": {}

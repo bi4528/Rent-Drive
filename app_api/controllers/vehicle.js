@@ -76,7 +76,7 @@ const vehiclesAll = (req, res) => {
 
 const vehiclesUpload = (req, res) => {
     Vehicle.create({
-        //image: req.body.image,
+        image: req.body.image,
         make: req.body.make,
         model: req.body.model,
         typeoffuel: req.body.typeoffuel,
