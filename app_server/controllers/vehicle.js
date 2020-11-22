@@ -27,7 +27,7 @@ const vehicleprofile2 = (req, res) => {
     axios
         .get('/api/vehicles/'+req.params.id)
         .then ((odgovor) => {
-            //console.log(odgovor.data);
+            console.log(odgovor.data);
             showvehicleprofile(req, res, odgovor.data);
         });
         
