@@ -65,3 +65,9 @@ document.getElementById("undo").addEventListener("click", function(){
 document.getElementById("input-location").addEventListener("change",function(){
     console.log(validate_word(this));
 });
+
+$('#save_changes').click(function(){
+    $('form').each(function(){
+        $(this).submit();
+    });
+});

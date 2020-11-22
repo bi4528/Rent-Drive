@@ -27,7 +27,7 @@
         <!---slike-->
         <div class="row m-2 justify-content-center">
             <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
-                <form>
+                <form method="POST" action="/vehicles/other">
                     <div class="form-group">
                         <label for="images">Upload vehicle images</label>
                         <input type="file" class="form-control-file" id="images" multiple>
@@ -82,77 +82,110 @@
         </div>
 
         <!--- lastnosti in izposodi-->
+         <div class="ml-4">
+             <h3>Features:</h3>
+         </div>
         <div class="row m-3 mt-5 mb-4">
-            <h3>Features:</h3>
-            <div class="features col-sm-3">
+            <div class="features col-md-5 col-lg-3">
                 <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="AirConditioning" checked>
+                    <input type="checkbox" class="custom-control-input" id="AirConditioning" {{{ifEquals AirConditioning}}}>
                     <label class="custom-control-label" for="AirConditioning">A/C</label>
                 </div>
                 <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="Navigation" checked>
-                    <label class="custom-control-label" for="Navigation">Navigation</label>
-                </div>
-                <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="USB" checked>
-                    <label class="custom-control-label" for="USB">USB</label>
-                </div>
-                <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="AUX">
-                    <label class="custom-control-label" for="AUX">AUX</label>
-                </div>
-                <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="Bluetooth" checked>
-                    <label class="custom-control-label" for="Bluetooth">Bluetooth</label>
-                </div>
-                <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="Parking-sensors">
-                    <label class="custom-control-label" for="Parking-sensors">Parking Sensors</label>
-                </div>
-                <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="Auto-pilot" checked>
-                    <label class="custom-control-label" for="Auto-pilot">Auto-pilot</label>
-                </div>
-            </div>
-            <div class="features col-sm-3">
-                <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="Accessibility">
+                    <input type="checkbox" class="custom-control-input" id="Accessibility" {{{ifEquals accessibility}}}>
                     <label class="custom-control-label" for="Accessibility">Accessibility</label>
                 </div>
                 <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="Electric" checked>
-                    <label class="custom-control-label" for="Electric">Electric</label>
+                    <input type="checkbox" class="custom-control-input" id="Auto-pilot" {{{ifEquals autopilot}}}>
+                    <label class="custom-control-label" for="Auto-pilot">Auto-pilot</label>
+                </div>
+                <div class="custom-control custom-checkbox   mx-2">
+                    <input type="checkbox" class="custom-control-input" id="AUX" {{{ifEquals aux}}}>
+                    <label class="custom-control-label" for="AUX">AUX</label>
+                </div>
+                <div class="custom-control custom-checkbox   mx-2">
+                    <input type="checkbox" class="custom-control-input" id="Bluetooth" {{{ifEquals bluetooth}}}>
+                    <label class="custom-control-label" for="Bluetooth">Bluetooth</label>
                 </div>
             </div>
+            <div class="features col-md-5 col-lg-2 mr-5 mb-5">
+                <div class="custom-control custom-checkbox   mx-2">
+                    <input type="checkbox" class="custom-control-input" id="Navigation" {{{ifEquals Navigation}}}>
+                    <label class="custom-control-label" for="Navigation">Navigation</label>
+                </div>
+                <div class="custom-control custom-checkbox   mx-2">
+                    <input type="checkbox" class="custom-control-input" id="USB" {{{ifEquals usb}}}>
+                    <label class="custom-control-label" for="USB">USB</label>
+                </div>
+                <div class="custom-control custom-checkbox   mx-2">
+                    <input type="checkbox" class="custom-control-input" id="Parking-sensors" {{{ifEquals parkingsensors}}}>
+                    <label class="custom-control-label" for="Parking-sensors">Parking Sensors</label>
+                </div>
+                
+            </div>
 
-            <div class="book col-sm-8 col-md-4">
-                <div>
-                    <div class="input-group mb-3 mt-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-tachometer-alt"
-                                    aria-hidden="true"></i></span>
-                        </div>
-                        <input type="number" class="form-control" placeholder="top-speed (km/h)">
+            <div class="book col-md-5 col-lg-3 ">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-tachometer-alt" aria-hidden="true"></i></span>
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-door-closed" aria-hidden="true"></i></span>
-                        </div>
-                        <input type="number" class="form-control" placeholder="door-count">
+                    <input type="number" class="form-control" placeholder="top-speed (km/h)" value="{{maxspeed}}">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-couch" aria-hidden="true"></i></span>
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-user-graduate"
-                                    aria-hidden="true"></i></span>
-                        </div>
-                        <input type="number" class="form-control" placeholder="age">
+                    <input type="number" class="form-control" placeholder="seats" value="{{seats}}">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-door-closed" aria-hidden="true"></i></span>
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-suitcase" aria-hidden="true"></i></span>
-                        </div>
-                        <input type="number" class="form-control" placeholder="luggage (l)">
+                    <input type="number" class="form-control" placeholder="door-count" value="{{doors}}">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user-graduate" aria-hidden="true"></i></span>
                     </div>
+                    <input type="number" class="form-control" placeholder="age" value="{{minage}}">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-suitcase" aria-hidden="true"></i></span>
+                    </div>
+                    <input type="number" class="form-control" placeholder="luggage (l)" value="{{luggage}}">
+                </div>
+            </div>
+            <div class="book col-md-5 col-lg-2">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-shipping-fast" aria-hidden="true"></i></span>
+                    </div>
+                    <input type="number" class="form-control" placeholder="acceleration (km/h)" value="{{acceleration}}">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-horse" aria-hidden="true"></i></span>
+                    </div>
+                    <input type="number" class="form-control" placeholder="horsepower (kW)" value="{{hp}}">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-oil-can" aria-hidden="true"></i></span>
+                    </div>
+                    <input type="number" class="form-control" placeholder="consumption" value="{{consumption}}">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class='fas fa-charging-station'></i></span>
+                    </div>
+                    <select class="form-control" tabindex=3 name="typeoffuel" value="{{typeoffuel}}">
+                        <option>Petrol</option>
+                        <option>Diesel</option>
+                        <option>Hybrid</option>
+                        <option>Electric</option>
+                        <option>LPG</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -188,19 +221,21 @@
                     </div>
                     <div class="form-group mt-3 mb-2">
                         <input class="form-control-inline mb-2 w-100" type="text" id="input-location">
-                        <button class="form-control btn btn-primary w-50" type="button" id="add" onclick="addLocation()">Add
+                        <button class="form-control btn btn-primary w-50" type="button" id="add"
+                            onclick="addLocation()">Add
                             location</button>
-                        <button class="form-control btn btn-warning w-25" type="button" id="undo">Undo</button>    
+                        <button class="form-control btn btn-warning w-25" type="button" id="undo">Undo</button>
                     </div>
-                    
+
                 </div>
             </div>
         </form>
         <div class="row justify-content-center">
-        <a href="vehicleprofile.html"><button id="save-changes" class="btn btn-primary mb-3">Save changes</button></a>
+            <a href="vehicleprofile.html"><button id="save-changes" class="btn btn-primary mb-3">Save
+                    changes</button></a>
+        </div>
     </div>
-    </div>
-    
+
     </div>
 </main>
 <script src="/javascripts/editvehicleprofile.js"></script>

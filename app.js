@@ -39,6 +39,7 @@ require('./app_server/views/helpers/commenthelper.js');
 require('./app_server/views/helpers/stars.js');
 require('./app_server/views/helpers/featurehelper.js');
 require('./app_server/views/helpers/featurehelper2.js');
+require('./app_server/views/helpers/ifEquals.js');
 const multer = require("multer");
 const upload = multer({
     dest: "./public/images/"
