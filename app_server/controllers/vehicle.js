@@ -1,6 +1,7 @@
 //const { default: Axios } = require('axios');
 var fs = require('fs');
 
+
 var appiParams = {
     server: 'http://localhost:' + (process.env.PORT || 3000)
 };
@@ -11,7 +12,6 @@ const axios = require('axios').create({
     baseURL: appiParams.server,
     timeout: 5000
 });
-
 
 var dataJSON = require('../models/avti-seznam.json');
 
@@ -42,7 +42,7 @@ const publish = (req, res) => {
 };
 
 const submitcar = (req, res) => {
-    //console.log(req.body);
+    console.log(req.body);
     /*dataJSON.cars.push(JSON.parse(JSON.stringify(req.body)));
     fs.writeFile('app_server/models/avti-seznam.json', JSON.stringify(dataJSON,null,'\t'), 'utf-8', function (err, data) {
         if (err) throw err;
@@ -50,11 +50,12 @@ const submitcar = (req, res) => {
     });
     res.render('home', dataJSON);*/
     //console.log(req.body);
+
     axios({
         method: 'post',
         url: '/api/vehicles',
         data: {
-            image: req.body.image,
+            image: req.body.carphotos,
             make: req.body.make,
             model: req.body.model,
             typeoffuel: req.body.typeoffuel,
@@ -81,7 +82,7 @@ const submitcar = (req, res) => {
             date: req.body.date
         }
     }). then(() => {
-        res.redirect('/vehicles/other');
+        res.redirect('/');
     }).catch((err) => {
         console.log("NAPAKA");
     })
