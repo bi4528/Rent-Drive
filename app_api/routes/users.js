@@ -11,7 +11,7 @@ router.get('/:idUser', ctrlUser.get_user_data);
 router.get('/check/exists', ctrlUser.check_if_user_exists);
 router.get('/check/exists_mail', ctrlUser.check_if_mail_exists);
 router.post('/:idUser/favourite_vehicle', ctrlUser.add_favourite_vehicle);
-router.post('/:idUser/favourite_vehicle/:idFavouriteVehicle', ctrlUser.remove_favourite_vehicle);
+router.delete('/:idUser/favourite_vehicle/:idFavouriteVehicle', ctrlUser.remove_favourite_vehicle);
 router.get('/:idUser/vehicles', ctrlUser.get_vehicles_of_user);
 router.get('/:idUser/favourite_vehicles', ctrlUser.get_favourite_vehicles);
 
