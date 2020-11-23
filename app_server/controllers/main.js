@@ -1,6 +1,7 @@
 const e = require('express');
 var fs = require('fs');
-var weatherJSON = require('../models/weather-api.json');
+var url = require('url');
+var http = require("http");
 
 var appiParams = {
     server: 'http://localhost:' + (process.env.PORT || 3000)
@@ -153,27 +154,67 @@ const showVehiclesSearch = (req, res, data, sporocilo) => {
 
 const nearby = (req, res) => {
 
-    /*
-    axios
-        .get('/api/vehicles')
-        .then((odgovor) => {
-            let sporocilo = odgovor.data.length ? null : "No cars found.";
-            locationJSON.cars=odgovor.data;
-            dobis lng in lat preko zunajni API nad locationJSON.adress
-            locationJSON.lat=
-            locationJSON.lng=
+    var razcleni = url.parse(req.url, true);
+    var weatherJSON = require('../models/weather-api.json');
 
-        })
-        .catch(() => {
-            showVehiclesHome(req, res, [], "Mistake on API side when searching.");
-        });   
-    */
+    if (razcleni.search=="?weather") {
 
-    res.render('nearby', {
-        cars: JSON.stringify(locationJSON.cars),
-        weather: weatherJSON,
-        user_logged: req.session.user_id != null
-    });
+        console.log("weather" );
+        // Construct url and query string
+
+        const requestUrl='http://api.weatherstack.com/current?access_key=f61e126b021aa0d360b427c69a9e4c27&query=Ljubljana';
+
+        // const requestUrl='https://opendata.si/promet/parkirisca/lpt/';
+        http.get(url.format(requestUrl), (resp) => {
+            let data = '';
+            resp.on('data', (chunk) => {
+                //console.log("GET chunk: " + chunk);
+                data += chunk;
+            });
+
+            // The whole response has been received. Print out the result.
+            resp.on('end', () => {
+                console.log("GET end of response:  + data");
+                res.header("Content-Type",'application/json');
+                //res.send(JSON.stringify(data));
+                res.send(data);
+            });
+
+        }).on("error", (err) => {
+            console.log("GET Error: " + err);
+        });
+
+
+
+    }
+    else {
+
+
+        /*
+       axios
+           .get('/api/vehicles')
+           .then((odgovor) => {
+               let sporocilo = odgovor.data.length ? null : "No cars found.";
+               locationJSON.cars=odgovor.data;
+               dobis lng in lat preko zunajni API nad locationJSON.adress
+               locationJSON.lat=
+               locationJSON.lng=
+
+           })
+           .catch(() => {
+               showVehiclesHome(req, res, [], "Mistake on API side when searching.");
+           });
+       */
+
+        res.render('nearby', {
+            cars: JSON.stringify(locationJSON.cars),
+            weather: weatherJSON,
+            user_logged: req.session.user_id != null
+        });
+
+
+    }
+
 };
 
 module.exports = {
