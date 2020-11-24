@@ -21,7 +21,7 @@ const vehiclesAll = (req, res) => {
             else if (err) {
                 console.err(err);
                 res.status(404).json({ "sporočilo": "Napaka pri poizvedbi: " + err });
-            } else {
+            } else {    
                 //res.status(200).json(data);
                 const keyWord = req.query.value;
                 const city = req.query.city;

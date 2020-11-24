@@ -34,7 +34,13 @@ const vehicleSchema = new mongoose.Schema({
     zip: Number,
     number: String,
     date: [String],
-    reviews: [reviewSchema]
+    reviews: [reviewSchema],
+    avatar: String,
+	username: String,
+    email: String,
+    number: String,
+    avg_rating: Number,
+    location: String,
 });
 
 
