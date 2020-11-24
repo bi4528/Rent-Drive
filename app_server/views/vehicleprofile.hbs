@@ -9,7 +9,7 @@
     <div class="carousel-inner">
       {{#each car_photos as |car_photo|}}
       <div class="carousel-item {{car_photo.active}}">
-        <img class=" d-block w-100" src="{{car_photo.image}}" alt="car-photo">
+        <img class=" d-block w-100" src="/uploads/{{car_photo.image}}" alt="car-photo">
       </div>
       {{/each}}
     </div>

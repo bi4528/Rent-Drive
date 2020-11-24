@@ -4,7 +4,7 @@
         "model": "Aveo",
         "description": "Renting my beauty. Well looked after always clean come and pick it up.",
         "price": 30,
-        "image": "/images/aveo.jpg",
+        "images": ["aveo.jpg"],
         "city": "Ljubljana",
         "category": "Hatchback",
         "date": [
@@ -43,7 +43,7 @@
         "model": "Model 3 2019",
         "description": "Step into the future with our beautiful electric four-door fastback sedan.",
         "price": 85,
-        "image": "/images/tesla1.jpg",
+        "images": ["tesla1.jpg"],
         "city": "Ljubljana",
         "category": "Hatchback",
         "date": [
@@ -83,7 +83,7 @@
         "category": "Saloon",
         "description": "Fast, small and nimble. You know what the logo means, its mercedes.",
         "price": 50,
-        "image": "/images/aclass.jpg",
+        "images": ["aclass.jpg"],
         "city": "Ljubljana",
         "date": [
             "2020-11-20",
@@ -121,7 +121,7 @@
         "model": "Quattroporte",
         "description": "This is a true sports car over here, no joke. Comes with a beautiful engine, interior.",
         "price": 110,
-        "image": "/images/maserati.jpg",
+        "images": ["maserati.jpg"],
         "category": "Saloon",
         "city": "Ljubljana",
         "date": [
@@ -160,7 +160,7 @@
         "model": "Aventador",
         "description": "Can you ever not want a supercar? Its everyone's dream. You will remember it.",
         "price": 250,
-        "image": "/images/aventador.jpg",
+        "images": ["aventador.jpg"],
         "category": "Coupe",
         "city": "Ljubljana",
         "date": [
@@ -199,7 +199,7 @@
         "model": "ForTwo",
         "description": "Small and easy to park, cheap on fuel loads of fun.",
         "price": 25,
-        "image": "/images/smart.jpg",
+        "images": ["smart.jpg"],
         "city": "Ljubljana",
         "category": "Coupe",
         "date": [
@@ -238,7 +238,7 @@
         "model": "Megane",
         "description": "Quite a good city and highway car. If you have a family it has plenty of space.",
         "price": 40,
-        "image": "/images/megane.jpg",
+        "images": ["megane.jpg"],
         "city": "Ljubljana",
         "category": "Hatchback",
         "date": [
@@ -277,7 +277,7 @@
         "model": "508",
         "description": "It is the best of France, good looks and beautiful driving experience.",
         "price": 70,
-        "image": "/images/508.jpg",
+        "images": ["508.jpg"],
         "category": "Saloon",
         "city": "Ljubljana",
         "date": [
@@ -316,7 +316,7 @@
         "model": "a6 caravan S-line",
         "description": "Its the utimate do everything car. Dads and families love it.",
         "price": 80,
-        "image": "/images/a6.jpg",
+        "images": ["a6.jpg"],
         "category": "Caravan",
         "city": "Ljubljana",
         "date": [
@@ -355,7 +355,7 @@
         "model": "X5",
         "description": "Car is perfect, big so you do not worry about cerbs. Bunch of space inside i love it.",
         "price": 70,
-        "image": "/images/x5.jpg",
+        "images": ["x5.jpg"],
         "category": "SUV",
         "city": "Ljubljana",
         "date": [
@@ -390,7 +390,7 @@
         ]
     },
     {
-        "image": "/images/megane.jpg",
+        "images": ["megane.jpg"],
         "make": "Renault",
         "model": "Megane",
         "typeoffuel": "Petrol",

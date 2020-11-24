@@ -1,6 +1,6 @@
 //const { default: Axios } = require('axios');
 var fs = require('fs');
-
+const multer = require("multer");
 
 var appiParams = {
     server: 'http://localhost:' + (process.env.PORT || 3000)
@@ -28,9 +28,22 @@ const vehicleprofile2 = (req, res) => {
         .get('/api/vehicles/'+req.params.id)
         .then ((odgovor) => {
             console.log(odgovor.data);
+            let car_photos=[];
+            let indicators=[];
+            for(i=0; i<odgovor.data.images.length; i++){
+                if(i==0){
+                    car_photos.push({"image": odgovor.data.images[i], "active": "active"});
+                    indicators.push({"num": i.toString(), "active": "class='active'" });
+                }
+                else{
+                    car_photos.push({"image": odgovor.data.images[i]});
+                    indicators.push({"num": i.toString()});
+                }
+            }
+            odgovor.data.indicators=indicators;
+            odgovor.data.car_photos=car_photos;
             showvehicleprofile(req, res, odgovor.data);
-        });
-        
+        });      
 };
 
 const showvehicleprofile = (req, res, data) =>{
@@ -50,12 +63,11 @@ const submitcar = (req, res) => {
     });
     res.render('home', dataJSON);*/
     //console.log(req.body);
-
     axios({
         method: 'post',
         url: '/api/vehicles',
         data: {
-            image: req.body.carphotos,
+            images: [req.body.carphotos],
             make: req.body.make,
             model: req.body.model,
             typeoffuel: req.body.typeoffuel,

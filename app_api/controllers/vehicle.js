@@ -76,7 +76,7 @@ const vehiclesAll = (req, res) => {
 
 const vehiclesUpload = (req, res) => {
     Vehicle.create({
-        image: req.body.image,
+        images: req.body.images,
         make: req.body.make,
         model: req.body.model,
         typeoffuel: req.body.typeoffuel,
@@ -147,7 +147,7 @@ const vehiclesUpdate = (req, res) => {
             } else if (err) {
                 return res.status(500).json(err);
             }
-            data.image = req.body.image;
+            //data.image = req.body.image;
             data.make = req.body.make;
             data.model = req.body.model;
             data.typeoffuel = req.body.typeoffuel;
