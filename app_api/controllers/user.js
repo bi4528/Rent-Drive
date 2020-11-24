@@ -5,7 +5,7 @@ const Vehicle = mongoose.model('Vehicle');
 const validate = require('./../../public/javascripts/validate');
 
 const get_all_users = (req, res) => {
-    User.exec((error, user) => {
+    User.find((error, user) => {
         if (!user) {
             return res.status(404).json({
                 "message": "User not found1."

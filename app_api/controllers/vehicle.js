@@ -21,16 +21,16 @@ const vehiclesAll = (req, res) => {
             else if (err) {
                 console.err(err);
                 res.status(404).json({ "sporočilo": "Napaka pri poizvedbi: " + err });
-            } else {    
+            } else {
                 //res.status(200).json(data);
                 const keyWord = req.query.value;
                 const city = req.query.city;
                 const dateFrom = req.query.dateFrom;
                 const dateTo = req.query.dateTo;
                 const category = req.query.category;
-
-                //console.log(city + " " + dateFrom + " " + dateTo);
-
+                
+                
+                
                 if (isEmpty(keyWord) && isEmpty(city) && isEmpty(category)) {
                     //dataJSON.filter = "<H3>No filter applied</H3>";
                     //res.render('search', dataJSON);
@@ -95,7 +95,7 @@ const vehiclesUpload = (req, res) => {
         bluetooth: req.body.bluetooth == null ? "0" : "1",
         parkingsensors: req.body.parkingsensors == null ? "0" : "1",
         description: req.body.description,
-        address: req.body.address,
+        addres: req.body.addres,
         city: req.body.city,
         zip: parseInt(req.body.zip),
         price: parseFloat(req.body.price),

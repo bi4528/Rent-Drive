@@ -27,7 +27,7 @@ const vehicleprofile2 = (req, res) => {
     axios
         .get('/api/vehicles/'+req.params.id)
         .then ((odgovor) => {
-            console.log(odgovor.data);
+            //console.log(odgovor.data);
             let car_photos=[];
             let indicators=[];
             for(i=0; i<odgovor.data.images.length; i++){
@@ -42,6 +42,12 @@ const vehicleprofile2 = (req, res) => {
             }
             odgovor.data.indicators=indicators;
             odgovor.data.car_photos=car_photos;
+            
+            var sum = getAverageRating(odgovor);
+            if (sum>0) {
+                var newAvgRating = sum/odgovor.data.reviews.length;
+                odgovor.data.avg_rating = newAvgRating; 
+            } 
             showvehicleprofile(req, res, odgovor.data);
         });      
 };
@@ -85,8 +91,9 @@ const submitcar = (req, res) => {
             autopilot: req.body.autopilot ,
             bluetooth: req.body.bluetooth ,
             parkingsensors: req.body.parkingsensors,
+            accessibility: req.body.accessibility,
             description: req.body.description,
-            address: req.body.address,
+            addres: req.body.addres,
             city: req.body.city,
             zip: req.body.zip,
             price: req.body.price,
@@ -108,6 +115,13 @@ const vehicleprofile_book = (req, res) => {
     console.log(req.body);
     res.render('book', req.body);
 };
+
+function getAverageRating (odgovor){
+    var sum = 0;
+    for (i=0; i<odgovor.data.reviews.length;i++)
+        sum += odgovor.data.reviews[i].rating.match(/★/g).length;
+    return sum; 
+}
 
 module.exports = {
     vehicleprofile,
