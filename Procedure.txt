@@ -58,6 +58,9 @@ Prišel si do konca, če si med programiranjem uporabil še kakšen ukaz, ki ni 
 
 UVOZ api/models/vehicle-test.json v lokalna baza
 
+!!!(če si kaj spremenil)
+docker exec -it sp-rentdrive-mongodb bash -c "mongo RentDrive --eval 'db.Vehicles.remove({})'"
+
 docker cp ./app_api/models/vehicles-test.json sp-rentdrive-mongodb:/vehicles-test.json
 
 docker exec -it sp-rentdrive-mongodb mongoimport --db RentDrive --collection Vehicles --mode upsert --upsertFields make --jsonArray --file vehicles-test.json
