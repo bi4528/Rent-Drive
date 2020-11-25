@@ -55,3 +55,4 @@ process.on('SIGTERM', () => {
 
 require('./user');
 require('./vehicle');
+require('./rented');

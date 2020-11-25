@@ -10,6 +10,7 @@ document.getElementById("show_weather").addEventListener("click", function () {
 
             document.getElementById("location").innerHTML= weather.location.name+", "+weather.location.country;
             document.getElementById("localtime").innerHTML= weather.location.localtime;
+            document.getElementById("temperature").innerHTML= weather.current.temperature+"&nbsp;&#8451;";
             document.getElementById("weather_descriptions").innerHTML= weather.current.weather_descriptions;
             document.getElementById("weather_icon").src= weather.current.weather_icons;
             document.getElementById("wind_speed").innerHTML= "<b>Wind&nbsp;speed: </b>"+weather.current.wind_speed;

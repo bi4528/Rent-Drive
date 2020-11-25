@@ -43,7 +43,7 @@
                             <div class="col-12" id="mapa_id" style="height: 50vh;
                              padding-left: 0px; padding-right: 0px; max-height: 100% !important;"></div>
                         </div>
-                        <a href="#" class="button mt-auto button1" cars={{{cars}}} id="show_vehicles">Show available vehicles</a>
+                        <a href="#" class="button mt-auto button1" id="show_vehicles">Show available vehicles</a>
                     </div>
                 </div>
             </div>
@@ -51,29 +51,29 @@
                 <div class="card h-100">
                     <div class="card-body d-inline-flex flex-column ">
                         <h5 class="card-title">Current Weather in Ljubljana:</h5>
-                        <p class="card-text">Powered by <a href="https://weatherstack.com/">weatherstack.com</a></p>
+                        <p class="card-text">Powered by <a href="https://weatherstack.com/" target="_blank" >weatherstack.com</a></p>
                         <!--<img src="/images/vreme.png" class="img-fluid" alt="...">-->
                         <div class="card-body weatherstack">
 
-                            <div id="location" class="row no-gutters weatherstack location">{{weather.location.name}}, {{weather.location.country}}</div>
-                            <div id="localtime" class="row no-gutters weatherstack time">{{weather.location.localtime}}</div>
+                            <div id="location" class="row no-gutters weatherstack location">Ljubljana, Slovenija</div>
+                            <div id="localtime" class="row no-gutters weatherstack time"></div>
 
                             <hr/>
 
-                            <div id="weather_descriptions" class="row no-gutters weatherstack description">{{weather.current.weather_descriptions}}</div>
+                            <div id="weather_descriptions" class="row no-gutters weatherstack description text-hide"></div>
                             <div class="row no-gutters weatherstack">
 
                                 <div class="col-sm-4 ">
-                                    <img id="weather_icon" src="{{weather.current.weather_icons.[0]}}" class="img-fluid" alt="...">
-                                    <span class="weatherstack temperature">{{weather.current.temperature}}&#8451;</span>
+                                    <img id="weather_icon" src="https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0001_sunny.png" class="img-fluid" alt="...">
+                                    <span id="temperature" class="weatherstack temperature"></span>
                                 </div>
                                 <ul class="col-sm-4 list-group">
-                                    <li id="wind_speed" class="list-group-item d-flex p-1 border-1 list-group-item-dark" ><b>Wind&nbsp;speed: </b>{{weather.current.wind_speed}}</li>
-                                    <li id="wind_degree" class="list-group-item d-flex p-1 border-1 list-group-item-dark"><b>Wind&nbsp;degree: </b>{{weather.current.wind_degree}}</li>
-                                    <li id="wind_dir" class="list-group-item d-flex p-1 border-1 list-group-item-dark"><b>Wind&nbsp;direction: </b>{{weather.current.wind_dir}}</li>
-                                    <li id="pressure" class="list-group-item d-flex p-1 border-1 list-group-item-info"><b>Pressure: </b>{{weather.current.pressure}}</li>
-                                    <li id="humidity" class="list-group-item d-flex p-1 border-1 list-group-item-info"><b>Humidity: </b>{{weather.current.humidity}}</li>
-                                    <li id="uv_index" class="list-group-item d-flex p-1 border-1 list-group-item-danger"><b>Uv_index: </b>{{weather.current.uv_index}}</li>
+                                    <li id="wind_speed" class="list-group-item d-flex p-1 border-1 list-group-item-dark" ><b>Wind&nbsp;speed: </b></li>
+                                    <li id="wind_degree" class="list-group-item d-flex p-1 border-1 list-group-item-dark"><b>Wind&nbsp;degree: </b></li>
+                                    <li id="wind_dir" class="list-group-item d-flex p-1 border-1 list-group-item-dark"><b>Wind&nbsp;direction: </b></li>
+                                    <li id="pressure" class="list-group-item d-flex p-1 border-1 list-group-item-info"><b>Pressure: </b></li>
+                                    <li id="humidity" class="list-group-item d-flex p-1 border-1 list-group-item-info"><b>Humidity: </b></li>
+                                    <li id="uv_index" class="list-group-item d-flex p-1 border-1 list-group-item-danger"><b>Uv_index: </b></li>
                                 </ul>
                             </div>
                         </div>
@@ -86,16 +86,7 @@
     </section>
 </main>
 <script type='text/javascript'>
-    /*
-    const Http = new XMLHttpRequest();
-    const url='http://open.mapquestapi.com/geocoding/v1/address?key=7VWv1A4oIlOF80mOVTkI0LHdiJr8V5EP&location=1600+Pennsylvania+Ave+NW,Washington,DC,20500';
-    Http.open("GET", url);
-    Http.send();
-    Http.onreadystatechange = (e) => {
-        console.log(Http.responseText);
-    }
-*/
-    var cars={{{cars}}}
+
     // seznam z markerji na mapi
     var markerji = [];
 
@@ -119,13 +110,29 @@
 
     document.getElementById("show_vehicles").addEventListener("click", function () {
 
+        var asinhronaZahteva = new XMLHttpRequest();
+        asinhronaZahteva.open("GET", "/nearby?markeri", true);
 
-        cars.forEach(function (car) {
-            var marker = L.marker([car.LAT, car.LNG]).addTo(mapa);
-            marker.bindPopup("<div>Tukaj se nahaja "+ car.make + " " + car.model + "</div>").openPopup();
-        })
 
-        markerji.push(marker);
+        asinhronaZahteva.addEventListener("load", function () {
+
+
+            //console.log("Cars: "+asinhronaZahteva.responseText);
+            cars=JSON.parse(asinhronaZahteva.responseText);
+
+            cars.forEach(function (car) {
+
+                //console.log(car.address)
+
+                var marker = L.marker([car.LAT, car.LNG]).addTo(mapa);
+                marker.bindPopup("<div>Tukaj se nahaja "+ car.make + " " + car.model + "</div>").openPopup();
+                markerji.push(marker);
+            })
+
+
+        });
+        asinhronaZahteva.send(null);
+
     })
 
 

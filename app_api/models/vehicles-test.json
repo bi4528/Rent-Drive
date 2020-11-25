@@ -5,7 +5,9 @@
         "description": "Renting my beauty. Well looked after always clean come and pick it up.",
         "price": 30,
         "image": "/images/aveo.jpg",
+        "address": "Bravničarjeva 13",
         "city": "Ljubljana",
+        "country": "Slovenija",
         "category": "Hatchback",
         "date": [
             "2020-10-10",
@@ -44,7 +46,9 @@
         "description": "Step into the future with our beautiful electric four-door fastback sedan.",
         "price": 85,
         "image": "/images/tesla1.jpg",
+        "address": "Kolodvorska 15",
         "city": "Ljubljana",
+        "country": "Slovenija",
         "category": "Hatchback",
         "date": [
             "2020-9-10",
@@ -84,7 +88,9 @@
         "description": "Fast, small and nimble. You know what the logo means, its mercedes.",
         "price": 50,
         "image": "/images/aclass.jpg",
+        "address": "Neubergereva 13",
         "city": "Ljubljana",
+        "country": "Slovenija",
         "date": [
             "2020-11-20",
             "2020-11-24"
@@ -123,7 +129,9 @@
         "price": 110,
         "image": "/images/maserati.jpg",
         "category": "Saloon",
+        "address": "Vrhovci, Cesta III 16",
         "city": "Ljubljana",
+        "country": "Slovenija",
         "date": [
             "2020-12-1",
             "2020-12-24"
@@ -162,7 +170,9 @@
         "price": 250,
         "image": "/images/aventador.jpg",
         "category": "Coupe",
+        "address": "Vojkova 50",
         "city": "Ljubljana",
+        "country": "Slovenija",
         "date": [
             "2020-12-10",
             "2020-12-24"
@@ -200,7 +210,9 @@
         "description": "Small and easy to park, cheap on fuel loads of fun.",
         "price": 25,
         "image": "/images/smart.jpg",
+        "address": "Kolodvorska 15",
         "city": "Ljubljana",
+        "country": "Slovenija",
         "category": "Coupe",
         "date": [
             "2020-1-10",
@@ -239,7 +251,9 @@
         "description": "Quite a good city and highway car. If you have a family it has plenty of space.",
         "price": 40,
         "image": "/images/megane.jpg",
+        "address": "Mencingerjeva 32",
         "city": "Ljubljana",
+        "country": "Slovenija",
         "category": "Hatchback",
         "date": [
             "2021-1-1",
@@ -406,7 +420,7 @@
         "bluetooth": "on",
         "parkingsensors": "on",
         "description": "Welcome to my car",
-        "addres": "Mencingerjeva",
+        "addres": "Mencingerjeva 23",
         "city": "Ljubljana",
         "zip": "1000",
         "price": "50",

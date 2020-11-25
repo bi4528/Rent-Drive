@@ -28,6 +28,7 @@ const vehicleSchema = new mongoose.Schema({
     description: String,
     price: Number,
     image: String,
+    country: String,
     city: String,
     addres: String,
     zip: Number,
