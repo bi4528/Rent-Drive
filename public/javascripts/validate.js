@@ -68,9 +68,6 @@ exports.validate_email = function (email) {
 (?=.{8,})	The string must be eight characters or longer
 */
 
-function validate_password(password) {
-    return validate_not_empty_string(password) && password_regex.test(password);
-}
 
 exports.validate_password = function (password) {
     return validate_not_empty_string(password) && password_regex.test(password);

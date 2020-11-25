@@ -101,6 +101,8 @@ const vehiclesUpload = (req, res) => {
         price: parseFloat(req.body.price),
         number: req.body.number,
         date: req.body.date,
+        luggage: parseInt(req.body.luggage),
+        minage: parseInt(req.body.minage),
         reviews: []
     }, (err, data) => {
         if (err) {
@@ -172,6 +174,8 @@ const vehiclesUpdate = (req, res) => {
             data.price = parseFloat(req.body.price);
             data.number = req.body.number;
             data.date = req.body.date;
+            data.luggage = req.body.luggage;
+            data.minage = req.body.minage;
             data.save((err, data) => {
                 if (err) {
                     res.status(404).json(err);

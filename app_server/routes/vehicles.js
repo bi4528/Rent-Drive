@@ -32,5 +32,7 @@ router
     .post(upload.array('carphotos',3), ctrlVehicle.submitcar);
 
 router.get('/:id', ctrlVehicle.vehicleprofile2);
+router.get('/:id/edit',ctrlVehicle.editvehicleprofile);
+router.post('/:id',ctrlVehicle.editvehicleprofile_submit)
 
 module.exports = router;

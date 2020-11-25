@@ -98,7 +98,10 @@ const submitcar = (req, res) => {
             zip: req.body.zip,
             price: req.body.price,
             number: req.body.number,
-            date: req.body.date
+            date: req.body.date,
+            minage:req.body.minage,
+            luggage:req.body.luggage
+            
         }
     }). then(() => {
         res.redirect('/');
@@ -108,7 +111,37 @@ const submitcar = (req, res) => {
 };
 
 const editvehicleprofile = (req, res) => {
-    res.render('editvehicleprofile', dataJSON.cars[dataJSON.cars.length - 1]);
+    axios
+        .get('/api/vehicles/'+req.params.id)
+        .then ((odgovor) => {
+            console.log(odgovor.data);
+            //showvehicleprofile(req, res, odgovor.data);
+            res.render('editvehicleprofile', odgovor.data);
+        });    
+};
+
+const editvehicleprofile_submit = (req, res) => {
+    var changes = [];
+    for(var i in req.body){
+        var obj = {};
+        obj.key = i;
+        obj. value = req.body[i];
+        changes.push(obj);
+    }
+    axios
+        .get('/api/vehicles/'+req.params.id)
+        .then ((odgovor) => {
+            //console.log(req.body);
+            //console.log(odgovor.data);
+            for (var i in changes) {
+                //console.log(changes[i].key + ": " + changes[i].value);
+                //console.log(odgovor.data[changes[i].key]);
+                if (odgovor.data[changes[i].key]!=changes[i].value && changes[i].value!="on" && changes[i].value!="" && changes[i].value!=null){
+                    odgovor.data[changes[i].key]=changes[i].value;
+                }
+            }
+            res.render('vehicleprofile', odgovor.data);
+        }); 
 };
 
 const vehicleprofile_book = (req, res) => {
@@ -129,5 +162,6 @@ module.exports = {
     submitcar,
     editvehicleprofile,
     vehicleprofile_book,
-    vehicleprofile2
+    vehicleprofile2,
+    editvehicleprofile_submit
 };

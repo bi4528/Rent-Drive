@@ -22,17 +22,18 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-
+    
+<form id="form" method="POST" action="/vehicles/{{_id}}">
     <div class="container-fluid pt-5 pb-3">
         <!---slike-->
         <div class="row m-2 justify-content-center">
             <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
-                <form method="POST" action="/vehicles/other">
+                
                     <div class="form-group">
                         <label for="images">Upload vehicle images</label>
                         <input type="file" class="form-control-file" id="images" multiple>
                     </div>
-                </form>
+                
             </div>
         </div>
 
@@ -45,7 +46,7 @@
                             <h4>Vehicle name</h4>
                         </div>
                     </div>
-                    <input type="text" class="form-control-md" value="{{make}} {{model}}">
+                    <input id="name" name="name" type="text" class="form-control-md" value="{{make}} {{model}}">
                 </div>
             </div>
         </div>
@@ -75,7 +76,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text">Description:</div>
                         </div>
-                        <textarea class="form-control height-dvesto">{{description}}</textarea>
+                        <textarea name="description" id="description" class="form-control height-dvesto">{{description}}</textarea>
                     </div>
                 </div>
             </div>
@@ -88,37 +89,37 @@
         <div class="row m-3 mt-5 mb-4">
             <div class="features col-md-5 col-lg-3">
                 <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="AirConditioning" {{{ifEquals AirConditioning}}}>
+                    <input type="checkbox" class="custom-control-input" id="AirConditioning" name="AirConditioning" {{{ifEquals AirConditioning}}}>
                     <label class="custom-control-label" for="AirConditioning">A/C</label>
                 </div>
                 <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="Accessibility" {{{ifEquals accessibility}}}>
+                    <input type="checkbox" class="custom-control-input" id="Accessibility" name="accessibility" {{{ifEquals accessibility}}}>
                     <label class="custom-control-label" for="Accessibility">Accessibility</label>
                 </div>
                 <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="Auto-pilot" {{{ifEquals autopilot}}}>
+                    <input type="checkbox" class="custom-control-input" id="Auto-pilot" name="autopilot" {{{ifEquals autopilot}}}>
                     <label class="custom-control-label" for="Auto-pilot">Auto-pilot</label>
                 </div>
                 <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="AUX" {{{ifEquals aux}}}>
+                    <input type="checkbox" class="custom-control-input" id="AUX" name="AUX" {{{ifEquals aux}}}>
                     <label class="custom-control-label" for="AUX">AUX</label>
                 </div>
                 <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="Bluetooth" {{{ifEquals bluetooth}}}>
+                    <input type="checkbox" class="custom-control-input" id="Bluetooth" name="bluetooth" {{{ifEquals bluetooth}}}>
                     <label class="custom-control-label" for="Bluetooth">Bluetooth</label>
                 </div>
             </div>
             <div class="features col-md-5 col-lg-2 mr-5 mb-5">
                 <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="Navigation" {{{ifEquals Navigation}}}>
+                    <input type="checkbox" class="custom-control-input" id="Navigation" name="Navigation" {{{ifEquals Navigation}}}>
                     <label class="custom-control-label" for="Navigation">Navigation</label>
                 </div>
                 <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="USB" {{{ifEquals usb}}}>
+                    <input type="checkbox" class="custom-control-input" id="USB" name="USB" {{{ifEquals usb}}}>
                     <label class="custom-control-label" for="USB">USB</label>
                 </div>
                 <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="Parking-sensors" {{{ifEquals parkingsensors}}}>
+                    <input type="checkbox" class="custom-control-input" id="Parking-sensors" name="parkingsensors" {{{ifEquals parkingsensors}}}>
                     <label class="custom-control-label" for="Parking-sensors">Parking Sensors</label>
                 </div>
                 
@@ -129,31 +130,31 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-tachometer-alt" aria-hidden="true"></i></span>
                     </div>
-                    <input type="number" class="form-control" placeholder="top-speed (km/h)" value="{{maxspeed}}">
+                    <input id="maxspeed" type="text" class="form-control" placeholder="top-speed (km/h)" value="{{maxspeed}}" name="maxspeed">
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-couch" aria-hidden="true"></i></span>
                     </div>
-                    <input type="number" class="form-control" placeholder="seats" value="{{seats}}">
+                    <input id="seats" type="text" class="form-control" placeholder="seats" value="{{seats}}" name="seats">
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-door-closed" aria-hidden="true"></i></span>
                     </div>
-                    <input type="number" class="form-control" placeholder="door-count" value="{{doors}}">
+                    <input id="doors" type="text" class="form-control" placeholder="door-count" value="{{doors}}" name="doors">
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user-graduate" aria-hidden="true"></i></span>
                     </div>
-                    <input type="number" class="form-control" placeholder="age" value="{{minage}}">
+                    <input id="minage" type="text" class="form-control" placeholder="age" value="{{minage}}" name="minage">
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-suitcase" aria-hidden="true"></i></span>
                     </div>
-                    <input type="number" class="form-control" placeholder="luggage (l)" value="{{luggage}}">
+                    <input id="luggage" type="text" class="form-control" placeholder="luggage (l)" value="{{luggage}}" name="luggage">
                 </div>
             </div>
             <div class="book col-md-5 col-lg-2">
@@ -161,19 +162,19 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-shipping-fast" aria-hidden="true"></i></span>
                     </div>
-                    <input type="number" class="form-control" placeholder="acceleration (km/h)" value="{{acceleration}}">
+                    <input id="acceleration" id="seats"type="text" class="form-control" placeholder="acceleration (km/h)" value="{{acceleration}}" name="acceleration">
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-horse" aria-hidden="true"></i></span>
                     </div>
-                    <input type="number" class="form-control" placeholder="horsepower (kW)" value="{{hp}}">
+                    <input id="hp" type="text" class="form-control" placeholder="horsepower (kW)" value="{{hp}}" name="hp">
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-oil-can" aria-hidden="true"></i></span>
                     </div>
-                    <input type="number" class="form-control" placeholder="consumption" value="{{consumption}}">
+                    <input id="consumption" type="text" class="form-control" placeholder="consumption" value="{{consumption}}" name="consumption">
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -190,7 +191,6 @@
             </div>
         </div>
 
-        <form action="vehicleprofile.html">
             <div class="row m-3 ml-4 mb-4">
                 <div class="col-sm-8 col-md-4">
                     <div class="form-group">
@@ -203,7 +203,7 @@
                     </div>
                     <div class="input-group-prepend mb-4 ">
                         <span class="input-group-text">Price (per day)</span>
-                        <input type="text" class="form-control" value="{{price}}€">
+                        <input id="price" name="price" type="text" class="form-control" value="{{price}}€">
                     </div>
                 </div>
                 <div class="col-sm-3"></div>
@@ -229,12 +229,12 @@
 
                 </div>
             </div>
-        </form>
+            <input type="text" name="id" value="{{_id}}" hidden="true">
         <div class="row justify-content-center">
-            <a href="vehicleprofile.html"><button id="save-changes" class="btn btn-primary mb-3">Save
-                    changes</button></a>
+            <button type="submit" id="save-changes" class="btn btn-primary mb-3">Save changes</button>
         </div>
     </div>
+</form>    
 
     </div>
 </main>

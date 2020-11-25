@@ -15,7 +15,7 @@ const vehicleSchema = new mongoose.Schema({
     category: String,
     hp: Number,
     maxspeed: Number,
-    accerelation: Number,
+    acceleration: Number,
     consumption: Number,
     seats: Number,
     doors: Number,
@@ -41,6 +41,8 @@ const vehicleSchema = new mongoose.Schema({
     number: String,
     avg_rating: Number,
     location: String,
+    luggage: Number,
+    minage: Number
 });
 
 
