@@ -66,8 +66,59 @@ document.getElementById("input-location").addEventListener("change",function(){
     console.log(validate_word(this));
 });
 
-$('#save_changes').click(function(){
-    $('form').each(function(){
-        $(this).submit();
-    });
+document.getElementById("save-changes").addEventListener("click", function(dogodek){
+    writeError=false;
+    errors="";
+    var maxspeed = document.getElementById("maxspeed");
+    var hp = document.getElementById("hp");
+    var acceleration = document.getElementById("acceleration");
+    var consumption = document.getElementById("consumption");
+    var seats = document.getElementById("seats");
+    var doors = document.getElementById("doors");
+    var price = document.getElementById("price");
+    var name = document.getElementById("name");
+    if(!validate_vehicle_horespower(hp.value) ){
+        hp.classList.add("alert-danger");
+        errors+="Horespower should be only numbers.\n";
+        writeError=true;
+    }    
+    if(!validate_vehicle_speed(maxspeed.value)){
+        maxspeed.classList.add("alert-danger");
+        errors+="Maxspeed should be only numbers.\n";
+        writeError=true;
+    }
+    if(!validate_acceleration(acceleration.value) ){
+        acceleration.classList.add("alert-danger");
+        errors+="Acceleration should be written in the next format => number.number or just a number(s).\n";
+        writeError=true;
+    }
+    if(!validate_not_empty_string(consumption.value) && consumption.disabled==false){
+        consumption.classList.add("alert-danger");
+        errors+="Consumption field must not be empty, except if the vehicle is electric\n";
+        writeError=true;
+    }
+    if(!validate_vehicle_doors_seats(seats.value)){
+        seats.classList.add("alert-danger");
+        errors+="Number of seats is only one number.\n";
+        writeError=true;
+    }
+    if(!validate_vehicle_doors_seats(doors.value)){
+        doors.classList.add("alert-danger");
+        errors+="Number of doors is only one number.\n";
+        writeError=true;
+    }
+    if(!validate_vehicle_price_per_day(price.value)){
+        price.classList.add("alert-danger");
+        errors+="Price must be between 1 and 5000.\n";
+        writeError=true;
+    }
+    if(!validate_not_empty_string(name.value)){
+        price.classList.add("alert-danger");
+        errors+="Name must not be empty!\n";
+        writeError=true;
+    }
+    if(writeError){
+        alert(errors);
+        dogodek.preventDefault();
+    }
 });

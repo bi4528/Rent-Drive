@@ -28,9 +28,9 @@ const vehiclesAll = (req, res) => {
                 const dateFrom = req.query.dateFrom;
                 const dateTo = req.query.dateTo;
                 const category = req.query.category;
-
-                //console.log(city + " " + dateFrom + " " + dateTo);
-
+                
+                
+                
                 if (isEmpty(keyWord) && isEmpty(city) && isEmpty(category)) {
                     //dataJSON.filter = "<H3>No filter applied</H3>";
                     //res.render('search', dataJSON);
@@ -76,7 +76,7 @@ const vehiclesAll = (req, res) => {
 
 const vehiclesUpload = (req, res) => {
     Vehicle.create({
-        image: req.body.image,
+        images: req.body.images,
         make: req.body.make,
         model: req.body.model,
         typeoffuel: req.body.typeoffuel,
@@ -95,12 +95,14 @@ const vehiclesUpload = (req, res) => {
         bluetooth: req.body.bluetooth == null ? "0" : "1",
         parkingsensors: req.body.parkingsensors == null ? "0" : "1",
         description: req.body.description,
-        address: req.body.address,
+        addres: req.body.addres,
         city: req.body.city,
         zip: parseInt(req.body.zip),
         price: parseFloat(req.body.price),
         number: req.body.number,
         date: req.body.date,
+        luggage: parseInt(req.body.luggage),
+        minage: parseInt(req.body.minage),
         reviews: []
     }, (err, data) => {
         if (err) {
@@ -147,7 +149,7 @@ const vehiclesUpdate = (req, res) => {
             } else if (err) {
                 return res.status(500).json(err);
             }
-            data.image = req.body.image;
+            //data.image = req.body.image;
             data.make = req.body.make;
             data.model = req.body.model;
             data.typeoffuel = req.body.typeoffuel;
@@ -172,6 +174,8 @@ const vehiclesUpdate = (req, res) => {
             data.price = parseFloat(req.body.price);
             data.number = req.body.number;
             data.date = req.body.date;
+            data.luggage = req.body.luggage;
+            data.minage = req.body.minage;
             data.save((err, data) => {
                 if (err) {
                     res.status(404).json(err);

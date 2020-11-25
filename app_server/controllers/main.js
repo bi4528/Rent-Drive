@@ -218,7 +218,7 @@ const nearby = (req, res) => {
                             // nastavim default vrednosti, v slučaju da so neke prazne
                             item ["make"] = car.make || 'Automobil';
                             item ["model"] = car.model || 'Model';
-                            item ["address"] = car.address || 'Trg Osvobodilne fronte 4';
+                            item ["address"] = car.addres || 'Trg Osvobodilne fronte 4';
                             item ["city"] = car.city || 'Ljubljana';
                             item ["country"] = car.country || 'Slovenija';
                             item ["LAT"] = 46.050166466;
@@ -228,7 +228,7 @@ const nearby = (req, res) => {
                             //izdelava request zahtev
                             //url encoding pretvarja presledke v %20, a oddaljeni API zahteva +
                             //zaradi tega nejprej encode, pa potem replace
-                            var requestUrl = basic_url + '&street=' + encodeURIComponent(car.address).replace(/\%20/g, '+');
+                            var requestUrl = basic_url + '&street=' + encodeURIComponent(car.addres).replace(/\%20/g, '+');
                             requestUrl = requestUrl + '&city=' + encodeURIComponent(car.city).replace(/\%20/g, '+');
                             requestUrl = requestUrl + '&country=' + encodeURIComponent(car.country).replace(/\%20/g, '+');
 
@@ -277,6 +277,7 @@ const nearby = (req, res) => {
                             //console.log(response2.data.results[0].locations[0].latLng.lng);
                             jsonObj[2].LAT = response2.data.results[0].locations[0].latLng.lat;
                             jsonObj[2].LNG = response2.data.results[0].locations[0].latLng.lng;
+                            jsonObj[2].req = '';
 
                             //console.log(jsonObj);
 

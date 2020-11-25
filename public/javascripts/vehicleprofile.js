@@ -72,3 +72,9 @@ function addHiddenInput(form, string, inputName){
     child.setAttribute("value",string);
     form.appendChild(child);
 }
+
+function validate_dates(date1, date2) {
+    var date1 = new Date(date1);
+    var date2 = new Date(date2);
+    return date2>=date1;
+}
