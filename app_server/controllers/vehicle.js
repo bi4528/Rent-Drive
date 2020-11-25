@@ -134,10 +134,11 @@ const editvehicleprofile_submit = (req, res) => {
             //console.log(req.body);
             //console.log(odgovor.data);
             for (var i in changes) {
-                //console.log(changes[i].key + ": " + changes[i].value);
-                //console.log(odgovor.data[changes[i].key]);
-                if (odgovor.data[changes[i].key]!=changes[i].value && changes[i].value!="on" && changes[i].value!="" && changes[i].value!=null){
+                console.log(changes[i].key + ": " + changes[i].value);
+                console.log(odgovor.data[changes[i].key]);
+                if (odgovor.data[changes[i].key]!=changes[i].value && changes[i].value!=""){
                     odgovor.data[changes[i].key]=changes[i].value;
+                    // TODO: turning off features
                 }
             }
             res.render('vehicleprofile', odgovor.data);
