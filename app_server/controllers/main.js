@@ -21,8 +21,6 @@ function isEmpty(str) {
 
 /* GET home page */
 const home = (req, res) => {
-    console.log("Home");
-    console.log(req.session);
     axios
         .get('/api/vehicles')
         .then((odgovor) => {

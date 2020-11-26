@@ -10,6 +10,7 @@ router.post('/register', ctrlUser.user_register);
 router.get('/login', ctrlUser.login);
 router.post('/login', ctrlUser.user_login);
 router.get('/logout', ctrlUser.user_logout);
+router.get('/delete', ctrlUser.user_delete);
 //router.post('/register',ctrlUser.register_attempt);
 //router.post('/login',ctrlUser.login_attempt);
 router.get('/forgotpassword',ctrlUser.forgotpassword);

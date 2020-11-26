@@ -76,8 +76,9 @@ const remove_user = (req, res) => {
     User.findByIdAndRemove(req.params.idUser).exec((error) => {
         if (error) {
             return res.status(500).json(error);
+        } else {
+            return res.status(204).json(null);
         }
-        res.status(204).json(null);
     });
 };
 

@@ -36,7 +36,7 @@ const user_login = (req, res) => {
                 req.session.user_id = response.data;
                 console.log(req.session);
                 res.redirect('/');
-                
+
             } else {
                 show_login_failed(req, res, "Uporabnik ni bil najden.");
             }
@@ -56,15 +56,15 @@ function show_login_failed(req, res, message) {
 
 const user_register = (req, res) => {
     check_if_email_exists(req, res, function (exists, error) {
-        
+
         if (error) {
             show_register_failed(req, res, "Napaka na strani streznika.");
         } else if (!exists) {
             axios.post(apiParametri.streznik + '/api/users', {
                     params: {
                         firstname: req.body.firstname,
-                        lastname:req.body.lastname,
-                        email:req.body.email,
+                        lastname: req.body.lastname,
+                        email: req.body.email,
                         password: req.body.password,
                         firstname: req.body.firstname,
                     }
@@ -113,15 +113,21 @@ const user_logout = (req, res) => {
     if (req.session) {
         req.session.destroy(function (err) {
             if (err) {
-                res.sendStatus(500).json("Cannot destroy session");
+                show_failed_logout(req, res, "Napaka pri reset seje");
             } else {
                 res.redirect('/');
             }
         });
     } else {
-        res.sendStatus(200).json("No session logged");
+        show_failed_logout(req, res, "Seja uporabnika ne obstaja");
     }
 };
+
+function show_failed_logout(req, res, message) {
+    res.render('profile', {
+        alert_error: message
+    });
+}
 
 const register = (req, res) => {
     res.render('register', {
@@ -170,9 +176,10 @@ const logged_user_profile = (req, res) => {
 };
 
 const profile = (req, res) => {
+    const is_user_logged = req.session.user_id != null;
     var idUser = req.body.idUser != null ? req.body.idUser : req.session.user_id;
     console.log(idUser);
-    
+
     axios.get(apiParametri.streznik + '/api/users/' + idUser, {
             params: req.body.params
         })
@@ -187,9 +194,11 @@ const profile = (req, res) => {
                     vehicles = vehicles.map(function (vehicle) {
                         return {
                             name: vehicle.model + " " + vehicle.make,
-                            image: vehicle.image
+                            image: vehicle.image,
+                            show_controls: true
                         }
                     });
+                    console.log(vehicles);
 
                     axios.get(apiParametri.streznik + '/api/users/' + idUser + '/favourite_vehicles', {
                             params: req.params
@@ -203,16 +212,28 @@ const profile = (req, res) => {
                                 }
                             });
 
+                            console.log(favourite_vehicles);
+
+
                             res.render('profile', {
                                 firstname: user.firstname,
                                 lastname: user.lastname,
                                 mail: user.email,
                                 phone_number: user.phone_number,
                                 location: user.location,
-                                profile_picture: user.profile_picture,
+                                profile_picture: user.profile_picture ? user.profile_picture : "/images/avatarUser.png",
+                                owned_cars: vehicles.length > 0 ? vehicles : [{
+                                    name: "Add a vehicle",
+                                    image: "/images/car_1.jpg",
+                                    show_controls: false
+                                }],
+                                favourite_cars: favourite_vehicles.length > 0 ? favourite_vehicles : [{
+                                    name: "Like a vehicle",
+                                    image: "/images/car_1.jpg"
+                                }],
 
-                                owned_cars: vehicles,
-                                favourite_cars: favourite_vehicles
+                                user_logged: is_user_logged
+
 
                             });
                         })
@@ -327,11 +348,33 @@ const resetpassword_submit = (req, res) => {
     });
 };
 
+const user_delete = (req, res) => {
+    const user_id = req.session.user_id;
+    console.log("User delete");
+    console.log(user_id);
+    axios.delete(apiParametri.streznik + '/api/users/' + user_id, {
+            params: {
+                idUser: user_id
+            }
+        })
+        .then((response) => {
+            user_logout(req, res);
+        })
+        .catch((error) => {
+            console.log(error);
+            show_failed_delete_user(req, res, "Error while deleting user");
+        });
+}
+
+function show_failed_delete_user(req, res, message) {
+    res.send("profile", {
+        alert_error: message
+    });
+}
+
 module.exports = {
     login,
-    //login_attempt,
     register,
-    //register_attempt,
     forgotpassword,
     resetpassword,
     resetpassword_submit,
@@ -345,5 +388,6 @@ module.exports = {
     user_register,
     book,
     confirm,
-    logged_user_profile
+    logged_user_profile,
+    user_delete
 };
