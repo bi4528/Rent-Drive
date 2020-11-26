@@ -5,10 +5,11 @@ const Vehicle = mongoose.model('Vehicle');
 const validate = require('./../../public/javascripts/validate');
 
 const get_all_users = (req, res) => {
-    User.exec((error, user) => {
+    User.find({}, function(error, user) {
+        console.log(user);
         if (!user) {
             return res.status(404).json({
-                "message": "User not found1."
+                "message": "User not found."
             });
         } else if (error) {
             return res.status(500).json(error);
@@ -142,7 +143,7 @@ const check_if_user_exists = (req, res) => {
     }).limit(1).exec((napaka, users) => {
         if (napaka) {
             return res.status(500).json(napaka);
-        } else if (!users) {
+        } else if (!users || !users[0]) {
             return res.status(200).json(null);
         } else {
             res.status(200).json(users[0]._id);
@@ -208,7 +209,7 @@ const get_favourite_vehicles = (req, res) => {
     User.findById(req.params.idUser).select('favourite_vehicles_ids').exec((error, user) => {
         if (!user) {
             return res.status(404).json({
-                "message": "User not found5."
+                "message": "User not found."
             });
         } else if (error) {
             return res.status(500).json(error);
@@ -221,7 +222,7 @@ const get_favourite_vehicles = (req, res) => {
         }).exec((error, vehicles) => {
             if (!vehicles) {
                 return res.status(404).json({
-                    "message": "vehicles not found."
+                    "message": "Favourite vehicles not found."
                 });
             } else if (error) {
                 return res.status(500).json(error);
@@ -232,6 +233,8 @@ const get_favourite_vehicles = (req, res) => {
 };
 
 const get_vehicles_of_user = (req, res) => {
+    console.log(req.body);
+    console.log(req.params);
     Vehicle.find({
         owner_id: {
             $in: req.params.idUser
@@ -243,8 +246,9 @@ const get_vehicles_of_user = (req, res) => {
             });
         } else if (error) {
             return res.status(500).json(error);
+        } else {
+            res.status(200).json(vehicles);
         }
-        res.status(200).json(vehicles);
     });
 };
 

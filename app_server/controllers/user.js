@@ -31,33 +31,34 @@ const user_login = (req, res) => {
                 password: password
             }
         })
-        .then((user_id) => {
-            if (user_id != null) {
-                req.session.user_id = user_id.data;
-                req.session.save(function (err) {
-                    if (err) console.log(err);
-                    res.redirect('/');
-                });
+        .then((response) => {
+            if (response.data != null) {
+                req.session.user_id = response.data;
+                console.log(req.session);
+                res.redirect('/');
                 
             } else {
-                res.sendStatus(500).json("Error mail or password not correct");
+                show_login_failed(req, res, "Uporabnik ni bil najden.");
             }
         })
         .catch((error) => {
             console.log(error);
-            login(req, res);
+            show_login_failed(req, res, "Napaka na strani APIja.")
         });
 };
+
+function show_login_failed(req, res, message) {
+    res.render('login', {
+        layout: 'account-layout.hbs',
+        alert_error: message
+    });
+}
 
 const user_register = (req, res) => {
     check_if_email_exists(req, res, function (exists, error) {
         
         if (error) {
-            console.log(error);
-            res.render('register', {
-                layout: 'account-layout.hbs',
-                alert_error: "Napaka na strani streznika."
-            });
+            show_register_failed(req, res, "Napaka na strani streznika.");
         } else if (!exists) {
             axios.post(apiParametri.streznik + '/api/users', {
                     params: {
@@ -70,27 +71,29 @@ const user_register = (req, res) => {
                 })
                 .then((response) => {
                     if (response.data != null) {
+                        console.log(response.data);
+                        req.session.user_id = response.data._id;
                         res.redirect('/');
                     } else {
-                        console.log(response.data);
-                        res.sendStatus(500).json("Error mail or password not correct");
+                        show_register_failed(req, res, "Error mail or password not correct");
                     }
                 })
                 .catch((error) => {
                     console.log(error);
-                    res.render('register', {
-                        layout: 'account-layout.hbs',
-                        alert_error: "Napaka med ustvarjaljem uporabnika."
-                    });
+                    show_register_failed(req, res, "Napaka med ustvarjaljem uporabnika.");
                 });
         } else {
-            res.render('register', {
-                layout: 'account-layout.hbs',
-                alert_error: "Uporabnik s tem mailom ze obstaja."
-            });
+            show_register_failed(req, res, "Uporabnik s tem mailom ze obstaja.");
         }
     });
 };
+
+function show_register_failed(req, res, message) {
+    res.render('register', {
+        layout: 'account-layout.hbs',
+        alert_error: message
+    });
+}
 
 const check_if_email_exists = (req, res, callback) => {
     axios.get(apiParametri.streznik + '/api/users/check/exists_mail', {
@@ -112,7 +115,7 @@ const user_logout = (req, res) => {
             if (err) {
                 res.sendStatus(500).json("Cannot destroy session");
             } else {
-                mainController.home(req, res);
+                res.redirect('/');
             }
         });
     } else {
@@ -120,39 +123,11 @@ const user_logout = (req, res) => {
     }
 };
 
-/*const login_attempt = (req, res) => {
-    console.log(usersJSON.users);
-    var success = false;
-    for (var i = 0; i < usersJSON.users.length; i++) {
-        //console.log(usersJSON.users[i].email);
-        //console.log(usersJSON.users[i].password);
-        if(usersJSON.users[i].email == req.body.email && usersJSON.users[i].password==req.body.password) {
-            success = true;
-            break;
-        }
-    }
-    if (success) res.render('home', dataJSON);
-    else {
-        res.render('login',  {layout: 'account-layout.hbs', failed_login: true});
-    } 
-};*/
-
 const register = (req, res) => {
     res.render('register', {
         layout: 'account-layout.hbs'
     });
 };
-
-/*const register_attempt = (req,res) => {
-    usersJSON.users.push(JSON.parse(JSON.stringify(req.body)));
-    console.log(usersJSON.users);
-    fs.writeFile('app_server/models/users.json', JSON.stringify(usersJSON,null,'\t'), function (err) {
-        if (err) throw err;
-    });
-    res.render('login', {
-        layout: 'account-layout.hbs'
-    });
-};*/
 
 const forgotpassword = (req, res) => {
     res.render('forgotpassword', {
@@ -191,25 +166,24 @@ const forgot_password_recover = (req, res) => {
 
 
 const logged_user_profile = (req, res) => {
-    var id = req.session.user_id;
-    console.log(req.session);
-    console.log(req.session.user_id);
-    profile(req, res, id);
+    profile(req, res);
 };
 
-const profile = (req, res, idUserT) => {
-    var idUser = idUserT != null ? idUserT : req.body.idUser;
+const profile = (req, res) => {
+    var idUser = req.body.idUser != null ? req.body.idUser : req.session.user_id;
     console.log(idUser);
-    console.log(req.body);
+    
     axios.get(apiParametri.streznik + '/api/users/' + idUser, {
-            params: req.params
+            params: req.body.params
         })
-        .then((user) => {
+        .then((response) => {
+            console.log(response.data);
+            var user = response.data;
             axios.get(apiParametri.streznik + '/api/users/' + idUser + '/vehicles', {
-                    params: req.params
+                    params: req.body.params
                 })
-                .then((vehicles) => {
-
+                .then((response) => {
+                    var vehicles = response.data;
                     vehicles = vehicles.map(function (vehicle) {
                         return {
                             name: vehicle.model + " " + vehicle.make,
@@ -220,7 +194,8 @@ const profile = (req, res, idUserT) => {
                     axios.get(apiParametri.streznik + '/api/users/' + idUser + '/favourite_vehicles', {
                             params: req.params
                         })
-                        .then((favourite_vehicles) => {
+                        .then((response) => {
+                            var favourite_vehicles = response.data;
                             favourite_vehicles = favourite_vehicles.map(function (favourite_vehicle) {
                                 return {
                                     name: favourite_vehicle.model + " " + favourite_vehicle.make,
@@ -241,16 +216,19 @@ const profile = (req, res, idUserT) => {
 
                             });
                         })
-                        .catch(() => {
-                            res.sendStatus(500).json("Error while searching user");
+                        .catch((error) => {
+                            console.log(error);
+                            res.sendStatus(500).json("Error while searching favourite vehicles of user");
                         });
                 })
-                .catch(() => {
-                    res.sendStatus(500).json("Error while searching user");
+                .catch((error) => {
+                    console.log(error);
+                    res.sendStatus(500).json("Error while searching vehicles of user");
                 });
 
         })
-        .catch(() => {
+        .catch((error) => {
+            console.log(error);
             res.sendStatus(500).json("Error while searching user");
         });
 

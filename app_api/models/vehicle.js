@@ -8,6 +8,7 @@ const reviewSchema = new mongoose.Schema({
 });
 
 const vehicleSchema = new mongoose.Schema({
+    owner_id: String,
     make: String,
     model: String,
     typeoffuel: String,
