@@ -1,5 +1,13 @@
 <main>
   <section class="container">
+    {{#if alert_error}}
+    <div id="alert" class="alert alert-danger alert-dismissible fade show" role="alert">
+      <p>{{alert_error}}</p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {{/if}}
     <div id="edit_uporabnik" class="col-12">
       <button type="button" onclick="save_button_clicked()" class="btn btn-primary shrani_podatke_gumb"
         onclick="location.href='/users/my'">Save</button>

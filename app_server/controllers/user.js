@@ -176,15 +176,13 @@ const logged_user_profile = (req, res) => {
 };
 
 const profile = (req, res) => {
-    const is_user_logged = req.session.user_id != null;
     var idUser = req.body.idUser != null ? req.body.idUser : req.session.user_id;
-    console.log(idUser);
 
     axios.get(apiParametri.streznik + '/api/users/' + idUser, {
             params: req.body.params
         })
         .then((response) => {
-            console.log(response.data);
+            
             var user = response.data;
             axios.get(apiParametri.streznik + '/api/users/' + idUser + '/vehicles', {
                     params: req.body.params
@@ -195,10 +193,10 @@ const profile = (req, res) => {
                         return {
                             name: vehicle.model + " " + vehicle.make,
                             image: vehicle.image,
-                            show_controls: true
+                            id: vehicle._id,
+                            show_controls: idUser == req.session.user_id
                         }
                     });
-                    console.log(vehicles);
 
                     axios.get(apiParametri.streznik + '/api/users/' + idUser + '/favourite_vehicles', {
                             params: req.params
@@ -208,49 +206,28 @@ const profile = (req, res) => {
                             favourite_vehicles = favourite_vehicles.map(function (favourite_vehicle) {
                                 return {
                                     name: favourite_vehicle.model + " " + favourite_vehicle.make,
-                                    image: favourite_vehicle.image
+                                    image: favourite_vehicle.image,
+                                    id: favourite_vehicle._id
                                 }
                             });
 
-                            console.log(favourite_vehicles);
-
-
-                            res.render('profile', {
-                                firstname: user.firstname,
-                                lastname: user.lastname,
-                                mail: user.email,
-                                phone_number: user.phone_number,
-                                location: user.location,
-                                profile_picture: user.profile_picture ? user.profile_picture : "/images/avatarUser.png",
-                                owned_cars: vehicles.length > 0 ? vehicles : [{
-                                    name: "Add a vehicle",
-                                    image: "/images/car_1.jpg",
-                                    show_controls: false
-                                }],
-                                favourite_cars: favourite_vehicles.length > 0 ? favourite_vehicles : [{
-                                    name: "Like a vehicle",
-                                    image: "/images/car_1.jpg"
-                                }],
-
-                                user_logged: is_user_logged
-
-
-                            });
+                            show_profile(req, res, user, vehicles, favourite_vehicles);
+                            
                         })
                         .catch((error) => {
                             console.log(error);
-                            res.sendStatus(500).json("Error while searching favourite vehicles of user");
+                            show_failed_profile(req, res, "Error while searching favourite vehicles of user");
                         });
                 })
                 .catch((error) => {
                     console.log(error);
-                    res.sendStatus(500).json("Error while searching vehicles of user");
+                    show_failed_profile(req, res, "Error while searching vehicles of user");
                 });
 
         })
         .catch((error) => {
             console.log(error);
-            res.sendStatus(500).json("Error while searching user");
+            show_failed_profile(req, res, "Error while searching user");
         });
 
 };
@@ -259,69 +236,77 @@ const edit_profile_action = (req, res) => {
     console.log(req);
 };
 
+function show_profile(req, res, user, vehicles, favourite_vehicles) {
+    const is_user_logged = req.session.user_id != null;
+    res.render('profile', {
+        firstname: user.firstname,
+        lastname: user.lastname,
+        mail: user.email,
+        phone_number: user.phone_number,
+        location: user.location,
+        profile_picture: user.profile_picture ? user.profile_picture : "/images/avatarUser.png",
+        owned_cars: vehicles.length > 0 ? vehicles : [{
+            name: "Add a vehicle",
+            image: "/images/car_1.jpg",
+            show_controls: false
+        }],
+        favourite_cars: favourite_vehicles.length > 0 ? favourite_vehicles : [{
+            name: "Like a vehicle",
+            image: "/images/car_1.jpg"
+        }],
+
+        user_logged: is_user_logged,
+        is_profile_of_logged_user: req.session.user_id == user._id
+    });
+}
+
+function show_failed_profile(req, res, message) {
+    const is_user_logged = req.session.user_id != null;
+    res.render('profile', {
+        user_logged: is_user_logged,
+        alert_error: message
+    });
+}
+
 
 const edit_profile = (req, res) => {
 
+     var idUser = req.body.idUser != null ? req.body.idUser : req.session.user_id;
+
+     axios.get(apiParametri.streznik + '/api/users/' + idUser, {
+             params: req.body.params
+         })
+         .then((response) => {
+
+            const user = response.data;
+            show_edit_profile(req, res, user);
+         })
+         .catch((error) => {
+             console.log(error);
+             show_failed_edit_profile(req, res, "Error while searching user");
+         });
+};
+
+function show_edit_profile(req, res, user) {
+    const user_id = req.session.user_id;
     res.render('edit_profile', {
-        firstname: 'Tone',
-        lastname: 'Bine',
-        mail: 'josh_smith@gmail.com',
-        phone_number: '+38670789654',
-        location: 'Koper, Slovenia',
-        profile_picture: '/images/car_1.jpg',
-
-        owned_cars: [{
-                name: 'ferrari',
-                image: '/images/car_2.jpg'
-            },
-            {
-                name: 'mustang',
-                image: "/images/car_3.jpg"
-            }
-        ],
-        favourite_cars: [{
-                name: 'ferrari',
-                image: '/images/car_2.jpg'
-            },
-            {
-                name: 'mustang',
-                image: "/images/car_3.jpg"
-            }
-        ]
-
+        firstname: user.firstname,
+        lastname: user.lastname,
+        mail: user.email,
+        phone_number: user.phone_number,
+        location: user.location,
+        profile_picture: user.profile_picture ? user.profile_picture : "/images/avatarUser.png",
+        user_logged: user_id != null,
+        is_profile_of_logged_user: user_id == user._id
     });
-};
+}
 
-const tuji_profile = (req, res) => {
-    res.render('tuji_profile', {
-        firstname: 'Tone',
-        lastname: 'Bine',
-        mail: 'josh_smith@gmail.com',
-        phone_number: '+38670789654',
-        location: 'Koper, Slovenia',
-        profile_picture: '/images/car_1.jpg',
-
-        owned_cars: [{
-                name: 'ferrari',
-                image: '/images/car_2.jpg'
-            },
-            {
-                name: 'mustang',
-                image: "/images/car_3.jpg"
-            }
-        ],
-        favourite_cars: [{
-                name: 'ferrari',
-                image: '/images/car_2.jpg'
-            },
-            {
-                name: 'mustang',
-                image: "/images/car_3.jpg"
-            }
-        ]
-
+function show_failed_edit_profile(req, res, message) {
+    res.render('edit_profile', {
+        alert_error: message,
+        user_logged: is_user_logged
     });
-};
+}
 
 const book = (req, res) => {
     res.render('book', {
@@ -372,6 +357,37 @@ function show_failed_delete_user(req, res, message) {
     });
 }
 
+function show_failed_delete_user(req, res, message) {
+    res.send("profile", {
+        alert_error: message
+    });
+}
+
+const remove_user_vehicle = (req, res) => {
+    const user_id = req.session.user_id;
+    
+    console.log(req.url);
+    console.log(req.body);
+    console.log(req.query);
+
+    const vehicle_id = null;
+
+    axios.delete(apiParametri.streznik + '/api/vehicles/' + vehicle_id, {
+            params: {
+                idVehicle: vehicle_id
+            }
+        })
+        .then((response) => {
+            profile(req, res);
+        })
+        .catch((error) => {
+            console.log(error);
+            show_failed_delete_vehicle(req, res, "Error while deleting vehicle");
+        });
+}
+
+
+
 module.exports = {
     login,
     register,
@@ -380,7 +396,6 @@ module.exports = {
     resetpassword_submit,
     profile,
     edit_profile,
-    tuji_profile,
     edit_profile_action,
     forgot_password_recover,
     user_login,
@@ -389,5 +404,6 @@ module.exports = {
     book,
     confirm,
     logged_user_profile,
-    user_delete
+    user_delete,
+    remove_user_vehicle
 };

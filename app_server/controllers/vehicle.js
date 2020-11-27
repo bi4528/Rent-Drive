@@ -38,7 +38,10 @@ const showvehicleprofile = (req, res, data) =>{
 };
 
 const publish = (req, res) => {
-    res.render('publish');
+    const is_user_logged = req.session.user_id != null;
+    res.render('publish', {
+        user_logged: is_user_logged
+    });
 };
 
 const submitcar = (req, res) => {
