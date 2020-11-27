@@ -250,8 +250,6 @@
     {
         "make": "Smart",
         "model": "ForTwo",
-        "addres": "Potrčeva 14",
-        "zip": "1000",
         "location": "Ljubljana, Slovenia",
         "hp": "70",
         "maxspeed": "140",

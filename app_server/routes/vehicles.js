@@ -7,7 +7,7 @@ const ctrlVehicle = require("../controllers/vehicle");
 
 //var upload = multer({ dest: 'public/uploads/' });
 
-
+/*
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, 'public/uploads/');
@@ -19,7 +19,7 @@ var storage = multer.diskStorage({
     }
 });
 var upload = multer({ storage: storage });
-
+*/
 
 
 router.get('/other',ctrlVehicle.vehicleprofile);
@@ -29,7 +29,13 @@ router.post('/other',ctrlVehicle.vehicleprofile_book);
 router
     .route('/publish')
     .get(ctrlVehicle.publish)
-    .post(upload.array('carphotos',3), ctrlVehicle.submitcar);
+    .post(ctrlVehicle.submitcar);
+    //.post(upload.array('carphotos',3), ctrlVehicle.submitcar);
+
+router
+    .route('/:id/reviews')
+    .get(ctrlVehicle.review)
+    .post(ctrlVehicle.postReview);
 
 router.get('/:id', ctrlVehicle.vehicleprofile2);
 router.get('/:id/edit',ctrlVehicle.editvehicleprofile);

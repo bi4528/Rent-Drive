@@ -15,7 +15,7 @@ const vehiclesAll = (req, res) => {
             if (!dataJSON) {
                 return res.status(404).json({
                     "sporočilo":
-                        "Ne najdem lokacije s podanim enoličnim identifikatorjem idLokacije."
+                        "Ne najdem avte."
                 });
             }
             else if (err) {
@@ -28,8 +28,7 @@ const vehiclesAll = (req, res) => {
                 const dateFrom = req.query.dateFrom;
                 const dateTo = req.query.dateTo;
                 const category = req.query.category;
-                
-                
+            
                 
                 if (isEmpty(keyWord) && isEmpty(city) && isEmpty(category)) {
                     //dataJSON.filter = "<H3>No filter applied</H3>";
@@ -109,7 +108,7 @@ const vehiclesUpload = (req, res) => {
             res.status(400).json(err);
         } else {
             res.status(201).json(data);
-            //res.redirect('/');
+        
         }
     });
 };
@@ -121,7 +120,7 @@ const vehiclesFind = (req, res) => {
             if (!data) {
                 return res.status(404).json({
                     "sporočilo":
-                        "Ne najdem lokacije s podanim enoličnim identifikatorjem idLokacije."
+                        "Ne najdem avto s podanim enoličnim identifikatorjem id."
                 });
             }
             else if (err) {

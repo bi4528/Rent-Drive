@@ -43,9 +43,9 @@ const addReview = (req, res, data) => {
     }
 };
 const reviewsUpload = (req, res) => {
-    const idVehicle = req.params.idVehicle;
+    const idVehicle = req.params.id;
     if (idVehicle) {
-        Lokacija
+        Vehicles
             .findById(idVehicle)
             .select('reviews')
             .exec((err, data) => {
@@ -53,13 +53,12 @@ const reviewsUpload = (req, res) => {
                     res.status(400).json(err);
                 } else {
                     addReview(req, res, data);
-                    res.status(200).json({ "status": "uspešno" });
                 }
             });
     } else {
         res.status(400).json({
             "sporočilo":
-                "Ne najdem lokacije, idVehicle je obvezen parameter."
+                "Ne najdem avto, idVehicle je obvezen parameter."
         });
     }
 };
@@ -108,7 +107,7 @@ const reviewsDelete = (req, res) => {
     if (!idVehicle || !idReview) {
         return res.status(404).json({
             "sporočilo":
-                "Ne najdem lokacije oz. komentarja, " +
+                "Ne najdem avto oz. komentarja, " +
                 "idVehicle in idReview sta obvezna parametra."
         });
     }
