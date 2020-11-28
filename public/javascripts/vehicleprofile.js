@@ -59,10 +59,14 @@ function appendToForm (){
     var email = document.getElementsByClassName("contact-details")[1].innerText;
     var location = document.getElementsByClassName("contact-details")[2].innerText;
     var username = document.getElementsByClassName("blockquote-footer")[0].innerText;
-    addHiddenInput(dateForm,phone,"phones");
+    var vehicle_picture = document.getElementsByClassName("carousel-item")[0].children[0].getAttribute("src");
+    var description = document.getElementsByClassName("blockquote")[0].children[0].innerText;
+    addHiddenInput(dateForm,phone,"phone");
     addHiddenInput(dateForm,email,"email");
     addHiddenInput(dateForm,location,"location");
     addHiddenInput(dateForm,username,"username");
+    addHiddenInput(dateForm,vehicle_picture,"vehicle_picture");
+    addHiddenInput(dateForm,description,"description");
 }
 
 function addHiddenInput(form, string, inputName){
