@@ -12,7 +12,7 @@
                         <p class="card-text">{{drugi.description}}</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Pick-up date: {{date.[0]}}</li>
+                        <li class="list-group-item">Pick-up date: {{drugi.date.[0]}}</li>
                         <li class="list-group-item">Location: {{drugi.pickup_locations}}</li>
                         <li class="list-group-item">Return date: {{drugi.date.[1]}}</li>
                         <li class="list-group-item">Daily price: {{drugi.daily-price}}</li>
@@ -53,16 +53,20 @@
             </div>
             <div class="col-sm-4">
                 <div class="card">
-                    <img src="/images/207447_vuk_ff.jpg" class="card-img-top" alt="Vuk">
+                    <img src="{{prvi.profile_picture}}" class="card-img-top" alt="Vuk">
                     <div class="card-body">
-                        <h5 class="card-title">My Profile:</h5>
-                        <p class="card-text">Note: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="card-title">My Profile:{{prvi.username}}</h5>
+                        <p class="card-text">This is your contact information. Please, check it!</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Name:{{prvi.username}}</li>
+                        {{#if firstname}}
+                            <li class="list-group-item">Full name:{{prvi.firstname}} {{prvi.lastname}}</li>
+                        {{/if}}
                         <li class="list-group-item">e-mail: {{prvi.email}}</li>
                         <li class="list-group-item">Number: {{prvi.phone}}</li>
-                        <li class="list-group-item">Location: {{prvi.location}}</li>
+                        {{#if location}}
+                            <li class="list-group-item">Location: {{prvi.location}}</li>
+                        {{/if}}
                     </ul>
                     <div class="card-body">
                         <a href="/users/edit" class="card-link stretched-link text-primary">
