@@ -236,7 +236,22 @@ const editvehicleprofile_submit = (req, res) => {
 
 const vehicleprofile_book = (req, res) => {
     console.log(req.body);
-    res.render('book', req.body);
+    //user.logged_user_profile(req,res);
+    //console.log(res.body);
+    var idUser = req.session.user_id;
+    console.log(idUser);
+    axios.get(appiParams.server + '/api/users/' + idUser, {
+        params: req.body.params
+    })
+        .then((response) => {
+            var user = {"prvi": response.data, "drugi": req.body};
+            res.render('book', user);
+            console.log(user);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
 };
 
 function getAverageRating(odgovor) {
