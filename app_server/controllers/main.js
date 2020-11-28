@@ -37,7 +37,7 @@ const home = (req, res) => {
 const showVehiclesHome = (req, res, data, sporocilo) => {
     var is_user_logged = req.session.user_id != null;
     res.render('home', {
-        
+
         "title": "Seznam avtomobilov",
         "cars": data,
         "error": sporocilo,
@@ -134,7 +134,7 @@ const showVehiclesSearch = (req, res, data, sporocilo) => {
     const dateFrom = req.query.dateFrom;
     const dateTo = req.query.dateTo;
     const category = req.query.category;
-    filter="";
+    filter = "";
     if (!isEmpty(keyWord)) {
         filter = "<H3>Filtered by keyword: \"" + keyWord + "\"</H3>";
     }
@@ -220,13 +220,13 @@ const nearby = (req, res) => {
                             if (jsonObj.length >= 3) return;
                             item = {};
                             // nastavim default vrednosti, v slučaju da so neke prazne
-                            item ["make"] = car.make || 'Automobil';
-                            item ["model"] = car.model || 'Model';
-                            item ["address"] = car.addres || 'Trg Osvobodilne fronte 4';
-                            item ["city"] = car.city || 'Ljubljana';
-                            item ["country"] = car.country || 'Slovenija';
-                            item ["LAT"] = 46.050166466;
-                            item ["LNG"] = 14.502164658;
+                            item["make"] = car.make || 'Automobil';
+                            item["model"] = car.model || 'Model';
+                            item["address"] = car.addres || 'Trg Osvobodilne fronte 4';
+                            item["city"] = car.city || 'Ljubljana';
+                            item["country"] = car.country || 'Slovenija';
+                            item["LAT"] = 46.050166466;
+                            item["LNG"] = 14.502164658;
 
                             //URL encoding converts characters into a format that can be transmitted over the Internet.
                             //izdelava request zahtev
@@ -310,8 +310,95 @@ const nearby = (req, res) => {
     }
 };
 
+const db = (req, res) => {
+    res.render('db');
+};
+
+let dataVehicles = require('../models/vehicles-test.json');
+
+function addReviews(index, id) {
+    i = index;
+    for (var j = 0; j < dataVehicles[i].reviews.length; j++) {
+        axios({
+            method: 'post',
+            url: '/api/vehicles/' + id + '/reviews/',
+            data: {
+                username: dataVehicles[i].reviews[j].username,
+                comment: dataVehicles[i].reviews[j].comment,
+                rating: dataVehicles[i].reviews[j].rating,
+                img: dataVehicles[i].reviews[j].img,
+            }
+        }).then(() => {
+            //res.redirect('/vehicles/' + id);
+        }).catch((napaka) => {
+            console.log("NAPAKA PRI VPIS REVIEWS");
+        });
+    }
+}
+
+function addVehicles() {
+    for (let i = 0; i < dataVehicles.length; i++) {
+        axios({
+            method: 'post',
+            url: '/api/vehicles',
+            data: {
+                images: dataVehicles[i].images,
+                owner_id: dataVehicles[i].owner_id,
+                make: dataVehicles[i].make,
+                model: dataVehicles[i].model,
+                typeoffuel: dataVehicles[i].typeoffuel,
+                category: dataVehicles[i].category,
+                hp: dataVehicles[i].hp,
+                maxspeed: dataVehicles[i].maxspeed,
+                acceleration: dataVehicles[i].acceleration,
+                consumption: dataVehicles[i].consumption,
+                seats: (dataVehicles[i].seats),
+                doors: (dataVehicles[i].doors),
+                AirConditioning: dataVehicles[i].AirConditioning,
+                Navigation: dataVehicles[i].Navigation,
+                USB: dataVehicles[i].USB,
+                AUX: dataVehicles[i].AUX,
+                autopilot: dataVehicles[i].autopilot,
+                bluetooth: dataVehicles[i].bluetooth,
+                parkingsensors: dataVehicles[i].parkingsensors,
+                accessibility: dataVehicles[i].accessibility,
+                description: dataVehicles[i].description,
+                addres: dataVehicles[i].addres,
+                city: dataVehicles[i].city,
+                zip: dataVehicles[i].zip,
+                price: dataVehicles[i].price,
+                number: dataVehicles[i].number,
+                date: dataVehicles[i].date,
+                minage: dataVehicles[i].minage,
+                luggage: dataVehicles[i].luggage,
+                avatar: dataVehicles[i].avatar,
+                username: dataVehicles[i].username,
+                email: dataVehicles[i].email
+            }
+        }).then((ans) => {
+            addReviews(i, ans.data._id);
+        }).catch((err) => {
+            console.log("NAPAKA PRI UPIS AVTO");
+            console.log(err);
+        })
+    }
+}
+
+const dbadd = (req, res) => {
+    addVehicles();
+    res.redirect('/');
+};
+
+const dbdel = (req, res) => {
+
+};
+
+
 module.exports = {
     home,
     search,
-    nearby
+    nearby,
+    db,
+    dbadd,
+    dbdel
 };
