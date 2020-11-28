@@ -194,7 +194,7 @@ const profile = (req, res) => {
                     vehicles = vehicles.map(function (vehicle) {
                         return {
                             name: vehicle.model + " " + vehicle.make,
-                            image: vehicle.image,
+                            image: vehicle.images[0],
                             id: vehicle._id,
                             show_controls: idUser == req.session.user_id
                         }
@@ -308,15 +308,15 @@ function show_profile(req, res, user, vehicles, favourite_vehicles) {
         mail: user.email,
         phone_number: user.phone_number,
         location: user.location,
-        profile_picture: user.profile_picture ? user.profile_picture : "/images/avatarUser.png",
+        profile_picture: user.profile_picture ? user.profile_picture : "avatarUser.png",
         owned_cars: vehicles.length > 0 ? vehicles : [{
             name: "Add a vehicle",
-            image: "/images/car_1.jpg",
+            image: "car_1.jpg",
             show_controls: false
         }],
         favourite_cars: favourite_vehicles.length > 0 ? favourite_vehicles : [{
             name: "Like a vehicle",
-            image: "/images/car_1.jpg"
+            image: "car_1.jpg"
         }],
 
         user_logged: is_user_logged,

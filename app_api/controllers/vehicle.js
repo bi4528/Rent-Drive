@@ -74,6 +74,8 @@ const vehiclesAll = (req, res) => {
 
 
 const vehiclesUpload = (req, res) => {
+    console.log("Vehicle upload");
+    console.log(req.body);
     Vehicle.create({
         images: req.body.images,
         owner_id: req.body.owner_id,
