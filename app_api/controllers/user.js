@@ -96,6 +96,7 @@ const get_user_data = (req, res) => {
 };
 
 const updated_profile_data = (req, res) => {
+    console.log(req.body.params);
 
     var firstname = req.body.params.firstname;
     var lastname = req.body.params.lastname;

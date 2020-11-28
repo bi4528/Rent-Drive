@@ -12,14 +12,14 @@
       <button type="button" onclick="save_button_clicked()" class="btn btn-primary shrani_podatke_gumb"
         onclick="location.href='/users/my'">Save</button>
       <h2>Edit your profile</h2>
-      <form method="post" action="/users/edit">
+      <form method="post" action="/users/edit" enctype="multipart/form-data">
         <div class="form-group">
           <div style="min-height:45px">
             <label>Profile picture:</label>
           </div>
           <img name="profile_picture" class="rounded-circle slika_uporabnika" src="{{profile_picture}}" alt="Slika profila">
           <label for="file-upload" class="btn btn-warning shrani_sliko_uporabnika">Choose image</label>
-          <input style="display:none" id="file-upload" type="file" />
+          <input style="display:none" id="file-upload" type="file" name="profile_picture"/>
         </div>
         <div class="form-group">
           <label>Firstname:</label>
