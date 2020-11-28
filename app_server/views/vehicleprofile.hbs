@@ -26,6 +26,7 @@
 
   <div class="container-fluid pt-5 pb-3">
     <!--- ime-->
+     <input type="hidden" name="_id" id="_id" value="{{_id}}">
     <div class="row justify-content-center ml-3">
       <div class="name">
         <h2 class="inline car-name">{{make}} {{model}}</h2>
@@ -45,13 +46,19 @@
     <!--- lastnik in opis-->
     <div class="row m-3">
       <div class="col-sm-12 col-md-4 ">
-        <!--href="users/other$id={{user_id}}"-->
+        <!--href="users/other$id={{owner_id}}"-->
         <input name="avatar" type="hidden" value="{{avatar}}">
-        <a href="/users/other"><img class="avatar" src="{{avatar}}" alt="avatar"></a>
+        <a href="/users/profiles/{{owner_id}}"><img class="avatar" src="{{avatar}}" alt="avatar"></a>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item contact-details"><i class="fas fa-phone"></i>{{number}}</li>
-          <li class="list-group-item contact-details"><i class="far fa-envelope"></i>{{email}}</li>
-          <li class="list-group-item contact-details"><i class="far fa-map"></i>{{location}}</li>
+          <input type="hidden" name="owner_id" id="owner_id" value="{{owner_id}}">
+          {{#if firstname}}
+          <li id="fullname" class="list-group-item contact-details"><i class="fas fa-user"></i>{{firstname}} {{lastname}}</li>
+          {{/if}}
+          <li id="phone" class="list-group-item contact-details"><i class="fas fa-phone"></i>{{number}}</li>
+          <li id="email" class="list-group-item contact-details"><i class="far fa-envelope"></i>{{email}}</li>
+          {{#if location}}
+          <li id="location" class="list-group-item contact-details"><i class="far fa-map"></i>{{location}}</li>
+          {{/if}}
         </ul>
       </div>
       <div class="col-sm-12 col-md-7 offset-md-1">

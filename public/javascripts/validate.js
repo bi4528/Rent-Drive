@@ -122,3 +122,7 @@ exports.validate_dates = function(date1, date2) {
 function validate_no_spaces(word){
     return no_spaces.test(word);
 }
+
+exports.validate_no_spaces =function(word){
+    return no_spaces.test(word);
+}

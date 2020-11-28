@@ -1,0 +1,10 @@
+[{
+        "firstname": "Branko",
+        "lastname": "Jurisic",
+        "phone_number": "3478198984",
+        "email": "bj1234@gmail.com",
+        "password": "Brankojelep1!",
+        "profile_picture": "bro.jpeg",
+        "location": "Ljubljana",
+        "favourite_vehicles_ids": []
+}]

@@ -18,7 +18,7 @@
                         <li class="list-group-item">Daily price: {{drugi.daily-price}}</li>
                     </ul>
                     <div class="card-body">
-                            <a href="/vehicles/other" class="card-link text-primary" id="return-link">
+                            <a href="/vehicles/{{_id}}" class="card-link text-primary" id="return-link">
                             <i class="fas fa-caret-left"></i>
                             Return</a>
                         <a href="/users/confirm" class="card-link text-success float-right" id="confirm-link">
@@ -31,17 +31,21 @@
                 <div class="card">
                     <img src="{{drugi.avatar}}" class="card-img-top" alt="Marina">
                     <div class="card-body">
-                        <h5 class="card-title">Owner</h5>
-                        <p class="card-text">These is the contact information of the vehicle owner. For further information please consult the owner!</p>
+                        <h5 class="card-title">Owner: {{drugi.username}}</h5>
+                        <p class="card-text">This is the contact information of the vehicle owner. For further information please consult the owner!</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Name:{{drugi.username}}</li>
+                        {{#if firstname}}
+                        <li class="list-group-item">Full name:{{drugi.firstname}} {{drugi.lastname}}</li>
+                        {{/if}}
                         <li class="list-group-item">e-mail: {{drugi.email}}</li>
                         <li class="list-group-item">Number: {{drugi.phone}}</li>
+                        {{#if location}}
                         <li class="list-group-item">Location: {{drugi.location}}</li>
+                        {{/if}}
                     </ul>
                     <div class="card-body">
-                        <a href="/users/other" class="card-link stretched-link text-primary">
+                        <a href="/users/{{owner_id}}" class="card-link stretched-link text-primary">
                             <i class="fas fa-caret-up"></i>
                             Check profile</a>
                     </div>
@@ -51,7 +55,7 @@
                 <div class="card">
                     <img src="/images/207447_vuk_ff.jpg" class="card-img-top" alt="Vuk">
                     <div class="card-body">
-                        <h5 class="card-title">My Profile</h5>
+                        <h5 class="card-title">My Profile:</h5>
                         <p class="card-text">Note: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                     <ul class="list-group list-group-flush">

@@ -23,6 +23,6 @@ router.post('/edit', ctrlUser.edit_profile_action);
 router.get('/edit', ctrlUser.edit_profile);
 router.get('/book', ctrlUser.book);
 router.get('/confirm', ctrlUser.confirm);
-router.get('/users/delete/vehicles/:idVehicle', ctrlUser.remove_user_vehicle);
+router.get('/delete/vehicles/:idVehicle', ctrlUser.remove_user_vehicle);
     
 module.exports = router;
