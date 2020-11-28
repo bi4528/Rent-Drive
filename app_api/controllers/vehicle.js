@@ -89,13 +89,13 @@ const vehiclesUpload = (req, res) => {
         consumption: parseFloat(req.body.consumption),
         seats: parseInt(req.body.seats),
         doors: parseInt(req.body.doors),
-        AirConditioning: req.body.AirConditioning == null ? "0" : "1",
-        Navigation: req.body.Navigation == null ? "0" : "1",
-        USB: req.body.USB == null ? "0" : "1",
-        AUX: req.body.AUX == null ? "0" : "1",
-        autopilot: req.body.autopilot == null ? "0" : "1",
-        bluetooth: req.body.bluetooth == null ? "0" : "1",
-        parkingsensors: req.body.parkingsensors == null ? "0" : "1",
+        AirConditioning: req.body.AirConditioning,
+        Navigation: req.body.Navigation,
+        USB: req.body.USB,
+        AUX: req.body.AUX,
+        autopilot: req.body.autopilot,
+        bluetooth: req.body.bluetooth,
+        parkingsensors: req.body.parkingsensors,
         description: req.body.description,
         addres: req.body.addres,
         city: req.body.city,
@@ -105,6 +105,7 @@ const vehiclesUpload = (req, res) => {
         date: req.body.date,
         luggage: parseInt(req.body.luggage),
         minage: parseInt(req.body.minage),
+        accessibility = req.body.accessibility,
         reviews: []
     }, (err, data) => {
         if (err) {
