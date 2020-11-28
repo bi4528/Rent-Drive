@@ -30,7 +30,6 @@ const vehicleSchema = new mongoose.Schema({
     accessibility: String,
     description: String,
     price: Number,
-    image: String,
     country: String,
     city: String,
     addres: String,

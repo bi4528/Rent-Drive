@@ -1,5 +1,7 @@
 var nodemailer = require('nodemailer');
 const axios = require('axios');
+const multer = require("multer");
+
 var apiParametri = {
     streznik: 'http://localhost:' + (process.env.PORT || 3000)
 };
@@ -192,7 +194,7 @@ const profile = (req, res) => {
                     vehicles = vehicles.map(function (vehicle) {
                         return {
                             name: vehicle.model + " " + vehicle.make,
-                            image: vehicle.image,
+                            image: vehicle.images[0],
                             id: vehicle._id,
                             show_controls: idUser == req.session.user_id
                         }
@@ -232,10 +234,39 @@ const profile = (req, res) => {
 
 };
 
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/uploads/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+
 const edit_profile_action = (req, res) => {
     console.log(req.body);
-    const user_id = req.session.user_id;
+    var upload = multer({
+        storage: storage
+    }).array('profile_picture', 1);
+    upload(req, res, function (error) {
+        console.log(req.body);
+        if (error) {
+            console.log(error);
+            show_failed_edit_profile(req, res, "Unable to upload profile picture");
+        } else if (req.files.length > 0) {
+            console.log("We have an image.");
+            req.body.profile_picture = req.files[0].filename;
+            save_new_user_data(req, res);
+        } else {
+            show_failed_edit_profile(req, res, "No profile picture uploaded");
+        }
+    });
 
+};
+
+function save_new_user_data(req, res) {
+    console.log(req.body);
+    const user_id = req.session.user_id;
     axios.put(apiParametri.streznik + '/api/users/' + user_id, {
             params: {
                 idUser: user_id,
@@ -244,7 +275,8 @@ const edit_profile_action = (req, res) => {
                 email: req.body.mail,
                 password: req.body.password,
                 location: req.body.location,
-                phone_number: req.body.phone_number
+                phone_number: req.body.phone_number,
+                profile_picture: req.body.profile_picture
             }
         })
         .then((response) => {
@@ -258,7 +290,7 @@ const edit_profile_action = (req, res) => {
             console.log(error);
             show_failed_edit_profile(req, res, "Napaka med spreminjanjem podatkov uporabnika.");
         });
-};
+}
 
 function show_failed_edit_profile(req, res, message) {
     const is_user_logged = req.session.user_id != null;
@@ -276,15 +308,15 @@ function show_profile(req, res, user, vehicles, favourite_vehicles) {
         mail: user.email,
         phone_number: user.phone_number,
         location: user.location,
-        profile_picture: user.profile_picture ? user.profile_picture : "/images/avatarUser.png",
+        profile_picture: user.profile_picture ? user.profile_picture : "avatarUser.png",
         owned_cars: vehicles.length > 0 ? vehicles : [{
             name: "Add a vehicle",
-            image: "/images/car_1.jpg",
+            image: "car_1.jpg",
             show_controls: false
         }],
         favourite_cars: favourite_vehicles.length > 0 ? favourite_vehicles : [{
             name: "Like a vehicle",
-            image: "/images/car_1.jpg"
+            image: "car_1.jpg"
         }],
 
         user_logged: is_user_logged,

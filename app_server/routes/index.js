@@ -9,4 +9,7 @@ router.get('/', ctrlMain.home);
 router.get('/home', ctrlMain.home);
 router.get('/search', ctrlMain.search);
 router.get('/nearby', ctrlMain.nearby);
+router.get('/db', ctrlMain.db);
+router.get('/dbadd', ctrlMain.dbadd);
+router.get('/dbdel', ctrlMain.dbdel);
 module.exports = router;

@@ -9,7 +9,7 @@
     </div>
     {{/if}}
     <div id="podatki_uporabnika" class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-      <img class="rounded-circle slika_uporabnika" src="{{profile_picture}}" alt="Slika profila">
+      <img class="rounded-circle slika_uporabnika" src="/uploads/{{profile_picture}}" alt="Slika profila">
       <h3 class="top-spacing centered"> <span id="ime_uporabnika">{{firstname}}</span> <span
           id="priimek_uporabnika">{{lastname}}</span></h3>
       <p id="mail_uporabnika" class="centered">{{mail}}</p>
@@ -27,7 +27,11 @@
       <div class="row">
         {{#each owned_cars}}
         <div class="card col-12 col-sm-12 col-md-7 col-lg-5 col-xl-4 card_auto">
-          <img class="card-img-top slika_auto" src="{{this.image}}" alt="Slika avta">
+          {{#if this.id}}
+          <img class="card-img-top slika_auto" src="/uploads/{{this.image}}" alt="Slika avta" onclick="show_vehicle('{{this.id}}')">
+          {{else}}
+          <img class="card-img-top slika_auto" src="/uploads/{{this.image}}" alt="Slika avta">
+          {{/if}}
           <div class="card-body">
             <h5 class="card-text">{{this.name}}</h5>
             <div class="row width-100 stars_auto">
@@ -53,8 +57,12 @@
       <h2>Favorite vehicles</h2>
       <div class="row">
         {{#each favourite_cars}}
-        <div class="card col-12 col-sm-6 col-md-4 col-lg-3 card_auto">
-          <a href="/vehicle$id={{this.id}}"><img class="card-img-top slika_auto" src="{{this.image}}" alt="Slika avta"></a>
+        <div class="card col-12 col-sm-12 col-md-7 col-lg-5 col-xl-4 card_auto">
+          {{#if this.id}}
+          <img class="card-img-top slika_auto" src="/uploads/{{this.image}}" alt="Slika avta" onclick="show_vehicle({{this.id}})">
+          {{else}}
+          <img class="card-img-top slika_auto" src="/uploads/{{this.image}}" alt="Slika avta">
+          {{/if}}
           <div class="card-body">
             <h5 class="card-text">{{this.name}}</h5>
             <div class="row width-100 stars_auto">
@@ -71,3 +79,4 @@
     </div>
   </section>
 </main>
+<script src="/javascripts/profile.js"></script>

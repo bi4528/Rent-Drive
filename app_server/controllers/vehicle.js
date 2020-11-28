@@ -79,7 +79,7 @@ var upload = multer({ storage: storage }).array('carphotos',10);
 const submitcar = (req, res) => {
     
     upload(req, res, function (err) {
-        console.log(req);
+        //console.log(req);
         console.log(req.body);
         if (err) {
             console.log("NAPAKA");
@@ -99,7 +99,7 @@ const submitCB = (req, res, images) => {
         url: '/api/vehicles',
         data: {
             images: images,
-            owner_id: req.body.owner_id,
+            owner_id: req.session.user_id,
             make: req.body.make,
             model: req.body.model,
             typeoffuel: req.body.typeoffuel,
@@ -253,7 +253,7 @@ const postReview = (req, res) => {
         data: {
             comment: req.body.comment,
             rating: stars,
-            img: "../images/oseba_template_2.jpg"
+            img: "../images/oseba_template_2.jpg",
             //TODO USERNAME USERIMG
         }
     }).then(() => {
