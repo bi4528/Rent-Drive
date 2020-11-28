@@ -5,8 +5,8 @@ const Vehicle = mongoose.model('Vehicle');
 const validate = require('./../../public/javascripts/validate');
 
 const get_all_users = (req, res) => {
-    User.find({}, function(error, user) {
-        
+    User.find({}, function (error, user) {
+
         if (!user) {
             return res.status(404).json({
                 "message": "User not found."
@@ -20,7 +20,7 @@ const get_all_users = (req, res) => {
 };
 
 const create_new_user = (req, res) => {
-    
+
     var firstname = req.body.params.firstname;
     var username = req.body.params.username;
     var lastname = req.body.params.lastname;
@@ -58,14 +58,14 @@ const create_new_user = (req, res) => {
     } else {
         User.create({
             username: username,
-            firstname : firstname,
-            lastname : lastname,
-            phone_number : phone_number,
-            email : email,
-            location : location,
-            password : password,
-            profile_picture : profile_picture,
-            favourite_vehicles_ids : favourite_vehicles_ids
+            firstname: firstname,
+            lastname: lastname,
+            phone_number: phone_number,
+            email: email,
+            location: location,
+            password: password,
+            profile_picture: profile_picture,
+            favourite_vehicles_ids: favourite_vehicles_ids
         }, (error, user) => {
             if (error) {
                 console.log(error);
@@ -91,12 +91,16 @@ const get_user_data = (req, res) => {
     User.findById(req.params.idUser).exec((error, user) => {
         if (!user) {
             return res.status(404).json({
-                "message": "User not found2."
+                "message": "User not found."
             });
         } else if (error) {
             return res.status(500).json(error);
+        } else {
+            if (user.profile_picture == null) {
+                user.profile_picture = "avatarUser.png";
+            }
+            res.status(200).json(user);
         }
-        res.status(200).json(user);
     });
 };
 
@@ -117,7 +121,7 @@ const updated_profile_data = (req, res) => {
         });
     }
     User.findById(req.body.params.idUser).exec((error, user) => {
-        
+
         if (!user) {
             return res.status(404).json({
                 "message": "No user found!"
@@ -140,7 +144,7 @@ const updated_profile_data = (req, res) => {
                 if (error) {
                     res.status(404).json(error);
                 } else {
-                    
+
                     res.status(200).json(true);
                 }
             });
@@ -164,7 +168,7 @@ const check_if_user_exists = (req, res) => {
 };
 
 const check_if_mail_exists = (req, res) => {
-    
+
     User.find({
         email: req.query.email
     }).exec((napaka, user) => {
@@ -245,7 +249,7 @@ const get_favourite_vehicles = (req, res) => {
 };
 
 const get_vehicles_of_user = (req, res) => {
-    
+
     Vehicle.find({
         owner_id: {
             $in: req.params.idUser
