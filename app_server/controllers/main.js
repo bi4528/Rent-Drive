@@ -2,6 +2,7 @@ const e = require('express');
 var fs = require('fs');
 var url = require('url');
 var http = require("http");
+const data_users = require('../models/users-test.json');
 
 var appiParams = {
     server: 'http://localhost:' + (process.env.PORT || 3000)
@@ -384,9 +385,48 @@ function addVehicles() {
     }
 }
 
+function add_users_in_db(callback) {
+    for (let i = 0; i < data_users.length; i++) {
+        const user_to_add = data_users[i];
+        console.log(user_to_add);
+        axios.post('/api/users', {
+                params: {
+                    firstname: user_to_add.firstname,
+                    lastname: user_to_add.lastname,
+                    email: user_to_add.email,
+                    password: user_to_add.password,
+                    location: user_to_add.location,
+                    phone_number: user_to_add.phone_number,
+                    profile_picture: user_to_add.profile_picture,
+                    favourite_vehicles_ids: user_to_add.favourite_vehicles_ids
+                }
+            })
+            .then((response) => {
+                var user = response.data;
+                callback(user, null);
+            })
+            .catch((error) => {
+                callback(null, error);
+            });
+    }
+}
+
 const dbadd = (req, res) => {
-    addVehicles();
-    res.redirect('/');
+    
+    add_users_in_db(function(user, error) {
+        if(error) {
+            console.log(error);
+        } else if (!user) {
+            console.log("Userja ni");
+        } else {
+            for (let i = 0; i < dataVehicles.length; i++) {
+                dataVehicles[i].owner_id = user._id;
+            }
+            
+            addVehicles();
+            res.redirect('/');
+        }
+    });
 };
 
 const dbdel = (req, res) => {
