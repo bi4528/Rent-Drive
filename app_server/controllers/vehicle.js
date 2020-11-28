@@ -27,7 +27,7 @@ const vehicleprofile2 = (req, res) => {
     axios
         .get('/api/vehicles/' + req.params.id)
         .then((odgovor) => {
-            console.log(odgovor.data);
+            //console.log(odgovor.data);
             let car_photos = [];
             let indicators = [];
             for (i = 0; i < odgovor.data.images.length; i++) {
@@ -79,7 +79,7 @@ var upload = multer({ storage: storage }).array('carphotos',10);
 const submitcar = (req, res) => {
     
     upload(req, res, function (err) {
-        console.log(req);
+        //console.log(req);
         console.log(req.body);
         if (err) {
             console.log("NAPAKA");
@@ -140,7 +140,7 @@ const editvehicleprofile = (req, res) => {
     axios
         .get('/api/vehicles/' + req.params.id)
         .then((odgovor) => {
-            console.log(odgovor.data);
+            //console.log(odgovor.data);
             //showvehicleprofile(req, res, odgovor.data);
             res.render('editvehicleprofile', odgovor.data);
         });
@@ -153,22 +153,62 @@ const editvehicleprofile_submit = (req, res) => {
         obj.key = i;
         obj.value = req.body[i];
         changes.push(obj);
+        //console.log(obj);
     }
+    var tmp = null;
     axios
         .get('/api/vehicles/' + req.params.id)
         .then((odgovor) => {
-            //console.log(req.body);
-            //console.log(odgovor.data);
+            console.log(odgovor.data.date);
+            accessibilityOff = true;
+            auxOff = true;
+            usbOff = true;
+            bluetoothOff = true;
+            navigationOff = true;
+            parkingsensorsOff = true;
+            AirConditioningOff = true;
+            autopilotOff = true;
+
             for (var i in changes) {
-                console.log(changes[i].key + ": " + changes[i].value);
-                console.log(odgovor.data[changes[i].key]);
-                if (odgovor.data[changes[i].key] != changes[i].value && changes[i].value != "") {
+                //console.log(changes[i].key + ": " + changes[i].value);
+                //console.log(odgovor.data[changes[i].key]);
+                if (odgovor.data[changes[i].key] != changes[i].value) {
                     odgovor.data[changes[i].key] = changes[i].value;
-                    // TODO: turning off features
+                    if (changes[i].key=="accessibility") accessibilityOff = false;
+                    if (changes[i].key=="AUX") auxOff = false;
+                    if (changes[i].key=="USB") usbOff = false;
+                    if (changes[i].key=="bluetooth") bluetoothOff = false;
+                    if (changes[i].key=="Navigation") navigationOff = false;
+                    if (changes[i].key=="parkingsensors") parkingsensorsOff = false;
+                    if (changes[i].key=="AirConditioning") AirConditioningOff = false;
+                    if (changes[i].key=="autopilot") autopilotOff = false;
+                    if(changes[i].key=="date-from") odgovor.data.date[0] = changes[i].value;
+                    if(changes[i].key=="date-to") odgovor.data.date[1] = changes[i].value;
                 }
             }
-            res.render('vehicleprofile', odgovor.data);
-        });
+            if (accessibilityOff) odgovor.data.accessibility = "off";
+            if (auxOff) odgovor.data.AUX = "off";
+            if (usbOff) odgovor.data.USB = "off";
+            if (bluetoothOff) odgovor.data.bluetooth = "off";
+            if (navigationOff) odgovor.data.Navigation = "off";
+            if (parkingsensorsOff) odgovor.data.parkingsensors = "off";
+            if (AirConditioningOff) odgovor.data.AirConditioning = "off";
+            if (autopilotOff) odgovor.data.autopilot = "off";
+            tmp = odgovor.data;
+        }).then((response)=>{
+            console.log(tmp);
+            axios({
+                method: 'put',
+                url: '/api/vehicles/' + req.params.id,
+                data: tmp
+              }).then(() => {
+                //res.render('vehicleprofile', tmp);
+                //res.render('/vehicles/' + req.params.id, tmp)
+                res.redirect('/vehicles/' + req.params.id);
+              }).catch((napaka) => {
+                console.log("aaaaaaaaaa");
+              });
+        })
 };
 
 const vehicleprofile_book = (req, res) => {

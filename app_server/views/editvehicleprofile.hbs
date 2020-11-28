@@ -22,184 +22,203 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    
-<form id="form" method="POST" action="/vehicles/{{_id}}">
-    <div class="container-fluid pt-5 pb-3">
-        <!---slike-->
-        <div class="row m-2 justify-content-center">
-            <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
-                
+
+    <form id="form" method="POST" action="/vehicles/{{_id}}">
+        <div class="container-fluid pt-5 pb-3">
+            <!---slike-->
+            <div class="row m-2 justify-content-center">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
+
                     <div class="form-group">
                         <label for="images">Upload vehicle images</label>
                         <input type="file" class="form-control-file" id="images" multiple>
                     </div>
-                
-            </div>
-        </div>
 
-        <!--- ime-->
-        <div class="row m-2 justify-content-center">
-            <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
-                <div class="name input-group w-25 ">
-                    <div class="input-group-prepend ">
-                        <div class="input-group-text">
-                            <h4>Vehicle name</h4>
-                        </div>
-                    </div>
-                    <input id="name" name="name" type="text" class="form-control-md" value="{{make}} {{model}}">
                 </div>
             </div>
-        </div>
 
-        <!--- ocena-->
-        <div class="row justify-content-center m-4">
-            <div class="rating">
-                <h3 class="inline">Rating:</h3>
-                {{{stars avg_rating}}}
-            </div>
-        </div>
-
-        <!--- lastnik in opis-->
-        <div class="row m-3">
-            <div class="col-sm-12 col-md-4 ">
-                <a href="profile.html"><img class="avatar" src="{{avatar}}" alt="avatar"></a>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item contact-details"><i class="fas fa-phone"></i>{{number}}</li>
-                    <li class="list-group-item contact-details"><i class="far fa-envelope"></i>{{email}}</li>
-                    <li class="list-group-item contact-details"><i class="far fa-map"></i>{{location}}</li>
-                </ul>
+            <!--- ime-->
+            <div class="row m-2 justify-content-center">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
+                    <div class="name input-group w-25 ">
+                        <div class="input-group-prepend ">
+                            <div class="input-group-text">
+                                <h4>Make and model</h4>
+                            </div>
+                        </div>
+                        <input id="make" name="make" type="text" class="form-control-md" value="{{make}}">
+                        <input id="model" name="model" type="text" class="form-control-md" value="{{model}}">
+                    </div>
+                </div>
             </div>
 
-            <div class="col-sm-12 col-md-7 offset-md-1">
-                <div class="card mb-3">
-                    <div class="input-group">
+            <!--- lastnik in opis-->
+            <div class="row m-3">
+                <div class="col-sm-12 col-md-4 ">
+                    <a href="profile.html"><img class="avatar" src="{{avatar}}" alt="avatar"></a>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item contact-details"><i class="fas fa-phone"></i>{{number}}</li>
+                        <li class="list-group-item contact-details"><i class="far fa-envelope"></i>{{email}}</li>
+                        <li class="list-group-item contact-details"><i class="far fa-map"></i>{{location}}</li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-12 col-md-7 offset-md-1">
+                    <div class="card mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Description:</div>
+                            </div>
+                            <textarea name="description" id="description"
+                                class="form-control height-dvesto">{{description}}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--- lastnosti in izposodi-->
+            <div class="ml-4">
+                <h3>Features:</h3>
+            </div>
+            <div class="row m-3 mt-5 mb-4">
+                <div class="features col-md-5 col-lg-3">
+                    <!---{{AirConditioning}}-->
+                    <div class="custom-control custom-checkbox   mx-2">
+                        <input type="checkbox" class="custom-control-input" id="AirConditioning" name="AirConditioning"
+                            {{{ifEquals AirConditioning}}}>
+                        <label class="custom-control-label" for="AirConditioning">A/C</label>
+                    </div>
+                    <!---{{accessibility}}-->
+                    <div class="custom-control custom-checkbox   mx-2">
+                        <input type="checkbox" class="custom-control-input" id="Accessibility" name="accessibility"
+                            {{{ifEquals accessibility}}}>
+                        <label class="custom-control-label" for="Accessibility">Accessibility</label>
+                    </div>
+                    <!---{{autopilot}}-->
+                    <div class="custom-control custom-checkbox   mx-2">
+                        <input type="checkbox" class="custom-control-input" id="Auto-pilot" name="autopilot"
+                            {{{ifEquals autopilot}}}>
+                        <label class="custom-control-label" for="Auto-pilot">Auto-pilot</label>
+                    </div>
+                    <!---{{AUX}}-->
+                    <div class="custom-control custom-checkbox   mx-2">
+                        <input type="checkbox" class="custom-control-input" id="AUX" name="AUX" {{{ifEquals AUX}}}>
+                        <label class="custom-control-label" for="AUX">AUX</label>
+                    </div>
+                    <!---{{bluetooth}}-->
+                    <div class="custom-control custom-checkbox   mx-2">
+                        <input type="checkbox" class="custom-control-input" id="Bluetooth" name="bluetooth"
+                            {{{ifEquals bluetooth}}}>
+                        <label class="custom-control-label" for="Bluetooth">Bluetooth</label>
+                    </div>
+                </div>
+                <div class="features col-md-5 col-lg-2 mr-5 mb-5">
+                    <!---{{Navigation}}-->
+                    <div class="custom-control custom-checkbox   mx-2">
+                        <input type="checkbox" class="custom-control-input" id="Navigation" name="Navigation"
+                            {{{ifEquals Navigation}}}>
+                        <label class="custom-control-label" for="Navigation">Navigation</label>
+                    </div>
+                    <!---{{USB}}-->
+                    <div class="custom-control custom-checkbox   mx-2">
+                        <input type="checkbox" class="custom-control-input" id="USB" name="USB" {{{ifEquals USB}}}>
+                        <label class="custom-control-label" for="USB">USB</label>
+                    </div>
+                    <!---{{parkingsensors}}-->
+                    <div class="custom-control custom-checkbox   mx-2">
+                        <input type="checkbox" class="custom-control-input" id="Parking-sensors" name="parkingsensors"
+                            {{{ifEquals parkingsensors}}}>
+                        <label class="custom-control-label" for="Parking-sensors">Parking Sensors</label>
+                    </div>
+
+                </div>
+
+                <div class="book col-md-5 col-lg-3 ">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <div class="input-group-text">Description:</div>
+                            <span class="input-group-text"><i class="fas fa-tachometer-alt"
+                                    aria-hidden="true"></i></span>
                         </div>
-                        <textarea name="description" id="description" class="form-control height-dvesto">{{description}}</textarea>
+                        <input id="maxspeed" type="text" class="form-control" placeholder="top-speed (km/h)"
+                            value="{{maxspeed}}" name="maxspeed">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-couch" aria-hidden="true"></i></span>
+                        </div>
+                        <input id="seats" type="text" class="form-control" placeholder="seats" value="{{seats}}"
+                            name="seats">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-door-closed" aria-hidden="true"></i></span>
+                        </div>
+                        <input id="doors" type="text" class="form-control" placeholder="door-count" value="{{doors}}"
+                            name="doors">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-graduate"
+                                    aria-hidden="true"></i></span>
+                        </div>
+                        <input id="minage" type="text" class="form-control" placeholder="age" value="{{minage}}"
+                            name="minage">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-suitcase" aria-hidden="true"></i></span>
+                        </div>
+                        <input id="luggage" type="text" class="form-control" placeholder="luggage (l)"
+                            value="{{luggage}}" name="luggage">
+                    </div>
+                </div>
+                <div class="book col-md-5 col-lg-2">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-shipping-fast"
+                                    aria-hidden="true"></i></span>
+                        </div>
+                        <input id="acceleration" id="seats" type="text" class="form-control"
+                            placeholder="acceleration (km/h)" value="{{acceleration}}" name="acceleration">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-horse" aria-hidden="true"></i></span>
+                        </div>
+                        <input id="hp" type="text" class="form-control" placeholder="horsepower (kW)" value="{{hp}}"
+                            name="hp">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-oil-can" aria-hidden="true"></i></span>
+                        </div>
+                        <input id="consumption" type="text" class="form-control" placeholder="consumption"
+                            value="{{consumption}}" name="consumption">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class='fas fa-charging-station'></i></span>
+                        </div>
+                        <select class="form-control" tabindex=3 name="typeoffuel" value="{{typeoffuel}}">
+                            <option>Petrol</option>
+                            <option>Diesel</option>
+                            <option>Hybrid</option>
+                            <option>Electric</option>
+                            <option>LPG</option>
+                        </select>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!--- lastnosti in izposodi-->
-         <div class="ml-4">
-             <h3>Features:</h3>
-         </div>
-        <div class="row m-3 mt-5 mb-4">
-            <div class="features col-md-5 col-lg-3">
-                <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="AirConditioning" name="AirConditioning" {{{ifEquals AirConditioning}}}>
-                    <label class="custom-control-label" for="AirConditioning">A/C</label>
-                </div>
-                <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="Accessibility" name="accessibility" {{{ifEquals accessibility}}}>
-                    <label class="custom-control-label" for="Accessibility">Accessibility</label>
-                </div>
-                <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="Auto-pilot" name="autopilot" {{{ifEquals autopilot}}}>
-                    <label class="custom-control-label" for="Auto-pilot">Auto-pilot</label>
-                </div>
-                <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="AUX" name="AUX" {{{ifEquals aux}}}>
-                    <label class="custom-control-label" for="AUX">AUX</label>
-                </div>
-                <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="Bluetooth" name="bluetooth" {{{ifEquals bluetooth}}}>
-                    <label class="custom-control-label" for="Bluetooth">Bluetooth</label>
-                </div>
-            </div>
-            <div class="features col-md-5 col-lg-2 mr-5 mb-5">
-                <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="Navigation" name="Navigation" {{{ifEquals Navigation}}}>
-                    <label class="custom-control-label" for="Navigation">Navigation</label>
-                </div>
-                <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="USB" name="USB" {{{ifEquals usb}}}>
-                    <label class="custom-control-label" for="USB">USB</label>
-                </div>
-                <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" class="custom-control-input" id="Parking-sensors" name="parkingsensors" {{{ifEquals parkingsensors}}}>
-                    <label class="custom-control-label" for="Parking-sensors">Parking Sensors</label>
-                </div>
-                
-            </div>
-
-            <div class="book col-md-5 col-lg-3 ">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-tachometer-alt" aria-hidden="true"></i></span>
-                    </div>
-                    <input id="maxspeed" type="text" class="form-control" placeholder="top-speed (km/h)" value="{{maxspeed}}" name="maxspeed">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-couch" aria-hidden="true"></i></span>
-                    </div>
-                    <input id="seats" type="text" class="form-control" placeholder="seats" value="{{seats}}" name="seats">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-door-closed" aria-hidden="true"></i></span>
-                    </div>
-                    <input id="doors" type="text" class="form-control" placeholder="door-count" value="{{doors}}" name="doors">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-user-graduate" aria-hidden="true"></i></span>
-                    </div>
-                    <input id="minage" type="text" class="form-control" placeholder="age" value="{{minage}}" name="minage">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-suitcase" aria-hidden="true"></i></span>
-                    </div>
-                    <input id="luggage" type="text" class="form-control" placeholder="luggage (l)" value="{{luggage}}" name="luggage">
-                </div>
-            </div>
-            <div class="book col-md-5 col-lg-2">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-shipping-fast" aria-hidden="true"></i></span>
-                    </div>
-                    <input id="acceleration" id="seats"type="text" class="form-control" placeholder="acceleration (km/h)" value="{{acceleration}}" name="acceleration">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-horse" aria-hidden="true"></i></span>
-                    </div>
-                    <input id="hp" type="text" class="form-control" placeholder="horsepower (kW)" value="{{hp}}" name="hp">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-oil-can" aria-hidden="true"></i></span>
-                    </div>
-                    <input id="consumption" type="text" class="form-control" placeholder="consumption" value="{{consumption}}" name="consumption">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class='fas fa-charging-station'></i></span>
-                    </div>
-                    <select class="form-control" tabindex=3 name="typeoffuel" value="{{typeoffuel}}">
-                        <option>Petrol</option>
-                        <option>Diesel</option>
-                        <option>Hybrid</option>
-                        <option>Electric</option>
-                        <option>LPG</option>
-                    </select>
-                </div>
-            </div>
-        </div>
 
             <div class="row m-3 ml-4 mb-4">
                 <div class="col-sm-8 col-md-4">
                     <div class="form-group">
                         <label for="date-from">Select possible period of rental</label>
-                        <input type="date" class="form-control" id="date-from" value="{{date.[0]}}">
+                        <input type="date" class="form-control" name="date-from" id="date-from" value="{{date.[0]}}">
                     </div>
                     <div class="form-group">
                         <label for="date-to">To</label>
-                        <input type="date" class="form-control" id="date-to" value="{{date.[1]}}">
+                        <input type="date" class="form-control" name="date-to" id="date-to" value="{{date.[1]}}">
                     </div>
                     <div class="input-group-prepend mb-4 ">
                         <span class="input-group-text">Price (per day)</span>
@@ -208,7 +227,7 @@
                 </div>
                 <div class="col-sm-3"></div>
                 <div class="col-sm-8 col-md-4 mt-2 pr-2">
-                    <div class="form-group" id="locations">
+                    <!-- <div class="form-group" id="locations">
                         <label>Location of pickup &amp; return</label>
                         {{#each pickup_locations}}
                         <div class="custom-control custom-checkbox mx-2">
@@ -225,16 +244,25 @@
                             onclick="addLocation()">Add
                             location</button>
                         <button class="form-control btn btn-warning w-25" type="button" id="undo">Undo</button>
+                    </div> -->
+                    <div class="form-group" id="locations">
+                        <label>Address</label>
+                        <input type="text" class="form-control" id="addres" name="addres" value="{{addres}}">
+                        <label>Zip</label>
+                        <input type="text" class="form-control" id="zip" name="zip" value="{{zip}}">
+                        <label>City</label>
+                        <input type="text" class="form-control" id="city" name="city" value="{{city}}">
                     </div>
-
                 </div>
+
             </div>
-            <input type="text" name="id" value="{{_id}}" hidden="true">
-        <div class="row justify-content-center">
+        </div>
+        <input type="text" name="id" value="{{_id}}" hidden="true">
+        <div class="row m-3 ml-4 mb-4 justify-content-center">
             <button type="submit" id="save-changes" class="btn btn-primary mb-3">Save changes</button>
         </div>
-    </div>
-</form>    
+        </div>
+    </form>
 
     </div>
 </main>

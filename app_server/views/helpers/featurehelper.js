@@ -13,7 +13,7 @@ hbs.registerHelper('featurehelper', (AirConditioning, bluetooth, Navigation, usb
     rezultat+="<div><i class='far fa-map'></i><span class='text-" + textType + "'>" +"GPS"  +"</span></div>";
     if(usb=="on" || usb==="1") textType = "success"; else textType="danger";
     rezultat+="<div><i class='fab fa-usb'></i><span class='text-" + textType + "'>" +"USB"  +"</span></div>";
-    if(accessibility=="on") textType = "success"; else textType="danger";
+    if(accessibility=="on" || accessibility=="1") textType = "success"; else textType="danger";
     rezultat+="<div><i class='fab fa-accessible-icon'></i><span class='text-" + textType + "'>" +"accessible"  +"</span></div>";
     if(autopilot=="on" || autopilot==="1") textType = "success"; else textType="danger";
     rezultat+="<div><i class='fas fa-plane'></i><span class='text-" + textType + "'>" +"autopilot"  +"</span></div>";

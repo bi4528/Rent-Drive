@@ -24,7 +24,7 @@ var upload = multer({ storage: storage });
 
 router.get('/other',ctrlVehicle.vehicleprofile);
 router.get('/edit',ctrlVehicle.editvehicleprofile);
-router.post('/other',ctrlVehicle.vehicleprofile_book);
+router.post('/:id/book',ctrlVehicle.vehicleprofile_book);
 
 router
     .route('/publish')

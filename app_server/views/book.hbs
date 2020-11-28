@@ -9,7 +9,7 @@
                     <img src="{{vehicle_picture}}" class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title">Booking information</h5>
-                        <p class="card-text">Note: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">{{description}}</p>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Pick-up date: {{date.[0]}}</li>
@@ -29,16 +29,16 @@
             </div>
             <div class="col-sm-4">
                 <div class="card">
-                    <img src="/images/franka-potente-8052.jpg" class="card-img-top" alt="Marina">
+                    <img src="{{avatar}}" class="card-img-top" alt="Marina">
                     <div class="card-body">
                         <h5 class="card-title">Owner</h5>
-                        <p class="card-text">Note: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">These is the contact information of the vehicle owner. For further information please consult the owner!</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Name: marinica_pametnica</li>
-                        <li class="list-group-item">e-mail: marina.kus@gmail.com</li>
-                        <li class="list-group-item">Number: +381 65 780 456</li>
-                        <li class="list-group-item">Location: Belgrade, Serbia</li>
+                        <li class="list-group-item">Name:{{username}}</li>
+                        <li class="list-group-item">e-mail: {{email}}</li>
+                        <li class="list-group-item">Number: {{phone}}</li>
+                        <li class="list-group-item">Location: {{location}}</li>
                     </ul>
                     <div class="card-body">
                         <a href="/users/other" class="card-link stretched-link text-primary">

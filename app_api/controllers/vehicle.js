@@ -89,6 +89,7 @@ const vehiclesUpload = (req, res) => {
         consumption: parseFloat(req.body.consumption),
         seats: parseInt(req.body.seats),
         doors: parseInt(req.body.doors),
+        accessibility: req.body.accessibility == null ? "0" : "1",
         AirConditioning: req.body.AirConditioning == null ? "0" : "1",
         Navigation: req.body.Navigation == null ? "0" : "1",
         USB: req.body.USB == null ? "0" : "1",
@@ -105,7 +106,7 @@ const vehiclesUpload = (req, res) => {
         date: req.body.date,
         luggage: parseInt(req.body.luggage),
         minage: parseInt(req.body.minage),
-        reviews: []
+        reviews: [],
     }, (err, data) => {
         if (err) {
             res.status(400).json(err);
@@ -163,13 +164,13 @@ const vehiclesUpdate = (req, res) => {
             data.consumption = parseFloat(req.body.consumption);
             data.seats = parseFloat(req.body.seats);
             data.doors = parseFloat(req.body.doors);
-            data.AirConditioning = req.body.AirConditioning == null ? "0" : "1";
-            data.Navigation = req.body.Navigation == null ? "0" : "1";
-            data.USB = req.body.USB == null ? "0" : "1";
-            data.AUX = req.body.AUX == null ? "0" : "1";
-            data.autopilot = req.body.autopilot == null ? "0" : "1";
-            data.bluetooth = req.body.bluetooth == null ? "0" : "1";
-            data.parkingsensors = req.body.parkingsensors == null ? "0" : "1";
+            data.AirConditioning = req.body.AirConditioning;
+            data.Navigation = req.body.Navigation;
+            data.USB = req.body.USB;
+            data.AUX = req.body.AUX;
+            data.autopilot = req.body.autopilot;
+            data.bluetooth = req.body.bluetooth;
+            data.parkingsensors = req.body.parkingsensors;
             data.description = req.body.description;
             data.addres = req.body.addres;
             data.city = req.body.city;
@@ -179,6 +180,7 @@ const vehiclesUpdate = (req, res) => {
             data.date = req.body.date;
             data.luggage = req.body.luggage;
             data.minage = req.body.minage;
+            data.accessibility = req.body.accessibility;
             data.save((err, data) => {
                 if (err) {
                     res.status(404).json(err);
