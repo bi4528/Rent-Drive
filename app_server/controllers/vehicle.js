@@ -99,7 +99,7 @@ const submitCB = (req, res, images) => {
         url: '/api/vehicles',
         data: {
             images: images,
-            owner_id: req.body.owner_id,
+            owner_id: req.session.user_id,
             make: req.body.make,
             model: req.body.model,
             typeoffuel: req.body.typeoffuel,
