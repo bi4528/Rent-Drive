@@ -53,7 +53,7 @@ document.getElementById("favorite").addEventListener("click",function(){
 function appendToForm (){
     var dateForm = document.getElementById("date-form");
     var dailyPrice = document.getElementById("daily-price");
-    
+    //debugger;
     addHiddenInput(dateForm,dailyPrice.innerText,"daily-price")
     var fullname = document.getElementById("fullname");
     if (fullname!=null) {
@@ -61,18 +61,22 @@ function appendToForm (){
         var i = fullname.indexOf(' ');
         var firstname = fullname.substring(0, i);
         var lastname = fullname.substring(i);
+        addHiddenInput(dateForm,firstname,"firstname");
+        addHiddenInput(dateForm,lastname,"lastname");
     }
     var phone = document.getElementById("phone").innerText;
     var email = document.getElementById("email").innerText;
-    var location = document.getElementById("location").innerText;
+    var location = document.getElementById("location");
+    if (location!=null) {
+        location = location.innerText;
+        addHiddenInput(dateForm,location,"location");
+    }
     var username = document.getElementsByClassName("blockquote-footer")[0].innerText;
     var vehicle_picture = document.getElementsByClassName("carousel-item")[0].children[0].getAttribute("src");
     var description = document.getElementsByClassName("blockquote")[0].children[0].innerText;
-    addHiddenInput(dateForm,firstname,"firstname");
-    addHiddenInput(dateForm,lastname,"lastname");
+    
     addHiddenInput(dateForm,phone,"phone");
     addHiddenInput(dateForm,email,"email");
-    addHiddenInput(dateForm,location,"location");
     addHiddenInput(dateForm,username,"username");
     addHiddenInput(dateForm,vehicle_picture,"vehicle_picture");
     addHiddenInput(dateForm,description,"description");

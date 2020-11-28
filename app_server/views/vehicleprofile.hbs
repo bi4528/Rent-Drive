@@ -47,8 +47,8 @@
     <div class="row m-3">
       <div class="col-sm-12 col-md-4 ">
         <!--href="users/other$id={{owner_id}}"-->
-        <input name="avatar" type="hidden" value="{{avatar}}">
-        <a href="/users/profiles/{{owner_id}}"><img class="avatar" src="{{avatar}}" alt="avatar"></a>
+        <input name="profile_picture" type="hidden" value="{{profile_picture}}">
+        <a href="/users/profiles/{{owner_id}}"><img class="avatar" src="{{profile_picture}}" alt="avatar"></a>
         <ul class="list-group list-group-flush">
           <input type="hidden" name="owner_id" id="owner_id" value="{{owner_id}}">
           {{#if firstname}}

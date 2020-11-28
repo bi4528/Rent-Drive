@@ -97,7 +97,7 @@ const get_user_data = (req, res) => {
             return res.status(500).json(error);
         } else {
             if (user.profile_picture == null) {
-                user.profile_picture = "avatarUser.png";
+                user.profile_picture = "/images/avatarUser.png";
             }
             res.status(200).json(user);
         }

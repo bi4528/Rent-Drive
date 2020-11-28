@@ -36,7 +36,7 @@ const vehicleSchema = new mongoose.Schema({
     zip: Number,
     date: [String],
     reviews: [reviewSchema],
-    avatar: String,
+    profile_picture: String,
 	username: String,
     email: String,
     number: String,

@@ -372,7 +372,7 @@ function addVehicles() {
                 date: dataVehicles[i].date,
                 minage: dataVehicles[i].minage,
                 luggage: dataVehicles[i].luggage,
-                avatar: dataVehicles[i].avatar,
+                profile_picture: dataVehicles[i].profile_picture,
                 username: dataVehicles[i].username,
                 email: dataVehicles[i].email
             }
