@@ -40,7 +40,6 @@ const vehicleSchema = new mongoose.Schema({
 	username: String,
     email: String,
     number: String,
-    avg_rating: Number,
     location: String,
     luggage: Number,
     minage: Number

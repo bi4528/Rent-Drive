@@ -265,6 +265,25 @@ const review = (req, res) => {
     res.render('review');
 }
 
+const addReview = (req, res, username, stars) => {
+    id=req.params.id;
+    axios({
+        method: 'post',
+        url: '/api/vehicles/' + id + '/reviews/',
+        data: {
+            comment: req.body.comment,
+            rating: stars,
+            img: "../images/oseba_template_2.jpg",
+            //TODO USERNAME USERIMG
+            username: username
+        }
+    }).then(() => {
+        res.redirect('/vehicles/' + id);
+    }).catch((napaka) => {
+        console.log("NAPAKA");
+    });
+}
+
 const postReview = (req, res) => {
     console.log(req.body);
     let stars = "";
@@ -285,20 +304,21 @@ const postReview = (req, res) => {
     }
 
     id = req.params.id;
-    axios({
-        method: 'post',
-        url: '/api/vehicles/' + id + '/reviews/',
-        data: {
-            comment: req.body.comment,
-            rating: stars,
-            img: "../images/oseba_template_2.jpg",
-            //TODO USERNAME USERIMG
-        }
-    }).then(() => {
-        res.redirect('/vehicles/' + id);
-    }).catch((napaka) => {
-        console.log("NAPAKA");
-    });
+
+
+    axios
+        .get('/api/users/' + req.session.user_id)
+        .then((odgovor) => {
+            //console.log(odgovor.data);
+            addReview(req,res, odgovor.data.username, stars);
+        })
+        .catch((napaka) => {
+            console.log("Napaka pri iskanju lastnika!");
+            console.log(napaka);
+        });
+    
+
+    
 }
 
 module.exports = {
