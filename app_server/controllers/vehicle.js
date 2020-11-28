@@ -24,6 +24,7 @@ const vehicleprofile = (req, res) => {
 };
 
 const vehicleprofile2 = (req, res) => {
+    var tmp = null;
     axios
         .get('/api/vehicles/' + req.params.id)
         .then((odgovor) => {
@@ -48,7 +49,23 @@ const vehicleprofile2 = (req, res) => {
                 var newAvgRating = sum / odgovor.data.reviews.length;
                 odgovor.data.avg_rating = newAvgRating;
             }
-            showvehicleprofile(req, res, odgovor.data);
+            tmp = odgovor.data;
+        }).then((response)=>{
+            console.log("Lastnik je " +tmp.user_id);
+            axios({
+                method: 'get',
+                url: '/api/users/' + tmp.user_id, //manjka id!!!
+              }).then((user) => {
+                // DODAJ podatke uporabnika!  
+                //console.log(user.data);
+                if (user.data.firstname!=null) tmp.firstname = user.data.firstname;
+                if (user.data.lastname!=null) tmp.lastname = user.data.lastname;
+                if (user.data.email!=null) tmp.email = user.data.email;
+                showvehicleprofile(req, res, tmp);
+              }).catch((napaka) => {
+                console.log("Napaka pri iskanju lastnika vozila!");
+                showvehicleprofile(req, res, tmp)
+             });
         });
 };
 
@@ -141,7 +158,6 @@ const editvehicleprofile = (req, res) => {
         .get('/api/vehicles/' + req.params.id)
         .then((odgovor) => {
             //console.log(odgovor.data);
-            //showvehicleprofile(req, res, odgovor.data);
             res.render('editvehicleprofile', odgovor.data);
         });
 };
@@ -206,7 +222,7 @@ const editvehicleprofile_submit = (req, res) => {
                 //res.render('/vehicles/' + req.params.id, tmp)
                 res.redirect('/vehicles/' + req.params.id);
               }).catch((napaka) => {
-                console.log("aaaaaaaaaa");
+                console.log("Prišlo je do napake pri posodabljanju.");
               });
         })
 };
