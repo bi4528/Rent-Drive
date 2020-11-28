@@ -40,10 +40,12 @@
                         {{/if}}
                         <li class="list-group-item">e-mail: {{email}}</li>
                         <li class="list-group-item">Number: {{phone}}</li>
+                        {{#if location}}
                         <li class="list-group-item">Location: {{location}}</li>
+                        {{/if}}
                     </ul>
                     <div class="card-body">
-                        <a href="/users/{{user_id}}" class="card-link stretched-link text-primary">
+                        <a href="/users/{{owner_id}}" class="card-link stretched-link text-primary">
                             <i class="fas fa-caret-up"></i>
                             Check profile</a>
                     </div>

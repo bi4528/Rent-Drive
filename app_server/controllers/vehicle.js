@@ -28,7 +28,7 @@ const vehicleprofile2 = (req, res) => {
     axios
         .get('/api/vehicles/' + req.params.id)
         .then((odgovor) => {
-            //console.log(odgovor.data);
+            console.log(odgovor.data);
             let car_photos = [];
             let indicators = [];
             for (i = 0; i < odgovor.data.images.length; i++) {
@@ -51,22 +51,23 @@ const vehicleprofile2 = (req, res) => {
             }
             tmp = odgovor.data;
         }).then((response)=>{
-            console.log("Lastnik je " +tmp.user_id);
+            console.log("Lastnik je " +tmp.owner_id);
             axios({
                 method: 'get',
-                url: '/api/users/' + tmp.user_id, //manjka id!!!
+                url: '/api/users/' + tmp.owner_id, //manjka id!!!
               }).then((user) => {
                 // DODAJ podatke uporabnika!  
-                //console.log(user.data);
+                console.log(user.data);
                 
                 if (user.data.firstname!=null) tmp.firstname = user.data.firstname;
                 if (user.data.lastname!=null) tmp.lastname = user.data.lastname;
                 if (user.data.email!=null) tmp.email = user.data.email;
                 if (user.data.username!=null) tmp.username = user.data.username;
-                //console.log(tmp);
+                console.log(tmp);
                 showvehicleprofile(req, res, tmp);
               }).catch((napaka) => {
                 console.log("Napaka pri iskanju lastnika vozila!");
+                //console.log(tmp);
                 showvehicleprofile(req, res, tmp)
              });
         });
