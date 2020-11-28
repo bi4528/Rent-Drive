@@ -1,5 +1,13 @@
 <main>
   <section class="container">
+    {{#if alert_error}}
+    <div id="alert" class="alert alert-danger alert-dismissible fade show" role="alert">
+      <p>{{alert_error}}</p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {{/if}}
     <div id="podatki_uporabnika" class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
       <img class="rounded-circle slika_uporabnika" src="{{profile_picture}}" alt="Slika profila">
       <h3 class="top-spacing centered"> <span id="ime_uporabnika">{{firstname}}</span> <span
@@ -7,8 +15,11 @@
       <p id="mail_uporabnika" class="centered">{{mail}}</p>
       <p id="telefonska_stevilka_uporabika" class="centered">{{phone_number}}</p>
       <p id="kraj_uporabnika" class="centered">{{location}}</p>
+      {{#if is_profile_of_logged_user}}
       <button type="button" class="btn btn-primary btn-block" onclick="location.href='/users/edit'">Edit</button>
-      <button type="button" class="btn btn-danger btn-block" onclick="location.href='/home'">Log out</button>
+      <button type="button" class="btn btn-danger btn-block" onclick="location.href='/users/logout'">Log out</button>
+      <button type="button" class="btn btn-danger btn-block" onclick="location.href='/users/delete'">Delete</button>
+      {{/if}}
     </div>
 
     <div id="vozila_uporabnika">
@@ -26,8 +37,12 @@
               <i class="far fa-star fa-xs"></i>
               <i class="far fa-star fa-xs"></i>
             </div>
-            <button type="button" class="btn btn-primary btn-block card_auto_najemi_button">Edit</button>
-            <button type="button" class="btn btn-danger btn-block">Remove</button>
+            {{#if is_profile_of_logged_user}}
+              {{#if this.show_controls}}
+              <button type="button" class="btn btn-primary btn-block card_auto_najemi_button">Edit</button>
+              <button type="button" onclick="location.href='/users/delete/vehicles/{{this.id}}'" class="btn btn-danger btn-block">Remove</button>
+              {{/if}}
+            {{/if}}
           </div>
         </div>
         {{/each}}

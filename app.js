@@ -18,15 +18,7 @@ var app = express();
 var session = require('express-session');
 
 console.log("Welcome to PHD MATEJ KALC'S SESSION");
-app.use(session({
-  secret: 'keyboard cat',
-  resave: true,
-  saveUninitialized: true,
-  cookie: {
-    maxAge: 60000,
-    secure: true
-  }
-}));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server','views'));
@@ -46,6 +38,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false
+}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
