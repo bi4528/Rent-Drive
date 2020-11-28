@@ -213,7 +213,7 @@ const postReview = (req, res) => {
         data: {
             comment: req.body.comment,
             rating: stars,
-            img: "../images/oseba_template_2.jpg"
+            img: "../images/oseba_template_2.jpg",
             //TODO USERNAME USERIMG
         }
     }).then(() => {
