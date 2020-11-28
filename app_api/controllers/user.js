@@ -22,6 +22,7 @@ const get_all_users = (req, res) => {
 const create_new_user = (req, res) => {
     
     var firstname = req.body.params.firstname;
+    var username = req.body.params.username;
     var lastname = req.body.params.lastname;
     var phone_number = req.body.params.phone_number;
     var email = req.body.params.email;
@@ -30,8 +31,11 @@ const create_new_user = (req, res) => {
     var profile_picture = req.body.params.profile_picture;
     var favourite_vehicles_ids = req.body.params.favourite_vehicles_ids;
 
-
-    if (!validate.validate_first_name(firstname)) {
+    if (!validate.validate_no_spaces(username)) {
+        res.status(404).json({
+            "message": "Username must be one word."
+        });
+    } else if (!validate.validate_first_name(firstname)) {
         res.status(404).json({
             "message": "Firstname is not correct."
         });
@@ -53,6 +57,7 @@ const create_new_user = (req, res) => {
         });
     } else {
         User.create({
+            username: username,
             firstname : firstname,
             lastname : lastname,
             phone_number : phone_number,
@@ -97,7 +102,7 @@ const get_user_data = (req, res) => {
 
 const updated_profile_data = (req, res) => {
     console.log(req.body.params);
-
+    var username = req.body.params.username;
     var firstname = req.body.params.firstname;
     var lastname = req.body.params.lastname;
     var phone_number = req.body.params.phone_number;
@@ -122,6 +127,7 @@ const updated_profile_data = (req, res) => {
             return res.status(500).json(error);
         } else {
             user.firstname = firstname;
+            user.username = username;
             user.lastname = lastname;
             user.email = email;
             user.phone_number = phone_number;

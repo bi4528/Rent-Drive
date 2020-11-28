@@ -26,6 +26,7 @@
 
   <div class="container-fluid pt-5 pb-3">
     <!--- ime-->
+     <input type="hidden" name="_id" id="_id" value="{{_id}}">
     <div class="row justify-content-center ml-3">
       <div class="name">
         <h2 class="inline car-name">{{make}} {{model}}</h2>
@@ -49,6 +50,10 @@
         <input name="avatar" type="hidden" value="{{avatar}}">
         <a href="/users/other"><img class="avatar" src="{{avatar}}" alt="avatar"></a>
         <ul class="list-group list-group-flush">
+          <input type="hidden" name="user_id" id="user_id" value="{{user_id}}">
+          {{#if firstname}}
+          <li class="list-group-item contact-details"><i class="fas fa-user"></i>{{firstname}} {{lastname}}</li>
+          {{/if}}
           <li class="list-group-item contact-details"><i class="fas fa-phone"></i>{{number}}</li>
           <li class="list-group-item contact-details"><i class="far fa-envelope"></i>{{email}}</li>
           <li class="list-group-item contact-details"><i class="far fa-map"></i>{{location}}</li>

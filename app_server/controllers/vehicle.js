@@ -58,9 +58,12 @@ const vehicleprofile2 = (req, res) => {
               }).then((user) => {
                 // DODAJ podatke uporabnika!  
                 //console.log(user.data);
+                
                 if (user.data.firstname!=null) tmp.firstname = user.data.firstname;
                 if (user.data.lastname!=null) tmp.lastname = user.data.lastname;
                 if (user.data.email!=null) tmp.email = user.data.email;
+                if (user.data.username!=null) tmp.username = user.data.username;
+                //console.log(tmp);
                 showvehicleprofile(req, res, tmp);
               }).catch((napaka) => {
                 console.log("Napaka pri iskanju lastnika vozila!");

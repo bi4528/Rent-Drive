@@ -64,11 +64,11 @@ const user_register = (req, res) => {
         } else if (!exists) {
             axios.post(apiParametri.streznik + '/api/users', {
                     params: {
+                        username: req.body.username,
                         firstname: req.body.firstname,
                         lastname: req.body.lastname,
                         email: req.body.email,
                         password: req.body.password,
-                        firstname: req.body.firstname,
                     }
                 })
                 .then((response) => {
@@ -270,6 +270,7 @@ function save_new_user_data(req, res) {
     axios.put(apiParametri.streznik + '/api/users/' + user_id, {
             params: {
                 idUser: user_id,
+                username: req.body.username,
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
                 email: req.body.mail,
@@ -303,6 +304,7 @@ function show_failed_edit_profile(req, res, message) {
 function show_profile(req, res, user, vehicles, favourite_vehicles) {
     const is_user_logged = req.session.user_id != null;
     res.render('profile', {
+        username: req.body.username,
         firstname: user.firstname,
         lastname: user.lastname,
         mail: user.email,
@@ -354,6 +356,7 @@ const edit_profile = (req, res) => {
 function show_edit_profile(req, res, user) {
     const user_id = req.session.user_id;
     res.render('edit_profile', {
+        username: req.body.username,
         firstname: user.firstname,
         lastname: user.lastname,
         mail: user.email,
