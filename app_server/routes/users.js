@@ -19,7 +19,7 @@ router.get('/resetpassword', ctrlUser.resetpassword);
 router.post('/resetpassword', ctrlUser.resetpassword_submit);
 router.get('/profiles/:idUser', ctrlUser.profile);
 router.get('/my', ctrlUser.logged_user_profile);
-router.put('/edit', ctrlUser.edit_profile_action);
+router.post('/edit', ctrlUser.edit_profile_action);
 router.get('/edit', ctrlUser.edit_profile);
 router.get('/book', ctrlUser.book);
 router.get('/confirm', ctrlUser.confirm);

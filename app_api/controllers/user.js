@@ -6,7 +6,7 @@ const validate = require('./../../public/javascripts/validate');
 
 const get_all_users = (req, res) => {
     User.find({}, function(error, user) {
-        console.log(user);
+        
         if (!user) {
             return res.status(404).json({
                 "message": "User not found."
@@ -104,7 +104,6 @@ const updated_profile_data = (req, res) => {
     var location = req.body.params.location;
     var password = req.body.params.password;
     var profile_picture = req.body.params.profile_picture;
-    var favourite_vehicles_ids = req.body.params.favourite_vehicles_ids;
 
     if (!req.body.params.idUser) {
         return res.status(404).json({
@@ -112,28 +111,33 @@ const updated_profile_data = (req, res) => {
         });
     }
     User.findById(req.body.params.idUser).exec((error, user) => {
+        
         if (!user) {
             return res.status(404).json({
                 "message": "No user found!"
             });
         } else if (error) {
+            console.log(error);
             return res.status(500).json(error);
+        } else {
+            user.firstname = firstname;
+            user.lastname = lastname;
+            user.email = email;
+            user.phone_number = phone_number;
+            user.location = location;
+            user.password = password;
+            user.profile_picture = profile_picture;
+
+            user.save((error, user) => {
+
+                if (error) {
+                    res.status(404).json(error);
+                } else {
+                    
+                    res.status(200).json(true);
+                }
+            });
         }
-        user.firstname = firstname;
-        user.lastname = lastname;
-        user.email = email;
-        user.phone_number = phone_number;
-        user.location = location;
-        user.password = password;
-        user.profile_picture = profile_picture;
-        user.favourite_vehicles_ids = favourite_vehicles_ids;
-        user.save((error, user) => {
-            if (error) {
-                res.status(404).json(error);
-            } else {
-                res.status(200).json(user);
-            }
-        });
     });
 };
 
@@ -153,7 +157,7 @@ const check_if_user_exists = (req, res) => {
 };
 
 const check_if_mail_exists = (req, res) => {
-    console.log("Checking if mail:" + req.query.email + " exists");
+    
     User.find({
         email: req.query.email
     }).exec((napaka, user) => {
@@ -234,8 +238,7 @@ const get_favourite_vehicles = (req, res) => {
 };
 
 const get_vehicles_of_user = (req, res) => {
-    console.log(req.body);
-    console.log(req.params);
+    
     Vehicle.find({
         owner_id: {
             $in: req.params.idUser

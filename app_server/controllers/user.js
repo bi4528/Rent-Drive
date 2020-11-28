@@ -34,7 +34,7 @@ const user_login = (req, res) => {
         .then((response) => {
             if (response.data != null) {
                 req.session.user_id = response.data;
-                console.log(req.session);
+                
                 res.redirect('/');
 
             } else {
@@ -71,7 +71,7 @@ const user_register = (req, res) => {
                 })
                 .then((response) => {
                     if (response.data != null) {
-                        console.log(response.data);
+                        
                         req.session.user_id = response.data._id;
                         res.redirect('/');
                     } else {
@@ -182,7 +182,7 @@ const profile = (req, res) => {
             params: req.body.params
         })
         .then((response) => {
-            
+
             var user = response.data;
             axios.get(apiParametri.streznik + '/api/users/' + idUser + '/vehicles', {
                     params: req.body.params
@@ -212,7 +212,7 @@ const profile = (req, res) => {
                             });
 
                             show_profile(req, res, user, vehicles, favourite_vehicles);
-                            
+
                         })
                         .catch((error) => {
                             console.log(error);
@@ -233,8 +233,40 @@ const profile = (req, res) => {
 };
 
 const edit_profile_action = (req, res) => {
-    console.log(req);
+    console.log(req.body);
+    const user_id = req.session.user_id;
+
+    axios.put(apiParametri.streznik + '/api/users/' + user_id, {
+            params: {
+                idUser: user_id,
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
+                email: req.body.mail,
+                password: req.body.password,
+                location: req.body.location,
+                phone_number: req.body.phone_number
+            }
+        })
+        .then((response) => {
+            if (response.data != null && response.data == true) {
+                res.redirect('/users/my');
+            } else {
+                show_failed_edit_profile(req, res, "Sprememba podatkov ni bila uspešna.");
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+            show_failed_edit_profile(req, res, "Napaka med spreminjanjem podatkov uporabnika.");
+        });
 };
+
+function show_failed_edit_profile(req, res, message) {
+    const is_user_logged = req.session.user_id != null;
+    res.render('edit_profile', {
+        user_logged: is_user_logged,
+        alert_error: message
+    });
+}
 
 function show_profile(req, res, user, vehicles, favourite_vehicles) {
     const is_user_logged = req.session.user_id != null;
@@ -271,20 +303,20 @@ function show_failed_profile(req, res, message) {
 
 const edit_profile = (req, res) => {
 
-     var idUser = req.body.idUser != null ? req.body.idUser : req.session.user_id;
+    var idUser = req.body.idUser != null ? req.body.idUser : req.session.user_id;
 
-     axios.get(apiParametri.streznik + '/api/users/' + idUser, {
-             params: req.body.params
-         })
-         .then((response) => {
+    axios.get(apiParametri.streznik + '/api/users/' + idUser, {
+            params: req.body.params
+        })
+        .then((response) => {
 
             const user = response.data;
             show_edit_profile(req, res, user);
-         })
-         .catch((error) => {
-             console.log(error);
-             show_failed_edit_profile(req, res, "Error while searching user");
-         });
+        })
+        .catch((error) => {
+            console.log(error);
+            show_failed_edit_profile(req, res, "Error while searching user");
+        });
 };
 
 function show_edit_profile(req, res, user) {
@@ -293,18 +325,12 @@ function show_edit_profile(req, res, user) {
         firstname: user.firstname,
         lastname: user.lastname,
         mail: user.email,
+        password: user.password,
         phone_number: user.phone_number,
         location: user.location,
         profile_picture: user.profile_picture ? user.profile_picture : "/images/avatarUser.png",
         user_logged: user_id != null,
         is_profile_of_logged_user: user_id == user._id
-    });
-}
-
-function show_failed_edit_profile(req, res, message) {
-    res.render('edit_profile', {
-        alert_error: message,
-        user_logged: is_user_logged
     });
 }
 
@@ -327,7 +353,6 @@ const resetpassword = (req, res) => {
 };
 
 const resetpassword_submit = (req, res) => {
-    console.log(req);
     res.render('login', {
         layout: 'account-layout.hbs'
     });
@@ -335,8 +360,7 @@ const resetpassword_submit = (req, res) => {
 
 const user_delete = (req, res) => {
     const user_id = req.session.user_id;
-    console.log("User delete");
-    console.log(user_id);
+    
     axios.delete(apiParametri.streznik + '/api/users/' + user_id, {
             params: {
                 idUser: user_id
@@ -365,10 +389,6 @@ function show_failed_delete_user(req, res, message) {
 
 const remove_user_vehicle = (req, res) => {
     const user_id = req.session.user_id;
-    
-    console.log(req.url);
-    console.log(req.body);
-    console.log(req.query);
 
     const vehicle_id = null;
 
