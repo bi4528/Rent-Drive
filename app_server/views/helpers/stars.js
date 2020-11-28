@@ -1,13 +1,12 @@
 const hbs = require('hbs');
 hbs.registerHelper('stars', (number) => {
     let rez="";
-    var stop = false;
     var j = 1;
     while (j<=number){
         rez+="<i class='fas fa-star'></i>";
         j++;
     }
-    if (j-1!=number) {
+    if (j-1!=number && number!=null) {
         rez+="<i class='fas fa-star-half-alt'></i>";
         for(var i=j+1;i<=5;i++) 
             rez+="<i class='far fa-star'></i>";

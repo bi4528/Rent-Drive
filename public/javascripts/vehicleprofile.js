@@ -55,13 +55,16 @@ function appendToForm (){
     var dailyPrice = document.getElementById("daily-price");
     
     addHiddenInput(dateForm,dailyPrice.innerText,"daily-price")
-    var fullname = document.getElementsByClassName("contact-details")[0].innerText;
-    var i = fullname.indexOf(' ');
-    var firstname = fullname.substring(0, i);
-    var lastname = fullname.substring(i);
-    var phone = document.getElementsByClassName("contact-details")[1].innerText;
-    var email = document.getElementsByClassName("contact-details")[2].innerText;
-    var location = document.getElementsByClassName("contact-details")[3].innerText;
+    var fullname = document.getElementById("fullname");
+    if (fullname!=null) {
+        fullname = fullname.innerText;
+        var i = fullname.indexOf(' ');
+        var firstname = fullname.substring(0, i);
+        var lastname = fullname.substring(i);
+    }
+    var phone = document.getElementById("phone").innerText;
+    var email = document.getElementById("email").innerText;
+    var location = document.getElementById("location").innerText;
     var username = document.getElementsByClassName("blockquote-footer")[0].innerText;
     var vehicle_picture = document.getElementsByClassName("carousel-item")[0].children[0].getAttribute("src");
     var description = document.getElementsByClassName("blockquote")[0].children[0].innerText;
