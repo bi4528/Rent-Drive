@@ -1,22 +1,12 @@
 const mongoose = require('mongoose');
+const User = mongoose.model('User');
+//const vehicleSchema = mongoose.model('Vehicle').schema;
+const Vehicle = mongoose.model('Vehicle');
 
 const rentedSchema = new mongoose.Schema({
-    firstname: {
-        type: String,
-        required: true
-    }, lastname: {
-        type: String,
-        required: true
-    }, email: {
-        type: String,
-        required: true
-    }, make: {
-        type: String,
-        required: true
-    }, model: {
-        type: String,
-        required: true
-    }, dates: {
+    user: {type: mongoose.Schema.ObjectId, ref: User},
+    vehicle: {type: mongoose.Schema.ObjectId, ref: Vehicle},
+    dates: {
         type: [Date],
         required: true
     }
