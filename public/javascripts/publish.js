@@ -1,3 +1,75 @@
+const make_regex= /\b[a-z]+\b/i;
+const word_regex = /\b[a-z || A-Z]+\b/;
+const phone_regex = /((?:\+|00)[17](?: |\-)?|(?:\+|00)[1-9]\d{0,2}(?: |\-)?|(?:\+|00)1\-\d{3}(?: |\-)?)?(0\d|\([0-9]{3}\)|[1-9]{0,3})(?:((?: |\-)[0-9]{2}){4}|((?:[0-9]{2}){4})|((?: |\-)[0-9]{3}(?: |\-)[0-9]{4})|([0-9]{7}))/;
+const no_spaces = /^\S*$/;
+
+
+function validate_phone_number(number) {
+    return validate_not_empty_string(number) && phone_regex.test(number);
+}
+
+function validate_not_empty_string(name) {
+    return name != null && name.length > 0;
+}
+
+function validate_location(location) {
+    return validate_not_empty_string(location);
+}
+
+/*
+(?=.*[a-z])	The string must contain at least 1 lowercase alphabetical character
+(?=.*[A-Z])	The string must contain at least 1 uppercase alphabetical character
+(?=.*[0-9])	The string must contain at least 1 numeric character
+(?=.*[!@#$%^&*])	The string must contain at least one special character, but we are escaping reserved RegEx characters to avoid conflict
+(?=.{8,})	The string must be eight characters or longer
+*/
+
+function validate_vehicle_speed(speed) {
+    return parseFloat(speed) > 0;
+}
+
+function validate_vehicle_number_of_doors(number_of_doors) {
+    return parseFloat(number_of_doors) > 0;
+}
+
+function validate_vehicle_age(age) {
+    return age >= 0;
+}
+
+function validate_vehicle_luggage(l) {
+    return parseFloat(l) >= 0;
+}
+
+function validate_vehicle_price_per_day(price_per_day) {
+    return price_per_day >= 0;
+}
+function validate_vehicle_make(make){
+    return make_regex.test(make);
+}
+function validate_vehicle_horespower(hp){
+    return /\b[0-9]+\b/.test(hp) && parseFloat(hp)>0;
+}
+function validate_acceleration(time){
+    return /\b([0-9]+.[0-9]+|[0-9]+,[0-9]+|[0-9]+)\b/.test(time);
+}
+function validate_vehicle_doors_seats(speed) {
+    return parseFloat(speed) > 0 && parseFloat(speed)<7;
+}
+function validate_vehicle_price_per_day(price){
+    return parseFloat(price) > 0 && parseFloat(price)<5000;
+}
+function validate_phone(phone){
+    return /\b[0-9]+\b/.test(phone);
+}
+function validate_dates (date1, date2) {
+    var date1 = new Date(date1);
+    var date2 = new Date(date2);
+    return date2>=date1;
+}
+function validate_no_spaces(word){
+    return no_spaces.test(word);
+}
+
 
 let formPublish=document.getElementById("list-your-car");
 formPublish["typeoffuel"].addEventListener("change", function(dogodek){
@@ -63,6 +135,39 @@ formPublish.addEventListener("submit", function(dogodek){
         errors+="Phone number must have only numbers and an optional + at the beginning.\n";
         writeError=true;
     }
+    if(!validate_vehicle_luggage(formPublish["luggage"].value)){
+        formPublish["luggage"].classList.add("alert-danger");
+        errors+="Luggage capacity must be a positive number\n";
+        writeError=true;
+    }
+    if(!validate_not_empty_string(formPublish["addres"].value)){
+        formPublish["addres"].classList.add("alert-danger");
+        errors+="You must insert an address.\n";
+        writeError=true;
+    }
+    if(!validate_not_empty_string(formPublish["city"].value)){
+        formPublish["city"].classList.add("alert-danger");
+        errors+="You must insert a city.\n";
+        writeError=true;
+    }
+    if(!validate_vehicle_number_of_doors(formPublish["zip"].value)){
+        formPublish["zip"].classList.add("alert-danger");
+        errors+="You must insert a zip.\n";
+        writeError=true;
+    }
+    if(!validate_not_empty_string(formPublish["description"].value)){
+        formPublish["description"].classList.add("alert-danger");
+        errors+="You must insert a description.\n";
+        writeError=true;
+    }
+    if(!validate_dates(formPublish["date"][0].value, formPublish["date"][1].value )){
+        formPublish["date"][0].classList.add("alert-danger");
+        formPublish["date"][1].classList.add("alert-danger");
+        errors+="Insert valid dates.\n";
+        writeError=true;
+    }
+
+
     if(writeError){
         alert(errors);
         dogodek.preventDefault();

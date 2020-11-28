@@ -27,7 +27,7 @@ const vehicleprofile2 = (req, res) => {
     axios
         .get('/api/vehicles/' + req.params.id)
         .then((odgovor) => {
-            //console.log(odgovor.data);
+            console.log(odgovor.data);
             let car_photos = [];
             let indicators = [];
             for (i = 0; i < odgovor.data.images.length; i++) {
@@ -60,7 +60,6 @@ const publish = (req, res) => {
     res.render('publish');
 };
 
-const path = require('path');
 const { names } = require('debug');
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -73,10 +72,11 @@ var storage = multer.diskStorage({
     }
 });
 
-
+var upload = multer({ storage: storage }).array('carphotos',10);
 const submitcar = (req, res) => {
-    var upload = multer({ storage: storage }).array('carphotos', 5);
+    
     upload(req, res, function (err) {
+        console.log(req);
         console.log(req.body);
         if (err) {
             console.log("NAPAKA");

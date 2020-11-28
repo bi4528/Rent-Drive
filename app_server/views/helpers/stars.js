@@ -5,6 +5,9 @@ hbs.registerHelper('stars', (number) => {
         if(i<=number) rez+="<i class='fas fa-star'></i>";
         else rez+="<i class='far fa-star'></i>";
     }
-    rez+="("+number.toFixed(2)+")"
+    if(number!=null){
+        rez+="("+number.toFixed(2)+")"
+    }
+    
     return rez;
 });

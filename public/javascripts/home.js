@@ -1,4 +1,4 @@
-//const { validate_dates } = require("./validate");
+const validate  = require("./validate.js");
 
 function validate_dates(date1, date2) {
     var date1 = new Date(date1);
@@ -18,7 +18,7 @@ window.addEventListener('load', (event) => {
             alert("Fill in all the criterias in order to filter");
             event.preventDefault();
         }
-        else if(!validate_dates(dateFrom, dateTo)){
+        else if(!validate.validate_dates(dateFrom, dateTo)){
             alert("Date from must be before date to, or can you travel trough time?");
             event.preventDefault();
         }
