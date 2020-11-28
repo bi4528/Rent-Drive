@@ -30,7 +30,6 @@ const create_new_user = (req, res) => {
     var profile_picture = req.body.params.profile_picture;
     var favourite_vehicles_ids = req.body.params.favourite_vehicles_ids;
 
-
     if (!validate.validate_first_name(firstname)) {
         res.status(404).json({
             "message": "Firstname is not correct."
