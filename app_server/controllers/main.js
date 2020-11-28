@@ -393,6 +393,7 @@ function add_users_in_db(callback) {
                 params: {
                     firstname: user_to_add.firstname,
                     lastname: user_to_add.lastname,
+                    username: user_to_add.username,
                     email: user_to_add.email,
                     password: user_to_add.password,
                     location: user_to_add.location,
