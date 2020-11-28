@@ -29,7 +29,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="card">
-                    <img src="{{drugi.profile_picture}}" class="card-img-top" alt="Marina">
+                    <img src="/uploads/{{drugi.profile_picture}}" class="card-img-top" alt="Marina">
                     <div class="card-body">
                         <h5 class="card-title">Owner: {{drugi.username}}</h5>
                         <p class="card-text">This is the contact information of the vehicle owner. For further information please consult the owner!</p>
@@ -45,7 +45,7 @@
                         {{/if}}
                     </ul>
                     <div class="card-body">
-                        <a href="/users/{{owner_id}}" class="card-link stretched-link text-primary">
+                        <a href="/users/profiles/{{drugi.owner_id}}/" class="card-link stretched-link text-primary">
                             <i class="fas fa-caret-up"></i>
                             Check profile</a>
                     </div>

@@ -22,6 +22,15 @@
           <input style="display:none" id="file-upload" type="file" name="profile_picture"/>
         </div>
         <div class="form-group">
+          <label>Username:</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="username" aria-label="username" name="username" value="{{username}}">
+          </div>
+        </div>
+        <div class="form-group">
           <label>Firstname:</label>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -40,7 +49,7 @@
               value="{{lastname}}">
           </div>
         </div>
-        <div class="form-group" hidden>
+        <div class="form-group">
           <label>Mail:</label>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -54,9 +63,9 @@
           <label>Password:</label>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+              <span class="input-group-text"><i class="fas fa-key" aria-hidden="true"></i></span>
             </div>
-            <input type="text" class="form-control" id="password_uporabnika" placeholder="Password123" name="password"
+            <input type="password" class="form-control" id="password_uporabnika" placeholder="Password123" name="password"
               aria-label="password" value="{{password}}">
           </div>
         </div>
