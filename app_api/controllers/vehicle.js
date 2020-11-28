@@ -161,13 +161,13 @@ const vehiclesUpdate = (req, res) => {
             data.consumption = parseFloat(req.body.consumption);
             data.seats = parseFloat(req.body.seats);
             data.doors = parseFloat(req.body.doors);
-            data.AirConditioning = req.body.AirConditioning == null ? "0" : "1";
-            data.Navigation = req.body.Navigation == null ? "0" : "1";
-            data.USB = req.body.USB == null ? "0" : "1";
-            data.AUX = req.body.AUX == null ? "0" : "1";
-            data.autopilot = req.body.autopilot == null ? "0" : "1";
-            data.bluetooth = req.body.bluetooth == null ? "0" : "1";
-            data.parkingsensors = req.body.parkingsensors == null ? "0" : "1";
+            data.AirConditioning = req.body.AirConditioning;
+            data.Navigation = req.body.Navigation;
+            data.USB = req.body.USB;
+            data.AUX = req.body.AUX;
+            data.autopilot = req.body.autopilot;
+            data.bluetooth = req.body.bluetooth;
+            data.parkingsensors = req.body.parkingsensors;
             data.description = req.body.description;
             data.addres = req.body.addres;
             data.city = req.body.city;
@@ -177,6 +177,7 @@ const vehiclesUpdate = (req, res) => {
             data.date = req.body.date;
             data.luggage = req.body.luggage;
             data.minage = req.body.minage;
+            data.accessibility = req.body.accessibility;
             data.save((err, data) => {
                 if (err) {
                     res.status(404).json(err);
