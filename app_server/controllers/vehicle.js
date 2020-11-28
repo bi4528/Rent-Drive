@@ -77,6 +77,8 @@ const vehicleprofile2 = (req, res) => {
 };
 
 const showvehicleprofile = (req, res, data) => {
+    console.log(data);
+    data.user_logged= req.session.user_id != null;
     res.render('vehicleprofile', data);
 };
 
@@ -180,9 +182,11 @@ const editvehicleprofile = (req, res) => {
                 if (user.data.email!=null) tmp.email = user.data.email;
                 if (user.data.username!=null) tmp.username = user.data.username;
                 if(user.data.location!=null) tmp.location = user.data.location;
+                tmp.user_logged = req.session.user_id != null;
                 res.render('editvehicleprofile', tmp);
               }).catch((napaka) => {
                 console.log("Napaka pri iskanju lastnika vozila!");
+                tmp.user_logged= req.session.user_id != null;
                 res.render('editvehicleprofile', tmp);
              });
             });
@@ -281,7 +285,7 @@ function getAverageRating(odgovor) {
 }
 
 const review = (req, res) => {
-    res.render('review');
+    res.render('review', { user_logged : req.session.user_id != null} );
 }
 
 const addReview = (req, res, username, stars) => {
