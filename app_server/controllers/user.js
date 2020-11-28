@@ -31,66 +31,69 @@ const user_login = (req, res) => {
                 password: password
             }
         })
-        .then((user_id) => {
-            if (user_id != null) {
-                req.session.user_id = user_id.data;
-                req.session.save(function (err) {
-                    if (err) console.log(err);
-                    res.redirect('/');
-                });
+        .then((response) => {
+            if (response.data != null) {
+                req.session.user_id = response.data;
                 
+                res.redirect('/');
+
             } else {
-                res.sendStatus(500).json("Error mail or password not correct");
+                show_login_failed(req, res, "Uporabnik ni bil najden.");
             }
         })
         .catch((error) => {
             console.log(error);
-            login(req, res);
+            show_login_failed(req, res, "Napaka na strani APIja.")
         });
 };
 
+function show_login_failed(req, res, message) {
+    res.render('login', {
+        layout: 'account-layout.hbs',
+        alert_error: message
+    });
+}
+
 const user_register = (req, res) => {
     check_if_email_exists(req, res, function (exists, error) {
-        
+
         if (error) {
-            console.log(error);
-            res.render('register', {
-                layout: 'account-layout.hbs',
-                alert_error: "Napaka na strani streznika."
-            });
+            show_register_failed(req, res, "Napaka na strani streznika.");
         } else if (!exists) {
             axios.post(apiParametri.streznik + '/api/users', {
                     params: {
                         firstname: req.body.firstname,
-                        lastname:req.body.lastname,
-                        email:req.body.email,
+                        lastname: req.body.lastname,
+                        email: req.body.email,
                         password: req.body.password,
                         firstname: req.body.firstname,
                     }
                 })
                 .then((response) => {
                     if (response.data != null) {
+                        
+                        req.session.user_id = response.data._id;
                         res.redirect('/');
                     } else {
-                        console.log(response.data);
-                        res.sendStatus(500).json("Error mail or password not correct");
+                        show_register_failed(req, res, "Error mail or password not correct");
                     }
                 })
                 .catch((error) => {
                     console.log(error);
-                    res.render('register', {
-                        layout: 'account-layout.hbs',
-                        alert_error: "Napaka med ustvarjaljem uporabnika."
-                    });
+                    show_register_failed(req, res, "Napaka med ustvarjaljem uporabnika.");
                 });
         } else {
-            res.render('register', {
-                layout: 'account-layout.hbs',
-                alert_error: "Uporabnik s tem mailom ze obstaja."
-            });
+            show_register_failed(req, res, "Uporabnik s tem mailom ze obstaja.");
         }
     });
 };
+
+function show_register_failed(req, res, message) {
+    res.render('register', {
+        layout: 'account-layout.hbs',
+        alert_error: message
+    });
+}
 
 const check_if_email_exists = (req, res, callback) => {
     axios.get(apiParametri.streznik + '/api/users/check/exists_mail', {
@@ -110,49 +113,27 @@ const user_logout = (req, res) => {
     if (req.session) {
         req.session.destroy(function (err) {
             if (err) {
-                res.sendStatus(500).json("Cannot destroy session");
+                show_failed_logout(req, res, "Napaka pri reset seje");
             } else {
-                mainController.home(req, res);
+                res.redirect('/');
             }
         });
     } else {
-        res.sendStatus(200).json("No session logged");
+        show_failed_logout(req, res, "Seja uporabnika ne obstaja");
     }
 };
 
-/*const login_attempt = (req, res) => {
-    console.log(usersJSON.users);
-    var success = false;
-    for (var i = 0; i < usersJSON.users.length; i++) {
-        //console.log(usersJSON.users[i].email);
-        //console.log(usersJSON.users[i].password);
-        if(usersJSON.users[i].email == req.body.email && usersJSON.users[i].password==req.body.password) {
-            success = true;
-            break;
-        }
-    }
-    if (success) res.render('home', dataJSON);
-    else {
-        res.render('login',  {layout: 'account-layout.hbs', failed_login: true});
-    } 
-};*/
+function show_failed_logout(req, res, message) {
+    res.render('profile', {
+        alert_error: message
+    });
+}
 
 const register = (req, res) => {
     res.render('register', {
         layout: 'account-layout.hbs'
     });
 };
-
-/*const register_attempt = (req,res) => {
-    usersJSON.users.push(JSON.parse(JSON.stringify(req.body)));
-    console.log(usersJSON.users);
-    fs.writeFile('app_server/models/users.json', JSON.stringify(usersJSON,null,'\t'), function (err) {
-        if (err) throw err;
-    });
-    res.render('login', {
-        layout: 'account-layout.hbs'
-    });
-};*/
 
 const forgotpassword = (req, res) => {
     res.render('forgotpassword', {
@@ -191,138 +172,167 @@ const forgot_password_recover = (req, res) => {
 
 
 const logged_user_profile = (req, res) => {
-    var id = req.session.user_id;
-    console.log(req.session);
-    console.log(req.session.user_id);
-    profile(req, res, id);
+    profile(req, res);
 };
 
-const profile = (req, res, idUserT) => {
-    var idUser = idUserT != null ? idUserT : req.body.idUser;
-    console.log(idUser);
-    console.log(req.body);
-    axios.get(apiParametri.streznik + '/api/users/' + idUser, {
-            params: req.params
-        })
-        .then((user) => {
-            axios.get(apiParametri.streznik + '/api/users/' + idUser + '/vehicles', {
-                    params: req.params
-                })
-                .then((vehicles) => {
+const profile = (req, res) => {
+    var idUser = req.body.idUser != null ? req.body.idUser : req.session.user_id;
 
+    axios.get(apiParametri.streznik + '/api/users/' + idUser, {
+            params: req.body.params
+        })
+        .then((response) => {
+
+            var user = response.data;
+            axios.get(apiParametri.streznik + '/api/users/' + idUser + '/vehicles', {
+                    params: req.body.params
+                })
+                .then((response) => {
+                    var vehicles = response.data;
                     vehicles = vehicles.map(function (vehicle) {
                         return {
                             name: vehicle.model + " " + vehicle.make,
-                            image: vehicle.image
+                            image: vehicle.image,
+                            id: vehicle._id,
+                            show_controls: idUser == req.session.user_id
                         }
                     });
 
                     axios.get(apiParametri.streznik + '/api/users/' + idUser + '/favourite_vehicles', {
                             params: req.params
                         })
-                        .then((favourite_vehicles) => {
+                        .then((response) => {
+                            var favourite_vehicles = response.data;
                             favourite_vehicles = favourite_vehicles.map(function (favourite_vehicle) {
                                 return {
                                     name: favourite_vehicle.model + " " + favourite_vehicle.make,
-                                    image: favourite_vehicle.image
+                                    image: favourite_vehicle.image,
+                                    id: favourite_vehicle._id
                                 }
                             });
 
-                            res.render('profile', {
-                                firstname: user.firstname,
-                                lastname: user.lastname,
-                                mail: user.email,
-                                phone_number: user.phone_number,
-                                location: user.location,
-                                profile_picture: user.profile_picture,
+                            show_profile(req, res, user, vehicles, favourite_vehicles);
 
-                                owned_cars: vehicles,
-                                favourite_cars: favourite_vehicles
-
-                            });
                         })
-                        .catch(() => {
-                            res.sendStatus(500).json("Error while searching user");
+                        .catch((error) => {
+                            console.log(error);
+                            show_failed_profile(req, res, "Error while searching favourite vehicles of user");
                         });
                 })
-                .catch(() => {
-                    res.sendStatus(500).json("Error while searching user");
+                .catch((error) => {
+                    console.log(error);
+                    show_failed_profile(req, res, "Error while searching vehicles of user");
                 });
 
         })
-        .catch(() => {
-            res.sendStatus(500).json("Error while searching user");
+        .catch((error) => {
+            console.log(error);
+            show_failed_profile(req, res, "Error while searching user");
         });
 
 };
 
 const edit_profile_action = (req, res) => {
-    console.log(req);
+    console.log(req.body);
+    const user_id = req.session.user_id;
+
+    axios.put(apiParametri.streznik + '/api/users/' + user_id, {
+            params: {
+                idUser: user_id,
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
+                email: req.body.mail,
+                password: req.body.password,
+                location: req.body.location,
+                phone_number: req.body.phone_number
+            }
+        })
+        .then((response) => {
+            if (response.data != null && response.data == true) {
+                res.redirect('/users/my');
+            } else {
+                show_failed_edit_profile(req, res, "Sprememba podatkov ni bila uspešna.");
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+            show_failed_edit_profile(req, res, "Napaka med spreminjanjem podatkov uporabnika.");
+        });
 };
+
+function show_failed_edit_profile(req, res, message) {
+    const is_user_logged = req.session.user_id != null;
+    res.render('edit_profile', {
+        user_logged: is_user_logged,
+        alert_error: message
+    });
+}
+
+function show_profile(req, res, user, vehicles, favourite_vehicles) {
+    const is_user_logged = req.session.user_id != null;
+    res.render('profile', {
+        firstname: user.firstname,
+        lastname: user.lastname,
+        mail: user.email,
+        phone_number: user.phone_number,
+        location: user.location,
+        profile_picture: user.profile_picture ? user.profile_picture : "/images/avatarUser.png",
+        owned_cars: vehicles.length > 0 ? vehicles : [{
+            name: "Add a vehicle",
+            image: "/images/car_1.jpg",
+            show_controls: false
+        }],
+        favourite_cars: favourite_vehicles.length > 0 ? favourite_vehicles : [{
+            name: "Like a vehicle",
+            image: "/images/car_1.jpg"
+        }],
+
+        user_logged: is_user_logged,
+        is_profile_of_logged_user: req.session.user_id == user._id
+    });
+}
+
+function show_failed_profile(req, res, message) {
+    const is_user_logged = req.session.user_id != null;
+    res.render('profile', {
+        user_logged: is_user_logged,
+        alert_error: message
+    });
+}
 
 
 const edit_profile = (req, res) => {
 
+    var idUser = req.body.idUser != null ? req.body.idUser : req.session.user_id;
+
+    axios.get(apiParametri.streznik + '/api/users/' + idUser, {
+            params: req.body.params
+        })
+        .then((response) => {
+
+            const user = response.data;
+            show_edit_profile(req, res, user);
+        })
+        .catch((error) => {
+            console.log(error);
+            show_failed_edit_profile(req, res, "Error while searching user");
+        });
+};
+
+function show_edit_profile(req, res, user) {
+    const user_id = req.session.user_id;
     res.render('edit_profile', {
-        firstname: 'Tone',
-        lastname: 'Bine',
-        mail: 'josh_smith@gmail.com',
-        phone_number: '+38670789654',
-        location: 'Koper, Slovenia',
-        profile_picture: '/images/car_1.jpg',
-
-        owned_cars: [{
-                name: 'ferrari',
-                image: '/images/car_2.jpg'
-            },
-            {
-                name: 'mustang',
-                image: "/images/car_3.jpg"
-            }
-        ],
-        favourite_cars: [{
-                name: 'ferrari',
-                image: '/images/car_2.jpg'
-            },
-            {
-                name: 'mustang',
-                image: "/images/car_3.jpg"
-            }
-        ]
-
+        firstname: user.firstname,
+        lastname: user.lastname,
+        mail: user.email,
+        password: user.password,
+        phone_number: user.phone_number,
+        location: user.location,
+        profile_picture: user.profile_picture ? user.profile_picture : "/images/avatarUser.png",
+        user_logged: user_id != null,
+        is_profile_of_logged_user: user_id == user._id
     });
-};
-
-const tuji_profile = (req, res) => {
-    res.render('tuji_profile', {
-        firstname: 'Tone',
-        lastname: 'Bine',
-        mail: 'josh_smith@gmail.com',
-        phone_number: '+38670789654',
-        location: 'Koper, Slovenia',
-        profile_picture: '/images/car_1.jpg',
-
-        owned_cars: [{
-                name: 'ferrari',
-                image: '/images/car_2.jpg'
-            },
-            {
-                name: 'mustang',
-                image: "/images/car_3.jpg"
-            }
-        ],
-        favourite_cars: [{
-                name: 'ferrari',
-                image: '/images/car_2.jpg'
-            },
-            {
-                name: 'mustang',
-                image: "/images/car_3.jpg"
-            }
-        ]
-
-    });
-};
+}
 
 const book = (req, res) => {
     res.render('book', {
@@ -343,23 +353,69 @@ const resetpassword = (req, res) => {
 };
 
 const resetpassword_submit = (req, res) => {
-    console.log(req);
     res.render('login', {
         layout: 'account-layout.hbs'
     });
 };
 
+const user_delete = (req, res) => {
+    const user_id = req.session.user_id;
+    
+    axios.delete(apiParametri.streznik + '/api/users/' + user_id, {
+            params: {
+                idUser: user_id
+            }
+        })
+        .then((response) => {
+            user_logout(req, res);
+        })
+        .catch((error) => {
+            console.log(error);
+            show_failed_delete_user(req, res, "Error while deleting user");
+        });
+}
+
+function show_failed_delete_user(req, res, message) {
+    res.send("profile", {
+        alert_error: message
+    });
+}
+
+function show_failed_delete_user(req, res, message) {
+    res.send("profile", {
+        alert_error: message
+    });
+}
+
+const remove_user_vehicle = (req, res) => {
+    const user_id = req.session.user_id;
+
+    const vehicle_id = null;
+
+    axios.delete(apiParametri.streznik + '/api/vehicles/' + vehicle_id, {
+            params: {
+                idVehicle: vehicle_id
+            }
+        })
+        .then((response) => {
+            profile(req, res);
+        })
+        .catch((error) => {
+            console.log(error);
+            show_failed_delete_vehicle(req, res, "Error while deleting vehicle");
+        });
+}
+
+
+
 module.exports = {
     login,
-    //login_attempt,
     register,
-    //register_attempt,
     forgotpassword,
     resetpassword,
     resetpassword_submit,
     profile,
     edit_profile,
-    tuji_profile,
     edit_profile_action,
     forgot_password_recover,
     user_login,
@@ -367,5 +423,7 @@ module.exports = {
     user_register,
     book,
     confirm,
-    logged_user_profile
+    logged_user_profile,
+    user_delete,
+    remove_user_vehicle
 };

@@ -5,10 +5,11 @@ const Vehicle = mongoose.model('Vehicle');
 const validate = require('./../../public/javascripts/validate');
 
 const get_all_users = (req, res) => {
-    User.find((error, user) => {
+    User.find({}, function(error, user) {
+        
         if (!user) {
             return res.status(404).json({
-                "message": "User not found1."
+                "message": "User not found."
             });
         } else if (error) {
             return res.status(500).json(error);
@@ -75,8 +76,9 @@ const remove_user = (req, res) => {
     User.findByIdAndRemove(req.params.idUser).exec((error) => {
         if (error) {
             return res.status(500).json(error);
+        } else {
+            return res.status(204).json(null);
         }
-        res.status(204).json(null);
     });
 };
 
@@ -102,7 +104,6 @@ const updated_profile_data = (req, res) => {
     var location = req.body.params.location;
     var password = req.body.params.password;
     var profile_picture = req.body.params.profile_picture;
-    var favourite_vehicles_ids = req.body.params.favourite_vehicles_ids;
 
     if (!req.body.params.idUser) {
         return res.status(404).json({
@@ -110,28 +111,33 @@ const updated_profile_data = (req, res) => {
         });
     }
     User.findById(req.body.params.idUser).exec((error, user) => {
+        
         if (!user) {
             return res.status(404).json({
                 "message": "No user found!"
             });
         } else if (error) {
+            console.log(error);
             return res.status(500).json(error);
+        } else {
+            user.firstname = firstname;
+            user.lastname = lastname;
+            user.email = email;
+            user.phone_number = phone_number;
+            user.location = location;
+            user.password = password;
+            user.profile_picture = profile_picture;
+
+            user.save((error, user) => {
+
+                if (error) {
+                    res.status(404).json(error);
+                } else {
+                    
+                    res.status(200).json(true);
+                }
+            });
         }
-        user.firstname = firstname;
-        user.lastname = lastname;
-        user.email = email;
-        user.phone_number = phone_number;
-        user.location = location;
-        user.password = password;
-        user.profile_picture = profile_picture;
-        user.favourite_vehicles_ids = favourite_vehicles_ids;
-        user.save((error, user) => {
-            if (error) {
-                res.status(404).json(error);
-            } else {
-                res.status(200).json(user);
-            }
-        });
     });
 };
 
@@ -142,7 +148,7 @@ const check_if_user_exists = (req, res) => {
     }).limit(1).exec((napaka, users) => {
         if (napaka) {
             return res.status(500).json(napaka);
-        } else if (!users) {
+        } else if (!users || !users[0]) {
             return res.status(200).json(null);
         } else {
             res.status(200).json(users[0]._id);
@@ -151,7 +157,7 @@ const check_if_user_exists = (req, res) => {
 };
 
 const check_if_mail_exists = (req, res) => {
-    console.log("Checking if mail:" + req.query.email + " exists");
+    
     User.find({
         email: req.query.email
     }).exec((napaka, user) => {
@@ -208,7 +214,7 @@ const get_favourite_vehicles = (req, res) => {
     User.findById(req.params.idUser).select('favourite_vehicles_ids').exec((error, user) => {
         if (!user) {
             return res.status(404).json({
-                "message": "User not found5."
+                "message": "User not found."
             });
         } else if (error) {
             return res.status(500).json(error);
@@ -221,7 +227,7 @@ const get_favourite_vehicles = (req, res) => {
         }).exec((error, vehicles) => {
             if (!vehicles) {
                 return res.status(404).json({
-                    "message": "vehicles not found."
+                    "message": "Favourite vehicles not found."
                 });
             } else if (error) {
                 return res.status(500).json(error);
@@ -232,6 +238,7 @@ const get_favourite_vehicles = (req, res) => {
 };
 
 const get_vehicles_of_user = (req, res) => {
+    
     Vehicle.find({
         owner_id: {
             $in: req.params.idUser
@@ -243,8 +250,9 @@ const get_vehicles_of_user = (req, res) => {
             });
         } else if (error) {
             return res.status(500).json(error);
+        } else {
+            res.status(200).json(vehicles);
         }
-        res.status(200).json(vehicles);
     });
 };
 

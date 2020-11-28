@@ -35,11 +35,13 @@ const home = (req, res) => {
 };
 
 const showVehiclesHome = (req, res, data, sporocilo) => {
+    var is_user_logged = req.session.user_id != null;
     res.render('home', {
         
         "title": "Seznam avtomobilov",
         "cars": data,
-        "error": sporocilo
+        "error": sporocilo,
+        "user_logged": is_user_logged
     });
 };
 
@@ -126,6 +128,7 @@ const search = (req, res) => {
 };
 
 const showVehiclesSearch = (req, res, data, sporocilo) => {
+    const is_user_logged = req.session.user_id != null;
     const keyWord = req.query.value;
     const city = req.query.city;
     const dateFrom = req.query.dateFrom;
@@ -148,7 +151,8 @@ const showVehiclesSearch = (req, res, data, sporocilo) => {
         "title": "Seznam avtomobilov",
         "filter": filter,
         "cars": data,
-        "error": sporocilo
+        "error": sporocilo,
+        "user_logged": is_user_logged
     });
 };
 
