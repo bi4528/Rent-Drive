@@ -161,12 +161,31 @@ const submitCB = (req, res, images) => {
 };
 
 const editvehicleprofile = (req, res) => {
+    var tmp = null;
     axios
         .get('/api/vehicles/' + req.params.id)
         .then((odgovor) => {
-            //console.log(odgovor.data);
-            res.render('editvehicleprofile', odgovor.data);
-        });
+            console.log(odgovor.data);
+            tmp = odgovor.data;
+        }).then((response)=>{
+            console.log("Lastnik je " +tmp.owner_id);
+            axios({
+                method: 'get',
+                url: '/api/users/' + tmp.owner_id,
+              }).then((user) => {
+                //console.log(user.data);
+                if(user.data.profile_picture!=null) tmp.profile_picture = user.data.profile_picture;
+                if (user.data.firstname!=null) tmp.firstname = user.data.firstname;
+                if (user.data.lastname!=null) tmp.lastname = user.data.lastname;
+                if (user.data.email!=null) tmp.email = user.data.email;
+                if (user.data.username!=null) tmp.username = user.data.username;
+                if(user.data.location!=null) tmp.location = user.data.location;
+                res.render('editvehicleprofile', tmp);
+              }).catch((napaka) => {
+                console.log("Napaka pri iskanju lastnika vozila!");
+                res.render('editvehicleprofile', tmp);
+             });
+            });
 };
 
 const editvehicleprofile_submit = (req, res) => {
