@@ -1,3 +1,15 @@
+var deleteButtons = document.getElementsByClassName("delete");
+var reviewers = [];
+for (var i=0;i<deleteButtons.length;i++){
+    console.log(deleteButtons.item(i).getAttribute("owner"));
+    if (deleteButtons.item(i).getAttribute("owner")!=null) reviewers.push(deleteButtons.item(i).getAttribute("owner"))
+}
+var sessionUser = document.getElementById("sessionUser").innerText;
+console.log(reviewers);
+var loggedUserReviewIndex = reviewers.indexOf(sessionUser);
+console.log(loggedUserReviewIndex);
+if(loggedUserReviewIndex!=-1) document.getElementsByClassName("delete")[loggedUserReviewIndex].hidden=false;
+
 function submit_button_clicked() {
     
     var form = document.querySelector("date-form");

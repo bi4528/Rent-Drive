@@ -24,6 +24,7 @@ const vehicleprofile = (req, res) => {
 };
 
 const vehicleprofile2 = (req, res) => {
+    var sessionUser = req.session.user_id;
     var tmp = null;
     axios
         .get('/api/vehicles/' + req.params.id)
@@ -56,17 +57,14 @@ const vehicleprofile2 = (req, res) => {
                 method: 'get',
                 url: '/api/users/' + tmp.owner_id, //manjka id!!!
               }).then((user) => {
-                // DODAJ podatke uporabnika!  
-                console.log(user.data);
-                console.log(user.data.profile_picture);
-                console.log(tmp.profile_picture);
                 if(user.data.profile_picture!=null) tmp.profile_picture = user.data.profile_picture;
                 if (user.data.firstname!=null) tmp.firstname = user.data.firstname;
                 if (user.data.lastname!=null) tmp.lastname = user.data.lastname;
                 if (user.data.email!=null) tmp.email = user.data.email;
                 if (user.data.username!=null) tmp.username = user.data.username;
                 if(user.data.location!=null) tmp.location = user.data.location;
-                //console.log(tmp);
+                console.log("SESSION " + sessionUser);
+                tmp.sessionUser = sessionUser;
                 showvehicleprofile(req, res, tmp);
               }).catch((napaka) => {
                 console.log("Napaka pri iskanju lastnika vozila!");
@@ -77,7 +75,7 @@ const vehicleprofile2 = (req, res) => {
 };
 
 const showvehicleprofile = (req, res, data) => {
-    console.log(data);
+    console.log(data.sessionUser);
     data.user_logged= req.session.user_id != null;
     res.render('vehicleprofile', data);
 };
@@ -339,9 +337,11 @@ const postReview = (req, res) => {
             console.log("Napaka pri iskanju lastnika!");
             console.log(napaka);
         });
-    
+}
 
-    
+const deleteReview = (req,res) => {
+    console.log(req.body);
+    //TODO
 }
 
 module.exports = {
@@ -353,5 +353,6 @@ module.exports = {
     vehicleprofile2,
     editvehicleprofile_submit,
     review,
-    postReview
+    postReview,
+    deleteReview
 };

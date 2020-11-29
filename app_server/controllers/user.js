@@ -306,7 +306,7 @@ function show_failed_edit_profile(req, res, message) {
 function show_profile(req, res, user, vehicles, favourite_vehicles) {
     const is_user_logged = req.session.user_id != null;
     res.render('profile', {
-        username: req.body.username,
+        username: user.username,
         firstname: user.firstname,
         lastname: user.lastname,
         mail: user.email,
@@ -358,7 +358,7 @@ const edit_profile = (req, res) => {
 function show_edit_profile(req, res, user) {
     const user_id = req.session.user_id;
     res.render('edit_profile', {
-        username: req.body.username,
+        username: user.username,
         firstname: user.firstname,
         lastname: user.lastname,
         mail: user.email,

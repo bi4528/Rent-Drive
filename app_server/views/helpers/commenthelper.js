@@ -8,6 +8,7 @@ hbs.registerHelper('helper', (vsebina) => {
       rezultat += "<strong>" + vsebina[i].username  +"</strong></td>";
       rezultat += "<td class='stars'><span>" + vsebina[i].rating + "</span></td>";
       rezultat += "<td class='comment'>" + vsebina[i].comment + "</td>"
+      rezultat += "<td> <input type='button' class='btn btn-danger delete' value='Delete' owner='" +vsebina[i]._id + "' hidden='true'></input> </td>";
     }
     rezultat += "</tr>";
   }

@@ -109,7 +109,8 @@
   </div>
 
   <!--- recenzije-->
-
+  <!-- <form method="DELETE" action="/vehicles/reviews/" id="delete-review"> -->
+  <p id="sessionUser" hidden>{{sessionUser}}</p>
   <div class="row justify-content-center">
     <div class=" reviews m-3">
       <table id="t">
@@ -123,7 +124,8 @@
     </div>
   </div>
   </div>
-
+  <!--</form>-->
+  
   <div class="row justify-content-center mx-4">
     <input type="button" class="btn btn-lg btn-primary" value="Add review" onclick="location.href='/vehicles/{{_id}}/reviews'">
   </div>
