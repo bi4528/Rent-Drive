@@ -1,8 +1,6 @@
-var nodemailer = require('nodemailer');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Vehicle = mongoose.model('Vehicle');
-const validate = require('./../../public/javascripts/validate');
 
 const get_all_users = (req, res) => {
     User.find({}, function (error, user) {
@@ -31,27 +29,30 @@ const create_new_user = (req, res) => {
     var profile_picture = req.body.params.profile_picture;
     var favourite_vehicles_ids = req.body.params.favourite_vehicles_ids;
 
-    if (!validate.validate_no_spaces(username)) {
+    console.log("Hello");
+
+    if (!validate_no_spaces(username)) {
+        console.log("Hello");
         res.status(404).json({
             "message": "Username must be one word."
         });
-    } else if (!validate.validate_first_name(firstname)) {
+    } else if (!validate_first_name(firstname)) {
         res.status(404).json({
             "message": "Firstname is not correct."
         });
-    } else if (!validate.validate_last_name(lastname)) {
+    } else if (!validate_last_name(lastname)) {
         res.status(404).json({
             "message": "Lastname is not correct."
         });
-    } else if (phone_number != null && !validate.validate_phone_number(phone_number)) {
+    } else if (phone_number != null && !validate_phone_number(phone_number)) {
         res.status(404).json({
             "message": "Phone number is not correct."
         });
-    } else if (!validate.validate_email(email)) {
+    } else if (!validate_email(email)) {
         res.status(404).json({
             "message": "Email is not correct."
         });
-    } else if (!validate.validate_password(password)) {
+    } else if (!validate_password(password)) {
         res.status(404).json({
             "message": "Password is not correct."
         });
@@ -144,37 +145,62 @@ const updated_profile_data = (req, res) => {
         return res.status(404).json({
             "message": "No given user id"
         });
+    } else if (!validate_no_spaces(username)) {
+        console.log("Hello");
+        res.status(404).json({
+            "message": "Username must be one word."
+        });
+    } else if (!validate_first_name(firstname)) {
+        res.status(404).json({
+            "message": "Firstname is not correct."
+        });
+    } else if (!validate_last_name(lastname)) {
+        res.status(404).json({
+            "message": "Lastname is not correct."
+        });
+    } else if (phone_number != null && !validate_phone_number(phone_number)) {
+        res.status(404).json({
+            "message": "Phone number is not correct."
+        });
+    } else if (!validate_email(email)) {
+        res.status(404).json({
+            "message": "Email is not correct."
+        });
+    } else if (!validate_password(password)) {
+        res.status(404).json({
+            "message": "Password is not correct."
+        });
+    } else {
+        User.findById(req.body.params.idUser).exec((error, user) => {
+
+            if (!user) {
+                return res.status(404).json({
+                    "message": "No user found!"
+                });
+            } else if (error) {
+                console.log(error);
+                return res.status(500).json(error);
+            } else {
+                user.firstname = firstname;
+                user.username = username;
+                user.lastname = lastname;
+                user.email = email;
+                user.phone_number = phone_number;
+                user.location = location;
+                user.password = password;
+                user.profile_picture = profile_picture;
+
+                user.save((error, user) => {
+
+                    if (error) {
+                        res.status(404).json(error);
+                    } else {
+                        res.status(200).json(true);
+                    }
+                });
+            }
+        });
     }
-    User.findById(req.body.params.idUser).exec((error, user) => {
-
-        if (!user) {
-            return res.status(404).json({
-                "message": "No user found!"
-            });
-        } else if (error) {
-            console.log(error);
-            return res.status(500).json(error);
-        } else {
-            user.firstname = firstname;
-            user.username = username;
-            user.lastname = lastname;
-            user.email = email;
-            user.phone_number = phone_number;
-            user.location = location;
-            user.password = password;
-            user.profile_picture = profile_picture;
-
-            user.save((error, user) => {
-
-                if (error) {
-                    res.status(404).json(error);
-                } else {
-
-                    res.status(200).json(true);
-                }
-            });
-        }
-    });
 };
 
 const check_if_user_exists = (req, res) => {
@@ -308,15 +334,15 @@ const reset_password = (req, res) => {
         res.status(404).json({
             "message": "Passwords are not equal."
         });
-    } else if (!validate.validate_password(password_repeated)) {
+    } else if (!validate_password(password_repeated)) {
         res.status(404).json({
             "message": "Repeated password not valid."
         });
-    } else if (!validate.validate_password(password)) {
+    } else if (!validate_password(password)) {
         res.status(404).json({
             "message": "Password not valid."
         });
-    } else if (!validate.validate_email(email)) {
+    } else if (!validate_email(email)) {
         res.status(404).json({
             "message": "Email not valid."
         });
@@ -362,3 +388,115 @@ module.exports = {
     reset_password,
     get_user_data_by_email
 };
+
+const email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const password_regex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+const make_regex = /\b[a-z]+\b/i;
+const word_regex = /\b[a-z || A-Z]+\b/;
+const phone_regex = /((?:\+|00)[17](?: |\-)?|(?:\+|00)[1-9]\d{0,2}(?: |\-)?|(?:\+|00)1\-\d{3}(?: |\-)?)?(0\d|\([0-9]{3}\)|[1-9]{0,3})(?:((?: |\-)[0-9]{2}){4}|((?:[0-9]{2}){4})|((?: |\-)[0-9]{3}(?: |\-)[0-9]{4})|([0-9]{7}))/;
+const no_spaces = /^\S*$/;
+
+function validate_first_name(name) {
+    return validate_not_empty_string(name) && validate_word(name);
+}
+
+function validate_username(name) {
+    return validate_not_empty_string(name);
+}
+
+function validate_phone_number(number) {
+    return validate_not_empty_string(number) && phone_regex.test(number);
+}
+
+
+function validate_last_name(name) {
+    return validate_not_empty_string(name) && validate_word(name);
+}
+
+
+function validate_word(name) {
+    return name != null && word_regex.test(name);
+}
+
+
+function validate_not_empty_string(name) {
+    return name != null && name.length > 0;
+}
+
+function validate_location(location) {
+    return validate_not_empty_string(location);
+}
+
+function validate_email(email) {
+    return validate_not_empty_string(email) && email_regex.test(email.toLowerCase())
+}
+
+
+/*
+(?=.*[a-z])	The string must contain at least 1 lowercase alphabetical character
+(?=.*[A-Z])	The string must contain at least 1 uppercase alphabetical character
+(?=.*[0-9])	The string must contain at least 1 numeric character
+(?=.*[!@#$%^&*])	The string must contain at least one special character, but we are escaping reserved RegEx characters to avoid conflict
+(?=.{8,})	The string must be eight characters or longer
+*/
+
+
+function validate_password(password) {
+    return validate_not_empty_string(password) && password_regex.test(password);
+}
+
+function validate_vehicle_speed(speed) {
+    return parseInt(speed) > 0;
+}
+
+function validate_vehicle_number_of_doors(number_of_doors) {
+    return number_of_doors > 0;
+}
+
+function validate_vehicle_age(age) {
+    return age >= 0;
+}
+
+function validate_vehicle_luggage(l) {
+    return l >= 0;
+}
+
+
+
+function validate_vehicle_price_per_day(price_per_day) {
+    return price_per_day >= 0;
+}
+
+function validate_vehicle_make(make) {
+    return make_regex.test(make);
+}
+
+function validate_vehicle_horespower(hp) {
+    return /\b[0-9]+\b/.test(hp) && parseInt(hp) > 0;
+}
+
+function validate_acceleration(time) {
+    return /\b([0-9]+.[0-9]+|[0-9]+,[0-9]+|[0-9]+)\b/.test(time);
+}
+
+function validate_vehicle_doors_seats(speed) {
+    return parseInt(speed) > 0 && parseInt(speed) < 7;
+}
+
+function validate_vehicle_price_per_day(price) {
+    return parseInt(price) > 0 && parseInt(price) < 5000;
+}
+
+function validate_phone(phone) {
+    return /\b[0-9]+\b/.test(phone);
+}
+
+function validate_dates(date1, date2) {
+    var date1 = new Date(date1);
+    var date2 = new Date(date2);
+    return date2 >= date1;
+}
+
+function validate_no_spaces(word) {
+    return no_spaces.test(word);
+}

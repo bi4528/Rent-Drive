@@ -119,6 +119,16 @@ Vnosno polje model lahko sprejma katerikoli niz pomembno je samo da polje ni pra
 Vnosno polje hp (horespower) sprejema samo številke [0-9] stem da polje ne sme biti prazno.
 
 
+### Dodatna knjižnica: Nodemailer
+Nodemailer smo uporabili za pošiljanje mailov iz strežnika. Z uporabo knjižnice pošljemo mail za reset passworda.
+Ta se pošlje, ko uporabnik na strani forgotpassword.hbs vpiše mail v zaželeno polje in klikne na gumb 'RECOVER PASSWORD'
+Za uspešno delovanje smo najprej ustvarili transporter. Izkoristili smo gmail za to. Ustavrili smo nov mail.
+Mail je 'skupina01.sp@gmail.com'. Geslo je 'lavbicsp'.
+Se pravi navedeni naslov pošlje mail naslovu, ki ga je podal uporabnik.
+Zadeva (v angl. Subject) je 'Recover Password - Rent&Drive'.
+Poslano besedilo je 'Click on http://localhost:3000/users/:podaniMail/resetpassword or https://rentdrive-sp.herokuapp.com/users/:podaniMail/resetpassword'.
+S klikom eden izmed linkov se odpre stran resetpassword.hbs, kjer lahko uporabnik resetira pozabljeno geslo.
+
 ## 3. LP
 
 Dinamična spletna aplikacija s podatkovno bazo
