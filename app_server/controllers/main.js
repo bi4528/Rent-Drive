@@ -217,8 +217,8 @@ const nearby = (req, res) => {
                         const basic_url = 'http://open.mapquestapi.com/geocoding/v1/address?key=7VWv1A4oIlOF80mOVTkI0LHdiJr8V5EP';
                         //vzmemo iz carsa tisto, kar potrebujemo za markerje
                         odgovor.data.forEach(function (car) {
-                            //zmanjsam stevilo zahtev na 3, ker je omejeno stevilo brezplacnih dostopov
-                            if (jsonObj.length >= 3) return;
+                            //zmanjsam stevilo zahtev na 5, ker je omejeno stevilo brezplacnih dostopov
+                            if (jsonObj.length >= 5) return;
                             item = {};
                             // nastavim default vrednosti, v slučaju da so neke prazne
                             item["make"] = car.make || 'Automobil';
@@ -256,10 +256,12 @@ const nearby = (req, res) => {
                     (async () => {
                         try {
                             //3 requesta na enkrat
-                            const [response0, response1, response2] = await axios1.all([
+                            const [response0, response1, response2, response3, response4] = await axios1.all([
                                 axios1.get(jsonObj[0].req),
                                 axios1.get(jsonObj[1].req),
-                                axios1.get(jsonObj[2].req)
+                                axios1.get(jsonObj[2].req),
+                                axios1.get(jsonObj[3].req),
+                                axios1.get(jsonObj[4].req),
 
                             ]);
 
@@ -283,6 +285,14 @@ const nearby = (req, res) => {
                             jsonObj[2].LAT = response2.data.results[0].locations[0].latLng.lat;
                             jsonObj[2].LNG = response2.data.results[0].locations[0].latLng.lng;
                             jsonObj[2].req = '';
+
+                            jsonObj[3].LAT = response3.data.results[0].locations[0].latLng.lat;
+                            jsonObj[3].LNG = response3.data.results[0].locations[0].latLng.lng;
+                            jsonObj[3].req = '';
+
+                            jsonObj[4].LAT = response4.data.results[0].locations[0].latLng.lat;
+                            jsonObj[4].LNG = response4.data.results[0].locations[0].latLng.lng;
+                            jsonObj[4].req = '';
 
                             //console.log(jsonObj);
 
