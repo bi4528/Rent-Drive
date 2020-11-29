@@ -426,6 +426,51 @@ const confirm = (req, res) => {
         .then((response) => {
             if (response.data != null) {
 
+                axios.get(apiParametri.streznik + '/api/users/' + req.body.my_id, {
+                        params: {
+                            my_id: req.body.my_id,
+                            vehicle_id: req.body.vehicle_id,
+                            date_from: req.body.date_from,
+                            date_to: req.body.date_to
+                        }
+                    })
+                    .then((response) => {
+
+                        const email_to_send = response.data.email;
+
+                        var transporter = nodemailer.createTransport({
+                            service: 'gmail',
+                            auth: {
+                                user: 'skupina01.sp@gmail.com',
+                                pass: 'lavbicsp'
+                            }
+                        });
+
+                        var mailOptions = {
+                            from: 'skupina01.sp@gmail.com',
+                            to: email_to_send,
+                            subject: 'Confirm booking - Rent&Drive',
+                            text: 'Thank you for choosing Rent&Drive. Rentan avto: https://rentdrive-sp.herokuapp.com/vehicles/5fc3f4510344ce68b8727772. You can login by clicking https://rentdrive-sp.herokuapp.com/users/login'
+                        };
+
+                        transporter.sendMail(mailOptions, function (error, info) {
+                            if (error) {
+                                console.log(error);
+                                show_error_forgot_password(req, res, "Error while sending mail.");
+                            } else {
+                                console.log('Email sent: ' + info.response);
+                            }
+                        });
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        //show_register_failed(req, res, "Napaka med ustvarjanjem.");
+                        res.render('confirm', {
+                            layout: 'account-layout.hbs',
+                            confirm1: "Car is already booked!"
+                        });
+                    });
+
                 res.render('confirm', {
                     layout: 'account-layout.hbs',
                     confirm1: "Your reservation has been processed successfully!"
