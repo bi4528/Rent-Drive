@@ -377,9 +377,31 @@ const book = (req, res) => {
 };
 
 const confirm = (req, res) => {
-    res.render('confirm', {
-        layout: 'account-layout.hbs'
-    });
+
+    console.log(req.body);
+    const user_id = req.session.user_id;
+    axios.post(apiParametri.streznik + '/api/rented', {
+        params: {
+            my_id: req.body.my_id,
+            vehicle_id: req.body.vehicle_id,
+            date_from: req.body.date_from,
+            date_to: req.body.date_to
+        }
+    })
+        .then((response) => {
+            if (response.data != null) {
+
+                res.render('confirm', {
+                    layout: 'account-layout.hbs'
+                });
+            } else {
+                //show_register_failed(req, res, "Error mail or password not correct");
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+            //show_register_failed(req, res, "Napaka med ustvarjanjem.");
+        });
 };
 
 const resetpassword = (req, res) => {

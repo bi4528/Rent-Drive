@@ -11,6 +11,7 @@ var vehiclesRouter = require('./app_server/routes/vehicles');
 require('./app_api/models/db');
 var usersApi = require('./app_api/routes/users');
 var vehicleApi = require('./app_api/routes/vehicles');
+var rentedApi = require('./app_api/routes/rented');
 
 var app = express();
 
@@ -50,6 +51,7 @@ app.use('/vehicles', vehiclesRouter);
 
 app.use('/api/users', usersApi);
 app.use('/api/vehicles', vehicleApi);
+app.use('/api/rented', rentedApi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
