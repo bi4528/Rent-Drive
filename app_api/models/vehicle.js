@@ -4,6 +4,7 @@ const reviewSchema = new mongoose.Schema({
     comment: String,
     rating: String,
     username: String,
+    user_id: String,
     img: String
 });
 
