@@ -450,7 +450,7 @@ const confirm = (req, res) => {
                             from: 'skupina01.sp@gmail.com',
                             to: email_to_send,
                             subject: 'Confirm booking - Rent&Drive',
-                            text: 'Thank you for choosing Rent&Drive. Rentan avto: https://rentdrive-sp.herokuapp.com/vehicles/5fc3f4510344ce68b8727772. You can login by clicking https://rentdrive-sp.herokuapp.com/users/login'
+                            text: 'Thank you for choosing Rent&Drive. Rentan avto: https://rentdrive-sp.herokuapp.com/vehicles/' + req.body.vehicle_id + '.You can login by clicking https: //rentdrive-sp.herokuapp.com/users/login'
                         };
 
                         transporter.sendMail(mailOptions, function (error, info) {

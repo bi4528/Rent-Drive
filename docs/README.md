@@ -177,7 +177,8 @@ Naša aplikacija je bila testirana in pravilno dela na kateremkoli računalniku,
 Naša aplikacija je bila testirana in pravilno dela na: Google Chrome, Microsoft Edge, Mozila Firefox, Brave.
 
 ### Dodatna knjižnica: Nodemailer
-Nodemailer smo uporabili za pošiljanje mailov iz strežnika. Z uporabo knjižnice pošljemo mail za reset passworda.
+Nodemailer smo uporabili za pošiljanje mailov iz strežnika. Rabimo ga za dve akciji:
+1)Z uporabo knjižnice pošljemo mail za reset passworda.
 Ta se pošlje, ko uporabnik na strani forgotpassword.hbs vpiše mail v zaželeno polje in klikne na gumb 'RECOVER PASSWORD'
 Za uspešno delovanje smo najprej ustvarili transporter. Izkoristili smo gmail za to. Ustavrili smo nov mail.
 Mail je 'skupina01.sp@gmail.com'. Geslo je 'lavbicsp'.
@@ -185,6 +186,13 @@ Se pravi navedeni naslov pošlje mail naslovu, ki ga je podal uporabnik.
 Zadeva (v angl. Subject) je 'Recover Password - Rent&Drive'.
 Poslano besedilo je 'Click on http://localhost:3000/users/:podaniMail/resetpassword or https://rentdrive-sp.herokuapp.com/users/:podaniMail/resetpassword'.
 S klikom eden izmed linkov se odpre stran resetpassword.hbs, kjer lahko uporabnik resetira pozabljeno geslo.
+2)Z uporabo knjižnice pošljemo mail za confirm booking.
+Ta se pošlje, ko uporabnik na strani book.hbs klikne na gumb confirm.
+Za uspešno delovanje smo najprej ustvarili transporter.
+Se pravi navedeni naslov ('skupina01.sp@gmail.com') pošlje mail naslovu, ki ga je prijavljen.
+Zadeva (v angl. Subject) je 'Confirm booking - Rent&Drive'.
+Poslano besedilo je 'Thank you for choosing Rent&Drive. Rentan avto: https://rentdrive-sp.herokuapp.com/vehicles/:idVehicle. You can login by clicking https://rentdrive-sp.herokuapp.com/users/login'.
+S klikom na prvi link se odpre stran avta. S klikom na drugi link se odpre stran Login.
 ### Dodatna knjižnica: Multer
 Ena zunanja knjižnica ki jo uporabljamo je multer. V glavnem ta se uporablja na publish.hbs, editvehicleprofile.hbs, editprofile.hbs kjer lahko uporabnik ima opcijo da naloži eno sliko, to je le pri editprofile.hbs ali več slik pri publish.hbs in editvehicleprofile.hbs. Podprta je torej možnost nalaganja več slik avta uporabnika ki se potem prikažejo na vehicleprofile.hbs
 
