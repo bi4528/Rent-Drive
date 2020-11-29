@@ -12,7 +12,7 @@ function validate_first_name(name) {
 }
 
 function validate_username(name) {
-    return validate_not_empty_string(name) && usernameRx.test(username);
+    return validate_not_empty_string(name) && usernameRx.test(name);
 }
 
 function validate_phone_number(number) {
