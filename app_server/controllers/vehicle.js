@@ -46,9 +46,9 @@ const vehicleprofile2 = (req, res) => {
             odgovor.data.indicators = indicators;
             odgovor.data.car_photos = car_photos;
 
-// for zanka, axios get odgovor.data.reviews.user_id, poišči user_id, namesto img iz reviews, beremo iz user sheme
-            
-            for(var i = 0; i < odgovor.data.reviews.length; i++) {
+            // for zanka, axios get odgovor.data.reviews.user_id, poišči user_id, namesto img iz reviews, beremo iz user sheme
+
+            for (var i = 0; i < odgovor.data.reviews.length; i++) {
                 odgovor.data.reviews.show_delete_button = req.session.user_id ? odgovor.data.reviews[i].user_id == req.session.user_id : false;
             }
 
@@ -65,7 +65,7 @@ const vehicleprofile2 = (req, res) => {
 
 
             tmp = odgovor.data;
-            
+
             console.log("Lastnik je " + tmp.owner_id);
             axios({
                 method: 'get',
@@ -78,7 +78,7 @@ const vehicleprofile2 = (req, res) => {
                 if (user.data.email != null) tmp.email = user.data.email;
                 if (user.data.username != null) tmp.username = user.data.username;
                 if (user.data.location != null) tmp.location = user.data.location;
-                if (user.data.favourite_vehicles_ids.includes(idVehicle)){
+                if (user.data.favourite_vehicles_ids.includes(idVehicle)) {
                     //NADALJUJ
                     tmp.is_favourite_of_logged_user = true;
                 } else {
@@ -129,7 +129,7 @@ var upload = multer({ storage: storage }).array('carphotos', 10);
 const submitcar = (req, res) => {
 
     upload(req, res, function (err) {
-        //console.log(req);
+        //console.log(req.files);
         console.log(req.body);
         if (err) {
             console.log("NAPAKA");
@@ -219,67 +219,53 @@ const editvehicleprofile = (req, res) => {
 
 var upload2 = multer({ storage: storage }).array('carphotos2', 10);
 const editvehicleprofile_submit = (req, res) => {
-    var changes = [];
-    console.log(req.body);
-    for (var i in req.body) {
-        var obj = {};
-        obj.key = i;
-        obj.value = req.body[i];
-        changes.push(obj);
-    }
-    axios
-        .get('/api/vehicles/' + req.params.id)
-        .then((odgovor) => {
-            accessibilityOff = true;
-            auxOff = true;
-            usbOff = true;
-            bluetoothOff = true;
-            navigationOff = true;
-            parkingsensorsOff = true;
-            AirConditioningOff = true;
-            autopilotOff = true;
+    upload2(req, res, function (error) {
+        console.log(req.files);
+        var changes = [];
+        console.log(req.body);
+        for (var i in req.body) {
+            var obj = {};
+            obj.key = i;
+            obj.value = req.body[i];
+            changes.push(obj);
+        }
+        axios
+            .get('/api/vehicles/' + req.params.id)
+            .then((odgovor) => {
+                accessibilityOff = true;
+                auxOff = true;
+                usbOff = true;
+                bluetoothOff = true;
+                navigationOff = true;
+                parkingsensorsOff = true;
+                AirConditioningOff = true;
+                autopilotOff = true;
 
-            for (var i in changes) {
-                //console.log(changes[i].key + ": " + changes[i].value);
-                //console.log(odgovor.data[changes[i].key]);
-                odgovor.data[changes[i].key] = changes[i].value;
-                if (changes[i].key == "accessibility") accessibilityOff = false;
-                if (changes[i].key == "AUX") auxOff = false;
-                if (changes[i].key == "USB") usbOff = false;
-                if (changes[i].key == "bluetooth") bluetoothOff = false;
-                if (changes[i].key == "Navigation") navigationOff = false;
-                if (changes[i].key == "parkingsensors") parkingsensorsOff = false;
-                if (changes[i].key == "AirConditioning") AirConditioningOff = false;
-                if (changes[i].key == "autopilot") autopilotOff = false;
-                if (changes[i].key == "date-from") odgovor.data.date[0] = changes[i].value;
-                if (changes[i].key == "date-to") odgovor.data.date[1] = changes[i].value;
-            }
-            if (accessibilityOff) odgovor.data.accessibility = "off";
-            if (auxOff) odgovor.data.AUX = "off";
-            if (usbOff) odgovor.data.USB = "off";
-            if (bluetoothOff) odgovor.data.bluetooth = "off";
-            if (navigationOff) odgovor.data.Navigation = "off";
-            if (parkingsensorsOff) odgovor.data.parkingsensors = "off";
-            if (AirConditioningOff) odgovor.data.AirConditioning = "off";
-            if (autopilotOff) odgovor.data.autopilot = "off";
+                for (var i in changes) {
+                    //console.log(changes[i].key + ": " + changes[i].value);
+                    //console.log(odgovor.data[changes[i].key]);
+                    odgovor.data[changes[i].key] = changes[i].value;
+                    if (changes[i].key == "accessibility") accessibilityOff = false;
+                    if (changes[i].key == "AUX") auxOff = false;
+                    if (changes[i].key == "USB") usbOff = false;
+                    if (changes[i].key == "bluetooth") bluetoothOff = false;
+                    if (changes[i].key == "Navigation") navigationOff = false;
+                    if (changes[i].key == "parkingsensors") parkingsensorsOff = false;
+                    if (changes[i].key == "AirConditioning") AirConditioningOff = false;
+                    if (changes[i].key == "autopilot") autopilotOff = false;
+                    if (changes[i].key == "date-from") odgovor.data.date[0] = changes[i].value;
+                    if (changes[i].key == "date-to") odgovor.data.date[1] = changes[i].value;
+                }
+                if (accessibilityOff) odgovor.data.accessibility = "off";
+                if (auxOff) odgovor.data.AUX = "off";
+                if (usbOff) odgovor.data.USB = "off";
+                if (bluetoothOff) odgovor.data.bluetooth = "off";
+                if (navigationOff) odgovor.data.Navigation = "off";
+                if (parkingsensorsOff) odgovor.data.parkingsensors = "off";
+                if (AirConditioningOff) odgovor.data.AirConditioning = "off";
+                if (autopilotOff) odgovor.data.autopilot = "off";
 
-            var upload = multer({
-                storage: storage
-            }).array('carphotos2', 5);
-            axios({
-                method: 'put',
-                url: '/api/vehicles/' + req.params.id,
-                data: odgovor.data
-            }).then(() => {
-                //res.render('/vehicles/' + req.params.id, odgovor.data)
-                res.redirect('/vehicles/' + req.params.id);
-            }).catch((napaka) => {
-                console.log("Prišlo je do napake pri posodabljanju.");
-            });
-            /*upload(req, res, function (error) {
-                if (error) {
-                    console.log(error);
-                } else if (req.files.length > 0) {
+                if (req.files.length > 0) {
                     console.log("We have an image.");
                     images = [];
                     for (i = 0; i < req.files.length; i++) {
@@ -298,10 +284,12 @@ const editvehicleprofile_submit = (req, res) => {
                 }).catch((napaka) => {
                     console.log("Prišlo je do napake pri posodabljanju.");
                 });
-            });*/
 
 
-        })
+            }).catch((napaka) => {
+                console.log(napaka);
+            });
+    });
 };
 
 const vehicleprofile_book = (req, res) => {
