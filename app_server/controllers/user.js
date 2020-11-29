@@ -304,6 +304,9 @@ function show_failed_edit_profile(req, res, message) {
 }
 
 function show_profile(req, res, user, vehicles, favourite_vehicles) {
+    console.log(req.session.user_id == user._id);
+    console.log(req.session.user_id);
+    console.log(user._id);
     const is_user_logged = req.session.user_id != null;
     res.render('profile', {
         username: user.username,

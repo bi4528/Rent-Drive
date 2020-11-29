@@ -41,11 +41,9 @@
               <i class="far fa-star fa-xs"></i>
               <i class="far fa-star fa-xs"></i>
             </div>
-            {{#if is_profile_of_logged_user}}
-              {{#if this.show_controls}}
+            {{#if show_controls}}
               <button type="button" class="btn btn-primary btn-block card_auto_najemi_button">Edit</button>
               <button type="button" onclick="location.href='/users/delete/vehicles/{{this.id}}'" class="btn btn-danger btn-block">Remove</button>
-              {{/if}}
             {{/if}}
           </div>
         </div>
