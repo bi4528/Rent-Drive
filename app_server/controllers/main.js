@@ -215,6 +215,7 @@ const nearby = (req, res) => {
                         const basic_url = 'http://open.mapquestapi.com/geocoding/v1/address?key=7VWv1A4oIlOF80mOVTkI0LHdiJr8V5EP';
                         //vzmemo iz carsa tisto, kar potrebujemo za markerje
                         odgovor.data.forEach(function (car) {
+                            console.log(car);
                             //zmanjsam stevilo zahtev na 5, ker je omejeno stevilo brezplacnih dostopov
                             if (jsonObj.length >= 5) return;
                             item = {};
@@ -263,7 +264,7 @@ const nearby = (req, res) => {
                             ]);
 
                             //console.log(jsonObj[0].req);
-                            //console.log(response0.data.results[0].locations[0].latLng.lat);
+                            //console.log(response0.data.results[0]);
                             //console.log(response0.data.results[0].locations[0].latLng.lng);
                             jsonObj[0].LAT = response0.data.results[0].locations[0].latLng.lat;
                             jsonObj[0].LNG = response0.data.results[0].locations[0].latLng.lng;

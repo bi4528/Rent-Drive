@@ -4,13 +4,15 @@ const make_regex= /\b[a-z]+\b/i;
 const word_regex = /\b[a-z || A-Z]+\b/;
 const phone_regex = /((?:\+|00)[17](?: |\-)?|(?:\+|00)[1-9]\d{0,2}(?: |\-)?|(?:\+|00)1\-\d{3}(?: |\-)?)?(0\d|\([0-9]{3}\)|[1-9]{0,3})(?:((?: |\-)[0-9]{2}){4}|((?:[0-9]{2}){4})|((?: |\-)[0-9]{3}(?: |\-)[0-9]{4})|([0-9]{7}))/;
 const no_spaces = /^\S*$/;
+const usernameRx = /^(?=.{4,15}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/;
+
 
 function validate_first_name(name) {
     return validate_not_empty_string(name) && validate_word(name);
 }
 
 function validate_username(name) {
-    return validate_not_empty_string(name);
+    return validate_not_empty_string(name) && usernameRx.test(username);
 }
 
 function validate_phone_number(number) {
