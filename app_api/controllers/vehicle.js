@@ -152,7 +152,7 @@ const vehiclesUpdate = (req, res) => {
             } else if (err) {
                 return res.status(500).json(err);
             }
-            //data.image = req.body.image;
+            data.images = req.body.images;
             data.owner_id = req.body.owner_id,
             data.make = req.body.make;
             data.model = req.body.model;

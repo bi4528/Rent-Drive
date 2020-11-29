@@ -56,7 +56,7 @@
             <li id="fullname" class="list-group-item contact-details"><i class="fas fa-user"></i>{{firstname}}
               {{lastname}}</li>
             {{/if}}
-            <li id="phone" class="list-group-item contact-details"><i class="fas fa-phone"></i>{{number}}</li>
+            <li id="phone" class="list-group-item contact-details"><i class="fas fa-phone"></i>{{phone_number}}</li>
             <li id="email" class="list-group-item contact-details"><i class="far fa-envelope"></i>{{email}}</li>
             {{#if location}}
             <li id="location" class="list-group-item contact-details"><i class="far fa-map"></i>{{location}}</li>
@@ -110,7 +110,6 @@
 
   <!--- recenzije-->
   <!-- <form method="DELETE" action="/vehicles/reviews/" id="delete-review"> -->
-  <p id="sessionUser" hidden>{{sessionUser}}</p>
   <div class="row justify-content-center">
     <div class=" reviews m-3">
       <table id="t">

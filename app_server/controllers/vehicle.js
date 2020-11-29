@@ -45,11 +45,20 @@ const vehicleprofile2 = (req, res) => {
             odgovor.data.indicators = indicators;
             odgovor.data.car_photos = car_photos;
 
+
+// for zanka, axios get odgovor.data.reviews.user_id, poišči user_id, namesto img iz reviews, beremo iz user sheme
+            
             var sum = getAverageRating(odgovor);
             if (sum > 0) {
                 var newAvgRating = sum / odgovor.data.reviews.length;
                 odgovor.data.avg_rating = newAvgRating;
             }
+
+            for (i = 0; i < odgovor.data.reviews.length; i++) {
+                console.log(odgovor.data.reviews[i]);
+            }
+
+
             tmp = odgovor.data;
         }).then((response) => {
             console.log("Lastnik je " + tmp.owner_id);
@@ -57,6 +66,7 @@ const vehicleprofile2 = (req, res) => {
                 method: 'get',
                 url: '/api/users/' + tmp.owner_id, //manjka id!!!
             }).then((user) => {
+                if (user.data.phone_number != null) tmp.phone_number = user.data.phone_number;
                 if (user.data.profile_picture != null) tmp.profile_picture = user.data.profile_picture;
                 if (user.data.firstname != null) tmp.firstname = user.data.firstname;
                 if (user.data.lastname != null) tmp.lastname = user.data.lastname;
@@ -75,7 +85,7 @@ const vehicleprofile2 = (req, res) => {
 };
 
 const showvehicleprofile = (req, res, data) => {
-    console.log(data.sessionUser);
+    //console.log(data.sessionUser);
     data.user_logged = req.session.user_id != null;
     res.render('vehicleprofile', data);
 };
@@ -165,7 +175,7 @@ const editvehicleprofile = (req, res) => {
     axios
         .get('/api/vehicles/' + req.params.id)
         .then((odgovor) => {
-            console.log(odgovor.data);
+            //console.log(odgovor.data);
             tmp = odgovor.data;
         }).then((response) => {
             console.log("Lastnik je " + tmp.owner_id);
@@ -174,6 +184,7 @@ const editvehicleprofile = (req, res) => {
                 url: '/api/users/' + tmp.owner_id,
             }).then((user) => {
                 //console.log(user.data);
+                if (user.data.phone_number != null) tmp.phone_number = user.data.phone_number;
                 if (user.data.profile_picture != null) tmp.profile_picture = user.data.profile_picture;
                 if (user.data.firstname != null) tmp.firstname = user.data.firstname;
                 if (user.data.lastname != null) tmp.lastname = user.data.lastname;
@@ -190,16 +201,16 @@ const editvehicleprofile = (req, res) => {
         });
 };
 
+var upload2 = multer({ storage: storage }).array('carphotos2', 10);
 const editvehicleprofile_submit = (req, res) => {
     var changes = [];
+    console.log(req.body);
     for (var i in req.body) {
         var obj = {};
         obj.key = i;
         obj.value = req.body[i];
         changes.push(obj);
     }
-    console.log(changes);
-    var tmp = null;
     axios
         .get('/api/vehicles/' + req.params.id)
         .then((odgovor) => {
@@ -214,8 +225,7 @@ const editvehicleprofile_submit = (req, res) => {
 
             for (var i in changes) {
                 //console.log(changes[i].key + ": " + changes[i].value);
-                console.log(changes[i].value);
-                console.log(odgovor.data[changes[i].key]);
+                //console.log(odgovor.data[changes[i].key]);
                 odgovor.data[changes[i].key] = changes[i].value;
                 if (changes[i].key == "accessibility") accessibilityOff = false;
                 if (changes[i].key == "AUX") auxOff = false;
@@ -236,19 +246,45 @@ const editvehicleprofile_submit = (req, res) => {
             if (parkingsensorsOff) odgovor.data.parkingsensors = "off";
             if (AirConditioningOff) odgovor.data.AirConditioning = "off";
             if (autopilotOff) odgovor.data.autopilot = "off";
-            tmp = odgovor.data;
-        }).then((response) => {
-            console.log(tmp);
+
+            var upload = multer({
+                storage: storage
+            }).array('carphotos2', 5);
             axios({
                 method: 'put',
                 url: '/api/vehicles/' + req.params.id,
-                data: tmp
+                data: odgovor.data
             }).then(() => {
-                //res.render('/vehicles/' + req.params.id, tmp)
+                //res.render('/vehicles/' + req.params.id, odgovor.data)
                 res.redirect('/vehicles/' + req.params.id);
             }).catch((napaka) => {
                 console.log("Prišlo je do napake pri posodabljanju.");
             });
+            /*upload(req, res, function (error) {
+                if (error) {
+                    console.log(error);
+                } else if (req.files.length > 0) {
+                    console.log("We have an image.");
+                    images = [];
+                    for (i = 0; i < req.files.length; i++) {
+                        images.push(req.files[i].filename);
+                    }
+                    odgovor.data.images = images;
+                }
+                //console.log(odgovor.data);
+                axios({
+                    method: 'put',
+                    url: '/api/vehicles/' + req.params.id,
+                    data: odgovor.data
+                }).then(() => {
+                    //res.render('/vehicles/' + req.params.id, odgovor.data)
+                    res.redirect('/vehicles/' + req.params.id);
+                }).catch((napaka) => {
+                    console.log("Prišlo je do napake pri posodabljanju.");
+                });
+            });*/
+
+
         })
 };
 
@@ -341,8 +377,8 @@ const deleteReviewOfVehicle = (req, res) => {
     axios.delete('/api/vehicles/' + req.params.idVehicle + '/reviews/' + req.params.idReview)
         .then((odgovor) => {
             console.log(odgovor.data);
-            req.params.id =  req.params.idVehicle;
-            vehicleprofile2(req,res);
+            req.params.id = req.params.idVehicle;
+            vehicleprofile2(req, res);
             //addReview(req, res, odgovor.data.username, stars);
         })
         .catch((napaka) => {
