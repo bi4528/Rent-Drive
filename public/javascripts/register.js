@@ -1,7 +1,3 @@
-const usernameRx = /^(?=.{4,15}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/;
-function validate_username(username){
-    return usernameRx.test(username);
-}
 var form = document.querySelector("form");
 const password_error_message = "Password is not valid. The string must contain at least 1 lowercase alphabetical character. The string must contain at least 1 uppercase alphabetical character. The string must contain at least 1 numeric character. The string must contain at least one special character, but we are escaping reserved RegEx characters to avoid conflict The string must be eight characters or longer.";
 form.addEventListener("submit", function (event) {

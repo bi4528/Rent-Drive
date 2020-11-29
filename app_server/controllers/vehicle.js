@@ -46,8 +46,9 @@ const vehicleprofile2 = (req, res) => {
 
             // Prikazi show delete button  ce je user logged == owner
             for(var i = 0; i < odgovor.data.reviews.length; i++) {
-                odgovor.data.reviews[i].show_delete_button = req.session.user_id ? odgovor.data.reviews[i].user_id == req.session.user_id : false;
+                odgovor.data.reviews[i].show_delete_button = req.session.user_id != null ? odgovor.data.reviews[i].user_id == req.session.user_id : false;
             }
+
 
             var sum = getAverageRating(odgovor);
             if (sum > 0) {
