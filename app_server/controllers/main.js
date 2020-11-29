@@ -374,6 +374,7 @@ function addVehicles(callback) {
                 parkingsensors: dataVehicles[i].parkingsensors,
                 accessibility: dataVehicles[i].accessibility,
                 description: dataVehicles[i].description,
+                country: dataVehicles[i].country,
                 addres: dataVehicles[i].addres,
                 city: dataVehicles[i].city,
                 zip: dataVehicles[i].zip,
