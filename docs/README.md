@@ -113,6 +113,12 @@ Vnosno polje "repeat-password mora biti kopija polja "password", drugač registr
 
 Za uspešno registracijo morajo vsa polja biti ustrezno izpoljnena. 
 
+### publish.hbs
+Vnosno polje make lahko sprejema samo znake [Az-Zz], saj znamke avta so sestavljene samo iz črke.
+Vnosno polje model lahko sprejma katerikoli niz pomembno je samo da polje ni prazno.
+Vnosno polje hp (horespower) sprejema samo številke [0-9] stem da polje ne sme biti prazno.
+
+
 ## 3. LP
 
 Dinamična spletna aplikacija s podatkovno bazo
