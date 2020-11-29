@@ -199,12 +199,16 @@
                 <input type="date" class="form-control" name="date" tabindex=19 name="datefrom">
                 <input type="date" class="form-control" name="date" tabindex=20 name="dateto">
             </div>
+            
 
             <div class="row col-12 py-4 justify-content-center">
                 <div class="col-1">
+
+                    {{#if user_logged}}
                     <a href="/">
                         <input type="submit" class="btn btn-lg btn-secondary" tabindex=21></input>
                     </a>
+                    {{/if}}
                 </div>
             </div>
 

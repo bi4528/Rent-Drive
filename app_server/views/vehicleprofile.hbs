@@ -125,11 +125,12 @@
   </div>
   </div>
   <!--</form>-->
-  
+  {{#if user_logged}}
   <div class="row justify-content-center mx-4">
     <input type="button" class="btn btn-lg btn-primary" value="Add review" onclick="location.href='/vehicles/{{_id}}/reviews'">
   </div>
   <br>
+  {{/if}}
 </main>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
