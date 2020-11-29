@@ -68,7 +68,8 @@ const user_register = (req, res) => {
                         firstname: req.body.firstname,
                         lastname: req.body.lastname,
                         email: req.body.email,
-                        password: req.body.password
+                        password: req.body.password,
+                        profile_picture: 'avatarUser.png',
                     }
                 })
                 .then((response) => {

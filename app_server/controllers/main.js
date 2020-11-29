@@ -316,6 +316,7 @@ const db = (req, res) => {
 };
 
 let dataVehicles = require('../models/vehicles-test.json');
+const user = require('./user');
 
 function addReviews(index, id) {
     i = index;
@@ -423,7 +424,7 @@ const dbadd = (req, res) => {
             for (let i = 0; i < dataVehicles.length; i++) {
                 dataVehicles[i].owner_id = user._id;
             }
-            
+
             addVehicles();
             res.redirect('/');
         }
@@ -431,7 +432,45 @@ const dbadd = (req, res) => {
 };
 
 const dbdel = (req, res) => {
+    axios.get('/api/vehicles', {
+        params: req.body.params
+    }).then((vehicles) => {
+        for (var i in vehicles.data) {
+            console.log(vehicles.data[i]._id);
+            axios.delete('/api/vehicles/' + vehicles.data[i]._id, {
+                params: {
+                    idVehicle: vehicles.data[i]._id
+                }
+            }).catch((error) => {
+                console.log("Error while deleting vehicle" + error);
+            });
+        }
+        console.log("Vehicles deleted successfully!")
+    }).catch((error) => {
+        console.log("Error while deleting vehicles" + error);
+        res.render('/');
+    });
+    axios.get('/api/users', {
+        params: req.body.params
+    }).then((users) => {
+        //console.log(users.data);
+        for (var i in users.data) {
+            console.log(users.data[i]._id);
+            axios.delete('/api/users/' + users.data[i]._id, {
+                params: {
+                    idUser: users.data[i]._id
+                }
+            }).catch((error) => {
+                console.log("Error while deleting user" + error);
+            });
+        }
+        console.log("Users deleted successfully!")
+    }).catch((error) => {
+        console.log("Error while deleting users" + error);
+        res.redirect('/');
+    });
 
+    res.redirect('home');
 };
 
 

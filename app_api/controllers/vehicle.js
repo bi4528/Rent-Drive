@@ -192,7 +192,7 @@ const vehiclesUpdate = (req, res) => {
 };
 
 const vehiclesDelete = (req, res) => {
-    const { idVehicle } = req.params;
+    const idVehicle = req.params.id;
     if (idVehicle) {
         Vehicle
             .findByIdAndRemove(idVehicle)
