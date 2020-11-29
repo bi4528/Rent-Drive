@@ -6,6 +6,10 @@ function validate_dates(date1, date2) {
     return date2>=date1;
 }
 
+function validate_city(city){
+    return /\b([a-z]+|[a-z]+-[a-z]+)\b/i.test(city);
+}
+
 window.addEventListener('load', (event) => {
     document.body.getElementsByClassName("filterbutton")[0].addEventListener('click', (event)=>{
         let filterCity=document.body.getElementsByClassName("filterCity")[0].value;
@@ -14,8 +18,8 @@ window.addEventListener('load', (event) => {
         console.log(filterCity+" "+dateFrom+" "+dateTo);
         
 
-        if(filterCity==="" || dateFrom==="" || dateTo==="" ){
-            alert("Fill in all the criterias in order to filter");
+        if(filterCity==="" || dateFrom==="" || dateTo==="" || !validate_city(filterCity)){
+            alert("Fill in all the blank inputs, also city can only have letters and sign '-'");
             event.preventDefault();
         }
         else if(!validate_dates(dateFrom, dateTo)){
