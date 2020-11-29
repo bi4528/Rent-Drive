@@ -103,7 +103,7 @@ Ni večjih razlik z Google Chrome.
 Dinamična spletna aplikacija z logiko na strani strežnika.
 
 ### Vnosna polja
-### 1. [../app_server/views/register.hbs](register.html) - 
+### 1. register.hbs - 
 Vnosno polje "firstname" sprejema samo besede (znake [Aa-Zz]). Imena s presledkom kot je "Ana Marija" so tudi dovoljena.
 Vnosno polje "lastname" sprejema samo besede (znake [Aa-Zz]). Priimiki s presledkom kot je "van Basten" so tudi dovoljena.
 Vnosno polje "email" sprejema samo e-mail naslove. Sprejema velike in male alfanumerične znake, Vnosno polje nujno mora imet en znak "@", in znak "." ki mu sledi končnica.
@@ -113,21 +113,61 @@ Vnosno polje "repeat-password mora biti kopija polja "password", drugač registr
 
 Za uspešno registracijo morajo vsa polja biti ustrezno izpoljnena. 
 
-## 3. LP [Heroku spletna aplikacija](https://rentdrive-sp.herokuapp.com/)
+### 2. login.hbs - 
+Vnosno polje "email" sprejema samo e-mail naslove registriranih uporabnikov.
+Vnosno polje "password" sprejema samo gesla registriranih uporabnikov.
+
+Za uspešno prijavo morajo oba polja biti ustrezno izpoljnena. 
+
+### 3. forgotpassword.hbs
+Vnosno polje "email" sprejema samo e-mail naslove registriranih uporabnikov in je obvezno polje.
+
+### 4. vehicleprofile.hbs
+Na strani "vehicleprofile" je mogoča izposoja prikazanega vozila. 
+Za to mora uporabnik biti **NUJNO** prijavljen (uporabnik je prijavljen če je v navbarju prikazana povezava My Profile namesto povazav Register in Login), drugače izposoja ne bo mogoča.
+Na strani sta desno obvezna vnosna polja "date-from" in "date-to", ki omogočata izposojo vozila v intervalu ki je določil lastnik vozila. Zraven je tudi obvezno polje za kraj izposoje.
+Ob kliku na gumb "book" ter izbiri datuma in lokacije uporabnik nadaljuje s postopkom izposoje.
+
+### publish.hbs
+Vnosno polje make lahko sprejema samo znake [Az-Zz], saj znamke avta so sestavljene samo iz črke.
+Vnosno polje model lahko sprejma katerikoli niz pomembno je samo da polje ni prazno.
+Vnosno polje hp (horespower) sprejema samo številke [0-9] stem da polje ne sme biti prazno.
+Vnosno polje maxspeed sprejma samo številke stem da lahko vnašate tudi decimalke.
+Vnosno polje acceleration lahko sprejema celi števil ali decimalnih števil stem da lahko decimalna mesta ločite z vejico ali piko. Primer dovoljenih vnosov: (3) (3.3) (3,3)
+Za vnosno polje consumption veljajo ista pravila kot za acceleration.
+Za vnosno polje doors in seats velja da sprejemata cela števila med 1 in 7.
+Vnosno polje price sprejema decimalna stevila med 1 in 5000.
+Vnosno polje number sprejema telfonska stevila in specijalen znak na začetku.
+Vnosno polje luggage sprejma decimalna stevila ki so vecja od 0.
+Vnosno polje address sprejma katerikoli niz, pomembno je le da polje ni prazno.
+Vnosno polje city sprejma nize ki sestavljene samo iz crke [a-z] (je case insensitive), lahko tudi obstaja en znam '-' vmes. Primer uporabe: Ljubljana, Monte-Carlo.
+Vnosno polje zip lahko sprejema cela stevila.
+Za vnosno polje description je pomembno da ni prazno.
+Za vnosna polja dates from in dates to je pomembno da dateTo je casovno po dateFrom.
+
+### home.hbs
+Vnosno polje city sprejma nize ki sestavljene samo iz crke [a-z] (je case insensitive), lahko tudi obstaja en znam '-' vmes. Primer uporabe: Ljubljana, Monte-Carlo.
+Za vnosna polja dates from in dates to je pomembno da dateTo je casovno po dateFrom.
+
+## 3. LP
+
 Dinamična spletna aplikacija s podatkovno bazo
 
-### Namestitev potrebnih datotek za zagon aplikacije
+### Namestitev potrebnih datotek za zagon aplikacije v lokalnem okolju
 
 1. Z ukazom v ukazni vrstici`git clone https://github.com/sp-2020-2021/LP-01` se v trenutno mapo namestijo datoteke iz oddaljenega repozitorija.
 2. Premaknemo se v mapo `.\LP-01` z ukazom `cd .\LP-01`
 3. Izvedemo ukaz `npm install` s čemer se namestijo potrebne vmesnike za zagon aplikacije.
 
 ### Zagon aplikacije
-4.  V mapi `.\LP-01` izvedemo ukaz `nodemon` ali `npm start` s čemer strežnik se zažene.
+- V mapi `.\LP-01` izvedemo ukaz `nodemon` ali `npm start` s čemer strežnik se zažene.
 V kolikor bi želeli ustaviti trenutni proces, to naredimo v ukazni vrstici z ukazom `Ctrl + C`.
 
 ### Dostop do aplikacije
-5. Spletna aplikacija je dostopna na vratih 3000, privzeti naslov za dostop je [localhost:3000](localhost:3000).
+- Spletna aplikacija je dostopna na vratih 3000, privzeti naslov za dostop je [localhost:3000](localhost:3000).
+
+### Dostop do aplikacije v produkcijskem okolju
+- Spletna aplikacija je dostopna na povezavi [Heroku spletna aplikacija](https://rentdrive-sp.herokuapp.com/).
 
 ## 4. LP
 

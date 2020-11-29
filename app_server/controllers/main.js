@@ -138,11 +138,9 @@ const showVehiclesSearch = (req, res, data, sporocilo) => {
     filter = "";
     if (!isEmpty(keyWord)) {
         filter = "<H3>Filtered by keyword: \"" + keyWord + "\"</H3>";
-    }
-    else if (!isEmpty(keyWord)) {
+    } else if (!isEmpty(keyWord)) {
         filter = "<H3>Filtered by keyword: \"" + keyWord + "\"</H3>";
-    }
-    else if (!isEmpty(city)) {
+    } else if (!isEmpty(city)) {
         filter = "<H3>Filtered by city of pick-up: \"" + city + "\", date from: \"" + dateFrom + "\" and date to: \"" + dateTo + "\"</H3>";
     } else if (!isEmpty(category)) {
         filter = "<H3>Filtered by category: \"" + category.toLowerCase() + "\"</H3>";
@@ -246,8 +244,7 @@ const nearby = (req, res) => {
                     } catch (err) {
                         console.log(err.message);
 
-                    }
-                    ;
+                    };
                     //console.log(jsonObj);
 
                     //rabim novi axios
@@ -399,7 +396,7 @@ function addVehicles(callback) {
 function add_users_in_db(callback) {
     for (let i = 0; i < data_users.length; i++) {
         const user_to_add = data_users[i];
-        console.log(user_to_add);
+        //console.log(user_to_add);
         axios.post('/api/users', {
                 params: {
                     firstname: user_to_add.firstname,
@@ -426,39 +423,45 @@ function add_users_in_db(callback) {
 const dbadd = (req, res) => {
 
     const users_to_add = 2;
-    const vehicles_to_add = 2;
+    const vehicles_to_add = 10;
     var users_ids = [];
     var vehicless_ids = [];
-    
-    add_users_in_db(function(user, error) {
-        if(error) {
+
+    add_users_in_db(function (user, error) {
+        if (error) {
             console.log(error);
         } else if (!user) {
             console.log("Userja ni");
         } else {
-
-
+            let indexuser = users_ids.length;
             console.log("User is saved");
-            dataVehicles[users_ids.length].owner_id = user._id;
+            dataVehicles[5 * (indexuser)].owner_id = user._id;
+            dataVehicles[5 * (indexuser) + 1].owner_id = user._id;
+            dataVehicles[5 * (indexuser) + 2].owner_id = user._id;
+            dataVehicles[5 * (indexuser) + 3].owner_id = user._id;
+            dataVehicles[5 * (indexuser) + 4].owner_id = user._id;
             users_ids.push(user._id);
 
             if (users_ids.length == users_to_add) {
                 console.log("Time to save vehicles");
-                addVehicles(function(vehicle, error){
+                addVehicles(function (vehicle, error) {
                     if (error) {
                         console.log(error);
                     } else if (!user) {
                         console.log("Userja ni");
                     } else {
-                        var nm_of_reviews = dataVehicles[vehicles_to_add - vehicless_ids.length - 1].reviews.length;
-                        for(var i = 0; i < nm_of_reviews; i++) {
-                            dataVehicles[vehicless_ids.length].reviews[i].user_id = users_ids[vehicles_to_add - vehicless_ids.length - 1];
+                        var nm_of_reviews = dataVehicles[vehicless_ids.length].reviews.length;
+                        for (var i = 0; i < nm_of_reviews; i++) {
+                            dataVehicles[vehicless_ids.length].reviews[i].user_id = vehicless_ids.length < 5 ? users_ids[1] : users_ids[0];
                         }
 
                         addReviews(vehicless_ids.length, vehicle._id);
                         vehicless_ids.push(vehicle._id);
 
-                        home(req, res);
+                        if (vehicless_ids.length == vehicles_to_add) {
+                            res.redirect('/');
+                        }
+
                     }
                 });
             }

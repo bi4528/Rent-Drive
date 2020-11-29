@@ -29,7 +29,7 @@ function validate_vehicle_speed(speed) {
 }
 
 function validate_vehicle_number_of_doors(number_of_doors) {
-    return parseFloat(number_of_doors) > 0;
+    return parseInt(number_of_doors) > 0 & /\b[0-9]+\b/.test(number_of_doors);
 }
 
 function validate_vehicle_age(age) {
@@ -53,7 +53,7 @@ function validate_acceleration(time){
     return /\b([0-9]+.[0-9]+|[0-9]+,[0-9]+|[0-9]+)\b/.test(time);
 }
 function validate_vehicle_doors_seats(speed) {
-    return parseFloat(speed) > 0 && parseFloat(speed)<7;
+    return parseInt(speed) > 0 && parseInt(speed)<7 && /\b[0-9]+\b/.test(speed);
 }
 function validate_vehicle_price_per_day(price){
     return parseFloat(price) > 0 && parseFloat(price)<5000;
@@ -68,6 +68,9 @@ function validate_dates (date1, date2) {
 }
 function validate_no_spaces(word){
     return no_spaces.test(word);
+}
+function validate_city(city){
+    return validate_not_empty_string(city) && /\b([a-z]+|[a-z]+-[a-z]+)\b/i.test(city);
 }
 
 
@@ -110,7 +113,7 @@ formPublish.addEventListener("submit", function(dogodek){
         errors+="Acceleration should be written in the next format => number.number or just a number(s).\n";
         writeError=true;
     }
-    if(!validate_not_empty_string(formPublish["consumption"].value) && formPublish["consumption"].disabled==false ){
+    if(!validate_acceleration(formPublish["consumption"].value) && formPublish["consumption"].disabled==false ){
         formPublish["consumption"].classList.add("alert-danger");
         errors+="Consumption field must not be empty, except if the vehicle is electrix\n";
         writeError=true;
@@ -145,7 +148,7 @@ formPublish.addEventListener("submit", function(dogodek){
         errors+="You must insert an address.\n";
         writeError=true;
     }
-    if(!validate_not_empty_string(formPublish["city"].value)){
+    if(!validate_city(formPublish["city"].value)){
         formPublish["city"].classList.add("alert-danger");
         errors+="You must insert a city.\n";
         writeError=true;
