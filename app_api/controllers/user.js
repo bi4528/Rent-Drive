@@ -271,8 +271,9 @@ const get_favourite_vehicles = (req, res) => {
                 });
             } else if (error) {
                 return res.status(500).json(error);
+            } else {
+                return res.status(200).json(vehicles);
             }
-            res.status(200).json(vehicles);
         });
     });
 };
