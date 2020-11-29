@@ -45,10 +45,10 @@ const vehicleprofile2 = (req, res) => {
             odgovor.data.indicators = indicators;
             odgovor.data.car_photos = car_photos;
 
-// for zanka, axios get odgovor.data.reviews.user_id, poišči user_id, namesto img iz reviews, beremo iz user sheme
-            
+            // for zanka, axios get odgovor.data.reviews.user_id, poišči user_id, namesto img iz reviews, beremo iz user sheme
 
-            for(var i = 0; i < odgovor.data.reviews.length; i++) {
+
+            for (var i = 0; i < odgovor.data.reviews.length; i++) {
                 odgovor.data.reviews.show_delete_button = odgovor.data.reviews[i].user_id == req.session.user_id;
             }
 
@@ -394,6 +394,39 @@ const deleteReviewOfVehicle = (req, res) => {
     //TODO
 }
 
+const changeFavoriteOfUser = (req, res) => {
+
+    console.log("Adding fav veh Server");
+    console.log(req.body);
+    console.log(req.params);
+
+    axios({
+        method: 'post',
+        url: '/api/users/' + req.session.user_id + '/favourite_vehicle',
+        data: {
+            idUser: req.session.user_id,
+            favourite_vehicles_id: req.params.idVehicle
+        }
+    }).then((response) => {
+        if (response.data != null && response.data == true) {
+            req.params.id = req.params.idVehicle;
+            vehicleprofile2(req, res);
+        } else {
+            show_vehicle_profile_error(req, res, "Unable to add favourite vehicle.")
+        }
+    }).catch((napaka) => {
+        console.log(napaka);
+        show_vehicle_profile_error(req, res, "Unable to add favourite vehicle.")
+    });
+}
+
+const show_vehicle_profile_error = (req, res, message) => {
+    res.render('vehicleprofile', {
+        user_logged: req.session.user_id != null,
+        alert_error: message
+    });
+};
+
 
 module.exports = {
     vehicleprofile,
@@ -405,5 +438,6 @@ module.exports = {
     editvehicleprofile_submit,
     review,
     postReview,
-    deleteReviewOfVehicle
+    deleteReviewOfVehicle,
+    changeFavoriteOfUser
 };
