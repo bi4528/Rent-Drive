@@ -78,7 +78,6 @@ const vehicleprofile2 = (req, res) => {
 
                     for(var j = 0; j < tmp.reviews.length; j++) {
                         if (tmp.reviews[j].user_id == users[i]._id) {
-                            console.log("gooo");
                             tmp.reviews[j].username = users[i].username;
                             tmp.reviews[j].img = users[i].profile_picture;
                         }
