@@ -214,7 +214,7 @@ const toggle_favourite_vehicle = (req, res) => {
         } else if (error) {
             return res.status(500).json(error);
         } else {
-            if (user.favourite_vehicles_ids.contains(req.body.favourite_vehicles_id)) {
+            if (user.favourite_vehicles_ids.includes(req.body.favourite_vehicles_id)) {
                 user.favourite_vehicles_ids.remove(req.body.favourite_vehicles_id);
             } else {
                 user.favourite_vehicles_ids.push(req.body.favourite_vehicles_id);
@@ -261,7 +261,7 @@ const get_favourite_vehicles = (req, res) => {
         }
 
         Vehicle.find({
-            id: {
+            _id: {
                 $in: user.favourite_vehicles_ids
             }
         }).exec((error, vehicles) => {

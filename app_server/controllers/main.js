@@ -500,9 +500,28 @@ const dbdel = (req, res) => {
             });
         }
         console.log("Users deleted successfully!")
-        res.redirect('home');
     }).catch((error) => {
         console.log("Error while deleting users" + error);
+        res.redirect('/');
+    });
+    axios.get('/api/rented', {
+        params: req.body.params
+    }).then((rented) => {
+        //console.log(rented.data);
+        for (var i in rented.data) {
+            console.log(rented.data[i]._id);
+            axios.delete('/api/rented/' + rented.data[i]._id, {
+                params: {
+                    idRented: rented.data[i]._id
+                }
+            }).catch((error) => {
+                console.log("Error while deleting rented" + error);
+            });
+        }
+        console.log("Rented deleted successfully!")
+        res.redirect('home');
+    }).catch((error) => {
+        console.log("Error while deleting rented" + error);
         res.redirect('/');
     });
 

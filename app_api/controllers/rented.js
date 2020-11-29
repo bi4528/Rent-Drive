@@ -120,8 +120,19 @@ const get_all_expired_rents_today = (req, res) => {
     });
 };
 
+const remove_rented = (req, res) => {
+    Rented.findByIdAndRemove(req.params.idRented).exec((error) => {
+        if (error) {
+            return res.status(500).json(error);
+        } else {
+            return res.status(204).json(null);
+        }
+    });
+};
+
 module.exports = {
     create_rented,
+    remove_rented,
     get_all_rented,
     get_all_rented_today,
     get_all_expired_rents_today
