@@ -40,7 +40,13 @@
         <div class="name">
           <h2 class="inline car-name">{{make}} {{model}}</h2>
           {{#if user_logged}}
-          <i id="favorite" onclick='location.href="/vehicles/{{_id}}/changefavorite/{{owner_id}}"' class="far fa-heart"></i>
+          {{#if is_favourite_of_logged_user}}
+          <i id="favorite" onclick='location.href="/vehicles/{{_id}}/changefavorite/{{owner_id}}"'
+            class="fas fa-heart"></i>
+          {{else}}
+          <i id="favorite" onclick='location.href="/vehicles/{{_id}}/changefavorite/{{owner_id}}"'
+            class="far fa-heart"></i>
+          {{/if}}
           {{/if}}
         </div>
       </div>
