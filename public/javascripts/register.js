@@ -3,6 +3,7 @@ function validate_username(username){
     return usernameRx.test(username);
 }
 var form = document.querySelector("form");
+const password_error_message = "Password is not valid. The string must contain at least 1 lowercase alphabetical character. The string must contain at least 1 uppercase alphabetical character. The string must contain at least 1 numeric character. The string must contain at least one special character, but we are escaping reserved RegEx characters to avoid conflict The string must be eight characters or longer.";
 form.addEventListener("submit", function (event) {
     var username = document.getElementById("username").value;
     var firstname = document.getElementById("firstname").value;
@@ -28,20 +29,25 @@ form.addEventListener("submit", function (event) {
         event.preventDefault();
     }
     if (!validate_password(password)) {
-        alertMessage("Password is not valid");
+        alertMessage(password_error_message);
+        event.preventDefault();
+    }
+    if (!validate_password(repeatPassword)) {
+        alertMessage(password_error_message);
         event.preventDefault();
     }
     if (password != repeatPassword) {
-        alertMessage("Password is not valid");
+        alertMessage("Passwords are not equal.");
         event.preventDefault();
     }
 });
 
 function alertMessage(message) {
-    var alert = document.getElementById("alert");
+    /*var alert = document.getElementById("alert");
     alert.hidden = false;
     alert.childNodes[1].innerHTML = message;
-    $(".alert-dismissible").fadeTo(1500, 500).slideUp(500);
+    $(".alert-dismissible").fadeTo(1500, 500).slideUp(500);*/
+    alert(message);
 }
 
 document.getElementById("firstname").addEventListener("change", function (event) {
@@ -70,12 +76,12 @@ document.getElementById("mail").addEventListener("change", function (event) {
 
 document.getElementById("password").addEventListener("change", function (event) {
     if (!validate_password(this.value)) {
-        alertMessage("Password not valid!");
+        alertMessage(password_error_message);
     }
 });
 
 document.getElementById("repeat-password").addEventListener("change", function (event) {
     if (!validate_password(this.value)) {
-        alertMessage("Password not valid!");
+        alertMessage(password_error_message);
     }
 });

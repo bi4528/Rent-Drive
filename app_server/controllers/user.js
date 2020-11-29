@@ -272,11 +272,10 @@ const edit_profile_action = (req, res) => {
             console.log(error);
             show_failed_edit_profile(req, res, "Unable to upload profile picture");
         } else if (req.files.length > 0) {
-            console.log("We have an image.");
             req.body.profile_picture = req.files[0].filename;
             save_new_user_data(req, res);
         } else {
-            show_failed_edit_profile(req, res, "No profile picture uploaded");
+            save_new_user_data(req, res);
         }
     });
 

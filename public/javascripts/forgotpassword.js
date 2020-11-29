@@ -13,10 +13,11 @@ form.addEventListener("submit", function (event) {
 });
 
 function alertMessage(message) {
-    var alert = document.getElementById("alert");
+    /*var alert = document.getElementById("alert");
     alert.hidden = false;
     alert.childNodes[1].innerHTML = message;
-    $(".alert-dismissible").fadeTo(1500, 500).slideUp(500);
+    $(".alert-dismissible").fadeTo(1500, 500).slideUp(500);*/
+    alert(message);
 }
 
 document.getElementById("mail").addEventListener("change", function (event) {

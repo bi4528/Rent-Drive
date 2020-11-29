@@ -102,16 +102,6 @@ Ni večjih razlik z Google Chrome.
 
 Dinamična spletna aplikacija z logiko na strani strežnika.
 
-### Dodatna knjižnica: Nodemailer
-Nodemailer smo uporabili za pošiljanje mailov iz strežnika. Z uporabo knjižnice pošljemo mail za reset passworda.
-Ta se pošlje, ko uporabnik na strani forgotpassword.hbs vpiše mail v zaželeno polje in klikne na gumb 'RECOVER PASSWORD'
-Za uspešno delovanje smo najprej ustvarili transporter. Izkoristili smo gmail za to. Ustavrili smo nov mail.
-Mail je 'skupina01.sp@gmail.com'. Geslo je 'lavbicsp'.
-Se pravi navedeni naslov pošlje mail naslovu, ki ga je podal uporabnik.
-Zadeva (v angl. Subject) je 'Recover Password - Rent&Drive'.
-Poslano besedilo je 'Click on http://localhost:3000/users/:podaniMail/resetpassword or https://rentdrive-sp.herokuapp.com/users/:podaniMail/resetpassword'.
-S klikom eden izmed linkov se odpre stran resetpassword.hbs, kjer lahko uporabnik resetira pozabljeno geslo.
-
 ### Vnosna polja
 ### 1. register.hbs - 
 Vnosno polje "firstname" sprejema samo besede (znake [Aa-Zz]). Imena s presledkom kot je "Ana Marija" so tudi dovoljena.\
@@ -186,6 +176,15 @@ Naša aplikacija je bila testirana in pravilno dela na kateremkoli računalniku,
 ### Seznam podprtih brskalnikov
 Naša aplikacija je bila testirana in pravilno dela na: Google Chrome, Microsoft Edge, Mozila Firefox, Brave.
 
+### Dodatna knjižnica: Nodemailer
+Nodemailer smo uporabili za pošiljanje mailov iz strežnika. Z uporabo knjižnice pošljemo mail za reset passworda.
+Ta se pošlje, ko uporabnik na strani forgotpassword.hbs vpiše mail v zaželeno polje in klikne na gumb 'RECOVER PASSWORD'
+Za uspešno delovanje smo najprej ustvarili transporter. Izkoristili smo gmail za to. Ustavrili smo nov mail.
+Mail je 'skupina01.sp@gmail.com'. Geslo je 'lavbicsp'.
+Se pravi navedeni naslov pošlje mail naslovu, ki ga je podal uporabnik.
+Zadeva (v angl. Subject) je 'Recover Password - Rent&Drive'.
+Poslano besedilo je 'Click on http://localhost:3000/users/:podaniMail/resetpassword or https://rentdrive-sp.herokuapp.com/users/:podaniMail/resetpassword'.
+S klikom eden izmed linkov se odpre stran resetpassword.hbs, kjer lahko uporabnik resetira pozabljeno geslo.
 
 ## 3. LP
 
