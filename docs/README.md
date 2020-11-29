@@ -208,6 +208,12 @@ V kolikor bi želeli ustaviti trenutni proces, to naredimo v ukazni vrstici z uk
 ### Dostop do aplikacije v produkcijskem okolju
 - Spletna aplikacija je dostopna na povezavi [Heroku spletna aplikacija](https://rentdrive-sp.herokuapp.com/).
 
+### Zaćetni vnos podatkov
+- Naša spletna aplikacija ima implementirana dva gumba na [localhost:3000/db](localhost:3000/db). Za vnos je potrebno da pritisnete na gumb Add sample data in se podatke bojo naložili v mongodb podatkovno bazo.
+
+### Navodila za uporabo
+- Preden uporabite aplikacijo predlagamo, da si z gumbom register, ki se nahaja v navbar ustvarite svoj uporabniški račun. Po uspešni registraciji se bojo prikazali novi gumbi v navbar in sicer to Profile in List your car. 
+
 
 ## 4. LP
 
