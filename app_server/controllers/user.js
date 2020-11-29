@@ -203,6 +203,7 @@ const profile = (req, res) => {
         .then((response) => {
 
             var user = response.data;
+            console.log(user);
             axios.get(apiParametri.streznik + '/api/users/' + idUser + '/vehicles', {
                     params: req.body.params
                 })
@@ -225,11 +226,11 @@ const profile = (req, res) => {
                             favourite_vehicles = favourite_vehicles.map(function (favourite_vehicle) {
                                 return {
                                     name: favourite_vehicle.model + " " + favourite_vehicle.make,
-                                    image: favourite_vehicle.image,
+                                    image: favourite_vehicle.images[0],
                                     id: favourite_vehicle._id
                                 }
                             });
-
+                            console.log(favourite_vehicles);
                             show_profile(req, res, user, vehicles, favourite_vehicles);
 
                         })
