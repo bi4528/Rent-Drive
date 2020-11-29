@@ -100,8 +100,18 @@ Ni večjih razlik z Google Chrome.
 
 ## 2. LP
 
-Dinamična spletna aplikacija z logiko na strani strežnika
+Dinamična spletna aplikacija z logiko na strani strežnika.
 
+### Vnosna polja
+### 1. [../app_server/views/register.hbs](register.html) - 
+Vnosno polje "firstname" sprejema samo besede (znake [Aa-Zz]). Imena s presledkom kot je "Ana Marija" so tudi dovoljena.
+Vnosno polje "lastname" sprejema samo besede (znake [Aa-Zz]). Priimiki s presledkom kot je "van Basten" so tudi dovoljena.
+Vnosno polje "email" sprejema samo e-mail naslove. Sprejema velike in male alfanumerične znake, Vnosno polje nujno mora imet en znak "@", in znak "." ki mu sledi končnica.
+Vnosno polje "username" sprejema 4-15 velikih in malih alfanumeričnih znakov, presledki niso dovoljeni, prav tako pa "_" ali "." na začetku/koncu.
+Vnosno polje "password" zahteva varna gesla. Zahtevano je: vsaj 6 alfanumeričnih znakov, vsaj ena velika črka, vsaj ena majhna črka in vsaj eden "specialen znak" (npr. število).
+Vnosno polje "repeat-password mora biti kopija polja "password", drugač registracija ne bo uspešna.
+
+Za uspešno registracijo morajo vsa polja biti ustrezno izpoljnena. 
 
 ## 3. LP
 
