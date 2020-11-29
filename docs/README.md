@@ -98,12 +98,10 @@ Splošno: Font v besedilih je dokaj bolj odebeljen in ostrejši.
 ### Brave:
 Ni večjih razlik z Google Chrome.
 
-## 2. LP
-
-Dinamična spletna aplikacija z logiko na strani strežnika.
+## 2. LP - Dinamična spletna aplikacija z logiko na strani strežnika.
 
 ### Vnosna polja
-### 1. register.hbs - 
+### 1. register.hbs
 Vnosno polje "firstname" sprejema samo besede (znake [Aa-Zz]). Imena s presledkom kot je "Ana Marija" so tudi dovoljena.\
 Vnosno polje "lastname" sprejema samo besede (znake [Aa-Zz]). Priimiki s presledkom kot je "van Basten" so tudi dovoljena.\
 Vnosno polje "email" sprejema samo e-mail naslove. Sprejema velike in male alfanumerične znake, Vnosno polje nujno mora imet en znak "@", in znak "." ki mu sledi končnica.\
@@ -113,7 +111,7 @@ Vnosno polje "repeat-password mora biti kopija polja "password", drugač registr
 
 Za uspešno registracijo morajo vsa polja biti ustrezno izpoljnena. 
 
-### 2. login.hbs - 
+### 2. login.hbs
 Vnosno polje "email" sprejema samo e-mail naslove registriranih uporabnikov.
 Vnosno polje "password" sprejema samo gesla registriranih uporabnikov.
 
@@ -131,7 +129,7 @@ Vnosno polje "password_repeated mora biti kopija polja "password", drugač regis
 Na strani "vehicleprofile" je mogoča izposoja prikazanega vozila. \
 Za to mora uporabnik biti **NUJNO** prijavljen (uporabnik je prijavljen če je v navbarju prikazana povezava My Profile namesto povazav Register in Login), drugače izposoja ne bo mogoča.\
 Na strani sta desno obvezna vnosna polja "date-from" in "date-to", ki omogočata izposojo vozila v intervalu ki je določil lastnik vozila. Zraven je tudi obvezno polje za kraj izposoje. \
-Ob kliku na gumb "book" ter izbiri datuma in lokacije uporabnik nadaljuje s postopkom izposoje. \
+Ob kliku na gumb "book" ter izbiri datuma in lokacije uporabnik nadaljuje s postopkom izposoje. 
 
 ### 6. editvehicleprofile.hbs
 Vnosno polje make lahko sprejema samo znake [Az-Zz], saj avtomobilske znamke imajo samo črke. \
@@ -145,9 +143,9 @@ Vnosno polje price sprejema decimalna števila med 1 in 5000. \
 Vnosno polje luggage sprejma decimalna števila ki so večja od 0. \
 Vnosno polje address sprejma katerikoli niz, pomembno je le da polje ni prazno. \
 Vnosno polje city sprejema nize ki so sestavljene samo iz črk [a-z] (je case insensitive), lahko celo tudi obstaja en znak '-' vmes. Primer uporabe: Ljubljana, Monte-Carlo. \
-Vnosno polje zip sprejema cela stevila. \
+Vnosno polje zip sprejema cela števila. \
 Za vnosno polje description je pomembno da ni prazno. \
-Za vnosna polja dates-from in date-to je pomembno da datefrom je časovno po dateFrom. \
+Za vnosna polja dates-from in date-to je pomembno da datefrom je časovno po dateFrom.
 
 ### publish.hbs
 Vnosno polje make lahko sprejema samo znake [Az-Zz], saj avtomobilske znamke imajo samo črke. \
@@ -162,9 +160,9 @@ Vnosno polje number sprejema telfonska stevila in specijalen znak na začetku. \
 Vnosno polje luggage sprejma decimalna stevila ki so vecja od 0. \
 Vnosno polje address sprejma katerikoli niz, pomembno je le da polje ni prazno. \
 Vnosno polje city sprejema nize ki so sestavljene samo iz črk [a-z] (je case insensitive), lahko celo tudi obstaja en znak '-' vmes. Primer uporabe: Ljubljana, Monte-Carlo. \
-Vnosno polje zip sprejema cela stevila. \
+Vnosno polje zip sprejema cela števila. \
 Za vnosno polje description je pomembno da ni prazno. \
-Za vnosna polja dates-from in date-to je pomembno da datefrom je časovno po dateFrom. \
+Za vnosna polja dates-from in date-to je pomembno da datefrom je časovno po dateFrom.
 
 ### home.hbs
 Vnosno polje city sprejema nize ki so sestavljene samo iz črk [a-z] (je case insensitive), lahko tudi obstaja en znak '-' vmes. Primer uporabe: Ljubljana, Monte-Carlo. \
@@ -188,15 +186,16 @@ S klikom eden izmed linkov se odpre stran resetpassword.hbs, kjer lahko uporabni
 ### Dodatna knjižnica: Multer
 Ena zunanja knjižnica ki jo uporabljamo je multer. V glavnem ta se uporablja na publish.hbs, editvehicleprofile.hbs, editprofile.hbs kjer lahko uporabnik ima opcijo da naloži eno sliko, to je le pri editprofile.hbs ali več slik pri publish.hbs in editvehicleprofile.hbs. Podprta je torej možnost nalaganja več slik avta uporabnika ki se potem prikažejo na vehicleprofile.hbs
 
-## 3. LP
-
-Dinamična spletna aplikacija s podatkovno bazo
+## 3. LP - Dinamična spletna aplikacija s podatkovno bazo
 
 ### Namestitev potrebnih datotek za zagon aplikacije v lokalnem okolju
 
 1. Z ukazom v ukazni vrstici` git clone https://github.com/sp-2020-2021/LP-01` se v trenutno mapo namestijo datoteke iz oddaljenega repozitorija.
 2. Premaknemo se v mapo ` .\LP-01` z ukazom `cd .\LP-01`
 3. Izvedemo ukaz ` npm install` s čemer se namestijo potrebne vmesnike za zagon aplikacije.
+4. Izvedemo ukaz ` docker-compose up --no-start `
+5. Izvedemo ukaz ` docker start sp-rentdrive-mongodb `  
+6. Izvedemo ukaz da se povežemo na vsebnik `docker exec -it sp-rentdrive-mongodb mongo`, in nato izklopimo mongo ukazno vrstico s kombinacijo `Ctrl + C`
 
 ### Zagon aplikacije
 - V mapi `.\LP-01` izvedemo ukaz `nodemon` ali `npm start` s čemer strežnik se zažene.
@@ -205,11 +204,18 @@ V kolikor bi želeli ustaviti trenutni proces, to naredimo v ukazni vrstici z uk
 ### Dostop do aplikacije
 - Spletna aplikacija je dostopna na vratih 3000, privzeti naslov za dostop je [localhost:3000](localhost:3000).
 
+### Generiranje podatkov
+- Odpremo spletno stran [localhost:3000/db](localhost:3000/db) in kliknemo na gumb "Add sample data".
+
+Podatki o avtih in komentarjih so dostopni na naslovu [localhost:3000/api/vehicles](localhost:3000/api/vehicles)
+Podatki o uporabnikih so dostopni na naslovu [localhost:3000/api/users](localhost:3000/api/users)
+Podatki o izposojenih avtih so dostopni na naslovu [localhost:3000/api/rented](localhost:3000/api/rented)
+
+### Brisanje podatkov
+- Odpremo spletno stran [localhost:3000/db](localhost:3000/db) in kliknemo na gumb "Delete all data".
+
 ### Dostop do aplikacije v produkcijskem okolju
 - Spletna aplikacija je dostopna na povezavi [Heroku spletna aplikacija](https://rentdrive-sp.herokuapp.com/).
-
-### Zaćetni vnos podatkov
-- Naša spletna aplikacija ima implementirana dva gumba na [localhost:3000/db](localhost:3000/db). Za vnos je potrebno da pritisnete na gumb Add sample data in se podatke bojo naložili v mongodb podatkovno bazo.
 
 ### Navodila za uporabo
 - Preden uporabite aplikacijo predlagamo, da si z gumbom register, ki se nahaja v navbar ustvarite svoj uporabniški račun. Po uspešni registraciji se bojo prikazali novi gumbi v navbar in sicer to Profile in List your car. 
