@@ -531,6 +531,17 @@ const dbdel = (req, res) => {
 
 };
 
+const rentDelete = (req, res) => {
+    axios
+        .delete('/api/rented/'+req.params.id)
+        .then((odgovor) => {
+            res.redirect('/');
+        })
+        .catch(() => {
+            console.log("NAPAKA");
+        });
+};
+
 
 module.exports = {
     home,
@@ -538,5 +549,6 @@ module.exports = {
     nearby,
     db,
     dbadd,
-    dbdel
+    dbdel,
+    rentDelete
 };

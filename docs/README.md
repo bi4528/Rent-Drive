@@ -185,6 +185,8 @@ Se pravi navedeni naslov pošlje mail naslovu, ki ga je podal uporabnik.
 Zadeva (v angl. Subject) je 'Recover Password - Rent&Drive'.
 Poslano besedilo je 'Click on http://localhost:3000/users/:podaniMail/resetpassword or https://rentdrive-sp.herokuapp.com/users/:podaniMail/resetpassword'.
 S klikom eden izmed linkov se odpre stran resetpassword.hbs, kjer lahko uporabnik resetira pozabljeno geslo.
+### Dodatna knjižnica: Multer
+Ena zunanja knjižnica ki jo uporabljamo je multer. V glavnem ta se uporablja na publish.hbs, editvehicleprofile.hbs, editprofile.hbs kjer lahko uporabnik ima opcijo da naloži eno sliko, to je le pri editprofile.hbs ali več slik pri publish.hbs in editvehicleprofile.hbs. Podprta je torej možnost nalaganja več slik avta uporabnika ki se potem prikažejo na vehicleprofile.hbs
 
 ## 3. LP
 

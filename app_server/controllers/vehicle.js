@@ -51,8 +51,10 @@ const vehicleprofile2 = (req, res) => {
 
             var sum = getAverageRating(odgovor);
             if (sum > 0) {
-                var newAvgRating = sum / odgovor.data.reviews.length;
-                odgovor.data.avg_rating = newAvgRating;
+                if(odgovor!=null){
+                    var newAvgRating = sum / odgovor.data.reviews.length;
+                    odgovor.data.avg_rating = newAvgRating;
+                }
             }
 
             for (i = 0; i < odgovor.data.reviews.length; i++) {
@@ -139,7 +141,7 @@ const submitcar = (req, res) => {
         //console.log(req.files);
         console.log(req.body);
         if (err) {
-            console.log("NAPAKA");
+            console.log(err);
         }
         console.log(req.files);
         let names = [];
@@ -189,7 +191,7 @@ const submitCB = (req, res, images) => {
     }).then(() => {
         res.redirect('/');
     }).catch((err) => {
-        console.log("NAPAKA");
+        console.log(err);
     })
 };
 
@@ -346,7 +348,7 @@ const addReview = (req, res, username, stars) => {
     }).then(() => {
         res.redirect('/vehicles/' + id);
     }).catch((napaka) => {
-        console.log("NAPAKA");
+        console.log(napaka);
     });
 }
 

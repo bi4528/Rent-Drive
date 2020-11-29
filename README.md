@@ -17,3 +17,7 @@ Ideja projekta je porazdeljeni *Rent-a-car* oz. car sharing. Aplikacija omogoča
 - funkcija pozabljenega gesla
 - oddaja lastnega vozila v najem
 - funkcija všečkanja vozila
+
+
+
+# 

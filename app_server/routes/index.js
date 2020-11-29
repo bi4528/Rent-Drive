@@ -12,4 +12,6 @@ router.get('/nearby', ctrlMain.nearby);
 router.get('/db', ctrlMain.db);
 router.get('/dbadd', ctrlMain.dbadd);
 router.get('/dbdel', ctrlMain.dbdel);
+router.get('/rented/:id/delete', ctrlMain.rentDelete);
+
 module.exports = router;
