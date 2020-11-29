@@ -15,7 +15,7 @@ router.get('/delete', ctrlUser.user_delete);
 //router.post('/login',ctrlUser.login_attempt);
 router.get('/forgotpassword',ctrlUser.forgotpassword);
 router.post('/forgotpassword', ctrlUser.forgot_password_recover);
-router.get('/resetpassword', ctrlUser.resetpassword);
+router.get('/:emailUser/resetpassword', ctrlUser.resetpassword);
 router.post('/resetpassword', ctrlUser.resetpassword_submit);
 router.get('/profiles/:idUser', ctrlUser.profile);
 router.get('/my', ctrlUser.logged_user_profile);

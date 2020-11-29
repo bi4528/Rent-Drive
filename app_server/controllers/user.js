@@ -36,7 +36,7 @@ const user_login = (req, res) => {
         .then((response) => {
             if (response.data != null) {
                 req.session.user_id = response.data;
-                
+
                 res.redirect('/');
 
             } else {
@@ -74,7 +74,7 @@ const user_register = (req, res) => {
                 })
                 .then((response) => {
                     if (response.data != null) {
-                        
+
                         req.session.user_id = response.data._id;
                         res.redirect('/');
                     } else {
@@ -147,7 +147,6 @@ const forgotpassword = (req, res) => {
 const forgot_password_recover = (req, res) => {
     const email_recover_password = req.body.email
 
-
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -160,7 +159,7 @@ const forgot_password_recover = (req, res) => {
         from: 'skupina01.sp@gmail.com',
         to: email_recover_password,
         subject: 'Recover Password - Rent&Drive',
-        text: 'Click on this link generate reset password link'
+        text: 'Click on http://localhost:3000/users/' + email_recover_password + '/resetpassword'
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
@@ -251,7 +250,7 @@ const edit_profile_action = (req, res) => {
         storage: storage
     }).array('profile_picture', 1);
     upload(req, res, function (error) {
-        
+
         if (error) {
             console.log(error);
             show_failed_edit_profile(req, res, "Unable to upload profile picture");
@@ -267,7 +266,7 @@ const edit_profile_action = (req, res) => {
 };
 
 function save_new_user_data(req, res) {
-    
+
     const user_id = req.session.user_id;
     axios.put(apiParametri.streznik + '/api/users/' + user_id, {
             params: {
@@ -381,13 +380,13 @@ const confirm = (req, res) => {
 
     const user_id = req.session.user_id;
     axios.post(apiParametri.streznik + '/api/rented', {
-        params: {
-            my_id: req.body.my_id,
-            vehicle_id: req.body.vehicle_id,
-            date_from: req.body.date_from,
-            date_to: req.body.date_to
-        }
-    })
+            params: {
+                my_id: req.body.my_id,
+                vehicle_id: req.body.vehicle_id,
+                date_from: req.body.date_from,
+                date_to: req.body.date_to
+            }
+        })
         .then((response) => {
             if (response.data != null) {
 
@@ -406,19 +405,74 @@ const confirm = (req, res) => {
 
 const resetpassword = (req, res) => {
     res.render('resetpassword', {
-        layout: 'account-layout.hbs'
+        layout: 'account-layout.hbs',
+        email: req.params.emailUser
     });
 };
 
 const resetpassword_submit = (req, res) => {
-    res.render('login', {
-        layout: 'account-layout.hbs'
-    });
+    console.log(req.body);
+
+    const email = req.body.email;
+    const password = req.body.password;
+    const password_repeated = req.body.password_repeated;
+
+    console.log(apiParametri.streznik + '/api/recover_password/' + email);
+
+    
+    axios.get(apiParametri.streznik + '/api/users/find/' + email, {
+            params: {
+                email: email
+            }
+        })
+        .then((response) => {
+            console.log(response.data);
+            if (response.data != null) {
+                const user = response.data;
+                axios.post(apiParametri.streznik + '/api/users/recover_password/' + user._id, {
+                        params: {
+                            email: email,
+                            password: password,
+                            password_repeated: password_repeated
+                        }
+                    })
+                    .then((response) => {
+                        console.log(response.data);
+                        if (response.data != null && response.data == true) {
+                            res.render('login', {
+                                layout: 'account-layout.hbs'
+                            });
+                        } else {
+                            show_reset_password_failed(req, res, "Password not reset");
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        show_reset_password_failed(req, res, "Error while reseting password");
+                    });
+            } else {
+                show_reset_password_failed(req, res, "Password not reset");
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+            show_reset_password_failed(req, res, "Error while reseting password");
+        });
+    
+
 };
+
+function show_reset_password_failed(req, res, message) {
+    res.render('resetpassword', {
+        layout: 'account-layout.hbs',
+        email: req.body.email,
+        alert_error: message
+    });
+}
 
 const user_delete = (req, res) => {
     const user_id = req.session.user_id;
-    
+
     axios.delete(apiParametri.streznik + '/api/users/' + user_id, {
             params: {
                 idUser: user_id
@@ -446,7 +500,7 @@ function show_failed_delete_user(req, res, message) {
 }
 
 const remove_user_vehicle = (req, res) => {
-    
+
 
     const vehicle_id = req.params.idVehicle;
 

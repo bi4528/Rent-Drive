@@ -4,7 +4,9 @@ var router = express.Router();
 const ctrlUser = require("../controllers/user")
 
 router.get('/', ctrlUser.get_all_users);
-router.put('/:idUser',ctrlUser.updated_profile_data);
+router.put('/:idUser', ctrlUser.updated_profile_data);
+router.get('/find/:emailUser', ctrlUser.get_user_data_by_email);
+router.post('/recover_password/:idUser', ctrlUser.reset_password);
 router.post('/', ctrlUser.create_new_user);
 router.delete('/:idUser', ctrlUser.remove_user);
 router.get('/:idUser', ctrlUser.get_user_data);
