@@ -41,7 +41,6 @@ const vehicleSchema = new mongoose.Schema({
 	username: String,
     email: String,
     number: String,
-    location: String,
     luggage: Number,
     minage: Number
 });

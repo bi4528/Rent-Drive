@@ -123,6 +123,16 @@ Za uspešno prijavo morajo oba polja biti ustrezno izpoljnena.
 Vnosno polje "email" sprejema samo e-mail naslove registriranih uporabnikov in je obvezno polje.
 
 ### 4. vehicleprofile.hbs
+Na strani "vehicleprofile" je mogoča izposoja prikazanega vozila. 
+Za to mora uporabnik biti **NUJNO** prijavljen (uporabnik je prijavljen če je v navbarju prikazana povezava My Profile namesto povazav Register in Login), drugače izposoja ne bo mogoča.
+Na strani sta desno obvezna vnosna polja "date-from" in "date-to", ki omogočata izposojo vozila v intervalu ki je določil lastnik vozila. Zraven je tudi obvezno polje za kraj izposoje.
+Ob kliku na gumb "book" ter izbiri datuma in lokacije uporabnik nadaljuje s postopkom izposoje.
+
+### publish.hbs
+Vnosno polje make lahko sprejema samo znake [Az-Zz], saj znamke avta so sestavljene samo iz črke.
+Vnosno polje model lahko sprejma katerikoli niz pomembno je samo da polje ni prazno.
+Vnosno polje hp (horespower) sprejema samo številke [0-9] stem da polje ne sme biti prazno.
+
 
 ## 3. LP
 
