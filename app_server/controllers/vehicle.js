@@ -51,8 +51,10 @@ const vehicleprofile2 = (req, res) => {
 
             var sum = getAverageRating(odgovor);
             if (sum > 0) {
-                var newAvgRating = sum / odgovor.data.reviews.length;
-                odgovor.data.avg_rating = newAvgRating;
+                if(odgovor!=null){
+                    var newAvgRating = sum / odgovor.data.reviews.length;
+                    odgovor.data.avg_rating = newAvgRating;
+                }
             }
 
             for (i = 0; i < odgovor.data.reviews.length; i++) {
