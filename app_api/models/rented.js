@@ -4,10 +4,22 @@ const User = mongoose.model('User');
 const Vehicle = mongoose.model('Vehicle');
 
 const rentedSchema = new mongoose.Schema({
-    user: {type: mongoose.Schema.ObjectId, ref: User},
-    vehicle: {type: mongoose.Schema.ObjectId, ref: Vehicle},
-    dates: {
-        type: [Date],
+    /*user_id: {type: mongoose.Schema.ObjectId, ref: User},
+    vehicle_id: {type: mongoose.Schema.ObjectId, ref: Vehicle},*/
+    user_id: {
+        type: mongoose.Schema.ObjectId,
+        required: true
+    },
+    vehicle_id: {
+        type: mongoose.Schema.ObjectId,
+        required: true
+    },
+    date_from: {
+        type: Date,
+        required: true
+    },
+    date_to: {
+        type: Date,
         required: true
     }
 });

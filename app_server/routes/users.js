@@ -22,7 +22,7 @@ router.get('/my', ctrlUser.logged_user_profile);
 router.post('/edit', ctrlUser.edit_profile_action);
 router.get('/edit', ctrlUser.edit_profile);
 router.get('/book', ctrlUser.book);
-router.get('/confirm', ctrlUser.confirm);
+router.post('/confirm', ctrlUser.confirm);
 router.get('/delete/vehicles/:idVehicle', ctrlUser.remove_user_vehicle);
     
 module.exports = router;
