@@ -27,9 +27,7 @@ const vehicleprofile2 = (req, res) => {
     var sessionUser = req.session.user_id;
     const idVehicle = req.params.id;
     var tmp = null;
-    axios
-        .get('/api/vehicles/' + idVehicle)
-        .then((odgovor) => {
+    axios.get('/api/vehicles/' + idVehicle).then((odgovor) => {
             //console.log(odgovor.data);
             let car_photos = [];
             let indicators = [];
@@ -46,12 +44,10 @@ const vehicleprofile2 = (req, res) => {
             odgovor.data.indicators = indicators;
             odgovor.data.car_photos = car_photos;
 
-            // for zanka, axios get odgovor.data.reviews.user_id, poišči user_id, namesto img iz reviews, beremo iz user sheme
-
-            for (var i = 0; i < odgovor.data.reviews.length; i++) {
-                odgovor.data.reviews.show_delete_button = req.session.user_id ? odgovor.data.reviews[i].user_id == req.session.user_id : false;
+            // Prikazi show delete button  ce je user logged == owner
+            for(var i = 0; i < odgovor.data.reviews.length; i++) {
+                odgovor.data.reviews[i].show_delete_button = req.session.user_id ? odgovor.data.reviews[i].user_id == req.session.user_id : false;
             }
-
 
             var sum = getAverageRating(odgovor);
             if (sum > 0) {
@@ -69,24 +65,36 @@ const vehicleprofile2 = (req, res) => {
             console.log("Lastnik je " + tmp.owner_id);
             axios({
                 method: 'get',
-                url: '/api/users/' + tmp.owner_id,
-            }).then((user) => {
-                if (user.data.phone_number != null) tmp.phone_number = user.data.phone_number;
-                if (user.data.profile_picture != null) tmp.profile_picture = user.data.profile_picture;
-                if (user.data.firstname != null) tmp.firstname = user.data.firstname;
-                if (user.data.lastname != null) tmp.lastname = user.data.lastname;
-                if (user.data.email != null) tmp.email = user.data.email;
-                if (user.data.username != null) tmp.username = user.data.username;
-                if (user.data.location != null) tmp.location = user.data.location;
-                if (user.data.favourite_vehicles_ids.includes(idVehicle)) {
-                    //NADALJUJ
-                    tmp.is_favourite_of_logged_user = true;
-                } else {
-                    tmp.is_favourite_of_logged_user = false;
+                url: '/api/users/',
+            }).then((response) => {
+
+                var users = response.data;
+
+                var index_of_user = -1;
+                for(var i = 0; i < users.length; i++) {
+                    if (users[i]._id == tmp.owner_id) {
+                        index_of_user = i;
+                    }
+
+                    for(var j = 0; j < tmp.reviews.length; j++) {
+                        if (tmp.reviews[j].user_id == users[i]._id) {
+                            console.log("gooo");
+                            tmp.reviews[j].username = users[i].username;
+                            tmp.reviews[j].img = users[i].profile_picture;
+                        }
+                    }
                 }
 
-                console.log("Hello");
-                console.log(tmp.is_favourite_of_logged_user);
+                var user = users[index_of_user];
+                
+                if (user.phone_number != null) tmp.phone_number = user.phone_number;
+                if (user.profile_picture != null) tmp.profile_picture = user.profile_picture;
+                if (user.firstname != null) tmp.firstname = user.firstname;
+                if (user.lastname != null) tmp.lastname = user.lastname;
+                if (user.email != null) tmp.email = user.email;
+                if (user.username != null) tmp.username = user.username;
+                if (user.location != null) tmp.location = user.location;
+                tmp.is_favourite_of_logged_user = user.favourite_vehicles_ids != null ? user.favourite_vehicles_ids.includes(idVehicle) : false;
 
                 //console.log("SESSION " + sessionUser);
                 tmp.sessionUser = sessionUser;
