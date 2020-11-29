@@ -158,7 +158,7 @@ const updated_profile_data = (req, res) => {
         res.status(404).json({
             "message": "Lastname is not correct."
         });
-    } else if (phone_number != null && !validate_phone_number(phone_number)) {
+    } else if (phone_number != null && phone_number != "" && !validate_phone_number(phone_number)) {
         res.status(404).json({
             "message": "Phone number is not correct."
         });
@@ -188,7 +188,7 @@ const updated_profile_data = (req, res) => {
                 user.phone_number = phone_number;
                 user.location = location;
                 user.password = password;
-                user.profile_picture = profile_picture;
+                if (profile_picture != null) user.profile_picture = profile_picture;
 
                 user.save((error, user) => {
 
