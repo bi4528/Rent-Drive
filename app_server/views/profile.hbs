@@ -34,13 +34,6 @@
           {{/if}}
           <div class="card-body">
             <h5 class="card-text">{{this.name}}</h5>
-            <div class="row width-100 stars_auto">
-              <i class="fas fa-star fa-xs"></i>
-              <i class="fas fa-star fa-xs"></i>
-              <i class="fas fa-star fa-xs"></i>
-              <i class="far fa-star fa-xs"></i>
-              <i class="far fa-star fa-xs"></i>
-            </div>
             {{#if show_controls}}
               <button type="button" onclick="location.href='/vehicles/{{this.id}}/edit'" class="btn btn-primary btn-block card_auto_najemi_button">Edit</button>
               <button type="button" onclick="location.href='/users/delete/vehicles/{{this.id}}'" class="btn btn-danger btn-block">Remove</button>
@@ -63,13 +56,6 @@
           {{/if}}
           <div class="card-body">
             <h5 class="card-text">{{this.name}}</h5>
-            <div class="row width-100 stars_auto">
-              <i class="fas fa-star fa-xs"></i>
-              <i class="fas fa-star fa-xs"></i>
-              <i class="fas fa-star fa-xs"></i>
-              <i class="fas fa-star fa-xs"></i>
-              <i class="far fa-star fa-xs"></i>
-            </div>
           </div>
         </div>
         {{/each}}
