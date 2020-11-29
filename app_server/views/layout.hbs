@@ -36,11 +36,11 @@
             <a class="nav-link" href="/nearby"><i class="material-icons fa-fw align-middle"
                 aria-hidden="true">near_me</i> Nearby</a>
           </li>
+          {{#if user_logged}}
           <li class="nav-item mx-md-2" role="presentation">
             <a class="nav-link" href="/vehicles/publish"><i class="material-icons fa-fw align-middle"
                 aria-hidden="true">add_to_photos</i> List your car</a>
           </li>
-          {{#if user_logged}}
           <li class="nav-item mx-md-2" role="presentation">
             <a class="nav-link" href="/users/my"><i class="material-icons fa-fw align-middle"
                 aria-hidden="true">account_box</i>
@@ -92,8 +92,8 @@
             <ul>
               <li><a href="/">Home</a></li>
               <li><a href="/nearby">Nearby</a></li>
-              <li><a href="/vehicles/publish">List your car</a></li>
               {{#if user_logged}}
+              <li><a href="/vehicles/publish">List your car</a></li>
               <li><a href="/users/my">My profile</a></li>
               {{else}}
               <li><a href="/users/login">Login</a></li>
