@@ -134,6 +134,12 @@ Za vnosna polja dates from in dates to je pomembno da dateTo je casovno po dateF
 Vnosno polje city sprejma nize ki sestavljene samo iz crke [a-z] (je case insensitive), lahko tudi obstaja en znam '-' vmes. Primer uporabe: Ljubljana, Monte-Carlo.
 Za vnosna polja dates from in dates to je pomembno da dateTo je casovno po dateFrom.
 
+### Seznam dovoljenih naprav
+Naša aplikacija je bila testirana in pravilno dela na katerikoli računalnik, prenosnik, IPAD, IPHONE X in vse ostale naprave. 
+
+### Seznam podprtih brskalnikov
+Naša aplikacija je bila testirana in pravilno dela na: Google Chrome, Microsoft Edge, Mozila Firefox, Brave.
+
 ## 3. LP
 
 Dinamična spletna aplikacija s podatkovno bazo
