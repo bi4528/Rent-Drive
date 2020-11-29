@@ -6,7 +6,7 @@ var apiParametri = {
     streznik: 'http://localhost:' + (process.env.PORT || 3000)
 };
 if (process.env.NODE_ENV === 'production') {
-    apiParametri.streznik = 'https://rentdrive-sp.herokuapp.com/'; //POPRAVI CE NI PRAVILNO IME
+    apiParametri.streznik = 'https://rentdrive-sp.herokuapp.com';
 }
 
 const mainController = require('./main');
