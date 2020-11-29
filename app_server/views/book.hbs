@@ -18,7 +18,7 @@
                         <li class="list-group-item">Daily price: {{drugi.daily-price}}</li>
                     </ul>
                     <div class="card-body">
-                            <a href="/vehicles/{{_id}}" class="card-link text-primary" id="return-link">
+                            <a href="/vehicles/{{drugi._id}}" class="card-link text-primary" id="return-link">
                             <i class="fas fa-caret-left"></i>
                             Return</a>
                         <!-- <a href="/users/confirm" class="card-link text-success float-right" id="confirm-link">
@@ -43,12 +43,12 @@
                         <p class="card-text">This is the contact information of the vehicle owner. For further information please consult the owner!</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        {{#if firstname}}
                         <li class="list-group-item">Full name:{{drugi.firstname}} {{drugi.lastname}}</li>
-                        {{/if}}
                         <li class="list-group-item">e-mail: {{drugi.email}}</li>
+                        {{#if drugi.phone}}
                         <li class="list-group-item">Number: {{drugi.phone}}</li>
-                        {{#if location}}
+                        {{/if}}
+                        {{#if drugi.location}}
                         <li class="list-group-item">Location: {{drugi.location}}</li>
                         {{/if}}
                     </ul>
@@ -61,18 +61,18 @@
             </div>
             <div class="col-sm-4">
                 <div class="card">
-                    <img src="{{prvi.profile_picture}}" class="card-img-top" alt="Vuk">
+                    <img src="/uploads/{{prvi.profile_picture}}" class="card-img-top" alt="Vuk">
                     <div class="card-body">
                         <h5 class="card-title">My Profile:{{prvi.username}}</h5>
                         <p class="card-text">This is your contact information. Please, check it!</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        {{#if firstname}}
-                            <li class="list-group-item">Full name:{{prvi.firstname}} {{prvi.lastname}}</li>
-                        {{/if}}
+                        <li class="list-group-item">Full name:{{prvi.firstname}} {{prvi.lastname}}</li>
                         <li class="list-group-item">e-mail: {{prvi.email}}</li>
-                        <li class="list-group-item">Number: {{prvi.phone}}</li>
-                        {{#if location}}
+                        {{#if prvi.phone_number}}
+                        <li class="list-group-item">Number: {{prvi.phone_number}}</li>
+                        {{/if}}
+                        {{#if prvi.location}}
                             <li class="list-group-item">Location: {{prvi.location}}</li>
                         {{/if}}
                     </ul>

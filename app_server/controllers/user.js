@@ -395,6 +395,7 @@ const book = (req, res) => {
 const confirm = (req, res) => {
 
     const user_id = req.session.user_id;
+
     axios.post(apiParametri.streznik + '/api/rented', {
             params: {
                 my_id: req.body.my_id,
@@ -407,7 +408,8 @@ const confirm = (req, res) => {
             if (response.data != null) {
 
                 res.render('confirm', {
-                    layout: 'account-layout.hbs'
+                    layout: 'account-layout.hbs',
+                    confirm1: "Your reservation has been processed successfully!"
                 });
             } else {
                 //show_register_failed(req, res, "Error mail or password not correct");
@@ -416,6 +418,10 @@ const confirm = (req, res) => {
         .catch((error) => {
             console.log(error);
             //show_register_failed(req, res, "Napaka med ustvarjanjem.");
+            res.render('confirm', {
+                layout: 'account-layout.hbs',
+                confirm1: "Car is already booked!"
+            });
         });
 };
 

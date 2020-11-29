@@ -223,7 +223,7 @@ const toggle_favourite_vehicle = (req, res) => {
                 if (error) {
                     res.status(404).json(error);
                 } else {
-                    res.status(200).json(user);
+                    res.status(200).json(true);
                 }
             });
         }
