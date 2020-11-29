@@ -100,7 +100,7 @@ const vehiclesUpload = (req, res) => {
         description: req.body.description,
         addres: req.body.addres,
         city: req.body.city,
-        country: req.bpdy.country,
+        country: req.body.country,
         zip: parseInt(req.body.zip),
         price: parseFloat(req.body.price),
         number: req.body.number,
