@@ -102,13 +102,23 @@ Ni večjih razlik z Google Chrome.
 
 Dinamična spletna aplikacija z logiko na strani strežnika.
 
+### Dodatna knjižnica: Nodemailer
+Nodemailer smo uporabili za pošiljanje mailov iz strežnika. Z uporabo knjižnice pošljemo mail za reset passworda.
+Ta se pošlje, ko uporabnik na strani forgotpassword.hbs vpiše mail v zaželeno polje in klikne na gumb 'RECOVER PASSWORD'
+Za uspešno delovanje smo najprej ustvarili transporter. Izkoristili smo gmail za to. Ustavrili smo nov mail.
+Mail je 'skupina01.sp@gmail.com'. Geslo je 'lavbicsp'.
+Se pravi navedeni naslov pošlje mail naslovu, ki ga je podal uporabnik.
+Zadeva (v angl. Subject) je 'Recover Password - Rent&Drive'.
+Poslano besedilo je 'Click on http://localhost:3000/users/:podaniMail/resetpassword or https://rentdrive-sp.herokuapp.com/users/:podaniMail/resetpassword'.
+S klikom eden izmed linkov se odpre stran resetpassword.hbs, kjer lahko uporabnik resetira pozabljeno geslo.
+
 ### Vnosna polja
 ### 1. register.hbs - 
-Vnosno polje "firstname" sprejema samo besede (znake [Aa-Zz]). Imena s presledkom kot je "Ana Marija" so tudi dovoljena.
-Vnosno polje "lastname" sprejema samo besede (znake [Aa-Zz]). Priimiki s presledkom kot je "van Basten" so tudi dovoljena.
-Vnosno polje "email" sprejema samo e-mail naslove. Sprejema velike in male alfanumerične znake, Vnosno polje nujno mora imet en znak "@", in znak "." ki mu sledi končnica.
-Vnosno polje "username" sprejema 4-15 velikih in malih alfanumeričnih znakov, presledki niso dovoljeni, prav tako pa "_" ali "." na začetku/koncu.
-Vnosno polje "password" zahteva varna gesla. Zahtevano je: vsaj 6 alfanumeričnih znakov, vsaj ena velika črka, vsaj ena majhna črka in vsaj eden "specialen znak" (npr. število).
+Vnosno polje "firstname" sprejema samo besede (znake [Aa-Zz]). Imena s presledkom kot je "Ana Marija" so tudi dovoljena.\
+Vnosno polje "lastname" sprejema samo besede (znake [Aa-Zz]). Priimiki s presledkom kot je "van Basten" so tudi dovoljena.\
+Vnosno polje "email" sprejema samo e-mail naslove. Sprejema velike in male alfanumerične znake, Vnosno polje nujno mora imet en znak "@", in znak "." ki mu sledi končnica.\
+Vnosno polje "username" sprejema 4-15 velikih in malih alfanumeričnih znakov, presledki niso dovoljeni, prav tako pa "_" ali "." na začetku/koncu.\
+Vnosno polje "password" zahteva varna gesla. Zahtevano je: vsaj 6 alfanumeričnih znakov, vsaj ena velika črka, vsaj ena majhna črka in vsaj eden "specialen znak" (npr. število).\
 Vnosno polje "repeat-password mora biti kopija polja "password", drugač registracija ne bo uspešna.
 
 Za uspešno registracijo morajo vsa polja biti ustrezno izpoljnena. 
@@ -123,59 +133,59 @@ Za uspešno prijavo morajo oba polja biti ustrezno izpoljnena.
 Vnosno polje "email" sprejema samo e-mail naslove registriranih uporabnikov in je obvezno polje.
 
 ### 4. resetpassword.hbs
-Vnosno polje "email" je že izpolnjeno in je onemogočen vpis (saj do te strani dostopa uporabnik preko povezave z e-mail naslova).
-Vnosno polje "password" zahteva varna gesla. Zahtevano je: vsaj 6 alfanumeričnih znakov, vsaj ena velika črka, vsaj ena majhna črka in vsaj eden "specialen znak" (npr. število).
+Vnosno polje "email" je že izpolnjeno in je onemogočen vpis (saj do te strani dostopa uporabnik preko povezave z e-mail naslova).\
+Vnosno polje "password" zahteva varna gesla. Zahtevano je: vsaj 6 alfanumeričnih znakov, vsaj ena velika črka, vsaj ena majhna črka in vsaj eden "specialen znak" (npr. število).\
 Vnosno polje "password_repeated mora biti kopija polja "password", drugač registracija ne bo uspešna.
 
 ### 5. vehicleprofile.hbs
-Na strani "vehicleprofile" je mogoča izposoja prikazanega vozila. 
-Za to mora uporabnik biti **NUJNO** prijavljen (uporabnik je prijavljen če je v navbarju prikazana povezava My Profile namesto povazav Register in Login), drugače izposoja ne bo mogoča.
-Na strani sta desno obvezna vnosna polja "date-from" in "date-to", ki omogočata izposojo vozila v intervalu ki je določil lastnik vozila. Zraven je tudi obvezno polje za kraj izposoje.
-Ob kliku na gumb "book" ter izbiri datuma in lokacije uporabnik nadaljuje s postopkom izposoje.
+Na strani "vehicleprofile" je mogoča izposoja prikazanega vozila. \
+Za to mora uporabnik biti **NUJNO** prijavljen (uporabnik je prijavljen če je v navbarju prikazana povezava My Profile namesto povazav Register in Login), drugače izposoja ne bo mogoča.\
+Na strani sta desno obvezna vnosna polja "date-from" in "date-to", ki omogočata izposojo vozila v intervalu ki je določil lastnik vozila. Zraven je tudi obvezno polje za kraj izposoje. \
+Ob kliku na gumb "book" ter izbiri datuma in lokacije uporabnik nadaljuje s postopkom izposoje. \
 
 ### 6. editvehicleprofile.hbs
-Vnosno polje make lahko sprejema samo znake [Az-Zz], saj znamke avta so sestavljene samo iz črke.
-Vnosno polje model lahko sprejma katerikoli niz pomembno je samo da polje ni prazno.
-Vnosno polje hp (horespower) sprejema samo številke [0-9] stem da polje ne sme biti prazno.
-Vnosno polje maxspeed sprejma samo številke stem da lahko vnašate tudi decimalke.
-Vnosno polje acceleration lahko sprejema celi števil ali decimalnih števil stem da lahko decimalna mesta ločite z vejico ali piko. Primer dovoljenih vnosov: (3) (3.3) (3,3)
-Za vnosno polje consumption veljajo ista pravila kot za acceleration.
-Za vnosno polje doors in seats velja da sprejemata cela števila med 1 in 7.
-Vnosno polje price sprejema decimalna stevila med 1 in 5000.
-Vnosno polje number sprejema telfonska stevila in specijalen znak na začetku.
-Vnosno polje luggage sprejma decimalna stevila ki so vecja od 0.
-Vnosno polje address sprejma katerikoli niz, pomembno je le da polje ni prazno.
-Vnosno polje city sprejma nize ki sestavljene samo iz crke [a-z] (je case insensitive), lahko tudi obstaja en znam '-' vmes. Primer uporabe: Ljubljana, Monte-Carlo.
-Vnosno polje zip lahko sprejema cela stevila.
-Za vnosno polje description je pomembno da ni prazno.
-Za vnosna polja dates from in dates to je pomembno da dateTo je casovno po dateFrom.
+Vnosno polje make lahko sprejema samo znake [Az-Zz], saj avtomobilske znamke imajo samo črke. \
+Vnosno polje model lahko sprejema katerikoli niz razen praznega. \
+Vnosno polje hp (horsepower) sprejema samo številke [0-9], pri tem polje ne sme biti prazno. \
+Vnosno polje maxspeed sprejema samo številke, ki so lahko tudi decimalne. \
+Vnosno polje acceleration lahko sprejema cela števila ali decimalna števila (decimalna mesta ločite z vejico ali piko). Primer dovoljenih vnosov: (3) (3.3) (3,3) \
+Za vnosno polje consumption veljajo ista pravila kot za acceleration. \
+Za vnosna polja doors in seats velja da sprejemata cela števila med 1 in 7. \
+Vnosno polje price sprejema decimalna števila med 1 in 5000. \
+Vnosno polje luggage sprejma decimalna števila ki so večja od 0. \
+Vnosno polje address sprejma katerikoli niz, pomembno je le da polje ni prazno. \
+Vnosno polje city sprejema nize ki so sestavljene samo iz črk [a-z] (je case insensitive), lahko celo tudi obstaja en znak '-' vmes. Primer uporabe: Ljubljana, Monte-Carlo. \
+Vnosno polje zip sprejema cela stevila. \
+Za vnosno polje description je pomembno da ni prazno. \
+Za vnosna polja dates-from in date-to je pomembno da datefrom je časovno po dateFrom. \
 
 ### publish.hbs
-Vnosno polje make lahko sprejema samo znake [Az-Zz], saj znamke avta so sestavljene samo iz črke.
-Vnosno polje model lahko sprejma katerikoli niz pomembno je samo da polje ni prazno.
-Vnosno polje hp (horespower) sprejema samo številke [0-9] stem da polje ne sme biti prazno.
-Vnosno polje maxspeed sprejma samo številke stem da lahko vnašate tudi decimalke.
-Vnosno polje acceleration lahko sprejema celi števil ali decimalnih števil stem da lahko decimalna mesta ločite z vejico ali piko. Primer dovoljenih vnosov: (3) (3.3) (3,3)
-Za vnosno polje consumption veljajo ista pravila kot za acceleration.
-Za vnosno polje doors in seats velja da sprejemata cela števila med 1 in 7.
-Vnosno polje price sprejema decimalna stevila med 1 in 5000.
-Vnosno polje number sprejema telfonska stevila in specijalen znak na začetku.
-Vnosno polje luggage sprejma decimalna stevila ki so vecja od 0.
-Vnosno polje address sprejma katerikoli niz, pomembno je le da polje ni prazno.
-Vnosno polje city sprejma nize ki sestavljene samo iz crke [a-z] (je case insensitive), lahko tudi obstaja en znam '-' vmes. Primer uporabe: Ljubljana, Monte-Carlo.
-Vnosno polje zip lahko sprejema cela stevila.
-Za vnosno polje description je pomembno da ni prazno.
-Za vnosna polja dates from in dates to je pomembno da dateTo je casovno po dateFrom.
+Vnosno polje make lahko sprejema samo znake [Az-Zz], saj avtomobilske znamke imajo samo črke. \
+Vnosno polje model lahko sprejema katerikoli niz razen praznega. \
+Vnosno polje hp (horsepower) sprejema samo številke [0-9], pri tem polje ne sme biti prazno.
+Vnosno polje maxspeed sprejema samo številke, ki so lahko tudi decimalne. \
+Vnosno polje acceleration lahko sprejema cela števila ali decimalna števila (decimalna mesta ločite z vejico ali piko). Primer dovoljenih vnosov: (3) (3.3) (3,3) \
+Za vnosno polje consumption veljajo ista pravila kot za acceleration. \
+Za vnosna polja doors in seats velja da sprejemata cela števila med 1 in 7. \
+Vnosno polje price sprejema decimalna stevila med 1 in 5000. \
+Vnosno polje number sprejema telfonska stevila in specijalen znak na začetku. \
+Vnosno polje luggage sprejma decimalna stevila ki so vecja od 0. \
+Vnosno polje address sprejma katerikoli niz, pomembno je le da polje ni prazno. \
+Vnosno polje city sprejema nize ki so sestavljene samo iz črk [a-z] (je case insensitive), lahko celo tudi obstaja en znak '-' vmes. Primer uporabe: Ljubljana, Monte-Carlo. \
+Vnosno polje zip sprejema cela stevila. \
+Za vnosno polje description je pomembno da ni prazno. \
+Za vnosna polja dates-from in date-to je pomembno da datefrom je časovno po dateFrom. \
 
 ### home.hbs
-Vnosno polje city sprejma nize ki sestavljene samo iz crke [a-z] (je case insensitive), lahko tudi obstaja en znam '-' vmes. Primer uporabe: Ljubljana, Monte-Carlo.
-Za vnosna polja dates from in dates to je pomembno da dateTo je casovno po dateFrom.
+Vnosno polje city sprejema nize ki so sestavljene samo iz črk [a-z] (je case insensitive), lahko tudi obstaja en znak '-' vmes. Primer uporabe: Ljubljana, Monte-Carlo. \
+Za vnosna polja dates from in dates to je pomembno da dateTo je časovno po dateFrom.
 
 ### Seznam dovoljenih naprav
-Naša aplikacija je bila testirana in pravilno dela na katerikoli računalnik, prenosnik, IPAD, IPHONE X in vse ostale naprave. 
+Naša aplikacija je bila testirana in pravilno dela na kateremkoli računalniku, prenosniku, iPadu, iPhone X in vseh ostalih napravah.
 
 ### Seznam podprtih brskalnikov
 Naša aplikacija je bila testirana in pravilno dela na: Google Chrome, Microsoft Edge, Mozila Firefox, Brave.
+
 
 ## 3. LP
 
@@ -183,9 +193,9 @@ Dinamična spletna aplikacija s podatkovno bazo
 
 ### Namestitev potrebnih datotek za zagon aplikacije v lokalnem okolju
 
-1. Z ukazom v ukazni vrstici`git clone https://github.com/sp-2020-2021/LP-01` se v trenutno mapo namestijo datoteke iz oddaljenega repozitorija.
-2. Premaknemo se v mapo `.\LP-01` z ukazom `cd .\LP-01`
-3. Izvedemo ukaz `npm install` s čemer se namestijo potrebne vmesnike za zagon aplikacije.
+1. Z ukazom v ukazni vrstici` git clone https://github.com/sp-2020-2021/LP-01` se v trenutno mapo namestijo datoteke iz oddaljenega repozitorija.
+2. Premaknemo se v mapo ` .\LP-01` z ukazom `cd .\LP-01`
+3. Izvedemo ukaz ` npm install` s čemer se namestijo potrebne vmesnike za zagon aplikacije.
 
 ### Zagon aplikacije
 - V mapi `.\LP-01` izvedemo ukaz `nodemon` ali `npm start` s čemer strežnik se zažene.
@@ -196,6 +206,7 @@ V kolikor bi želeli ustaviti trenutni proces, to naredimo v ukazni vrstici z uk
 
 ### Dostop do aplikacije v produkcijskem okolju
 - Spletna aplikacija je dostopna na povezavi [Heroku spletna aplikacija](https://rentdrive-sp.herokuapp.com/).
+
 
 ## 4. LP
 
