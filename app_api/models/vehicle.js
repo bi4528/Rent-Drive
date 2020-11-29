@@ -10,17 +10,50 @@ const reviewSchema = new mongoose.Schema({
 
 const vehicleSchema = new mongoose.Schema({
     images: [String],
-    owner_id: String,
-    make: String,
-    model: String,
-    typeoffuel: String,
-    category: String,
-    hp: Number,
-    maxspeed: Number,
-    acceleration: Number,
-    consumption: Number,
-    seats: Number,
-    doors: Number,
+    owner_id: {
+        type: String,
+        required: true
+    },
+    make: {
+        type: String,
+        required: true
+    },
+    model: {
+        type: String,
+        required: true
+    },
+    typeoffuel: {
+        type: String,
+        required: true
+    },
+    category: {
+        type: String,
+        required: true
+    },
+    hp: {
+        type: Number,
+        required: true
+    },
+    maxspeed: {
+        type: Number,
+        required: true
+    },
+    acceleration: {
+        type: Number,
+        required: true
+    },
+    consumption: {
+        type: Number,
+        required: true
+    },
+    seats: {
+        type: Number,
+        required: true
+    },
+    doors: {
+        type: Number,
+        required: true
+    },
     AirConditioning: String,
     Navigation: String,
     USB: String,
@@ -29,20 +62,42 @@ const vehicleSchema = new mongoose.Schema({
     autopilot: String,
     bluetooth: String,
     accessibility: String,
-    description: String,
-    price: Number,
-    country: String,
-    city: String,
-    addres: String,
-    zip: Number,
-    date: [String],
+    description: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    country: {
+        type: String
+    },
+    city: {
+        type: String,
+        required: true
+    },
+    addres: {
+        type: String,
+        required: true
+    },
+    zip: {
+        type: Number,
+        required: true
+    },
+    date: {
+        type: String,
+        required: true
+    },
     reviews: [reviewSchema],
-    profile_picture: String,
-	username: String,
-    email: String,
-    number: String,
-    luggage: Number,
-    minage: Number
+    luggage: {
+        type: Number,
+        required: true
+    },
+    minage: {
+        type: Number,
+        required: true
+    }
 });
 
 
