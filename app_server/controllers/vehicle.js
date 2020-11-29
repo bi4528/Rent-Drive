@@ -216,17 +216,17 @@ const editvehicleprofile_submit = (req, res) => {
                 //console.log(changes[i].key + ": " + changes[i].value);
                 console.log(changes[i].value);
                 console.log(odgovor.data[changes[i].key]);
-                    odgovor.data[changes[i].key] = changes[i].value;
-                    if (changes[i].key == "accessibility") accessibilityOff = false;
-                    if (changes[i].key == "AUX") auxOff = false;
-                    if (changes[i].key == "USB") usbOff = false;
-                    if (changes[i].key == "bluetooth") bluetoothOff = false;
-                    if (changes[i].key == "Navigation") navigationOff = false;
-                    if (changes[i].key == "parkingsensors") parkingsensorsOff = false;
-                    if (changes[i].key == "AirConditioning") AirConditioningOff = false;
-                    if (changes[i].key == "autopilot") autopilotOff = false;
-                    if (changes[i].key == "date-from") odgovor.data.date[0] = changes[i].value;
-                    if (changes[i].key == "date-to") odgovor.data.date[1] = changes[i].value;
+                odgovor.data[changes[i].key] = changes[i].value;
+                if (changes[i].key == "accessibility") accessibilityOff = false;
+                if (changes[i].key == "AUX") auxOff = false;
+                if (changes[i].key == "USB") usbOff = false;
+                if (changes[i].key == "bluetooth") bluetoothOff = false;
+                if (changes[i].key == "Navigation") navigationOff = false;
+                if (changes[i].key == "parkingsensors") parkingsensorsOff = false;
+                if (changes[i].key == "AirConditioning") AirConditioningOff = false;
+                if (changes[i].key == "autopilot") autopilotOff = false;
+                if (changes[i].key == "date-from") odgovor.data.date[0] = changes[i].value;
+                if (changes[i].key == "date-to") odgovor.data.date[1] = changes[i].value;
             }
             if (accessibilityOff) odgovor.data.accessibility = "off";
             if (auxOff) odgovor.data.AUX = "off";
@@ -336,10 +336,22 @@ const postReview = (req, res) => {
         });
 }
 
-const deleteReview = (req, res) => {
-    console.log(req.body);
+const deleteReviewOfVehicle = (req, res) => {
+    console.log(req.params);
+    axios.delete('/api/vehicles/' + req.params.idVehicle + '/reviews/' + req.params.idReview)
+        .then((odgovor) => {
+            console.log(odgovor.data);
+            req.params.id =  req.params.idVehicle;
+            vehicleprofile2(req,res);
+            //addReview(req, res, odgovor.data.username, stars);
+        })
+        .catch((napaka) => {
+            console.log("Napaka pri iskanju lastnika!");
+            console.log(napaka);
+        });
     //TODO
 }
+
 
 module.exports = {
     vehicleprofile,
@@ -351,5 +363,5 @@ module.exports = {
     editvehicleprofile_submit,
     review,
     postReview,
-    deleteReview
+    deleteReviewOfVehicle
 };

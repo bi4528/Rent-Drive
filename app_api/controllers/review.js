@@ -104,6 +104,8 @@ const reviewsFind = (req, res) => {
 
 const reviewsDelete = (req, res) => {
     const { idVehicle, idReview } = req.params;
+    console.log(req.body);
+    console.log(req.params);
     if (!idVehicle || !idReview) {
         return res.status(404).json({
             "sporočilo":
@@ -130,7 +132,7 @@ const reviewsDelete = (req, res) => {
                             return res.status(500).json(err);
                         } else {
                             //posodobiPovprecnoOceno(data._id);
-                            res.status(204200).json(null);
+                            res.status(204).json(true);
                         }
                     });
                 }

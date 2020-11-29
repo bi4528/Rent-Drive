@@ -465,12 +465,12 @@ const dbdel = (req, res) => {
             });
         }
         console.log("Users deleted successfully!")
+        res.redirect('home');
     }).catch((error) => {
         console.log("Error while deleting users" + error);
         res.redirect('/');
     });
 
-    res.redirect('home');
 };
 
 
