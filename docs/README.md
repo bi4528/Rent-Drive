@@ -113,10 +113,21 @@ Vnosno polje "repeat-password mora biti kopija polja "password", drugač registr
 
 Za uspešno registracijo morajo vsa polja biti ustrezno izpoljnena. 
 
-## 3. LP
-
+## 3. LP [Heroku spletna aplikacija](https://rentdrive-sp.herokuapp.com/)
 Dinamična spletna aplikacija s podatkovno bazo
 
+### Namestitev potrebnih datotek za zagon aplikacije
+
+1. Z ukazom v ukazni vrstici`git clone https://github.com/sp-2020-2021/LP-01` se v trenutno mapo namestijo datoteke iz oddaljenega repozitorija.
+2. Premaknemo se v mapo `.\LP-01` z ukazom `cd .\LP-01`
+3. Izvedemo ukaz `npm install` s čemer se namestijo potrebne vmesnike za zagon aplikacije.
+
+### Zagon aplikacije
+4.  V mapi `.\LP-01` izvedemo ukaz `nodemon` ali `npm start` s čemer strežnik se zažene.
+V kolikor bi želeli ustaviti trenutni proces, to naredimo v ukazni vrstici z ukazom `Ctrl + C`.
+
+### Dostop do aplikacije
+5. Spletna aplikacija je dostopna na vratih 3000, privzeti naslov za dostop je [localhost:3000](localhost:3000).
 
 ## 4. LP
 
