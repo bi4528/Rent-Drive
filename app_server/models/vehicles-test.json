@@ -2,7 +2,7 @@
     {
         "make": "Chevrolet",
         "model": "Aveo",
-        "description": "Renting my beauty. Well looked after always clean come and pick it up.",
+        "description": "Renting my beauty. Well looked after, always clean, come and pick it up.",
         "price": 30,
         "addres": "Bravničarjeva 13",
         "images": ["aveo.jpg"],
@@ -17,14 +17,14 @@
         "consumption": "6.8",
         "seats": "5",
         "doors": "3",
-        "accessibility":"1",
-        "AirConditioning": "1",
-        "Navigation": "1",
-        "bluetooth": "1",
-        "parkingsensors": "1",
-        "USB": "0",
-        "AUX": "0",
-        "autopilot": "0",
+        "accessibility":"on",
+        "AirConditioning": "on",
+        "Navigation": "on",
+        "bluetooth": "on",
+        "parkingsensors": "on",
+        "USB": "off",
+        "AUX": "off",
+        "autopilot": "off",
         "typeoffuel": "Petrol",
         "luggage": "425",
         "minage": "18",
@@ -40,7 +40,7 @@
             {
                 "username": "Marko Šter",
                 "rating": "★★★☆☆",
-                "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
+                "comment": "Solid.",
                 "img": "../images/oseba_template_2.jpg"
             },
             {
@@ -52,7 +52,7 @@
             {
                 "username": "Bojan",
                 "rating": "★★★★☆",
-                "comment": "Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!",
+                "comment": "Wow.",
                 "img": "../images/oseba_template_2.jpg"
             },
             {
