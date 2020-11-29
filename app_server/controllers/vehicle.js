@@ -141,7 +141,7 @@ const submitcar = (req, res) => {
         //console.log(req.files);
         console.log(req.body);
         if (err) {
-            console.log("NAPAKA");
+            console.log(err);
         }
         console.log(req.files);
         let names = [];
@@ -191,7 +191,7 @@ const submitCB = (req, res, images) => {
     }).then(() => {
         res.redirect('/');
     }).catch((err) => {
-        console.log("NAPAKA");
+        console.log(err);
     })
 };
 
@@ -348,7 +348,7 @@ const addReview = (req, res, username, stars) => {
     }).then(() => {
         res.redirect('/vehicles/' + id);
     }).catch((napaka) => {
-        console.log("NAPAKA");
+        console.log(napaka);
     });
 }
 
