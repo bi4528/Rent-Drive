@@ -9,7 +9,7 @@ hbs.registerHelper('helper', (vsebina, vehicleId) => {
       rezultat += "<td class='stars'><span>" + vsebina[i].rating + "</span></td>";
       rezultat += "<td class='comment'>" + vsebina[i].comment + "</td>"
       rezultat += "<td>";
-      if (vsebina.show_delete_button == true){
+      if (vsebina[i].show_delete_button == true){
         rezultat +=  "<input type='button' class = 'btn btn-danger delete' value = 'Delete' onclick = \"location.href='/vehicles/" + vehicleId + "/reviews/" + vsebina[i]._id + "/delete'\" owner='" + vsebina[i].username + "' ></input>";
       }
       rezultat += "</td>"; //hidden='true';
