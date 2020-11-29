@@ -325,7 +325,7 @@ function addReviews(index, id) {
             method: 'post',
             url: '/api/vehicles/' + id + '/reviews/',
             data: {
-                user_id: dataVehicles[i].reviews[j].username,
+                user_id: dataVehicles[i].reviews[j].user_id,
                 username: dataVehicles[i].reviews[j].username,
                 comment: dataVehicles[i].reviews[j].comment,
                 rating: dataVehicles[i].reviews[j].rating,

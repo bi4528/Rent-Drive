@@ -47,6 +47,8 @@ const vehicleprofile2 = (req, res) => {
 
 // for zanka, axios get odgovor.data.reviews.user_id, poišči user_id, namesto img iz reviews, beremo iz user sheme
             
+            console.log("Reviewssssssssssssssssssssssssssssssssssssssss");
+            console.log(odgovor.data.reviews);
 
             for(var i = 0; i < odgovor.data.reviews.length; i++) {
                 odgovor.data.reviews.show_delete_button = req.session.user_id ? odgovor.data.reviews[i].user_id == req.session.user_id : false;

@@ -4,7 +4,7 @@ hbs.registerHelper('helper', (vsebina, vehicleId) => {
   if(vsebina!=null){
     for (i = 0; i < vsebina.length; i++) {
       rezultat += "<tr class='review'><td class='profile' colspan='2'>";
-      rezultat += "<img class='avatar' onclick=\"location.href='/users/profiles/" + vsebina.user_id + "\"  src = '/uploads/" + vsebina[i].img + "' > ";
+      rezultat += "<img class='avatar' onclick=\"location.href='/users/profiles/" + vsebina[i].user_id + "'\"  src = '/uploads/" + vsebina[i].img + "' > ";
       rezultat += "<strong>" + vsebina[i].username  +"</strong></td>";
       rezultat += "<td class='stars'><span>" + vsebina[i].rating + "</span></td>";
       rezultat += "<td class='comment'>" + vsebina[i].comment + "</td>"
