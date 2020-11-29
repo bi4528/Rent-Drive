@@ -10,6 +10,18 @@ document.getElementById("date-from").addEventListener("change", function () {
     if(date2.value<date1.value) date2.value = date1.value;
 });
 
+
+let formPublish=document.getElementById("form");
+formPublish["typeoffuel"].addEventListener("change", function(dogodek){
+    if(formPublish["typeoffuel"].value=="Electric"){
+        formPublish["consumption"].disabled=true;
+    }
+    else{
+        formPublish["consumption"].disabled=false;
+    }
+});
+
+
 function addLocation(){ //adds location, also checks if it exists
     var locations = document.getElementById("locations");
     var inputLocation = document.getElementById("input-location").value;
