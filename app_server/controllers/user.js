@@ -57,11 +57,11 @@ function show_login_failed(req, res, message) {
 }
 
 const user_register = (req, res) => {
-    check_if_email_exists(req, res, function (exists, error) {
+    check_if_email_exists(req, res, req.body.email, function (exists, error) {
 
         if (error) {
             show_register_failed(req, res, "Napaka na strani streznika.");
-        } else if (!exists) {
+        } else if (exists == false) {
             axios.post(apiParametri.streznik + '/api/users', {
                     params: {
                         username: req.body.username,
@@ -98,10 +98,10 @@ function show_register_failed(req, res, message) {
     });
 }
 
-const check_if_email_exists = (req, res, callback) => {
+const check_if_email_exists = (req, res, email, callback) => {
     axios.get(apiParametri.streznik + '/api/users/check/exists_mail', {
             params: {
-                email: req.body.email
+                email: email
             }
         })
         .then((odgovor) => {
@@ -145,31 +145,47 @@ const forgotpassword = (req, res) => {
 };
 
 const forgot_password_recover = (req, res) => {
-    const email_recover_password = req.body.email
+    const email_recover_password = req.body.email;
 
-    var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'skupina01.sp@gmail.com',
-            pass: 'lavbicsp'
-        }
-    });
-
-    var mailOptions = {
-        from: 'skupina01.sp@gmail.com',
-        to: email_recover_password,
-        subject: 'Recover Password - Rent&Drive',
-        text: 'Click on http://localhost:3000/users/' + email_recover_password + '/resetpassword'
-    };
-
-    transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            console.log(error);
+    check_if_email_exists(req, res, email_recover_password, function(exists, error) {
+        if(error) {
+            show_error_forgot_password(req, res, "Error while checking mail.");
+        } else if (exists == null || exists == false) {
+            show_error_forgot_password(req, res, "No user with that mail found.");
         } else {
-            console.log('Email sent: ' + info.response);
-            login(req, res);
+            var transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: 'skupina01.sp@gmail.com',
+                    pass: 'lavbicsp'
+                }
+            });
+
+            var mailOptions = {
+                from: 'skupina01.sp@gmail.com',
+                to: email_recover_password,
+                subject: 'Recover Password - Rent&Drive',
+                text: 'Click on http://localhost:3000/users/' + email_recover_password + '/resetpassword or https://rentdrive-sp.herokuapp.com/users/' + email_recover_password + '/resetpassword'
+            };
+
+            transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                    console.log(error);
+                    show_error_forgot_password(req, res, "Error while sending mail.");
+                } else {
+                    console.log('Email sent: ' + info.response);
+                    login(req, res);
+                }
+            });
         }
-    });
+    })
+}
+
+function show_error_forgot_password(req, res, message) {
+    res.render('forgotpassword', {
+        layout: 'account-layout.hbs',
+        alert_error: message
+    })
 }
 
 

@@ -294,13 +294,10 @@ const get_vehicles_of_user = (req, res) => {
 };
 
 const reset_password = (req, res) => {
-    console.log("helooooooooooooooooooooo");
-    console.log(req.body);
-    console.log(req.params);
 
-    const password = req.params.password;
-    const password_repeated = req.params.password_repeated;
-    const email = req.params.email;
+    const password = req.body.params.password;
+    const password_repeated = req.body.params.password_repeated;
+    const email = req.body.params.email;
 
     if (password != password_repeated) {
         res.status(404).json({
