@@ -147,7 +147,7 @@ Vnosno polje zip sprejema cela števila. \
 Za vnosno polje description je pomembno da ni prazno. \
 Za vnosna polja dates-from in date-to je pomembno da datefrom je časovno po dateFrom.
 
-### publish.hbs
+### 7. publish.hbs
 Vnosno polje make lahko sprejema samo znake [Az-Zz], saj avtomobilske znamke imajo samo črke. \
 Vnosno polje model lahko sprejema katerikoli niz razen praznega. \
 Vnosno polje hp (horsepower) sprejema samo številke [0-9], pri tem polje ne sme biti prazno.
@@ -164,12 +164,15 @@ Vnosno polje zip sprejema cela števila. \
 Za vnosno polje description je pomembno da ni prazno. \
 Za vnosna polja dates-from in date-to je pomembno da datefrom je časovno po dateFrom.
 
-### home.hbs
+### 8. home.hbs
 Vnosno polje city sprejema nize ki so sestavljene samo iz črk [a-z] (je case insensitive), lahko tudi obstaja en znak '-' vmes. Primer uporabe: Ljubljana, Monte-Carlo. \
 Za vnosna polja dates from in dates to je pomembno da dateTo je časovno po dateFrom.
 
 ### Seznam dovoljenih naprav
 Naša aplikacija je bila testirana in pravilno dela na kateremkoli računalniku, prenosniku, iPadu, iPhone X in vseh ostalih napravah.
+
+### Handlebars helper funkcije
+Znotraj mape /app_server/views/helpers imamo shranjene 6 handlebars helper procedur, ki pomagaju pri marsikakšnih detaljih (izpis zvezdic, lastnosti vozil, seznama avta itd.)
 
 ### Seznam podprtih brskalnikov
 Naša aplikacija je bila testirana in pravilno dela na: Google Chrome, Microsoft Edge, Mozila Firefox, Brave.
