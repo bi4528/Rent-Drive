@@ -1,14 +1,19 @@
 var form = document.querySelector("form");
 form.addEventListener("submit", function (event) {
-    var pass = document.getElementById("password").value;
-    console.log(pass);
-    if (!validate_password(pass)) {
-        alertMessage("Password not valid!");
+    var password = document.getElementById("password").value;
+    var password_repeated = document.getElementById("password_repeated").value;
+
+    if (password != password_repeated) {
+        alertMessage("Passwords are not the same");
         event.preventDefault();
     }
-    console.log(event.returnValue);
-    if(event.returnValue){
-        // todo: send password via API
+    if (!validate_password(password)) {
+        alertMessage("Password is not valid");
+        event.preventDefault();
+    }
+    if (!validate_password(password_repeated)) {
+        alertMessage("Password is not valid");
+        event.preventDefault();
     }
 });
 

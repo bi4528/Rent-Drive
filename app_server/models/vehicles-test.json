@@ -28,10 +28,6 @@
         "typeoffuel": "Petrol",
         "luggage": "425",
         "minage": "18",
-        "number": "+38670789654",
-        "profile_picture": "/images/oseba_template.jpg",
-		"username": "ChevyFan12",
-        "email": "chevfan12@gmail.com",
         "date": [
             "2020-11-28",
             "2020-11-30"
@@ -41,25 +37,25 @@
                 "username": "Marko Šter",
                 "rating": "★★★☆☆",
                 "comment": "Solid.",
-                "img": "../images/oseba_template_2.jpg"
+                "img": "oseba_template_2.jpg"
             },
             {
                 "username": "Marko",
                 "rating": "★★★★☆",
                 "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
-                "img": "../images/oseba_template_2.jpg"
+                "img": "oseba_template_2.jpg"
             },
             {
                 "username": "Bojan",
                 "rating": "★★★★☆",
                 "comment": "Wow.",
-                "img": "../images/oseba_template_2.jpg"
+                "img": "oseba_template_2.jpg"
             },
             {
                 "username": "Matej",
                 "rating": "★★★★★",
                 "comment": "The car is pure genius.",
-                "img": "../images/oseba_template_2.jpg"
+                "img": "oseba_template_2.jpg"
             }
         ]
     },
@@ -106,25 +102,25 @@
                 "username": "Marko Šter",
                 "rating": "★★★☆☆",
                 "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
-                "img": "../images/oseba_template_2.jpg"
+                "img": "oseba_template_2.jpg"
             },
             {
                 "username": "Marko",
                 "rating": "★★★★☆",
                 "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
-                "img": "../images/oseba_template_2.jpg"
+                "img": "oseba_template_2.jpg"
             },
             {
                 "username": "Bojan",
                 "rating": "★★★★☆",
                 "comment": "Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!",
-                "img": "../images/oseba_template_2.jpg"
+                "img": "oseba_template_2.jpg"
             },
             {
                 "username": "Matej",
                 "rating": "★★★★★",
                 "comment": "The car is pure genius.",
-                "img": "../images/oseba_template_2.jpg"
+                "img": "oseba_template_2.jpg"
             }
         ]
     }

@@ -22,7 +22,7 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-
+    <!-- enctype="multipart/form-data -->
     <form id="form" method="POST" action="/vehicles/{{_id}}">
         <div class="container-fluid pt-5 pb-3">
             <!---slike-->
@@ -31,7 +31,7 @@
 
                     <div class="form-group">
                         <label for="images">Upload vehicle images</label>
-                        <input type="file" class="form-control-file" id="images" multiple>
+                        <input type="file" class="form-control-file" id="images" name="carphotos2" multiple>
                     </div>
 
                 </div>
@@ -55,9 +55,9 @@
             <!--- lastnik in opis-->
             <div class="row m-3">
                 <div class="col-sm-12 col-md-4 ">
-                    <a href="profile.html"><img class="avatar" src="{{profile_picture}}" alt="avatar"></a>
+                    <a href="profile.html"><img class="avatar" src="/uploads/{{profile_picture}}" alt="avatar"></a>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item contact-details"><i class="fas fa-phone"></i>{{number}}</li>
+                        <li class="list-group-item contact-details"><i class="fas fa-phone"></i>{{phone_number}}</li>
                         <li class="list-group-item contact-details"><i class="far fa-envelope"></i>{{email}}</li>
                         {{#if location}}
                         <li class="list-group-item contact-details"><i class="far fa-map"></i>{{location}}</li>

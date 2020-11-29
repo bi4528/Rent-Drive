@@ -27,6 +27,7 @@ const addReview = (req, res, data) => {
     } else {
         data.reviews.push({
             username: req.body.username,
+            user_id: req.body.user_id,
             rating: req.body.rating,
             comment: req.body.comment,
             img: req.body.img
@@ -87,6 +88,7 @@ const reviewsFind = (req, res) => {
                 } else {
                     res.status(200).json({
                         "username": komentar.username,
+                        "user_id": komentar.user_id,
                         "rating": komentar.rating,
                         "comment": komentar.comment,
                         "img": komentar.img,
@@ -104,6 +106,8 @@ const reviewsFind = (req, res) => {
 
 const reviewsDelete = (req, res) => {
     const { idVehicle, idReview } = req.params;
+    console.log(req.body);
+    console.log(req.params);
     if (!idVehicle || !idReview) {
         return res.status(404).json({
             "sporočilo":
@@ -130,7 +134,7 @@ const reviewsDelete = (req, res) => {
                             return res.status(500).json(err);
                         } else {
                             //posodobiPovprecnoOceno(data._id);
-                            res.status(204200).json(null);
+                            res.status(204).json(true);
                         }
                     });
                 }

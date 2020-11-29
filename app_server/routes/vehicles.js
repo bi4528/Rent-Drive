@@ -39,6 +39,7 @@ router
 
 router.get('/:id', ctrlVehicle.vehicleprofile2);
 router.get('/:id/edit',ctrlVehicle.editvehicleprofile);
-router.post('/:id',ctrlVehicle.editvehicleprofile_submit)
+router.post('/:id',ctrlVehicle.editvehicleprofile_submit);
+router.get('/:idVehicle/reviews/:idReview/delete', ctrlVehicle.deleteReviewOfVehicle);
 
 module.exports = router;

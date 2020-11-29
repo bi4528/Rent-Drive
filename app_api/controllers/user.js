@@ -104,6 +104,31 @@ const get_user_data = (req, res) => {
     });
 };
 
+const get_user_data_by_email = (req, res) => {
+    console.log("Fetch user by mail");
+    console.log(req.params);
+    User.find({
+            email: req.params.emailUser
+        })
+        .exec((error, users) => {
+            if (!users || users.length == 0) {
+                return res.status(404).json({
+                    "message": "User not found."
+                });
+            } else if (error) {
+                return res.status(500).json(error);
+            } else {
+                var user = users[0]
+                if (user.profile_picture == null) {
+                    user.profile_picture = "/images/avatarUser.png";
+                }
+                res.status(200).json(user);
+            }
+        });
+};
+
+
+
 const updated_profile_data = (req, res) => {
     console.log(req.body.params);
     var username = req.body.params.username;
@@ -180,7 +205,7 @@ const check_if_mail_exists = (req, res) => {
     });
 };
 
-const add_favourite_vehicle = (req, res) => {
+const toggle_favourite_vehicle = (req, res) => {
     User.findById(req.params.idUser).exec((error, user) => {
         if (!user) {
             return res.status(404).json({
@@ -189,7 +214,11 @@ const add_favourite_vehicle = (req, res) => {
         } else if (error) {
             return res.status(500).json(error);
         } else {
-            user.favourite_vehicles_ids.push(req.body.favourite_vehicles_id);
+            if (user.favourite_vehicles_ids.contains(req.body.favourite_vehicles_id)) {
+                user.favourite_vehicles_ids.remove(req.body.favourite_vehicles_id);
+            } else {
+                user.favourite_vehicles_ids.push(req.body.favourite_vehicles_id);
+            }
             user.save((error, user) => {
                 if (error) {
                     res.status(404).json(error);
@@ -250,6 +279,7 @@ const get_favourite_vehicles = (req, res) => {
 
 const get_vehicles_of_user = (req, res) => {
 
+
     Vehicle.find({
         owner_id: {
             $in: req.params.idUser
@@ -267,6 +297,55 @@ const get_vehicles_of_user = (req, res) => {
     });
 };
 
+const reset_password = (req, res) => {
+
+    const password = req.body.params.password;
+    const password_repeated = req.body.params.password_repeated;
+    const email = req.body.params.email;
+
+    if (password != password_repeated) {
+        res.status(404).json({
+            "message": "Passwords are not equal."
+        });
+    } else if (!validate.validate_password(password_repeated)) {
+        res.status(404).json({
+            "message": "Repeated password not valid."
+        });
+    } else if (!validate.validate_password(password)) {
+        res.status(404).json({
+            "message": "Password not valid."
+        });
+    } else if (!validate.validate_email(email)) {
+        res.status(404).json({
+            "message": "Email not valid."
+        });
+    } else {
+
+
+        User.findById(req.params.idUser).exec((error, user) => {
+            if (!user) {
+                return res.status(404).json({
+                    "message": "User not found."
+                });
+            } else if (error) {
+                return res.status(500).json(error);
+            } else {
+                user.password = password;
+
+                user.save((error, _) => {
+
+                    if (error) {
+                        res.status(404).json(error);
+                    } else {
+
+                        res.status(200).json(true);
+                    }
+                });
+            }
+        });
+    }
+};
+
 module.exports = {
     get_user_data,
     remove_user,
@@ -275,8 +354,10 @@ module.exports = {
     check_if_user_exists,
     check_if_mail_exists,
     get_all_users,
-    add_favourite_vehicle,
+    toggle_favourite_vehicle,
     remove_favourite_vehicle,
     get_favourite_vehicles,
-    get_vehicles_of_user
+    get_vehicles_of_user,
+    reset_password,
+    get_user_data_by_email
 };
