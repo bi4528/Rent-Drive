@@ -49,7 +49,7 @@ const vehicleprofile2 = (req, res) => {
             
 
             for(var i = 0; i < odgovor.data.reviews.length; i++) {
-                odgovor.data.reviews.show_delete_button = odgovor.data.reviews[i].user_id == req.session.user_id;
+                odgovor.data.reviews.show_delete_button = req.session.user_id ? odgovor.data.reviews[i].user_id == req.session.user_id : false;
             }
 
 
