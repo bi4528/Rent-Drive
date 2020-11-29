@@ -447,8 +447,10 @@ const dbadd = (req, res) => {
 
                         addReviews(vehicless_ids.length, vehicle._id);
                         vehicless_ids.push(vehicle._id);
-
-                        home(req, res);
+                        
+                        if (vehicless_ids.length == vehicles_to_add) {
+                            home(req, res);
+                        }
                     }
                 });
             }
