@@ -103,7 +103,7 @@ Ni večjih razlik z Google Chrome.
 Dinamična spletna aplikacija z logiko na strani strežnika.
 
 ### Vnosna polja
-### 1. [../app_server/views/register.hbs](register.html) - 
+### 1. register.hbs - 
 Vnosno polje "firstname" sprejema samo besede (znake [Aa-Zz]). Imena s presledkom kot je "Ana Marija" so tudi dovoljena.
 Vnosno polje "lastname" sprejema samo besede (znake [Aa-Zz]). Priimiki s presledkom kot je "van Basten" so tudi dovoljena.
 Vnosno polje "email" sprejema samo e-mail naslove. Sprejema velike in male alfanumerične znake, Vnosno polje nujno mora imet en znak "@", in znak "." ki mu sledi končnica.
@@ -112,6 +112,17 @@ Vnosno polje "password" zahteva varna gesla. Zahtevano je: vsaj 6 alfanumerični
 Vnosno polje "repeat-password mora biti kopija polja "password", drugač registracija ne bo uspešna.
 
 Za uspešno registracijo morajo vsa polja biti ustrezno izpoljnena. 
+
+### 2. login.hbs - 
+Vnosno polje "email" sprejema samo e-mail naslove registriranih uporabnikov.
+Vnosno polje "password" sprejema samo gesla registriranih uporabnikov.
+
+Za uspešno prijavo morajo oba polja biti ustrezno izpoljnena. 
+
+### 3. forgotpassword.hbs
+Vnosno polje "email" sprejema samo e-mail naslove registriranih uporabnikov in je obvezno polje.
+
+### 4. vehicleprofile.hbs
 
 ## 3. LP
 
