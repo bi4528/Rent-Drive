@@ -27,6 +27,7 @@ const addReview = (req, res, data) => {
     } else {
         data.reviews.push({
             username: req.body.username,
+            user_id: req.body.user_id,
             rating: req.body.rating,
             comment: req.body.comment,
             img: req.body.img
@@ -87,6 +88,7 @@ const reviewsFind = (req, res) => {
                 } else {
                     res.status(200).json({
                         "username": komentar.username,
+                        "user_id": komentar.user_id,
                         "rating": komentar.rating,
                         "comment": komentar.comment,
                         "img": komentar.img,

@@ -296,6 +296,7 @@ const addReview = (req, res, username, stars) => {
             rating: stars,
             img: "../images/oseba_template_2.jpg",
             //TODO USERNAME USERIMG
+            user_id: req.session.user_id,
             username: username
         }
     }).then(() => {

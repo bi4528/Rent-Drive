@@ -315,7 +315,7 @@ const db = (req, res) => {
     res.render('db');
 };
 
-let dataVehicles = require('../models/vehicles-test.json');
+var dataVehicles = require('../models/vehicles-test.json');
 const user = require('./user');
 
 function addReviews(index, id) {
@@ -325,6 +325,7 @@ function addReviews(index, id) {
             method: 'post',
             url: '/api/vehicles/' + id + '/reviews/',
             data: {
+                user_id: dataVehicles[i].reviews[j].username,
                 username: dataVehicles[i].reviews[j].username,
                 comment: dataVehicles[i].reviews[j].comment,
                 rating: dataVehicles[i].reviews[j].rating,
@@ -338,7 +339,7 @@ function addReviews(index, id) {
     }
 }
 
-function addVehicles() {
+function addVehicles(callback) {
     for (let i = 0; i < dataVehicles.length; i++) {
         axios({
             method: 'post',
@@ -378,10 +379,9 @@ function addVehicles() {
                 email: dataVehicles[i].email
             }
         }).then((ans) => {
-            addReviews(i, ans.data._id);
+            callback(ans.data, null);
         }).catch((err) => {
-            console.log("NAPAKA PRI UPIS AVTO");
-            console.log(err);
+            callback(null, err);
         })
     }
 }
@@ -414,6 +414,11 @@ function add_users_in_db(callback) {
 }
 
 const dbadd = (req, res) => {
+
+    const users_to_add = 2;
+    const vehicles_to_add = 2;
+    var users_ids = [];
+    var vehicless_ids = [];
     
     add_users_in_db(function(user, error) {
         if(error) {
@@ -421,12 +426,32 @@ const dbadd = (req, res) => {
         } else if (!user) {
             console.log("Userja ni");
         } else {
-            for (let i = 0; i < dataVehicles.length; i++) {
-                dataVehicles[i].owner_id = user._id;
-            }
 
-            addVehicles();
-            res.redirect('/');
+
+            console.log("User is saved");
+            dataVehicles[users_ids.length].owner_id = user._id;
+            users_ids.push(user._id);
+
+            if (users_ids.length == users_to_add) {
+                console.log("Time to save vehicles");
+                addVehicles(function(vehicle, error){
+                    if (error) {
+                        console.log(error);
+                    } else if (!user) {
+                        console.log("Userja ni");
+                    } else {
+                        var nm_of_reviews = dataVehicles[vehicles_to_add - vehicless_ids.length - 1].reviews.length;
+                        for(var i = 0; i < nm_of_reviews; i++) {
+                            dataVehicles[vehicless_ids.length].reviews[i].user_id = users_ids[vehicles_to_add - vehicless_ids.length - 1];
+                        }
+
+                        addReviews(vehicless_ids.length, vehicle._id);
+                        vehicless_ids.push(vehicle._id);
+
+                        home(req, res);
+                    }
+                });
+            }
         }
     });
 };
