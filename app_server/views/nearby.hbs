@@ -87,9 +87,6 @@
 </main>
 <script type='text/javascript'>
 
-    // seznam z markerji na mapi
-    var markerji = [];
-
     // objekt mapa (Map)
     var mapa;
 
@@ -113,20 +110,24 @@
         var asinhronaZahteva = new XMLHttpRequest();
         asinhronaZahteva.open("GET", "/nearby?markeri", true);
 
+        var center = mapa.getCenter();
+        //console.log(center);
 
         asinhronaZahteva.addEventListener("load", function () {
 
-
-            //console.log("Cars: "+asinhronaZahteva.responseText);
             cars=JSON.parse(asinhronaZahteva.responseText);
 
             cars.forEach(function (car) {
 
-                //console.log(car.address)
+                console.log(car);
+                var distance = center.distanceTo([car.LAT, car.LNG]);
 
-                var marker = L.marker([car.LAT, car.LNG]).addTo(mapa);
-                marker.bindPopup("<div>Tukaj se nahaja "+ car.make + " " + car.model + "</div>").openPopup();
-                markerji.push(marker);
+                if (distance < 1000.00) {
+                    var marker = L.marker([car.LAT, car.LNG]).addTo(mapa);
+                    marker.bindPopup("<div>Tukaj se nahaja " + car.make + " " + car.model + "</div>").openPopup();
+
+                    //console.log(distance);
+                }
             })
 
 
