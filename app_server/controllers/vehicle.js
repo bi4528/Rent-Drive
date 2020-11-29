@@ -25,9 +25,10 @@ const vehicleprofile = (req, res) => {
 
 const vehicleprofile2 = (req, res) => {
     var sessionUser = req.session.user_id;
+    const idVehicle = req.params.id;
     var tmp = null;
     axios
-        .get('/api/vehicles/' + req.params.id)
+        .get('/api/vehicles/' + idVehicle)
         .then((odgovor) => {
             //console.log(odgovor.data);
             let car_photos = [];
@@ -68,7 +69,7 @@ const vehicleprofile2 = (req, res) => {
             console.log("Lastnik je " + tmp.owner_id);
             axios({
                 method: 'get',
-                url: '/api/users/' + tmp.owner_id, //manjka id!!!
+                url: '/api/users/' + tmp.owner_id,
             }).then((user) => {
                 if (user.data.phone_number != null) tmp.phone_number = user.data.phone_number;
                 if (user.data.profile_picture != null) tmp.profile_picture = user.data.profile_picture;
@@ -77,6 +78,9 @@ const vehicleprofile2 = (req, res) => {
                 if (user.data.email != null) tmp.email = user.data.email;
                 if (user.data.username != null) tmp.username = user.data.username;
                 if (user.data.location != null) tmp.location = user.data.location;
+                if (user.favourite_vehicles_ids.includes(idVehicle)){
+                    //NADALJUJ
+                }
                 //console.log("SESSION " + sessionUser);
                 tmp.sessionUser = sessionUser;
                 showvehicleprofile(req, res, tmp);
