@@ -450,9 +450,9 @@ function show_failed_delete_user(req, res, message) {
 }
 
 const remove_user_vehicle = (req, res) => {
-    const user_id = req.session.user_id;
+    
 
-    const vehicle_id = null;
+    const vehicle_id = req.params.idVehicle;
 
     axios.delete(apiParametri.streznik + '/api/vehicles/' + vehicle_id, {
             params: {
@@ -468,6 +468,13 @@ const remove_user_vehicle = (req, res) => {
         });
 }
 
+function show_failed_delete_vehicle(req, res, message) {
+    const user_id = req.session.user_id;
+    res.render('profile', {
+        user_logged: user_id != null,
+        alert_error: message
+    })
+}
 
 
 module.exports = {
