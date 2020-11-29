@@ -452,7 +452,7 @@ const dbadd = (req, res) => {
                     } else {
                         var nm_of_reviews = dataVehicles[vehicless_ids.length].reviews.length;
                         for (var i = 0; i < nm_of_reviews; i++) {
-                            dataVehicles[vehicless_ids.length].reviews[i].user_id = vehicless_ids.length < 5 ? users_ids[0] : users_ids[1];
+                            dataVehicles[vehicless_ids.length].reviews[i].user_id = vehicless_ids.length < 5 ? users_ids[1] : users_ids[0];
                         }
 
                         addReviews(vehicless_ids.length, vehicle._id);
