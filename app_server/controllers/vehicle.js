@@ -169,6 +169,7 @@ const submitCB = (req, res, images) => {
             consumption: req.body.consumption,
             seats: (req.body.seats),
             doors: (req.body.doors),
+            country: req.body.country,
             AirConditioning: req.body.AirConditioning,
             Navigation: req.body.Navigation,
             USB: req.body.USB,
@@ -192,6 +193,7 @@ const submitCB = (req, res, images) => {
         res.redirect('/');
     }).catch((err) => {
         console.log("NAPAKA");
+        console.log(err);
     })
 };
 
