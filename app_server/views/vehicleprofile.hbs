@@ -39,7 +39,9 @@
       <div class="row justify-content-center ml-3">
         <div class="name">
           <h2 class="inline car-name">{{make}} {{model}}</h2>
+          {{#if user_logged}}
           <i id="favorite" onclick='location.href="/vehicles/{{_id}}/changefavorite/{{owner_id}}"' class="far fa-heart"></i>
+          {{/if}}
         </div>
       </div>
 

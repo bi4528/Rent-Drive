@@ -205,7 +205,7 @@ const check_if_mail_exists = (req, res) => {
     });
 };
 
-const add_favourite_vehicle = (req, res) => {
+const toggle_favourite_vehicle = (req, res) => {
     User.findById(req.params.idUser).exec((error, user) => {
         if (!user) {
             return res.status(404).json({
@@ -214,7 +214,11 @@ const add_favourite_vehicle = (req, res) => {
         } else if (error) {
             return res.status(500).json(error);
         } else {
-            user.favourite_vehicles_ids.push(req.body.favourite_vehicles_id);
+            if (user.favourite_vehicles_ids.contains(req.body.favourite_vehicles_id)) {
+                user.favourite_vehicles_ids.remove(req.body.favourite_vehicles_id);
+            } else {
+                user.favourite_vehicles_ids.push(req.body.favourite_vehicles_id);
+            }
             user.save((error, user) => {
                 if (error) {
                     res.status(404).json(error);
@@ -350,7 +354,7 @@ module.exports = {
     check_if_user_exists,
     check_if_mail_exists,
     get_all_users,
-    add_favourite_vehicle,
+    toggle_favourite_vehicle,
     remove_favourite_vehicle,
     get_favourite_vehicles,
     get_vehicles_of_user,
