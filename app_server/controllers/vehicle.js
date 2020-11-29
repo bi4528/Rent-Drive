@@ -51,32 +51,32 @@ const vehicleprofile2 = (req, res) => {
                 odgovor.data.avg_rating = newAvgRating;
             }
             tmp = odgovor.data;
-        }).then((response)=>{
-            console.log("Lastnik je " +tmp.owner_id);
+        }).then((response) => {
+            console.log("Lastnik je " + tmp.owner_id);
             axios({
                 method: 'get',
                 url: '/api/users/' + tmp.owner_id, //manjka id!!!
-              }).then((user) => {
-                if(user.data.profile_picture!=null) tmp.profile_picture = user.data.profile_picture;
-                if (user.data.firstname!=null) tmp.firstname = user.data.firstname;
-                if (user.data.lastname!=null) tmp.lastname = user.data.lastname;
-                if (user.data.email!=null) tmp.email = user.data.email;
-                if (user.data.username!=null) tmp.username = user.data.username;
-                if(user.data.location!=null) tmp.location = user.data.location;
-                console.log("SESSION " + sessionUser);
+            }).then((user) => {
+                if (user.data.profile_picture != null) tmp.profile_picture = user.data.profile_picture;
+                if (user.data.firstname != null) tmp.firstname = user.data.firstname;
+                if (user.data.lastname != null) tmp.lastname = user.data.lastname;
+                if (user.data.email != null) tmp.email = user.data.email;
+                if (user.data.username != null) tmp.username = user.data.username;
+                if (user.data.location != null) tmp.location = user.data.location;
+                //console.log("SESSION " + sessionUser);
                 tmp.sessionUser = sessionUser;
                 showvehicleprofile(req, res, tmp);
-              }).catch((napaka) => {
+            }).catch((napaka) => {
                 console.log("Napaka pri iskanju lastnika vozila!");
                 //console.log(tmp);
                 showvehicleprofile(req, res, tmp)
-             });
+            });
         });
 };
 
 const showvehicleprofile = (req, res, data) => {
     console.log(data.sessionUser);
-    data.user_logged= req.session.user_id != null;
+    data.user_logged = req.session.user_id != null;
     res.render('vehicleprofile', data);
 };
 
@@ -99,9 +99,9 @@ var storage = multer.diskStorage({
     }
 });
 
-var upload = multer({ storage: storage }).array('carphotos',10);
+var upload = multer({ storage: storage }).array('carphotos', 10);
 const submitcar = (req, res) => {
-    
+
     upload(req, res, function (err) {
         //console.log(req);
         console.log(req.body);
@@ -167,27 +167,27 @@ const editvehicleprofile = (req, res) => {
         .then((odgovor) => {
             console.log(odgovor.data);
             tmp = odgovor.data;
-        }).then((response)=>{
-            console.log("Lastnik je " +tmp.owner_id);
+        }).then((response) => {
+            console.log("Lastnik je " + tmp.owner_id);
             axios({
                 method: 'get',
                 url: '/api/users/' + tmp.owner_id,
-              }).then((user) => {
+            }).then((user) => {
                 //console.log(user.data);
-                if(user.data.profile_picture!=null) tmp.profile_picture = user.data.profile_picture;
-                if (user.data.firstname!=null) tmp.firstname = user.data.firstname;
-                if (user.data.lastname!=null) tmp.lastname = user.data.lastname;
-                if (user.data.email!=null) tmp.email = user.data.email;
-                if (user.data.username!=null) tmp.username = user.data.username;
-                if(user.data.location!=null) tmp.location = user.data.location;
+                if (user.data.profile_picture != null) tmp.profile_picture = user.data.profile_picture;
+                if (user.data.firstname != null) tmp.firstname = user.data.firstname;
+                if (user.data.lastname != null) tmp.lastname = user.data.lastname;
+                if (user.data.email != null) tmp.email = user.data.email;
+                if (user.data.username != null) tmp.username = user.data.username;
+                if (user.data.location != null) tmp.location = user.data.location;
                 tmp.user_logged = req.session.user_id != null;
                 res.render('editvehicleprofile', tmp);
-              }).catch((napaka) => {
+            }).catch((napaka) => {
                 console.log("Napaka pri iskanju lastnika vozila!");
-                tmp.user_logged= req.session.user_id != null;
+                tmp.user_logged = req.session.user_id != null;
                 res.render('editvehicleprofile', tmp);
-             });
             });
+        });
 };
 
 const editvehicleprofile_submit = (req, res) => {
@@ -197,13 +197,12 @@ const editvehicleprofile_submit = (req, res) => {
         obj.key = i;
         obj.value = req.body[i];
         changes.push(obj);
-        //console.log(obj);
     }
+    console.log(changes);
     var tmp = null;
     axios
         .get('/api/vehicles/' + req.params.id)
         .then((odgovor) => {
-            console.log(odgovor.data.date);
             accessibilityOff = true;
             auxOff = true;
             usbOff = true;
@@ -215,20 +214,19 @@ const editvehicleprofile_submit = (req, res) => {
 
             for (var i in changes) {
                 //console.log(changes[i].key + ": " + changes[i].value);
-                //console.log(odgovor.data[changes[i].key]);
-                if (odgovor.data[changes[i].key] != changes[i].value) {
+                console.log(changes[i].value);
+                console.log(odgovor.data[changes[i].key]);
                     odgovor.data[changes[i].key] = changes[i].value;
-                    if (changes[i].key=="accessibility") accessibilityOff = false;
-                    if (changes[i].key=="AUX") auxOff = false;
-                    if (changes[i].key=="USB") usbOff = false;
-                    if (changes[i].key=="bluetooth") bluetoothOff = false;
-                    if (changes[i].key=="Navigation") navigationOff = false;
-                    if (changes[i].key=="parkingsensors") parkingsensorsOff = false;
-                    if (changes[i].key=="AirConditioning") AirConditioningOff = false;
-                    if (changes[i].key=="autopilot") autopilotOff = false;
-                    if(changes[i].key=="date-from") odgovor.data.date[0] = changes[i].value;
-                    if(changes[i].key=="date-to") odgovor.data.date[1] = changes[i].value;
-                }
+                    if (changes[i].key == "accessibility") accessibilityOff = false;
+                    if (changes[i].key == "AUX") auxOff = false;
+                    if (changes[i].key == "USB") usbOff = false;
+                    if (changes[i].key == "bluetooth") bluetoothOff = false;
+                    if (changes[i].key == "Navigation") navigationOff = false;
+                    if (changes[i].key == "parkingsensors") parkingsensorsOff = false;
+                    if (changes[i].key == "AirConditioning") AirConditioningOff = false;
+                    if (changes[i].key == "autopilot") autopilotOff = false;
+                    if (changes[i].key == "date-from") odgovor.data.date[0] = changes[i].value;
+                    if (changes[i].key == "date-to") odgovor.data.date[1] = changes[i].value;
             }
             if (accessibilityOff) odgovor.data.accessibility = "off";
             if (auxOff) odgovor.data.AUX = "off";
@@ -239,19 +237,18 @@ const editvehicleprofile_submit = (req, res) => {
             if (AirConditioningOff) odgovor.data.AirConditioning = "off";
             if (autopilotOff) odgovor.data.autopilot = "off";
             tmp = odgovor.data;
-        }).then((response)=>{
+        }).then((response) => {
             console.log(tmp);
             axios({
                 method: 'put',
                 url: '/api/vehicles/' + req.params.id,
                 data: tmp
-              }).then(() => {
-                //res.render('vehicleprofile', tmp);
+            }).then(() => {
                 //res.render('/vehicles/' + req.params.id, tmp)
                 res.redirect('/vehicles/' + req.params.id);
-              }).catch((napaka) => {
+            }).catch((napaka) => {
                 console.log("Prišlo je do napake pri posodabljanju.");
-              });
+            });
         })
 };
 
@@ -265,7 +262,7 @@ const vehicleprofile_book = (req, res) => {
         params: req.body.params
     })
         .then((response) => {
-            var user = {"prvi": response.data, "drugi": req.body};
+            var user = { "prvi": response.data, "drugi": req.body };
             res.render('book', user);
             console.log(user);
         })
@@ -283,11 +280,11 @@ function getAverageRating(odgovor) {
 }
 
 const review = (req, res) => {
-    res.render('review', { user_logged : req.session.user_id != null} );
+    res.render('review', { user_logged: req.session.user_id != null });
 }
 
 const addReview = (req, res, username, stars) => {
-    id=req.params.id;
+    id = req.params.id;
     axios({
         method: 'post',
         url: '/api/vehicles/' + id + '/reviews/',
@@ -331,7 +328,7 @@ const postReview = (req, res) => {
         .get('/api/users/' + req.session.user_id)
         .then((odgovor) => {
             //console.log(odgovor.data);
-            addReview(req,res, odgovor.data.username, stars);
+            addReview(req, res, odgovor.data.username, stars);
         })
         .catch((napaka) => {
             console.log("Napaka pri iskanju lastnika!");
@@ -339,7 +336,7 @@ const postReview = (req, res) => {
         });
 }
 
-const deleteReview = (req,res) => {
+const deleteReview = (req, res) => {
     console.log(req.body);
     //TODO
 }
