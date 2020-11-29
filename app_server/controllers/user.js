@@ -179,6 +179,7 @@ const logged_user_profile = (req, res) => {
 };
 
 const profile = (req, res) => {
+
     var idUser = req.body.idUser != null ? req.body.idUser : req.session.user_id;
 
     axios.get(apiParametri.streznik + '/api/users/' + idUser, {
