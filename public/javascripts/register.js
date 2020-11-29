@@ -1,12 +1,20 @@
-
+const usernameRx = /^(?=.{4,15}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/;
+function validate_username(username){
+    return usernameRx.test(username);
+}
 var form = document.querySelector("form");
 form.addEventListener("submit", function (event) {
+    var username = document.getElementById("username").value;
     var firstname = document.getElementById("firstname").value;
     var lastname = document.getElementById("lastname").value;
     var mail = document.getElementById("mail").value;
     var password = document.getElementById("password").value;
     var repeatPassword = document.getElementById("repeat-password").value;
 
+    if (!validate_username(username)) {
+        alertMessage("Username not valid!");
+        event.preventDefault();
+    }
     if (!validate_first_name(firstname)) {
         alertMessage("First name not valid!");
         event.preventDefault();
@@ -49,7 +57,7 @@ document.getElementById("lastname").addEventListener("change", function (event) 
 });
 
 document.getElementById("username").addEventListener("change", function (event) {
-    if (!validate_no_spaces(this.value)) {
+    if (!validate_username(this.value)) {
         alertMessage("Username not valid!");
     }
 });
