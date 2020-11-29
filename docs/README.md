@@ -171,10 +171,31 @@ Za vnosna polja dates from in dates to je pomembno da dateTo je casovno po dateF
 Vnosno polje city sprejma nize ki sestavljene samo iz crke [a-z] (je case insensitive), lahko tudi obstaja en znam '-' vmes. Primer uporabe: Ljubljana, Monte-Carlo.
 Za vnosna polja dates from in dates to je pomembno da dateTo je casovno po dateFrom.
 
+### Seznam dovoljenih naprav
+Naša aplikacija je bila testirana in pravilno dela na katerikoli računalnik, prenosnik, IPAD, IPHONE X in vse ostale naprave. 
+
+### Seznam podprtih brskalnikov
+Naša aplikacija je bila testirana in pravilno dela na: Google Chrome, Microsoft Edge, Mozila Firefox, Brave.
+
 ## 3. LP
 
 Dinamična spletna aplikacija s podatkovno bazo
 
+### Namestitev potrebnih datotek za zagon aplikacije v lokalnem okolju
+
+1. Z ukazom v ukazni vrstici`git clone https://github.com/sp-2020-2021/LP-01` se v trenutno mapo namestijo datoteke iz oddaljenega repozitorija.
+2. Premaknemo se v mapo `.\LP-01` z ukazom `cd .\LP-01`
+3. Izvedemo ukaz `npm install` s čemer se namestijo potrebne vmesnike za zagon aplikacije.
+
+### Zagon aplikacije
+- V mapi `.\LP-01` izvedemo ukaz `nodemon` ali `npm start` s čemer strežnik se zažene.
+V kolikor bi želeli ustaviti trenutni proces, to naredimo v ukazni vrstici z ukazom `Ctrl + C`.
+
+### Dostop do aplikacije
+- Spletna aplikacija je dostopna na vratih 3000, privzeti naslov za dostop je [localhost:3000](localhost:3000).
+
+### Dostop do aplikacije v produkcijskem okolju
+- Spletna aplikacija je dostopna na povezavi [Heroku spletna aplikacija](https://rentdrive-sp.herokuapp.com/).
 
 ## 4. LP
 
