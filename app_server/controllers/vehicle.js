@@ -65,7 +65,7 @@ const vehicleprofile2 = (req, res) => {
 
 
             tmp = odgovor.data;
-        }).then((response) => {
+            
             console.log("Lastnik je " + tmp.owner_id);
             axios({
                 method: 'get',
@@ -78,14 +78,22 @@ const vehicleprofile2 = (req, res) => {
                 if (user.data.email != null) tmp.email = user.data.email;
                 if (user.data.username != null) tmp.username = user.data.username;
                 if (user.data.location != null) tmp.location = user.data.location;
-                if (user.favourite_vehicles_ids.includes(idVehicle)){
+                if (user.data.favourite_vehicles_ids.includes(idVehicle)){
                     //NADALJUJ
+                    tmp.is_favourite_of_logged_user = true;
+                } else {
+                    tmp.is_favourite_of_logged_user = false;
                 }
+
+                console.log("Hello");
+                console.log(tmp.is_favourite_of_logged_user);
+
                 //console.log("SESSION " + sessionUser);
                 tmp.sessionUser = sessionUser;
                 showvehicleprofile(req, res, tmp);
             }).catch((napaka) => {
                 console.log("Napaka pri iskanju lastnika vozila!");
+                console.log(napaka);
                 //console.log(tmp);
                 showvehicleprofile(req, res, tmp)
             });
