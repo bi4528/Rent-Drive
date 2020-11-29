@@ -61,6 +61,26 @@
         {{/each}}
       </div>
     </div>
+
+    <div id="favourite_vozila_uporabnika">
+      <h2>Vehicles I rented:</h2>
+      <div class="row">
+        {{#each my_rents}}
+        <div class="card col-12 col-sm-12 col-md-7 col-lg-5 col-xl-4 card_auto">
+          <div class="card-body">
+            <h5 class="card-text">From date:
+              {{this.date_from}} 
+              <br>
+              to date: 
+              {{this.date_to}}</h5>
+            <button type="button" onclick="location.href='/vehicles/{{this.vehicle_id}}'" class="btn btn-primary btn-block card_auto_najemi_button">Visit vehicle profile</button>
+            <button type="button" onclick="location.href='/rented/{{this._id}}/delete'" class="btn btn-primary btn-block card_auto_najemi_button">Delete this rent</button>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+
   </section>
 </main>
 <script src="/javascripts/profile.js"></script>

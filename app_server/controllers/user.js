@@ -231,7 +231,17 @@ const profile = (req, res) => {
                                 }
                             });
                             console.log(favourite_vehicles);
-                            show_profile(req, res, user, vehicles, favourite_vehicles);
+                            
+                            axios
+                                .get(apiParametri.streznik + '/api/rented')
+                                .then((odgovor) => {
+                                    show_profile(req, res, user, vehicles, favourite_vehicles, odgovor.data);                                    
+                                })
+                                .catch((err) => {
+                                    console.log(err);
+                                });
+                            
+                            //show_profile(req, res, user, vehicles, favourite_vehicles);
 
                         })
                         .catch((error) => {
@@ -319,8 +329,17 @@ function show_failed_edit_profile(req, res, message) {
     });
 }
 
-function show_profile(req, res, user, vehicles, favourite_vehicles) {
+function show_profile(req, res, user, vehicles, favourite_vehicles, rented) {
     const is_user_logged = req.session.user_id != null;
+    my_rented=[];
+    for(let i=0; i<rented.length; i++){
+        if(rented[i].user_id==user._id){
+            rented[i].date_from=rented[i].date_from.substring(0,10);
+            rented[i].date_to=rented[i].date_to.substring(0,10);
+            my_rented.push(rented[i]);
+        }
+    }
+
     res.render('profile', {
         username: user.username,
         firstname: user.firstname,
@@ -338,7 +357,7 @@ function show_profile(req, res, user, vehicles, favourite_vehicles) {
             name: "Like a vehicle",
             image: "car_1.jpg"
         }],
-
+        my_rents: my_rented,
         user_logged: is_user_logged,
         is_profile_of_logged_user: req.session.user_id == user._id
     });

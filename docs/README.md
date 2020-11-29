@@ -155,6 +155,8 @@ Naša aplikacija je bila testirana in pravilno dela na katerikoli računalnik, p
 ### Seznam podprtih brskalnikov
 Naša aplikacija je bila testirana in pravilno dela na: Google Chrome, Microsoft Edge, Mozila Firefox, Brave.
 
+### Zunanje npm knjižnice
+Ena zunanja knjižnica ki jo uporabljamo je multer. V glavnem ta se uporablja na publish.hbs, editvehicleprofile.hbs, editprofile.hbs kjer lahko uporabnik ima opcijo da naloži eno sliko, to je le pri editprofile.hbs ali več slik pri publish.hbs in editvehicleprofile.hbs. Podprta je torej možnost nalaganja več slik avta uporabnika ki se potem prikažejo na vehicleprofile.hbs
 ## 3. LP
 
 Dinamična spletna aplikacija s podatkovno bazo
