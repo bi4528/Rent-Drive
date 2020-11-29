@@ -180,7 +180,7 @@ const logged_user_profile = (req, res) => {
 
 const profile = (req, res) => {
 
-    var idUser = req.body.idUser != null ? req.body.idUser : req.session.user_id;
+    var idUser = req.params.idUser != null ? req.params.idUser : req.session.user_id;
 
     axios.get(apiParametri.streznik + '/api/users/' + idUser, {
             params: req.body.params
@@ -251,7 +251,7 @@ const edit_profile_action = (req, res) => {
         storage: storage
     }).array('profile_picture', 1);
     upload(req, res, function (error) {
-        console.log(req.body);
+        
         if (error) {
             console.log(error);
             show_failed_edit_profile(req, res, "Unable to upload profile picture");
@@ -267,7 +267,7 @@ const edit_profile_action = (req, res) => {
 };
 
 function save_new_user_data(req, res) {
-    console.log(req.body);
+    
     const user_id = req.session.user_id;
     axios.put(apiParametri.streznik + '/api/users/' + user_id, {
             params: {
@@ -304,9 +304,6 @@ function show_failed_edit_profile(req, res, message) {
 }
 
 function show_profile(req, res, user, vehicles, favourite_vehicles) {
-    console.log(req.session.user_id == user._id);
-    console.log(req.session.user_id);
-    console.log(user._id);
     const is_user_logged = req.session.user_id != null;
     res.render('profile', {
         username: user.username,
@@ -382,7 +379,6 @@ const book = (req, res) => {
 
 const confirm = (req, res) => {
 
-    console.log(req.body);
     const user_id = req.session.user_id;
     axios.post(apiParametri.streznik + '/api/rented', {
         params: {
