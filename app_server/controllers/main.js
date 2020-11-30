@@ -8,7 +8,7 @@ var appiParams = {
     server: 'http://localhost:' + (process.env.PORT || 3000)
 };
 if (process.env.NODE_ENV === 'production') {
-    appiParams.server = 'https://rentdrive-sp.herokuapp.com/';
+    appiParams.server = 'https://rentdrive-sp.herokuapp.com';
 }
 const axios = require('axios').create({
     baseURL: appiParams.server,
