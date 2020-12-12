@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class OgrodjeComponent implements OnInit {
 
   constructor() { }
-
+  public user_logged: boolean = true; //TODO
   ngOnInit(): void {
   }
 
