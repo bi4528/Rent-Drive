@@ -1,1 +1,89 @@
-<p>home works!</p>
+<main>
+    
+    <div class="alert alert-warning" [hidden]="!sporocilo">{{sporocilo}}</div>
+    
+    <div class="container-background">
+        <div class="lambo-image">
+            <div class="form-row filter">
+                <div class="col-auto">
+                    <label><strong>Location pick-up (city):</strong><input type="text" class="form-control filterCity"
+                            placeholder="City"></label>
+                </div>
+                <div class="col-auto">
+                    <label><strong>Date from:</strong><input type="date" class="form-control dateFrom" /></label>
+                </div>
+                <div class="col-auto">
+                    <label><strong>Date to:</strong><input type="date" class="form-control dateTo" /></label>
+                </div>
+                <div class="col-auto">
+                    <br><a class="filterlink" href="">
+                        <button type="button" class="btn btn-light filterbutton">Filter</button>
+                        </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="container-fluid">
+        <nav class="navbar navbar-category navbar-expand-lg justify-content-between">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span>Category<i class="fas fa-angle-down px-2 carousel-arrows"></i></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item mx-md-4 active">
+                        <a class="nav-link" href="/search?category=Hatchback">Hatchback<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item mx-md-4">
+                        <a class="nav-link" href="/search?category=Saloon">Saloon</a>
+                    </li>
+                    <li class="nav-item mx-md-4">
+                        <a class="nav-link" href="/search?category=Caravan">Caravan</a>
+                    </li>
+                    <li class="nav-item mx-md-4">
+                        <a class="nav-link" href="/search?category=Coupe">Coupe</a>
+                    </li>
+                    <li class="nav-item mx-md-4">
+                        <a class="nav-link" href="/search?category=SUV">SUV</a>
+                    </li>
+                    <li class="nav-item mx-md-4">
+                        <a class="nav-link" href="/search?category=Pick-up">Pick-up</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+
+    <br>
+
+    <div id="catalogue-cars" class="carousel slide carousel-multi-item mt-4" data-ride="carousel">
+
+        <div class="controls-top carousel-controls">
+            <a class="btn-floating" href="#catalogue-cars" data-slide="prev"><i
+                    class="fas fa-long-arrow-alt-left fa-3x p-2 carousel-arrows"></i></a>
+            <a class="btn-floating" href="#catalogue-cars" data-slide="next"><i
+                    class="fas fa-long-arrow-alt-right fa-3x p-2 carousel-arrows"></i></a>
+        </div>
+
+
+        <br>
+        <div class="carousel-inner carousel-catalogue" role="listbox" *ngIf="cars" [innerHTML]="cars | carouselVehicles">
+        </div>
+        
+        <div class="controls-top carousel-controls col-12 w-100 mb-3 py-3">
+            <a class="btn-floating col-6" href="#catalogue-cars" data-slide="prev"><i
+                    class="fas fa-chevron-left fa-3x p-2 float-left carousel-arrows"></i></a>
+            <a class="btn-floating col-6" href="#catalogue-cars" data-slide="next"><i
+                    class="fas fa-chevron-right fa-3x p-2 float-right carousel-arrows"></i></a>
+        </div>
+
+    </div>
+</main>
+
+
+<script src="../../../../assets/javascripts/home.js"></script>

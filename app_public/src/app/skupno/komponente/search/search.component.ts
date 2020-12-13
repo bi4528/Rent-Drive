@@ -3,13 +3,13 @@ import { Vehicle, Review } from '../../razredi/vehicle';
 import { VehiclesDataService } from '../../storitve/vehicles-data.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.css']
 })
-export class HomeComponent implements OnInit {
+export class SearchComponent implements OnInit {
 
-  constructor( private vehiclesDataService: VehiclesDataService) { }
+  constructor(private vehiclesDataService: VehiclesDataService) { }
 
   public cars: Vehicle[];
   public sporocilo: string;

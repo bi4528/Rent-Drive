@@ -18,16 +18,16 @@
 <body>
   <nav class="navbar navbar-main navbar-expand-lg sticky-top justify-content-between">
     <div class="container-fluid">
-      <a class="navbar-brand logo img-fluid= img-responsive m-0" href="/"><img src="../../../../assets/images/Logo.png" width="170"
+      <a class="navbar-brand logo img-fluid= img-responsive m-0" routerLink="/"><img src="../../../../assets/images/Logo.png" width="170"
           alt="Rent&Drive"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navcol-1"
         aria-controls="navcol-1" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="sr-only">Toggle navigation</span><img src="../../../../assets/menu-bars-icon.png" alt="Expand">
+        <span class="sr-only">Toggle navigation</span><img src="../../../../assets/images/menu-bars-icon.png" alt="Expand">
       </button>
       <div class="collapse navbar-collapse" id="navcol-1">
         <ul class="nav navbar-nav ml-auto">
           <li class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link active" href="/"><i class="material-icons fa-fw align-middle"
+            <a class="nav-link active" routerLink="/"><i class="material-icons fa-fw align-middle"
                 aria-hidden="true">collections</i> Catalogue</a>
           </li>
           <li class="nav-item mx-md-2" role="presentation">
@@ -35,7 +35,7 @@
                 aria-hidden="true">near_me</i> Nearby</a>
           </li>
           <li *ngIf="user_logged"  class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" href="/vehicles/publish"><i class="material-icons fa-fw align-middle"
+            <a class="nav-link" routerLink="/vehicles/publish"><i class="material-icons fa-fw align-middle"
                 aria-hidden="true">add_to_photos</i> List your car</a>
           </li>
           <li *ngIf="user_logged" class="nav-item mx-md-2" role="presentation">
@@ -52,7 +52,7 @@
                 aria-hidden="true">account_box</i> Login</a>
           </li>
           <li class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" href="/search"><i class="material-icons fa-fw align-middle"
+            <a class="nav-link" routerLink="/search"><i class="material-icons fa-fw align-middle"
                 aria-hidden="true">search</i> Search</a>
           </li>
         </ul>
@@ -85,13 +85,13 @@
 
           <div class="col-md-4 ul-list">
             <ul>
-              <li><a href="/">Home</a></li>
+              <li><a routerLink="/">Home</a></li>
               <li><a href="/nearby">Nearby</a></li>
-              <li *ngIf="user_logged" ><a href="/vehicles/publish">List your car</a></li>
+              <li *ngIf="user_logged" ><a routerLink="/vehicles/publish">List your car</a></li>
               <li *ngIf="user_logged"><a href="/users/my">My profile</a></li>
               <li *ngIf="!user_logged"><a href="/users/login">Login</a></li>
               <li *ngIf="!user_logged"><a href="/users/register">Register</a></li>
-              <li><a href="/search">Search</a></li>
+              <li><a routerLink="/search">Search</a></li>
             </ul>
           </div>
 
