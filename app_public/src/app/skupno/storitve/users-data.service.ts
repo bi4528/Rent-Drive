@@ -86,7 +86,6 @@ export class UsersDataService {
 
 
   private procesError(napaka: any): Promise<any> {
-    console.error('Prišlo je do napake', napaka);
-    return Promise.reject(napaka.message || napaka);
+    return Promise.reject(napaka.error.message || napaka);
   }
 }

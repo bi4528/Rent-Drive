@@ -17,12 +17,12 @@ passport.use(
             return pkKoncano(error);
           if (!user) {
             return pkKoncano(null, false, {
-              "message": "Failed email"
+              "message": "Email not found"
             });
           }
           if (!user.checkPassword(password)) {
             return pkKoncano(null, false, {
-              "message": "Failed password"
+              "message": "Password not correct"
             });
           }
           return pkKoncano(null, user);

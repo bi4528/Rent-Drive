@@ -89,7 +89,6 @@ const create_new_user = (req, res) => {
 };
 
 const login = (req, res) => {
-    console.log("Hello from login API");
     if (!req.body.email || !req.body.password) {
         return res.status(400).json({
             "message": "Zahtevani so vsi podatki"
@@ -103,6 +102,7 @@ const login = (req, res) => {
                 "token": user.generateJwt()
             });
         } else {
+            console.log(informations);
             res.status(401).json(informations);
         }
     })(req, res);
