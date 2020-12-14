@@ -11,7 +11,7 @@ passport.use(
     },
     (email, password, pkKoncano) => {
       User.findOne(
-        { elektronskiNaslov: email },
+        { email: email },
         (error, user) => {
           if (error)
             return pkKoncano(error);
@@ -20,7 +20,7 @@ passport.use(
               "message": "Failed email"
             });
           }
-          if (!user.preveriGeslo(geslo)) {
+          if (!user.checkPassword(password)) {
             return pkKoncano(null, false, {
               "message": "Failed password"
             });

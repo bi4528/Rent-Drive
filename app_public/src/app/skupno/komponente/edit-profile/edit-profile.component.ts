@@ -22,7 +22,7 @@ export class EditProfileComponent implements OnInit {
       });
   }
 
-  private update_user_data = (): void => {
+  public update_user_data = (): void => {
     this.alert_error = "Updating user data";
     this.usersDataService
       .updateUserData(this.user)
@@ -38,8 +38,8 @@ export class EditProfileComponent implements OnInit {
   }
 
   @Input() id_of_user: String;
-  alert_error: String;
-  user: User;
+  public alert_error: String;
+  public user: User;
 
 
   ngOnInit(): void {

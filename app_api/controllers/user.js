@@ -59,17 +59,17 @@ const create_new_user = (req, res) => {
     } else {
 
         const new_user = new User();
-        user.username= username;
-        user.firstname = firstname;
-        user.lastname = lastname;
-        user.phone_number = phone_number;
-        user.email = email;
-        user.location = location;
-        user.setPassword(password);
-        user.profile_picture = profile_picture;
-        user.favourite_vehicles_ids = favourite_vehicles_ids;
+        new_user.username = username;
+        new_user.firstname = firstname;
+        new_user.lastname = lastname;
+        new_user.phone_number = phone_number;
+        new_user.email = email;
+        new_user.location = location;
+        new_user.setPassword(password);
+        new_user.profile_picture = profile_picture;
+        new_user.favourite_vehicles_ids = favourite_vehicles_ids;
 
-        user.save(error => {
+        new_user.save(error => {
             if (error) {
                 if (error.name == "MongoError" && error.code == 11000) {
                     res.status(409).json({
@@ -89,6 +89,7 @@ const create_new_user = (req, res) => {
 };
 
 const login = (req, res) => {
+    console.log("Hello from login API");
     if (!req.body.elektronskiNaslov || !req.body.geslo) {
         return res.status(400).json({
             "message": "Zahtevani so vsi podatki"

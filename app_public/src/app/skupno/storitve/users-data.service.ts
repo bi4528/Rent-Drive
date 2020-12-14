@@ -65,11 +65,11 @@ export class UsersDataService {
   }
 
   public login(user: User): Promise<AuthenticationResult> {
-    return this.authentication('login', user);
+    return this.authentication('users/login', user);
   }
 
   public register(user: User): Promise<AuthenticationResult> {
-    return this.authentication('register', user);
+    return this.authentication('users/register', user);
   }
   
   private authentication(urlname: string, user: User): Promise<AuthenticationResult> {

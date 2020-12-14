@@ -4,6 +4,7 @@ import { Vehicle } from '../../razredi/vehicle';
 import { Rent } from '../../razredi/rent';
 import { UsersDataService } from '../../storitve/users-data.service';
 import { VehiclesDataService } from '../../storitve/vehicles-data.service';
+import { AuthenticationService } from '../../storitve/avtentikacija.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +13,7 @@ import { VehiclesDataService } from '../../storitve/vehicles-data.service';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private usersDataService: UsersDataService, private vehiclesDataService: VehiclesDataService) { }
+  constructor(private usersDataService: UsersDataService, private vehiclesDataService: VehiclesDataService, private avtentikacijaStoritev: AuthenticationService) { }
 
   private get_user_data = (id_of_user: String): void => {
     this.alert_error = "Searching for user";
@@ -24,7 +25,7 @@ export class ProfileComponent implements OnInit {
       });
   }
 
-  
+
   private get_vehicles_of_user = (id_of_user: String): void => {
     this.alert_error = "Searching for cars";
     this.usersDataService
@@ -55,20 +56,29 @@ export class ProfileComponent implements OnInit {
       });
   }
 
+  private checkIfProfileIsUserLogged = (): void => {
+    var current_user = this.avtentikacijaStoritev.get_current_user();
+    this.is_profile_of_logged_user = current_user._id == this.id_of_user;
+    this.show_controls = current_user._id == this.id_of_user;
+  }
+
 
 
   @Input() id_of_user: String;
-  alert_error: String;
-  user: User;
-  owned_cars: Vehicle[];
-  favourite_cars: Vehicle[];
-  rents: Rent[];
+  public alert_error: String;
+  public user: User;
+  public owned_cars: Vehicle[];
+  public favourite_cars: Vehicle[];
+  public rents: Rent[];
+  public is_profile_of_logged_user: Boolean;
+  public show_controls: Boolean;
 
   ngOnInit(): void {
     this.get_user_data(this.id_of_user);
     this.get_vehicles_of_user(this.id_of_user);
     this.get_rents_of_user(this.id_of_user);
     this.get_favourite_vehicles_of_user(this.id_of_user);
+    this.checkIfProfileIsUserLogged();
   }
 
 }

@@ -10,7 +10,7 @@
       <img class="rounded-circle slika_uporabnika" src="/uploads/{{user.profile_picture}}" alt="Slika profila">
       <h3 class="top-spacing centered"> <span id="ime_uporabnika">{{user.firstname}}</span> <span
           id="priimek_uporabnika">{{user.lastname}}</span></h3>
-      <p id="mail_uporabnika" class="centered">{{user.mail}}</p>
+      <p id="mail_uporabnika" class="centered">{{user.email}}</p>
       <p id="telefonska_stevilka_uporabika" class="centered">{{user.phone_number}}</p>
       <p id="kraj_uporabnika" class="centered">{{user.location}}</p>
       <button *ngIf="is_profile_of_logged_user" type="button" class="btn btn-primary btn-block" onclick="location.href='/users/edit'">Edit</button>
@@ -47,7 +47,7 @@
       </div>
     </div>
 
-    <div *ngIf="user_logged" id="favourite_vozila_uporabnika">
+    <div *ngIf="is_profile_of_logged_user" id="favourite_vozila_uporabnika">
       <h2>Vehicles I rented:</h2>
       <div class="row" *ngFor="let my_rent of my_rents">
         <div class="card col-12 col-sm-12 col-md-7 col-lg-5 col-xl-4 card_auto">

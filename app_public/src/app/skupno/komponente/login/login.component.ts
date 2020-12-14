@@ -16,9 +16,10 @@ export class LoginComponent implements OnInit {
     private router: Router, private usersDataService: UsersDataService, private avtentikacijaStoritev: AuthenticationService, private historyService: HistoryService) { }
 
 
-  private login = (): void => {
+  public login = (): void => {
 
     this.alert_error = "";
+    console.log(this.user);
     if (
       !this.user.email ||
       !this.user.password
@@ -44,7 +45,18 @@ export class LoginComponent implements OnInit {
   }
 
   alert_error: String;
-  user: User;
+  public user: User = {
+    _id : "",
+    username: "",
+    firstname : "" ,
+    lastname : "" ,
+    phone_number : "" ,
+    email : "" ,
+    password : "" ,
+    profile_picture : "" ,
+    location : "" ,
+    favourite_vehicles_ids : [] ,
+  };
 
 
   ngOnInit(): void {
