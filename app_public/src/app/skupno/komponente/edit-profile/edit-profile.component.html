@@ -10,7 +10,7 @@
       <button type="button" onclick="save_button_clicked()" class="btn btn-primary shrani_podatke_gumb"
         onclick="location.href='/users/my'">Save</button>
       <h2>Edit your profile</h2>
-      <form method="post" action="/users/edit" enctype="multipart/form-data" (ngSubmit)="update_user_data()">
+      <form enctype="multipart/form-data" (ngSubmit)="update_user_data()">
         <div class="form-group">
           <div style="min-height:45px">
             <label>Profile picture:</label>

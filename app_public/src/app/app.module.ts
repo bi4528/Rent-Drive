@@ -12,6 +12,7 @@ import { SearchComponent } from './skupno/komponente/search/search.component';
 import { PublishComponent } from './skupno/komponente/publish/publish.component';
 import { ProfileComponent } from './skupno/komponente/profile/profile.component';
 import { EditProfileComponent } from './skupno/komponente/edit-profile/edit-profile.component';
+import { LoginComponent } from './skupno/komponente/login/login.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { EditProfileComponent } from './skupno/komponente/edit-profile/edit-prof
     SearchComponent,
     PublishComponent,
     ProfileComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

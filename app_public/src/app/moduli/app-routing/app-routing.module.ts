@@ -6,6 +6,9 @@ import { OgrodjeComponent } from '../../skupno/komponente/ogrodje/ogrodje.compon
 import { HomeComponent } from '../../skupno/komponente/home/home.component';
 import { SearchComponent } from '../../skupno/komponente/search/search.component';
 import { PublishComponent} from '../../skupno/komponente/publish/publish.component';
+import { LoginComponent } from 'src/app/skupno/komponente/login/login.component';
+import { ProfileComponent } from 'src/app/skupno/komponente/profile/profile.component';
+import { EditProfileComponent } from 'src/app/skupno/komponente/edit-profile/edit-profile.component';
 
 const poti: Routes = [
   {
@@ -19,6 +22,18 @@ const poti: Routes = [
   {
     path: 'vehicles/publish',
     component: PublishComponent
+  },
+  {
+    path: 'users/login',
+    component: LoginComponent
+  },
+  {
+    path: 'users/profiles/:idUser',
+    component: ProfileComponent
+  },
+  {
+    path: 'users/edit',
+    component: EditProfileComponent
   }
 ];
 
