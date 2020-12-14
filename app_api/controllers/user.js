@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Vehicle = mongoose.model('Vehicle');
+const Rented = mongoose.model('Rented');
 
 const get_all_users = (req, res) => {
     User.find({}, function (error, user) {
@@ -373,6 +374,25 @@ const reset_password = (req, res) => {
     }
 };
 
+const get_rents_of_user = (req, res) => {
+
+    Rented.find({
+        user_id: req.params.idUser
+    }).exec((error, rents) => {
+        if (!rents) {
+            return res.status(404).json({
+                "message": "Rents not found."
+            });
+        } else if (error) {
+            return res.status(500).json(error);
+        } else {
+            res.status(200).json(rents);
+        }
+    });
+};
+
+
+
 module.exports = {
     get_user_data,
     remove_user,
@@ -386,7 +406,8 @@ module.exports = {
     get_favourite_vehicles,
     get_vehicles_of_user,
     reset_password,
-    get_user_data_by_email
+    get_user_data_by_email,
+    get_rents_of_user
 };
 
 const email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

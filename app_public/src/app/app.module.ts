@@ -11,6 +11,7 @@ import { CarouselVehiclesPipe } from './skupno/cevi/carousel-vehicles.pipe';
 import { SearchComponent } from './skupno/komponente/search/search.component';
 import { PublishComponent } from './skupno/komponente/publish/publish.component';
 import { ProfileComponent } from './skupno/komponente/profile/profile.component';
+import { EditProfileComponent } from './skupno/komponente/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ProfileComponent } from './skupno/komponente/profile/profile.component'
     CarouselVehiclesPipe,
     SearchComponent,
     PublishComponent,
-    ProfileComponent
+    ProfileComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,

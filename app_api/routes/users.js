@@ -16,5 +16,6 @@ router.post('/:idUser/favourite_vehicle', ctrlUser.toggle_favourite_vehicle);
 router.delete('/:idUser/favourite_vehicle/:idFavouriteVehicle', ctrlUser.remove_favourite_vehicle);
 router.get('/:idUser/vehicles', ctrlUser.get_vehicles_of_user);
 router.get('/:idUser/favourite_vehicles', ctrlUser.get_favourite_vehicles);
+router.get('/:idUser/rents', ctrlUser.get_rents_of_user);
 
 module.exports = router;
