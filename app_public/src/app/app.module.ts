@@ -10,6 +10,7 @@ import { HomeComponent } from './skupno/komponente/home/home.component';
 import { CarouselVehiclesPipe } from './skupno/cevi/carousel-vehicles.pipe';
 import { SearchComponent } from './skupno/komponente/search/search.component';
 import { PublishComponent } from './skupno/komponente/publish/publish.component';
+import { ProfileComponent } from './skupno/komponente/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PublishComponent } from './skupno/komponente/publish/publish.component'
     HomeComponent,
     CarouselVehiclesPipe,
     SearchComponent,
-    PublishComponent
+    PublishComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
