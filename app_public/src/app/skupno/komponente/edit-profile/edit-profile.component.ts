@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UsersDataService } from '../../storitve/users-data.service';
 import { User } from '../../razredi/user';
-import { AvtentikacijaService } from '../../storitve/avtentikacija.service';
+import { AuthenticationService } from '../../storitve/avtentikacija.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -10,7 +10,7 @@ import { AvtentikacijaService } from '../../storitve/avtentikacija.service';
 })
 export class EditProfileComponent implements OnInit {
 
-  constructor(private usersDataService: UsersDataService) { }
+  constructor(private usersDataService: UsersDataService, private avtentikacijaStoritev: AuthenticationService) { }
 
   private get_user_data = (id_of_user: String): void => {
     this.alert_error = "Searching for user";
@@ -25,16 +25,16 @@ export class EditProfileComponent implements OnInit {
   private update_user_data = (): void => {
     this.alert_error = "Updating user data";
     this.usersDataService
-      .updateUserData()
-      .then((data: User) => {
-        this.alert_error = (data == null) ? "" : "No user found";
-        this.user = data;
+      .updateUserData(this.user)
+      .then((user: User) => {
+        this.alert_error = (user != null) ? "" : "Failed to update user";
+        this.user = user;
       });
   }
 
   public vrniUporabnika(): string {
-    const { ime } = this.avtentikacijaStoritev.vrniTrenutnegaUporabnika();
-    return ime ? ime : 'Gost';
+    const { username } = this.avtentikacijaStoritev.get_current_user();
+    return username ? username : 'Guest';
   }
 
   @Input() id_of_user: String;

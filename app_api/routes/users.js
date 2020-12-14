@@ -8,6 +8,7 @@ router.put('/:idUser', ctrlUser.updated_profile_data);
 router.get('/find/:emailUser', ctrlUser.get_user_data_by_email);
 router.post('/recover_password/:idUser', ctrlUser.reset_password);
 router.post('/', ctrlUser.create_new_user);
+router.post('/login', ctrlUser.login);
 router.delete('/:idUser', ctrlUser.remove_user);
 router.get('/:idUser', ctrlUser.get_user_data);
 router.get('/check/exists', ctrlUser.check_if_user_exists);

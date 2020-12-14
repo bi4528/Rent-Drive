@@ -8,7 +8,7 @@ import { UsersDataService } from '../storitve/users-data.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AvtentikacijaService {
+export class AuthenticationService {
 
   constructor(
     @Inject(Storage_Browser) private storage: Storage,
@@ -46,7 +46,7 @@ export class AvtentikacijaService {
     }
   }
 
-  public async prijava(user: User): Promise<any> {
+  public async login(user: User): Promise<any> {
     return this.userDataService
       .login(user)
       .then((rezultatAvtentikacije: AuthenticationResult) => {
@@ -54,7 +54,7 @@ export class AvtentikacijaService {
       });
   }
 
-  public async registracija(user: User): Promise<any> {
+  public async register(user: User): Promise<any> {
     return this.userDataService
       .register(user)
       .then((rezultatAvtentikacije: AuthenticationResult) => {
@@ -63,15 +63,15 @@ export class AvtentikacijaService {
   }
 
   public logout(): void {
-    this.storage.removeItem('edugeocache-token');
+    this.storage.removeItem('rentdrive-token');
   }
 
   public returnToken(): string {
-    return this.storage.getItem('edugeocache-token');
+    return this.storage.getItem('rentdrive-token');
   }
 
   public saveToken(token: string): void {
-    this.storage.setItem('edugeocache-token', token);
+    this.storage.setItem('rentdrive-token', token);
   }
 
 }

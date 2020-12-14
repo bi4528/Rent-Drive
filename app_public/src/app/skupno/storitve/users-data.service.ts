@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../razredi/user';
 import { Vehicle } from '../razredi/vehicle';
 import { Rent } from '../razredi/rent';
@@ -10,7 +10,7 @@ import { Storage_Browser } from '../razredi/storage';
   providedIn: 'root'
 })
 export class UsersDataService {
-  constructor(private http: HttpClient, @Inject(Storage_Browser) private shramba: Storage) { }
+  constructor(private http: HttpClient, @Inject(Storage_Browser) private storage: Storage) { }
 
   private apiUrl = 'http://localhost:3000/api'; //environment.apiUrl;
 
@@ -50,10 +50,24 @@ export class UsersDataService {
       .catch(this.procesError);
   }
 
+  public updateUserData(user: User): Promise<User> {
+    const url: string = `${this.apiUrl}/users/${user._id}`;
+    const httpLastnosti = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.storage.getItem('rentdrive-zeton')}`
+      })
+    };
+    return this.http
+      .put(url, user, httpLastnosti)
+      .toPromise()
+      .then(response => response as User)
+      .catch(this.procesError);
+  }
+
   public login(user: User): Promise<AuthenticationResult> {
     return this.authentication('login', user);
   }
-  
+
   public register(user: User): Promise<AuthenticationResult> {
     return this.authentication('register', user);
   }

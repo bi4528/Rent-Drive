@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Vehicle = mongoose.model('Vehicle');
 const Rented = mongoose.model('Rented');
+const passport = require('passport');
+
 
 const get_all_users = (req, res) => {
     User.find({}, function (error, user) {
@@ -30,10 +32,7 @@ const create_new_user = (req, res) => {
     var profile_picture = req.body.params.profile_picture;
     var favourite_vehicles_ids = req.body.params.favourite_vehicles_ids;
 
-    console.log("Hello");
-
     if (!validate_no_spaces(username)) {
-        console.log("Hello");
         res.status(404).json({
             "message": "Username must be one word."
         });
@@ -58,26 +57,56 @@ const create_new_user = (req, res) => {
             "message": "Password is not correct."
         });
     } else {
-        User.create({
-            username: username,
-            firstname: firstname,
-            lastname: lastname,
-            phone_number: phone_number,
-            email: email,
-            location: location,
-            password: password,
-            profile_picture: profile_picture,
-            favourite_vehicles_ids: favourite_vehicles_ids
-        }, (error, user) => {
+
+        const new_user = new User();
+        user.username= username;
+        user.firstname = firstname;
+        user.lastname = lastname;
+        user.phone_number = phone_number;
+        user.email = email;
+        user.location = location;
+        user.setPassword(password);
+        user.profile_picture = profile_picture;
+        user.favourite_vehicles_ids = favourite_vehicles_ids;
+
+        user.save(error => {
             if (error) {
-                console.log(error);
-                res.status(400).json(error);
+                if (error.name == "MongoError" && error.code == 11000) {
+                    res.status(409).json({
+                        "message": "User with that email already exists"
+                    });
+                } else {
+                    res.status(500).json(error);
+                }
             } else {
-                res.status(201).json(user);
+                res.status(200).json({
+                    "token": user.generateJwt()
+                });
             }
         });
+        
     }
 };
+
+const login = (req, res) => {
+    if (!req.body.elektronskiNaslov || !req.body.geslo) {
+        return res.status(400).json({
+            "message": "Zahtevani so vsi podatki"
+        });
+    }
+    passport.authenticate('local', (error, user, informations) => {
+        if (error)
+            return res.status(500).json(error);
+        if (user) {
+            res.status(200).json({
+                "token": user.generateJwt()
+            });
+        } else {
+            res.status(401).json(informations);
+        }
+    })(req, res);
+};
+
 
 const remove_user = (req, res) => {
     User.findByIdAndRemove(req.params.idUser).exec((error) => {
@@ -407,7 +436,8 @@ module.exports = {
     get_vehicles_of_user,
     reset_password,
     get_user_data_by_email,
-    get_rents_of_user
+    get_rents_of_user,
+    login
 };
 
 const email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
