@@ -5,6 +5,7 @@ import { Vehicle } from '../razredi/vehicle';
 import { Rent } from '../razredi/rent';
 import { AuthenticationResult } from '../razredi/authentication-result';
 import { Storage_Browser } from '../razredi/storage';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ import { Storage_Browser } from '../razredi/storage';
 export class UsersDataService {
   constructor(private http: HttpClient, @Inject(Storage_Browser) private storage: Storage) { }
 
-  private apiUrl = 'http://localhost:3000/api'; //environment.apiUrl;
+  private apiUrl = environment.apiUrl;
 
   public getUser(id_of_user): Promise<User> {
     const url: string = `${this.apiUrl}/users/${id_of_user}`;
@@ -73,6 +74,8 @@ export class UsersDataService {
   }
   
   private authentication(urlname: string, user: User): Promise<AuthenticationResult> {
+    console.log(urlname);
+    console.log(user);
     const url: string = `${this.apiUrl}/${urlname}`;
     return this.http
       .post(url, user)

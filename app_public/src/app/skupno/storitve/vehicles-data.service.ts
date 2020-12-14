@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Vehicle, Review } from '../razredi/vehicle';
-//TODO import { environment } from '../../../environments/environment';
+//import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

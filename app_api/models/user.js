@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
+        unique: true,
         required: true
     },
     firstname: {
@@ -20,6 +21,7 @@ const userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
+        unique: true,
         required: true
     },
     consendedValue: {
@@ -61,8 +63,8 @@ userSchema.methods.generateJwt = function () {
 
     return jwt.sign({
         _id: this._id,
-        elektronskiNaslov: this.email,
-        ime: this.username,
+        email: this.email,
+        username: this.username,
         exp: parseInt(datumPoteka.getTime() / 1000, 10)
     }, process.env.JWT_PASSWORD);
 };

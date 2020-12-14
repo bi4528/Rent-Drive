@@ -29,7 +29,7 @@ var swaggerOptions = {
         url: "http://localhost:3000/api"
       },
       {
-        url: "https://https://rentdrive-sp.herokuapp.com/api"
+        url: "https://rentdrive-sp.herokuapp.com/api"
       }
     ]
   },
@@ -46,14 +46,12 @@ const swaggerDocument = swaggerJsdoc(swaggerOptions);
 //var vehiclesRouter = require('./app_server/routes/vehicles');
 
 require('./app_api/models/db');
-require('./app_api/konfiguracija/passport');
+require('./app_api/configuration/passport');
 var usersApi = require('./app_api/routes/users');
 var vehicleApi = require('./app_api/routes/vehicles');
 var rentedApi = require('./app_api/routes/rented');
 
 var app = express();
-
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server','views'));
@@ -88,7 +86,7 @@ app.use(passport.initialize());
 
 app.use('/api', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
 });
 
@@ -102,12 +100,22 @@ app.use('/api/vehicles', vehicleApi);
 app.use('/api/rented', rentedApi);
 
 //NAJ KDO POPRAVI SPODNJO FUNKCIJO NEVEM KAJ DELA by Matej
-app.get(/(\/login)|(\/register)|(\/vehicle)|(\/review\/[a-z0-9]{24})/, (req, res, next) => {
+app.get('*', (req, res, next) => {
   res.sendFile(path.join(__dirname, 'app_public', 'build', 'index.html'));
 });
 
-indexApi.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-indexApi.get("/swagger.json", (req, res) => {
+usersApi.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+usersApi.get("/swagger.json", (req, res) => {
+  res.status(200).json(swaggerDocument);
+});
+
+vehicleApi.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+vehicleApi.get("/swagger.json", (req, res) => {
+  res.status(200).json(swaggerDocument);
+});
+
+rentedApi.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+rentedApi.get("/swagger.json", (req, res) => {
   res.status(200).json(swaggerDocument);
 });
 

@@ -1,0 +1,492 @@
+#podatki_uporabnika {
+    float: left;
+    margin-right: 20px;
+    margin-top: 30px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+#edit_uporabnik {
+    margin-top: 30px;
+}
+
+.slika_uporabnika {
+    width: 100%;
+    width: 250px;
+    width: 150px;
+    display:block;
+    margin:auto;
+
+}
+
+.slika_auto {
+    width: 100%;
+    height: 200px !important;
+    object-fit: cover !important;
+}
+
+.top-spacing {
+    margin-top: 10px;
+}
+
+#vozila_uporabnika {
+    margin-top: 30px;
+}
+
+#favourite_vozila_uporabnika {
+    margin-top: 30px;
+}
+
+.card_auto {
+    padding: 5px;
+    margin-bottom: 20px;
+    border-color: rgb(255, 255, 255);
+    border-width: 0px !important;
+}
+
+.card_auto_najemi_button {
+    margin-top: 5px;
+}
+
+.centered {
+    text-align: center;
+}
+
+.shrani_podatke_gumb {
+    float: right;
+}
+
+.shrani_sliko_uporabnika {
+    display: flex !important;
+    width: 130px;
+    margin: auto;
+    margin-top: 10px;
+    text-align: center !important;
+}
+
+.navbar-main{
+    background-color:rgb(125,180,108);
+}
+.navbar-main a{
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.navbar-main ul{
+    font-size: 1.2em;
+}
+
+.navbar-category{
+  border-bottom: 1px solid rgb(166,166,166);
+  width:100%;
+}
+.navbar-category ul{
+    font-size: 1.5em;
+}
+.navbar-category text{
+    font-size: 1.5em;
+}
+.navbar-category a{
+    color: rgb(13,13,13);
+}
+
+.footer-basic{
+    border-top: 1px solid rgb(166,166,166);
+    background-color: rgb(16,24,32);
+    color: white
+}
+.footer-basic .text-center, .footer-basic .ul-list{
+    margin: auto;
+}
+
+.container-background{
+  position: relative;
+  max-width: 100%;
+  
+}
+.lambo-image{
+  width: 100%;
+  height: 650px;
+  background: url('./assets/images/lambo.jpg') no-repeat center;
+  background-size: cover;
+  opacity: 0.8;
+}
+.filter{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.arrow-down{
+  position: relative;
+  top: 5px;
+}
+
+.navbar-main{
+  background-color:rgb(125,180,108);
+}
+
+.navbar-category{
+  border-bottom: 1px solid rgb(166,166,166);
+  width:100%;
+}
+    
+.container-background{
+  position: relative;
+  max-width: 100%;
+}
+.lambo-image{
+  width: 100%;
+  height: 650px;
+  background: url('../images/lambo.jpg') no-repeat center;
+  background-size: cover;
+  opacity: 0.8;
+}
+.arrow-down{
+  position: relative;
+  top: 5px;
+}
+.carousel-controls{
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+body {
+    font-family: 'Piazzolla', serif !important;
+}
+
+h2 {
+font-weight: bold;
+}
+
+.log-in-body button {
+text-transform: uppercase;
+font-weight: bold;
+}
+
+.login-container, .register-container, .forgot-pw-container {
+background-color: white;
+border-radius: 2cm;
+border-width: 0.5cm;
+border-color: tomato;
+border-style: solid;
+box-shadow: 0px 0px 16px 4px;
+padding: 15px;
+z-index: 1;
+}
+
+.register-container {
+    border-color: mediumspringgreen;
+}
+
+.forgot-pw-container {
+    border-color: orange;
+}
+
+.inline {
+    display: inline;
+}
+
+.z-img {
+    z-index: 0;
+}
+
+.height-dvesto {
+    height:200px !important;
+}
+
+.car-name {
+    margin-right: 10px;
+}
+
+.price-number {
+    padding-right: 5px;
+}
+
+#submit-register {
+  font-size: x-large;
+}
+
+#submit-forgot {
+  font-size: x-large;
+}
+
+#submit-login {
+  font-size: x-large;
+}
+
+#reset-password{
+    border-color: rgb(125,180,108);
+}
+
+#confirmed{
+   border-color: #331551;
+}
+
+.login-el, .register-el, .forgot-pw-el {
+margin: 20px;
+}
+
+.btn-info {
+  width: 250px;
+  height: 40px;
+  margin: 0px 0px 10px 0px;
+}
+
+.login-el a {
+color:red;
+}
+
+.forgot-pw-el a {
+    color: darkslateblue;
+}
+
+.log-in-body svg, .register-body svg{
+margin-right: 5.2px;
+width:1.75em; 
+height:1.75em;
+}
+
+.large-checkbox{
+    display: inline;
+    vertical-align: middle;
+    width:18px;
+    height:18px;
+    padding-right: 15px;
+}
+
+.back-to-homepage {
+    width: 200px;
+    height: 40px;
+}
+/* vehicleprofile.html */
+
+.avatar {
+    border-radius: 50%;
+    border: solid black 5px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    width: 150px;
+    height: 150px;
+}
+
+table, th, td {
+    text-align: center;
+    border-bottom: 1px solid black;
+    padding: 10px;
+}
+
+.user {
+    font-weight: bold;
+}
+
+.comment {
+    font-style: italic;
+}
+
+.fas, .far, .fab {
+    margin-right: 8px;
+}
+
+.desc{
+    font-size: 1.15rem;
+    text-align: justify;
+}
+
+.features {
+    font-size: 1.15rem;
+}
+
+.contact-details {
+    padding-left:0px;
+}
+
+.text-success, .text-danger {
+    font-family: 'Piazzolla', serif;
+}
+
+.panel {
+    margin-top: 5.2px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 14px;
+}
+
+.panel-title {
+    font-size: 24px;
+}
+
+.stars_auto {
+    margin-left:0px !important;
+    margin-bottom:10px;
+}
+
+.card-link{
+    font-weight: bold;
+    color:rgb(125,180,108);
+}
+
+.card-img-top {
+    width: 100%;
+    height: 30vh;
+    object-fit: contain;
+    padding: 4px;
+}
+
+.card-title{
+    font-weight: bold;
+}
+
+.car_image_home {
+    height: 200px;
+    object-fit: cover;
+}
+
+.car_image_search {
+    height: 200px;
+    object-fit: cover;
+}
+
+.button {
+  border: none;
+  color: transparent;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid rgb(125,180,108);
+}
+
+.button1:hover {
+  background-color: rgb(125,180,108);
+  color: white;
+}
+
+.footer-left{
+    display:table-cell;
+    vertical-align:middle; 
+    text-align:center
+}
+.carousel-arrows{
+    color:rgb(89,89,89);
+}
+.publish-h2{
+    border-bottom: 1px solid #a6a6a6;
+    width:100%;   
+}
+.reset-content{
+    clear:both
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.weatherstack{
+
+    background-color:rgb(227,255,210);
+
+}
+
+.weatherstack.location {
+
+    font-weight: bold;
+    font-size:24px
+
+
+}
+.weatherstack.temperature {
+
+    font-weight: bold;
+    font-size:24px
+
+}
+.weatherstack.time {
+
+    font-size:16px
+
+}
+
+.weatherstack.description {
+    font-size:24px
+}
+
+.rating {
+    display: inline-block;
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+    font-size: 50px;
+  }
+
+ #stars-vp {
+    font-size:16px !important;
+  }
+
+  .rating label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    cursor: pointer;
+  }
+  
+  .rating label:last-child {
+    position: static;
+  }
+  
+  .rating label:nth-child(1) {
+    z-index: 5;
+  }
+  
+  .rating label:nth-child(2) {
+    z-index: 4;
+  }
+  
+  .rating label:nth-child(3) {
+    z-index: 3;
+  }
+  
+  .rating label:nth-child(4) {
+    z-index: 2;
+  }
+  
+  .rating label:nth-child(5) {
+    z-index: 1;
+  }
+  
+  .rating label input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+  
+  .rating label .icon {
+    float: left;
+    color: transparent;
+  }
+  
+  .rating label:last-child .icon {
+    color: #000;
+  }
+  
+  .rating:not(:hover) label input:checked ~ .icon,
+  .rating:hover label:hover input ~ .icon {
+    color: #09f;
+  }
+  
+  .rating label input:focus:not(:checked) ~ .icon:last-child {
+    color: #000;
+    text-shadow: 0 0 5px #09f;
+  }
