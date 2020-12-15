@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '../../razredi/user';
 import { UsersDataService } from '../../storitve/users-data.service';
 import { AuthenticationService } from '../../storitve/avtentikacija.service';
-declare var validate:  any;
+declare var validate: any;
 declare var register: any;
 
 @Component({
@@ -19,30 +19,30 @@ export class RegisterComponent implements OnInit {
     private usersDataService: UsersDataService,
     private avtentikacijaStoritev: AuthenticationService
   ) { }
-  
+
   alert_error: String;
   @ViewChild("repeatPassword") repeatPassword;
 
   public user: User = {
-    _id : "",
+    _id: "",
     username: "",
-    firstname : "" ,
-    lastname : "" ,
-    phone_number : "" ,
-    email : "" ,
-    password : "" ,
-    profile_picture : "" ,
-    location : "" ,
-    favourite_vehicles_ids : [] ,
+    firstname: "",
+    lastname: "",
+    phone_number: "",
+    email: "",
+    password: "",
+    profile_picture: "",
+    location: "",
+    favourite_vehicles_ids: [],
   };
 
-  
+
   public register = (): void => {
-    
+
     this.alert_error = "";
     console.log(this.user);
     console.log(this.repeatPassword.nativeElement.value);
-    console.log(this.user.  password);
+    console.log(this.user.password);
     if (
       !this.user.firstname ||
       !this.user.lastname ||
@@ -55,8 +55,10 @@ export class RegisterComponent implements OnInit {
       this.alert_error = "Fill all the input fields to register successfully!";
     } else {
       this.avtentikacijaStoritev.register(this.user) //createUser returns ERR_CONNECTION REFUSED
-      .then(()=> {this.router.navigateByUrl("/")})
-      .catch(sporocilo => this.alert_error = sporocilo)
+        .then(() => { 
+          console.log("Hello");
+          this.router.navigateByUrl("/") })
+        .catch(sporocilo => this.alert_error = sporocilo)
     }
   }
 

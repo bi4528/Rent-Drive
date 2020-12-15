@@ -22,15 +22,22 @@ const get_all_users = (req, res) => {
 
 const create_new_user = (req, res) => {
 
-    var firstname = req.body.params.firstname;
-    var username = req.body.params.username;
-    var lastname = req.body.params.lastname;
-    var phone_number = req.body.params.phone_number;
-    var email = req.body.params.email;
-    var location = req.body.params.location;
-    var password = req.body.params.password;
-    var profile_picture = req.body.params.profile_picture;
-    var favourite_vehicles_ids = req.body.params.favourite_vehicles_ids;
+    var firstname = req.body.firstname || req.body.params.firstname;
+    var username = req.body.username || req.body.params.username;
+    var lastname = req.body.lastname || req.body.params.lastname;
+    var phone_number = (req.body.phone_number != '' ? req.body.phone_number : null) || ((req.body.params != null && req.body.params.phone_number != '') ? req.body.params.phone_number : null);
+    var email = req.body.email || req.body.params.email;
+    var location = (req.body.location != '' ? req.body.location : null) || ((req.body.params != null && req.body.params.location != '') ? req.body.params.location : null);
+    var password = req.body.password || req.body.params.password;
+    var profile_picture = (req.body.profile_picture != '' ? req.body.profile_picture : null) || ((req.body.params != null && req.body.params.profile_picture != '') ? req.body.params.profile_picture : null);
+    var favourite_vehicles_ids = (req.body.favourite_vehicles_ids != [] ? req.body.favourite_vehicles_ids : []) || ((req.body.params != null && req.body.params.favourite_vehicles_ids != []) ? req.body.params.favourite_vehicles_ids : []);
+
+    console.log(username);
+    console.log(firstname);
+    console.log(lastname);
+    console.log(email);
+    console.log(phone_number);
+    console.log(password);
 
     if (!validate_no_spaces(username)) {
         res.status(404).json({
@@ -57,14 +64,22 @@ const create_new_user = (req, res) => {
             "message": "Password is not correct."
         });
     } else {
+        console.log("Hello form api2");
 
         const new_user = new User();
+        console.log(1);
         new_user.username = username;
+        console.log(1);
         new_user.firstname = firstname;
+        console.log(1);
         new_user.lastname = lastname;
+        console.log(1);
         new_user.phone_number = phone_number;
+        console.log(1);
         new_user.email = email;
+        console.log(1);
         new_user.location = location;
+        console.log(1);
         new_user.setPassword(password);
         new_user.profile_picture = profile_picture;
         new_user.favourite_vehicles_ids = favourite_vehicles_ids;
@@ -80,7 +95,7 @@ const create_new_user = (req, res) => {
                 }
             } else {
                 res.status(200).json({
-                    "token": user.generateJwt()
+                    "token": new_user.generateJwt()
                 });
             }
         });

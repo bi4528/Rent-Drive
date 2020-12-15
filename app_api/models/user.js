@@ -46,13 +46,13 @@ const userSchema = new mongoose.Schema({
 userSchema.methods.setPassword = function (geslo) {
     this.randomValue = crypto.randomBytes(16).toString('hex');
     this.consendedValue = crypto
-        .pbkdf2Sync(geslo, this.nakljucnaVrednost, 1000, 64, 'sha512')
+        .pbkdf2Sync(geslo, this.randomValue, 1000, 64, 'sha512')
         .toString('hex');
 };
 
 userSchema.methods.checkPassword = function (geslo) {
     let zgoscenaVrednost = crypto
-        .pbkdf2Sync(geslo, this.nakljucnaVrednost, 1000, 64, 'sha512')
+        .pbkdf2Sync(geslo, this.randomValue, 1000, 64, 'sha512')
         .toString('hex');
     return this.consendedValue == zgoscenaVrednost;
 };
