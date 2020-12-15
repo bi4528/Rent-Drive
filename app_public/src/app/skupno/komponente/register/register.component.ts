@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../razredi/user';
 import { UsersDataService } from '../../storitve/users-data.service';
+import { AuthenticationService } from '../../storitve/avtentikacija.service';
 declare var validate:  any;
 declare var register: any;
 
@@ -15,7 +16,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private usersDataService: UsersDataService
+    private usersDataService: UsersDataService,
+    private avtentikacijaStoritev: AuthenticationService
   ) { }
   
   alert_error: String;
@@ -52,7 +54,7 @@ export class RegisterComponent implements OnInit {
     ) {
       this.alert_error = "Fill all the input fields to register successfully!";
     } else {
-      this.usersDataService.createUser(this.user) //createUser returns ERR_CONNECTION REFUSED
+      this.usersDataService.register(this.user) //createUser returns ERR_CONNECTION REFUSED
       .then(()=> {this.router.navigateByUrl("/")})
       .catch(sporocilo => this.alert_error = sporocilo)
     }

@@ -79,7 +79,7 @@ export class UsersDataService {
   }
 
   public register(user: User): Promise<AuthenticationResult> {
-    return this.authentication('users/register', user);
+    return this.authentication('users/', user);
   }
   
   private authentication(urlname: string, user: User): Promise<AuthenticationResult> {
