@@ -22,6 +22,15 @@ export class VehiclesDataService {
       .catch(this.procesError);
   }
 
+  public postVehicle(data: any): Promise<any> {
+    const url: string = `${this.apiUrl}/vehicles`;
+    return this.http
+      .post(url, data)
+      .toPromise()
+      .then(odgovor => odgovor as any)
+      .catch(this.procesError);
+  }
+
 
   private procesError(napaka: any): Promise<any> {
     console.error('Prišlo je do napake', napaka);
