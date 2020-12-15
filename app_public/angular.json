@@ -51,7 +51,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["src/assets/javascripts/validate.js","src/assets/javascripts/register.js"]
           },
           "configurations": {
             "production": {

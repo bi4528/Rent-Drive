@@ -13,6 +13,7 @@ import { PublishComponent } from './skupno/komponente/publish/publish.component'
 import { ProfileComponent } from './skupno/komponente/profile/profile.component';
 import { EditProfileComponent } from './skupno/komponente/edit-profile/edit-profile.component';
 import { LoginComponent } from './skupno/komponente/login/login.component';
+import { RegisterComponent } from './skupno/komponente/register/register.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LoginComponent } from './skupno/komponente/login/login.component';
     PublishComponent,
     ProfileComponent,
     EditProfileComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

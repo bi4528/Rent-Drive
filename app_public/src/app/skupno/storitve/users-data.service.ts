@@ -15,6 +15,15 @@ export class UsersDataService {
 
   private apiUrl = environment.apiUrl;
 
+  public createUser(data): Promise<User> {
+    const url: string = `${this.apiUrl}/users/`;
+    return this.http
+      .post(url,data)
+      .toPromise()
+      .then(response => response as User)
+      .catch(this.procesError);
+  }
+
   public getUser(id_of_user): Promise<User> {
     const url: string = `${this.apiUrl}/users/${id_of_user}`;
     return this.http

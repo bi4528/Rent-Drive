@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row justify-content-center mt-3">
+        <div class="register-container col-9 col-md-6 col-xl-5 text-center">
+            <h2>Please fill in your details!</h2>
+            <div *ngIf="alert_error" id="alert" class="alert alert-warning alert-dismissible fade show" role="alert">
+                <p>{{alert_error}}</p>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div *ngIf="alert_error" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      ...
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+            <form (ngSubmit)="register()">
+                <div class="register-el">
+                    <i class="fas fa-pen"></i>
+                    <input [(ngModel)]="user.firstname" id="firstname" type="text" name="firstname" class="w-75" placeholder="first name" required autofocus=""
+                        autocomplete="on">
+                </div>
+                <div class="register-el">
+                    <i class="fas fa-pen"></i>
+                    <input [(ngModel)]="user.lastname" id="lastname" type="text" name="lastname" class="w-75" placeholder="last name" required autocomplete="on">
+                </div>
+                <div class="register-el">
+                    <i class="far fa-envelope"></i>
+                    <input [(ngModel)]="user.email" id="mail" type="email" name="email" class="w-75" placeholder="e-mail address" required>
+                </div>
+                <div class="register-el">
+                    <i class="fas fa-pen"></i>
+                    <input [(ngModel)]="user.username" id="username" type="text" name="username" class="w-75" placeholder="username" required>
+                </div>
+                <div class="register-el">
+                    <i class="fas fa-key"></i>
+                    <input [(ngModel)]="user.password" id="password" type="password" name="password" class="w-75" placeholder="password" required>
+                </div>
+                <div class="register-el">
+                    <i class="fas fa-key"></i>
+                    <input #repeatPassword id="repeat-password" type="password" class="w-75" placeholder="repeat password" required>
+                </div>
+                <input id="submit-register" type="submit" class="btn btn-success w-75" value="Register">
+                <div class="register-el">
+                    <a routerLink="/users/login">Already have an account?</a>
+                </div>
+                <div>
+                    <a routerLink="/">Back to homepage</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <img src="../../../assets/images/register-bg.png" class="img-fluid reg-img" alt="...">
+        </div>
+    </div>
+</div>
+<script src="../../../../assets/javascripts/register.js"></script>
+<script src="../../../../assets/javascripts/validate.js"></script>

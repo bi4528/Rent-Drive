@@ -9,6 +9,7 @@ import { PublishComponent} from '../../skupno/komponente/publish/publish.compone
 import { LoginComponent } from 'src/app/skupno/komponente/login/login.component';
 import { ProfileComponent } from 'src/app/skupno/komponente/profile/profile.component';
 import { EditProfileComponent } from 'src/app/skupno/komponente/edit-profile/edit-profile.component';
+import { RegisterComponent } from 'src/app/skupno/komponente/register/register.component';
 
 const poti: Routes = [
   {
@@ -34,6 +35,9 @@ const poti: Routes = [
   {
     path: 'users/edit',
     component: EditProfileComponent
+  }, {
+    path: 'users/register',
+    component: RegisterComponent
   }
 ];
 
