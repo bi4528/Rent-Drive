@@ -1,0 +1,96 @@
+<main>
+  <section class="container">
+    <div *ngIf="alert_error" id="alert" class="alert alert-danger alert-dismissible fade show" role="alert">
+      <p>{{alert_error}}</p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div id="edit_uporabnik" class="col-12">
+      <button type="button" onclick="save_button_clicked()" class="btn btn-primary shrani_podatke_gumb"
+        onclick="location.href='/users/my'">Save</button>
+      <h2>Edit your profile</h2>
+      <form enctype="multipart/form-data" (ngSubmit)="update_user_data()">
+        <div class="form-group">
+          <div style="min-height:45px">
+            <label>Profile picture:</label>
+          </div>
+          <img name="profile_picture" class="rounded-circle slika_uporabnika" src="/uploads/{{user.profile_picture}}" alt="Slika profila">
+          <label for="file-upload" class="btn btn-warning shrani_sliko_uporabnika">Choose image</label>
+          <input [(ngModel)]="user.profile_picture" style="display:none" id="file-upload" type="file" name="profile_picture"/>
+        </div>
+        <div class="form-group">
+          <label>Username:</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
+            </div>
+            <input [(ngModel)]="user.username" type="text" class="form-control" placeholder="username" aria-label="username" name="username" value="{{user.username}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Firstname:</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
+            </div>
+            <input [(ngModel)]="user.firstname" type="text" class="form-control" placeholder="firstname" aria-label="firstname" name="firstname" value="{{user.firstname}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Lastname:</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
+            </div>
+            <input [(ngModel)]="user.lastname" type="text" class="form-control" id="priimek_uporabnika" placeholder="lastname" name="lastname" aria-label="lastname"
+              value="{{user.lastname}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Mail:</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+            </div>
+            <input [(ngModel)]="user.email" type="text" class="form-control" id="mail_uporabnika" placeholder="your_mail@karkoli.net" name="email"
+              aria-label="email" value="{{user.email}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Password:</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-key" aria-hidden="true"></i></span>
+            </div>
+            <input [(ngModel)]="user.password" type="password" class="form-control" id="password_uporabnika" placeholder="Password123" name="password"
+              aria-label="password" value="{{user.password}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Phone number:</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-phone" aria-hidden="true"></i></span>
+            </div>
+            <input [(ngModel)]="user.phone_number" type="text" class="form-control" id="telefon_uporabnika" placeholder="Enter phone number" name="phone_number"
+              value="{{user.phone_number}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Location:</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+            </div>
+            <input [(ngModel)]="user.location" type="text" class="form-control" id="kraj_uporabnika"
+              placeholder="Prosim vpišite kraj izposoje vaših vozil" aria-label="location" name="location" value="{{user.location}}">
+          </div>
+        </div>
+        <button type="submit" id="submit_form_button" class="hidden"></button>
+      </form>
+    </div>
+  </section>
+</main>
+<script src="/javascripts/edit_profile.js"></script>
+<script src="/javascripts/validate.js"></script>

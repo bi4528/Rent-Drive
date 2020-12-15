@@ -6,3 +6,5 @@ docker-compose*
 .git
 .gitignore
 LICENSE
+app_public/**
+!app_public/build/**

@@ -16,15 +16,21 @@
     "axios": "*",
     "cookie-parser": "*",
     "debug": "*",
-    "express": "^4.17.1",
-    "express-session": "^1.17.1",
-    "hbs": "^4.1.1",
+    "dotenv": "^8.2.0",
+    "express": "*",
+    "express-jwt": "^6.0.0",
+    "express-session": "*",
+    "hbs": "*",
     "http-errors": "*",
-    "mongoose": "^5.10.15",
+    "mongoose": "*",
     "morgan": "*",
     "multer": "*",
     "nodemailer": "*",
-    "nodemon": "^2.0.6",
-    "path": "^0.12.7"
+    "nodemon": "*",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "path": "*",
+    "swagger-jsdoc": "*",
+    "swagger-ui-express": "*"
   }
 }

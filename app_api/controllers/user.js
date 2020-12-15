@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Vehicle = mongoose.model('Vehicle');
+const Rented = mongoose.model('Rented');
+const passport = require('passport');
+
 
 const get_all_users = (req, res) => {
     User.find({}, function (error, user) {
@@ -19,20 +22,24 @@ const get_all_users = (req, res) => {
 
 const create_new_user = (req, res) => {
 
-    var firstname = req.body.params.firstname;
-    var username = req.body.params.username;
-    var lastname = req.body.params.lastname;
-    var phone_number = req.body.params.phone_number;
-    var email = req.body.params.email;
-    var location = req.body.params.location;
-    var password = req.body.params.password;
-    var profile_picture = req.body.params.profile_picture;
-    var favourite_vehicles_ids = req.body.params.favourite_vehicles_ids;
+    var firstname = req.body.firstname || req.body.params.firstname;
+    var username = req.body.username || req.body.params.username;
+    var lastname = req.body.lastname || req.body.params.lastname;
+    var phone_number = (req.body.phone_number != '' ? req.body.phone_number : null) || ((req.body.params != null && req.body.params.phone_number != '') ? req.body.params.phone_number : null);
+    var email = req.body.email || req.body.params.email;
+    var location = (req.body.location != '' ? req.body.location : null) || ((req.body.params != null && req.body.params.location != '') ? req.body.params.location : null);
+    var password = req.body.password || req.body.params.password;
+    var profile_picture = (req.body.profile_picture != '' ? req.body.profile_picture : null) || ((req.body.params != null && req.body.params.profile_picture != '') ? req.body.params.profile_picture : null);
+    var favourite_vehicles_ids = (req.body.favourite_vehicles_ids != [] ? req.body.favourite_vehicles_ids : []) || ((req.body.params != null && req.body.params.favourite_vehicles_ids != []) ? req.body.params.favourite_vehicles_ids : []);
 
-    console.log("Hello");
+    console.log(username);
+    console.log(firstname);
+    console.log(lastname);
+    console.log(email);
+    console.log(phone_number);
+    console.log(password);
 
     if (!validate_no_spaces(username)) {
-        console.log("Hello");
         res.status(404).json({
             "message": "Username must be one word."
         });
@@ -57,26 +64,65 @@ const create_new_user = (req, res) => {
             "message": "Password is not correct."
         });
     } else {
-        User.create({
-            username: username,
-            firstname: firstname,
-            lastname: lastname,
-            phone_number: phone_number,
-            email: email,
-            location: location,
-            password: password,
-            profile_picture: profile_picture,
-            favourite_vehicles_ids: favourite_vehicles_ids
-        }, (error, user) => {
+        console.log("Hello form api2");
+
+        const new_user = new User();
+        console.log(1);
+        new_user.username = username;
+        console.log(1);
+        new_user.firstname = firstname;
+        console.log(1);
+        new_user.lastname = lastname;
+        console.log(1);
+        new_user.phone_number = phone_number;
+        console.log(1);
+        new_user.email = email;
+        console.log(1);
+        new_user.location = location;
+        console.log(1);
+        new_user.setPassword(password);
+        new_user.profile_picture = profile_picture;
+        new_user.favourite_vehicles_ids = favourite_vehicles_ids;
+
+        new_user.save(error => {
             if (error) {
-                console.log(error);
-                res.status(400).json(error);
+                if (error.name == "MongoError" && error.code == 11000) {
+                    res.status(409).json({
+                        "message": "User with that email already exists"
+                    });
+                } else {
+                    res.status(500).json(error);
+                }
             } else {
-                res.status(201).json(user);
+                res.status(200).json({
+                    "token": new_user.generateJwt()
+                });
             }
         });
+        
     }
 };
+
+const login = (req, res) => {
+    if (!req.body.email || !req.body.password) {
+        return res.status(400).json({
+            "message": "Zahtevani so vsi podatki"
+        });
+    }
+    passport.authenticate('local', (error, user, informations) => {
+        if (error)
+            return res.status(500).json(error);
+        if (user) {
+            res.status(200).json({
+                "token": user.generateJwt()
+            });
+        } else {
+            console.log(informations);
+            res.status(401).json(informations);
+        }
+    })(req, res);
+};
+
 
 const remove_user = (req, res) => {
     User.findByIdAndRemove(req.params.idUser).exec((error) => {
@@ -373,6 +419,25 @@ const reset_password = (req, res) => {
     }
 };
 
+const get_rents_of_user = (req, res) => {
+
+    Rented.find({
+        user_id: req.params.idUser
+    }).exec((error, rents) => {
+        if (!rents) {
+            return res.status(404).json({
+                "message": "Rents not found."
+            });
+        } else if (error) {
+            return res.status(500).json(error);
+        } else {
+            res.status(200).json(rents);
+        }
+    });
+};
+
+
+
 module.exports = {
     get_user_data,
     remove_user,
@@ -386,7 +451,9 @@ module.exports = {
     get_favourite_vehicles,
     get_vehicles_of_user,
     reset_password,
-    get_user_data_by_email
+    get_user_data_by_email,
+    get_rents_of_user,
+    login
 };
 
 const email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
