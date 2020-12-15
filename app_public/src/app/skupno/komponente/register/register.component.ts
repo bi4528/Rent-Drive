@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
     ) {
       this.alert_error = "Fill all the input fields to register successfully!";
     } else {
-      this.usersDataService.register(this.user) //createUser returns ERR_CONNECTION REFUSED
+      this.avtentikacijaStoritev.register(this.user) //createUser returns ERR_CONNECTION REFUSED
       .then(()=> {this.router.navigateByUrl("/")})
       .catch(sporocilo => this.alert_error = sporocilo)
     }
