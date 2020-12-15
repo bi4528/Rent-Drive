@@ -6,19 +6,18 @@
         <div class="lambo-image">
             <div class="form-row filter">
                 <div class="col-auto">
-                    <label><strong>Location pick-up (city):</strong><input type="text" class="form-control filterCity"
+                    <label><strong>Location pick-up (city):</strong><input type="text" [(ngModel)]="city" class="form-control filterCity"
                             placeholder="City"></label>
                 </div>
                 <div class="col-auto">
-                    <label><strong>Date from:</strong><input type="date" class="form-control dateFrom" /></label>
+                    <label><strong>Date from:</strong><input type="date" [(ngModel)]="dateFrom" class="form-control dateFrom" /></label>
                 </div>
                 <div class="col-auto">
-                    <label><strong>Date to:</strong><input type="date" class="form-control dateTo" /></label>
+                    <label><strong>Date to:</strong><input type="date" [(ngModel)]="dateTo" class="form-control dateTo" /></label>
                 </div>
                 <div class="col-auto">
-                    <br><a class="filterlink" href="">
-                        <button type="button" class="btn btn-light filterbutton">Filter</button>
-                        </a>
+                    <br>
+                    <button type="button" (click)="filter()" class="btn btn-light filterbutton">Filter</button>
                 </div>
 
             </div>
@@ -36,22 +35,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item mx-md-4 active">
-                        <a class="nav-link" href="/search?category=Hatchback">Hatchback<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" [routerLink]="['/search']" [queryParams]="{ category: 'Hatchback' }">Hatchback<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item mx-md-4">
-                        <a class="nav-link" href="/search?category=Saloon">Saloon</a>
+                        <a class="nav-link" [routerLink]="['/search']" [queryParams]="{ category: 'Saloon' }">Saloon</a>
                     </li>
                     <li class="nav-item mx-md-4">
-                        <a class="nav-link" href="/search?category=Caravan">Caravan</a>
+                        <a class="nav-link" [routerLink]="['/search']" [queryParams]="{ category: 'Caravan' }">Caravan</a>
                     </li>
                     <li class="nav-item mx-md-4">
-                        <a class="nav-link" href="/search?category=Coupe">Coupe</a>
+                        <a class="nav-link" [routerLink]="['/search']" [queryParams]="{ category: 'Coupe' }">Coupe</a>
                     </li>
                     <li class="nav-item mx-md-4">
-                        <a class="nav-link" href="/search?category=SUV">SUV</a>
+                        <a class="nav-link" [routerLink]="['/search']" [queryParams]="{ category: 'SUV' }">SUV</a>
                     </li>
                     <li class="nav-item mx-md-4">
-                        <a class="nav-link" href="/search?category=Pick-up">Pick-up</a>
+                        <a class="nav-link" [routerLink]="['/search']" [queryParams]="{ category: 'Pick-up' }">Pick-up</a>
                     </li>
                 </ul>
             </div>

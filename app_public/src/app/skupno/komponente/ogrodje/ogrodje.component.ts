@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthenticationService} from '../../storitve/avtentikacija.service'
 
 @Component({
   selector: 'app-ogrodje',
@@ -7,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OgrodjeComponent implements OnInit {
 
-  constructor() { }
-  public user_logged: boolean = true; //TODO
+  constructor(private authenticationService : AuthenticationService) { }
+
+
+  public user_logged: boolean = this.authenticationService.is_logged();
   ngOnInit(): void {
   }
 

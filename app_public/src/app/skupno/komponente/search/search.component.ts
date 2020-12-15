@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Vehicle, Review } from '../../razredi/vehicle';
 import { VehiclesDataService } from '../../storitve/vehicles-data.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -9,15 +10,15 @@ import { VehiclesDataService } from '../../storitve/vehicles-data.service';
 })
 export class SearchComponent implements OnInit {
 
-  constructor(private vehiclesDataService: VehiclesDataService) { }
+  constructor(private vehiclesDataService: VehiclesDataService, private route: ActivatedRoute) { }
 
   public cars: Vehicle[];
   public sporocilo: string;
 
-  private getVehicles = () : void => {
+  private getVehicles = (url: string) : void => {
     this.sporocilo = "Searching for cars";
     this.vehiclesDataService
-      .getVehicles()
+      .getVehicles(url)
       .then( data => {
         this.sporocilo = data.length > 0 ? "" : "No cars found";
         this.cars = data;
@@ -25,7 +26,19 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getVehicles();
+    this.route.queryParams
+      .subscribe(params=> {
+        if(params.city){
+          let url="?city="+params.city+"&dateFrom="+params.dateFrom+"&dateTo="+params.dateTo+"";
+          this.getVehicles(url);
+        }
+        if(params.category){
+          let url="?category="+params.category+"";
+          this.getVehicles(url);
+        }
+      });
+
+    //this.getVehicles();
   }
 
 }

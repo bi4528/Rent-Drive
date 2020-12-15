@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VehiclesDataService } from '../../storitve/vehicles-data.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,14 +10,14 @@ import { VehiclesDataService } from '../../storitve/vehicles-data.service';
 })
 export class PublishComponent implements OnInit {
 
-  constructor(private vehiclesDataService: VehiclesDataService) { }
+  constructor(private vehiclesDataService: VehiclesDataService, private router : Router) { }
 
   public user_logged:boolean = true;
   public error:string = "";
 
   public newVehicle = {
     images: [],
-    owner_id: '',
+    owner_id: '1',
     make: '',
     model: '',
     typeoffuel: '',
@@ -104,16 +105,30 @@ export class PublishComponent implements OnInit {
         break;
     }
   }
+  public defineOnOff(data:any) : string {
+    return data ? "on" : "off";
+  }
 
   public addNewVehicle() : void {
     this.defineFuel(this.newVehicle);
     this.defineCategory(this.newVehicle);
     this.defineMinAge(this.newVehicle);
     console.log(this.newVehicle);
+    this.newVehicle.AirConditioning=this.defineOnOff(this.newVehicle.AirConditioning);
+    this.newVehicle.Navigation=this.defineOnOff(this.newVehicle.Navigation);
+    this.newVehicle.accessibility=this.defineOnOff(this.newVehicle.accessibility);
+    this.newVehicle.parkingsensors=this.defineOnOff(this.newVehicle.parkingsensors);
+    this.newVehicle.USB=this.defineOnOff(this.newVehicle.USB);
+    this.newVehicle.AUX=this.defineOnOff(this.newVehicle.AUX);
+    this.newVehicle.bluetooth=this.defineOnOff(this.newVehicle.bluetooth);
+    this.newVehicle.autopilot=this.defineOnOff(this.newVehicle.autopilot);
+
+    console.log(this.newVehicle);
     this.vehiclesDataService
       .postVehicle(this.newVehicle)
       .then((data) => {
         console.log("PUBLISED", data);
+        this.router.navigateByUrl("/");
       })
       .catch(napaka => this.error = napaka);
   }

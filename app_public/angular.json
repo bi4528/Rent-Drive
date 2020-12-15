@@ -51,7 +51,12 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": ["src/assets/javascripts/validate.js","src/assets/javascripts/register.js"]
+            "scripts": ["src/assets/javascripts/validate.js",
+              "src/assets/javascripts/register.js",
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
