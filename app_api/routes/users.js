@@ -20,11 +20,11 @@ router.route('/:idUser')
     .get(ctrlUser.get_user_data)
     .delete(authentication, ctrlUser.remove_user);
 
-router.route('/:idUser/favourite_vehicle')
-    .post(authentication, ctrlUser.toggle_favourite_vehicle)
-    .get(ctrlUser.get_favourite_vehicles);
+router.route('/:idUser/favourite_vehicles')
+    .get(ctrlUser.get_favourite_vehicles)
+    .post(authentication, ctrlUser.toggle_favourite_vehicle);
 
-router.delete('/:idUser/favourite_vehicle/:idFavouriteVehicle', authentication, ctrlUser.remove_favourite_vehicle);
+router.delete('/:idUser/favourite_vehicles/:idFavouriteVehicle', authentication, ctrlUser.remove_favourite_vehicle);
 
 router.route('/:idUser/vehicles')
     .get(ctrlUser.get_vehicles_of_user);
