@@ -41,9 +41,7 @@ export class RegisterComponent implements OnInit {
   public register = (): void => {
 
     this.alert_error = "";
-    console.log(this.user);
-    console.log(this.repeatPassword.nativeElement.value);
-    console.log(this.user.password);
+    
     if (
       !this.user.firstname ||
       !this.user.lastname ||

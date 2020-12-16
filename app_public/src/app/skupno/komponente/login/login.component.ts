@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   public login = (): void => {
 
     this.alert_error = "";
-    console.log(this.user);
+    
     if (
       !this.user.email ||
       !this.user.password

@@ -230,7 +230,6 @@ const profile = (req, res) => {
                                     id: favourite_vehicle._id
                                 }
                             });
-                            console.log(favourite_vehicles);
                             
                             axios
                                 .get(apiParametri.streznik + '/api/rented')
@@ -497,13 +496,10 @@ const resetpassword = (req, res) => {
 };
 
 const resetpassword_submit = (req, res) => {
-    console.log(req.body);
 
     const email = req.body.email;
     const password = req.body.password;
     const password_repeated = req.body.password_repeated;
-
-    console.log(apiParametri.streznik + '/api/recover_password/' + email);
 
     
     axios.get(apiParametri.streznik + '/api/users/find/' + email, {
@@ -512,7 +508,6 @@ const resetpassword_submit = (req, res) => {
             }
         })
         .then((response) => {
-            console.log(response.data);
             if (response.data != null) {
                 const user = response.data;
                 axios.post(apiParametri.streznik + '/api/users/recover_password/' + user._id, {
@@ -523,7 +518,6 @@ const resetpassword_submit = (req, res) => {
                         }
                     })
                     .then((response) => {
-                        console.log(response.data);
                         if (response.data != null && response.data == true) {
                             res.render('login', {
                                 layout: 'account-layout.hbs'

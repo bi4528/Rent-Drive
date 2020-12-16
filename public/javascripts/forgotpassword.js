@@ -1,12 +1,10 @@
 var form = document.querySelector("form");
 form.addEventListener("submit", function (event) {
     var mail = document.getElementById("mail").value;
-    console.log(mail);
     if (!validate_email(mail)) {
         alertMessage("E-mail not valid!");
         event.preventDefault();
     }
-    console.log(event.returnValue);
     if(event.returnValue){
         // todo: send email via API
     }

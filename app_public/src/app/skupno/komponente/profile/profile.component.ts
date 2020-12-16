@@ -25,7 +25,6 @@ export class ProfileComponent implements OnInit {
       .then((data: User) => {
         this.alert_error = (data == null) ? "" : "No user found";
         this.user = data;
-        console.log(this.user);
       });
   }
 
@@ -35,7 +34,7 @@ export class ProfileComponent implements OnInit {
     this.usersDataService
       .getVehiclesOfUser(id_of_user)
       .then((data: Vehicle[]) => {
-        this.alert_error = (data.length > 0) ? "" : "No cars found";
+        this.alert_error = (data.length > 0) ? "" : "";
         this.owned_cars = data;
         if(this.owned_cars.length == 0) {
           var empty_vehicle = this.get_empty_vehicle();
@@ -48,11 +47,11 @@ export class ProfileComponent implements OnInit {
   }
 
   private get_favourite_vehicles_of_user = (id_of_user: String): void => {
-    this.alert_error = "Searching for cars";
+    this.alert_error = "Searching for favourite vehicles";
     this.usersDataService
       .getFavouriteVehiclesOfUser(id_of_user)
       .then((data: Vehicle[]) => {
-        this.alert_error = (data.length > 0) ? "" : "No favourite cars found";
+        this.alert_error = (data.length > 0) ? "" : "";
         this.favourite_cars = data;
         if (this.favourite_cars.length == 0) {
           var empty_vehicle = this.get_empty_vehicle();
@@ -64,7 +63,7 @@ export class ProfileComponent implements OnInit {
   }
 
   private get_rents_of_user = (id_of_user: String): void => {
-    this.alert_error = "Searching for cars";
+    this.alert_error = "Searching for rents";
     this.usersDataService
       .getRentsOfUser(id_of_user)
       .then((data: Rent[]) => {
@@ -148,7 +147,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
 
     this.id_of_user = this.pot.snapshot.paramMap.get('idUser');
-    console.log(this.id_of_user);
+    
     this.checkIfProfileIsUserLogged();
     this.get_user_data(this.id_of_user);
     this.get_vehicles_of_user(this.id_of_user);

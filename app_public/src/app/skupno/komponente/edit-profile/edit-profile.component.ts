@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UsersDataService } from '../../storitve/users-data.service';
 import { User } from '../../razredi/user';
 import { AuthenticationService } from '../../storitve/avtentikacija.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-profile',
@@ -10,14 +11,15 @@ import { AuthenticationService } from '../../storitve/avtentikacija.service';
 })
 export class EditProfileComponent implements OnInit {
 
-  constructor(private usersDataService: UsersDataService, private avtentikacijaStoritev: AuthenticationService) { }
+  constructor(
+    private router: Router,private usersDataService: UsersDataService, private avtentikacijaStoritev: AuthenticationService) { }
 
   private get_user_data = (id_of_user: String): void => {
     this.alert_error = "Searching for user";
     this.usersDataService
       .getUser(id_of_user)
       .then((data: User) => {
-        this.alert_error = (data == null) ? "" : "No user found";
+        this.alert_error = (data != null) ? "" : "No user found";
         this.user = data;
       });
   }
@@ -29,6 +31,9 @@ export class EditProfileComponent implements OnInit {
       .then((user: User) => {
         this.alert_error = (user != null) ? "" : "Failed to update user";
         this.user = user;
+        this.id_of_user = this.user._id;
+        this.router.navigateByUrl("/users/profiles/" + this.user._id)
+      
       });
   }
 
@@ -37,12 +42,13 @@ export class EditProfileComponent implements OnInit {
     return username ? username : 'Guest';
   }
 
-  @Input() id_of_user: String;
+  public id_of_user: String;
   public alert_error: String;
   public user: User;
 
 
   ngOnInit(): void {
+    this.id_of_user = this.avtentikacijaStoritev.get_current_user()._id;
     this.get_user_data(this.id_of_user);
   }
 

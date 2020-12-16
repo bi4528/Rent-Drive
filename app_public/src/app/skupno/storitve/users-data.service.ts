@@ -18,7 +18,7 @@ export class UsersDataService {
   public createUser(data): Promise<User> {
     const url: string = `${this.apiUrl}/users/`;
     return this.http
-      .post(url,data)
+      .post(url, data)
       .toPromise()
       .then(response => response as User)
       .catch(this.procesError);
@@ -66,6 +66,8 @@ export class UsersDataService {
   }
 
   public updateUserData(user: User): Promise<User> {
+    console.log("Update");
+    console.log(user);
     const url: string = `${this.apiUrl}/users/${user._id}`;
     const httpLastnosti = {
       headers: new HttpHeaders({
@@ -76,7 +78,7 @@ export class UsersDataService {
       .put(url, user, httpLastnosti)
       .toPromise()
       .then(response => response as User)
-      .catch(this.procesError);
+      .catch (this.procesError);
   }
 
   public deleteUser(user: User): Promise<void> {
@@ -100,7 +102,7 @@ export class UsersDataService {
   public register(user: User): Promise<AuthenticationResult> {
     return this.authentication('users/', user);
   }
-  
+
   private authentication(urlname: string, user: User): Promise<AuthenticationResult> {
     console.log(urlname);
     console.log(user);

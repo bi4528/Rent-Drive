@@ -32,13 +32,6 @@ const create_new_user = (req, res) => {
     var profile_picture = (req.body.profile_picture != '' ? req.body.profile_picture : null) || ((req.body.params != null && req.body.params.profile_picture != '') ? req.body.params.profile_picture : null);
     var favourite_vehicles_ids = (req.body.favourite_vehicles_ids != [] ? req.body.favourite_vehicles_ids : []) || ((req.body.params != null && req.body.params.favourite_vehicles_ids != []) ? req.body.params.favourite_vehicles_ids : []);
 
-    console.log(username);
-    console.log(firstname);
-    console.log(lastname);
-    console.log(email);
-    console.log(phone_number);
-    console.log(password);
-
     if (!validate_no_spaces(username)) {
         res.status(404).json({
             "message": "Username must be one word."
@@ -64,22 +57,14 @@ const create_new_user = (req, res) => {
             "message": "Password is not correct."
         });
     } else {
-        console.log("Hello form api2");
 
         const new_user = new User();
-        console.log(1);
         new_user.username = username;
-        console.log(1);
         new_user.firstname = firstname;
-        console.log(1);
         new_user.lastname = lastname;
-        console.log(1);
         new_user.phone_number = phone_number;
-        console.log(1);
         new_user.email = email;
-        console.log(1);
         new_user.location = location;
-        console.log(1);
         new_user.setPassword(password);
         new_user.profile_picture = profile_picture;
         new_user.favourite_vehicles_ids = favourite_vehicles_ids;
@@ -178,17 +163,20 @@ const get_user_data_by_email = (req, res) => {
 
 
 const updated_profile_data = (req, res) => {
-    console.log(req.body.params);
-    var username = req.body.params.username;
-    var firstname = req.body.params.firstname;
-    var lastname = req.body.params.lastname;
-    var phone_number = req.body.params.phone_number;
-    var email = req.body.params.email;
-    var location = req.body.params.location;
-    var password = req.body.params.password;
-    var profile_picture = req.body.params.profile_picture;
+    console.log(req.body || req.params);
 
-    if (!req.body.params.idUser) {
+    var firstname = req.body.firstname || req.body.params.firstname;
+    var username = req.body.username || req.body.params.username;
+    var lastname = req.body.lastname || req.body.params.lastname;
+    var phone_number = (req.body.phone_number != '' ? req.body.phone_number : null) || ((req.body.params != null && req.body.params.phone_number != '') ? req.body.params.phone_number : null);
+    var email = req.body.email || req.body.params.email;
+    var location = (req.body.location != '' ? req.body.location : null) || ((req.body.params != null && req.body.params.location != '') ? req.body.params.location : null);
+    var profile_picture = (req.body.profile_picture != '' ? req.body.profile_picture : null) || ((req.body.params != null && req.body.params.profile_picture != '') ? req.body.params.profile_picture : null);
+    var password = (req.body.password != '' ? req.body.password : null) || ((req.body.params != null && req.body.params.password != '') ? req.body.params.password : null);
+
+    console.log("Works");
+
+    if (!req.params.idUser && !req.body.params.idUser) {
         return res.status(404).json({
             "message": "No given user id"
         });
@@ -213,12 +201,13 @@ const updated_profile_data = (req, res) => {
         res.status(404).json({
             "message": "Email is not correct."
         });
-    } else if (!validate_password(password)) {
+    } else if (password != null && !validate_password(password)) {
         res.status(404).json({
             "message": "Password is not correct."
         });
     } else {
-        User.findById(req.body.params.idUser).exec((error, user) => {
+        console.log("asfaedf");
+        User.findById(req.params.idUser).exec((error, user) => {
 
             if (!user) {
                 return res.status(404).json({
@@ -234,15 +223,15 @@ const updated_profile_data = (req, res) => {
                 user.email = email;
                 user.phone_number = phone_number;
                 user.location = location;
-                user.password = password;
                 if (profile_picture != null) user.profile_picture = profile_picture;
+                if (password != null) user.setPassword(password);
 
                 user.save((error, user) => {
 
                     if (error) {
                         res.status(404).json(error);
                     } else {
-                        res.status(200).json(true);
+                        res.status(200).json(user);
                     }
                 });
             }
