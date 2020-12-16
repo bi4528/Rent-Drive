@@ -7,12 +7,12 @@
       </button>
     </div>
     <div id="podatki_uporabnika" class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-      <img class="rounded-circle slika_uporabnika" src="../../../assets/images/{{user.profile_picture}}" alt="Slika profila">
-      <h3 class="top-spacing centered"> <span id="ime_uporabnika">{{user.firstname}}</span> <span
+      <img *ngIf="user" class="rounded-circle slika_uporabnika" src="../../../assets/images/{{user.profile_picture}}" alt="Slika profila">
+      <h3 *ngIf="user" class="top-spacing centered"> <span id="ime_uporabnika">{{user.firstname}}</span> <span
           id="priimek_uporabnika">{{user.lastname}}</span></h3>
-      <p id="mail_uporabnika" class="centered">{{user.email}}</p>
-      <p id="telefonska_stevilka_uporabika" class="centered">{{user.phone_number}}</p>
-      <p id="kraj_uporabnika" class="centered">{{user.location}}</p>
+      <p *ngIf="user" id="mail_uporabnika" class="centered">{{user.email}}</p>
+      <p *ngIf="user" id="telefonska_stevilka_uporabika" class="centered">{{user.phone_number}}</p>
+      <p *ngIf="user" id="kraj_uporabnika" class="centered">{{user.location}}</p>
       <button *ngIf="is_profile_of_logged_user" type="button" class="btn btn-primary btn-block" onclick="location.href='/users/edit'">Edit</button>
       <button *ngIf="is_profile_of_logged_user" type="button" class="btn btn-danger btn-block" (click)="logout()">Log out</button>
       <button *ngIf="is_profile_of_logged_user" type="button" class="btn btn-danger btn-block" (click)="delete_user()">Delete</button>
