@@ -106,8 +106,6 @@ const reviewsFind = (req, res) => {
 
 const reviewsDelete = (req, res) => {
     const { idVehicle, idReview } = req.params;
-    console.log(req.body);
-    console.log(req.params);
     if (!idVehicle || !idReview) {
         return res.status(404).json({
             "sporočilo":

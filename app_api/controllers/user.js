@@ -102,7 +102,6 @@ const login = (req, res) => {
                 "token": user.generateJwt()
             });
         } else {
-            console.log(informations);
             res.status(401).json(informations);
         }
     })(req, res);
@@ -110,7 +109,6 @@ const login = (req, res) => {
 
 
 const remove_user = (req, res) => {
-    console.log(req.params);
     User.findByIdAndRemove(req.params.idUser).exec((error) => {
         if (error) {
             return res.status(500).json(error);
@@ -138,8 +136,6 @@ const get_user_data = (req, res) => {
 };
 
 const get_user_data_by_email = (req, res) => {
-    console.log("Fetch user by mail");
-    console.log(req.params);
     User.find({
             email: req.params.emailUser
         })
@@ -163,7 +159,6 @@ const get_user_data_by_email = (req, res) => {
 
 
 const updated_profile_data = (req, res) => {
-    console.log(req.body || req.params);
 
     var firstname = req.body.firstname || req.body.params.firstname;
     var username = req.body.username || req.body.params.username;
@@ -174,14 +169,12 @@ const updated_profile_data = (req, res) => {
     var profile_picture = (req.body.profile_picture != '' ? req.body.profile_picture : null) || ((req.body.params != null && req.body.params.profile_picture != '') ? req.body.params.profile_picture : null);
     var password = (req.body.password != '' ? req.body.password : null) || ((req.body.params != null && req.body.params.password != '') ? req.body.params.password : null);
 
-    console.log("Works");
 
     if (!req.params.idUser && !req.body.params.idUser) {
         return res.status(404).json({
             "message": "No given user id"
         });
     } else if (!validate_no_spaces(username)) {
-        console.log("Hello");
         res.status(404).json({
             "message": "Username must be one word."
         });
@@ -206,7 +199,6 @@ const updated_profile_data = (req, res) => {
             "message": "Password is not correct."
         });
     } else {
-        console.log("asfaedf");
         User.findById(req.params.idUser).exec((error, user) => {
 
             if (!user) {
@@ -214,7 +206,6 @@ const updated_profile_data = (req, res) => {
                     "message": "No user found!"
                 });
             } else if (error) {
-                console.log(error);
                 return res.status(500).json(error);
             } else {
                 user.firstname = firstname;
