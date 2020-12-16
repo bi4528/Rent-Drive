@@ -11,13 +11,13 @@ export class OgrodjeComponent implements OnInit {
   constructor(private authenticationService : AuthenticationService) { }
 
 
-  public user_logged: boolean;
   public user_id: string;
 
+  public is_user_logged(): boolean {
+    return this.authenticationService.is_logged();
+  }
   ngOnInit(): void {
-    this.user_logged = this.authenticationService.is_logged();
-    console.log(this.user_logged);
-    if(this.user_logged) {
+    if (this.is_user_logged()) {
       this.user_id = this.authenticationService.get_current_user()._id;
     }
   }

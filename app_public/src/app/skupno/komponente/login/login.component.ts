@@ -44,6 +44,10 @@ export class LoginComponent implements OnInit {
     return username ? username : 'Guest';
   }
 
+  private delay(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
   alert_error: String;
   public user: User = {
     _id : "",
