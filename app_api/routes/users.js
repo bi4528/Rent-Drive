@@ -24,10 +24,10 @@ router.route('/:idUser/favourite_vehicle')
     .post(authentication, ctrlUser.toggle_favourite_vehicle)
     .get(ctrlUser.get_favourite_vehicles);
 
-router.delete(authentication, '/:idUser/favourite_vehicle/:idFavouriteVehicle', ctrlUser.remove_favourite_vehicle);
+router.delete('/:idUser/favourite_vehicle/:idFavouriteVehicle', authentication, ctrlUser.remove_favourite_vehicle);
 
 router.route('/:idUser/vehicles')
-    .get('/:idUser/vehicles', ctrlUser.get_vehicles_of_user);
+    .get(ctrlUser.get_vehicles_of_user);
 
 router.get('/find/:emailUser', ctrlUser.get_user_data_by_email);
 router.post('/recover_password/:idUser', ctrlUser.reset_password);
@@ -35,6 +35,6 @@ router.post('/login', ctrlUser.login);
 
 router.get('/check/exists', ctrlUser.check_if_user_exists);
 router.get('/check/exists_mail', ctrlUser.check_if_mail_exists);
-router.get(authentication, '/:idUser/rents', ctrlUser.get_rents_of_user);
+router.get('/:idUser/rents', authentication, ctrlUser.get_rents_of_user);
 
 module.exports = router;
