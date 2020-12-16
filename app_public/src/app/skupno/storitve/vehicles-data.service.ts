@@ -13,8 +13,8 @@ export class VehiclesDataService {
 
   private apiUrl = 'http://localhost:3000/api'; //environment.apiUrl;
 
-  public getVehicles(query:string): Promise<Vehicle[]> {
-    const url: string = `${this.apiUrl}/vehicles${query}`;
+  public getVehicles(queryParams:string): Promise<Vehicle[]> {
+    const url: string = `${this.apiUrl}/vehicles${queryParams}`;
     return this.http
       .get(url)
       .toPromise()
