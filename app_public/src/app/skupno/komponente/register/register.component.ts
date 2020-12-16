@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '../../razredi/user';
 import { UsersDataService } from '../../storitve/users-data.service';
 import { AuthenticationService } from '../../storitve/avtentikacija.service';
+import { delay } from 'rxjs/operators';
 declare var validate: any;
 declare var register: any;
 
@@ -40,9 +41,7 @@ export class RegisterComponent implements OnInit {
   public register = (): void => {
 
     this.alert_error = "";
-    console.log(this.user);
-    console.log(this.repeatPassword.nativeElement.value);
-    console.log(this.user.password);
+    
     if (
       !this.user.firstname ||
       !this.user.lastname ||
@@ -54,9 +53,8 @@ export class RegisterComponent implements OnInit {
     ) {
       this.alert_error = "Fill all the input fields to register successfully!";
     } else {
-      this.avtentikacijaStoritev.register(this.user) //createUser returns ERR_CONNECTION REFUSED
-        .then(() => { 
-          console.log("Hello");
+      this.avtentikacijaStoritev.register(this.user)
+        .then(() => {
           this.router.navigateByUrl("/") })
         .catch(sporocilo => this.alert_error = sporocilo)
     }

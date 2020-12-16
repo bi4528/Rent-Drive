@@ -11,8 +11,6 @@ form.addEventListener("submit", function (event) {
         alertMessage("Wrong password or mail!");
         event.preventDefault();
     }
-    //console.log(event.returnValue);
-    //return password;
 });
 
 function alertMessage(message) {

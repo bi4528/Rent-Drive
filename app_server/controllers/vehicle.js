@@ -413,7 +413,7 @@ const changeFavoriteOfUser = (req, res) => {
 
     axios({
         method: 'post',
-        url: '/api/users/' + req.session.user_id + '/favourite_vehicle',
+        url: '/api/users/' + req.session.user_id + '/favourite_vehicles',
         data: {
             idUser: req.session.user_id,
             favourite_vehicles_id: req.params.idVehicle

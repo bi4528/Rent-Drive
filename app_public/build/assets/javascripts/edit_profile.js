@@ -10,7 +10,6 @@ function save_button_clicked() {
         var location = document.getElementsByName("location")[0].value;
         var phone_number = document.getElementsByName("phone_number")[0].value;
         var password = document.getElementsByName("password")[0].value;
-        console.log(firstname, lastname, mail, location, phone_number);
         
         if (!validate_first_name(firstname)) {
             alert("Firstname is not valid");
@@ -30,7 +29,6 @@ function save_button_clicked() {
             event.preventDefault();
         }
         
-        console.log("Going forward");
     });
     document.getElementById("submit_form_button").click();
 }

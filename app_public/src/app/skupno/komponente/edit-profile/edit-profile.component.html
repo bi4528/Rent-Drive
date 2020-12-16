@@ -7,15 +7,14 @@
       </button>
     </div>
     <div id="edit_uporabnik" class="col-12">
-      <button type="button" onclick="save_button_clicked()" class="btn btn-primary shrani_podatke_gumb"
-        onclick="location.href='/users/my'">Save</button>
+      <button type="button" (click)="update_user_data()" class="btn btn-primary shrani_podatke_gumb">Save</button>
       <h2>Edit your profile</h2>
-      <form enctype="multipart/form-data" (ngSubmit)="update_user_data()">
+      <form *ngIf="user" enctype="multipart/form-data" (ngSubmit)="update_user_data()">
         <div class="form-group">
           <div style="min-height:45px">
             <label>Profile picture:</label>
           </div>
-          <img name="profile_picture" class="rounded-circle slika_uporabnika" src="/uploads/{{user.profile_picture}}" alt="Slika profila">
+          <img name="profile_picture" class="rounded-circle slika_uporabnika" src="../../../assets/images/{{user.profile_picture}}" alt="Slika profila">
           <label for="file-upload" class="btn btn-warning shrani_sliko_uporabnika">Choose image</label>
           <input [(ngModel)]="user.profile_picture" style="display:none" id="file-upload" type="file" name="profile_picture"/>
         </div>
@@ -92,5 +91,5 @@
     </div>
   </section>
 </main>
-<script src="/javascripts/edit_profile.js"></script>
-<script src="/javascripts/validate.js"></script>
+<script src="../../../../assets/javascripts/edit_profile.js"></script>
+<script src="../../../../assets/javascripts/validate.js"></script>

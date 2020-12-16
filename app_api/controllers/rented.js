@@ -4,8 +4,6 @@ const Vehicle = mongoose.model('Vehicle');
 const User = mongoose.model('User');
 
 const create_rented = (req, res) => {
-    console.log("Rented cars upload");
-    console.log(req.body);
     Rented.find({
 
         vehicle_id: req.body.params.vehicle_id,

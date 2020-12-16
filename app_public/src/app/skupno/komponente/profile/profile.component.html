@@ -7,27 +7,27 @@
       </button>
     </div>
     <div id="podatki_uporabnika" class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-      <img class="rounded-circle slika_uporabnika" src="/uploads/{{user.profile_picture}}" alt="Slika profila">
-      <h3 class="top-spacing centered"> <span id="ime_uporabnika">{{user.firstname}}</span> <span
+      <img *ngIf="user" class="rounded-circle slika_uporabnika" src="../../../assets/images/{{user.profile_picture}}" alt="Slika profila">
+      <h3 *ngIf="user" class="top-spacing centered"> <span id="ime_uporabnika">{{user.firstname}}</span> <span
           id="priimek_uporabnika">{{user.lastname}}</span></h3>
-      <p id="mail_uporabnika" class="centered">{{user.email}}</p>
-      <p id="telefonska_stevilka_uporabika" class="centered">{{user.phone_number}}</p>
-      <p id="kraj_uporabnika" class="centered">{{user.location}}</p>
+      <p *ngIf="user" id="mail_uporabnika" class="centered">{{user.email}}</p>
+      <p *ngIf="user" id="telefonska_stevilka_uporabika" class="centered">{{user.phone_number}}</p>
+      <p *ngIf="user" id="kraj_uporabnika" class="centered">{{user.location}}</p>
       <button *ngIf="is_profile_of_logged_user" type="button" class="btn btn-primary btn-block" onclick="location.href='/users/edit'">Edit</button>
-      <button *ngIf="is_profile_of_logged_user" type="button" class="btn btn-danger btn-block" onclick="location.href='/users/logout'">Log out</button>
-      <button *ngIf="is_profile_of_logged_user" type="button" class="btn btn-danger btn-block" onclick="location.href='/users/delete'">Delete</button>
+      <button *ngIf="is_profile_of_logged_user" type="button" class="btn btn-danger btn-block" (click)="logout()">Log out</button>
+      <button *ngIf="is_profile_of_logged_user" type="button" class="btn btn-danger btn-block" (click)="delete_user()">Delete</button>
     </div>
 
     <div id="vozila_uporabnika">
       <h2>My vehicles</h2>
       <div class="row" *ngFor="let owned_car of owned_cars">
         <div class="card col-12 col-sm-12 col-md-7 col-lg-5 col-xl-4 card_auto">
-          <img *ngIf="owned_car.id" class="card-img-top slika_auto" src="/uploads/{{owned_car.image}}" alt="Slika avta" onclick="show_vehicle('{{owned_car.id}}')">
-          <img *ngIf="owned_car.id == null"class="card-img-top slika_auto" src="/uploads/{{owned_car.image}}" alt="Slika avta">
+          <img *ngIf="owned_car.id" class="card-img-top slika_auto" src="../../../assets/images/{{owned_car.images[0]}}" alt="Slika avta" onclick="show_vehicle('{{owned_car.id}}')">
+          <img *ngIf="owned_car.id == null"class="card-img-top slika_auto" src="../../../assets/images/{{owned_car.images[0]}}" alt="Slika avta">
           
           <div class="card-body">
-            <h5 class="card-text">{{owned_car.name}}</h5>
-              <button *ngIg="show_controls" type="button" onclick="location.href='/vehicles/{{owned_car.id}}/edit'" class="btn btn-primary btn-block card_auto_najemi_button">Edit</button>
+            <h5 class="card-text">{{owned_car.make}}</h5>
+              <button *ngIf="show_controls" type="button" onclick="location.href='/vehicles/{{owned_car.id}}/edit'" class="btn btn-primary btn-block card_auto_najemi_button">Edit</button>
               <button *ngIf="show_controls" type="button" onclick="location.href='/users/delete/vehicles/{{owned_car.id}}'" class="btn btn-danger btn-block">Remove</button>
           </div>
         </div>
@@ -38,18 +38,18 @@
       <h2>Favorite vehicles</h2>
       <div class="row" *ngFor="let favourite_car of favourite_cars">
         <div class="card col-12 col-sm-12 col-md-7 col-lg-5 col-xl-4 card_auto">
-          <img *ngIf="favourite_car.id" class="card-img-top slika_auto" src="/uploads/{{favourite_car.image}}" alt="Slika avta" onclick="show_vehicle('{{favourite_car.id}}')">
-          <img *ngIf="favourite_car.id == null" class="card-img-top slika_auto" src="/uploads/{{favourite_car.image}}" alt="Slika avta">
+          <img *ngIf="favourite_car.id" class="card-img-top slika_auto" src="../../../assets/images/{{favourite_car.images[0]}}" alt="Slika avta" onclick="show_vehicle('{{favourite_car.id}}')">
+          <img *ngIf="favourite_car.id == null" class="card-img-top slika_auto" src="../../../assets/images/{{favourite_car.images[0]}}" alt="Slika avta">
           <div class="card-body">
-            <h5 class="card-text">{{favourite_car.name}}</h5>
+            <h5 class="card-text">{{favourite_car.make}}</h5>
           </div>
         </div>
       </div>
     </div>
 
-    <div *ngIf="is_profile_of_logged_user" id="favourite_vozila_uporabnika">
+    <div *ngIf="is_profile_of_logged_user && rents != null && rents.length > 0" id="favourite_vozila_uporabnika">
       <h2>Vehicles I rented:</h2>
-      <div class="row" *ngFor="let my_rent of my_rents">
+      <div class="row" *ngFor="let my_rent of rents">
         <div class="card col-12 col-sm-12 col-md-7 col-lg-5 col-xl-4 card_auto">
           <div class="card-body">
             <h5 class="card-text">From date:

@@ -1,5 +1,11 @@
 var express = require('express');
 var router = express.Router();
+const jwt = require('express-jwt');
+const authentication = jwt({
+    secret: process.env.JWT_PASSWORD,
+    userProperty: 'payload',
+    algorithms: ['HS256']
+});
 const ctrlVehicles = require('../controllers/vehicle');
 const ctrlReviews = require('../controllers/review');
 
