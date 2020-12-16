@@ -129,9 +129,10 @@ export class ProfileComponent implements OnInit {
   } 
   
   public delete_user = (): void => {
-    this.avtentikacijaStoritev.logout();
-    this.usersDataService.deleteUser(this.user);
-    this.router.navigateByUrl("/");
+    this.usersDataService.deleteUser(this.user).then(() => {
+      this.avtentikacijaStoritev.logout();
+      this.router.navigateByUrl("/");
+    });
   }
 
 
