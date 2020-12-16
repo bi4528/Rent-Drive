@@ -125,6 +125,7 @@ const login = (req, res) => {
 
 
 const remove_user = (req, res) => {
+    console.log(req.params);
     User.findByIdAndRemove(req.params.idUser).exec((error) => {
         if (error) {
             return res.status(500).json(error);
@@ -144,7 +145,7 @@ const get_user_data = (req, res) => {
             return res.status(500).json(error);
         } else {
             if (user.profile_picture == null) {
-                user.profile_picture = "/images/avatarUser.png";
+                user.profile_picture = "avatarUser.png";
             }
             res.status(200).json(user);
         }
@@ -167,7 +168,7 @@ const get_user_data_by_email = (req, res) => {
             } else {
                 var user = users[0]
                 if (user.profile_picture == null) {
-                    user.profile_picture = "/images/avatarUser.png";
+                    user.profile_picture = "avatarUser.png";
                 }
                 res.status(200).json(user);
             }

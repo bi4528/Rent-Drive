@@ -5,6 +5,8 @@ import { Rent } from '../../razredi/rent';
 import { UsersDataService } from '../../storitve/users-data.service';
 import { VehiclesDataService } from '../../storitve/vehicles-data.service';
 import { AuthenticationService } from '../../storitve/avtentikacija.service';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +15,8 @@ import { AuthenticationService } from '../../storitve/avtentikacija.service';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private usersDataService: UsersDataService, private vehiclesDataService: VehiclesDataService, private avtentikacijaStoritev: AuthenticationService) { }
+  constructor(
+    private router: Router,private pot: ActivatedRoute, private usersDataService: UsersDataService, private vehiclesDataService: VehiclesDataService, private avtentikacijaStoritev: AuthenticationService) { }
 
   private get_user_data = (id_of_user: String): void => {
     this.alert_error = "Searching for user";
@@ -22,6 +25,7 @@ export class ProfileComponent implements OnInit {
       .then((data: User) => {
         this.alert_error = (data == null) ? "" : "No user found";
         this.user = data;
+        console.log(this.user);
       });
   }
 
@@ -33,6 +37,13 @@ export class ProfileComponent implements OnInit {
       .then((data: Vehicle[]) => {
         this.alert_error = (data.length > 0) ? "" : "No cars found";
         this.owned_cars = data;
+        if(this.owned_cars.length == 0) {
+          var empty_vehicle = this.get_empty_vehicle();
+          empty_vehicle.make = "Add your vehicle";
+          empty_vehicle.images.push("car_1.jpg");
+          this.owned_cars = [empty_vehicle];
+          this.show_controls = false;
+        }
       });
   }
 
@@ -41,8 +52,14 @@ export class ProfileComponent implements OnInit {
     this.usersDataService
       .getFavouriteVehiclesOfUser(id_of_user)
       .then((data: Vehicle[]) => {
-        this.alert_error = (data.length > 0) ? "" : "No cars found";
+        this.alert_error = (data.length > 0) ? "" : "No favourite cars found";
         this.favourite_cars = data;
+        if (this.favourite_cars.length == 0) {
+          var empty_vehicle = this.get_empty_vehicle();
+          empty_vehicle.make = "Add a favourite vehicle";
+          empty_vehicle.images.push("car_1.jpg");
+          this.favourite_cars = [empty_vehicle];
+        }
       });
   }
 
@@ -51,7 +68,7 @@ export class ProfileComponent implements OnInit {
     this.usersDataService
       .getRentsOfUser(id_of_user)
       .then((data: Rent[]) => {
-        this.alert_error = (data.length > 0) ? "" : "No cars found";
+        this.alert_error = (data.length > 0) ? "" : "No rents found";
         this.rents = data;
       });
   }
@@ -62,9 +79,63 @@ export class ProfileComponent implements OnInit {
     this.show_controls = current_user._id == this.id_of_user;
   }
 
+  private get_empty_vehicle = ():Vehicle => {
+    return {
+      make: "",
+      images: [],
+      _id: "",
+      owner_id: "",
+      model: "",
+      typeoffuel: "",
+      category: "",
+      hp: 0,
+      maxspeed: 0,
+      acceleration: 0,
+      consumption: 0,
+      seats: 0,
+      doors: 0,
+      AirConditioning: "",
+      Navigation: "",
+      USB: "",
+      AUX: "",
+      parkingsensors: "",
+      autopilot: "",
+      bluetooth: "",
+      accessibility: "",
+      description: "",
+      price: 0,
+      country: "",
+      city: "",
+      addres: "",
+      zip: 0,
+      date: [],
+      reviews: [],
+      luggage: 0,
+      minage: 0,
+    };
+  }
+  private get_empty_rent = (): Rent => {
+    return {
+      user_id: "",
+      vehicle_id: "",
+      date_from: new Date,
+      date_to: new Date,
+    };
+  }
+
+  public logout = (): void => {
+    this.avtentikacijaStoritev.logout();
+    this.router.navigateByUrl("/");
+  } 
+  
+  public delete_user = (): void => {
+    this.avtentikacijaStoritev.logout();
+    this.usersDataService.deleteUser(this.user);
+    this.router.navigateByUrl("/");
+  }
 
 
-  @Input() id_of_user: String;
+  public id_of_user: String;
   public alert_error: String;
   public user: User;
   public owned_cars: Vehicle[];
@@ -74,11 +145,14 @@ export class ProfileComponent implements OnInit {
   public show_controls: Boolean;
 
   ngOnInit(): void {
+
+    this.id_of_user = this.pot.snapshot.paramMap.get('idUser');
+    console.log(this.id_of_user);
+    this.checkIfProfileIsUserLogged();
     this.get_user_data(this.id_of_user);
     this.get_vehicles_of_user(this.id_of_user);
     this.get_rents_of_user(this.id_of_user);
     this.get_favourite_vehicles_of_user(this.id_of_user);
-    this.checkIfProfileIsUserLogged();
   }
 
 }

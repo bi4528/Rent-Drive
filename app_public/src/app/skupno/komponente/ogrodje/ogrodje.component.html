@@ -39,7 +39,7 @@
                 aria-hidden="true">add_to_photos</i> List your car</a>
           </li>
           <li *ngIf="user_logged" class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" href="/users/my"><i class="material-icons fa-fw align-middle"
+            <a class="nav-link" href="/users/profiles/{{user_id}}"><i class="material-icons fa-fw align-middle"
                 aria-hidden="true">account_box</i>
               My profile</a>
           </li>
@@ -88,7 +88,7 @@
               <li><a routerLink="/">Home</a></li>
               <li><a href="/nearby">Nearby</a></li>
               <li *ngIf="user_logged" ><a routerLink="/vehicles/publish">List your car</a></li>
-              <li *ngIf="user_logged"><a href="/users/my">My profile</a></li>
+              <li *ngIf="user_logged"><a href="/users/profiles/{{user_id}}">My profile</a></li>
               <li *ngIf="!user_logged"><a href="/users/login">Login</a></li>
               <li *ngIf="!user_logged"><a href="/users/register">Register</a></li>
               <li><a routerLink="/search">Search</a></li>

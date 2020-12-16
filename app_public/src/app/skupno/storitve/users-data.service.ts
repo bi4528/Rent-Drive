@@ -53,10 +53,15 @@ export class UsersDataService {
 
   public getRentsOfUser(id_of_user): Promise<Rent[]> {
     const url: string = `${this.apiUrl}/users/${id_of_user}/rents`;
+    const httpLastnosti = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.storage.getItem('rentdrive-token')}`
+      })
+    };
     return this.http
-      .get(url)
+      .get(url, httpLastnosti)
       .toPromise()
-      .then(response => response as Vehicle[])
+      .then(response => response as Rent[])
       .catch(this.procesError);
   }
 
@@ -64,13 +69,27 @@ export class UsersDataService {
     const url: string = `${this.apiUrl}/users/${user._id}`;
     const httpLastnosti = {
       headers: new HttpHeaders({
-        'Authorization': `Bearer ${this.storage.getItem('rentdrive-zeton')}`
+        'Authorization': `Bearer ${this.storage.getItem('rentdrive-token')}`
       })
     };
     return this.http
       .put(url, user, httpLastnosti)
       .toPromise()
       .then(response => response as User)
+      .catch(this.procesError);
+  }
+
+  public deleteUser(user: User): Promise<void> {
+    const url: string = `${this.apiUrl}/users/${user._id}`;
+    const httpLastnosti = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.storage.getItem('rentdrive-token')}`
+      })
+    };
+    return this.http
+      .delete(url, httpLastnosti)
+      .toPromise()
+      .then()
       .catch(this.procesError);
   }
 
