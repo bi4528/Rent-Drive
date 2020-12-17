@@ -15,6 +15,7 @@ import { EditProfileComponent } from './skupno/komponente/edit-profile/edit-prof
 import { LoginComponent } from './skupno/komponente/login/login.component';
 import { RegisterComponent } from './skupno/komponente/register/register.component';
 import { VehicleProfileComponent } from './skupno/komponente/vehicleprofile/vehicleprofile.component';
+import { NearbyMapaComponent } from './skupno/komponente/nearby-mapa/nearby-mapa.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { VehicleProfileComponent } from './skupno/komponente/vehicleprofile/vehi
     EditProfileComponent,
     LoginComponent,
     RegisterComponent,
-    VehicleProfileComponent
+    VehicleProfileComponent,
+    NearbyMapaComponent
   ],
   imports: [
     BrowserModule,

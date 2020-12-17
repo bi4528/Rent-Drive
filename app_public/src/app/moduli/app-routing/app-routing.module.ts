@@ -11,6 +11,7 @@ import { ProfileComponent } from 'src/app/skupno/komponente/profile/profile.comp
 import { EditProfileComponent } from 'src/app/skupno/komponente/edit-profile/edit-profile.component';
 import { RegisterComponent } from 'src/app/skupno/komponente/register/register.component';
 import { VehicleProfileComponent } from 'src/app/skupno/komponente/vehicleprofile/vehicleprofile.component';
+import { NearbyMapaComponent } from 'src/app/skupno/komponente/nearby-mapa/nearby-mapa.component';
 
 const poti: Routes = [
   {
@@ -42,6 +43,10 @@ const poti: Routes = [
   }, {
     path:'vehicles/:idVehicle',
     component: VehicleProfileComponent
+  },
+  {
+    path: 'nearby',
+    component: NearbyMapaComponent
   }
 ];
 
