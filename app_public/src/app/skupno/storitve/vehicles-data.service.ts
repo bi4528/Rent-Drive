@@ -22,12 +22,12 @@ export class VehiclesDataService {
       .catch(this.procesError);
   }
 
-  public postVehicle(data: any): Promise<any> {
+  public postVehicle(data: any): Promise<Vehicle> {
     const url: string = `${this.apiUrl}/vehicles`;
     return this.http
       .post(url, data)
       .toPromise()
-      .then(odgovor => odgovor as any)
+      .then(odgovor => odgovor as Vehicle)
       .catch(this.procesError);
   }
 
