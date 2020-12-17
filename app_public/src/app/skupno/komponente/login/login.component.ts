@@ -41,14 +41,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  public vrniUporabnika(): string {
-    const { username } = this.avtentikacijaStoritev.get_current_user();
-    return username ? username : 'Guest';
-  }
-
-  private delay(ms: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
 
   alert_error: String;
   public user: User = {
