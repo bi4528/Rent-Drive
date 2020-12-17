@@ -1,3 +1,7 @@
+.modal-backdrop {
+  z-index: 0 !important;
+}
+
 #podatki_uporabnika {
     float: left;
     margin-right: 20px;

@@ -5,6 +5,7 @@ import { AuthenticationService } from '../../storitve/avtentikacija.service';
 import { Router } from '@angular/router';
 import { HistoryService } from '../../storitve/history.service';
 
+import {$} from "jquery";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
       !this.user.password
     ) {
       this.alert_error = "To proceed you have to insert all data";
+      //$("#modal").modal();
     } else {
 
       this.alert_error = "Trying to login";
