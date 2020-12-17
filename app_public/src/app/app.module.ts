@@ -14,6 +14,7 @@ import { ProfileComponent } from './skupno/komponente/profile/profile.component'
 import { EditProfileComponent } from './skupno/komponente/edit-profile/edit-profile.component';
 import { LoginComponent } from './skupno/komponente/login/login.component';
 import { RegisterComponent } from './skupno/komponente/register/register.component';
+import { VehicleProfileComponent } from './skupno/komponente/vehicleprofile/vehicleprofile.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { RegisterComponent } from './skupno/komponente/register/register.compone
     ProfileComponent,
     EditProfileComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    VehicleProfileComponent
   ],
   imports: [
     BrowserModule,

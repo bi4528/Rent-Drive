@@ -10,6 +10,7 @@ import { LoginComponent } from 'src/app/skupno/komponente/login/login.component'
 import { ProfileComponent } from 'src/app/skupno/komponente/profile/profile.component';
 import { EditProfileComponent } from 'src/app/skupno/komponente/edit-profile/edit-profile.component';
 import { RegisterComponent } from 'src/app/skupno/komponente/register/register.component';
+import { VehicleProfileComponent } from 'src/app/skupno/komponente/vehicleprofile/vehicleprofile.component';
 
 const poti: Routes = [
   {
@@ -38,6 +39,9 @@ const poti: Routes = [
   }, {
     path: 'users/register',
     component: RegisterComponent
+  }, {
+    path:'vehicles/:idVehicle',
+    component: VehicleProfileComponent
   }
 ];
 
