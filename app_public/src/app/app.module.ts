@@ -15,6 +15,8 @@ import { EditProfileComponent } from './skupno/komponente/edit-profile/edit-prof
 import { LoginComponent } from './skupno/komponente/login/login.component';
 import { RegisterComponent } from './skupno/komponente/register/register.component';
 
+import { FileUploadModule } from 'ng2-file-upload';
+
 @NgModule({
   declarations: [
     OgrodjeComponent,
@@ -25,7 +27,7 @@ import { RegisterComponent } from './skupno/komponente/register/register.compone
     ProfileComponent,
     EditProfileComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent    
   ],
   imports: [
     BrowserModule,
