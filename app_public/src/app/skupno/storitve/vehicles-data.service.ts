@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Vehicle, Review } from '../razredi/vehicle';
-//import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class VehiclesDataService {
 
   constructor(private http: HttpClient) { }
 
-  private apiUrl = 'http://localhost:3000/api'; //environment.apiUrl;
+  private apiUrl = environment.apiUrl;
 
   public getVehicles(query:string): Promise<Vehicle[]> {
     const url: string = `${this.apiUrl}/vehicles${query}`;
