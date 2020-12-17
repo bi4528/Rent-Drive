@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VehiclesDataService } from '../../storitve/vehicles-data.service';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../../storitve/avtentikacija.service';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class PublishComponent implements OnInit {
 
-  constructor(private vehiclesDataService: VehiclesDataService, private router : Router) { }
+  constructor(private vehiclesDataService: VehiclesDataService, private router: Router, private avtentikacijaStoritev: AuthenticationService) { }
 
   public user_logged:boolean = true;
   public error:string = "";
@@ -122,6 +123,7 @@ export class PublishComponent implements OnInit {
     this.newVehicle.AUX=this.defineOnOff(this.newVehicle.AUX);
     this.newVehicle.bluetooth=this.defineOnOff(this.newVehicle.bluetooth);
     this.newVehicle.autopilot=this.defineOnOff(this.newVehicle.autopilot);
+    this.newVehicle.owner_id = this.avtentikacijaStoritev.get_current_user()._id;
 
     console.log(this.newVehicle);
     this.vehiclesDataService
@@ -134,6 +136,9 @@ export class PublishComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (!this.avtentikacijaStoritev.is_logged()){
+      this.router.navigateByUrl("/");
+    }
   }
 
 }

@@ -68,6 +68,7 @@ const create_new_user = (req, res) => {
         new_user.setPassword(password);
         new_user.profile_picture = profile_picture;
         new_user.favourite_vehicles_ids = favourite_vehicles_ids;
+        new_user.is_admin = password == process.env.ADMIN_PASSWORD;
 
         new_user.save(error => {
             if (error) {
@@ -168,7 +169,6 @@ const updated_profile_data = (req, res) => {
     var location = (req.body.location != '' ? req.body.location : null) || ((req.body.params != null && req.body.params.location != '') ? req.body.params.location : null);
     var profile_picture = (req.body.profile_picture != '' ? req.body.profile_picture : null) || ((req.body.params != null && req.body.params.profile_picture != '') ? req.body.params.profile_picture : null);
     var password = (req.body.password != '' ? req.body.password : null) || ((req.body.params != null && req.body.params.password != '') ? req.body.params.password : null);
-
 
     if (!req.params.idUser && !req.body.params.idUser) {
         return res.status(404).json({

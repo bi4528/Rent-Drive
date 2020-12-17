@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit {
     profile_picture : "" ,
     location : "" ,
     favourite_vehicles_ids : [] ,
+    is_admin: false,
   };
 
 

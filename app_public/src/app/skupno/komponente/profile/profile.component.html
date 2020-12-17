@@ -13,9 +13,9 @@
       <p *ngIf="user" id="mail_uporabnika" class="centered">{{user.email}}</p>
       <p *ngIf="user" id="telefonska_stevilka_uporabika" class="centered">{{user.phone_number}}</p>
       <p *ngIf="user" id="kraj_uporabnika" class="centered">{{user.location}}</p>
-      <button *ngIf="is_profile_of_logged_user" type="button" class="btn btn-primary btn-block" onclick="location.href='/users/edit'">Edit</button>
+      <button *ngIf="is_logged_or_admin_user()" type="button" class="btn btn-primary btn-block" (click)="edit_user()">Edit</button>
       <button *ngIf="is_profile_of_logged_user" type="button" class="btn btn-danger btn-block" (click)="logout()">Log out</button>
-      <button *ngIf="is_profile_of_logged_user" type="button" class="btn btn-danger btn-block" (click)="delete_user()">Delete</button>
+      <button *ngIf="is_logged_or_admin_user()" type="button" class="btn btn-danger btn-block" (click)="delete_user()">Delete</button>
     </div>
 
     <div id="vozila_uporabnika">

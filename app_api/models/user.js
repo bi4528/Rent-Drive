@@ -40,6 +40,10 @@ const userSchema = new mongoose.Schema({
     },
     favourite_vehicles_ids: {
         type: [String]
+    },
+    is_admin: {
+        type: Boolean,
+        required: true
     }
 });
 
@@ -65,6 +69,7 @@ userSchema.methods.generateJwt = function () {
         _id: this._id,
         email: this.email,
         username: this.username,
+        is_admin: this.is_admin,
         exp: parseInt(datumPoteka.getTime() / 1000, 10)
     }, process.env.JWT_PASSWORD);
 };
