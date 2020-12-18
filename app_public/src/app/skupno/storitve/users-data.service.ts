@@ -6,6 +6,7 @@ import { Rent } from '../razredi/rent';
 import { AuthenticationResult } from '../razredi/authentication-result';
 import { Storage_Browser } from '../razredi/storage';
 import { environment } from '../../../environments/environment';
+import { promises } from 'fs';
 
 @Injectable({
   providedIn: 'root'
@@ -92,6 +93,29 @@ export class UsersDataService {
       .delete(url, httpLastnosti)
       .toPromise()
       .then()
+      .catch(this.procesError);
+  }
+
+  public check_if_email_exists(email: string): Promise<Boolean> {
+    const url: string = `${this.apiUrl}/users/check/exists_mail/${email}`;
+    return this.http
+      .get(url)
+      .toPromise()
+      .then(response => response as Boolean)
+      .catch(this.procesError);
+  }
+
+  public reset_password(idUser: string, token: string): Promise<User> {
+    const url: string = `${this.apiUrl}/users/recover_password/${idUser}`;
+    const httpLastnosti = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      })
+    };
+    return this.http
+      .post(url, httpLastnosti)
+      .toPromise()
+      .then(response => response as User)
       .catch(this.procesError);
   }
 

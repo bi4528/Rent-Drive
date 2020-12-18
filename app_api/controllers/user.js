@@ -3,6 +3,8 @@ const User = mongoose.model('User');
 const Vehicle = mongoose.model('Vehicle');
 const Rented = mongoose.model('Rented');
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
+const { token } = require('morgan');
 
 
 const get_all_users = (req, res) => {
@@ -85,7 +87,7 @@ const create_new_user = (req, res) => {
                 });
             }
         });
-        
+
     }
 };
 
@@ -247,15 +249,19 @@ const check_if_user_exists = (req, res) => {
 
 const check_if_mail_exists = (req, res) => {
 
-    User.find({
-        email: req.query.email
-    }).exec((napaka, user) => {
-        if (napaka) {
-            return res.status(500).json(napaka);
-        } else {
-            return res.status(200).json(user != null ? user.length > 0 : false);
-        }
-    });
+    if (req.params == null || req.params.email == null) {
+        return res.status(500).json("No email provided");
+    } else {
+        User.find({
+            email: req.params.email
+        }).exec((napaka, user) => {
+            if (napaka) {
+                return res.status(500).json(napaka);
+            } else {
+                return res.status(200).json(user != null ? user.length > 0 : false);
+            }
+        });
+    }
 };
 
 const toggle_favourite_vehicle = (req, res) => {
@@ -353,19 +359,10 @@ const get_vehicles_of_user = (req, res) => {
 
 const reset_password = (req, res) => {
 
-    const password = req.body.params.password;
-    const password_repeated = req.body.params.password_repeated;
-    const email = req.body.params.email;
+    const password = (req.body.password != '' ? req.body.password : null) || ((req.body.params != null && req.body.params.password != '') ? req.body.params.password : null);
+    const email = (req.body.email != '' ? req.body.email : null) || ((req.body.params != null && req.body.params.email != '') ? req.body.params.email : null);
 
-    if (password != password_repeated) {
-        res.status(404).json({
-            "message": "Passwords are not equal."
-        });
-    } else if (!validate_password(password_repeated)) {
-        res.status(404).json({
-            "message": "Repeated password not valid."
-        });
-    } else if (!validate_password(password)) {
+    if (!validate_password(password)) {
         res.status(404).json({
             "message": "Password not valid."
         });
@@ -384,7 +381,8 @@ const reset_password = (req, res) => {
             } else if (error) {
                 return res.status(500).json(error);
             } else {
-                user.password = password;
+
+                user.setPassword(password);
 
                 user.save((error, _) => {
 
@@ -392,7 +390,7 @@ const reset_password = (req, res) => {
                         res.status(404).json(error);
                     } else {
 
-                        res.status(200).json(true);
+                        res.status(201).json(user);
                     }
                 });
             }
@@ -417,6 +415,54 @@ const get_rents_of_user = (req, res) => {
     });
 };
 
+const send_email_forgot_password = (req, res) => {
+
+    if (req.params == null || req.params.email == null || validate_email(req.params.email)) {
+        return res.status(500).json("Email not valid");
+    } else {
+
+        const email = req.params.email;
+
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'skupina01.sp@gmail.com',
+                pass: process.env.EMAIL_PASSWORD
+            }
+        });
+
+        var token = generateJwt_passwordrecover(email);
+
+        var mailOptions = {
+            from: 'skupina01.sp@gmail.com',
+            to: email,
+            subject: 'Recover Password - Rent&Drive',
+            text: 'Click on http://localhost:4200/users/' + token + '/resetpassword or https://rentdrive-sp.herokuapp.com/users/' + token + '/resetpassword'
+        };
+
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                return res.status(500).json(error);
+            } else {
+                return res.status(500).json(info.response);
+            }
+        });
+    }
+};
+
+const generateJwt_passwordrecover = function (email) {
+    const datumPoteka = new Date();
+    datumPoteka.setDate(datumPoteka.getDate() + 1);
+
+    return jwt.sign({
+        email: email,
+        exp: parseInt(datumPoteka.getTime() / 1000, 10)
+    }, process.env.JWT_PASSWORD_RECOVER);
+};
+
+
+
+
 
 
 module.exports = {
@@ -434,7 +480,8 @@ module.exports = {
     reset_password,
     get_user_data_by_email,
     get_rents_of_user,
-    login
+    login,
+    send_email_forgot_password
 };
 
 const email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
