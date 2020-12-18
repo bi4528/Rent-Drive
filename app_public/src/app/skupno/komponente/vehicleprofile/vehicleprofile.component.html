@@ -36,7 +36,7 @@
 
         <div class="container-fluid pt-5 pb-3">
             <!--- ime-->
-            <input type="hidden" name="_id" id="_id" value="{{vehicle._id}}">
+            <input type="hidden" name="_id" id="_id" value="{{vehicle._id | simplePipe}}">
             <div class="row justify-content-center ml-3">
                 <div class="name">
                     <h2 class="inline car-name">{{vehicle.make}} {{vehicle.model}}</h2>
@@ -53,7 +53,7 @@
             <div class="row mt-3 mb-3 ml-0.5 justify-content-center">
                 <div class="rating">
                     <h3 class="inline">Rating:</h3>
-                    <!--<span id="stars-vp">{{{stars avg_rating}}}</span>-->
+                    <span id="stars-vp" [innerHTML]="vehicle.avg_rating | stars"></span>
 
                 </div>
             </div>
@@ -62,7 +62,7 @@
             <div class="row m-3">
                 <div class="col-sm-12 col-md-4 ">
                     <!--href="users/other$id={{owner_id}}"-->
-                    <input name="{{user.profile_picture}}" type="hidden" value="{{user.profile_picture}}">
+                    <input name="{{user.profile_picture | simplePipe}}" type="hidden" value="{{user.profile_picture}}">
                     <a href="/users/profiles/{{owner_id}}"><img class="avatar"
                             src="../../../../assets/uploads/{{user.profile_picture}}" alt="avatar"></a>
                     <ul class="list-group list-group-flush">
@@ -85,7 +85,7 @@
                     <div class="card mb-3">
                         <div class="card-body desc">
                             <blockquote class="blockquote mb-0">
-                                <p>{{vehicle.description}}</p>
+                                <p [innerHTML]="vehicle.description | simplePipe"></p>
                                 <footer class="blockquote-footer">{{user.username}}</footer>
                             </blockquote>
                         </div>
@@ -96,7 +96,9 @@
             <!--- lastnosti in izposodi-->
             <div class="row m-3 mt-5">
                 <h3>Features:</h3>
-                <!--{{{featurehelper AirConditioning bluetooth Navigation USB AUX parkingsensors autopilot accessibility}}}-->
+                <div>
+                    {{vehicle | featurehelper:'bluetooth':'Navigation':'USB':'AUX':'parkingsensors':'autopilot':'accessibility'}}
+                </div>
                 <br>
                 <!--{{{featurehelper2 maxspeed hp typeoffuel acceleration seats doors consumption minage luggage}}}-->
 
@@ -120,7 +122,7 @@
                         <h5 class="inline font-weight-bold" id="price"></h5>
                         <h5 class="inline"> (</h5>
                         <!--<input class="inline" id="daily-price" name="priceValue" id="priceValue" value="{{price}}€" readonly> -->
-                        <h5 class="inline" id="daily-price" name="daily-price">{{vehicle.price}}€</h5>
+                        <h5 class="inline" id="daily-price" name="daily-price">{{vehicle.price | simplePipe}}€</h5>
                         <h5 class="inline">/day)</h5>
                         <input id="submit-button" type="submit" class="btn btn-primary" value="Book" disabled="true">
                     </div>

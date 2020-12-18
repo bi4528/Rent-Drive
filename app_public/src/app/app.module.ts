@@ -16,6 +16,9 @@ import { LoginComponent } from './skupno/komponente/login/login.component';
 import { RegisterComponent } from './skupno/komponente/register/register.component';
 import { VehicleProfileComponent } from './skupno/komponente/vehicleprofile/vehicleprofile.component';
 import { NearbyMapaComponent } from './skupno/komponente/nearby-mapa/nearby-mapa.component';
+import { SimplePipePipe } from './skupno/cevi/simple-pipe.pipe';
+import { StarsPipe } from './skupno/cevi/stars.pipe';
+import { FeaturehelperPipe } from './skupno/cevi/featurehelper.pipe';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { NearbyMapaComponent } from './skupno/komponente/nearby-mapa/nearby-mapa
     LoginComponent,
     RegisterComponent,
     VehicleProfileComponent,
-    NearbyMapaComponent
+    NearbyMapaComponent,
+    SimplePipePipe,
+    StarsPipe,
+    FeaturehelperPipe
   ],
   imports: [
     BrowserModule,
