@@ -14,9 +14,17 @@ import { ProfileComponent } from './skupno/komponente/profile/profile.component'
 import { EditProfileComponent } from './skupno/komponente/edit-profile/edit-profile.component';
 import { LoginComponent } from './skupno/komponente/login/login.component';
 import { RegisterComponent } from './skupno/komponente/register/register.component';
+import { VehicleProfileComponent } from './skupno/komponente/vehicleprofile/vehicleprofile.component';
 import { NearbyMapaComponent } from './skupno/komponente/nearby-mapa/nearby-mapa.component';
 import { NearbyVremeComponent } from './skupno/komponente/nearby-vreme/nearby-vreme.component';
 import { NearbyComponent } from './skupno/komponente/nearby/nearby.component';
+import { SimplePipePipe } from './skupno/cevi/simple-pipe.pipe';
+import { StarsPipe } from './skupno/cevi/stars.pipe';
+import { FeaturehelperPipe } from './skupno/cevi/featurehelper.pipe';
+import { ForgotPasswordComponent } from './skupno/komponente/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './skupno/komponente/reset-password/reset-password.component';
+import { ReviewsComponent } from './skupno/komponente/reviews/reviews.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +39,15 @@ import { NearbyComponent } from './skupno/komponente/nearby/nearby.component';
     RegisterComponent,
     NearbyMapaComponent,
     NearbyVremeComponent,
-    NearbyComponent
+    NearbyComponent,
+    VehicleProfileComponent,
+    NearbyMapaComponent,
+    SimplePipePipe,
+    StarsPipe,
+    FeaturehelperPipe,
+    ReviewsComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

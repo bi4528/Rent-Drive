@@ -1,0 +1,162 @@
+<main>
+    <!--{{vehicle | json}}-->
+    <!-- galerija-->
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+
+            <li *ngFor="let indicator of indicators" data-target="#carouselExampleIndicators"
+                data-slide-to="{{indicator.num}}" {{indicator.active}}></li>
+
+        </ol>
+        <div class="carousel-inner">
+
+            <div *ngFor="let car_photo of car_photos" class="carousel-item {{car_photo.active}}">
+                <img class=" d-block w-100" src="../../../../assets/uploads/{{car_photo.image}}" alt="car-photo">
+            </div>
+
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <div *ngIf="alert_error" id="alert" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <p>{{alert_error}}</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <form (ngSubmit)="book()">
+
+        <div class="container-fluid pt-5 pb-3">
+            <!--- ime-->
+            <input *ngIf="vehicle" type="hidden" name="_id" id="_id" value="{{vehicle._id}}">
+            <div class="row justify-content-center ml-3">
+                <div class="name">
+                    <h2 *ngIf="vehicle" class="inline car-name">{{vehicle.make}} {{vehicle.model}}</h2>
+                    <i *ngIf="user_logged && is_favourite_of_logged_user" id="favorite"
+                        onclick='location.href="/vehicles/{{_id}}/changefavorite/{{owner_id}}"'
+                        class="fas fa-heart"></i>
+                    <i *ngIf="!user_logged || !is_favourite_of_logged_user" id="favorite"
+                        onclick='location.href="/vehicles/{{_id}}/changefavorite/{{owner_id}}"'
+                        class="far fa-heart"></i>
+                </div>
+            </div>
+
+            <!--- ocena-->
+            <div class="row mt-3 mb-3 ml-0.5 justify-content-center">
+                <div class="rating">
+                    <h3 class="inline">Rating:</h3>
+                    <!--<span id="stars-vp" [innerHTML]="vehicle.avg_rating | stars"></span> -->
+                </div>
+            </div>
+
+            <!--- lastnik in opis-->
+            <div class="row m-3">
+                <div class="col-sm-12 col-md-4 ">
+                    <!--href="users/other$id={{owner_id}}"-->
+                    <input *ngIf="user" name="{{user.profile_picture}}" type="hidden" value="{{user.profile_picture}}">
+                    <a *ngIf="user" href="/users/profiles/{{owner_id}}"><img class="avatar"
+                            src="../../../../assets/uploads/{{user.profile_picture}}" alt="avatar"></a>
+                    <ul class="list-group list-group-flush">
+                        <input type="hidden" name="owner_id" id="owner_id" value="{{owner_id}}">
+
+                        <li *ngIf="user" id="fullname" class="list-group-item contact-details"><i
+                                class="fas fa-user"></i>{{user.firstname}}
+                            {{user.lastname}}</li>
+                        <li *ngIf="user && user.phone_number" id="phone" class="list-group-item contact-details"><i
+                                class="fas fa-phone"></i>{{user.phone_number}}</li>
+                        <li *ngIf="user" id="email" class="list-group-item contact-details"><i
+                                class="far fa-envelope"></i>{{user.email}}</li>
+
+                        <li *ngIf="user && user.location" id="location" class="list-group-item contact-details"><i
+                                class="far fa-map"></i>{{user.location}}</li>
+
+                    </ul>
+                </div>
+                <div class="col-sm-12 col-md-7 offset-md-1">
+                    <div class="card mb-3">
+                        <div class="card-body desc">
+                            <blockquote class="blockquote mb-0">
+                                <p *ngIf="vehicle">{{vehicle.description}}</p>
+                                <footer *ngIf="user" class="blockquote-footer">{{user.username}}</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--- lastnosti in izposodi-->
+            <div class="row m-3 mt-5">
+                <h3>Features:</h3>
+                <div *ngIf="vehicle" [innerHTML]="vehicle |
+                    featurehelper:'bluetooth':'Navigation':'USB':'AUX':'parkingsensors':'autopilot':'accessibility'">
+                
+                </div>
+                <br>
+                <!--{{{featurehelper2 maxspeed hp typeoffuel acceleration seats doors consumption minage luggage}}}-->
+
+                <div class="book col-sm-8 col-md-4 mt-4">
+                    <div class="form-group">
+                        <label for="date-from">From</label>
+                        <input *ngIf="vehicle" id="date-from" type="date" class="form-control" name="date" [min]="vehicle.date[0]"
+                            [max]="vehicle.date[1]">
+                    </div>
+                    <div class="form-group">
+                        <label for="date-to">To</label>
+                        <input *ngIf="vehicle" id="date-to" type="date" class="form-control" min="{{vehicle.date[0]}}"
+                            max="{{vehicle.date[1]}}" name="date">
+                    </div>
+                    <div class="form-group"><label for="cars">Location of pickup &amp; return</label>
+                        <select name="pickup_locations" id="cars">
+                            <option *ngIf="vehicle">{{vehicle.addres}}, {{vehicle.zip}} {{vehicle.city}}</option>
+                        </select>
+                    </div>
+                    <div class="price form-group ">
+                        <h5 class="inline font-weight-bold" id="price"></h5>
+                        <h5 class="inline"> (</h5>
+                        <!--<input class="inline" id="daily-price" name="priceValue" id="priceValue" value="{{price}}€" readonly> -->
+                        <h5 *ngIf="vehicle" class="inline" id="daily-price" name="daily-price">{{vehicle.price}}€</h5>
+                        <h5 class="inline">/day)</h5>
+                        <input id="submit-button" type="submit" class="btn btn-primary" value="Book" disabled="true">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <!--- recenzije-->
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class=" reviews m-3">
+                <table id="t">
+                    <tr>
+                        <td colspan="2">Users</td>
+                        <td>Rating</td>
+                        <td colspan="2">Comments</td>
+                    </tr>
+                    <app-reviews *ngIf="vehicle" [vsebina]="vehicle.reviews" [vehicleId]="vehicle._id"></app-reviews>
+                    <!--{{{helper reviews _id}}}-->
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="user_logged" class="row justify-content-center mx-4">
+        <input *ngIf="vehicle" type="button" class="btn btn-lg btn-primary" value="Add review"
+            onclick="location.href='/vehicles/{{_id}}/reviews'">
+    </div>
+    <br>
+
+</main>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<script src="../../../../assets/javascripts/vehicleprofile.js"></script>

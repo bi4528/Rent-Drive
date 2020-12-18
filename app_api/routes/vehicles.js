@@ -12,6 +12,7 @@ const ctrlReviews = require('../controllers/review');
 /* Vehicles */
 router.get('', ctrlVehicles.vehiclesAll);
 router.post('', authentication, ctrlVehicles.vehiclesUpload);
+router.get('/length', ctrlVehicles.returnLength);
 router.get('/:id', ctrlVehicles.vehiclesFind);
 router.put('/:id', authentication, ctrlVehicles.vehiclesUpdate);
 router.delete('/:id', authentication, ctrlVehicles.vehiclesDelete);

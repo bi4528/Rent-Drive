@@ -57,7 +57,6 @@ var app = express();
 app.set('views', path.join(__dirname, 'app_server','views'));
 app.set('view engine', 'hbs');
 
-//To je marko dodal
 require('./app_server/views/helpers/hbsh.js');
 require('./app_server/views/helpers/commenthelper.js');
 require('./app_server/views/helpers/stars.js');

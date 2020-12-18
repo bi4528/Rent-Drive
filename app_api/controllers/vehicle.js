@@ -28,12 +28,12 @@ const vehiclesAll = (req, res) => {
                 const dateFrom = req.query.dateFrom;
                 const dateTo = req.query.dateTo;
                 const category = req.query.category;
-            
-                
+                const page = req.query.page;
+                console.log(page);
+
                 if (isEmpty(keyWord) && isEmpty(city) && isEmpty(category)) {
-                    //dataJSON.filter = "<H3>No filter applied</H3>";
-                    //res.render('search', dataJSON);
-                    res.status(200).json(dataJSON);
+                    //res.status(200).json(dataJSON);
+                    sliceArray(res, dataJSON, page);
                 }
                 else if (!isEmpty(keyWord)) {
                     newData = [];
@@ -42,20 +42,19 @@ const vehiclesAll = (req, res) => {
                             newData.push(item);
                         }
                     });
-                    res.status(200).json(newData);
-                    //res.render('search', newData);
+                    //res.status(200).json(newData);
+                    sliceArray(res, newData, page);
                 }
                 else if (!isEmpty(city)) {
                     newData = [];
                     dataJSON.forEach(function (item, index) {
-                        //console.log(typeof(item.date[0])+" "+typeof(dateFrom));
-                        //console.log(item.date[0]+" "+dateFrom);
+
                         if (item.city.localeCompare(city) == 0 && isLater(dateFrom, item.date[0]) && isLater(item.date[1], dateTo)) {
                             newData.push(item);
                         }
                     });
-                    //res.render('search', newData);
-                    res.status(200).json(newData);
+                    //res.status(200).json(newData);
+                    sliceArray(res, newData, page);
                 }
                 else if (!isEmpty(category)) {
                     newData = [];
@@ -64,14 +63,78 @@ const vehiclesAll = (req, res) => {
                             newData.push(item);
                         }
                     });
-                    //res.render('search', newData);
-                    res.status(200).json(newData);
+                    //res.status(200).json(newData);
+                    sliceArray(res, newData, page);
                 }
             }
         });
 };
 
+const sliceArray = (res, dataJSON, page) => {
+    if (isEmpty(page)) {
+        res.status(200).json(dataJSON);
+    }
+    else {
+        res.status(200).json(dataJSON.slice(12 * (page - 1), 12 * page))
+    }
+}
 
+const returnLength = (req, res) => {
+    Vehicle
+        .find()
+        .exec((err, dataJSON) => {
+            if (!dataJSON) {
+                return res.status(404).json({
+                    "sporočilo":
+                        "Zgodila se je napaka pri dobivanje st avtov"
+                });
+            }
+            else if (err) {
+                console.err(err);
+                res.status(500).json({ "sporočilo": "Napaka pri poizvedbi: " + err });
+            } else {
+                //res.status(200).json(data);
+                const keyWord = req.query.value;
+                const city = req.query.city;
+                const dateFrom = req.query.dateFrom;
+                const dateTo = req.query.dateTo;
+                const category = req.query.category;
+
+                if (isEmpty(keyWord) && isEmpty(city) && isEmpty(category)) {
+                    return res.status(200).json({ "number_vehicles": dataJSON.length });
+                }
+                else if (!isEmpty(keyWord)) {
+                    newData = [];
+                    dataJSON.forEach(function (item, index) {
+                        if (item.model.toLowerCase().includes(keyWord.toLowerCase()) || item.make.toLowerCase().includes(keyWord.toLowerCase())) {
+                            newData.push(item);
+                        }
+                    });
+                    return res.status(200).json({ "number_vehicles": newData.length });
+                    
+                }
+                else if (!isEmpty(city)) {
+                    newData = [];
+                    dataJSON.forEach(function (item, index) {
+
+                        if (item.city.localeCompare(city) == 0 && isLater(dateFrom, item.date[0]) && isLater(item.date[1], dateTo)) {
+                            newData.push(item);
+                        }
+                    });
+                    return res.status(200).json({ "number_vehicles": newData.length });
+                }
+                else if (!isEmpty(category)) {
+                    newData = [];
+                    dataJSON.forEach(function (item, index) {
+                        if (item.category.localeCompare(category) == 0) {
+                            newData.push(item);
+                        }
+                    });
+                    return res.status(200).json({ "number_vehicles": newData.length });
+                }
+            }
+        });
+}
 
 const vehiclesUpload = (req, res) => {
     console.log("Vehicle upload");
@@ -93,7 +156,7 @@ const vehiclesUpload = (req, res) => {
         AirConditioning: req.body.AirConditioning,
         Navigation: req.body.Navigation,
         USB: req.body.USB,
-        AUX: req.body.AUX ,
+        AUX: req.body.AUX,
         autopilot: req.body.autopilot,
         bluetooth: req.body.bluetooth,
         parkingsensors: req.body.parkingsensors,
@@ -113,7 +176,7 @@ const vehiclesUpload = (req, res) => {
             res.status(400).json(err);
         } else {
             res.status(201).json(data);
-        
+
         }
     });
 };
@@ -155,7 +218,7 @@ const vehiclesUpdate = (req, res) => {
             }
             data.images = req.body.images;
             data.owner_id = req.body.owner_id,
-            data.make = req.body.make;
+                data.make = req.body.make;
             data.model = req.body.model;
             data.typeoffuel = req.body.typeoffuel;
             data.category = req.body.category;
@@ -216,5 +279,6 @@ module.exports = {
     vehiclesUpload,
     vehiclesFind,
     vehiclesUpdate,
-    vehiclesDelete
+    vehiclesDelete,
+    returnLength
 }

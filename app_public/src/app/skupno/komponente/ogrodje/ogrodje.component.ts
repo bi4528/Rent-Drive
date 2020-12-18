@@ -16,6 +16,10 @@ export class OgrodjeComponent implements OnInit {
   public is_user_logged(): boolean {
     return this.authenticationService.is_logged();
   }
+
+  public get_user_id(): string {
+    return this.authenticationService.get_current_user()._id;
+}
   ngOnInit(): void {
     if (this.is_user_logged()) {
       this.user_id = this.authenticationService.get_current_user()._id;

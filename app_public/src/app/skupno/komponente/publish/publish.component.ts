@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { VehiclesDataService } from '../../storitve/vehicles-data.service';
 import { Router } from '@angular/router';
+import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
 import { AuthenticationService } from '../../storitve/avtentikacija.service';
 
+
+const URL = 'http://localhost:3000/upload';  //TO SE MORA SPREMENITI ODVISNO OD OKOLJE
 
 @Component({
   selector: 'app-publish',
@@ -135,7 +138,14 @@ export class PublishComponent implements OnInit {
       .catch(napaka => this.error = napaka);
   }
 
+  //public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
+
   ngOnInit(): void {
+    /*this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+         console.log('ImageUpload:uploaded:', item, status, response);
+         alert('File uploaded successfully');
+    };*/
     if (!this.avtentikacijaStoritev.is_logged()){
       this.router.navigateByUrl("/");
     }

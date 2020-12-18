@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   public city: string;
 
   public filter = () : void => {
-    this.router.navigate(['/search'], {queryParams: {city: this.city, dateFrom: this.dateFrom, dateTo: this.dateTo} });
+    this.router.navigate(['/search'], {queryParams: {city: this.city, dateFrom: this.dateFrom, dateTo: this.dateTo, page: "1"} });
   }
 
   private getVehicles = () : void => {
