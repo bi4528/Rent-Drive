@@ -21,6 +21,7 @@ import { StarsPipe } from './skupno/cevi/stars.pipe';
 import { FeaturehelperPipe } from './skupno/cevi/featurehelper.pipe';
 
 import { FileUploadModule } from 'ng2-file-upload';
+import { ReviewsComponent } from './skupno/komponente/reviews/reviews.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FileUploadModule } from 'ng2-file-upload';
     NearbyMapaComponent,
     SimplePipePipe,
     StarsPipe,
-    FeaturehelperPipe
+    FeaturehelperPipe,
+    ReviewsComponent
   ],
   imports: [
     BrowserModule,

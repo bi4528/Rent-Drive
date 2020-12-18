@@ -71,8 +71,11 @@ docker exec -it sp-rentdrive-mongodb mongo
 use RentDrive
 db.Vehicles.find().forEach(function(dokument) {
 for (var i = 0; i < dokument.reviews.length; i++) {
-dokument.reviews[i]._id = ObjectId()
+dokument.reviews[i]._id = ObjectId();
+dokument.owner_id = "5fdcd3ba0be5930e18aa7029";
 }
 db.Vehicles.update({ "_id" : dokument._id }, dokument)
 })
+
+//se registriraš, in kopiraš svoj id v dokument.owner_id: 
 

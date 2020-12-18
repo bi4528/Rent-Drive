@@ -21,29 +21,31 @@ export class VehicleProfileComponent implements OnInit {
     this.vehicleDataService
       .getVehicle(vehicleId)
       .then((data: Vehicle) => {
-        console.log(data);
-        console.log(typeof data);
         this.alert_error = (data == null) ? "" : "No vehicle found";
         this.vehicle = data;
-        debugger;
         console.log(this.vehicle);
+        this.get_user_data(this.vehicle.owner_id);
+        this.setCarPhotosAndIndicators(this.vehicle.images);
       });
   }
 
-  private get_user_data = (id_of_user: String): void => {
+  public get_user_data = (id_of_user: String): void => {
     this.alert_error = "Searching for user";
     this.usersDataService
       .getUser(id_of_user)
       .then((data: User) => {
         this.alert_error = (data == null) ? "" : "No user found";
         this.user = data;
+        console.log(this.user);
       });
   }
 
 
-  private setCarPhotosAndIndicators(images:string[]): void {
+  public setCarPhotosAndIndicators(images:string[]): void {
     for (var i = 0; i < images.length; i++) {
       if (i == 0) {
+        this.car_photos = [];
+        this.indicators = [];
         this.car_photos.push({ "image": images[i], "active": "active" });
         this.indicators.push({ "num": i.toString(), "active": "class='active'" });
       }
@@ -63,21 +65,17 @@ export class VehicleProfileComponent implements OnInit {
   public owner_id: String;
   public vehicleId: String;
   public alert_error: String;
-  vehicle: Vehicle;
+  public vehicle: Vehicle;
   public user: User;
-  public car_photos: [any];
-  public indicators: [any];
+  public car_photos: any;
+  public indicators: any;
   public user_logged = true;
   public is_favourite_of_logged_user = this.avtentikacijaStoritev.is_logged;
   
   ngOnInit(): void {
     this.vehicleId = this.pot.snapshot.paramMap.get('idVehicle');
-    debugger;
     this.get_vehicle_data(this.vehicleId);
 
-    this.owner_id = this.vehicle.owner_id;
-    this.get_user_data(this.owner_id);
-    this.setCarPhotosAndIndicators(this.vehicle.images);
   }
 
 
