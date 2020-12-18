@@ -33,7 +33,7 @@ const poti: Routes = [
     component: ProfileComponent
   },
   {
-    path: 'users/edit',
+    path: 'users/edit/:idUser',
     component: EditProfileComponent
   }, {
     path: 'users/register',

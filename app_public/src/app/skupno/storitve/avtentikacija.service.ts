@@ -41,8 +41,8 @@ export class AuthenticationService {
   public get_current_user(): User {
     if (this.is_logged()) {
       const token: string = this.returnToken();
-      const { email, username, _id } = JSON.parse(this.b64Utf8(token.split('.')[1]));
-      return { email, username, _id } as User;
+      const { email, username, _id, is_admin } = JSON.parse(this.b64Utf8(token.split('.')[1]));
+      return { email, username, _id, is_admin } as User;
     }
   }
 

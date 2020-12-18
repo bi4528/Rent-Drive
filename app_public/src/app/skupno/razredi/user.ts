@@ -9,4 +9,5 @@ export class User {
     profile_picture: string;
     location: string;
     favourite_vehicles_ids: string[];
+    is_admin: Boolean;
 }

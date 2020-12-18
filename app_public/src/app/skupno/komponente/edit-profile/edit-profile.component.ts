@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UsersDataService } from '../../storitve/users-data.service';
 import { User } from '../../razredi/user';
 import { AuthenticationService } from '../../storitve/avtentikacija.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-profile',
@@ -11,11 +11,12 @@ import { Router } from '@angular/router';
 })
 export class EditProfileComponent implements OnInit {
 
-  constructor(
-    private router: Router,private usersDataService: UsersDataService, private avtentikacijaStoritev: AuthenticationService) { }
+  constructor(private pot: ActivatedRoute,
+    private router: Router, private usersDataService: UsersDataService, private avtentikacijaStoritev: AuthenticationService) { }
 
   private get_user_data = (id_of_user: String): void => {
     this.alert_error = "Searching for user";
+    this.user = null;
     this.usersDataService
       .getUser(id_of_user)
       .then((data: User) => {
@@ -25,21 +26,25 @@ export class EditProfileComponent implements OnInit {
   }
 
   public update_user_data = (): void => {
-    this.alert_error = "Updating user data";
-    this.usersDataService
-      .updateUserData(this.user)
-      .then((user: User) => {
-        this.alert_error = (user != null) ? "" : "Failed to update user";
-        this.user = user;
-        this.id_of_user = this.user._id;
-        this.router.navigateByUrl("/users/profiles/" + this.user._id)
-      
-      });
+
+    if (this.avtentikacijaStoritev.is_logged() && (this.user._id == this.avtentikacijaStoritev.get_current_user()._id || this.avtentikacijaStoritev.get_current_user().is_admin)) {
+      this.alert_error = "Updating user data";
+      this.usersDataService
+        .updateUserData(this.user)
+        .then((user: User) => {
+          this.alert_error = (user != null) ? "" : "Failed to update user";
+          this.user = user;
+          this.id_of_user = this.user._id;
+          this.router.navigateByUrl("/users/profiles/" + this.user._id)
+
+        });
+    } else {
+      this.alert_error = "You are not authorized for this action";
+    }
   }
 
-  public vrniUporabnika(): string {
-    const { username } = this.avtentikacijaStoritev.get_current_user();
-    return username ? username : 'Guest';
+  public is_logged_or_admin_user(): Boolean {
+    return this.avtentikacijaStoritev.is_logged() ? this.avtentikacijaStoritev.get_current_user().is_admin || this.id_of_user == this.avtentikacijaStoritev.get_current_user()._id : false;
   }
 
   public id_of_user: String;
@@ -48,8 +53,12 @@ export class EditProfileComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.id_of_user = this.avtentikacijaStoritev.get_current_user()._id;
-    this.get_user_data(this.id_of_user);
+    this.id_of_user = this.pot.snapshot.paramMap.get('idUser');
+    if (this.is_logged_or_admin_user()) {
+      this.get_user_data(this.id_of_user);
+    } else {
+      this.router.navigateByUrl("/home");
+    }
   }
 
 }

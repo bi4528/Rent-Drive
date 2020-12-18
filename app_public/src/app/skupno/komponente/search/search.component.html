@@ -1,18 +1,20 @@
 <div class="container-fluid">
 
-    <div  *ngIf="sporocilo" class="alert alert-warning">{{sporocilo}}</div>
+    <div *ngIf="sporocilo" class="alert alert-warning">{{sporocilo}}</div>
 
     <div class="my-3" [innerHtml]="filter_text">
     </div>
 
     <div class="row m-2 justify-content-center">
         <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
-            <input class="form-control mr-sm-2 q" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="keyword">
+            <input class="form-control mr-sm-2 q" type="text" placeholder="Search" aria-label="Search"
+                [(ngModel)]="keyword">
         </div>
         <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
-            
-                <button (click)="filter()" class="btn btn-outline-success my-2 my-sm-0 searchbutton" type="button">Search</button>
-    
+
+            <button (click)="filter()" class="btn btn-outline-success my-2 my-sm-0 searchbutton"
+                type="button">Search</button>
+
         </div>
     </div>
 
@@ -22,19 +24,67 @@
     <div class="row containercards">
         <div class="col-md-4 col-lg-3 my-3 float-left searchcard" *ngFor="let car of cars">
             <div class="card">
-                
-                <img class="card-img-top car_image_search" src="../../../../assets/uploads/{{car.images[0]}}" alt="Car image">
+
+                <img class="card-img-top car_image_search" src="../../../../assets/uploads/{{car.images[0]}}"
+                    alt="Car image">
                 <div class="card-body">
-                    <h4 class="card-title model" >{{car.make}} {{car.model}}</h4>
-                    <p class="card-text description" >{{car.description}}</p>
-                    <a href="/vehicles/{{car._id}}" class="btn btn-light rounded border-secondary">Book for only {{car.price}}$/day</a>
+                    <h4 class="card-title model">{{car.make}} {{car.model}}</h4>
+                    <p class="card-text description">{{car.description}}</p>
+                    <a href="/vehicles/{{car._id}}" class="btn btn-light rounded border-secondary">Book for only
+                        {{car.price}}$/day</a>
                 </div>
-                
+
             </div>
         </div>
     </div>
 
     <div class="reset-content"></div>
+
+    <div *ngIf="total_items>12">
+        <nav>
+            <ul class="pagination pagination-lg justify-content-center">
+                <div *ngIf="current_page==1">
+                    <li class="page-item disabled">
+                        <span class="page-link">Previous</span>
+                    </li>
+                </div>
+                <div *ngIf="current_page!=1">
+                    <li class="page-item">
+                        <a (click)="updatePage(current_page-1)" class="page-link">Previous</a>
+                    </li>
+                </div>
+
+
+                <div *ngFor="let item of [].constructor(pages); let i = index">
+                    <li *ngIf="(i+1)!=current_page" class="page-item">
+                        <a (click)="updatePage(i+1)" class="page-link">{{i+1}}</a>
+                    </li>
+                    <li *ngIf="(i+1)==current_page" class="page-item active">
+                        <span class="page-link">
+                            {{i+1}}
+                            <span class="sr-only">(current)</span>
+                        </span>
+                    </li>
+                </div>
+
+                <div *ngIf="current_page==pages">
+                    <li class="page-item disabled">
+                        <span class="page-link">Next</span>
+                    </li>
+                </div>
+                <div *ngIf="current_page!=pages">
+                    <li class="page-item">
+                        <a (click)="updatePage(current_page-(-1))" class="page-link">Next</a>
+                    </li>
+                </div>
+
+
+            </ul>
+        </nav>
+    </div>
+
+
+
 </div>
 
 <script src="../../../../assets/javascripts/search.js"></script>

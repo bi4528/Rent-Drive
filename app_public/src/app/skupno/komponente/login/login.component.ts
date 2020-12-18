@@ -5,6 +5,7 @@ import { AuthenticationService } from '../../storitve/avtentikacija.service';
 import { Router } from '@angular/router';
 import { HistoryService } from '../../storitve/history.service';
 
+import {$} from "jquery";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
       !this.user.password
     ) {
       this.alert_error = "To proceed you have to insert all data";
+      //$("#modal").modal();
     } else {
 
       this.alert_error = "Trying to login";
@@ -39,14 +41,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  public vrniUporabnika(): string {
-    const { username } = this.avtentikacijaStoritev.get_current_user();
-    return username ? username : 'Guest';
-  }
-
-  private delay(ms: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
 
   alert_error: String;
   public user: User = {
@@ -60,6 +54,7 @@ export class LoginComponent implements OnInit {
     profile_picture : "" ,
     location : "" ,
     favourite_vehicles_ids : [] ,
+    is_admin: false,
   };
 
 

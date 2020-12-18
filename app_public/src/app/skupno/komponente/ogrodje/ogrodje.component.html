@@ -52,7 +52,7 @@
                 aria-hidden="true">account_box</i> Login</a>
           </li>
           <li class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" routerLink="/search"><i class="material-icons fa-fw align-middle"
+            <a class="nav-link" [routerLink]="['/search']" [queryParams]="{ page: '1' }"><i class="material-icons fa-fw align-middle"
                 aria-hidden="true">search</i> Search</a>
           </li>
         </ul>

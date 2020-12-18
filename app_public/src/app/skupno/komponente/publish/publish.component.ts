@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { VehiclesDataService } from '../../storitve/vehicles-data.service';
 import { Router } from '@angular/router';
 import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
+import { AuthenticationService } from '../../storitve/avtentikacija.service';
 
 
 const URL = 'http://localhost:3000/upload';  //TO SE MORA SPREMENITI ODVISNO OD OKOLJE
@@ -13,7 +14,7 @@ const URL = 'http://localhost:3000/upload';  //TO SE MORA SPREMENITI ODVISNO OD 
 })
 export class PublishComponent implements OnInit {
 
-  constructor(private vehiclesDataService: VehiclesDataService, private router : Router) { }
+  constructor(private vehiclesDataService: VehiclesDataService, private router: Router, private avtentikacijaStoritev: AuthenticationService) { }
 
   public user_logged:boolean = true;
   public error:string = "";
@@ -125,6 +126,7 @@ export class PublishComponent implements OnInit {
     this.newVehicle.AUX=this.defineOnOff(this.newVehicle.AUX);
     this.newVehicle.bluetooth=this.defineOnOff(this.newVehicle.bluetooth);
     this.newVehicle.autopilot=this.defineOnOff(this.newVehicle.autopilot);
+    this.newVehicle.owner_id = this.avtentikacijaStoritev.get_current_user()._id;
 
     console.log(this.newVehicle);
     this.vehiclesDataService
@@ -144,6 +146,9 @@ export class PublishComponent implements OnInit {
          console.log('ImageUpload:uploaded:', item, status, response);
          alert('File uploaded successfully');
     };*/
+    if (!this.avtentikacijaStoritev.is_logged()){
+      this.router.navigateByUrl("/");
+    }
   }
 
 }

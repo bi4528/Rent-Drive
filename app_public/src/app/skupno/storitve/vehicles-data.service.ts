@@ -1,17 +1,18 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable, Inject } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Storage_Browser } from '../razredi/storage';
 
 import { Vehicle, Review } from '../razredi/vehicle';
-//import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VehiclesDataService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, @Inject(Storage_Browser) private storage: Storage) { }
 
-  private apiUrl = 'http://localhost:3000/api'; //environment.apiUrl;
+  private apiUrl = environment.apiUrl;
 
   public getVehicles(queryParams:string): Promise<Vehicle[]> {
     
@@ -24,12 +25,28 @@ export class VehiclesDataService {
       .catch(this.procesError);
   }
 
-  public postVehicle(data: any): Promise<any> {
+  public getLength(params): Promise<any>{
+    const url: string = `${this.apiUrl}/vehicles/length${params}`;
+    return this.http
+      .get(url)
+      .toPromise()
+      .then(response => response as any)
+      .catch(this.procesError);
+  }
+
+  public postVehicle(data: any): Promise<Vehicle> {
     const url: string = `${this.apiUrl}/vehicles`;
+
+    const httpLastnosti = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.storage.getItem('rentdrive-token')}`
+      })
+    };
+
     return this.http
       .post(url, data)
       .toPromise()
-      .then(odgovor => odgovor as any)
+      .then(odgovor => odgovor as Vehicle)
       .catch(this.procesError);
   }
 

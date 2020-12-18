@@ -16,7 +16,7 @@ import { switchMap } from 'rxjs/operators';
 export class ProfileComponent implements OnInit {
 
   constructor(
-    private router: Router,private pot: ActivatedRoute, private usersDataService: UsersDataService, private vehiclesDataService: VehiclesDataService, private avtentikacijaStoritev: AuthenticationService) { }
+    private router: Router, private pot: ActivatedRoute, private usersDataService: UsersDataService, private vehiclesDataService: VehiclesDataService, private avtentikacijaStoritev: AuthenticationService) { }
 
   private get_user_data = (id_of_user: String): void => {
     this.alert_error = "Searching for user";
@@ -34,14 +34,17 @@ export class ProfileComponent implements OnInit {
     this.usersDataService
       .getVehiclesOfUser(id_of_user)
       .then((data: Vehicle[]) => {
+        console.log(data);
         this.alert_error = (data.length > 0) ? "" : "";
         this.owned_cars = data;
-        if(this.owned_cars.length == 0) {
+        if (this.owned_cars.length == 0) {
           var empty_vehicle = this.get_empty_vehicle();
           empty_vehicle.make = "Add your vehicle";
           empty_vehicle.images.push("car_1.jpg");
           this.owned_cars = [empty_vehicle];
           this.show_controls = false;
+        } else {
+          this.show_controls = this.is_logged_or_admin_user();
         }
       });
   }
@@ -63,22 +66,23 @@ export class ProfileComponent implements OnInit {
   }
 
   private get_rents_of_user = (id_of_user: String): void => {
-    this.alert_error = "Searching for rents";
-    this.usersDataService
-      .getRentsOfUser(id_of_user)
-      .then((data: Rent[]) => {
-        this.alert_error = (data.length > 0) ? "" : "No rents found";
-        this.rents = data;
-      });
+    if (this.is_logged_or_admin_user()) {
+      this.alert_error = "Searching for rents";
+      this.usersDataService
+        .getRentsOfUser(id_of_user)
+        .then((data: Rent[]) => {
+          this.alert_error = (data.length > 0) ? "" : "No rents found";
+          this.rents = data;
+        });
+    }
   }
 
   private checkIfProfileIsUserLogged = (): void => {
     var current_user = this.avtentikacijaStoritev.get_current_user();
     this.is_profile_of_logged_user = current_user._id == this.id_of_user;
-    this.show_controls = current_user._id == this.id_of_user;
   }
 
-  private get_empty_vehicle = ():Vehicle => {
+  private get_empty_vehicle = (): Vehicle => {
     return {
       make: "",
       images: [],
@@ -125,13 +129,21 @@ export class ProfileComponent implements OnInit {
   public logout = (): void => {
     this.avtentikacijaStoritev.logout();
     this.router.navigateByUrl("/");
-  } 
-  
+  }
+
   public delete_user = (): void => {
     this.usersDataService.deleteUser(this.user).then(() => {
       this.avtentikacijaStoritev.logout();
       this.router.navigateByUrl("/");
     });
+  }
+
+  public is_logged_or_admin_user():Boolean {
+    return this.avtentikacijaStoritev.get_current_user().is_admin || this.is_profile_of_logged_user;
+  }
+
+  public edit_user(): void {
+    this.router.navigateByUrl("/users/edit/" + this.user._id);
   }
 
 
@@ -147,7 +159,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
 
     this.id_of_user = this.pot.snapshot.paramMap.get('idUser');
-    
+
     this.checkIfProfileIsUserLogged();
     this.get_user_data(this.id_of_user);
     this.get_vehicles_of_user(this.id_of_user);
