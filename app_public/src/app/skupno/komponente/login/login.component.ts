@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
 
 
   public login = (): void => {
+    console.log("aefaervf");
 
     this.alert_error = "";
 
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit {
     ) {
       this.alert_error = "To proceed you have to insert all data";
       //$("#modal").modal();
-    } else if (this.validationService.validate_email(this.user.email)) {
+    } else if (!this.validationService.validate_email(this.user.email)) {
       this.alert_error = "Email is not valid";
     } else {
 
