@@ -16,7 +16,7 @@ export class VehicleProfileComponent implements OnInit {
   constructor(
     private router: Router, private pot: ActivatedRoute, private vehicleDataService: VehiclesDataService, private usersDataService: UsersDataService, private avtentikacijaStoritev: AuthenticationService) { }
 
-  private get_vehicle_data = (vehicleId: String): void => {
+  public get_vehicle_data = (vehicleId: String): void => {
     this.alert_error = "Searching for vehicle";
     this.vehicleDataService
       .getVehicle(vehicleId)
@@ -25,6 +25,8 @@ export class VehicleProfileComponent implements OnInit {
         console.log(typeof data);
         this.alert_error = (data == null) ? "" : "No vehicle found";
         this.vehicle = data;
+        debugger;
+        console.log(this.vehicle);
       });
   }
 
@@ -61,7 +63,7 @@ export class VehicleProfileComponent implements OnInit {
   public owner_id: String;
   public vehicleId: String;
   public alert_error: String;
-  public vehicle: Vehicle;
+  vehicle: Vehicle;
   public user: User;
   public car_photos: [any];
   public indicators: [any];
@@ -70,8 +72,9 @@ export class VehicleProfileComponent implements OnInit {
   
   ngOnInit(): void {
     this.vehicleId = this.pot.snapshot.paramMap.get('idVehicle');
-    
+    debugger;
     this.get_vehicle_data(this.vehicleId);
+
     this.owner_id = this.vehicle.owner_id;
     this.get_user_data(this.owner_id);
     this.setCarPhotosAndIndicators(this.vehicle.images);
