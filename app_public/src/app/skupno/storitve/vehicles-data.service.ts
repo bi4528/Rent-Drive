@@ -14,10 +14,22 @@ export class VehiclesDataService {
 
   private apiUrl = environment.apiUrl;
 
-  public getVehicles(queryParams:string): Promise<Vehicle[]> {
-    
-    let url = `${this.apiUrl}/vehicles${queryParams}`;
-    
+  public getVehicle(vehicleId: String):Promise <Vehicle>{
+    const url: string = `${this.apiUrl}/vehicles/${vehicleId}`;
+    return this.http
+      .get(url)
+      .toPromise()
+      .then(response => response as Vehicle)
+      .catch(this.procesError);
+  }
+  
+  /*public getOwner(vehicleId: String):Promise <String>{
+    const url: string = `${this.apiUrl}/vehicles/${vehicleId}`;
+    return this.owner_id ???
+  }*/
+
+  public getVehicles(query:string): Promise<Vehicle[]> {
+    const url: string = `${this.apiUrl}/vehicles${query}`;
     return this.http
       .get(url)
       .toPromise()
