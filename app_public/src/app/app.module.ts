@@ -15,6 +15,8 @@ import { EditProfileComponent } from './skupno/komponente/edit-profile/edit-prof
 import { LoginComponent } from './skupno/komponente/login/login.component';
 import { RegisterComponent } from './skupno/komponente/register/register.component';
 import { NearbyMapaComponent } from './skupno/komponente/nearby-mapa/nearby-mapa.component';
+import { NearbyVremeComponent } from './skupno/komponente/nearby-vreme/nearby-vreme.component';
+import { NearbyComponent } from './skupno/komponente/nearby/nearby.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { NearbyMapaComponent } from './skupno/komponente/nearby-mapa/nearby-mapa
     EditProfileComponent,
     LoginComponent,
     RegisterComponent,
-    NearbyMapaComponent
+    NearbyMapaComponent,
+    NearbyVremeComponent,
+    NearbyComponent
   ],
   imports: [
     BrowserModule,

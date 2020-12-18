@@ -10,7 +10,7 @@ import { LoginComponent } from 'src/app/skupno/komponente/login/login.component'
 import { ProfileComponent } from 'src/app/skupno/komponente/profile/profile.component';
 import { EditProfileComponent } from 'src/app/skupno/komponente/edit-profile/edit-profile.component';
 import { RegisterComponent } from 'src/app/skupno/komponente/register/register.component';
-import { NearbyMapaComponent } from 'src/app/skupno/komponente/nearby-mapa/nearby-mapa.component';
+import { NearbyComponent } from 'src/app/skupno/komponente/nearby/nearby.component';
 
 const poti: Routes = [
   {
@@ -42,7 +42,7 @@ const poti: Routes = [
   },
   {
     path: 'nearby',
-    component: NearbyMapaComponent
+    component: NearbyComponent
   }
 ];
 
