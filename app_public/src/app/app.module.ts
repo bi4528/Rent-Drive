@@ -19,6 +19,8 @@ import { NearbyMapaComponent } from './skupno/komponente/nearby-mapa/nearby-mapa
 import { SimplePipePipe } from './skupno/cevi/simple-pipe.pipe';
 import { StarsPipe } from './skupno/cevi/stars.pipe';
 import { FeaturehelperPipe } from './skupno/cevi/featurehelper.pipe';
+import { ForgotPasswordComponent } from './skupno/komponente/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './skupno/komponente/reset-password/reset-password.component';
 
 import { FileUploadModule } from 'ng2-file-upload';
 import { ReviewsComponent } from './skupno/komponente/reviews/reviews.component';
@@ -39,7 +41,9 @@ import { ReviewsComponent } from './skupno/komponente/reviews/reviews.component'
     SimplePipePipe,
     StarsPipe,
     FeaturehelperPipe,
-    ReviewsComponent
+    ReviewsComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

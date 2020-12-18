@@ -30,11 +30,12 @@ router.route('/:idUser/vehicles')
     .get(ctrlUser.get_vehicles_of_user);
 
 router.get('/find/:emailUser', ctrlUser.get_user_data_by_email);
-router.post('/recover_password/:idUser', ctrlUser.reset_password);
+router.post('/recover_password/:idUser', authentication, ctrlUser.reset_password);
 router.post('/login', ctrlUser.login);
 
 router.get('/check/exists', ctrlUser.check_if_user_exists);
-router.get('/check/exists_mail', ctrlUser.check_if_mail_exists);
+router.get('/check/exists_mail/:email', ctrlUser.check_if_mail_exists);
+router.get('/forgotpassword/:email', ctrlUser.send_email_forgot_password);
 router.get('/:idUser/rents', authentication, ctrlUser.get_rents_of_user);
 
 module.exports = router;

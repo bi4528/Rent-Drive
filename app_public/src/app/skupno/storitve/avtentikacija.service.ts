@@ -46,6 +46,11 @@ export class AuthenticationService {
     }
   }
 
+  public get_email_from_recover_token(token: string): User {
+    const { email, username, _id, is_admin  } = JSON.parse(this.b64Utf8(token.split('.')[1]));
+    return { email, username, _id, is_admin } as User;
+  }
+
   public async login(user: User): Promise<any> {
     return this.userDataService
       .login(user)

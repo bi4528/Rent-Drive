@@ -95,6 +95,38 @@ export class UsersDataService {
       .catch(this.procesError);
   }
 
+  public check_if_email_exists(email: string): Promise<Boolean> {
+    const url: string = `${this.apiUrl}/users/check/exists_mail/${email}`;
+    return this.http
+      .get(url)
+      .toPromise()
+      .then(response => response as Boolean)
+      .catch(this.procesError);
+  }
+
+  public reset_password(idUser: string, token: string): Promise<User> {
+    const url: string = `${this.apiUrl}/users/recover_password/${idUser}`;
+    const httpLastnosti = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      })
+    };
+    return this.http
+      .post(url, httpLastnosti)
+      .toPromise()
+      .then(response => response as User)
+      .catch(this.procesError);
+  }
+
+  public recover_password_using_email(email: string): Promise<String> {
+    const url: string = `${this.apiUrl}/users/forgotpassword/${email}`;
+    return this.http
+      .get(url)
+      .toPromise()
+      .then(response => response as String)
+      .catch(this.procesError);
+  }
+
   public login(user: User): Promise<AuthenticationResult> {
     return this.authentication('users/login', user);
   }
