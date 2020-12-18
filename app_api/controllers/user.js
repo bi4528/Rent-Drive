@@ -4,7 +4,8 @@ const Vehicle = mongoose.model('Vehicle');
 const Rented = mongoose.model('Rented');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
-const { token } = require('morgan');
+const nodemailer = require('nodemailer');
+
 
 
 const get_all_users = (req, res) => {
@@ -417,7 +418,8 @@ const get_rents_of_user = (req, res) => {
 
 const send_email_forgot_password = (req, res) => {
 
-    if (req.params == null || req.params.email == null || validate_email(req.params.email)) {
+
+    if (req.params == null || req.params.email == null || !validate_email(req.params.email)) {
         return res.status(500).json("Email not valid");
     } else {
 
@@ -430,7 +432,6 @@ const send_email_forgot_password = (req, res) => {
                 pass: process.env.EMAIL_PASSWORD
             }
         });
-
         var token = generateJwt_passwordrecover(email);
 
         var mailOptions = {
@@ -444,7 +445,7 @@ const send_email_forgot_password = (req, res) => {
             if (error) {
                 return res.status(500).json(error);
             } else {
-                return res.status(500).json(info.response);
+                return res.status(200).json(info.response);
             }
         });
     }

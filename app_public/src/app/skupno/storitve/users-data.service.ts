@@ -6,7 +6,6 @@ import { Rent } from '../razredi/rent';
 import { AuthenticationResult } from '../razredi/authentication-result';
 import { Storage_Browser } from '../razredi/storage';
 import { environment } from '../../../environments/environment';
-import { promises } from 'fs';
 
 @Injectable({
   providedIn: 'root'
@@ -116,6 +115,15 @@ export class UsersDataService {
       .post(url, httpLastnosti)
       .toPromise()
       .then(response => response as User)
+      .catch(this.procesError);
+  }
+
+  public recover_password_using_email(email: string): Promise<String> {
+    const url: string = `${this.apiUrl}/users/forgotpassword/${email}`;
+    return this.http
+      .get(url)
+      .toPromise()
+      .then(response => response as String)
       .catch(this.procesError);
   }
 
