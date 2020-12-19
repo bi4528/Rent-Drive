@@ -24,6 +24,7 @@ import { ResetPasswordComponent } from './skupno/komponente/reset-password/reset
 
 import { FileUploadModule } from 'ng2-file-upload';
 import { ReviewsComponent } from './skupno/komponente/reviews/reviews.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { ReviewsComponent } from './skupno/komponente/reviews/reviews.component'
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [OgrodjeComponent]

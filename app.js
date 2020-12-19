@@ -95,7 +95,7 @@ app.use('/api', (req, res, next) => {
 //app.use('/users', usersRouter);
 //app.use('/vehicles', vehiclesRouter);
 
-app.use('/api/users', usersApi);
+app.use('/api/users', usersApi); // /api/docs
 app.use('/api/vehicles', vehicleApi);
 app.use('/api/rented', rentedApi);
 

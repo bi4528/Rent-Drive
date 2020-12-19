@@ -29,7 +29,7 @@ const vehiclesAll = (req, res) => {
                 const dateTo = req.query.dateTo;
                 const category = req.query.category;
                 const page = req.query.page;
-                console.log(page);
+                //console.log(page);
 
                 if (isEmpty(keyWord) && isEmpty(city) && isEmpty(category)) {
                     //res.status(200).json(dataJSON);

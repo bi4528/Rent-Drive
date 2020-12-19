@@ -12,6 +12,8 @@ const URL = 'http://localhost:3000/upload';  //TO SE MORA SPREMENITI ODVISNO OD 
   templateUrl: './publish.component.html',
   styleUrls: ['./publish.component.css']
 })
+
+
 export class PublishComponent implements OnInit {
 
   constructor(private vehiclesDataService: VehiclesDataService, private router: Router, private avtentikacijaStoritev: AuthenticationService) { }
@@ -117,7 +119,7 @@ export class PublishComponent implements OnInit {
     this.defineFuel(this.newVehicle);
     this.defineCategory(this.newVehicle);
     this.defineMinAge(this.newVehicle);
-    console.log(this.newVehicle);
+    //console.log(this.newVehicle);
     this.newVehicle.AirConditioning=this.defineOnOff(this.newVehicle.AirConditioning);
     this.newVehicle.Navigation=this.defineOnOff(this.newVehicle.Navigation);
     this.newVehicle.accessibility=this.defineOnOff(this.newVehicle.accessibility);
@@ -137,6 +139,10 @@ export class PublishComponent implements OnInit {
       })
       .catch(napaka => this.error = napaka);
   }
+
+  public verificateData() : void {
+    //console.log(checkData());
+  };
 
   //public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
 

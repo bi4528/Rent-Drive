@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Vehicle, Review } from '../../razredi/vehicle';
 import { VehiclesDataService } from '../../storitve/vehicles-data.service';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',

@@ -56,7 +56,7 @@ export class VehiclesDataService {
     };
 
     return this.http
-      .post(url, data)
+      .post(url, data, httpLastnosti)
       .toPromise()
       .then(odgovor => odgovor as Vehicle)
       .catch(this.procesError);
