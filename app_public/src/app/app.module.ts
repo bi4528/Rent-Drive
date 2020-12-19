@@ -24,6 +24,7 @@ import { FeaturehelperPipe } from './skupno/cevi/featurehelper.pipe';
 import { ForgotPasswordComponent } from './skupno/komponente/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './skupno/komponente/reset-password/reset-password.component';
 import { ReviewsComponent } from './skupno/komponente/reviews/reviews.component';
+import { ConfirmComponent } from './skupno/komponente/confirm/confirm.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { ReviewsComponent } from './skupno/komponente/reviews/reviews.component'
     FeaturehelperPipe,
     ReviewsComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,

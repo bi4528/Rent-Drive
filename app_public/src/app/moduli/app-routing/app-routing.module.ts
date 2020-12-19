@@ -14,6 +14,7 @@ import { VehicleProfileComponent } from 'src/app/skupno/komponente/vehicleprofil
 import { NearbyMapaComponent } from 'src/app/skupno/komponente/nearby-mapa/nearby-mapa.component';
 import { ForgotPasswordComponent } from 'src/app/skupno/komponente/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from 'src/app/skupno/komponente/reset-password/reset-password.component';
+import { ConfirmComponent } from 'src/app/skupno/komponente/confirm/confirm.component';
 
 const poti: Routes = [
   {
@@ -55,6 +56,10 @@ const poti: Routes = [
   {
     path: 'nearby',
     component: NearbyMapaComponent
+  },
+  {
+    path: 'book/confirm',
+    component: ConfirmComponent
   }
 ];
 
