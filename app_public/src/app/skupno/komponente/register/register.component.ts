@@ -5,6 +5,7 @@ import { User } from '../../razredi/user';
 import { UsersDataService } from '../../storitve/users-data.service';
 import { AuthenticationService } from '../../storitve/avtentikacija.service';
 import { ValidationService } from '../../storitve/validation.service';
+import { ModalComponent } from '../modal/modal.component';
 declare var validate: any;
 declare var register: any;
 
@@ -54,8 +55,10 @@ export class RegisterComponent implements OnInit {
       (this.repeatPassword.nativeElement.value != this.user.password)
     ) {
       this.alert_error = "Fill all the input fields to register successfully!";
+      this.openModal();
     } else if (!this.validationService.validate_user(this.user)) {
       this.alert_error = "Inserted data is not valid";
+      this.openModal();
     } else {
       this.avtentikacijaStoritev.register(this.user)
         .then(() => {
@@ -63,6 +66,11 @@ export class RegisterComponent implements OnInit {
         })
         .catch(sporocilo => this.alert_error = sporocilo)
     }
+  }
+
+  @ViewChild('modal') public modalComponent: ModalComponent;
+  async openModal() {
+    return await this.modalComponent.open();
   }
 
   ngOnInit(): void {

@@ -1,0 +1,142 @@
+
+<head>
+  <meta charset='utf-8'>
+  <!-- Prevedeni in minimizirani slogi CSS verzije 4.5.2 -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+        crossorigin="anonymous">
+
+  <!-- Podporni knjižnici jQuery in Popper -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+          integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+          integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+          crossorigin="anonymous"></script>
+
+  <!-- Prevedena in minimizirana JavaScript koda verzije 4.5.2 -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+          integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+          crossorigin="anonymous"></script>
+
+  <!-- Leaflet CSS slogi -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+
+  <!-- Leaflet knjižnica -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+          integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+          crossorigin=""></script>
+
+</head>
+<main>
+  <section class="container panel">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card h-100">
+          <div class="card-body d-inline-flex flex-column">
+            <h5 class="card-title">Choose a vehicle nearby:</h5>
+            <p class="card-text">Select location on map:</p>
+            <div class="row w-100 mx-auto">
+              <!--<div class="col-4 overflow-auto" name="seznam" style="overflow-y: scroll; height: 100vh;"></div>-->
+              <div class="col-12" id="mapa_id" style="height: 50vh;
+                             padding-left: 0px; padding-right: 0px; max-height: 100% !important;"></div>
+            </div>
+            <a href="#" class="button mt-auto button1" id="show_vehicles">Show available vehicles</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card h-100">
+          <div class="card-body d-inline-flex flex-column ">
+            <h5 class="card-title">Current Weather in Ljubljana:</h5>
+            <p class="card-text">Powered by <a href="https://weatherstack.com/" target="_blank" >weatherstack.com</a></p>
+            <!--<img src="/images/vreme.png" class="img-fluid" alt="...">-->
+            <div class="card-body weatherstack">
+
+              <div id="location" class="row no-gutters weatherstack location">Ljubljana, Slovenija</div>
+              <div id="localtime" class="row no-gutters weatherstack time"></div>
+
+              <hr/>
+
+              <div id="weather_descriptions" class="row no-gutters weatherstack description text-hide"></div>
+              <div class="row no-gutters weatherstack">
+
+                <div class="col-sm-4 ">
+                  <img id="weather_icon" src="https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0001_sunny.png" class="img-fluid" alt="...">
+                  <span id="temperature" class="weatherstack temperature"></span>
+                </div>
+                <ul class="col-sm-4 list-group">
+                  <li id="wind_speed" class="list-group-item d-flex p-1 border-1 list-group-item-dark" ><b>Wind&nbsp;speed: </b></li>
+                  <li id="wind_degree" class="list-group-item d-flex p-1 border-1 list-group-item-dark"><b>Wind&nbsp;degree: </b></li>
+                  <li id="wind_dir" class="list-group-item d-flex p-1 border-1 list-group-item-dark"><b>Wind&nbsp;direction: </b></li>
+                  <li id="pressure" class="list-group-item d-flex p-1 border-1 list-group-item-info"><b>Pressure: </b></li>
+                  <li id="humidity" class="list-group-item d-flex p-1 border-1 list-group-item-info"><b>Humidity: </b></li>
+                  <li id="uv_index" class="list-group-item d-flex p-1 border-1 list-group-item-danger"><b>Uv_index: </b></li>
+                </ul>
+              </div>
+            </div>
+
+            <a href="#" class="button mt-auto button1" id="show_weather">Show Current Weather</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<script type='text/javascript'>
+
+  // objekt mapa (Map)
+  var mapa;
+
+  const KONG_LAT = 46.050166466
+  const KONG_LNG = 14.502164658
+
+  // Ustvarimo objekt mapa ter dodamo osnovne lastnosti mapi
+  mapa = L.map('mapa_id', {
+    center: L.latLng(KONG_LAT, KONG_LNG),
+    zoom: 12
+  });
+
+  // Ustvarimo prikazni sloj mape
+  var layer = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+
+  // Prikazni sloj dodamo na mapo
+  mapa.addLayer(layer);
+
+  document.getElementById("show_vehicles").addEventListener("click", function () {
+
+    var asinhronaZahteva = new XMLHttpRequest();
+    asinhronaZahteva.open("GET", "/nearby?markeri", true);
+
+    var center = mapa.getCenter();
+    //console.log(center);
+
+    asinhronaZahteva.addEventListener("load", function () {
+
+      cars=JSON.parse(asinhronaZahteva.responseText);
+
+      cars.forEach(function (car) {
+
+        console.log(car);
+        var distance = center.distanceTo([car.LAT, car.LNG]);
+
+        if (distance < 1000.00) {
+          var marker = L.marker([car.LAT, car.LNG]).addTo(mapa);
+          marker.bindPopup("<div>Tukaj se nahaja " + car.make + " " + car.model + "</div>").openPopup();
+
+          //console.log(distance);
+        }
+      })
+
+
+    });
+    asinhronaZahteva.send(null);
+
+  })
+
+
+
+</script>
+<script src="/javascripts/weather.js"></script>

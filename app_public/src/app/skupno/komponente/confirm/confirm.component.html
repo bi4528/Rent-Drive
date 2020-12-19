@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row justify-content-center mt-4">
+    <div class="login-container col-9 col-md-6 col-xl-5 text-center" id="confirmed">
+      <!--<h2>There you go!</h2>
+      <p>Your reservation has been processed successfully!</p>
+      <p>Please, click down below to check more offers!</p>-->
+      {{message}}
+    </div>
+  </div>
+</div>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <form (ngSubmit)="back_to_homepage()">
+      <input id="back_to_homepage" type="submit" class="btn btn-info back-to-homepage" value="Back to homepage">
+    </form>
+  </div>
+</div>
+<img src="../../../../assets/images/viola.jpg" class="img-fluid" alt="...">
+

@@ -1,1 +1,20 @@
-<div [innerHTML]="rezultat"></div>
+<!--<table [outerHTML]="rezultat"></table>-->
+<tr class="review" *ngFor="let review of reviews">
+    <td class='profile' colspan='2'>
+        <img class="avatar" onclick="location.href='/users/profiles/{{review.user_id}}'"
+            src="../../../../assets/uploads/{{review.img}}">
+        <strong> {{review.username}}</strong>
+    </td>
+
+    <td class='stars'>
+        <span>{{review.rating}}</span>
+    </td>
+
+    <td class='comment'>
+        {{review.comment}}
+    </td>
+    <td>
+
+    </td>
+
+</tr>

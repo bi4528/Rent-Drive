@@ -16,15 +16,19 @@ import { LoginComponent } from './skupno/komponente/login/login.component';
 import { RegisterComponent } from './skupno/komponente/register/register.component';
 import { VehicleProfileComponent } from './skupno/komponente/vehicleprofile/vehicleprofile.component';
 import { NearbyMapaComponent } from './skupno/komponente/nearby-mapa/nearby-mapa.component';
+import { NearbyVremeComponent } from './skupno/komponente/nearby-vreme/nearby-vreme.component';
+import { NearbyComponent } from './skupno/komponente/nearby/nearby.component';
 import { SimplePipePipe } from './skupno/cevi/simple-pipe.pipe';
 import { StarsPipe } from './skupno/cevi/stars.pipe';
 import { FeaturehelperPipe } from './skupno/cevi/featurehelper.pipe';
 import { ForgotPasswordComponent } from './skupno/komponente/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './skupno/komponente/reset-password/reset-password.component';
-
-import { FileUploadModule } from 'ng2-file-upload';
 import { ReviewsComponent } from './skupno/komponente/reviews/reviews.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmComponent } from './skupno/komponente/confirm/confirm.component';
+import { BookComponent } from './skupno/komponente/book/book.component';
+import { ModalComponent } from './skupno/komponente/modal/modal.component';
+
 
 @NgModule({
   declarations: [
@@ -37,6 +41,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     EditProfileComponent,
     LoginComponent,
     RegisterComponent,
+    NearbyMapaComponent,
+    NearbyVremeComponent,
+    NearbyComponent,
     VehicleProfileComponent,
     NearbyMapaComponent,
     SimplePipePipe,
@@ -44,7 +51,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FeaturehelperPipe,
     ReviewsComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ConfirmComponent,
+    BookComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

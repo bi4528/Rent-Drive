@@ -2,11 +2,13 @@
     <!--{{vehicle | json}}-->
     <!-- galerija-->
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
+        <ol *ngIf="indicators" class="carousel-indicators">
 
             <li *ngFor="let indicator of indicators" data-target="#carouselExampleIndicators"
-                data-slide-to="{{indicator.num}}" {{indicator.active}}></li>
-
+                data-slide-to="{{indicator.num}}" class="{{indicator.active}}">
+            </li>
+            <!-- TODO linki??? -->
+            <!--class="{{indicator.active}}-->
         </ol>
         <div class="carousel-inner">
 
@@ -25,7 +27,7 @@
         </a>
     </div>
 
-    <div *ngIf="alert_error" id="alert" class="alert alert-danger alert-dismissible fade show" role="alert">
+    <div *ngIf="alert_error && (!user || !vehicle)" id="alert" class="alert alert-danger alert-dismissible fade show" role="alert">
         <p>{{alert_error}}</p>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -53,16 +55,16 @@
             <div class="row mt-3 mb-3 ml-0.5 justify-content-center">
                 <div class="rating">
                     <h3 class="inline">Rating:</h3>
-                    <!--<span id="stars-vp" [innerHTML]="vehicle.avg_rating | stars"></span> -->
+                    <span *ngIf="avg_rating" id="stars-vp" [innerHTML]="avg_rating | stars"></span>
                 </div>
             </div>
 
             <!--- lastnik in opis-->
             <div class="row m-3">
                 <div class="col-sm-12 col-md-4 ">
-                    <!--href="users/other$id={{owner_id}}"-->
+                    <!--TODO owner_id??-->
                     <input *ngIf="user" name="{{user.profile_picture}}" type="hidden" value="{{user.profile_picture}}">
-                    <a *ngIf="user" href="/users/profiles/{{owner_id}}"><img class="avatar"
+                    <a *ngIf="user" routerLink="/users/profiles/{{owner_id}}"><img class="avatar"
                             src="../../../../assets/uploads/{{user.profile_picture}}" alt="avatar"></a>
                     <ul class="list-group list-group-flush">
                         <input type="hidden" name="owner_id" id="owner_id" value="{{owner_id}}">
@@ -95,22 +97,18 @@
             <!--- lastnosti in izposodi-->
             <div class="row m-3 mt-5">
                 <h3>Features:</h3>
-                <div *ngIf="vehicle" [innerHTML]="vehicle |
-                    featurehelper:'bluetooth':'Navigation':'USB':'AUX':'parkingsensors':'autopilot':'accessibility'">
-                
-                </div>
+                <div class="col-12" *ngIf="vehicle" [outerHTML]="vehicle | featurehelper"></div>
                 <br>
-                <!--{{{featurehelper2 maxspeed hp typeoffuel acceleration seats doors consumption minage luggage}}}-->
 
                 <div class="book col-sm-8 col-md-4 mt-4">
                     <div class="form-group">
                         <label for="date-from">From</label>
-                        <input *ngIf="vehicle" id="date-from" type="date" class="form-control" name="date" [min]="vehicle.date[0]"
+                        <input *ngIf="vehicle" [(ngModel)]="date-from" id="date-from" type="date" class="form-control" name="date" [min]="vehicle.date[0]"
                             [max]="vehicle.date[1]">
                     </div>
                     <div class="form-group">
                         <label for="date-to">To</label>
-                        <input *ngIf="vehicle" id="date-to" type="date" class="form-control" min="{{vehicle.date[0]}}"
+                        <input *ngIf="vehicle" [(ngModel)]="date-to" id="date-to" type="date" class="form-control" min="{{vehicle.date[0]}}"
                             max="{{vehicle.date[1]}}" name="date">
                     </div>
                     <div class="form-group"><label for="cars">Location of pickup &amp; return</label>
@@ -131,19 +129,30 @@
         </div>
     </form>
 
-
     <!--- recenzije-->
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class=" reviews m-3">
-                <table id="t">
+                <table *ngIf="vehicle" id="t">
                     <tr>
                         <td colspan="2">Users</td>
                         <td>Rating</td>
                         <td colspan="2">Comments</td>
                     </tr>
-                    <app-reviews *ngIf="vehicle" [vsebina]="vehicle.reviews" [vehicleId]="vehicle._id"></app-reviews>
-                    <!--{{{helper reviews _id}}}-->
+                    <tr class="review" *ngFor="let review of vehicle.reviews">
+                        <td class='profile' colspan='2'>
+                            <img class="avatar" src="../../../../assets/uploads/{{review.img}}">
+                            <strong> {{review.username}}</strong>
+                        </td>
+                    
+                        <td class='stars'>
+                            <span>{{review.rating}}</span>
+                        </td>
+                        <td class='comment'>{{review.comment}}</td>
+                        <td *ngIf="review.show_delete_button">
+                            <!--<input type='button' class = 'btn btn-danger delete' value = 'Delete' onclick = "location.href='/vehicles/{{review.vehicleId}}/reviews/{{review._id}}/delete'" owner="{{review.username}}" ></input>-->
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>
@@ -151,7 +160,7 @@
 
     <div *ngIf="user_logged" class="row justify-content-center mx-4">
         <input *ngIf="vehicle" type="button" class="btn btn-lg btn-primary" value="Add review"
-            onclick="location.href='/vehicles/{{_id}}/reviews'">
+            onclick="location.href='/vehicles/{{vehicle._id}}/reviews'">
     </div>
     <br>
 

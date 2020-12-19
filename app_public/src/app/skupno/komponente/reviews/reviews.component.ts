@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ReviewsComponent implements OnInit {
 
-  @Input() vsebina: any;
+  @Input() reviews: any;
   @Input() vehicleId: any;
 
 
@@ -15,7 +15,7 @@ export class ReviewsComponent implements OnInit {
 
   public rezultat: any;
   ngOnInit(): void {
-    let rezultat = "";
+    /*let rezultat = "";
     if (this.vsebina != null) {
       for (var i = 0; i < this.vsebina.length; i++) {
         rezultat += "<tr class='review'><td class='profile' colspan='2'>";
@@ -31,8 +31,9 @@ export class ReviewsComponent implements OnInit {
       }
       rezultat += "</tr>";
     }
+    debugger;
     
-    this.rezultat = rezultat;
+    this.rezultat = rezultat;*/
   }
 
 }
