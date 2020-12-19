@@ -25,6 +25,7 @@ import { ForgotPasswordComponent } from './skupno/komponente/forgot-password/for
 import { ResetPasswordComponent } from './skupno/komponente/reset-password/reset-password.component';
 import { ReviewsComponent } from './skupno/komponente/reviews/reviews.component';
 import { ConfirmComponent } from './skupno/komponente/confirm/confirm.component';
+import { BookComponent } from './skupno/komponente/book/book.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { ConfirmComponent } from './skupno/komponente/confirm/confirm.component'
     ReviewsComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    BookComponent
   ],
   imports: [
     BrowserModule,
