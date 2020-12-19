@@ -47,7 +47,7 @@ export class VehicleProfileComponent implements OnInit {
         this.car_photos = [];
         this.indicators = [];
         this.car_photos.push({ "image": images[i], "active": "active" });
-        this.indicators.push({ "num": i.toString(), "active": "class='active'" });
+        this.indicators.push({ "num": i.toString(), "active": "active" });
       }
       else {
         this.car_photos.push({ "image": images[i] });

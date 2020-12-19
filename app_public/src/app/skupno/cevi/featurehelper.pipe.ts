@@ -41,7 +41,6 @@ export class FeaturehelperPipe implements PipeTransform {
     if (vehicle.luggage!=undefined) rezultat+="<div><i class='fas fa-suitcase'></i>"+ vehicle.luggage +" l</div>";
     if (vehicle.minage!=undefined) rezultat+="<div><i class='fas fa-user-graduate'></i>"+ vehicle.minage +" (minimum age)</div>";
     rezultat+="</div>";
-    debugger;
     return rezultat;
   }
 
