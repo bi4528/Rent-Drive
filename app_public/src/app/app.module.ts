@@ -26,6 +26,8 @@ import { ResetPasswordComponent } from './skupno/komponente/reset-password/reset
 import { ReviewsComponent } from './skupno/komponente/reviews/reviews.component';
 import { ConfirmComponent } from './skupno/komponente/confirm/confirm.component';
 import { BookComponent } from './skupno/komponente/book/book.component';
+import { ModalComponent } from './skupno/komponente/modal/modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -51,14 +53,16 @@ import { BookComponent } from './skupno/komponente/book/book.component';
     ForgotPasswordComponent,
     ResetPasswordComponent,
     ConfirmComponent,
-    BookComponent
+    BookComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [OgrodjeComponent]

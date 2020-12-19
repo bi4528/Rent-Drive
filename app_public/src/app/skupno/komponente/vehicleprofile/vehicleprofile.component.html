@@ -103,12 +103,12 @@
                 <div class="book col-sm-8 col-md-4 mt-4">
                     <div class="form-group">
                         <label for="date-from">From</label>
-                        <input *ngIf="vehicle" id="date-from" type="date" class="form-control" name="date" [min]="vehicle.date[0]"
+                        <input *ngIf="vehicle" [(ngModel)]="date-from" id="date-from" type="date" class="form-control" name="date" [min]="vehicle.date[0]"
                             [max]="vehicle.date[1]">
                     </div>
                     <div class="form-group">
                         <label for="date-to">To</label>
-                        <input *ngIf="vehicle" id="date-to" type="date" class="form-control" min="{{vehicle.date[0]}}"
+                        <input *ngIf="vehicle" [(ngModel)]="date-to" id="date-to" type="date" class="form-control" min="{{vehicle.date[0]}}"
                             max="{{vehicle.date[1]}}" name="date">
                     </div>
                     <div class="form-group"><label for="cars">Location of pickup &amp; return</label>
@@ -148,10 +148,7 @@
                         <td class='stars'>
                             <span>{{review.rating}}</span>
                         </td>
-                    
-                        <td class='comment'>
-                            {{review.comment}}
-                        </td>
+                        <td class='comment'>{{review.comment}}</td>
                         <td *ngIf="review.show_delete_button">
                             <!--<input type='button' class = 'btn btn-danger delete' value = 'Delete' onclick = "location.href='/vehicles/{{review.vehicleId}}/reviews/{{review._id}}/delete'" owner="{{review.username}}" ></input>-->
                         </td>
@@ -163,7 +160,7 @@
 
     <div *ngIf="user_logged" class="row justify-content-center mx-4">
         <input *ngIf="vehicle" type="button" class="btn btn-lg btn-primary" value="Add review"
-            onclick="location.href='/vehicles/{{_id}}/reviews'">
+            onclick="location.href='/vehicles/{{vehicle._id}}/reviews'">
     </div>
     <br>
 

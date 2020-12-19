@@ -75,7 +75,7 @@ export class VehicleProfileComponent implements OnInit {
 
 
   public book(): void {
-    return; //TODO
+    this.router.navigateByUrl("/vehicles/" + this.vehicleId +"/book");
   }
 
   public avg_rating: Number;
