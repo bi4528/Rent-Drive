@@ -1,34 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, Input, Injectable, ViewChild, TemplateRef  } from '@angular/core';
+import {NgbModal, NgbModalRef, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-modal',
+  selector: 'modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css']
 })
+@Injectable()
 export class ModalComponent implements OnInit {
-  closeResult = '';
 
+  @Input() text: String;
+  @Input() header: String;
+  
+  @ViewChild('modal') private modalContent: TemplateRef<ModalComponent>
+  private modalRef: NgbModalRef
+
+  public content:string;
   constructor(private modalService: NgbModal) { }
 
-  open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    
-    });
+  open(): Promise<boolean> {
+    return new Promise<boolean>(resolve => {
+      this.modalRef = this.modalService.open(this.modalContent)
+      this.modalRef.result.then(resolve, resolve)
+    })
   }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+  async close(): Promise<void> {
+      this.modalRef.close();
   }
 
-  ngOnInit(): void {
+  async dismiss(): Promise<void> {
+    this.modalRef.dismiss();
   }
+
+  ngOnInit(): void {}
 
 }
