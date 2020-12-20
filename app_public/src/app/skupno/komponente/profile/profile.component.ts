@@ -50,6 +50,7 @@ export class ProfileComponent implements OnInit {
   }
 
   private get_favourite_vehicles_of_user = (id_of_user: String): void => {
+    console.log("testing fav vehicles");
     this.alert_error = "Searching for favourite vehicles";
     this.usersDataService
       .getFavouriteVehiclesOfUser(id_of_user)
