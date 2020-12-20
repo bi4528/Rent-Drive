@@ -42,7 +42,6 @@ export class VehicleProfileComponent implements OnInit {
       });
   }
 
-
   public setCarPhotosAndIndicators(images: string[]): void {
     for (var i = 0; i < images.length; i++) {
       if (i == 0) {
@@ -73,7 +72,6 @@ export class VehicleProfileComponent implements OnInit {
       }
     }
   }
-
 
   public book(form): void {
     //debugger;

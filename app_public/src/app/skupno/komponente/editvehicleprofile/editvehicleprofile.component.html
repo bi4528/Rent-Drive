@@ -61,7 +61,7 @@
             <!--- lastnik in opis-->
             <div class="row m-3">
                 <div class="col-sm-12 col-md-4 ">
-                    <a href="profile.html"><img class="avatar" src="../../../../assets/uploads/{{user.profile_picture}}"
+                    <a *ngIf="user && user._id" routerLink="/users/profiles/{{user._id}}"><img class="avatar" src="../../../../assets/uploads/{{user.profile_picture}}"
                             alt="avatar"></a>
                     <ul class="list-group list-group-flush">
                         <li *ngIf="user && user.phone_number" class="list-group-item contact-details"><i
@@ -121,9 +121,9 @@
                     <label class="custom-control-label" for="AUX">AUX</label>
                 </div>
                 <div class="custom-control custom-checkbox   mx-2">
-                    <input type="checkbox" *ngIf="vehicle && vehicle.Bluetooth" class="custom-control-input"
+                    <input type="checkbox" *ngIf="vehicle && vehicle.bluetooth" class="custom-control-input"
                         id="Bluetooth" name="bluetooth" checked>
-                    <input type="checkbox" *ngIf="vehicle && vehicle.Bluetooth" class="custom-control-input"
+                    <input type="checkbox" *ngIf="vehicle && vehicle.bluetooth" class="custom-control-input"
                         id="Bluetooth" name="bluetooth">
                     <label class="custom-control-label" for="Bluetooth">Bluetooth</label>
                 </div>

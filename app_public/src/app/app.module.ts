@@ -31,6 +31,7 @@ import { ModalComponent } from './skupno/komponente/modal/modal.component';
 import { HtmlPrelomVrsticePipe } from './skupno/cevi/html-prelom-vrstice.pipe';
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 import { EditvehicleprofileComponent } from './skupno/komponente/editvehicleprofile/editvehicleprofile.component';
+import { NotFoundComponentComponent } from './skupno/komponente/not-found-component/not-found-component.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { EditvehicleprofileComponent } from './skupno/komponente/editvehicleprof
     BookComponent,
     ModalComponent,
     HtmlPrelomVrsticePipe,
-    EditvehicleprofileComponent
+    EditvehicleprofileComponent,
+    NotFoundComponentComponent
   ],
     imports: [
         BrowserModule,

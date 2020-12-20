@@ -18,6 +18,7 @@ import { ConfirmComponent } from 'src/app/skupno/komponente/confirm/confirm.comp
 import {BookComponent} from '../../skupno/komponente/book/book.component';
 import {NearbyComponent} from '../../skupno/komponente/nearby/nearby.component';
 import { EditvehicleprofileComponent } from 'src/app/skupno/komponente/editvehicleprofile/editvehicleprofile.component';
+import { NotFoundComponentComponent } from 'src/app/skupno/komponente/not-found-component/not-found-component.component';
 
 
 const poti: Routes = [
@@ -75,6 +76,9 @@ const poti: Routes = [
   }, {
     path: 'vehicles/:idVehicle/edit',
     component: EditvehicleprofileComponent
+  }, 
+  {
+    path: '**', component: NotFoundComponentComponent
   }
 ];
 

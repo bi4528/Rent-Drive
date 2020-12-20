@@ -65,7 +65,7 @@
                 <div class="col-sm-12 col-md-4 ">
                     <!--TODO owner_id??-->
                     <input *ngIf="user" name="{{user.profile_picture}}" type="hidden" value="{{user.profile_picture}}">
-                    <a *ngIf="user" routerLink="/users/profiles/{{owner_id}}"><img class="avatar"
+                    <a *ngIf="user && user._id" routerLink="/users/profiles/{{user._id}}"><img class="avatar"
                             src="../../../../assets/uploads/{{user.profile_picture}}" alt="avatar"></a>
                     <ul class="list-group list-group-flush">
                         <input type="hidden" name="owner_id" id="owner_id" value="{{owner_id}}">
@@ -142,7 +142,7 @@
                     </tr>
                     <tr class="review" *ngFor="let review of vehicle.reviews">
                         <td class='profile' colspan='2'>
-                            <img class="avatar" src="../../../../assets/uploads/{{review.img}}">
+                            <a routerLink="/users/profiles/{{review._id}}"><img class="avatar" src="../../../../assets/uploads/{{review.img}}"></a>
                             <strong> {{review.username}}</strong>
                         </td>
                     
