@@ -17,7 +17,7 @@ var dataJSON = require('../models/avti-seznam.json');
 
 /* GET vehicleprofile.hbs */
 const vehicleprofile = (req, res) => {
-    debugger;
+    //debugger;
     console.log(dataJSON.cars[dataJSON.cars.length - 1]);
     res.render('vehicleprofile', dataJSON.cars[dataJSON.cars.length - 1]
     );

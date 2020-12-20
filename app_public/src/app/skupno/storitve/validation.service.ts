@@ -67,7 +67,10 @@ export class ValidationService {
         return this.validate_not_empty_string(email) && this.email_regex.test(email.toLowerCase())
     }
 
-
+    public validate_phone_number2(number) : Boolean {
+        return this.validate_not_empty_string(number) && this.phone_regex.test(number);
+    }
+    
     /*
     (?=.*[a-z])	The string must contain at least 1 lowercase alphabetical character
     (?=.*[A-Z])	The string must contain at least 1 uppercase alphabetical character
@@ -75,54 +78,54 @@ export class ValidationService {
     (?=.*[!@#$%^&*])	The string must contain at least one special character, but we are escaping reserved RegEx characters to avoid conflict
     (?=.{8,})	The string must be eight characters or longer
     */
-
+    public validate_vehicle_speed(speed) {
+        return parseFloat(speed) > 0;
+    }
+    
+    public validate_vehicle_number_of_doors(number_of_doors) {
+        return parseInt(number_of_doors) > 0 && /\b[0-9]+\b/.test(number_of_doors);
+    }
+    
+    public validate_vehicle_age(age) {
+        return age >= 0;
+    }
+    
+    public validate_vehicle_luggage(l) {
+        return parseFloat(l) >= 0;
+    }
+    public validate_vehicle_horespower(hp) {
+        return /\b[0-9]+\b/.test(hp) && parseFloat(hp) > 0;
+    }
+    public validate_acceleration(time) {
+        return /\b([0-9]+.[0-9]+|[0-9]+,[0-9]+|[0-9]+)\b/.test(time);
+    }
+    public validate_vehicle_doors_seats(speed) {
+        return parseInt(speed) > 0 && parseInt(speed) < 7 && /\b[0-9]+\b/.test(speed);
+    }
+    public validate_vehicle_price_per_day(price) {
+        return parseFloat(price) > 0 && parseFloat(price) < 5000;
+    }
+    public validate_phone(phone) {
+        return /\b[0-9]+\b/.test(phone);
+    }
+    public validate_dates(date1, date2) {
+        let date1s = new Date(date1);
+        let date2s = new Date(date2);
+        return date2s >= date1s;
+    }
+    public validate_no_spaces(word) {
+        return this.no_spaces.test(word);
+    }
+    public validate_city(city) {
+        return this.validate_not_empty_string(city) && /\b([a-z]+|[a-z]+-[a-z]+)\b/i.test(city);
+    }
 
     public validate_password(password): Boolean {
         return this.validate_not_empty_string(password) && this.password_regex.test(password);
     }
 
-    public validate_vehicle_speed(speed): Boolean {
-        return parseInt(speed) > 0;
-    }
-    public validate_vehicle_number_of_doors(number_of_doors): Boolean {
-        return number_of_doors > 0;
-    }
-
-    public validate_vehicle_age(age): Boolean {
-        return age >= 0;
-    }
-
-    public validate_vehicle_luggage(l): Boolean {
-        return l >= 0;
-    }
-
     public validate_vehicle_make(make): Boolean {
         return this.make_regex.test(make);
-    }
-    public validate_vehicle_horespower(hp): Boolean {
-        return /\b[0-9]+\b/.test(hp) && parseInt(hp) > 0;
-    }
-    public validate_acceleration(time): Boolean {
-        return /\b([0-9]+.[0-9]+|[0-9]+,[0-9]+|[0-9]+)\b/.test(time);
-    }
-    public validate_vehicle_doors_seats(speed): Boolean {
-        return parseInt(speed) > 0 && parseInt(speed) < 7;
-    }
-    public validate_vehicle_price_per_day(price): Boolean {
-        return parseInt(price) > 0 && parseInt(price) < 5000;
-    }
-    public validate_phone(phone): Boolean {
-        return /\b[0-9]+\b/.test(phone);
-    }
-
-    public validate_dates(date1s, date2s): Boolean {
-        var date1 = new Date(date1s);
-        var date2 = new Date(date2s);
-        return date2 >= date1;
-    }
-
-    public validate_no_spaces(word): Boolean {
-        return this.no_spaces.test(word);
     }
 
 

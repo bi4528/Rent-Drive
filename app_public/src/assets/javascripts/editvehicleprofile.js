@@ -156,7 +156,7 @@ document.getElementById("save-changes").addEventListener("click", function (dogo
         errors += "You must insert a description.\n";
         writeError = true;
     }
-    debugger;
+    //debugger;
     if (!validate_dates(date1.value, date2.value)) {
         date1.classList.add("alert-danger");
         date2.classList.add("alert-danger");
