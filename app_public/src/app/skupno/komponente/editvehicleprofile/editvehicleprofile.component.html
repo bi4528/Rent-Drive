@@ -1,5 +1,6 @@
 <main>
     <!--- galerija-->
+    <modal #modal [text]="alert_error" [header]="'Error!'"></modal>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol *ngIf="indicators" class="carousel-indicators">
             <li *ngFor="let indicator of indicators" data-target="#carouselExampleIndicators"
@@ -20,7 +21,7 @@
         </a>
     </div>
     <!-- enctype="multipart/form-data -->
-    <form id="form" method="POST" action="/vehicles/{{_id}}" enctype="multipart/form-data">
+    <form id="form" (ngSubmit)="edit()">
         <div class="container-fluid pt-5 pb-3">
             <!---slike-->
             <div class="row m-2 justify-content-center">
@@ -194,7 +195,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-shipping-fast" aria-hidden="true"></i></span>
                     </div>
-                    <input *ngIf="vehicle" id="acceleration" id="seats" type="text" class="form-control"
+                    <input *ngIf="vehicle" id="acceleration" type="text" class="form-control"
                         placeholder="acceleration (km/h)" value="{{vehicle.acceleration}}" name="acceleration">
                 </div>
                 <div class="input-group mb-3">
