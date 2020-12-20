@@ -23,6 +23,22 @@ export class VehiclesDataService {
       .catch(this.procesError);
   }
   
+  public updateVehicleData(vehicle: Vehicle): Promise <Vehicle>{
+    console.log("Update");
+    console.log(vehicle);
+    const url: string = `${this.apiUrl}/vehicles/${vehicle._id}`;
+    const httpLastnosti = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.storage.getItem('rentdrive-token')}`
+      })
+    };
+    return this.http
+      .put(url, vehicle, httpLastnosti)
+      .toPromise()
+      .then(response => response as Vehicle)
+      .catch (this.procesError);
+  }
+
   /*public getOwner(vehicleId: String):Promise <String>{
     const url: string = `${this.apiUrl}/vehicles/${vehicleId}`;
     return this.owner_id ???

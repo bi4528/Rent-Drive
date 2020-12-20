@@ -23,7 +23,7 @@ export class EditvehicleprofileComponent implements OnInit {
     this.vehicleDataService
       .getVehicle(vehicleId)
       .then((data: Vehicle) => {
-        this.alert_error = (data == null) ? "" : "No vehicle found";
+        this.alert_error = (data != null) ? "" : "No vehicle found";
         this.vehicle = data;
         console.log(this.vehicle);
         this.get_user_data(this.vehicle.owner_id);
@@ -36,7 +36,7 @@ export class EditvehicleprofileComponent implements OnInit {
     this.usersDataService
       .getUser(id_of_user)
       .then((data: User) => {
-        this.alert_error = (data == null) ? "" : "No user found";
+        this.alert_error = (data != null) ? "" : "No user found";
         this.user = data;
         console.log(this.user);
       });
@@ -58,6 +58,7 @@ export class EditvehicleprofileComponent implements OnInit {
   }
 
   public edit(): void {
+    this.alert_error = "Editing vehicle...";
     var writeError = false;
     var errors = "";
     var maxspeed = <HTMLInputElement>document.getElementById("maxspeed");
@@ -80,78 +81,87 @@ export class EditvehicleprofileComponent implements OnInit {
       make.classList.add("alert-danger");
       errors += "Make should have only letters.\n";
       writeError = true;
-    }
+    } else this.vehicle.make = make.value;
     if (!this.validationService.validate_not_empty_string(model.value)) {
       model.classList.add("alert-danger");
       errors += "Model text field should not be empty.\n";
       writeError = true;
-    }
+    } else this.vehicle.model = model.value;
     if (!this.validationService.validate_vehicle_horespower(hp.value)) {
       hp.classList.add("alert-danger");
       errors += "Horespower should be only numbers.\n";
       writeError = true;
-    }
+    } else this.vehicle.hp = +hp.value;
     if (!this.validationService.validate_vehicle_speed(maxspeed.value)) {
       maxspeed.classList.add("alert-danger");
       errors += "Maxspeed should be only numbers.\n";
       writeError = true;
-    }
+    } else this.vehicle.maxspeed = +maxspeed.value;
     if (!this.validationService.validate_acceleration(acceleration.value)) {
       acceleration.classList.add("alert-danger");
       errors += "Acceleration should be written in the next format => number.number or just a number(s).\n";
       writeError = true;
-    }
+    } else this.vehicle.acceleration = +acceleration.value;
     if (!this.validationService.validate_not_empty_string(consumption.value) && consumption.disabled == false) {
       consumption.classList.add("alert-danger");
       errors += "Consumption field must not be empty, except if the vehicle is electric\n";
       writeError = true;
-    }
+    } else this.vehicle.consumption = +consumption.value;
     if (!this.validationService.validate_vehicle_doors_seats(seats.value)) {
       seats.classList.add("alert-danger");
       errors += "Number of seats is only one number.\n";
       writeError = true;
-    }
+    } else this.vehicle.seats = +seats.value;
     if (!this.validationService.validate_vehicle_doors_seats(doors.value)) {
       doors.classList.add("alert-danger");
       errors += "Number of doors is only one number.\n";
       writeError = true;
-    }
+    } else this.vehicle.doors = +doors.value;
     if (!this.validationService.validate_vehicle_price_per_day(price.value)) {
       price.classList.add("alert-danger");
       errors += "Price must be between 1 and 5000.\n";
       writeError = true;
-    }
+    } else this.vehicle.price = +price.value;
     if (!this.validationService.validate_vehicle_luggage(luggage.value)) {
       luggage.classList.add("alert-danger");
       errors += "Luggage capacity must be a positive number\n";
       writeError = true;
-    }
+    } else this.vehicle.luggage = +luggage.value;
     if (!this.validationService.validate_not_empty_string(addres.value)) {
       addres.classList.add("alert-danger");
       errors += "You must insert an address.\n";
       writeError = true;
-    }
+    } else this.vehicle.addres = addres.value;
     if (!this.validationService.validate_vehicle_number_of_doors(zip.value)) {
       zip.classList.add("alert-danger");
       errors += "You must insert a zip.\n";
       writeError = true;
-    }
+    } else this.vehicle.zip = +zip.value;
     if (!this.validationService.validate_not_empty_string(description.value)) {
       description.classList.add("alert-danger");
       errors += "You must insert a description.\n";
       writeError = true;
-    }
+    } else this.vehicle.description = description.value;
     if (!this.validationService.validate_dates(date1.value, date2.value)) {
       date1.classList.add("alert-danger");
       date2.classList.add("alert-danger");
       errors += "Insert valid dates.\n";
       writeError = true;
+    } else {
+      this.vehicle.date[0] = date1.value;
+      this.vehicle.date[1] = date2.value;
     }
     debugger;
     if (writeError) {
       this.alert_error = errors;
       this.openModal();
-    } else this.router.navigateByUrl("/vehicles/" + this.vehicleId);
+    } else {
+      this.vehicleDataService.updateVehicleData(this.vehicle).then((vehicle: Vehicle)=> {
+        this.alert_error = (vehicle != null) ? "" : "Failed to update vehicle";
+        this.vehicle = vehicle;
+        this.router.navigateByUrl("/vehicles/" + this.vehicleId);
+      })
+    }
   }
 
   @ViewChild('modal') public modalComponent: ModalComponent;

@@ -1,4 +1,10 @@
 <main>
+    <div *ngIf="alert_error" id="alert" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <p>{{alert_error}}</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
     <!--- galerija-->
     <modal #modal [text]="alert_error" [header]="'Error!'"></modal>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -244,7 +250,10 @@
                 <div class="input-group-prepend mb-4 ">
                     <span class="input-group-text">Price (per day)</span>
                     <input *ngIf="vehicle" id="price" name="price" type="text" class="form-control"
-                        value="{{vehicle.price}}€">
+                        value="{{vehicle.price}}">
+                        <div class="input-group-append">
+                            <span class="input-group-text">€</span>
+                          </div>
                 </div>
             </div>
             <div class="col-sm-3"></div>

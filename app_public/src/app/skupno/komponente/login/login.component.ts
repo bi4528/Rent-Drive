@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsersDataService } from '../../storitve/users-data.service';
 import { User } from '../../razredi/user';
 import { AuthenticationService } from '../../storitve/avtentikacija.service';
@@ -7,6 +7,7 @@ import { HistoryService } from '../../storitve/history.service';
 import { ValidationService } from '../../storitve/validation.service';
 
 import { $ } from "jquery";
+import { ModalComponent } from '../modal/modal.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,33 +21,39 @@ export class LoginComponent implements OnInit {
 
 
   public login = (): void => {
-    console.log("aefaervf");
-
-    this.alert_error = "";
+    this.status = "Trying to login..."; //login attempt start
 
     if (
       !this.user.email ||
       !this.user.password
     ) {
       this.alert_error = "To proceed you have to insert all data";
-      //$("#modal").modal();
+      this.openModal();
     } else if (!this.validationService.validate_email(this.user.email)) {
-      this.alert_error = "Email is not valid";
+      this.alert_error = "Email or password not valid!";
+      this.openModal();
     } else {
-
-      this.alert_error = "Email is valid. Trying to login";
       this.avtentikacijaStoritev
         .login(this.user)
         .then(() => {
+          this.alert_error="";
           this.router.navigateByUrl(
             this.historyService.vrniPredhodnjeUrlNasloveBrezPrijaveInRegistracije()
           )
         })
-        .catch(sporocilo => this.alert_error = sporocilo);
+        .catch(sporocilo => {
+          this.alert_error = "Email or password not valid!";
+          this.openModal();
+        } );
     }
+    this.status="";
   }
 
-
+  @ViewChild('modal') public modalComponent: ModalComponent;
+  async openModal() {
+    return await this.modalComponent.open();
+  }
+  status: String;
   alert_error: String;
   public user: User = {
     _id: "",

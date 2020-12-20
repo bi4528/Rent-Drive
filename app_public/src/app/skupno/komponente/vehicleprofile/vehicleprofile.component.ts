@@ -22,7 +22,7 @@ export class VehicleProfileComponent implements OnInit {
     this.vehicleDataService
       .getVehicle(vehicleId)
       .then((data: Vehicle) => {
-        this.alert_error = (data == null) ? "" : "No vehicle found";
+        this.alert_error = (data != null) ? "" : "No vehicle found";
         this.vehicle = data;
         console.log(this.vehicle);
         this.get_user_data(this.vehicle.owner_id);
@@ -36,7 +36,7 @@ export class VehicleProfileComponent implements OnInit {
     this.usersDataService
       .getUser(id_of_user)
       .then((data: User) => {
-        this.alert_error = (data == null) ? "" : "No user found";
+        this.alert_error = (data != null) ? "" : "No user found";
         this.user = data;
         console.log(this.user);
       });
