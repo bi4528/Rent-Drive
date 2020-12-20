@@ -1,0 +1,273 @@
+<main>
+    <!--- galerija-->
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol *ngIf="indicators" class="carousel-indicators">
+            <li *ngFor="let indicator of indicators" data-target="#carouselExampleIndicators"
+                data-slide-to="{{indicator.num}}" class="{{indicator.active}}"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div *ngFor="let car_photo of car_photos" class="carousel-item {{car_photo.active}}">
+                <img class=" d-block w-100" src="../../../../assets/uploads/{{car_photo.image}}" alt="car-photo">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <!-- enctype="multipart/form-data -->
+    <form id="form" method="POST" action="/vehicles/{{_id}}" enctype="multipart/form-data">
+        <div class="container-fluid pt-5 pb-3">
+            <!---slike-->
+            <div class="row m-2 justify-content-center">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
+
+                    <div class="form-group">
+                        <label for="images">Upload vehicle images</label>
+                        <input type="file" class="form-control-file" id="images" name="carphotos2" multiple>
+                    </div>
+
+                </div>
+            </div>
+
+            <!--- ime-->
+            <div class="row m-2 justify-content-center">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2">
+                    <div class="name input-group w-25 ">
+                        <div class="input-group-prepend ">
+                            <div class="input-group-text">
+                                <h4>Make and model</h4>
+                            </div>
+                        </div>
+                        <input *ngIf="vehicle" id="make" name="make" type="text" class="form-control-md"
+                            value="{{vehicle.make}}">
+                        <input *ngIf="vehicle" id="model" name="model" type="text" class="form-control-md"
+                            value="{{vehicle.model}}">
+                    </div>
+                </div>
+            </div>
+
+            <!--- lastnik in opis-->
+            <div class="row m-3">
+                <div class="col-sm-12 col-md-4 ">
+                    <a href="profile.html"><img class="avatar" src="../../../../assets/uploads/{{user.profile_picture}}"
+                            alt="avatar"></a>
+                    <ul class="list-group list-group-flush">
+                        <li *ngIf="user && user.phone_number" class="list-group-item contact-details"><i
+                                class="fas fa-phone"></i>{{user.phone_number}}</li>
+                        <li *ngIf="user" class="list-group-item contact-details"><i
+                                class="far fa-envelope"></i>{{user.email}}</li>
+                        <li *ngIf="user && user.location" class="list-group-item contact-details"><i
+                                class="far fa-map"></i>{{user.location}}</li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-12 col-md-7 offset-md-1">
+                    <div class="card mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Description:</div>
+                            </div>
+                            <textarea *ngIf="vehicle" name="description" id="description"
+                                class="form-control height-dvesto">{{vehicle.description}}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ml-4">
+            <h3>Features:</h3>
+        </div>
+        <div class="row m-3 mt-5 mb-4">
+            <div class="features col-md-5 col-lg-3">
+                <div class="custom-control custom-checkbox   mx-2">
+                    <input *ngIf="vehicle && vehicle.AirConditioning" type="checkbox" class="custom-control-input"
+                        id="AirConditioning" name="AirConditioning" checked>
+                    <input *ngIf="vehicle && !vehicle.AirConditioning" type="checkbox" class="custom-control-input"
+                        id="AirConditioning" name="AirConditioning">
+                    <label class="custom-control-label" for="AirConditioning">A/C</label>
+                </div>
+                <div class="custom-control custom-checkbox   mx-2">
+                    <input *ngIf="vehicle && vehicle.accessibility" type="checkbox" class="custom-control-input"
+                        id="Accessibility" name="accessibility" checked>
+                    <input *ngIf="vehicle && !vehicle.accessibility" type="checkbox" class="custom-control-input"
+                        id="Accessibility" name="accessibility">
+                    <label class="custom-control-label" for="Accessibility">Accessibility</label>
+                </div>
+                <div class="custom-control custom-checkbox   mx-2">
+                    <input type="checkbox" *ngIf="vehicle && vehicle.autopilot" class="custom-control-input"
+                        id="Auto-pilot" name="autopilot" checked>
+                    <input type="checkbox" *ngIf="vehicle && !vehicle.autopilot" class="custom-control-input"
+                        id="Auto-pilot" name="autopilot">
+                    <label class="custom-control-label" for="Auto-pilot">Auto-pilot</label>
+                </div>
+                <div class="custom-control custom-checkbox   mx-2">
+                    <input type="checkbox" *ngIf="vehicle && vehicle.AUX" class="custom-control-input" id="AUX"
+                        name="AUX" checked>
+                    <input type="checkbox" *ngIf="vehicle && !vehicle.AUX" class="custom-control-input" id="AUX"
+                        name="AUX">
+                    <label class="custom-control-label" for="AUX">AUX</label>
+                </div>
+                <div class="custom-control custom-checkbox   mx-2">
+                    <input type="checkbox" *ngIf="vehicle && vehicle.Bluetooth" class="custom-control-input"
+                        id="Bluetooth" name="bluetooth" checked>
+                    <input type="checkbox" *ngIf="vehicle && vehicle.Bluetooth" class="custom-control-input"
+                        id="Bluetooth" name="bluetooth">
+                    <label class="custom-control-label" for="Bluetooth">Bluetooth</label>
+                </div>
+            </div>
+
+            <div class="features col-md-5 col-lg-2 mr-5 mb-5">
+                <div class="custom-control custom-checkbox   mx-2">
+                    <input *ngIf="vehicle && vehicle.Navigation" type="checkbox" class="custom-control-input"
+                        id="Navigation" name="Navigation" checked>
+                    <input *ngIf="vehicle && !vehicle.Navigation" type="checkbox" class="custom-control-input"
+                        id="Navigation" name="Navigation">
+                    <label class="custom-control-label" for="Navigation">Navigation</label>
+                </div>
+                <div class="custom-control custom-checkbox   mx-2">
+                    <input *ngIf="vehicle && vehicle.USB" type="checkbox" class="custom-control-input" id="USB"
+                        name="USB" checked>
+                    <input *ngIf="vehicle && !vehicle.USB" type="checkbox" class="custom-control-input" id="USB"
+                        name="USB">
+                    <label class="custom-control-label" for="USB">USB</label>
+                </div>
+                <div class="custom-control custom-checkbox   mx-2">
+                    <input *ngIf="vehicle && vehicle.parkingsensors" type="checkbox" class="custom-control-input"
+                        id="Parking-sensors" name="parkingsensors" checked>
+                    <input *ngIf="vehicle && !vehicle.parkingsensors" type="checkbox" class="custom-control-input"
+                        id="Parking-sensors" name="parkingsensors">
+                    <label class="custom-control-label" for="Parking-sensors">Parking Sensors</label>
+                </div>
+            </div>
+
+            <div class="book col-md-5 col-lg-3 ">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-tachometer-alt" aria-hidden="true"></i></span>
+                    </div>
+                    <input *ngIf="vehicle" id="maxspeed" type="text" class="form-control" placeholder="top-speed (km/h)"
+                        value="{{vehicle.maxspeed}}" name="maxspeed">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-couch" aria-hidden="true"></i></span>
+                    </div>
+                    <input *ngIf="vehicle" id="seats" type="text" class="form-control" placeholder="seats"
+                        value="{{vehicle.seats}}" name="seats">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-door-closed" aria-hidden="true"></i></span>
+                    </div>
+                    <input *ngIf="vehicle" id="doors" type="text" class="form-control" placeholder="door-count"
+                        value="{{vehicle.doors}}" name="doors">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user-graduate" aria-hidden="true"></i></span>
+                    </div>
+                    <select class="form-control" placeholder="age" *ngIf="vehicle" id="minage" name="minage"
+                        value="{{vehicle.minage}}">
+                        <option>15</option>
+                        <option>16</option>
+                        <option>18</option>
+                        <option>21</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-suitcase" aria-hidden="true"></i></span>
+                    </div>
+                    <input *ngIf="vehicle" id="luggage" type="text" class="form-control" placeholder="luggage (l)"
+                        value="{{vehicle.luggage}}" name="luggage">
+                </div>
+            </div>
+
+            <div class="book col-md-5 col-lg-2">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-shipping-fast" aria-hidden="true"></i></span>
+                    </div>
+                    <input *ngIf="vehicle" id="acceleration" id="seats" type="text" class="form-control"
+                        placeholder="acceleration (km/h)" value="{{vehicle.acceleration}}" name="acceleration">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-horse" aria-hidden="true"></i></span>
+                    </div>
+                    <input *ngIf="vehicle" id="hp" type="text" class="form-control" placeholder="horsepower (kW)"
+                        value="{{vehicle.hp}}" name="hp">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-oil-can" aria-hidden="true"></i></span>
+                    </div>
+                    <input *ngIf="vehicle" id="consumption" type="text" class="form-control" placeholder="consumption"
+                        value="{{vehicle.consumption}}" name="consumption">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class='fas fa-charging-station'></i></span>
+                    </div>
+                    <select class="form-control" tabindex=3 name="typeoffuel" value="{{vehicle.typeoffuel}}">
+                        <option>Petrol</option>
+                        <option>Diesel</option>
+                        <option>Hybrid</option>
+                        <option>Electric</option>
+                        <option>LPG</option>
+                    </select>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row m-3 ml-4 mb-4">
+            <div class="col-sm-8 col-md-4">
+                <div class="form-group">
+                    <label for="date-from">Select possible period of rental</label>
+                    <input type="date" class="form-control" name="date-from" *ngIf="vehicle" id="date-from"
+                        value="{{vehicle.date[0]}}">
+                </div>
+                <div class="form-group">
+                    <label for="date-to">To</label>
+                    <input type="date" class="form-control" name="date-to" *ngIf="vehicle" id="date-to"
+                        value="{{vehicle.date[1]}}">
+                </div>
+                <div class="input-group-prepend mb-4 ">
+                    <span class="input-group-text">Price (per day)</span>
+                    <input *ngIf="vehicle" id="price" name="price" type="text" class="form-control"
+                        value="{{vehicle.price}}€">
+                </div>
+            </div>
+            <div class="col-sm-3"></div>
+            <div class="col-sm-8 col-md-4 mt-2 pr-2">
+                <div class="form-group" *ngIf="vehicle" id="locations">
+                    <label>Address</label>
+                    <input type="text" class="form-control" *ngIf="vehicle" id="addres" name="addres"
+                        value="{{vehicle.addres}}">
+                    <label>Zip</label>
+                    <input type="text" class="form-control" *ngIf="vehicle" id="zip" name="zip" value="{{vehicle.zip}}">
+                    <label>City</label>
+                    <input type="text" class="form-control" *ngIf="vehicle" id="city" name="city"
+                        value="{{vehicle.city}}">
+                </div>
+            </div>
+        </div>
+
+        <input type="text" name="id" value="{{vehicle._id}}" hidden="true">
+        <div class="row m-3 ml-4 mb-4 justify-content-center">
+            <button type="submit" id="save-changes" class="btn btn-primary mb-3">Save changes</button>
+        </div>
+
+    </form>
+
+</main>
+<script src="/javascripts/editvehicleprofile.js"></script>
+<script src="/javascripts/validate.js"></script>

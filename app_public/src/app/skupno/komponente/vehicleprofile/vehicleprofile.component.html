@@ -1,6 +1,7 @@
 <main>
     <!--{{vehicle | json}}-->
     <!-- galerija-->
+    <modal #modal [text]="'Something went wrong.'" [header]="'Error!'"></modal>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol *ngIf="indicators" class="carousel-indicators">
 
@@ -34,7 +35,7 @@
         </button>
     </div>
 
-    <form (ngSubmit)="book()">
+    <form #simpleForm="ngForm" (ngSubmit)="book(simpleForm.value)">
 
         <div class="container-fluid pt-5 pb-3">
             <!--- ime-->
@@ -44,7 +45,7 @@
                     <h2 *ngIf="vehicle" class="inline car-name">{{vehicle.make}} {{vehicle.model}}</h2>
                     <i *ngIf="user_logged && is_favourite_of_logged_user" id="favorite"
                         onclick='location.href="/vehicles/{{_id}}/changefavorite/{{owner_id}}"'
-                        class="fas fa-heart"></i>
+                        class="fas fa-heart" (click)="favorite()"></i>
                     <i *ngIf="!user_logged || !is_favourite_of_logged_user" id="favorite"
                         onclick='location.href="/vehicles/{{_id}}/changefavorite/{{owner_id}}"'
                         class="far fa-heart"></i>
@@ -103,13 +104,13 @@
                 <div class="book col-sm-8 col-md-4 mt-4">
                     <div class="form-group">
                         <label for="date-from">From</label>
-                        <input *ngIf="vehicle" [(ngModel)]="date-from" id="date-from" type="date" class="form-control" name="date" [min]="vehicle.date[0]"
+                        <input *ngIf="vehicle" (change)="test()" [(ngModel)]="date-from" id="date-from" type="date" class="form-control" name="date-from" [min]="vehicle.date[0]"
                             [max]="vehicle.date[1]">
                     </div>
                     <div class="form-group">
                         <label for="date-to">To</label>
-                        <input *ngIf="vehicle" [(ngModel)]="date-to" id="date-to" type="date" class="form-control" min="{{vehicle.date[0]}}"
-                            max="{{vehicle.date[1]}}" name="date">
+                        <input *ngIf="vehicle" (change)="test()" [(ngModel)]="date-to" id="date-to" type="date" class="form-control" min="{{vehicle.date[0]}}"
+                            max="{{vehicle.date[1]}}" name="date-to">
                     </div>
                     <div class="form-group"><label for="cars">Location of pickup &amp; return</label>
                         <select name="pickup_locations" id="cars">
