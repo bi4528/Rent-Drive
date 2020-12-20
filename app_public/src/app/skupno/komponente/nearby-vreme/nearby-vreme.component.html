@@ -1,26 +1,36 @@
 
 
+<div class="card-body weatherstack" >
+
+  <div id="location" class="row no-gutters weatherstack location">{{weather.location.name}}, {{weather.location.country}}</div>
+  <div id="localtime" class="row no-gutters weatherstack time"></div>
+
+  <hr/>
+
+  <div id="weather_descriptions" class="row no-gutters weatherstack description text-hide"></div>
+  <div class="row no-gutters weatherstack">
+
+    <div class="col-sm-4 ">
+      <img id="weather_icon" src="https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0001_sunny.png" class="img-fluid" alt="...">
+      <span id="temperature" class="weatherstack temperature"></span>
+    </div>
+    <ul class="col-sm-4 list-group" *ngIf="condition">
+      <li id="wind_speed" class="list-group-item d-flex p-1 border-1 list-group-item-dark" ><b>Wind&nbsp;speed: {{weather.current.wind_speed}}</b></li>
+      <li id="wind_degree" class="list-group-item d-flex p-1 border-1 list-group-item-dark"><b>Wind&nbsp;degree: {{weather.current.wind_degree}}</b></li>
+      <li id="wind_dir" class="list-group-item d-flex p-1 border-1 list-group-item-dark"><b>Wind&nbsp;direction: {{weather.current.wind_dir}}</b></li>
+      <li id="pressure" class="list-group-item d-flex p-1 border-1 list-group-item-info"><b>Pressure: {{weather.current.pressure}}</b></li>
+      <li id="humidity" class="list-group-item d-flex p-1 border-1 list-group-item-info"><b>Humidity: {{weather.current.humidity}}</b></li>
+      <li id="uv_index" class="list-group-item d-flex p-1 border-1 list-group-item-danger"><b>Uv_index: {{weather.current.uv_index}}</b></li>
+    </ul>
+  </div>
 
 
-        <div id="location" class="row no-gutters weatherstack location">Ljubljana, Slovenija</div>
-        <div id="localtime" class="row no-gutters weatherstack time"></div>
 
-        <hr/>
+</div>
 
-        <div id="weather_descriptions" class="row no-gutters weatherstack description text-hide"></div>
-        <div class="row no-gutters weatherstack">
+<hr/>
+<button type="button" class="btn mt-auto button1" (click)="setVreme()">Show Current Weather</button>
 
-          <div class="col-sm-4 ">
-            <img id="weather_icon" src="https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0001_sunny.png" class="img-fluid" alt="...">
-            <span id="temperature" class="weatherstack temperature"></span>
-          </div>
-          <ul class="col-sm-4 list-group">
-            <li id="wind_speed" class="list-group-item d-flex p-1 border-1 list-group-item-dark" ><b>Wind&nbsp;speed: </b></li>
-            <li id="wind_degree" class="list-group-item d-flex p-1 border-1 list-group-item-dark"><b>Wind&nbsp;degree: </b></li>
-            <li id="wind_dir" class="list-group-item d-flex p-1 border-1 list-group-item-dark"><b>Wind&nbsp;direction: </b></li>
-            <li id="pressure" class="list-group-item d-flex p-1 border-1 list-group-item-info"><b>Pressure: </b></li>
-            <li id="humidity" class="list-group-item d-flex p-1 border-1 list-group-item-info"><b>Humidity: </b></li>
-            <li id="uv_index" class="list-group-item d-flex p-1 border-1 list-group-item-danger"><b>Uv_index: </b></li>
-          </ul>
-        </div>
+
+
 
