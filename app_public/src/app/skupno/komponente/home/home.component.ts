@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Vehicle, Review } from '../../razredi/vehicle';
 import { VehiclesDataService } from '../../storitve/vehicles-data.service';
 import { Router } from '@angular/router';
+import { ValidationService } from '../../storitve/validation.service';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +12,12 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor( private vehiclesDataService: VehiclesDataService, private router: Router) { }
+  constructor( 
+    private vehiclesDataService: VehiclesDataService,
+    private router: Router,
+    private validationService: ValidationService
+    )
+  { }
 
   public cars: Vehicle[];
   public sporocilo: string;
@@ -19,9 +26,26 @@ export class HomeComponent implements OnInit {
   public dateFrom: string;
   public dateTo: string;
   public city: string;
+  public validation_error: string;
 
   public filter = () : void => {
-    this.router.navigate(['/search'], {queryParams: {city: this.city, dateFrom: this.dateFrom, dateTo: this.dateTo, page: "1"} });
+    this.validation_error="";
+    let writeError=false;
+    if (!this.city || !this.dateFrom || !this.dateTo || !this.validationService.validate_city(this.city)){
+      this.validation_error = this.validation_error.concat("No blanks should be left and city should only have letters.\n");
+      writeError = true;
+    }
+    if ( !this.validationService.validate_dates(this.dateFrom, this.dateTo)){
+      this.validation_error = this.validation_error.concat("Date from must be before date to, or can you travel trough time?.\n");
+      writeError = true;
+    }
+
+    if(writeError){
+      this.openModal();
+    }
+    else {
+      this.router.navigate(['/search'], {queryParams: {city: this.city, dateFrom: this.dateFrom, dateTo: this.dateTo, page: "1"} });
+    }
   }
 
   private getVehicles = () : void => {
@@ -32,6 +56,11 @@ export class HomeComponent implements OnInit {
         this.sporocilo = data.length > 0 ? "" : "No cars found";
         this.cars = data;
       });
+  }
+
+  @ViewChild('modal') public modalComponent: ModalComponent;
+  async openModal() {
+    return await this.modalComponent.open();
   }
 
   ngOnInit(): void {

@@ -5,11 +5,11 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="modal-body">
-      {{text}}
+    <div class="modal-body" [innerHtml]="text | htmlPrelomVrstice">
+      
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-primary" (click)="close()">Save</button>
+      <button type="button" class="btn btn-primary" (click)="close()">Close</button>
     </div>
   </ng-template>
   

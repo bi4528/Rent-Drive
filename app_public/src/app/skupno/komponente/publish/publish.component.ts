@@ -166,6 +166,10 @@ export class PublishComponent implements OnInit {
       this.validation_error = this.validation_error.concat("Number of doors is only one number.\n");
       writeError = true;
     }
+    if(!this.newVehicle.minage){
+      this.validation_error = this.validation_error.concat("Please select minimum - age.\n");
+      writeError = true;
+    }
     if (!this.validationService.validate_vehicle_price_per_day(this.newVehicle.price)){
       this.validation_error = this.validation_error.concat("Price must be between 1 and 5000.\n");
       writeError = true;
@@ -179,7 +183,7 @@ export class PublishComponent implements OnInit {
       writeError = true;
     }
     if (!this.validationService.validate_city(this.newVehicle.city)){
-      this.validation_error = this.validation_error.concat("You must insert a city.\n");
+      this.validation_error = this.validation_error.concat("City must only contain letters.\n");
       writeError = true;
     }
     if (!this.validationService.validate_vehicle_number_of_doors(this.newVehicle.zip)){

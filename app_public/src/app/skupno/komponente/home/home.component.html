@@ -2,6 +2,10 @@
     
     <div class="alert alert-warning" [hidden]="!sporocilo">{{sporocilo}}</div>
     
+    <div>
+        <modal #modal [text]="validation_error" [header]="'Error, input not allowed!'"></modal>
+    </div>
+
     <div class="container-background">
         <div class="lambo-image">
             <div class="form-row filter">
@@ -83,6 +87,3 @@
 
     </div>
 </main>
-
-
-<script src="../../../../assets/javascripts/home.js"></script>

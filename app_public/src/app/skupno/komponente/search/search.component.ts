@@ -25,8 +25,11 @@ export class SearchComponent implements OnInit {
   public pages: number;
 
   public filter = (): void => {
-    this.router.navigate(['/search'], { queryParams: { value: this.keyword, page: '1' } });
+    if (this.keyword){
+      this.router.navigate(['/search'], { queryParams: { value: this.keyword, page: '1' } });
+    }
   }
+  
   public updatePage = (next_page): void => {
 
     this.route.queryParams

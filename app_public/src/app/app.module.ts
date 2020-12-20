@@ -28,6 +28,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmComponent } from './skupno/komponente/confirm/confirm.component';
 import { BookComponent } from './skupno/komponente/book/book.component';
 import { ModalComponent } from './skupno/komponente/modal/modal.component';
+import { HtmlPrelomVrsticePipe } from './skupno/cevi/html-prelom-vrstice.pipe';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { ModalComponent } from './skupno/komponente/modal/modal.component';
     ResetPasswordComponent,
     ConfirmComponent,
     BookComponent,
-    ModalComponent
+    ModalComponent,
+    HtmlPrelomVrsticePipe
   ],
   imports: [
     BrowserModule,
