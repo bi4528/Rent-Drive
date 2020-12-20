@@ -29,6 +29,7 @@ import { ConfirmComponent } from './skupno/komponente/confirm/confirm.component'
 import { BookComponent } from './skupno/komponente/book/book.component';
 import { ModalComponent } from './skupno/komponente/modal/modal.component';
 import { HtmlPrelomVrsticePipe } from './skupno/cevi/html-prelom-vrstice.pipe';
+import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 
 
 @NgModule({
@@ -58,14 +59,15 @@ import { HtmlPrelomVrsticePipe } from './skupno/cevi/html-prelom-vrstice.pipe';
     ModalComponent,
     HtmlPrelomVrsticePipe
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    NgbModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        NgbModule,
+        LeafletModule
+    ],
   providers: [],
   bootstrap: [OgrodjeComponent]
 })

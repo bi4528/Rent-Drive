@@ -153,3 +153,11 @@ Podatki o izposojenih avtih so dostopni na naslovu [localhost:3000/api/rented](l
 ### Navodila za uporabo
 - Preden uporabite aplikacijo predlagamo, da si z gumbom register, ki se nahaja v navbar ustvarite svoj uporabniški račun. Po uspešni registraciji se bojo prikazali novi gumbi v navbar in sicer to Profile in List your car. 
 
+## 4. LP - SPA aplikacija na eni strani
+
+### Prikaz zemljevida
+- Za prikaz zemljevida uporabljena je knjžnica [@asymmetrik/ngx-leaflet](https://github.com/Asymmetrik/ngx-leaflet), zaradi tega premaknite se v mapo LP-01 in zaženite naslednje ukaze:
+    - npm install leaflet
+    - npm install @asymmetrik/ngx-leaflet
+    - npm install --save-dev @types/leaflet
+
