@@ -28,6 +28,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmComponent } from './skupno/komponente/confirm/confirm.component';
 import { BookComponent } from './skupno/komponente/book/book.component';
 import { ModalComponent } from './skupno/komponente/modal/modal.component';
+import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 
 
 @NgModule({
@@ -56,14 +57,15 @@ import { ModalComponent } from './skupno/komponente/modal/modal.component';
     BookComponent,
     ModalComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    NgbModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        NgbModule,
+        LeafletModule
+    ],
   providers: [],
   bootstrap: [OgrodjeComponent]
 })
