@@ -31,6 +31,9 @@ import { ModalComponent } from './skupno/komponente/modal/modal.component';
 import { HtmlPrelomVrsticePipe } from './skupno/cevi/html-prelom-vrstice.pipe';
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 import { AddReviewComponent } from './skupno/komponente/add-review/add-review.component';
+import { EditvehicleprofileComponent } from './skupno/komponente/editvehicleprofile/editvehicleprofile.component';
+import { NotFoundComponentComponent } from './skupno/komponente/not-found-component/not-found-component.component';
+
 
 @NgModule({
   declarations: [
@@ -58,7 +61,9 @@ import { AddReviewComponent } from './skupno/komponente/add-review/add-review.co
     BookComponent,
     ModalComponent,
     HtmlPrelomVrsticePipe,
-    AddReviewComponent
+    AddReviewComponent,
+    EditvehicleprofileComponent,
+    NotFoundComponentComponent
   ],
     imports: [
         BrowserModule,

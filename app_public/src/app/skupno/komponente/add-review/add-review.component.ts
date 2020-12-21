@@ -21,11 +21,11 @@ export class AddReviewComponent implements OnInit {
     stars: '',
     rating: '',
     user_id: '',
-    username: 'marko',
+    username: 'unknown', //TODO
     img: '../../../../assets/uploads/oseba_template_2.jpg' //TODO SPREMENI
   };
   public error: string;
-  
+  public addNewVehicle():void{}
 
   onFormSubmit(form: NgForm) {
     console.log("HELLO WELCOME");

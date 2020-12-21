@@ -23,9 +23,9 @@ export class ProfileComponent implements OnInit {
     this.usersDataService
       .getUser(id_of_user)
       .then((data: User) => {
-        this.alert_error = (data == null) ? "" : "No user found";
+        this.alert_error = (data != null) ? "" : "No user found";
         this.user = data;
-      });
+      }).catch(()=>{this.router.navigateByUrl("/error");});
   }
 
 

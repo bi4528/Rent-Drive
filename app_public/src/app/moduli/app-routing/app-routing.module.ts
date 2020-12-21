@@ -17,6 +17,8 @@ import { ResetPasswordComponent } from 'src/app/skupno/komponente/reset-password
 import { ConfirmComponent } from 'src/app/skupno/komponente/confirm/confirm.component';
 import {BookComponent} from '../../skupno/komponente/book/book.component';
 import {NearbyComponent} from '../../skupno/komponente/nearby/nearby.component';
+import { EditvehicleprofileComponent } from 'src/app/skupno/komponente/editvehicleprofile/editvehicleprofile.component';
+import { NotFoundComponentComponent } from 'src/app/skupno/komponente/not-found-component/not-found-component.component';
 
 
 const poti: Routes = [
@@ -71,6 +73,15 @@ const poti: Routes = [
   {
     path: 'book/:idVehicle/confirm',
     component: ConfirmComponent
+  }, {
+    path: 'vehicles/:idVehicle/edit',
+    component: EditvehicleprofileComponent
+  }, {
+    path: 'error',
+    component: NotFoundComponentComponent
+  },
+  {
+    path: '**', component: NotFoundComponentComponent
   }
 ];
 
