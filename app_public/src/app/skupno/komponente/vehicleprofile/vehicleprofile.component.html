@@ -34,7 +34,7 @@
         </button>
     </div>
 
-    <form #simpleForm="ngForm" (ngSubmit)="book(simpleForm.value)">
+    <form #simpleForm="ngForm" (ngSubmit)="book()">
 
         <div class="container-fluid pt-5 pb-3">
             <!--- ime-->
@@ -147,24 +147,27 @@
                             <span>{{review.rating}}</span>
                         </td>
                         <td class='comment'>{{review.comment}}</td>
-                        <td *ngIf="review.show_delete_button">
-                            <!--<input type='button' class = 'btn btn-danger delete' value = 'Delete' onclick = "location.href='/vehicles/{{review.vehicleId}}/reviews/{{review._id}}/delete'" owner="{{review.username}}" ></input>-->
+                        <td *ngIf="actualLoggedUser._id && review.user_id && actualLoggedUser._id=== review.user_id">
+                            <input type='button' class = 'btn btn-danger delete' value = 'Delete' (click)="deleteReview(review._id)">
                         </td>
                     </tr>
                 </table>
             </div>
         </div>
-    </div>
-
-    <div *ngIf="user_logged" class="row justify-content-center mx-4">
-        <!--<input *ngIf="vehicle" type="button" class="btn btn-lg btn-primary" value="Add review"
-            onclick="location.href='/vehicles/{{vehicle._id}}/reviews'">-->
-        <input *ngIf="vehicle" (click)="showReviewForm=!showReviewForm" type="button" class="btn btn-lg btn-primary" value="Add review">
-        <div *ngIf="showReviewForm">
-            <app-add-review></app-add-review>
+        <!-- Add review-->
+        <div *ngIf="user_logged" class="row justify-content-center mx-4">
+            <input *ngIf="vehicle" (click)="showReviewForm=!showReviewForm" type="button" class="btn btn-lg btn-primary" value="Add review">
         </div>
+        <div class="row justify-content-center mx-4">
+            <div *ngIf="showReviewForm">
+                <app-add-review [id]="actualLoggedUser._id" [username]="actualLoggedUser.username" [img]="actualLoggedUser.profile_picture"></app-add-review>
+            </div>
+        </div>
+        <br>
     </div>
-    <br>
+    
+
+    
 
 </main>
 

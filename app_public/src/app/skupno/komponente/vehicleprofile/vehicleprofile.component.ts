@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router'
-import { Vehicle } from '../../razredi/vehicle';
+import { Review, Vehicle } from '../../razredi/vehicle';
 import { User } from '../../razredi/user';
 import { VehiclesDataService } from '../../storitve/vehicles-data.service';
 import { UsersDataService } from '../../storitve/users-data.service';
@@ -18,7 +18,32 @@ export class VehicleProfileComponent implements OnInit {
   constructor(
     private bookService: BookServiceService,private router: Router, private pot: ActivatedRoute, private vehicleDataService: VehiclesDataService, private usersDataService: UsersDataService, private avtentikacijaStoritev: AuthenticationService, private elementRef: ElementRef) { }
 
-  public get_vehicle_data = (vehicleId: String): void => {
+    public avg_rating: Number;
+    public owner_id: String;
+    public vehicleId: string; //on purpose!
+    public alert_error: String;
+    public vehicle: Vehicle;
+    public user: User;
+    public car_photos: any;
+    public indicators: any;
+    public user_logged: boolean;
+    public actualLoggedUser: User;
+    public is_favourite_of_logged_user: boolean;
+    public showReviewForm = false;
+  
+    ngOnInit(): void {
+      this.vehicleId = this.pot.snapshot.paramMap.get('idVehicle');
+      this.get_vehicle_data(this.vehicleId);
+      this.user_logged = this.avtentikacijaStoritev.is_logged();
+      this.actualLoggedUser = this.avtentikacijaStoritev.get_current_user();
+    }
+  
+    @ViewChild('modal') public modalComponent: ModalComponent;
+    async openModal() {
+      return await this.modalComponent.open();
+    }
+    
+    public get_vehicle_data = (vehicleId: String): void => {
     this.alert_error = "Searching for vehicle";
     this.vehicleDataService
       .getVehicle(vehicleId)
@@ -59,10 +84,6 @@ export class VehicleProfileComponent implements OnInit {
   }
 
   public setAvgRating(): void {
-    /*for(var i = 0; i < this.vehicle.reviews.length; i++) {
-      this.vehicle.reviews[i].show_delete_button = req.session.user_id != null ? odgovor.data.reviews[i].user_id == req.session.user_id : false;
-  }*/
-    //TODO show delete button
     var sum = 0;
     for (var i = 0; i < this.vehicle.reviews.length; i++)
       sum += this.vehicle.reviews[i].rating.match(/★/g).length;
@@ -74,7 +95,7 @@ export class VehicleProfileComponent implements OnInit {
     }
   }
 
-  public book(form): void {
+  public book(): void {
     var date1 = new Date((<HTMLInputElement>document.getElementById("date-from")).value);
     var date2 = new Date((<HTMLInputElement>document.getElementById("date-to")).value);
     if (!this.validate_dates(date1, date2)) {
@@ -90,36 +111,17 @@ export class VehicleProfileComponent implements OnInit {
     }
   }
 
-  public avg_rating: Number;
-  public owner_id: String;
-  public vehicleId: string; //on purpose!
-  public alert_error: String;
-  public vehicle: Vehicle;
-  public user: User;
-  public car_photos: any;
-  public indicators: any;
-  public user_logged = true;
-  //public is_favourite_of_logged_user = this.avtentikacijaStoritev.is_logged;
-  public is_favourite_of_logged_user: boolean;
-  public showReviewForm = false;
-
-  ngOnInit(): void {
-    this.vehicleId = this.pot.snapshot.paramMap.get('idVehicle');
-    this.get_vehicle_data(this.vehicleId);
-  }
-
-  @ViewChild('modal') public modalComponent: ModalComponent;
-  async openModal() {
-    return await this.modalComponent.open();
-  }
 
   public favorite() {
     var heart = (<HTMLInputElement>document.getElementById("favorite"));
-    if (heart.className == "far fa-heart") {
+    if (!this.avtentikacijaStoritev.is_logged()){
+      this.alert_error = "To favorite a vehicle you must be logged!"
+      this.openModal();
+    } else if (heart.className == "far fa-heart") {
       heart.className = "fas fa-heart";
       this.user.favourite_vehicles_ids.push(this.vehicleId);
       this.usersDataService.updateUserData(this.user).then((user: User)=> {
-        this.alert_error = (user != null) ? "" : "Failed to update user";
+        this.alert_error = (user != null) ? "" : "Failed to favorite vehicle!";
         this.user = user;
       });
     } else {
@@ -128,10 +130,16 @@ export class VehicleProfileComponent implements OnInit {
       if (index > -1) 
         this.user.favourite_vehicles_ids.splice(index, 1);
       this.usersDataService.updateUserData(this.user).then((user: User)=> {
-        this.alert_error = (user != null) ? "" : "Failed to update user";
+        this.alert_error = (user != null) ? "" : "Failed to unfavorite vehicle";
         this.user = user;
       });
     }
+  }
+
+  public deleteReview(reviewId) {
+    //console.log(reviewId);
+    this.vehicleDataService.deleteReview(this.vehicle, reviewId);
+    this.router.navigateByUrl("/vehicles/"+this.vehicle._id);
   }
 
   public test(): void {
@@ -164,50 +172,5 @@ export class VehicleProfileComponent implements OnInit {
     date2 = new Date(date2);
     return date2 >= date1;
   }
-
-  public appendToForm (){
-    var dateForm = (<HTMLInputElement>document.getElementById("date-from"));
-    var dailyPrice = (<HTMLInputElement>document.getElementById("daily-price"));
-    //debugger;
-    this.addHiddenInput(dateForm,dailyPrice.innerText,"daily-price")
-    var fullnameHtml = (<HTMLInputElement>document.getElementById("fullname"));
-    if (fullnameHtml!=null) {
-        var fullname = fullnameHtml.innerText;
-        var i = fullname.indexOf(' ');
-        var firstname = fullname.substring(0, i);
-        var lastname = fullname.substring(i);
-        this.addHiddenInput(dateForm,firstname,"firstname");
-        this.addHiddenInput(dateForm,lastname,"lastname");
-    }
-    var phoneHtml = (<HTMLInputElement>document.getElementById("phone"));
-    var phone = "";
-    if (phoneHtml!=null) phone= phoneHtml.innerText;
-    var emailHtml = (<HTMLInputElement>document.getElementById("email"));
-    var email = "";
-    if (emailHtml!=null) email= emailHtml.innerText;
-    var locationHtml = (<HTMLInputElement>document.getElementById("location"));
-    if (locationHtml!=null) {
-        var location = locationHtml.innerText;
-        this.addHiddenInput(dateForm,location,"location");
-    }
-    var username = (<HTMLInputElement> document.getElementsByClassName("blockquote-footer")[0]).innerText;
-    var vehicle_picture = (<HTMLInputElement> document.getElementsByClassName("carousel-item")[0]).children[0].getAttribute("src");
-    var descriptionChild = (<HTMLInputElement> document.getElementsByClassName("blockquote")[0]).children[0];
-    var descriptionText = (<HTMLInputElement>descriptionChild).innerText;
-    
-    if (phone!="") this.addHiddenInput(dateForm,phone,"phone");
-    if (email!="") this.addHiddenInput(dateForm,email,"email");
-    this.addHiddenInput(dateForm,username,"username");
-    this.addHiddenInput(dateForm,vehicle_picture,"vehicle_picture");
-    this.addHiddenInput(dateForm,descriptionText,"description");
-}
-
-  public addHiddenInput(form, string, inputName){
-    var child = document.createElement('input');
-    child.setAttribute("type", "hidden");
-    child.setAttribute("name",inputName);
-    child.setAttribute("value",string);
-    form.appendChild(child);
-}
 
 }
