@@ -6,6 +6,7 @@ import { VehiclesDataService } from '../../storitve/vehicles-data.service';
 import { UsersDataService } from '../../storitve/users-data.service';
 import { AuthenticationService } from '../../storitve/avtentikacija.service';
 import { ModalComponent } from '../modal/modal.component';
+import { BookServiceService } from '../../storitve/book-service.service';
 
 @Component({
   selector: 'app-vehicleprofile',
@@ -15,7 +16,7 @@ import { ModalComponent } from '../modal/modal.component';
 export class VehicleProfileComponent implements OnInit {
 
   constructor(
-    private router: Router, private pot: ActivatedRoute, private vehicleDataService: VehiclesDataService, private usersDataService: UsersDataService, private avtentikacijaStoritev: AuthenticationService, private elementRef: ElementRef) { }
+    private bookService: BookServiceService,private router: Router, private pot: ActivatedRoute, private vehicleDataService: VehiclesDataService, private usersDataService: UsersDataService, private avtentikacijaStoritev: AuthenticationService, private elementRef: ElementRef) { }
 
   public get_vehicle_data = (vehicleId: String): void => {
     this.alert_error = "Searching for vehicle";
@@ -30,7 +31,7 @@ export class VehicleProfileComponent implements OnInit {
         this.setAvgRating();
       });
   }
-
+  
   public get_user_data = (id_of_user: String): void => {
     this.alert_error = "Searching for user";
     this.usersDataService
@@ -74,15 +75,18 @@ export class VehicleProfileComponent implements OnInit {
   }
 
   public book(form): void {
-    //debugger;
-    this.appendToForm();
-    console.log(form);
     var date1 = new Date((<HTMLInputElement>document.getElementById("date-from")).value);
     var date2 = new Date((<HTMLInputElement>document.getElementById("date-to")).value);
     if (!this.validate_dates(date1, date2)) {
+      this.alert_error ="Please enter valid dates!"
       this.openModal();
-    } else {
+    } else if (this.avtentikacijaStoritev.get_current_user()==null){
+      this.alert_error = "Please log in before booking!";
+      this.openModal();
+    } 
+    else {
       this.router.navigateByUrl("/book/" + this.vehicleId);
+      this.bookService.book(this.user, this.avtentikacijaStoritev.get_current_user(), this.vehicle, date1, date2 );
     }
   }
 
@@ -100,8 +104,6 @@ export class VehicleProfileComponent implements OnInit {
   ngOnInit(): void {
     this.vehicleId = this.pot.snapshot.paramMap.get('idVehicle');
     this.get_vehicle_data(this.vehicleId);
-
-
   }
 
   @ViewChild('modal') public modalComponent: ModalComponent;
