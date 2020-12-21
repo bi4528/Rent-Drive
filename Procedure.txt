@@ -72,7 +72,7 @@ use RentDrive
 db.Vehicles.find().forEach(function(dokument) {
 for (var i = 0; i < dokument.reviews.length; i++) {
 dokument.reviews[i]._id = ObjectId();
-dokument.owner_id = "5fdcd3ba0be5930e18aa7029";
+dokument.owner_id = "5fdb39befae58b45c6ceca9a";
 }
 db.Vehicles.update({ "_id" : dokument._id }, dokument)
 })

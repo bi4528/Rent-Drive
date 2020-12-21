@@ -18,43 +18,43 @@ export class VehicleProfileComponent implements OnInit {
   constructor(
     private bookService: BookServiceService,private router: Router, private pot: ActivatedRoute, private vehicleDataService: VehiclesDataService, private usersDataService: UsersDataService, private avtentikacijaStoritev: AuthenticationService, private elementRef: ElementRef) { }
 
-    public avg_rating: Number;
-    public owner_id: String;
-    public vehicleId: string; //on purpose!
-    public alert_error: String;
-    public vehicle: Vehicle;
-    public user: User;
-    public car_photos: any;
-    public indicators: any;
-    public user_logged: boolean;
-    public actualLoggedUser: User;
-    public is_favourite_of_logged_user: boolean;
-    public showReviewForm = false;
+  public avg_rating: Number;
+  public owner_id: String;
+  public vehicleId: string; //on purpose!
+  public alert_error: String;
+  public vehicle: Vehicle;
+  public user: User;
+  public car_photos: any;
+  public indicators: any;
+  public user_logged: boolean;
+  public actualLoggedUser: User;
+  public is_favourite_of_logged_user: boolean;
+  public showReviewForm = false;
+
+  ngOnInit(): void {
+    this.vehicleId = this.pot.snapshot.paramMap.get('idVehicle');
+    this.get_vehicle_data(this.vehicleId);
+    this.user_logged = this.avtentikacijaStoritev.is_logged();
+    this.actualLoggedUser = this.avtentikacijaStoritev.get_current_user();
+  }
+
+  @ViewChild('modal') public modalComponent: ModalComponent;
+  async openModal() {
+    return await this.modalComponent.open();
+  }
   
-    ngOnInit(): void {
-      this.vehicleId = this.pot.snapshot.paramMap.get('idVehicle');
-      this.get_vehicle_data(this.vehicleId);
-      this.user_logged = this.avtentikacijaStoritev.is_logged();
-      this.actualLoggedUser = this.avtentikacijaStoritev.get_current_user();
-    }
-  
-    @ViewChild('modal') public modalComponent: ModalComponent;
-    async openModal() {
-      return await this.modalComponent.open();
-    }
-    
-    public get_vehicle_data = (vehicleId: String): void => {
-    this.alert_error = "Searching for vehicle";
-    this.vehicleDataService
-      .getVehicle(vehicleId)
-      .then((data: Vehicle) => {
-        this.alert_error = (data != null) ? "" : "No vehicle found";
-        this.vehicle = data;
-        console.log(this.vehicle);
-        this.get_user_data(this.vehicle.owner_id);
-        this.setCarPhotosAndIndicators(this.vehicle.images);
-        this.setAvgRating();
-      });
+  public get_vehicle_data = (vehicleId: String): void => {
+  this.alert_error = "Searching for vehicle";
+  this.vehicleDataService
+    .getVehicle(vehicleId)
+    .then((data: Vehicle) => {
+      this.alert_error = (data != null) ? "" : "No vehicle found";
+      this.vehicle = data;
+      console.log(this.vehicle);
+      this.get_user_data(this.vehicle.owner_id);
+      this.setCarPhotosAndIndicators(this.vehicle.images);
+      this.setAvgRating();
+    });
   }
   
   public get_user_data = (id_of_user: String): void => {
@@ -138,8 +138,9 @@ export class VehicleProfileComponent implements OnInit {
 
   public deleteReview(reviewId) {
     //console.log(reviewId);
-    this.vehicleDataService.deleteReview(this.vehicle, reviewId);
-    this.router.navigateByUrl("/vehicles/"+this.vehicle._id);
+    this.vehicleDataService.deleteReview(this.vehicle, reviewId).then(() => {
+      this.router.navigateByUrl("/vehicles/" + this.vehicle._id);
+    });
   }
 
   public test(): void {

@@ -139,7 +139,7 @@
                     </tr>
                     <tr class="review" *ngFor="let review of vehicle.reviews">
                         <td class='profile' colspan='2'>
-                            <a routerLink="/users/profiles/{{review._id}}"><img class="avatar" src="../../../../assets/uploads/{{review.img}}"></a>
+                            <a routerLink="/users/profiles/{{review.user_id}}"><img class="avatar" src="../../../../assets/uploads/{{review.img}}"></a>
                             <strong> {{review.username}}</strong>
                         </td>
                     

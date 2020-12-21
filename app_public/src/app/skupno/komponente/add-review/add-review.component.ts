@@ -54,7 +54,6 @@ export class AddReviewComponent implements OnInit {
     }
     this.newReview.user_id = this.avtentikacijaStoritev.get_current_user()._id;
     console.log(this.newReview.user_id);
-    debugger;
     this.route.paramMap
       .pipe(
         switchMap((params: ParamMap) => {
@@ -67,7 +66,8 @@ export class AddReviewComponent implements OnInit {
         .postReview(this.newReview, vehicle._id)
         .then((data) => {
           console.log("PUBLISED", data);
-          this.router.navigateByUrl("/");
+          //this.router.navigateByUrl("/vehicles/" + vehicle._id);
+          window.location.reload();
         })
         .catch(napaka => this.error = napaka);
       })
