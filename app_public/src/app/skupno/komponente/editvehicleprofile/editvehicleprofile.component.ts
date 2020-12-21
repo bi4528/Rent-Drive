@@ -151,7 +151,6 @@ export class EditvehicleprofileComponent implements OnInit {
       this.vehicle.date[0] = date1.value;
       this.vehicle.date[1] = date2.value;
     }
-    debugger;
     if (writeError) {
       this.alert_error = errors;
       this.openModal();

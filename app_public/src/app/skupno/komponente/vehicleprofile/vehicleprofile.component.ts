@@ -88,14 +88,14 @@ export class VehicleProfileComponent implements OnInit {
 
   public avg_rating: Number;
   public owner_id: String;
-  public vehicleId: String;
+  public vehicleId: string; //on purpose!
   public alert_error: String;
   public vehicle: Vehicle;
   public user: User;
   public car_photos: any;
   public indicators: any;
   public user_logged = true;
-  public is_favourite_of_logged_user = this.avtentikacijaStoritev.is_logged;
+  public is_favourite_of_logged_user: boolean;
 
   ngOnInit(): void {
     this.vehicleId = this.pot.snapshot.paramMap.get('idVehicle');
@@ -113,9 +113,20 @@ export class VehicleProfileComponent implements OnInit {
     var heart = (<HTMLInputElement>document.getElementById("favorite"));
     if (heart.className == "far fa-heart") {
       heart.className = "fas fa-heart";
+      this.user.favourite_vehicles_ids.push(this.vehicleId);
+      this.usersDataService.updateUserData(this.user).then((user: User)=> {
+        this.alert_error = (user != null) ? "" : "Failed to update user";
+        this.user = user;
+      });
     } else {
       heart.className = "far fa-heart";
-      //TODO: remove from favorite list
+      var index = this.user.favourite_vehicles_ids.indexOf("this.vehicleId");
+      if (index > -1) 
+        this.user.favourite_vehicles_ids.splice(index, 1);
+      this.usersDataService.updateUserData(this.user).then((user: User)=> {
+        this.alert_error = (user != null) ? "" : "Failed to update user";
+        this.user = user;
+      });
     }
   }
 

@@ -22,13 +22,12 @@
       <h2>My vehicles</h2>
       <div class="row" *ngFor="let owned_car of owned_cars">
         <div class="card col-12 col-sm-12 col-md-7 col-lg-5 col-xl-4 card_auto">
-          <img *ngIf="owned_car.id" class="card-img-top slika_auto" src="../../../assets/images/{{owned_car.images[0]}}" alt="Slika avta" onclick="show_vehicle('{{owned_car.id}}')">
-          <img *ngIf="owned_car.id == null"class="card-img-top slika_auto" src="../../../assets/images/{{owned_car.images[0]}}" alt="Slika avta">
-          
+          <img *ngIf="owned_car._id" class="card-img-top slika_auto" src="../../../assets/images/{{owned_car.images[0]}}" alt="Slika avta" onclick="show_vehicle('{{owned_car._id}}')">
+          <img *ngIf="owned_car._id == null"class="card-img-top slika_auto" src="../../../assets/images/{{owned_car.images[0]}}" alt="Slika avta">
           <div class="card-body">
             <h5 class="card-text">{{owned_car.make}}</h5>
-              <button *ngIf="show_controls" type="button" onclick="location.href='/vehicles/{{owned_car.id}}/edit'" class="btn btn-primary btn-block card_auto_najemi_button">Edit</button>
-              <button *ngIf="show_controls" type="button" onclick="location.href='/users/delete/vehicles/{{owned_car.id}}'" class="btn btn-danger btn-block">Remove</button>
+              <a *ngIf="show_controls && owned_car._id" type="button" routerLink="/vehicles/{{owned_car._id}}/edit" class="btn btn-primary btn-block card_auto_najemi_button">Edit</a>
+              <button *ngIf="show_controls" type="button" onclick="location.href='/users/delete/vehicles/{{owned_car._id}}'" class="btn btn-danger btn-block">Remove</button>
           </div>
         </div>
       </div>

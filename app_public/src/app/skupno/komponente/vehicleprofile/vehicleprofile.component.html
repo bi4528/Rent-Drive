@@ -44,11 +44,9 @@
                 <div class="name">
                     <h2 *ngIf="vehicle" class="inline car-name">{{vehicle.make}} {{vehicle.model}}</h2>
                     <i *ngIf="user_logged && is_favourite_of_logged_user" id="favorite"
-                        onclick='location.href="/vehicles/{{_id}}/changefavorite/{{owner_id}}"'
                         class="fas fa-heart" (click)="favorite()"></i>
-                    <i *ngIf="!user_logged || !is_favourite_of_logged_user" id="favorite"
-                        onclick='location.href="/vehicles/{{_id}}/changefavorite/{{owner_id}}"'
-                        class="far fa-heart"></i>
+                    <i *ngIf="!user_logged || (user_logged && !is_favourite_of_logged_user)" id="favorite"
+                        class="far fa-heart" (click)="favorite()"></i>
                 </div>
             </div>
 
