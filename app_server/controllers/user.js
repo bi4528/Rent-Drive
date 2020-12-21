@@ -271,7 +271,6 @@ var storage = multer.diskStorage({
 });
 
 const edit_profile_action = (req, res) => {
-    console.log(req.body);
     var upload = multer({
         storage: storage
     }).array('profile_picture', 1);

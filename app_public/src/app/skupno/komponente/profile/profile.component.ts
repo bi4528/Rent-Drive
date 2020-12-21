@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit {
     this.usersDataService
       .getVehiclesOfUser(id_of_user)
       .then((data: Vehicle[]) => {
-        console.log(data);
+        
         this.alert_error = (data.length > 0) ? "" : "";
         this.owned_cars = data;
         if (this.owned_cars.length == 0) {
@@ -50,6 +50,7 @@ export class ProfileComponent implements OnInit {
   }
 
   private get_favourite_vehicles_of_user = (id_of_user: String): void => {
+    
     this.alert_error = "Searching for favourite vehicles";
     this.usersDataService
       .getFavouriteVehiclesOfUser(id_of_user)
