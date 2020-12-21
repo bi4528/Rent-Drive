@@ -139,7 +139,10 @@
                     </tr>
                     <tr class="review" *ngFor="let review of vehicle.reviews">
                         <td class='profile' colspan='2'>
-                            <a routerLink="/users/profiles/{{review.user_id}}"><img class="avatar" src="../../../../assets/uploads/{{review.img}}"></a>
+                            <a routerLink="/users/profiles/{{review.user_id}}">
+                                <img *ngIf="review.img" class="avatar" src="../../../../assets/uploads/{{review.img}}">
+                                <img *ngIf="!review.img" class="avatar" src="../../../../assets/uploads/avatarUser.png">
+                            </a>
                             <strong> {{review.username}}</strong>
                         </td>
                     
@@ -160,13 +163,11 @@
         </div>
         <div class="row justify-content-center mx-4">
             <div *ngIf="showReviewForm">
-                <app-add-review [id]="actualLoggedUser._id" [username]="actualLoggedUser.username" [img]="actualLoggedUser.profile_picture"></app-add-review>
+                <app-add-review (closeAndUpdateReview)="closeAndUpdateReview()" [id]="actualLoggedUser._id" [username]="actualLoggedUser.username" [img]="actualLoggedUser.profile_picture" [alert_error]="alert_error" ></app-add-review>
             </div>
         </div>
         <br>
     </div>
-    
-
     
 
 </main>

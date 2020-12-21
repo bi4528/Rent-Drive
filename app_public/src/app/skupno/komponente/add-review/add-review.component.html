@@ -1,5 +1,5 @@
 <div class="container my-3 mt-sm-4">
-
+    <modal #modal [text]="alert_error" [header]="'Error!'"></modal>
     <H2 class="publish-h2">Leave your review:</H2>
     <form #reviewform="ngForm" (ngSubmit)="onFormSubmit(reviewform)" id="reviewform" role="form">
         <div class="input-group col-sm-12">

@@ -137,10 +137,15 @@ export class VehicleProfileComponent implements OnInit {
   }
 
   public deleteReview(reviewId) {
-    //console.log(reviewId);
     this.vehicleDataService.deleteReview(this.vehicle, reviewId).then(() => {
       this.router.navigateByUrl("/vehicles/" + this.vehicle._id);
+      this.ngOnInit();
     });
+  }
+
+  closeAndUpdateReview(){
+    this.showReviewForm = false;
+    this.ngOnInit();
   }
 
   public test(): void {

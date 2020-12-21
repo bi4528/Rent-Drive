@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import {Router} from '@angular/router'
 import { switchMap } from 'rxjs/operators';
@@ -6,6 +6,7 @@ import { ActivatedRoute , ParamMap} from '@angular/router';
 import {VehiclesDataService} from '../../storitve/vehicles-data.service'
 import {AuthenticationService} from '../../storitve/avtentikacija.service'
 import {Vehicle} from '../../razredi/vehicle'
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-add-review',
@@ -19,6 +20,10 @@ export class AddReviewComponent implements OnInit {
   @Input() img:string;
   @Input() username:string;
   @Input() id:string;
+  @Input() alert_error:string;
+
+  @Output() closeAndUpdateReview = new EventEmitter();
+
   public newReview = {
     comment: '',
     stars: '',
@@ -36,7 +41,14 @@ export class AddReviewComponent implements OnInit {
     this.newReview.img = this.img;
     this.newReview.stars = form.controls['stars'].value;
     //this.newReview.user_id = this.id;
-    console.log(this.newReview.comment, " ", this.newReview.stars);
+    if (this.newReview.comment=="") {
+      this.alert_error="Comment cannot be empty!";
+      this.openModal();
+    } else if(this.newReview.stars == ""){
+      this.alert_error="Please insert your rating!";
+      this.openModal();
+    } else {
+      console.log(this.newReview.comment, " ", this.newReview.stars);
     if (this.newReview.stars === '1') {
       this.newReview.rating = "★☆☆☆☆";
     }
@@ -66,11 +78,17 @@ export class AddReviewComponent implements OnInit {
         .postReview(this.newReview, vehicle._id)
         .then((data) => {
           console.log("PUBLISED", data);
-          //this.router.navigateByUrl("/vehicles/" + vehicle._id);
-          window.location.reload();
+          this.closeAndUpdateReview.emit();
         })
         .catch(napaka => this.error = napaka);
       })
+    }
+    
+  }
+
+  @ViewChild('modal') public modalComponent: ModalComponent;
+  async openModal() {
+    return await this.modalComponent.open();
   }
 
   ngOnInit(): void {}
