@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import {Router} from '@angular/router'
 import { switchMap } from 'rxjs/operators';
@@ -16,20 +16,26 @@ export class AddReviewComponent implements OnInit {
 
   constructor(private vehiclesDataService: VehiclesDataService, private avtentikacijaStoritev: AuthenticationService, private router: Router, private route: ActivatedRoute) { }
 
+  @Input() img:string;
+  @Input() username:string;
+  @Input() id:string;
   public newReview = {
     comment: '',
     stars: '',
     rating: '',
     user_id: '',
-    username: 'unknown', //TODO
-    img: '../../../../assets/uploads/oseba_template_2.jpg' //TODO SPREMENI
+    username: 'unknown',
+    img: '../../../../assets/uploads/oseba_template_2.jpg'
   };
   public error: string;
   public addNewVehicle():void{}
 
   onFormSubmit(form: NgForm) {
-    console.log("HELLO WELCOME");
+    //console.log("HELLO WELCOME");
+    this.newReview.username = this.username;
+    this.newReview.img = this.img;
     this.newReview.stars = form.controls['stars'].value;
+    //this.newReview.user_id = this.id;
     console.log(this.newReview.comment, " ", this.newReview.stars);
     if (this.newReview.stars === '1') {
       this.newReview.rating = "★☆☆☆☆";
@@ -48,6 +54,7 @@ export class AddReviewComponent implements OnInit {
     }
     this.newReview.user_id = this.avtentikacijaStoritev.get_current_user()._id;
     console.log(this.newReview.user_id);
+    debugger;
     this.route.paramMap
       .pipe(
         switchMap((params: ParamMap) => {
@@ -64,17 +71,8 @@ export class AddReviewComponent implements OnInit {
         })
         .catch(napaka => this.error = napaka);
       })
-    /*
-    comment: req.body.comment,
-    rating: stars,
-    img: "../images/oseba_template_2.jpg",
-    //TODO USERNAME USERIMG
-    user_id: req.session.user_id,
-    username: username
-    */
+  }
 
-  }
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

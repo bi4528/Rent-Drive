@@ -79,6 +79,7 @@ export class ProfileComponent implements OnInit {
 
   private checkIfProfileIsUserLogged = (): void => {
     var current_user = this.avtentikacijaStoritev.get_current_user();
+    if (current_user==null) this.router.navigateByUrl('/error');  // user doesnt exist or deleted account
     this.is_profile_of_logged_user = current_user._id == this.id_of_user;
   }
 
@@ -159,7 +160,6 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
 
     this.id_of_user = this.pot.snapshot.paramMap.get('idUser');
-
     this.checkIfProfileIsUserLogged();
     this.get_user_data(this.id_of_user);
     this.get_vehicles_of_user(this.id_of_user);
