@@ -130,7 +130,7 @@ export class PublishComponent implements OnInit {
     this.defineFuel(this.newVehicle);
     this.defineCategory(this.newVehicle);
     this.defineMinAge(this.newVehicle);
-    //console.log(this.newVehicle);
+    console.log(this.newVehicle);
     
 
 

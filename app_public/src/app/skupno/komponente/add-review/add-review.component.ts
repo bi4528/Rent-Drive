@@ -15,7 +15,12 @@ import { ModalComponent } from '../modal/modal.component';
 })
 export class AddReviewComponent implements OnInit {
 
-  constructor(private vehiclesDataService: VehiclesDataService, private avtentikacijaStoritev: AuthenticationService, private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private vehiclesDataService: VehiclesDataService,
+    private avtentikacijaStoritev: AuthenticationService,
+    private router: Router,
+    private route: ActivatedRoute)
+  { }
 
   @Input() img:string;
   @Input() username:string;

@@ -8,6 +8,7 @@ var logger = require('morgan');
 var passport = require('passport');
 var swaggerJsdoc = require('swagger-jsdoc');
 var swaggerUi = require('swagger-ui-express');
+const multer = require("multer");
 
 var swaggerOptions = {
   swaggerDefinition: {
@@ -90,6 +91,31 @@ app.use('/api', (req, res, next) => {
   next();
 });
 
+//-----------POSKUS ZA IMAGE UPLOAD-------------
+/*
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+      cb(null, '/src/assets/uploads/');
+      //cb(null, './public/uploads/');
+  },
+  filename: function (req, file, cb) {
+      cb(null, file.originalname);
+      //cb(null, Date.now() + path.extname(file.originalname));
+  }
+});
+var upload = multer({ storage: storage }); //.array('carphotos', 10);
+app.post('/vehicleImagesUpload', upload.array('files'), (req, res, next) => {
+  const files = req.files;
+  console.log(files);
+  if (!files) {
+    const error = new Error('No File')
+    error.httpStatusCode = 400
+    return next(error)
+  }
+    res.send({status:  'ok'});
+})
+*/
+//---------------------------------------------
 
 //app.use('/', indexRouter);
 //app.use('/users', usersRouter);
@@ -103,7 +129,6 @@ app.use('/api/rented', rentedApi);
 app.get('*', (req, res, next) => {
   res.sendFile(path.join(__dirname, 'app_public', 'build', 'index.html'));
 });
-
 usersApi.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 usersApi.get("/swagger.json", (req, res) => {
   res.status(200).json(swaggerDocument);
