@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
 
   public login = (): void => {
     this.status = "Trying to login..."; //login attempt start
-    this.alert_error = "Trying to login...";
 
     if (
       !this.user.email ||
