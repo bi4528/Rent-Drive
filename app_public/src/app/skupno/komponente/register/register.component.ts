@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
     private validationService: ValidationService
   ) { }
 
-  alert_error: String;
+  modal_text: String;
   @ViewChild("repeatPassword") repeatPassword;
 
   public user: User = {
@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
 
   public register = (): void => {
 
-    this.alert_error = "";
+    this.modal_text = "";
 
     if (
       !this.user.firstname ||
@@ -54,17 +54,17 @@ export class RegisterComponent implements OnInit {
       !this.repeatPassword.nativeElement.value ||
       (this.repeatPassword.nativeElement.value != this.user.password)
     ) {
-      this.alert_error = "Fill all the input fields to register successfully!";
+      this.modal_text = "Fill all the input fields to register successfully!";
       this.openModal();
     } else if (!this.validationService.validate_user(this.user)) {
-      this.alert_error = "Inserted data is not valid";
+      this.modal_text = "Inserted data is not valid";
       this.openModal();
     } else {
       this.avtentikacijaStoritev.register(this.user)
         .then(() => {
           this.router.navigateByUrl("/")
         })
-        .catch(sporocilo => this.alert_error = sporocilo)
+        .catch(sporocilo => this.modal_text = sporocilo)
     }
   }
 
