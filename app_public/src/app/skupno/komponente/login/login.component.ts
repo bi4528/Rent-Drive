@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
 
   public login = (): void => {
     this.status = "Trying to login..."; //login attempt start
+    this.alert_error = "Trying to login...";
 
     if (
       !this.user.email ||
@@ -41,7 +42,7 @@ export class LoginComponent implements OnInit {
             this.historyService.vrniPredhodnjeUrlNasloveBrezPrijaveInRegistracije()
           )
         })
-        .catch(sporocilo => {
+        .catch(message => {
           this.alert_error = "Email or password not valid!";
           this.openModal();
         } );
