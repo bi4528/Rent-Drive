@@ -2,7 +2,7 @@
   <div class="row justify-content-center mt-4">
     <div class="login-container col-9 col-md-6 col-xl-5 text-center">
       <h2>Welcome back!</h2>
-      <modal #modal [text]="alert_error" [header]="'Error!'"></modal>
+      <modal #modal [text]="modal_text" [header]="'Error!'"></modal>
       <div *ngIf="status" id="alert" class="alert alert-warning alert-dismissible fade show" role="alert">
         <p>{{status}}</p>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">

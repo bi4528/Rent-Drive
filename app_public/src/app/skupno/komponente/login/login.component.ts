@@ -5,9 +5,8 @@ import { AuthenticationService } from '../../storitve/avtentikacija.service';
 import { Router } from '@angular/router';
 import { HistoryService } from '../../storitve/history.service';
 import { ValidationService } from '../../storitve/validation.service';
-
-import { $ } from "jquery";
 import { ModalComponent } from '../modal/modal.component';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,32 +20,34 @@ export class LoginComponent implements OnInit {
 
 
   public login = (): void => {
-    this.status = "Trying to login..."; //login attempt start
+    this.status = "Trying to login...";
+    this.modal_text = "";
 
     if (
       !this.user.email ||
       !this.user.password
     ) {
-      this.alert_error = "To proceed you have to insert all data";
+      this.modal_text = "To proceed you have to insert all data";
       this.openModal();
     } else if (!this.validationService.validate_email(this.user.email)) {
-      this.alert_error = "Email or password not valid!";
+      this.modal_text = "Email or password not valid!";
       this.openModal();
     } else {
       this.avtentikacijaStoritev
         .login(this.user)
         .then(() => {
-          this.alert_error="";
+          this.modal_text="";
           this.router.navigateByUrl(
             this.historyService.vrniPredhodnjeUrlNasloveBrezPrijaveInRegistracije()
           )
         })
         .catch(message => {
-          this.alert_error = "Email or password not valid!";
+          this.modal_text = "Email or password not valid!";
           this.openModal();
         } );
     }
     this.status="";
+    this.modal_text = "";
   }
 
   @ViewChild('modal') public modalComponent: ModalComponent;
@@ -54,7 +55,7 @@ export class LoginComponent implements OnInit {
     return await this.modalComponent.open();
   }
   status: String;
-  alert_error: String;
+  modal_text: String;
   public user: User = {
     _id: "",
     username: "",
