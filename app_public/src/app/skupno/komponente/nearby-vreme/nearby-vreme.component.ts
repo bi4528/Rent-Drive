@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {latLng} from 'leaflet';
 import {User} from '../../razredi/user';
+import {WeatherService} from '../../storitve/weather.service';
 
 @Component({
   selector: 'app-nearby-vreme',
@@ -9,7 +10,7 @@ import {User} from '../../razredi/user';
 })
 export class NearbyVremeComponent implements OnInit {
 
-  constructor() { }
+  constructor( private weatherService: WeatherService) { }
 
   condition = false;
 
@@ -19,6 +20,7 @@ export class NearbyVremeComponent implements OnInit {
       country: 'Slovenia'
     }
   };
+  public weather1: string;
 
   vreme = {
     request: {
@@ -63,14 +65,21 @@ export class NearbyVremeComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.pridobiWeather();
+    //this.condition = false;
   }
 
-  setVreme(): void {
+  setWeather(): void {
+    this.pridobiWeather();
     this.condition = true;
-    this.weather = this.vreme;
-
   }
 
+  private pridobiWeather(): void {
+    this.weatherService
+      .getWeather()
+      .then(vreme => this.weather = vreme);
+
+  }
 
 }
 

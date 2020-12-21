@@ -36,7 +36,8 @@ var swaggerOptions = {
   apis: [
     "./app_api/models/user.js",
     "./app_api/models/rented.js",
-    "./app_api/routes/vehicle.js"
+    "./app_api/routes/vehicle.js",
+    "./app_api/routes/nearby.js"
   ]
 };
 const swaggerDocument = swaggerJsdoc(swaggerOptions);
@@ -44,12 +45,14 @@ const swaggerDocument = swaggerJsdoc(swaggerOptions);
 //var indexRouter = require('./app_server/routes/index');
 //var usersRouter = require('./app_server/routes/users');
 //var vehiclesRouter = require('./app_server/routes/vehicles');
+var nearbyRouter = require('./app_api/routes/nearby');
 
 require('./app_api/models/db');
 require('./app_api/configuration/passport');
 var usersApi = require('./app_api/routes/users');
 var vehicleApi = require('./app_api/routes/vehicles');
 var rentedApi = require('./app_api/routes/rented');
+var nearbyApi = require('./app_api/routes/nearby');
 
 var app = express();
 
@@ -94,10 +97,12 @@ app.use('/api', (req, res, next) => {
 //app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 //app.use('/vehicles', vehiclesRouter);
+//app.use('/nearby', nearbyRouter);
 
 app.use('/api/users', usersApi); // /api/docs
 app.use('/api/vehicles', vehicleApi);
 app.use('/api/rented', rentedApi);
+app.use('/api/nearby', nearbyApi);
 
 //NAJ KDO POPRAVI SPODNJO FUNKCIJO NEVEM KAJ DELA by Matej
 app.get('*', (req, res, next) => {
