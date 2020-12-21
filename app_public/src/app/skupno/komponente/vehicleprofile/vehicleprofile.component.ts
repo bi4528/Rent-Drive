@@ -88,6 +88,7 @@ export class VehicleProfileComponent implements OnInit {
   public indicators: any;
   public user_logged = true;
   public is_favourite_of_logged_user = this.avtentikacijaStoritev.is_logged;
+  public showReviewForm = false;
 
   ngOnInit(): void {
     this.vehicleId = this.pot.snapshot.paramMap.get('idVehicle');

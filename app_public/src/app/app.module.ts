@@ -30,7 +30,7 @@ import { BookComponent } from './skupno/komponente/book/book.component';
 import { ModalComponent } from './skupno/komponente/modal/modal.component';
 import { HtmlPrelomVrsticePipe } from './skupno/cevi/html-prelom-vrstice.pipe';
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
-
+import { AddReviewComponent } from './skupno/komponente/add-review/add-review.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +57,8 @@ import {LeafletModule} from "@asymmetrik/ngx-leaflet";
     ConfirmComponent,
     BookComponent,
     ModalComponent,
-    HtmlPrelomVrsticePipe
+    HtmlPrelomVrsticePipe,
+    AddReviewComponent
   ],
     imports: [
         BrowserModule,

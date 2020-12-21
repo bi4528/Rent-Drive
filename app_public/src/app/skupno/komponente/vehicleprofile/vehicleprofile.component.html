@@ -43,11 +43,16 @@
                 <div class="name">
                     <h2 *ngIf="vehicle" class="inline car-name">{{vehicle.make}} {{vehicle.model}}</h2>
                     <i *ngIf="user_logged && is_favourite_of_logged_user" id="favorite"
+                        class="fas fa-heart"></i>
+                    <i *ngIf="!user_logged || !is_favourite_of_logged_user" id="favorite"
+                        class="far fa-heart"></i>
+                    
+                    <!--<i *ngIf="user_logged && is_favourite_of_logged_user" id="favorite"
                         onclick='location.href="/vehicles/{{_id}}/changefavorite/{{owner_id}}"'
                         class="fas fa-heart"></i>
                     <i *ngIf="!user_logged || !is_favourite_of_logged_user" id="favorite"
                         onclick='location.href="/vehicles/{{_id}}/changefavorite/{{owner_id}}"'
-                        class="far fa-heart"></i>
+                        class="far fa-heart"></i>-->
                 </div>
             </div>
 
@@ -159,8 +164,12 @@
     </div>
 
     <div *ngIf="user_logged" class="row justify-content-center mx-4">
-        <input *ngIf="vehicle" type="button" class="btn btn-lg btn-primary" value="Add review"
-            onclick="location.href='/vehicles/{{vehicle._id}}/reviews'">
+        <!--<input *ngIf="vehicle" type="button" class="btn btn-lg btn-primary" value="Add review"
+            onclick="location.href='/vehicles/{{vehicle._id}}/reviews'">-->
+        <input *ngIf="vehicle" (click)="showReviewForm=!showReviewForm" type="button" class="btn btn-lg btn-primary" value="Add review">
+        <div *ngIf="showReviewForm">
+            <app-add-review></app-add-review>
+        </div>
     </div>
     <br>
 

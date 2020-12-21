@@ -62,6 +62,20 @@ export class VehiclesDataService {
       .catch(this.procesError);
   }
 
+  public postReview(data: any, vehicleId: string): Promise<Review> {
+    const url: string = `${this.apiUrl}/vehicles/${vehicleId}/reviews/`;
+    const httpLastnosti = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.storage.getItem('rentdrive-token')}`
+      })
+    };
+    return this.http
+      .post(url, data, httpLastnosti)
+      .toPromise()
+      .then(odgovor => odgovor as Review)
+      .catch(this.procesError);
+  }
+
 
   private procesError(napaka: any): Promise<any> {
     console.error('Prišlo je do napake', napaka);

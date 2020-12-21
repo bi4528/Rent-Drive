@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Injectable, ViewChild, TemplateRef  } from '@angular/core';
 import {NgbModal, NgbModalRef, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-
 @Component({
   selector: 'modal',
   templateUrl: './modal.component.html',
