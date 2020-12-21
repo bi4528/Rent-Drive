@@ -46,7 +46,7 @@ const poti: Routes = [
     path: 'users/forgot_password',
     component: ForgotPasswordComponent
   }, {
-    path: 'users/reset_password',
+    path: 'users/reset_password/:token',
     component: ResetPasswordComponent
   },{
     path:'vehicles/:idVehicle',

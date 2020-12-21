@@ -66,8 +66,7 @@ export class UsersDataService {
   }
 
   public updateUserData(user: User): Promise<User> {
-    console.log("Update");
-    console.log(user);
+    
     const url: string = `${this.apiUrl}/users/${user._id}`;
     const httpLastnosti = {
       headers: new HttpHeaders({
@@ -104,15 +103,15 @@ export class UsersDataService {
       .catch(this.procesError);
   }
 
-  public reset_password(idUser: string, token: string): Promise<User> {
-    const url: string = `${this.apiUrl}/users/recover_password/${idUser}`;
+  public reset_password(user: User, token: string): Promise<User> {
+    const url: string = `${this.apiUrl}/users/recover_password/${user._id}`;
     const httpLastnosti = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${token}`
       })
     };
     return this.http
-      .post(url, httpLastnosti)
+      .post(url, user, httpLastnosti)
       .toPromise()
       .then(response => response as User)
       .catch(this.procesError);
@@ -136,8 +135,6 @@ export class UsersDataService {
   }
 
   private authentication(urlname: string, user: User): Promise<AuthenticationResult> {
-    console.log(urlname);
-    console.log(user);
     const url: string = `${this.apiUrl}/${urlname}`;
     return this.http
       .post(url, user)

@@ -7,6 +7,11 @@ const authentication = jwt({
     userProperty: 'payload',
     algorithms: ['HS256']
 });
+const authentication_recover_password = jwt({
+    secret: process.env.JWT_PASSWORD_RECOVER,
+    userProperty: 'payload',
+    algorithms: ['HS256']
+});
 
 
 const ctrlUser = require("../controllers/user")
@@ -30,7 +35,7 @@ router.route('/:idUser/vehicles')
     .get(ctrlUser.get_vehicles_of_user);
 
 router.get('/find/:emailUser', ctrlUser.get_user_data_by_email);
-router.post('/recover_password/:idUser', authentication, ctrlUser.reset_password);
+router.post('/recover_password/:idUser', authentication_recover_password, ctrlUser.reset_password);
 router.post('/login', ctrlUser.login);
 
 router.get('/check/exists', ctrlUser.check_if_user_exists);

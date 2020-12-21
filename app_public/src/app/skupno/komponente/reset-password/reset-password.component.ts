@@ -31,7 +31,8 @@ export class ResetPasswordComponent implements OnInit {
     } else if(this.repeated_password != this.password) {
       this.alert_error = "Passwords are not equal.";
     } else {
-      this.usersDataService.reset_password(this.user._id, this.token).then((user:User) => {
+      this.user.password = this.password;
+      this.usersDataService.reset_password(this.user, this.token).then((user:User) => {
         this.router.navigateByUrl("/users/login");
       });
     }
@@ -41,7 +42,7 @@ export class ResetPasswordComponent implements OnInit {
   ngOnInit(): void {
 
     this.token = this.pot.snapshot.paramMap.get('token');
-    if (this.token == null || this.token == null) {
+    if (this.token == null) {
       this.router.navigateByUrl("/");
     } else {
       this.user = this.authenticationService.get_email_from_recover_token(this.token);

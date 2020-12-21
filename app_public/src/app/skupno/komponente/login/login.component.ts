@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
 
 
   public login = (): void => {
-    console.log("aefaervf");
 
     this.alert_error = "";
 
