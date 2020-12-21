@@ -23,6 +23,22 @@ export class VehiclesDataService {
       .catch(this.procesError);
   }
   
+  public updateVehicleData(vehicle: Vehicle): Promise <Vehicle>{
+    console.log("Update");
+    console.log(vehicle);
+    const url: string = `${this.apiUrl}/vehicles/${vehicle._id}`;
+    const httpLastnosti = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.storage.getItem('rentdrive-token')}`
+      })
+    };
+    return this.http
+      .put(url, vehicle, httpLastnosti)
+      .toPromise()
+      .then(response => response as Vehicle)
+      .catch (this.procesError);
+  }
+
   /*public getOwner(vehicleId: String):Promise <String>{
     const url: string = `${this.apiUrl}/vehicles/${vehicleId}`;
     return this.owner_id ???
@@ -62,6 +78,33 @@ export class VehiclesDataService {
       .catch(this.procesError);
   }
 
+  public postReview(data: any, vehicleId: string): Promise<Review> {
+    const url: string = `${this.apiUrl}/vehicles/${vehicleId}/reviews/`;
+    const httpLastnosti = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.storage.getItem('rentdrive-token')}`
+      })
+    };
+    return this.http
+      .post(url, data, httpLastnosti)
+      .toPromise()
+      .then(odgovor => odgovor as Review)
+      .catch(this.procesError);
+  }
+
+  public deleteReview(vehicle: Vehicle, reviewId:String): Promise<void> {
+    const url: string = `${this.apiUrl}/vehicles/${vehicle._id}/reviews/${reviewId}`;
+    const httpLastnosti = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.storage.getItem('rentdrive-token')}`
+      })
+    };
+    return this.http
+      .delete(url, httpLastnosti)
+      .toPromise()
+      .then()
+      .catch(this.procesError);
+  }
 
   private procesError(napaka: any): Promise<any> {
     console.error('Prišlo je do napake', napaka);

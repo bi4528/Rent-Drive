@@ -2,28 +2,13 @@
   <div class="row justify-content-center mt-4">
     <div class="login-container col-9 col-md-6 col-xl-5 text-center">
       <h2>Welcome back!</h2>
-      <div *ngIf="alert_error" id="alert" class="alert alert-warning alert-dismissible fade show" role="alert">
-        <p>{{alert_error}}</p>
+      <modal #modal [text]="modal_text" [header]="'Error!'"></modal>
+      <div *ngIf="status" id="alert" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <p>{{status}}</p>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
-      </div> 
-      <!--<div id="modal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Error!</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-              <p id="error-message">Something went wrong.</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>--> 
+      </div>
       <form (ngSubmit)="login()">
         <div class="login-el">
           <label for="e-mail">

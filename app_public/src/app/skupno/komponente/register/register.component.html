@@ -2,7 +2,7 @@
     <div class="row justify-content-center mt-3">
         <div class="register-container col-9 col-md-6 col-xl-5 text-center">
             <h2>Please fill in your details!</h2>
-              <modal #modal [text]="'Something went wrong.'" [header]="'Error!'"></modal>
+              <modal #modal [text]="modal_text" [header]="'Error!'"></modal>
             
             <form (ngSubmit)="register()">
                 <div class="register-el">

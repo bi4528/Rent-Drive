@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from "../../razredi/user";
 import {Vehicle} from "../../razredi/vehicle";
 import {ActivatedRoute, Router} from "@angular/router";
+import { BookServiceService } from '../../storitve/book-service.service';
 
 @Component({
   selector: 'app-book',
@@ -10,7 +11,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class BookComponent implements OnInit {
 
-  constructor(private router: Router, private pot: ActivatedRoute){}
+  constructor(private router: Router, private pot: ActivatedRoute, private bookService: BookServiceService){}
 
   public owner: User;
   public vehicle: Vehicle;
@@ -25,6 +26,7 @@ export class BookComponent implements OnInit {
     this.getOwner();
     this.getVehicle();
     this.getRenter();
+
     this.dateFrom = "2021-01-01";
     this.dateTo = "2021-01-31";
     this.vehicle_picture = "../../../../assets/images/chevrolet-corvette.jpg";
@@ -47,7 +49,6 @@ export class BookComponent implements OnInit {
   private getVehicle(): void {
     this.vehicle = new Vehicle();
     this.vehicle._id = "3";
-    this.vehicle.description = "wertzui wertz";
     this.vehicle.price = 24;
   }
 

@@ -1,0 +1,76 @@
+<div class="container my-3 mt-sm-4">
+    <modal #modal [text]="alert_error" [header]="'Error!'"></modal>
+    <H2 class="publish-h2">Leave your review:</H2>
+    <form #reviewform="ngForm" (ngSubmit)="onFormSubmit(reviewform)" id="reviewform" role="form">
+        <div class="input-group col-sm-12">
+            <textarea [(ngModel)]="newReview.comment" class="form-control" id="TextArea" name="comment" rows="10"></textarea>
+        </div>
+
+        <div class="row align-items-center justify-content-center">
+            <div class="rating">
+                <label>
+                    <input  type="radio" id="myRadio" name="stars" value="1" ngModel/>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input  type="radio" id="myRadio" name="stars" value="2" ngModel/>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input  type="radio" id="myRadio" name="stars" value="3" ngModel/>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input  type="radio" id="myRadio" name="stars" value="4" ngModel/>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input  type="radio" id="myRadio" name="stars" value="5" ngModel/>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+            </div>
+        </div>
+
+
+        <div class="row justify-content-center mt-4">
+            <input type="submit" class="btn btn-lg btn-success">
+        </div>
+
+    </form>
+
+</div>
+
+
+
+
+<!--
+    <div class="row mt-3 mb-3 ml-0.5 justify-content-center">
+        <div class="rating">
+            <h3 class="inline">Rating:</h3>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+        </div>
+    </div>
+    -->
+
+
+
+<div class="col-md-12 text-center">
+    <H5 class="pt-4">Thank you for using Rent&Drive. We sincerly hope that you had a great trip and hope to see you
+        again soon.</H5>
+</div>
+
+<script src="/javascripts/review.js"></script>

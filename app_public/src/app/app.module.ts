@@ -30,6 +30,9 @@ import { BookComponent } from './skupno/komponente/book/book.component';
 import { ModalComponent } from './skupno/komponente/modal/modal.component';
 import { HtmlPrelomVrsticePipe } from './skupno/cevi/html-prelom-vrstice.pipe';
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
+import { AddReviewComponent } from './skupno/komponente/add-review/add-review.component';
+import { EditvehicleprofileComponent } from './skupno/komponente/editvehicleprofile/editvehicleprofile.component';
+import { NotFoundComponentComponent } from './skupno/komponente/not-found-component/not-found-component.component';
 
 
 @NgModule({
@@ -57,7 +60,10 @@ import {LeafletModule} from "@asymmetrik/ngx-leaflet";
     ConfirmComponent,
     BookComponent,
     ModalComponent,
-    HtmlPrelomVrsticePipe
+    HtmlPrelomVrsticePipe,
+    AddReviewComponent,
+    EditvehicleprofileComponent,
+    NotFoundComponentComponent
   ],
     imports: [
         BrowserModule,

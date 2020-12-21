@@ -23,9 +23,9 @@ export class ProfileComponent implements OnInit {
     this.usersDataService
       .getUser(id_of_user)
       .then((data: User) => {
-        this.alert_error = (data == null) ? "" : "No user found";
+        this.alert_error = (data != null) ? "" : "No user found";
         this.user = data;
-      });
+      }).catch(()=>{this.router.navigateByUrl("/error");});
   }
 
 
@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit {
     this.usersDataService
       .getVehiclesOfUser(id_of_user)
       .then((data: Vehicle[]) => {
-        console.log(data);
+        
         this.alert_error = (data.length > 0) ? "" : "";
         this.owned_cars = data;
         if (this.owned_cars.length == 0) {
@@ -50,6 +50,7 @@ export class ProfileComponent implements OnInit {
   }
 
   private get_favourite_vehicles_of_user = (id_of_user: String): void => {
+    
     this.alert_error = "Searching for favourite vehicles";
     this.usersDataService
       .getFavouriteVehiclesOfUser(id_of_user)
@@ -79,6 +80,7 @@ export class ProfileComponent implements OnInit {
 
   private checkIfProfileIsUserLogged = (): void => {
     var current_user = this.avtentikacijaStoritev.get_current_user();
+    if (current_user==null) this.router.navigateByUrl('/error');  // user doesnt exist or deleted account
     this.is_profile_of_logged_user = current_user._id == this.id_of_user;
   }
 
@@ -159,7 +161,6 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
 
     this.id_of_user = this.pot.snapshot.paramMap.get('idUser');
-
     this.checkIfProfileIsUserLogged();
     this.get_user_data(this.id_of_user);
     this.get_vehicles_of_user(this.id_of_user);

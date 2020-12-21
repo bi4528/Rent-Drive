@@ -1,6 +1,6 @@
 <main>
-    <!--{{vehicle | json}}-->
     <!-- galerija-->
+    <modal #modal [text]="alert_error" [header]="'Error!'"></modal>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol *ngIf="indicators" class="carousel-indicators">
 
@@ -34,7 +34,7 @@
         </button>
     </div>
 
-    <form (ngSubmit)="book()">
+    <form #simpleForm="ngForm" (ngSubmit)="book()">
 
         <div class="container-fluid pt-5 pb-3">
             <!--- ime-->
@@ -43,11 +43,9 @@
                 <div class="name">
                     <h2 *ngIf="vehicle" class="inline car-name">{{vehicle.make}} {{vehicle.model}}</h2>
                     <i *ngIf="user_logged && is_favourite_of_logged_user" id="favorite"
-                        onclick='location.href="/vehicles/{{_id}}/changefavorite/{{owner_id}}"'
-                        class="fas fa-heart"></i>
-                    <i *ngIf="!user_logged || !is_favourite_of_logged_user" id="favorite"
-                        onclick='location.href="/vehicles/{{_id}}/changefavorite/{{owner_id}}"'
-                        class="far fa-heart"></i>
+                        class="fas fa-heart" (click)="favorite()"></i>
+                    <i *ngIf="!user_logged || (user_logged && !is_favourite_of_logged_user)" id="favorite"
+                        class="far fa-heart" (click)="favorite()"></i>
                 </div>
             </div>
 
@@ -64,7 +62,7 @@
                 <div class="col-sm-12 col-md-4 ">
                     <!--TODO owner_id??-->
                     <input *ngIf="user" name="{{user.profile_picture}}" type="hidden" value="{{user.profile_picture}}">
-                    <a *ngIf="user" routerLink="/users/profiles/{{owner_id}}"><img class="avatar"
+                    <a *ngIf="user && user._id" routerLink="/users/profiles/{{user._id}}"><img class="avatar"
                             src="../../../../assets/uploads/{{user.profile_picture}}" alt="avatar"></a>
                     <ul class="list-group list-group-flush">
                         <input type="hidden" name="owner_id" id="owner_id" value="{{owner_id}}">
@@ -103,13 +101,13 @@
                 <div class="book col-sm-8 col-md-4 mt-4">
                     <div class="form-group">
                         <label for="date-from">From</label>
-                        <input *ngIf="vehicle" [(ngModel)]="date-from" id="date-from" type="date" class="form-control" name="date" [min]="vehicle.date[0]"
+                        <input *ngIf="vehicle" (change)="test()" [(ngModel)]="date-from" id="date-from" type="date" class="form-control" name="date-from" [min]="vehicle.date[0]"
                             [max]="vehicle.date[1]">
                     </div>
                     <div class="form-group">
                         <label for="date-to">To</label>
-                        <input *ngIf="vehicle" [(ngModel)]="date-to" id="date-to" type="date" class="form-control" min="{{vehicle.date[0]}}"
-                            max="{{vehicle.date[1]}}" name="date">
+                        <input *ngIf="vehicle" (change)="test()" [(ngModel)]="date-to" id="date-to" type="date" class="form-control" min="{{vehicle.date[0]}}"
+                            max="{{vehicle.date[1]}}" name="date-to">
                     </div>
                     <div class="form-group"><label for="cars">Location of pickup &amp; return</label>
                         <select name="pickup_locations" id="cars">
@@ -141,7 +139,10 @@
                     </tr>
                     <tr class="review" *ngFor="let review of vehicle.reviews">
                         <td class='profile' colspan='2'>
-                            <img class="avatar" src="../../../../assets/uploads/{{review.img}}">
+                            <a routerLink="/users/profiles/{{review.user_id}}">
+                                <img *ngIf="review.img" class="avatar" src="../../../../assets/uploads/{{review.img}}">
+                                <img *ngIf="!review.img" class="avatar" src="../../../../assets/uploads/avatarUser.png">
+                            </a>
                             <strong> {{review.username}}</strong>
                         </td>
                     
@@ -149,20 +150,25 @@
                             <span>{{review.rating}}</span>
                         </td>
                         <td class='comment'>{{review.comment}}</td>
-                        <td *ngIf="review.show_delete_button">
-                            <!--<input type='button' class = 'btn btn-danger delete' value = 'Delete' onclick = "location.href='/vehicles/{{review.vehicleId}}/reviews/{{review._id}}/delete'" owner="{{review.username}}" ></input>-->
+                        <td *ngIf="actualLoggedUser._id && review.user_id && actualLoggedUser._id=== review.user_id">
+                            <input type='button' class = 'btn btn-danger delete' value = 'Delete' (click)="deleteReview(review._id)">
                         </td>
                     </tr>
                 </table>
             </div>
         </div>
+        <!-- Add review-->
+        <div *ngIf="user_logged" class="row justify-content-center mx-4">
+            <input *ngIf="vehicle" (click)="showReviewForm=!showReviewForm" type="button" class="btn btn-lg btn-primary" value="Add review">
+        </div>
+        <div class="row justify-content-center mx-4">
+            <div *ngIf="showReviewForm">
+                <app-add-review (closeAndUpdateReview)="closeAndUpdateReview()" [id]="actualLoggedUser._id" [username]="actualLoggedUser.username" [img]="actualLoggedUser.profile_picture" [alert_error]="alert_error" ></app-add-review>
+            </div>
+        </div>
+        <br>
     </div>
-
-    <div *ngIf="user_logged" class="row justify-content-center mx-4">
-        <input *ngIf="vehicle" type="button" class="btn btn-lg btn-primary" value="Add review"
-            onclick="location.href='/vehicles/{{vehicle._id}}/reviews'">
-    </div>
-    <br>
+    
 
 </main>
 

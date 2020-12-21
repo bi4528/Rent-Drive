@@ -27,8 +27,8 @@ export class ValidationService {
             this.validate_username(user.username) &&
             this.validate_email(user.email) &&
             this.validate_password(user.password) &&
-            (user.location == null || this.validate_location(user.location)) &&
-            (user.phone_number == null || this.validate_phone_number(user.phone_number));
+            (user.location == null || user.location=="" || this.validate_location(user.location)) &&
+            (user.phone_number == null || user.phone_number=="" || this.validate_phone_number(user.phone_number));
     }
 
 

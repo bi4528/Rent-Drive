@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsersDataService } from '../../storitve/users-data.service';
 import { User } from '../../razredi/user';
 import { AuthenticationService } from '../../storitve/avtentikacija.service';
 import { Router } from '@angular/router';
 import { HistoryService } from '../../storitve/history.service';
 import { ValidationService } from '../../storitve/validation.service';
+import { ModalComponent } from '../modal/modal.component';
 
-import { $ } from "jquery";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,34 +20,42 @@ export class LoginComponent implements OnInit {
 
 
   public login = (): void => {
-    console.log("aefaervf");
-
-    this.alert_error = "";
+    this.status = "Trying to login...";
+    this.modal_text = "";
 
     if (
       !this.user.email ||
       !this.user.password
     ) {
-      this.alert_error = "To proceed you have to insert all data";
-      //$("#modal").modal();
+      this.modal_text = "To proceed you have to insert all data";
+      this.openModal();
     } else if (!this.validationService.validate_email(this.user.email)) {
-      this.alert_error = "Email is not valid";
+      this.modal_text = "Email or password not valid!";
+      this.openModal();
     } else {
-
-      this.alert_error = "Email is valid. Trying to login";
       this.avtentikacijaStoritev
         .login(this.user)
         .then(() => {
+          this.modal_text="";
           this.router.navigateByUrl(
             this.historyService.vrniPredhodnjeUrlNasloveBrezPrijaveInRegistracije()
           )
         })
-        .catch(sporocilo => this.alert_error = sporocilo);
+        .catch(message => {
+          this.modal_text = "Email or password not valid!";
+          this.openModal();
+        } );
     }
+    this.status="";
+    this.modal_text = "";
   }
 
-
-  alert_error: String;
+  @ViewChild('modal') public modalComponent: ModalComponent;
+  async openModal() {
+    return await this.modalComponent.open();
+  }
+  status: String;
+  modal_text: String;
   public user: User = {
     _id: "",
     username: "",

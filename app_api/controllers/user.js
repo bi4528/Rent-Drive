@@ -164,6 +164,8 @@ const get_user_data_by_email = (req, res) => {
 
 const updated_profile_data = (req, res) => {
 
+    console.log(req.body);
+
     var firstname = req.body.firstname || req.body.params.firstname;
     var username = req.body.username || req.body.params.username;
     var lastname = req.body.lastname || req.body.params.lastname;
@@ -422,41 +424,61 @@ const send_email_forgot_password = (req, res) => {
     if (req.params == null || req.params.email == null || !validate_email(req.params.email)) {
         return res.status(500).json("Email not valid");
     } else {
-
         const email = req.params.email;
 
-        var transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: 'skupina01.sp@gmail.com',
-                pass: process.env.EMAIL_PASSWORD
-            }
-        });
-        var token = generateJwt_passwordrecover(email);
+        User.find({
+                email: email
+            }).exec((error, users) => {
+                if (!users || users.length == 0) {
+                    return res.status(404).json({
+                        "message": "User not found."
+                    });
+                } else if (error) {
+                    return res.status(500).json(error);
+                } else {
+                    var user = users[0]
+                    
+                    var token = generateJwt_passwordrecover(email, user._id);
+                    var text = 'Click on http://localhost:4200/users/reset_password/' + token + ' or https://rentdrive-sp.herokuapp.com/users/reset_password/' + token;
+                    send_mail(req, res, email, 'Recover Password - Rent&Drive', text)
 
-        var mailOptions = {
-            from: 'skupina01.sp@gmail.com',
-            to: email,
-            subject: 'Recover Password - Rent&Drive',
-            text: 'Click on http://localhost:4200/users/' + token + '/resetpassword or https://rentdrive-sp.herokuapp.com/users/' + token + '/resetpassword'
-        };
-
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                return res.status(500).json(error);
-            } else {
-                return res.status(200).json(info.response);
-            }
-        });
+                }
+            });
     }
 };
 
-const generateJwt_passwordrecover = function (email) {
+const send_mail = function(req, res, to, subject, text){
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'skupina01.sp@gmail.com',
+            pass: process.env.EMAIL_PASSWORD
+        }
+    });
+
+    var mailOptions = {
+        from: 'skupina01.sp@gmail.com',
+        to: to,
+        subject: subject,
+        text: text
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            return res.status(500).json(error);
+        } else {
+            return res.status(200).json(info.response);
+        }
+    });
+}
+
+const generateJwt_passwordrecover = function (email, id) {
     const datumPoteka = new Date();
     datumPoteka.setDate(datumPoteka.getDate() + 1);
 
     return jwt.sign({
         email: email,
+        _id: id,
         exp: parseInt(datumPoteka.getTime() / 1000, 10)
     }, process.env.JWT_PASSWORD_RECOVER);
 };
