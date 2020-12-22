@@ -150,7 +150,7 @@
                             <span>{{review.rating}}</span>
                         </td>
                         <td class='comment'>{{review.comment}}</td>
-                        <td *ngIf="actualLoggedUser._id && review.user_id && actualLoggedUser._id=== review.user_id">
+                        <td *ngIf="actualLoggedUser && review.user_id && actualLoggedUser._id=== review.user_id">
                             <input type='button' class = 'btn btn-danger delete' value = 'Delete' (click)="deleteReview(review._id)">
                         </td>
                     </tr>

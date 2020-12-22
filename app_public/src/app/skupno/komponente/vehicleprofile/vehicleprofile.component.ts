@@ -35,7 +35,15 @@ export class VehicleProfileComponent implements OnInit {
     this.vehicleId = this.pot.snapshot.paramMap.get('idVehicle');
     this.get_vehicle_data(this.vehicleId);
     this.user_logged = this.avtentikacijaStoritev.is_logged();
-    this.actualLoggedUser = this.avtentikacijaStoritev.get_current_user();
+    var actualLoggedUserId = this.avtentikacijaStoritev.get_current_user()._id;
+    this.usersDataService
+      .getUser(actualLoggedUserId)
+      .then((data: User) => {
+        this.alert_error = (data != null) ? "" : "No user found";
+        this.actualLoggedUser = data;
+        console.log("LOGGED ", this.actualLoggedUser);
+        if(this.actualLoggedUser.favourite_vehicles_ids.includes(this.vehicle._id)) this.is_favourite_of_logged_user=true;
+      });
   }
 
   @ViewChild('modal') public modalComponent: ModalComponent;
@@ -50,7 +58,7 @@ export class VehicleProfileComponent implements OnInit {
     .then((data: Vehicle) => {
       this.alert_error = (data != null) ? "" : "No vehicle found";
       this.vehicle = data;
-      console.log(this.vehicle);
+      console.log("VEHICLE ",this.vehicle);
       this.get_user_data(this.vehicle.owner_id);
       this.setCarPhotosAndIndicators(this.vehicle.images);
       this.setAvgRating();
@@ -64,7 +72,7 @@ export class VehicleProfileComponent implements OnInit {
       .then((data: User) => {
         this.alert_error = (data != null) ? "" : "No user found";
         this.user = data;
-        console.log(this.user);
+        console.log("OWNER ", this.user);
       });
   }
 
@@ -119,20 +127,20 @@ export class VehicleProfileComponent implements OnInit {
       this.openModal();
     } else if (heart.className == "far fa-heart") {
       heart.className = "fas fa-heart";
-      this.user.favourite_vehicles_ids.push(this.vehicleId);
-      this.usersDataService.updateUserData(this.user).then((user: User)=> {
-        this.alert_error = (user != null) ? "" : "Failed to favorite vehicle!";
-        this.user = user;
-      });
+      //console.log(this.actualLoggedUser);
+      this.actualLoggedUser.favourite_vehicles_ids.push(this.vehicleId);
+      this.usersDataService.update_favourite_vehicles(this.actualLoggedUser).then((success)=> {
+        success ? "" : "Failed to favorite vehicle!";
+        this.ngOnInit();
+      })
     } else {
       heart.className = "far fa-heart";
-      var index = this.user.favourite_vehicles_ids.indexOf("this.vehicleId");
-      if (index > -1) 
-        this.user.favourite_vehicles_ids.splice(index, 1);
-      this.usersDataService.updateUserData(this.user).then((user: User)=> {
-        this.alert_error = (user != null) ? "" : "Failed to unfavorite vehicle";
-        this.user = user;
-      });
+      if (this.actualLoggedUser.favourite_vehicles_ids.includes(this.vehicleId)) {
+        this.usersDataService.update_favourite_vehicles(this.actualLoggedUser).then((success)=> {
+          success ? "" : "Failed to unfavorite vehicle!";
+          this.ngOnInit();
+        })
+      }
     }
   }
 
