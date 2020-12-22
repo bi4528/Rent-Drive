@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 
-import { latLng, LatLng, tileLayer } from 'leaflet';
+import { icon, latLng, Layer, marker, tileLayer } from 'leaflet';
 
 @Component({
   selector: 'app-leaflet-mapa',
   templateUrl: './nearby-mapa.component.html'
 })
 export class NearbyMapaComponent {
-
+  // Open Street Map definitions
   optionsSpec: any = {
     layers: [{ url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', attribution: 'Open Street Map' }],
-    zoom: 13,
-    center: [ 46.0569, 14.5058 ]
+    zoom: 11,
+    center: [ 46.0477, 14.5151 ]
   };
 
   // Leaflet bindings
@@ -25,26 +25,24 @@ export class NearbyMapaComponent {
 
   // Form bindings
   formZoom = this.zoom;
-  zoomLevels = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ];
+
   lat = this.center.lat;
   lng = this.center.lng;
 
-  // Output binding for center
-  onCenterChange(center: LatLng): void {
-    setTimeout(() => {
-      this.lat = center.lat;
-      this.lng = center.lng;
-    });
+  markers: Layer[] = [];
+
+  addMarker(): void {
+    const newMarker = marker(
+      [ 46.0569 + 0.1 * (Math.random() - 0.5), 14.5058 + 0.1 * (Math.random() - 0.5) ],
+      {
+        title: 'Random marker'
+      }
+    );
+
+    this.markers.push(newMarker);
   }
 
-  onZoomChange(zoom: number): void {
-    setTimeout(() => {
-      this.formZoom = zoom;
-    });
-  }
-
-  doApply(): void {
-    this.center = latLng(this.lat, this.lng);
-    this.zoom = this.formZoom;
+  removeMarker(): void {
+    this.markers.pop();
   }
 }
