@@ -6,8 +6,6 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 
-
-
 const get_all_users = (req, res) => {
     User.find({}, function (error, user) {
 
@@ -160,12 +158,22 @@ const get_user_data_by_email = (req, res) => {
         });
 };
 
+const upload_profile_picture = (req, res) => {
+    if (!req.file) {
+        console.log("No file received");
+        res.status(404).json({
+            "message": "No file found"
+        });
+
+    } else {
+        console.log('file received');
+        return res.status(200).json(req.file.filename);
+    }
+};
 
 
 const updated_profile_data = (req, res) => {
-
-    console.log(req.body);
-
+    
     var firstname = req.body.firstname || req.body.params.firstname;
     var username = req.body.username || req.body.params.username;
     var lastname = req.body.lastname || req.body.params.lastname;
@@ -427,27 +435,27 @@ const send_email_forgot_password = (req, res) => {
         const email = req.params.email;
 
         User.find({
-                email: email
-            }).exec((error, users) => {
-                if (!users || users.length == 0) {
-                    return res.status(404).json({
-                        "message": "User not found."
-                    });
-                } else if (error) {
-                    return res.status(500).json(error);
-                } else {
-                    var user = users[0]
-                    
-                    var token = generateJwt_passwordrecover(email, user._id);
-                    var text = 'Click on http://localhost:4200/users/reset_password/' + token + ' or https://rentdrive-sp.herokuapp.com/users/reset_password/' + token;
-                    send_mail(req, res, email, 'Recover Password - Rent&Drive', text)
+            email: email
+        }).exec((error, users) => {
+            if (!users || users.length == 0) {
+                return res.status(404).json({
+                    "message": "User not found."
+                });
+            } else if (error) {
+                return res.status(500).json(error);
+            } else {
+                var user = users[0]
 
-                }
-            });
+                var token = generateJwt_passwordrecover(email, user._id);
+                var text = 'Click on http://localhost:4200/users/reset_password/' + token + ' or https://rentdrive-sp.herokuapp.com/users/reset_password/' + token;
+                send_mail(req, res, email, 'Recover Password - Rent&Drive', text)
+
+            }
+        });
     }
 };
 
-const send_mail = function(req, res, to, subject, text){
+const send_mail = function (req, res, to, subject, text) {
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -504,7 +512,8 @@ module.exports = {
     get_user_data_by_email,
     get_rents_of_user,
     login,
-    send_email_forgot_password
+    send_email_forgot_password,
+    upload_profile_picture
 };
 
 const email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

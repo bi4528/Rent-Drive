@@ -66,7 +66,6 @@ export class UsersDataService {
   }
 
   public updateUserData(user: User): Promise<User> {
-    //debugger;
     const url: string = `${this.apiUrl}/users/${user._id}`;
     const httpLastnosti = {
       headers: new HttpHeaders({
@@ -78,6 +77,20 @@ export class UsersDataService {
       .toPromise()
       .then(response => response as User)
       .catch (this.procesError);
+  }
+
+  public updateProfilePicture(profile_picture: any): Promise<string> {
+    const url: string = `${this.apiUrl}/users/upload/profile_picture`;
+    const httpLastnosti = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.storage.getItem('rentdrive-token')}`
+      })
+    };
+    return this.http
+      .post(url, profile_picture, httpLastnosti)
+      .toPromise()
+      .then(response => response as string)
+      .catch(this.procesError);
   }
 
   public deleteUser(user: User): Promise<void> {

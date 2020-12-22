@@ -29,15 +29,22 @@ export class EditProfileComponent implements OnInit {
 
     if (this.avtentikacijaStoritev.is_logged() && (this.user._id == this.avtentikacijaStoritev.get_current_user()._id || this.avtentikacijaStoritev.get_current_user().is_admin)) {
       this.alert_error = "Updating user data";
-      this.usersDataService
-        .updateUserData(this.user)
-        .then((user: User) => {
-          this.alert_error = (user != null) ? "" : "Failed to update user";
-          this.user = user;
-          this.id_of_user = this.user._id;
-          this.router.navigateByUrl("/users/profiles/" + this.user._id)
 
-        });
+      var fd = new FormData();
+      fd.append('profile_picture', this.profile_picture_file, this.profile_picture_file.name);
+      this.usersDataService.updateProfilePicture(fd).then((filename: string) => {
+        this.user.profile_picture = filename;
+        this.usersDataService
+          .updateUserData(this.user)
+          .then((user: User) => {
+            this.alert_error = (user != null) ? "" : "Failed to update user";
+            this.user = user;
+            this.id_of_user = this.user._id;
+            this.router.navigateByUrl("/users/profiles/" + this.user._id)
+
+          });
+      });
+
     } else {
       this.alert_error = "You are not authorized for this action";
     }
@@ -47,9 +54,15 @@ export class EditProfileComponent implements OnInit {
     return this.avtentikacijaStoritev.is_logged() ? this.avtentikacijaStoritev.get_current_user().is_admin || this.id_of_user == this.avtentikacijaStoritev.get_current_user()._id : false;
   }
 
+  public change_name_of_profile_picture(event: any): void {
+    this.user.profile_picture = null;
+    this.profile_picture_file = event.target.files[0];
+  }
+
   public id_of_user: String;
   public alert_error: String;
   public user: User;
+  public profile_picture_file: any;
 
 
   ngOnInit(): void {

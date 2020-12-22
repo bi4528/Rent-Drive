@@ -46,7 +46,7 @@ const swaggerDocument = swaggerJsdoc(swaggerOptions);
 //var indexRouter = require('./app_server/routes/index');
 //var usersRouter = require('./app_server/routes/users');
 //var vehiclesRouter = require('./app_server/routes/vehicles');
-var nearbyRouter = require('./app_api/routes/nearby');
+
 
 require('./app_api/models/db');
 require('./app_api/configuration/passport');
@@ -123,7 +123,7 @@ app.post('/vehicleImagesUpload', upload.array('files'), (req, res, next) => {
 //app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 //app.use('/vehicles', vehiclesRouter);
-//app.use('/nearby', nearbyRouter);
+
 
 app.use('/api/users', usersApi); // /api/docs
 app.use('/api/vehicles', vehicleApi);

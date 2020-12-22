@@ -1,5 +1,26 @@
-<div leaflet style="height: 100%;"
-     [leafletOptions]="options"
-     [leafletZoom]="zoom"
-     [leafletCenter]="center">
+
+
+<div class="row w-100 mx-auto">
+  <!--<div class="col-4 overflow-auto" name="seznam" style="overflow-y: scroll; height: 100vh;"></div>-->
+  <div class="col-12" id="mapa_id" style="height: 50vh;
+                             padding-left: 0px; padding-right: 0px; max-height: 100% !important;">
+    <div leaflet style="height: 300px;"
+         [leafletOptions]="options"
+         [leafletZoom]="zoom"
+         [leafletCenter]="center"
+         [leafletLayers]="markers">
+    </div>
+
+  </div>
 </div>
+<a href="#" class="button mt-auto button1" id="show_vehicles">Show available vehicles</a>
+
+
+<button type="button"
+        class="btn btn-primary m-1"
+        (click)="addMarker()">Add Marker</button>
+
+<button type="button"
+        class="btn btn-primary m-1"
+        (click)="removeMarker()">Remove Marker</button>
+

@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
       .then((data: User) => {
         this.alert_error = (data != null) ? "" : "No user found";
         this.user = data;
-      }).catch(()=>{this.router.navigateByUrl("/error");});
+      }).catch(() => { this.router.navigateByUrl("/error"); });
   }
 
 
@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit {
     this.usersDataService
       .getVehiclesOfUser(id_of_user)
       .then((data: Vehicle[]) => {
-        
+
         this.alert_error = (data.length > 0) ? "" : "";
         this.owned_cars = data;
         if (this.owned_cars.length == 0) {
@@ -50,7 +50,7 @@ export class ProfileComponent implements OnInit {
   }
 
   private get_favourite_vehicles_of_user = (id_of_user: String): void => {
-    
+
     this.alert_error = "Searching for favourite vehicles";
     this.usersDataService
       .getFavouriteVehiclesOfUser(id_of_user)
@@ -80,7 +80,7 @@ export class ProfileComponent implements OnInit {
 
   private checkIfProfileIsUserLogged = (): void => {
     var current_user = this.avtentikacijaStoritev.get_current_user();
-    if (current_user==null) this.router.navigateByUrl('/error');  // user doesnt exist or deleted account
+    if (current_user == null) this.router.navigateByUrl('/error');  // user doesnt exist or deleted account
     this.is_profile_of_logged_user = current_user._id == this.id_of_user;
   }
 
@@ -140,7 +140,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  public is_logged_or_admin_user():Boolean {
+  public is_logged_or_admin_user(): Boolean {
     return this.avtentikacijaStoritev.get_current_user().is_admin || this.is_profile_of_logged_user;
   }
 
@@ -148,6 +148,17 @@ export class ProfileComponent implements OnInit {
     this.router.navigateByUrl("/users/edit/" + this.user._id);
   }
 
+  public show_vehicle = (id_vehicle): void => {
+    this.router.navigateByUrl("/vehicles/" + id_vehicle);
+  }
+  public delete_rent = (id_rent): void => {
+    console.log("Waiting for bojan");
+  }
+  public delete_vehicle = (id_vehicle): void => {
+    this.vehiclesDataService.deleteVehicle(id_vehicle).then(() => {
+      this.get_vehicles_of_user(this.id_of_user);
+    });
+  }
 
   public id_of_user: String;
   public alert_error: String;
