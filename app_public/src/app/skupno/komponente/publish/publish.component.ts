@@ -5,6 +5,7 @@ import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upl
 import { AuthenticationService } from '../../storitve/avtentikacija.service';
 import { ModalComponent } from '../modal/modal.component';
 import { ValidationService } from '../../storitve/validation.service';
+import { HttpClient } from '@angular/common/http';
 
 const URL = 'http://localhost:3000/upload';  //TO SE MORA SPREMENITI ODVISNO OD OKOLJE
 
@@ -21,13 +22,15 @@ export class PublishComponent implements OnInit {
     private vehiclesDataService: VehiclesDataService,
     private router: Router,
     private avtentikacijaStoritev: AuthenticationService,
-    private validationService: ValidationService
+    private validationService: ValidationService,
+    private http: HttpClient
     )
   { }
 
   public user_logged:boolean = true;
   public error:string = "";
   public validation_error:string = "";
+  public multipleImages=[];
 
   public newVehicle = {
     images: [],
@@ -124,6 +127,18 @@ export class PublishComponent implements OnInit {
     return data ? "on" : "off";
   }
 
+  public selectImage(event){
+    if (event.target.files.length > 0) {
+      console.log(event.target.files)
+      this.multipleImages = event.target.files;
+    }
+    
+    for(let i=0; i<this.multipleImages.length; i++){
+      console.log(this.multipleImages[i].name);
+    }
+    
+  }
+
   public addNewVehicle() : void {
     this.validation_error="";
     let writeError= false;
@@ -131,8 +146,6 @@ export class PublishComponent implements OnInit {
     this.defineCategory(this.newVehicle);
     this.defineMinAge(this.newVehicle);
     console.log(this.newVehicle);
-    
-
 
     if ( !this.validationService.validate_vehicle_make(this.newVehicle.make) ) {
       this.validation_error = this.validation_error.concat("Make should have only letters.\n");
@@ -212,6 +225,19 @@ export class PublishComponent implements OnInit {
       this.newVehicle.bluetooth=this.defineOnOff(this.newVehicle.bluetooth);
       this.newVehicle.autopilot=this.defineOnOff(this.newVehicle.autopilot);
       this.newVehicle.owner_id = this.avtentikacijaStoritev.get_current_user()._id;
+
+      //IMAGE UPLOAD PREMAKNI V SERVICE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      const formData = new FormData();
+      for(let img of this.multipleImages){
+        formData.append('files', img);
+      }
+  
+      this.http.post<any>('http://localhost:3000/vehicleImagesUpload', formData).subscribe(
+        (res) => console.log(res),
+        (err) => console.log(err)
+      );
+      //
+
       //console.log(this.newVehicle);
       this.vehiclesDataService
         .postVehicle(this.newVehicle)
