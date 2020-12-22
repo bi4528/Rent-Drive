@@ -155,7 +155,6 @@ export class ProfileComponent implements OnInit {
     console.log("Waiting for bojan");
   }
   public delete_vehicle = (id_vehicle): void => {
-    console.log(id_vehicle);
     this.vehiclesDataService.deleteVehicle(id_vehicle).then(() => {
       this.get_vehicles_of_user(this.id_of_user);
     });

@@ -173,8 +173,6 @@ const upload_profile_picture = (req, res) => {
 
 
 const updated_profile_data = (req, res) => {
-
-    console.log(req.body);
     
     var firstname = req.body.firstname || req.body.params.firstname;
     var username = req.body.username || req.body.params.username;
