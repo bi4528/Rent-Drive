@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { icon, latLng, Layer, marker, tileLayer } from 'leaflet';
+import {icon, LatLng, latLng, Layer, marker, tileLayer} from 'leaflet';
 import {MarkeriService} from "../../storitve/markeri.service";
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
+
 
 @Component({
   selector: 'app-leaflet-mapa',
@@ -14,6 +15,7 @@ export class NearbyMapaComponent {
   constructor( private markeriService: MarkeriService) { }
 
   public locations: any;
+
 
   // Open Street Map definitions
   optionsSpec: any = {
@@ -57,8 +59,6 @@ export class NearbyMapaComponent {
 
   ngOnInit(): void {
     this.pridobiMarkere();
-    //console.log(this.locations);
-    //this.condition = false;
   }
 
   setMarkeri(): void {
@@ -71,7 +71,7 @@ export class NearbyMapaComponent {
     this.cars.forEach((car) =>{
 
       console.log(car);
-      var distance = this.options.center.distanceTo([car.LAT, car.LNG]);
+      var distance = latLng(this.lat, this.lng).distanceTo([car.LAT, car.LNG]);
 
       if (distance < 3000.00) {
 
@@ -88,9 +88,18 @@ export class NearbyMapaComponent {
           }
         );
         this.markers.push(newMarker);
-        //console.log(distance);
+
       }
     });
+  }
+
+  // Output binding for center
+  onCenterChange(center: LatLng) {
+    setTimeout(() => {
+      this.lat = center.lat;
+      this.lng = center.lng;
+    })
+
   }
 
   private pridobiMarkere(): void {

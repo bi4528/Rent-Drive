@@ -4,11 +4,12 @@
   <!--<div class="col-4 overflow-auto" name="seznam" style="overflow-y: scroll; height: 100vh;"></div>-->
   <div class="col-12" id="mapa_id" style="height: 50vh;
                              padding-left: 0px; padding-right: 0px; max-height: 100% !important;">
-    <div leaflet style="height: 300px;"
+    <div leaflet style="height: 300px;" class="map"
          [leafletOptions]="options"
          [leafletZoom]="zoom"
          [leafletCenter]="center"
-         [leafletLayers]="markers">
+         [leafletLayers]="markers"
+         (leafletCenterChange)="onCenterChange($event)">
     </div>
 
   </div>
