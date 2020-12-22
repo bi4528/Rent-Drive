@@ -23,14 +23,31 @@ export class BookComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getOwner();
-    this.getVehicle();
-    this.getRenter();
+    //this.getOwner();
+    //this.getVehicle();
+    //this.getRenter();
 
-    this.dateFrom = "2021-01-01";
+    /*this.dateFrom = "2021-01-01";
     this.dateTo = "2021-01-31";
     this.vehicle_picture = "../../../../assets/images/chevrolet-corvette.jpg";
+<<<<<<< HEAD
+    this.pickup_locations = "nesto nesto nesto 12";*/
+    this.owner = this.bookService.owner;
+    this.renter = this.bookService.renter;
+    this.vehicle = this.bookService.vehicle;
+    this.dateFrom = this.bookService.dateFrom.toDateString();
+    this.dateTo = this.bookService.dateTo.toDateString();
+    console.log(this.renter);
+    debugger;
+    /*
+=======
     this.pickup_locations = "nesto nesto nesto 12";
+    this.owner = this.bookService.owner;
+    this.renter = this.bookService.renter;
+    this.vehicle = this.bookService.vehicle;
+    this.dateFrom = this.bookService.dateFrom.toISOString();
+    this.dateTo = this.bookService.dateTo.toISOString();
+>>>>>>> 99fca84a803e02dd6bb27fd923ccc65cb004aeaf*/
   }
 
 

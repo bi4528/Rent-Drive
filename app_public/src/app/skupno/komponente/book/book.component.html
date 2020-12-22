@@ -6,14 +6,14 @@
     <div class="row">
       <div class="col-sm-4">
         <div class="card">
-          <img src="{{vehicle_picture}}" class="card-img-top">
+          <img src="../../../../assets/uploads/{{vehicle.images[0]}}" class="card-img-top">
           <div class="card-body">
             <h5 class="card-title">Booking information</h5>
             <p class="card-text">{{vehicle.description}}</p>
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">Pick-up date: {{dateFrom}}</li>
-            <li class="list-group-item">Location: {{pickup_locations}}</li>
+            <li class="list-group-item">Location: {{ vehicle.addres}}, {{vehicle.city}}, {{vehicle.country}}</li>
             <li class="list-group-item">Return date: {{dateTo}}</li>
             <li class="list-group-item">Daily price: {{vehicle.price}} &euro;</li>
           </ul>
@@ -37,7 +37,7 @@
       </div>
       <div class="col-sm-4">
         <div class="card">
-          <img src="{{owner.profile_picture}}" class="card-img-top" alt="Marina">
+          <img src="../../../../assets/uploads/{{owner.profile_picture}}" class="card-img-top" alt="Marina">
           <div class="card-body">
             <h5 class="card-title">Owner: {{owner.username}}</h5>
             <p class="card-text">This is the contact information of the vehicle owner. For further information please consult the owner!</p>
@@ -57,7 +57,7 @@
       </div>
       <div class="col-sm-4">
         <div class="card">
-          <img src="{{renter.profile_picture}}" class="card-img-top" alt="Vuk">
+          <img src="../../../../assets/uploads/{{renter.profile_picture}}" class="card-img-top" alt="Vuk">
           <div class="card-body">
             <h5 class="card-title">My Profile:{{renter.username}}</h5>
             <p class="card-text">This is your contact information. Please, check it!</p>

@@ -33,6 +33,7 @@ import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 import { AddReviewComponent } from './skupno/komponente/add-review/add-review.component';
 import { EditvehicleprofileComponent } from './skupno/komponente/editvehicleprofile/editvehicleprofile.component';
 import { NotFoundComponentComponent } from './skupno/komponente/not-found-component/not-found-component.component';
+import { PickupLocationPipe } from './skupno/cevi/pickup-location.pipe';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { NotFoundComponentComponent } from './skupno/komponente/not-found-compon
     HtmlPrelomVrsticePipe,
     AddReviewComponent,
     EditvehicleprofileComponent,
-    NotFoundComponentComponent
+    NotFoundComponentComponent,
+    PickupLocationPipe
   ],
     imports: [
         BrowserModule,
