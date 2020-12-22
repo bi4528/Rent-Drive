@@ -7,6 +7,7 @@ import { ModalComponent } from '../modal/modal.component';
 import { ValidationService } from '../../storitve/validation.service';
 import { HttpClient } from '@angular/common/http';
 
+
 const URL = 'http://localhost:3000/upload';  //TO SE MORA SPREMENITI ODVISNO OD OKOLJE
 
 @Component({
@@ -31,6 +32,7 @@ export class PublishComponent implements OnInit {
   public error:string = "";
   public validation_error:string = "";
   public multipleImages=[];
+  @ViewChild('inputEl') public inputEl;
 
   public newVehicle = {
     images: [],
@@ -131,6 +133,16 @@ export class PublishComponent implements OnInit {
     if (event.target.files.length > 0) {
       console.log(event.target.files)
       this.multipleImages = event.target.files;
+    }
+  }
+
+  public isElectric(event) :void {
+    console.log(this.newVehicle.typeoffuel);
+    if (this.newVehicle.typeoffuel=='4'){
+      this.inputEl.nativeElement.disabled = true;
+    }
+    else {
+      this.inputEl.nativeElement.disabled = false;
     }
   }
 

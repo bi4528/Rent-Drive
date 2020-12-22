@@ -34,7 +34,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">Type of fuel:</span>
                 </div>
-                <select class="form-control" tabindex=3 name="typeoffuel" [(ngModel)]="newVehicle.typeoffuel">
+                <select class="form-control" tabindex=3 name="typeoffuel" [(ngModel)]="newVehicle.typeoffuel" (change)="isElectric($event)">
                     <option [ngValue]="1">Petrol</option>
                     <option [ngValue]="2">Diesel</option>
                     <option [ngValue]="3">Hybrid</option>
@@ -86,8 +86,8 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">Fuel consumption:</span>
                 </div>
-                <input type="text" aria-label="Model" class="form-control" tabindex=8 name="consumption"
-                    [(ngModel)]="newVehicle.consumption">
+                <input #inputEl type="text" aria-label="Model" class="form-control" tabindex=8 name="consumption"
+                    [(ngModel)]="newVehicle.consumption"> 
             </div>
 
             <div class="input-group col-sm-6 col-md-6 col-lg-4 pt-2 pt-sm-2">
