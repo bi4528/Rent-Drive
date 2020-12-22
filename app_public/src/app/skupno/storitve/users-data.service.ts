@@ -163,6 +163,7 @@ export class UsersDataService {
     return this.authentication('users/', user);
   }
 
+
   private authentication(urlname: string, user: User): Promise<AuthenticationResult> {
     const url: string = `${this.apiUrl}/${urlname}`;
     return this.http

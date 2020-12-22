@@ -5,8 +5,10 @@ import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute , ParamMap} from '@angular/router';
 import {VehiclesDataService} from '../../storitve/vehicles-data.service'
 import {AuthenticationService} from '../../storitve/avtentikacija.service'
+import {UsersDataService} from '../../storitve/users-data.service'
 import {Vehicle} from '../../razredi/vehicle'
 import { ModalComponent } from '../modal/modal.component';
+import { User } from '../../razredi/user';
 
 @Component({
   selector: 'app-add-review',
@@ -15,7 +17,13 @@ import { ModalComponent } from '../modal/modal.component';
 })
 export class AddReviewComponent implements OnInit {
 
-  constructor(private vehiclesDataService: VehiclesDataService, private avtentikacijaStoritev: AuthenticationService, private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private vehiclesDataService: VehiclesDataService,
+    private avtentikacijaStoritev: AuthenticationService,
+    private userDataService: UsersDataService,
+    private router: Router,
+    private route: ActivatedRoute)
+  { }
 
   @Input() img:string;
   @Input() username:string;
@@ -64,24 +72,37 @@ export class AddReviewComponent implements OnInit {
     else {
       this.newReview.rating = "★★★★★";
     }
-    this.newReview.user_id = this.avtentikacijaStoritev.get_current_user()._id;
+  
+
     console.log(this.newReview.user_id);
-    this.route.paramMap
-      .pipe(
-        switchMap((params: ParamMap) => {
-          let idVehicle = params.get('idVehicle');
-          return this.vehiclesDataService.getVehicle(idVehicle)
+
+    this.newReview.user_id = this.avtentikacijaStoritev.get_current_user()._id;
+    this.userDataService
+      .getUser(this.newReview.user_id)
+      .then((data: User) => {
+        this.alert_error = (data != null) ? "" : "No user found";
+        this.newReview.username=data.username;
+        this.newReview.img=data.profile_picture;
+
+        this.route.paramMap
+        .pipe(
+          switchMap((params: ParamMap) => {
+            let idVehicle = params.get('idVehicle');
+            return this.vehiclesDataService.getVehicle(idVehicle)
+          })
+        )
+        .subscribe((vehicle: Vehicle) => {
+          this.vehiclesDataService
+          .postReview(this.newReview, vehicle._id)
+          .then((data) => {
+            console.log("PUBLISED", data);
+            this.closeAndUpdateReview.emit();
+          })
+          .catch(napaka => this.error = napaka);
         })
-      )
-      .subscribe((vehicle: Vehicle) => {
-        this.vehiclesDataService
-        .postReview(this.newReview, vehicle._id)
-        .then((data) => {
-          console.log("PUBLISED", data);
-          this.closeAndUpdateReview.emit();
-        })
-        .catch(napaka => this.error = napaka);
-      })
+      }).catch(()=>{this.router.navigateByUrl("/error");});
+
+    
     }
     
   }
@@ -91,6 +112,6 @@ export class AddReviewComponent implements OnInit {
     return await this.modalComponent.open();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
 }

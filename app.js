@@ -8,6 +8,7 @@ var logger = require('morgan');
 var passport = require('passport');
 var swaggerJsdoc = require('swagger-jsdoc');
 var swaggerUi = require('swagger-ui-express');
+const multer = require("multer");
 
 var swaggerOptions = {
   swaggerDefinition: {
@@ -93,7 +94,6 @@ app.use('/api', (req, res, next) => {
   next();
 });
 
-
 //app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 //app.use('/vehicles', vehiclesRouter);
@@ -108,7 +108,6 @@ app.use('/api/nearby', nearbyApi);
 app.get('*', (req, res, next) => {
   res.sendFile(path.join(__dirname, 'app_public', 'build', 'index.html'));
 });
-
 usersApi.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 usersApi.get("/swagger.json", (req, res) => {
   res.status(200).json(swaggerDocument);

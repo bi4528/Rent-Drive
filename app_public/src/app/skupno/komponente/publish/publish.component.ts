@@ -5,6 +5,8 @@ import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upl
 import { AuthenticationService } from '../../storitve/avtentikacija.service';
 import { ModalComponent } from '../modal/modal.component';
 import { ValidationService } from '../../storitve/validation.service';
+import { HttpClient } from '@angular/common/http';
+
 
 const URL = 'http://localhost:3000/upload';  //TO SE MORA SPREMENITI ODVISNO OD OKOLJE
 
@@ -21,13 +23,16 @@ export class PublishComponent implements OnInit {
     private vehiclesDataService: VehiclesDataService,
     private router: Router,
     private avtentikacijaStoritev: AuthenticationService,
-    private validationService: ValidationService
+    private validationService: ValidationService,
+    private http: HttpClient
     )
   { }
 
   public user_logged:boolean = true;
   public error:string = "";
   public validation_error:string = "";
+  public multipleImages=[];
+  @ViewChild('inputEl') public inputEl;
 
   public newVehicle = {
     images: [],
@@ -59,7 +64,7 @@ export class PublishComponent implements OnInit {
     date: [],
     reviews: [],
     luggage: '',
-    minage: '',
+    minage: ''
     //MANJKA NUMBER !!!!!!!!!!!!!!!
   }
 
@@ -124,14 +129,30 @@ export class PublishComponent implements OnInit {
     return data ? "on" : "off";
   }
 
+  public selectImage(event){
+    if (event.target.files.length > 0) {
+      console.log(event.target.files)
+      this.multipleImages = event.target.files;
+    }
+  }
+
+  public isElectric(event) :void {
+    console.log(this.newVehicle.typeoffuel);
+    if (this.newVehicle.typeoffuel=='4'){
+      this.inputEl.nativeElement.disabled = true;
+    }
+    else {
+      this.inputEl.nativeElement.disabled = false;
+    }
+  }
+
   public addNewVehicle() : void {
     this.validation_error="";
     let writeError= false;
     this.defineFuel(this.newVehicle);
     this.defineCategory(this.newVehicle);
     this.defineMinAge(this.newVehicle);
-    //console.log(this.newVehicle);
-    
+    console.log(this.newVehicle);
 
 
     if ( !this.validationService.validate_vehicle_make(this.newVehicle.make) ) {
@@ -212,20 +233,33 @@ export class PublishComponent implements OnInit {
       this.newVehicle.bluetooth=this.defineOnOff(this.newVehicle.bluetooth);
       this.newVehicle.autopilot=this.defineOnOff(this.newVehicle.autopilot);
       this.newVehicle.owner_id = this.avtentikacijaStoritev.get_current_user()._id;
-      //console.log(this.newVehicle);
+
+      const formData = new FormData();
+      for(let img of this.multipleImages){
+        formData.append('files', img);
+      }
+
+      for(let i=0; i<this.multipleImages.length; i++){
+        console.log(this.multipleImages[i].name);
+        this.newVehicle.images.push(this.multipleImages[i].name);
+      }
+      console.log(formData);
       this.vehiclesDataService
+      .vehicleImagesUpload(formData)
+      .then((data) => {
+        console.log("IMAGES WERE SUCCESFULY UPLOADED", data);
+        this.vehiclesDataService
         .postVehicle(this.newVehicle)
         .then((data) => {
           console.log("PUBLISED", data);
           this.router.navigateByUrl("/");
         })
         .catch(napaka => this.error = napaka);
-    }
+      })
+      .catch(napaka => console.log(napaka) );
 
-    
+    }    
   }
-
-  //public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
 
   @ViewChild('modal') public modalComponent: ModalComponent;
   async openModal() {

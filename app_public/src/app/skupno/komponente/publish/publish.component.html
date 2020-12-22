@@ -8,10 +8,8 @@
             <H4 class="col-sm-12">Upload a photo:</H4>
             <div class="form-group border border-dark rounded p-2">
                 <label for="exampleFormControlFile1">Upload pictures from your car:</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="photo" />
+                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="photo" multiple (change)="selectImage($event)"/>
             </div>
-
-
         </div>
 
         <div class="form-row">
@@ -36,7 +34,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">Type of fuel:</span>
                 </div>
-                <select class="form-control" tabindex=3 name="typeoffuel" [(ngModel)]="newVehicle.typeoffuel">
+                <select class="form-control" tabindex=3 name="typeoffuel" [(ngModel)]="newVehicle.typeoffuel" (change)="isElectric($event)">
                     <option [ngValue]="1">Petrol</option>
                     <option [ngValue]="2">Diesel</option>
                     <option [ngValue]="3">Hybrid</option>
@@ -88,8 +86,8 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">Fuel consumption:</span>
                 </div>
-                <input type="text" aria-label="Model" class="form-control" tabindex=8 name="consumption"
-                    [(ngModel)]="newVehicle.consumption">
+                <input #inputEl type="text" aria-label="Model" class="form-control" tabindex=8 name="consumption"
+                    [(ngModel)]="newVehicle.consumption"> 
             </div>
 
             <div class="input-group col-sm-6 col-md-6 col-lg-4 pt-2 pt-sm-2">
@@ -235,7 +233,7 @@
             <div class="row col-12 py-4 justify-content-center">
                 <div class="col-1">
 
-                    <a *ngIf="user_logged"  routerLink="/">
+                    <a *ngIf="user_logged">
                         <input type="submit" class="btn btn-lg btn-secondary" tabindex=21>
                     </a>
 
@@ -260,4 +258,3 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"></script>
-<script src="../../../../assets/javascripts/publish.js"></script> <!-- NE DELA TODO debug -->
