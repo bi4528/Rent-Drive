@@ -62,7 +62,7 @@ export class PublishComponent implements OnInit {
     date: [],
     reviews: [],
     luggage: '',
-    minage: '',
+    minage: ''
     //MANJKA NUMBER !!!!!!!!!!!!!!!
   }
 
@@ -132,11 +132,6 @@ export class PublishComponent implements OnInit {
       console.log(event.target.files)
       this.multipleImages = event.target.files;
     }
-    
-    for(let i=0; i<this.multipleImages.length; i++){
-      console.log(this.multipleImages[i].name);
-    }
-    
   }
 
   public addNewVehicle() : void {
@@ -146,6 +141,7 @@ export class PublishComponent implements OnInit {
     this.defineCategory(this.newVehicle);
     this.defineMinAge(this.newVehicle);
     console.log(this.newVehicle);
+
 
     if ( !this.validationService.validate_vehicle_make(this.newVehicle.make) ) {
       this.validation_error = this.validation_error.concat("Make should have only letters.\n");
@@ -226,32 +222,32 @@ export class PublishComponent implements OnInit {
       this.newVehicle.autopilot=this.defineOnOff(this.newVehicle.autopilot);
       this.newVehicle.owner_id = this.avtentikacijaStoritev.get_current_user()._id;
 
-      //IMAGE UPLOAD PREMAKNI V SERVICE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       const formData = new FormData();
       for(let img of this.multipleImages){
         formData.append('files', img);
       }
-  
-      this.http.post<any>('http://localhost:3000/vehicleImagesUpload', formData).subscribe(
-        (res) => console.log(res),
-        (err) => console.log(err)
-      );
-      //
 
-      //console.log(this.newVehicle);
+      for(let i=0; i<this.multipleImages.length; i++){
+        console.log(this.multipleImages[i].name);
+        this.newVehicle.images.push(this.multipleImages[i].name);
+      }
+      console.log(formData);
       this.vehiclesDataService
+      .vehicleImagesUpload(formData)
+      .then((data) => {
+        console.log("IMAGES WERE SUCCESFULY UPLOADED", data);
+        this.vehiclesDataService
         .postVehicle(this.newVehicle)
         .then((data) => {
           console.log("PUBLISED", data);
           this.router.navigateByUrl("/");
         })
         .catch(napaka => this.error = napaka);
-    }
+      })
+      .catch(napaka => console.log(napaka) );
 
-    
+    }    
   }
-
-  //public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
 
   @ViewChild('modal') public modalComponent: ModalComponent;
   async openModal() {

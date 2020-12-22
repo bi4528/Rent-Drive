@@ -136,9 +136,23 @@ const returnLength = (req, res) => {
         });
 }
 
+const imagesUpload = (req, res) => {
+    if (!req.files) {
+        console.log("No file received");
+        res.status(404).json({
+            "message": "No file found"
+        });
+
+    } else {
+        console.log('file received');
+        return res.status(200).json(req.files);
+    }
+}
+
 const vehiclesUpload = (req, res) => {
     //console.log("Vehicle upload");
     //console.log(req.body);
+
     Vehicle.create({
         images: req.body.images,
         owner_id: req.body.owner_id,
@@ -280,5 +294,6 @@ module.exports = {
     vehiclesFind,
     vehiclesUpdate,
     vehiclesDelete,
-    returnLength
+    returnLength,
+    imagesUpload
 }

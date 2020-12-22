@@ -78,6 +78,20 @@ export class VehiclesDataService {
       .catch(this.procesError);
   }
 
+  public vehicleImagesUpload(data: any){
+    const url: string = `${this.apiUrl}/vehicles/imagesUpload`;
+    const httpLastnosti = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.storage.getItem('rentdrive-token')}`
+      })
+    };
+    return this.http
+      .post(url,data, httpLastnosti)
+      .toPromise()
+      .then(odgovor => odgovor as string)
+      .catch(this.procesError);
+  }
+
   public postReview(data: any, vehicleId: string): Promise<Review> {
     const url: string = `${this.apiUrl}/vehicles/${vehicleId}/reviews/`;
     const httpLastnosti = {
