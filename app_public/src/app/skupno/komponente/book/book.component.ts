@@ -31,6 +31,11 @@ export class BookComponent implements OnInit {
     this.dateTo = "2021-01-31";
     this.vehicle_picture = "../../../../assets/images/chevrolet-corvette.jpg";
     this.pickup_locations = "nesto nesto nesto 12";
+    this.owner = this.bookService.owner;
+    this.renter = this.bookService.renter;
+    this.vehicle = this.bookService.vehicle;
+    this.dateFrom = this.bookService.dateFrom.toISOString();
+    this.dateTo = this.bookService.dateTo.toISOString();
   }
 
 

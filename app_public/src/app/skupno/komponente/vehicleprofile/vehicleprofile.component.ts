@@ -115,7 +115,13 @@ export class VehicleProfileComponent implements OnInit {
     } 
     else {
       this.router.navigateByUrl("/book/" + this.vehicleId);
-      this.bookService.book(this.user, this.avtentikacijaStoritev.get_current_user(), this.vehicle, date1, date2 );
+      this.usersDataService
+      .getUser(this.avtentikacijaStoritev.get_current_user()._id)
+      .then((data: User) => {
+        this.alert_error = (data != null) ? "" : "No user found";
+        this.actualLoggedUser = data;
+      });
+      this.bookService.book(this.user, this.actualLoggedUser, this.vehicle, date1, date2 );
     }
   }
 
