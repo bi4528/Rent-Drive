@@ -106,6 +106,20 @@ export class VehiclesDataService {
       .catch(this.procesError);
   }
 
+  public deleteVehicle(vehicle_id: string): Promise<void> {
+    const url: string = `${this.apiUrl}/vehicles/${vehicle_id}`;
+    const httpLastnosti = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.storage.getItem('rentdrive-token')}`
+      })
+    };
+    return this.http
+      .delete(url, httpLastnosti)
+      .toPromise()
+      .then()
+      .catch(this.procesError);
+  }
+
   private procesError(napaka: any): Promise<any> {
     console.error('Prišlo je do napake', napaka);
     return Promise.reject(napaka.message || napaka);

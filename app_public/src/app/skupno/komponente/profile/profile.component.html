@@ -7,7 +7,7 @@
       </button>
     </div>
     <div id="podatki_uporabnika" class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-      <img *ngIf="user" class="rounded-circle slika_uporabnika" src="../../../assets/images/{{user.profile_picture}}" alt="Slika profila">
+      <img *ngIf="user" class="rounded-circle slika_uporabnika" src="../../../assets/uploads/{{user.profile_picture}}" alt="Slika profila">
       <h3 *ngIf="user" class="top-spacing centered"> <span id="ime_uporabnika">{{user.firstname}} </span> <span
           id="priimek_uporabnika">{{user.lastname}}</span></h3>
       <p *ngIf="user" id="mail_uporabnika" class="centered">{{user.email}}</p>
@@ -22,12 +22,12 @@
       <h2>My vehicles</h2>
       <div class="row" *ngFor="let owned_car of owned_cars">
         <div class="card col-12 col-sm-12 col-md-7 col-lg-5 col-xl-4 card_auto">
-          <img *ngIf="owned_car._id" class="card-img-top slika_auto" src="../../../assets/images/{{owned_car.images[0]}}" alt="Slika avta" onclick="show_vehicle('{{owned_car._id}}')">
-          <img *ngIf="owned_car._id == null"class="card-img-top slika_auto" src="../../../assets/images/{{owned_car.images[0]}}" alt="Slika avta">
+          <img *ngIf="owned_car._id" class="card-img-top slika_auto" src="../../../assets/uploads/{{owned_car.images[0]}}" alt="Slika avta" (click)="show_vehicle(owned_car._id)">
+          <img *ngIf="owned_car._id == null" class="card-img-top slika_auto" src="../../../assets/uploads/1.png" alt="Slika avta">
           <div class="card-body">
             <h5 class="card-text">{{owned_car.make}}</h5>
               <a *ngIf="show_controls && owned_car._id" type="button" routerLink="/vehicles/{{owned_car._id}}/edit" class="btn btn-primary btn-block card_auto_najemi_button">Edit</a>
-              <button *ngIf="show_controls" type="button" onclick="location.href='/users/delete/vehicles/{{owned_car._id}}'" class="btn btn-danger btn-block">Remove</button>
+              <button *ngIf="show_controls" type="button" (click)="delete_vehicle(owned_car._id)" class="btn btn-danger btn-block">Remove</button>
           </div>
         </div>
       </div>
@@ -37,8 +37,8 @@
       <h2>Favorite vehicles</h2>
       <div class="row" *ngFor="let favourite_car of favourite_cars">
         <div class="card col-12 col-sm-12 col-md-7 col-lg-5 col-xl-4 card_auto">
-          <img *ngIf="favourite_car.id" class="card-img-top slika_auto" src="../../../assets/images/{{favourite_car.images[0]}}" alt="Slika avta" onclick="show_vehicle('{{favourite_car.id}}')">
-          <img *ngIf="favourite_car.id == null" class="card-img-top slika_auto" src="../../../assets/images/{{favourite_car.images[0]}}" alt="Slika avta">
+          <img *ngIf="favourite_car.id" class="card-img-top slika_auto" src="../../../assets/uploads/{{favourite_car.images[0]}}" alt="Slika avta" (click)="show_vehicle(favourite_car.id)">
+          <img *ngIf="favourite_car.id == null" class="card-img-top slika_auto" src="../../../assets/uploads/{{favourite_car.images[0]}}" alt="Slika avta">
           <div class="card-body">
             <h5 class="card-text">{{favourite_car.make}}</h5>
           </div>
@@ -56,8 +56,8 @@
               <br>
               to date: 
               {{my_rent.date_to}}</h5>
-            <button type="button" onclick="location.href='/vehicles/{{my_rent.vehicle_id}}'" class="btn btn-primary btn-block card_auto_najemi_button">Visit vehicle profile</button>
-            <button type="button" onclick="location.href='/rented/{{my_rent._id}}/delete'" class="btn btn-primary btn-block card_auto_najemi_button">Delete this rent</button>
+            <button type="button" (click)="show_vehicle(my_rent.vehicle_id)" class="btn btn-primary btn-block card_auto_najemi_button">Visit vehicle profile</button>
+            <button type="button" (click)="delete_rent(my_rent._id)" class="btn btn-primary btn-block card_auto_najemi_button">Delete this rent</button>
           </div>
         </div>
       </div>

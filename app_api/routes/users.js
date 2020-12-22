@@ -13,6 +13,22 @@ const authentication_recover_password = jwt({
     algorithms: ['HS256']
 });
 
+const multer = require('multer');
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './app_public/src/assets/uploads/');
+        //cb(null, './public/uploads/');
+    },
+    filename: function (req, file, cb) {
+        console.log(file.originalname);
+        cb(null, file.originalname);
+        //cb(null, Date.now() + path.extname(file.originalname));
+    }
+});
+var upload = multer({
+    storage: storage
+});
+
 
 const ctrlUser = require("../controllers/user")
 
@@ -42,5 +58,6 @@ router.get('/check/exists', ctrlUser.check_if_user_exists);
 router.get('/check/exists_mail/:email', ctrlUser.check_if_mail_exists);
 router.get('/forgotpassword/:email', ctrlUser.send_email_forgot_password);
 router.get('/:idUser/rents', authentication, ctrlUser.get_rents_of_user);
+router.post('/upload/profile_picture', authentication, upload.single('profile_picture'), ctrlUser.upload_profile_picture);
 
 module.exports = router;
