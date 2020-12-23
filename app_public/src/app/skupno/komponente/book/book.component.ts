@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {User} from "../../razredi/user";
 import {Vehicle} from "../../razredi/vehicle";
 import {Rent} from "../../razredi/rent";
 import {ActivatedRoute, Router} from "@angular/router";
-import { BookServiceService } from '../../storitve/book-service.service';
+import {BookServiceService } from '../../storitve/book-service.service';
 import {RentedDataService} from "../../storitve/rented-data.service";
 import {ConfirmServiceService} from "../../storitve/confirm-service.service";
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-book',
@@ -14,6 +15,7 @@ import {ConfirmServiceService} from "../../storitve/confirm-service.service";
 })
 export class BookComponent implements OnInit {
   private alert_error: string;
+  private alert_header:string;
 
   constructor(private router: Router, private pot: ActivatedRoute, private bookService: BookServiceService,
               private rentedService: RentedDataService, private confirmService: ConfirmServiceService){}
@@ -49,16 +51,22 @@ export class BookComponent implements OnInit {
     this.rentedService
       .createRented(data)
       .then((rent) => {
-        this.alert_error = (rent != null) ? "" : "Failed to create rent";
+        //this.alert_error = (rent != null) ?
         this.router.navigateByUrl("book/"+this.vehicle._id+"/confirm");
         this.confirmService.confirmMessage("Your reservation has been processed successfully!")
       })
       .catch((resp: any) => {
-        this.router.navigateByUrl("book/"+this.vehicle._id+"/confirm");
-        this.confirmService.confirmMessage(resp);
-        //console.log(resp);
+        this.alert_error = resp;
+        this.alert_header = "Error!";
+        this.openModal();
       })
 
   }
+
+  @ViewChild('modal') public modalComponent: ModalComponent;
+  async openModal() {
+    return await this.modalComponent.open();
+  }
+
 
 }

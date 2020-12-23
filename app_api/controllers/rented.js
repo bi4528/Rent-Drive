@@ -20,7 +20,9 @@ const create_rented = (req, res) => {
             }, (err, data) => {
                 if (err) {
                     console.log("Error! Rented car wasn't saved successfully!!");
-                    res.status(404).json(renta);
+                    res.status(404).json({
+                        "message": "Error! Rented car wasn't saved successfully!!"
+                    });
                 } else {
                     console.log("Rented car saved successfully!");
                     res.status(200).json(renta);
@@ -29,7 +31,7 @@ const create_rented = (req, res) => {
         } else if (error) {
             return res.status(500).json(error);
         } else {
-            return res.status(404).json({
+            return res.status(409).json({
                 "message": "Car is already booked."
             });
         }
