@@ -175,8 +175,8 @@ export class PublishComponent implements OnInit {
       this.validation_error = this.validation_error.concat("Acceleration should be written in the next format => number.number or just a number(s).\n");
       writeError = true;
     }
-    if (!this.validationService.validate_acceleration(this.newVehicle.consumption)){
-      this.validation_error = this.validation_error.concat("Consumption field must not be empty, except if the vehicle is electrix\n");
+    if (!this.validationService.validate_acceleration(this.newVehicle.consumption) && this.newVehicle.typeoffuel!="Electric"){
+      this.validation_error = this.validation_error.concat("Consumption field must not be empty, except if the vehicle is electric\n");
       writeError = true;
     }
     if (!this.validationService.validate_vehicle_doors_seats(this.newVehicle.seats)){
@@ -233,7 +233,6 @@ export class PublishComponent implements OnInit {
       this.newVehicle.bluetooth=this.defineOnOff(this.newVehicle.bluetooth);
       this.newVehicle.autopilot=this.defineOnOff(this.newVehicle.autopilot);
       this.newVehicle.owner_id = this.avtentikacijaStoritev.get_current_user()._id;
-
       const formData = new FormData();
       for(let img of this.multipleImages){
         formData.append('files', img);

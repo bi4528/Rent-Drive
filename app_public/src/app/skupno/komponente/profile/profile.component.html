@@ -20,8 +20,8 @@
 
     <div id="vozila_uporabnika">
       <h2>My vehicles</h2>
-      <div class="row" *ngFor="let owned_car of owned_cars">
-        <div class="card col-12 col-sm-12 col-md-7 col-lg-5 col-xl-4 card_auto">
+      <div class="row" >
+        <div *ngFor="let owned_car of owned_cars" class="card col-12 col-sm-12 col-md-7 col-lg-5 col-xl-4 card_auto">
           <img *ngIf="owned_car._id" class="card-img-top slika_auto" src="../../../assets/uploads/{{owned_car.images[0]}}" alt="Slika avta" (click)="show_vehicle(owned_car._id)">
           <img *ngIf="owned_car._id == null" class="card-img-top slika_auto" src="../../../assets/uploads/1.png" alt="Slika avta">
           <div class="card-body">
