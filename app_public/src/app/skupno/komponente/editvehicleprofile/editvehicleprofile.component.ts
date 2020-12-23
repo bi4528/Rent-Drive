@@ -164,16 +164,14 @@ export class EditvehicleprofileComponent implements OnInit {
     } else {
       if (images.files.length > 0) {
         var formData = new FormData();
-        debugger;
         for (let i = 0; i < images.files.length; i++) {
-          formData.append(images.files[i].name, images.files[i]);
+          formData.append('files', images.files[i]);
         }
-
+        this.vehicle.images = [];
         for (let i = 0; i < images.files.length; i++) {
           console.log(images.files[i].name);
           this.vehicle.images.push(images.files[i].name);
         }
-        debugger;
         console.log(formData);
         this.vehicleDataService
           .vehicleImagesUpload(formData)
