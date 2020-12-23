@@ -11,6 +11,8 @@ export class RentedDataService {
 
   constructor(private http: HttpClient, @Inject(Storage_Browser) private storage: Storage) { }
 
+  //message: string;
+
   private apiUrl = environment.apiUrl;
 
   public createRented(data): Promise<Rent> {
