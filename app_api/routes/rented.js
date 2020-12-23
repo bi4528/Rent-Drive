@@ -2,6 +2,17 @@ var express = require('express');
 var router = express.Router();
 const ctrlRented = require('../controllers/rented');
 
+const jwt = require('express-jwt');
+const authentication = jwt({
+    secret: process.env.JWT_PASSWORD,
+    userProperty: 'payload',
+    algorithms: ['HS256']
+});
+const authentication_recover_password = jwt({
+    secret: process.env.JWT_PASSWORD_RECOVER,
+    userProperty: 'payload',
+    algorithms: ['HS256']
+});
 
 /* Vehicles */
 

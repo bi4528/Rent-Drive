@@ -12,25 +12,26 @@
             <p class="card-text">{{vehicle.description}}</p>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Pick-up date: {{dateFrom}}</li>
+            <li class="list-group-item">Pick-up date: {{dateFrom.toDateString()}}</li>
             <li class="list-group-item">Location: {{ vehicle.addres}}, {{vehicle.city}}, {{vehicle.country}}</li>
-            <li class="list-group-item">Return date: {{dateTo}}</li>
+            <li class="list-group-item">Return date: {{dateTo.toDateString()}}</li>
             <li class="list-group-item">Daily price: {{vehicle.price}} &euro;</li>
           </ul>
           <div class="card-body">
-            <a href="/vehicles/{{vehicle._id}}" class="card-link text-primary" id="return-link">
+            <a routerLink="/vehicles/{{vehicle._id}}" class="card-link text-primary" id="return-link">
               <i class="fas fa-caret-left"></i>
               Return</a>
             <!-- <a href="/users/confirm" class="card-link text-success float-right" id="confirm-link">
                 <i class="fas fa-caret-right"></i>
                 Confirm</a> -->
-            <form method="POST" action="/users/confirm" id="date-form" onsubmit="appendToForm()">
-              <input type="hidden" name="vehicle_id" id="vehicle_id" value="{{vehicle._id}}">
-              <input type="hidden" name="owner_id" id="owner_id" value="{{vehicle.owner_id}}">
-              <input type="hidden" name="my_id" id="my_id" value="{{renter._id}}">
-              <input type="hidden" name="date_from" id="date_from" value="{{dateFrom}}">
-              <input type="hidden" name="date_to" id="date_to" value="{{dateTo}}">
-              <input id="submit-button" type="submit" class="card-link text-success float-right" value="Confirm">
+            <form (ngSubmit)="bookRent()" >
+              <input type="hidden" name="vehicle_id" id="vehicle_id" [(ngModel)]="vehicle._id">
+              <input type="hidden" name="owner_id" id="owner_id" [(ngModel)]="vehicle.owner_id">
+              <input type="hidden" name="my_id" id="my_id" [(ngModel)]="renter._id">
+              <input type="hidden" name="date_from" id="date_from" [(ngModel)]="dateFrom">
+              <input type="hidden" name="date_to" id="date_to" [(ngModel)]="dateTo">
+              <button class="card-link text-success float-right">Confirm</button>
+              <!--<button class="btn btn-primary btn-sm float-right">Dodaj moj komentar</button>-->
             </form>
           </div>
         </div>
@@ -49,7 +50,7 @@
             <li class="list-group-item" *ngIf="owner.location">Location: {{owner.location}}</li>
           </ul>
           <div class="card-body">
-            <a href="/users/profiles/{{owner._id}}" class="card-link stretched-link text-primary">
+            <a routerLink="/users/profiles/{{owner._id}}" class="card-link stretched-link text-primary">
               <i class="fas fa-caret-up"></i>
               Check profile</a>
           </div>
@@ -57,7 +58,7 @@
       </div>
       <div class="col-sm-4">
         <div class="card">
-          <img src="../../../../assets/images/{{renter.profile_picture}}" class="card-img-top" alt="Vuk">
+          <img src="../../../../assets/uploads/{{renter.profile_picture}}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">My Profile:{{renter.username}}</h5>
             <p class="card-text">This is your contact information. Please, check it!</p>
@@ -69,7 +70,7 @@
             <li class="list-group-item" *ngIf="owner.location">Location: {{renter.location}}</li>
           </ul>
           <div class="card-body">
-            <a href="/users/edit" class="card-link stretched-link text-primary">
+            <a routerLink ="/users/edit/{{renter._id}}" class="card-link stretched-link text-primary">
               <i class="fas fa-caret-up"></i>
               Edit profile</a>
           </div>

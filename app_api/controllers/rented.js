@@ -6,17 +6,17 @@ const User = mongoose.model('User');
 const create_rented = (req, res) => {
     Rented.find({
 
-        vehicle_id: req.body.params.vehicle_id,
-        date_from: { $lte: req.body.params.date_to },
-        date_to: { $gte: req.body.params.date_from }
+        vehicle_id: req.body.vehicle_id,
+        date_from: { $lte: req.body.date_to },
+        date_to: { $gte: req.body.date_from }
 
     }, function (error, renta) {
         if (renta == undefined || renta.length == 0) {
             Rented.create({
-                user_id: req.body.params.my_id,
-                vehicle_id: req.body.params.vehicle_id,
-                date_from: req.body.params.date_from,
-                date_to: req.body.params.date_to
+                user_id: req.body.user_id,
+                vehicle_id: req.body.vehicle_id,
+                date_from: req.body.date_from,
+                date_to: req.body.date_to
             }, (err, data) => {
                 if (err) {
                     console.log("Error! Rented car wasn't saved successfully!!");
