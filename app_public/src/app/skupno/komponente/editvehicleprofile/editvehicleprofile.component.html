@@ -50,10 +50,10 @@
                                 <h4>Make and model</h4>
                             </div>
                         </div>
-                        <input *ngIf="vehicle" id="make" name="make" type="text" class="form-control-md"
-                            value="{{vehicle.make}}">
+                        <input *ngIf="vehicle" id="make" name="make" type="text" class="form-control-md "
+                            value="{{vehicle.make}}" tabindex=1>
                         <input *ngIf="vehicle" id="model" name="model" type="text" class="form-control-md"
-                            value="{{vehicle.model}}">
+                            value="{{vehicle.model}}" tabindex=2>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                                 <div class="input-group-text">Description:</div>
                             </div>
                             <textarea *ngIf="vehicle" name="description" id="description"
-                                class="form-control height-dvesto">{{vehicle.description}}</textarea>
+                                class="form-control height-dvesto" tabindex=4>{{vehicle.description}} </textarea>
                         </div>
                     </div>
                 </div>
@@ -120,6 +120,9 @@
                         name="AUX">
                     <label class="custom-control-label" for="AUX">AUX</label>
                 </div>
+            </div>
+
+            <div class="features col-md-5 col-lg-2 mr-5 mb-5">
                 <div class="custom-control custom-checkbox   mx-2">
                     <input type="checkbox" *ngIf="vehicle && vehicle.bluetooth" class="custom-control-input"
                         id="Bluetooth" name="bluetooth" checked>
@@ -127,9 +130,6 @@
                         id="Bluetooth" name="bluetooth">
                     <label class="custom-control-label" for="Bluetooth">Bluetooth</label>
                 </div>
-            </div>
-
-            <div class="features col-md-5 col-lg-2 mr-5 mb-5">
                 <div class="custom-control custom-checkbox   mx-2">
                     <input *ngIf="vehicle && vehicle.Navigation" type="checkbox" class="custom-control-input"
                         id="Navigation" name="Navigation" checked>
@@ -159,28 +159,28 @@
                         <span class="input-group-text"><i class="fas fa-tachometer-alt" aria-hidden="true"></i></span>
                     </div>
                     <input *ngIf="vehicle" id="maxspeed" type="text" class="form-control" placeholder="top-speed (km/h)"
-                        value="{{vehicle.maxspeed}}" name="maxspeed">
+                        value="{{vehicle.maxspeed}}" name="maxspeed" tabindex=5>
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-couch" aria-hidden="true"></i></span>
                     </div>
                     <input *ngIf="vehicle" id="seats" type="text" class="form-control" placeholder="seats"
-                        value="{{vehicle.seats}}" name="seats">
+                        value="{{vehicle.seats}}" name="seats" tabindex=6>
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-door-closed" aria-hidden="true"></i></span>
                     </div>
                     <input *ngIf="vehicle" id="doors" type="text" class="form-control" placeholder="door-count"
-                        value="{{vehicle.doors}}" name="doors">
+                        value="{{vehicle.doors}}" name="doors" tabindex=7>
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user-graduate" aria-hidden="true"></i></span>
                     </div>
                     <select class="form-control" placeholder="age" *ngIf="vehicle" id="minage" name="minage"
-                        value="{{vehicle.minage}}">
+                        value="{{vehicle.minage}}" tabindex=8>
                         <option>15</option>
                         <option>16</option>
                         <option>18</option>
@@ -192,7 +192,7 @@
                         <span class="input-group-text"><i class="fas fa-suitcase" aria-hidden="true"></i></span>
                     </div>
                     <input *ngIf="vehicle" id="luggage" type="text" class="form-control" placeholder="luggage (l)"
-                        value="{{vehicle.luggage}}" name="luggage">
+                        value="{{vehicle.luggage}}" name="luggage" tabindex=9>
                 </div>
             </div>
 
@@ -202,27 +202,28 @@
                         <span class="input-group-text"><i class="fas fa-shipping-fast" aria-hidden="true"></i></span>
                     </div>
                     <input *ngIf="vehicle" id="acceleration" type="text" class="form-control"
-                        placeholder="acceleration (km/h)" value="{{vehicle.acceleration}}" name="acceleration">
+                        placeholder="acceleration (km/h)" value="{{vehicle.acceleration}}" name="acceleration" tabindex=10>
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-horse" aria-hidden="true"></i></span>
                     </div>
                     <input *ngIf="vehicle" id="hp" type="text" class="form-control" placeholder="horsepower (kW)"
-                        value="{{vehicle.hp}}" name="hp">
+                        value="{{vehicle.hp}}" name="hp" tabindex=11>
                 </div>
+                <!--*ngIf="vehicle && vehicle.typeoffuel!='electric'"-->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-oil-can" aria-hidden="true"></i></span>
                     </div>
                     <input *ngIf="vehicle" id="consumption" type="text" class="form-control" placeholder="consumption"
-                        value="{{vehicle.consumption}}" name="consumption">
+                        value="{{vehicle.consumption}}" name="consumption" tabindex=12>
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class='fas fa-charging-station'></i></span>
                     </div>
-                    <select class="form-control" tabindex=3 name="typeoffuel" value="{{vehicle.typeoffuel}}">
+                    <select *ngIf="vehicle" class="form-control" tabindex=3 id="typeoffuel" name="typeoffuel" value="{{vehicle.typeoffuel}}" tabindex=13>
                         <option>Petrol</option>
                         <option>Diesel</option>
                         <option>Hybrid</option>
@@ -250,7 +251,7 @@
                 <div class="input-group-prepend mb-4 ">
                     <span class="input-group-text">Price (per day)</span>
                     <input *ngIf="vehicle" id="price" name="price" type="text" class="form-control"
-                        value="{{vehicle.price}}">
+                        value="{{vehicle.price}}" tabindex=14>
                         <div class="input-group-append">
                             <span class="input-group-text">€</span>
                           </div>
@@ -261,19 +262,18 @@
                 <div class="form-group" *ngIf="vehicle" id="locations">
                     <label>Address</label>
                     <input type="text" class="form-control" *ngIf="vehicle" id="addres" name="addres"
-                        value="{{vehicle.addres}}">
+                        value="{{vehicle.addres}}" tabindex=15>
                     <label>Zip</label>
-                    <input type="text" class="form-control" *ngIf="vehicle" id="zip" name="zip" value="{{vehicle.zip}}">
+                    <input type="text" class="form-control" *ngIf="vehicle" id="zip" name="zip" value="{{vehicle.zip}}" tabindex=16>
                     <label>City</label>
                     <input type="text" class="form-control" *ngIf="vehicle" id="city" name="city"
-                        value="{{vehicle.city}}">
+                        value="{{vehicle.city}}" tabindex=17>
                 </div>
             </div>
         </div>
 
-        <input type="text" name="id" value="{{vehicle._id}}" hidden="true">
         <div class="row m-3 ml-4 mb-4 justify-content-center">
-            <button type="submit" id="save-changes" class="btn btn-primary mb-3">Save changes</button>
+            <button type="submit" id="save-changes" class="btn btn-primary mb-3" tabindex=17>Save changes</button>
         </div>
 
     </form>

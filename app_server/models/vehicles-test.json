@@ -75,7 +75,7 @@
 		"AUX": "on",
 		"autopilot": "on",
         "accessibility": "off",
-        "typeoffuel": "electric",
+        "typeoffuel": "Electric",
 		"luggage": "425",
         "minage": "18",
         "profile_picture": "/images/oseba_template.jpg",

@@ -28,6 +28,7 @@ export class EditvehicleprofileComponent implements OnInit {
         console.log(this.vehicle);
         this.get_user_data(this.vehicle.owner_id);
         this.setCarPhotosAndIndicators(this.vehicle.images);
+        if (this.avtentikacijaStoritev.get_current_user()==null || this.vehicle.owner_id != this.avtentikacijaStoritev.get_current_user()._id) this.router.navigateByUrl("/error");
       });
   }
 
@@ -61,6 +62,7 @@ export class EditvehicleprofileComponent implements OnInit {
     this.alert_error = "Editing vehicle...";
     var writeError = false;
     var errors = "";
+    var images = <HTMLInputElement>document.getElementById("images");
     var maxspeed = <HTMLInputElement>document.getElementById("maxspeed");
     var hp = <HTMLInputElement>document.getElementById("hp");
     var acceleration = <HTMLInputElement>document.getElementById("acceleration");
@@ -76,7 +78,12 @@ export class EditvehicleprofileComponent implements OnInit {
     var description = <HTMLInputElement>document.getElementById("description");
     var date1 = <HTMLInputElement>document.getElementById("date-from");
     var date2 = <HTMLInputElement>document.getElementById("date-to");
-
+    var typeoffuel = <HTMLInputElement>document.getElementById("typeoffuel");
+    if (typeoffuel == null) {
+      make.classList.add("alert-danger");
+      errors += "Type of fuel not specified.\n";
+      writeError = true;
+    } else this.vehicle.typeoffuel = typeoffuel.value;
     if (!this.validationService.validate_vehicle_make(make.value)) {
       make.classList.add("alert-danger");
       errors += "Make should have only letters.\n";
@@ -155,12 +162,41 @@ export class EditvehicleprofileComponent implements OnInit {
       this.alert_error = errors;
       this.openModal();
     } else {
-      this.vehicleDataService.updateVehicleData(this.vehicle).then((vehicle: Vehicle)=> {
-        this.alert_error = (vehicle != null) ? "" : "Failed to update vehicle";
-        this.vehicle = vehicle;
-        this.router.navigateByUrl("/vehicles/" + this.vehicleId);
-      })
+      if (images.files.length > 0) {
+        var formData = new FormData();
+        debugger;
+        for (let i = 0; i < images.files.length; i++) {
+          formData.append(images.files[i].name, images.files[i]);
+        }
+
+        for (let i = 0; i < images.files.length; i++) {
+          console.log(images.files[i].name);
+          this.vehicle.images.push(images.files[i].name);
+        }
+        debugger;
+        console.log(formData);
+        this.vehicleDataService
+          .vehicleImagesUpload(formData)
+          .then((data) => {
+            console.log("IMAGES WERE SUCCESFULY UPLOADED", data);
+            this.vehicleDataService
+              .updateVehicleData(this.vehicle)
+              .then((data) => {
+                console.log("PUBLISED", data);
+                this.router.navigateByUrl("/vehicles/" + this.vehicleId);
+              })
+              .catch(napaka => this.alert_error = napaka);
+          })
+          .catch(napaka => console.log(napaka));
+      } else {
+        this.vehicleDataService.updateVehicleData(this.vehicle).then((vehicle: Vehicle) => {
+          this.alert_error = (vehicle != null) ? "" : "Failed to update vehicle";
+          this.vehicle = vehicle;
+          this.router.navigateByUrl("/vehicles/" + this.vehicleId);
+        })
+      }
     }
+    this.alert_error = "";
   }
 
   @ViewChild('modal') public modalComponent: ModalComponent;

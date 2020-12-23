@@ -114,9 +114,9 @@
             </div>
             <div class="input-group col-sm-12 col-md-6 pt-2 pt-sm-2">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" tabindex=12>Minimum age:</span>
+                    <span class="input-group-text">Minimum age:</span>
                 </div>
-                <select class="form-control" tabindex=4 name="minage" [(ngModel)]="newVehicle.minage">
+                <select class="form-control" tabindex=12 name="minage" [(ngModel)]="newVehicle.minage">
                     <option [ngValue]="1">15</option>
                     <option [ngValue]="2">16</option>
                     <option [ngValue]="3">18</option>
@@ -196,11 +196,11 @@
                     [(ngModel)]="newVehicle.zip">
             </div>
 
-            <div class="input-group col-12">
+            <div class="input-group col-sm-12 col-lg-5 pt-2 pt-sm-2">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Country:</span>
                 </div>
-                <input type="text" aria-label="Model" id="country" class="form-control" tabindex=15 name="country"
+                <input type="text" aria-label="Model" id="country" class="form-control" tabindex=17 name="country"
                     [(ngModel)]="newVehicle.country">
             </div>
 
@@ -208,7 +208,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">Price per day:</span>
                 </div>
-                <input type="text" aria-label="Model" class="form-control" id="inputPrice" tabindex=17 name="price"
+                <input type="text" aria-label="Model" class="form-control" id="inputPrice" tabindex=18 name="price"
                     [(ngModel)]="newVehicle.price">
             </div>
 
@@ -216,16 +216,16 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">Contact number:</span>
                 </div>
-                <input type="text" aria-label="Model" class="form-control" tabindex=18 name="number">
+                <input type="text" aria-label="Model" class="form-control" tabindex=19 name="number">
             </div>
 
             <div class="input-group col-sm-12 col-lg-12 pt-2 pt-sm-2">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Available on:</span>
                 </div>
-                <input type="date" class="form-control" name="date" tabindex=19 name="datefrom"
+                <input type="date" class="form-control" name="date" tabindex=20 name="datefrom"
                     [(ngModel)]="newVehicle.date[0]">
-                <input type="date" class="form-control" name="date" tabindex=20 name="dateto"
+                <input type="date" class="form-control" name="date" tabindex=21 name="dateto"
                     [(ngModel)]="newVehicle.date[1]">
             </div>
 
