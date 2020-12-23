@@ -7,7 +7,7 @@
     <div class="row">
       <div class="col-sm-4">
         <div class="card">
-          <img src="../../../../assets/uploads/{{vehicle.images[0]}}" class="card-img-top">
+          <a routerLink="/vehicles/{{vehicle._id}}"><img src="../../../../assets/uploads/{{vehicle.images[0]}}" class="card-img-top"></a>
           <div class="card-body">
             <h5 class="card-title">Booking information</h5>
             <p class="card-text">{{vehicle.description}}</p>

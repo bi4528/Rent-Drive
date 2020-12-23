@@ -159,6 +159,7 @@
 
 body {
     font-family: 'Piazzolla', serif !important;
+    font-display: swap;
 }
 
 h2 {

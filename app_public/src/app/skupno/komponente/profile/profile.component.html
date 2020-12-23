@@ -37,8 +37,8 @@
       <h2>Favorite vehicles</h2>
       <div class="row" *ngFor="let favourite_car of favourite_cars">
         <div class="card col-12 col-sm-12 col-md-7 col-lg-5 col-xl-4 card_auto">
-          <img *ngIf="favourite_car.id" class="card-img-top slika_auto" src="../../../assets/uploads/{{favourite_car.images[0]}}" alt="Slika avta" (click)="show_vehicle(favourite_car.id)">
-          <img *ngIf="favourite_car.id == null" class="card-img-top slika_auto" src="../../../assets/uploads/{{favourite_car.images[0]}}" alt="Slika avta">
+          <img *ngIf="favourite_car" class="card-img-top slika_auto" src="../../../assets/uploads/{{favourite_car.images[0]}}" alt="Slika avta" (click)="show_vehicle(favourite_car._id)">
+          <img *ngIf="!favourite_car" class="card-img-top slika_auto" src="../../../assets/uploads/{{favourite_car.images[0]}}" alt="Slika avta">
           <div class="card-body">
             <h5 class="card-text">{{favourite_car.make}}</h5>
           </div>
