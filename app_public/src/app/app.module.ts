@@ -34,6 +34,8 @@ import { AddReviewComponent } from './skupno/komponente/add-review/add-review.co
 import { EditvehicleprofileComponent } from './skupno/komponente/editvehicleprofile/editvehicleprofile.component';
 import { NotFoundComponentComponent } from './skupno/komponente/not-found-component/not-found-component.component';
 import { PickupLocationPipe } from './skupno/cevi/pickup-location.pipe';
+import { ChartComponent } from './skupno/komponente/chart/chart.component';
+import {ChartsModule} from "ng2-charts";
 
 
 @NgModule({
@@ -65,17 +67,19 @@ import { PickupLocationPipe } from './skupno/cevi/pickup-location.pipe';
     AddReviewComponent,
     EditvehicleprofileComponent,
     NotFoundComponentComponent,
-    PickupLocationPipe
+    PickupLocationPipe,
+    ChartComponent
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        FormsModule,
-        ReactiveFormsModule,
-        AppRoutingModule,
-        NgbModule,
-        LeafletModule
-    ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    NgbModule,
+    LeafletModule,
+    ChartsModule
+  ],
   providers: [],
   bootstrap: [OgrodjeComponent]
 })
