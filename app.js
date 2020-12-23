@@ -68,6 +68,8 @@ require('./app_server/views/helpers/featurehelper.js');
 require('./app_server/views/helpers/featurehelper2.js');
 require('./app_server/views/helpers/ifEquals.js');
 
+
+app.use(compression());   //added compression
 // Odprava varnostnih pomanjkljivosti
 app.disable('x-powered-by');
 app.use((req, res, next) => {
@@ -83,11 +85,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 //app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(express.static(path.join(__dirname, 'app_public', 'build')));
+app.use(express.static(path.join(__dirname, 'app_public', 'build'), {index: false})); //should disable indexing directory??
 
 app.use(passport.initialize());
 
 app.use('/api', (req, res, next) => {
+  //res.header('Access-Control-Allow-Origin', 'http://localhost:4200'); //should solve CORS error? (put heroku link later)
   res.header('Access-Control-Allow-Origin', '*');
   res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
