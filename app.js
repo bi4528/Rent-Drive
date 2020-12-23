@@ -69,7 +69,7 @@ require('./app_server/views/helpers/featurehelper2.js');
 require('./app_server/views/helpers/ifEquals.js');
 
 
-app.use(compression());   //added compression
+//app.use(compression());   //added compression
 // Odprava varnostnih pomanjkljivosti
 app.disable('x-powered-by');
 app.use((req, res, next) => {

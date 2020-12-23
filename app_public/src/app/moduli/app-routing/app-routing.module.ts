@@ -77,16 +77,17 @@ const poti: Routes = [
   }, {
     path: 'vehicles/:idVehicle/edit',
     component: EditvehicleprofileComponent
-  }, {
+  },
+  {
+    path: 'chart',
+    component: ChartComponent
+  },
+  {
     path: 'error',
     component: NotFoundComponentComponent
   },
   {
     path: '**', component: NotFoundComponentComponent
-  },
-  {
-    path: 'chart',
-    component: ChartComponent
   }
 ];
 
