@@ -14,8 +14,8 @@ import { ModalComponent } from '../modal/modal.component';
   styleUrls: ['./book.component.css']
 })
 export class BookComponent implements OnInit {
-  private alert_error: string;
-  private alert_header:string;
+  public alert_error: string;
+  public alert_header:string;
 
   constructor(private router: Router, private pot: ActivatedRoute, private bookService: BookServiceService,
               private rentedService: RentedDataService, private confirmService: ConfirmServiceService){}

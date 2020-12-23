@@ -15,6 +15,7 @@
   "dependencies": {
     "@asymmetrik/ngx-leaflet": "^8.1.0",
     "axios": "*",
+    "chart.js": "^2.9.4",
     "cookie-parser": "*",
     "debug": "*",
     "dotenv": "^8.2.0",
@@ -27,6 +28,7 @@
     "mongoose": "*",
     "morgan": "*",
     "multer": "*",
+    "ng2-charts": "^2.4.2",
     "nodemailer": "*",
     "nodemon": "*",
     "passport": "^0.4.1",
