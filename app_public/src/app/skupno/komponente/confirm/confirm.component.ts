@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from "../../razredi/user";
 import {Rent} from "../../razredi/rent";
 import {ActivatedRoute, Router} from "@angular/router";
+import {ConfirmServiceService} from "../../storitve/confirm-service.service";
 
 @Component({
   selector: 'app-confirm',
@@ -10,7 +11,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class ConfirmComponent implements OnInit {
 
-  constructor(private router: Router, private pot: ActivatedRoute){}
+  constructor(private router: Router, private pot: ActivatedRoute, private confirmService: ConfirmServiceService){}
 
   public rent: Rent;
   public alert_error: String;
@@ -22,7 +23,8 @@ export class ConfirmComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.message = "Još nije upisano u bazu!"
+    //this.message = "Još nije upisano u bazu!"
+    this.message = this.confirmService.message;
   }
 
 }

@@ -5,6 +5,7 @@ import {Rent} from "../../razredi/rent";
 import {ActivatedRoute, Router} from "@angular/router";
 import { BookServiceService } from '../../storitve/book-service.service';
 import {RentedDataService} from "../../storitve/rented-data.service";
+import {ConfirmServiceService} from "../../storitve/confirm-service.service";
 
 @Component({
   selector: 'app-book',
@@ -15,7 +16,7 @@ export class BookComponent implements OnInit {
   private alert_error: string;
 
   constructor(private router: Router, private pot: ActivatedRoute, private bookService: BookServiceService,
-              private rentedService: RentedDataService){}
+              private rentedService: RentedDataService, private confirmService: ConfirmServiceService){}
 
   public owner: User;
   public vehicle: Vehicle;
@@ -50,6 +51,12 @@ export class BookComponent implements OnInit {
       .then((rent) => {
         this.alert_error = (rent != null) ? "" : "Failed to create rent";
         this.router.navigateByUrl("book/"+this.vehicle._id+"/confirm");
+        this.confirmService.confirmMessage("Your reservation has been processed successfully!")
+      })
+      .catch((resp: any) => {
+        this.router.navigateByUrl("book/"+this.vehicle._id+"/confirm");
+        this.confirmService.confirmMessage(resp);
+        //console.log(resp);
       })
 
   }
