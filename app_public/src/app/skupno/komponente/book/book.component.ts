@@ -7,6 +7,7 @@ import {BookServiceService } from '../../storitve/book-service.service';
 import {RentedDataService} from "../../storitve/rented-data.service";
 import {ConfirmServiceService} from "../../storitve/confirm-service.service";
 import { ModalComponent } from '../modal/modal.component';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-book',
@@ -42,6 +43,7 @@ export class BookComponent implements OnInit {
 
   public bookRent(): void {
     let data: Rent = {
+      _id: '',
       user_id: this.renter._id,
       vehicle_id: this.vehicle._id,
       date_from: this.dateFrom,

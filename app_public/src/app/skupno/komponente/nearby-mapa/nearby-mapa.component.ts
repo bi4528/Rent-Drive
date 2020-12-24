@@ -101,7 +101,7 @@ export class NearbyMapaComponent {
 
   }
 
-  private pridobiMarkere(): void {
+  public pridobiMarkere(): void {
     this.markeriService
       .getLocations()
       .then(lokacije => {
