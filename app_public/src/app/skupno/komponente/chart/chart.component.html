@@ -1,7 +1,6 @@
-<div>
-  <div>
-    <div style="display: block" *ngIf="condition">
-      <canvas baseChart
+<div class="container-fluid">
+  <div class="row">
+      <canvas class="col-12" *ngIf="condition" baseChart
               [datasets]="barChartData"
               [labels]="barChartLabels"
               [options]="barChartOptions"
@@ -9,7 +8,6 @@
               [legend]="barChartLegend"
               [chartType]="barChartType">
       </canvas>
-    </div>
     <!--<button mat-button mat-raised-button color="primary" (click)="createLables()">Update</button>-->
   </div>
 </div>
