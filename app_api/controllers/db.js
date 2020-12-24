@@ -8,9 +8,9 @@ const addSampleData = (req, res) => {
 };
 
 const deleteAllData = (req, res) => {
-   Vehicle.collection.drop();
-   User.collection.drop();
-   res.status(200).json({"sporočilo": "Vsebina podatkovne baze je bila uspešno izbrisana."})
+    Vehicle.collection.drop();
+    User.collection.drop();
+    res.status(200).json({"sporočilo": "Vsebina podatkovne baze je bila uspešno izbrisana."});
 };
 
 module.exports = {
