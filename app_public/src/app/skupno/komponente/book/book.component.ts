@@ -42,6 +42,7 @@ export class BookComponent implements OnInit {
 
   public bookRent(): void {
     let data: Rent = {
+      _id: "",
       user_id: this.renter._id,
       vehicle_id: this.vehicle._id,
       date_from: this.dateFrom,
