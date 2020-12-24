@@ -43,7 +43,7 @@ var swaggerOptions = {
 };
 const swaggerDocument = swaggerJsdoc(swaggerOptions);
 
-//var indexRouter = require('./app_server/routes/index');
+var indexRouter = require('./app_server/routes/index');
 //var usersRouter = require('./app_server/routes/users');
 //var vehiclesRouter = require('./app_server/routes/vehicles');
 
@@ -69,7 +69,6 @@ require('./app_server/views/helpers/featurehelper2.js');
 require('./app_server/views/helpers/ifEquals.js');
 
 
-//app.use(compression());   //added compression
 // Odprava varnostnih pomanjkljivosti
 app.disable('x-powered-by');
 app.use((req, res, next) => {
@@ -97,7 +96,7 @@ app.use('/api', (req, res, next) => {
   next();
 });
 
-//app.use('/', indexRouter);
+app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 //app.use('/vehicles', vehiclesRouter);
 
