@@ -30,8 +30,9 @@ Latch.prototype.await = function (callback, ctx) {
 
 const addSampleData = (req, res) => {
     //TODO
+    console.log("test 33");
     var message = "Sample data is successfully added.";
-    var barrier = new Latch(vehiclesData.length + usersData.length);
+    var barrier = new Latch(usersData.length + vehiclesData.length);
 
     barrier.async(function (end) {
         for (var userData of usersData) {
@@ -41,8 +42,6 @@ const addSampleData = (req, res) => {
             user.lastname = userData.lastname;
             user.phone_number = userData.phone_number;
             user.email = userData.email;
-            user.consendedValue = userData.consendedValue;
-            user.randomValue = userData.randomValue;
             user.profile_picture = userData.profile_picture;
             user.location = userData.location;
             user.favourite_vehicles_ids = userData.favourite_vehicles_ids;
@@ -51,16 +50,53 @@ const addSampleData = (req, res) => {
             user.setPassword(userData.password);
             user.checkPassword(userData.password);
             user.generateJwt();
-
+            console.log(user);
 
             User
                 .findOne({email: userData.email})
                 .exec((error, foundUser) => {
                     if (!foundUser) {
                         user.save(user, (error, upo) => {
-                            if (error)
+                            if (error) {
                                 message = error;
+                                console.log(message);
+                            }
+                            end();
+                        });
+                    } else
+                        end();
+                });
 
+        }
+    });
+
+    barrier.async(function (end) {
+        for (var vehicleData of vehiclesData) {
+            const user = new User();
+            user.username = userData.username;
+            user.firstname = userData.firstname;
+            user.lastname = userData.lastname;
+            user.phone_number = userData.phone_number;
+            user.email = userData.email;
+            user.profile_picture = userData.profile_picture;
+            user.location = userData.location;
+            user.favourite_vehicles_ids = userData.favourite_vehicles_ids;
+            user.is_admin = userData.is_admin;
+
+            user.setPassword(userData.password);
+            user.checkPassword(userData.password);
+            user.generateJwt();
+            console.log(user);
+
+            User
+                .findOne({email: userData.email})
+                .exec((error, foundUser) => {
+                    if (!foundUser) {
+                        user.save(user, (error, upo) => {
+                            if (error) {
+                                message = error;
+                                console.log(message);
+                            }
                             end();
                         });
                     } else
