@@ -135,8 +135,9 @@ const addVehicles = () => {
 }
 
 const deleteAllData = (req, res) => {
+    userIds.splice(0, userIds.length);
     Vehicle.collection.drop();
-    User.collection.drop();
+    User.collection.remove( { is_admin : false });
     res.status(200).json({"sporočilo": "Vsebina podatkovne baze je bila uspešno izbrisana."});
 };
 
