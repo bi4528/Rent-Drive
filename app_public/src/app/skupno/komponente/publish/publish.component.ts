@@ -65,7 +65,6 @@ export class PublishComponent implements OnInit {
     reviews: [],
     luggage: '',
     minage: ''
-    //MANJKA NUMBER !!!!!!!!!!!!!!!
   }
 
   private defineFuel(data:any) : void {
@@ -233,6 +232,10 @@ export class PublishComponent implements OnInit {
       this.newVehicle.bluetooth=this.defineOnOff(this.newVehicle.bluetooth);
       this.newVehicle.autopilot=this.defineOnOff(this.newVehicle.autopilot);
       this.newVehicle.owner_id = this.avtentikacijaStoritev.get_current_user()._id;
+      if (this.newVehicle.typeoffuel==="Electric"){
+        this.newVehicle.consumption="0";
+      }
+
       const formData = new FormData();
       for(let img of this.multipleImages){
         formData.append('files', img);

@@ -32,7 +32,7 @@
                 aria-hidden="true">collections</i> Catalogue</a>
           </li>
           <li class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" href="/nearby"><i class="material-icons fa-fw align-middle"
+            <a class="nav-link" routerLink="/nearby"><i class="material-icons fa-fw align-middle"
                 aria-hidden="true">near_me</i> Nearby</a>
           </li>
           <li *ngIf="is_user_logged()"  class="nav-item mx-md-2" role="presentation">
@@ -40,16 +40,16 @@
                 aria-hidden="true">add_to_photos</i> List your car</a>
           </li>
           <li *ngIf="is_user_logged()" class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" href="/users/profiles/{{get_user_id()}}"><i class="material-icons fa-fw align-middle"
+            <a class="nav-link" routerLink="/users/profiles/{{get_user_id()}}"><i class="material-icons fa-fw align-middle"
                 aria-hidden="true">account_box</i>
               My profile</a>
           </li>
           <li *ngIf="!is_user_logged()" class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" href="/users/register"><i class="material-icons fa-fw align-middle"
+            <a class="nav-link" routerLink="/users/register"><i class="material-icons fa-fw align-middle"
                 aria-hidden="true">account_box</i> Register</a>
           </li>
           <li *ngIf="!is_user_logged()" class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" href="/users/login"><i class="material-icons fa-fw align-middle"
+            <a class="nav-link" routerLink="/users/login"><i class="material-icons fa-fw align-middle"
                 aria-hidden="true">account_box</i> Login</a>
           </li>
           <li class="nav-item mx-md-2" role="presentation">
