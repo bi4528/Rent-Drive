@@ -4,6 +4,8 @@ const User = mongoose.model('User');
 const vehiclesData = require('../models/vehicles-test.json');
 const usersData = require('../models/users-test.json');
 
+var userIds = new Array();
+
 function Latch(limit) {
     this.limit = limit;
     this.count = 0;
@@ -30,9 +32,9 @@ Latch.prototype.await = function (callback, ctx) {
 
 const addSampleData = (req, res) => {
     //TODO
-    console.log("test 33");
+
     var message = "Sample data is successfully added.";
-    var barrier = new Latch(usersData.length + vehiclesData.length);
+    var barrier = new Latch(usersData.length);
 
     barrier.async(function (end) {
         for (var userData of usersData) {
@@ -50,55 +52,23 @@ const addSampleData = (req, res) => {
             user.setPassword(userData.password);
             user.checkPassword(userData.password);
             user.generateJwt();
-            console.log(user);
+
 
             User
                 .findOne({email: userData.email})
                 .exec((error, foundUser) => {
                     if (!foundUser) {
                         user.save(user, (error, upo) => {
+
                             if (error) {
                                 message = error;
-                                console.log(message);
+                            }
+                            else{
+                                userIds.push(upo._id);
                             }
                             end();
                         });
-                    } else
-                        end();
-                });
 
-        }
-    });
-
-    barrier.async(function (end) {
-        for (var vehicleData of vehiclesData) {
-            const user = new User();
-            user.username = userData.username;
-            user.firstname = userData.firstname;
-            user.lastname = userData.lastname;
-            user.phone_number = userData.phone_number;
-            user.email = userData.email;
-            user.profile_picture = userData.profile_picture;
-            user.location = userData.location;
-            user.favourite_vehicles_ids = userData.favourite_vehicles_ids;
-            user.is_admin = userData.is_admin;
-
-            user.setPassword(userData.password);
-            user.checkPassword(userData.password);
-            user.generateJwt();
-            console.log(user);
-
-            User
-                .findOne({email: userData.email})
-                .exec((error, foundUser) => {
-                    if (!foundUser) {
-                        user.save(user, (error, upo) => {
-                            if (error) {
-                                message = error;
-                                console.log(message);
-                            }
-                            end();
-                        });
                     } else
                         end();
                 });
@@ -107,10 +77,62 @@ const addSampleData = (req, res) => {
     });
 
     barrier.await(function () {
+        addVehicles();
         res.status(200).json({"message": message});
     });
 
 };
+
+
+const addVehicles = () => {
+    var barrier = new Latch(vehiclesData.length);
+
+    barrier.async(function () {
+        for (var vehicleData of vehiclesData) {
+            var x = Math.floor(Math.random() * userIds.length);
+            const vehicle = new Vehicle();
+            vehicle.images = vehicleData.images;
+            vehicle.owner_id = userIds[x];
+            vehicle.make = vehicleData.make;
+            vehicle.model = vehicleData.model;
+            vehicle.typeoffuel = vehicleData.typeoffuel;
+            vehicle.category = vehicleData.category;
+            vehicle.hp = vehicleData.hp;
+            vehicle.maxspeed = vehicleData.maxspeed;
+            vehicle.acceleration = vehicleData.acceleration;
+            vehicle.consumption = vehicleData.consumption;
+            vehicle.seats = vehicleData.seats;
+            vehicle.doors = vehicleData.doors;
+            vehicle.AirConditioning = vehicleData.AirConditioning;
+            vehicle.Navigation = vehicleData.Navigation;
+            vehicle.USB = vehicleData.USB;
+            vehicle.AUX = vehicleData.AUX;
+            vehicle.parkingsensors = vehicleData.parkingsensors;
+            vehicle.autopilot = vehicleData.autopilot;
+            vehicle.bluetooth = vehicleData.bluetooth;
+            vehicle.accessibility = vehicleData.accessibility;
+            vehicle.description = vehicleData.description;
+            vehicle.price = vehicleData.price;
+            vehicle.country = vehicleData.country;
+            vehicle.city = vehicleData.city;
+            vehicle.addres = vehicleData.addres;
+            vehicle.zip = vehicleData.zip;
+            vehicle.date = vehicleData.date;
+            vehicle.reviews = vehicleData.reviews;
+            vehicle.luggage = vehicleData.luggage;
+            vehicle.minage = vehicleData.minage;
+
+            vehicle.save(vehicle, (error, upo) => {
+                if (error) {
+                    message = error;
+                }
+            });
+
+        }
+    });
+
+    barrier.await();
+}
 
 const deleteAllData = (req, res) => {
     Vehicle.collection.drop();
