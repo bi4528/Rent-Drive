@@ -41,7 +41,6 @@ export class EditProfileComponent implements OnInit {
             this.user = user;
             this.id_of_user = this.user._id;
             this.router.navigateByUrl("/users/profiles/" + this.user._id)
-
           });
       });
 

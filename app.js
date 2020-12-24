@@ -54,6 +54,7 @@ var usersApi = require('./app_api/routes/users');
 var vehicleApi = require('./app_api/routes/vehicles');
 var rentedApi = require('./app_api/routes/rented');
 var nearbyApi = require('./app_api/routes/nearby');
+var dbApi = require('./app_api/routes/db');
 
 var app = express();
 
@@ -105,6 +106,7 @@ app.use('/api/users', usersApi); // /api/docs
 app.use('/api/vehicles', vehicleApi);
 app.use('/api/rented', rentedApi);
 app.use('/api/nearby', nearbyApi);
+app.use('/api/db', dbApi);
 
 //NAJ KDO POPRAVI SPODNJO FUNKCIJO NEVEM KAJ DELA by Matej
 app.get('*', (req, res, next) => {
