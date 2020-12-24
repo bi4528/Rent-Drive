@@ -84,7 +84,7 @@ const poti: Routes = [
     component: ChartComponent
   },
   {
-    path: '/db',
+    path: 'db',
     component: DbComponent
   },
   {
