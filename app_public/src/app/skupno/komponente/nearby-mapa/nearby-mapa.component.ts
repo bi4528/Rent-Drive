@@ -16,7 +16,6 @@ export class NearbyMapaComponent {
 
   public locations: any;
 
-
   // Open Street Map definitions
   optionsSpec: any = {
     layers: [{ url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', attribution: 'Open Street Map' }],
@@ -58,19 +57,19 @@ export class NearbyMapaComponent {
   }
 
   ngOnInit(): void {
-    this.pridobiMarkere();
+    //this.pridobiMarkere();
   }
 
   setMarkeri(): void {
-    this.pridobiMarkere();
-    console.log(this.locations)
+
+    //console.log(this.locations)
 
     this.cars = JSON.parse(this.locations);
     console.log(this.cars);
 
     this.cars.forEach((car) =>{
 
-      console.log(car);
+      //console.log(car);
       var distance = latLng(this.lat, this.lng).distanceTo([car.LAT, car.LNG]);
 
       if (distance < 3000.00) {
@@ -105,7 +104,10 @@ export class NearbyMapaComponent {
   private pridobiMarkere(): void {
     this.markeriService
       .getLocations()
-      .then(lokacije => this.locations = JSON.stringify(lokacije));
+      .then(lokacije => {
+        this.locations = JSON.stringify(lokacije);
+        this.setMarkeri();
+      });
 
   }
 }
