@@ -65,19 +65,21 @@ export class NearbyVremeComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.pridobiWeather();
+    //this.pridobiWeather();
     //this.condition = false;
   }
 
   setWeather(): void {
     this.pridobiWeather();
-    this.condition = true;
   }
 
   private pridobiWeather(): void {
     this.weatherService
       .getWeather()
-      .then(vreme => this.weather = vreme);
+      .then(vreme => {
+        this.weather = vreme;
+        this.condition = true;
+      });
 
   }
 
