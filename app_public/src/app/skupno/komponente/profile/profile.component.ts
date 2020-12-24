@@ -160,6 +160,10 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  public show_chart = (id_user): void => {
+    this.router.navigateByUrl("/users/profiles/" + id_user + "/chart");
+  }
+
   public id_of_user: String;
   public alert_error: String;
   public user: User;
