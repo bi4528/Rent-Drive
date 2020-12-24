@@ -1,24 +1,80 @@
-[{
-        "firstname": "Branko",
-        "lastname": "Jurisic",
-        "username": "Brankec",
-        "phone_number": "3478198984",
-        "email": "bj1234@gmail.com",
-        "password": "Brankojelep1!",
-        "profile_picture": "bro.jpeg",
-        "location": "Ljubljana",
-        "favourite_vehicles_ids": []
-},
-{
-        "firstname": "Josh",
-        "lastname": "Smith",
-        "username": "JoshSmith213",
-        "phone_number": "+38670789654",
-        "email": "josh_smith@gmail.com",
-        "password": "J0shsmith",
-        "profile_picture": "oseba_template.jpg",
-        "location": "Koper",
-        "favourite_vehicles_ids": []
-}
+[
+        {
+                "firstname": "Branko",
+                "lastname": "Jurisic",
+                "username": "Brankec",
+                "phone_number": "3478198984",
+                "email": "bj1234@gmail.com",
+                "password": "Brankojelep1!",
+                "profile_picture": "bro.jpeg",
+                "location": "Ljubljana",
+                "favourite_vehicles_ids": []
+        },
+        {
+                "firstname": "Josh",
+                "lastname": "Smith",
+                "username": "JoshSmith213",
+                "phone_number": "+38670789654",
+                "email": "josh_smith@gmail.com",
+                "password": "J0shsmith",
+                "profile_picture": "oseba_template.jpg",
+                "location": "Koper",
+                "favourite_vehicles_ids": []
+        },
+        {
+                "firstname": "Greta",
+                "lastname": "Garbo",
+                "username": "Gretica",
+                "phone_number": "+386707895454",
+                "email": "greta-ceta@gmail.com",
+                "password": "G0retica",
+                "profile_picture": "Garbo_in_Inspiration.jpg",
+                "location": "New York",
+                "favourite_vehicles_ids": []
+        },
+        {
+                "firstname": "Tatjana",
+                "lastname": "Aleksic",
+                "username": "tanja",
+                "phone_number": "+3861235454",
+                "email": "tatjana@gmail.com",
+                "password": "T0atjana",
+                "profile_picture": "timothy.jpg",
+                "location": "Novi Sad",
+                "favourite_vehicles_ids": []
+        },
+        {
+                "firstname": "Alan",
+                "lastname": "Turing",
+                "username": "alance",
+                "phone_number": "+32135235454",
+                "email": "turing@gmail.com",
+                "password": "T0uring",
+                "profile_picture": "timothy.jpg",
+                "location": "Wilmslow",
+                "favourite_vehicles_ids": []
+        },
+        {
+                "firstname": "Ada",
+                "lastname": "Lovelace",
+                "username": "ada.byron",
+                "phone_number": "+321352345454",
+                "email": "ada@gmail.com",
+                "password": "A0Byron",
+                "profile_picture": "ada-lovelace.jpg",
+                "location": "Marylebone",
+                "favourite_vehicles_ids": []
+        },
+        {
+                "firstname": "Charles",
+                "lastname": "Babbage",
+                "username": "ch.babage",
+                "phone_number": "+321345675454",
+                "email": "ch@gmail.com",
+                "password": "C0harles",
+                "profile_picture": "Charles_Babbage_-_1860.jpg",
+                "location": "Marylebone",
+                "favourite_vehicles_ids": []
+        }
 
 ]

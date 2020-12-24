@@ -102,3 +102,4 @@ const vehicleSchema = new mongoose.Schema({
 
 
 mongoose.model('Vehicle', vehicleSchema, 'Vehicles');
+mongoose.model('Review', reviewSchema, 'Reviews');

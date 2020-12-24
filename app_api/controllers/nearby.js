@@ -24,7 +24,7 @@ function isEmpty(str) {
 
 function  weather (req, res) {
 
-    const requestUrl = 'http://api.weatherstack.com/current?access_key=f61e126b021aa0d360b427c69a9e4c27&query=Ljubljana';
+    const requestUrl = 'http://api.weatherstack.com/current?access_key='+process.env.WEATHERSTACK_KEY+'&query=Ljubljana';
     http.get(url.format(requestUrl), (resp) => {
         let data = '';
         resp.on('data', (chunk) => {
@@ -66,7 +66,7 @@ function locations(req,res) {
 
                 //console.log(cars);
                 jsonObj = [];
-                const basic_url = 'http://open.mapquestapi.com/geocoding/v1/address?key=7VWv1A4oIlOF80mOVTkI0LHdiJr8V5EP';
+                const basic_url = 'http://open.mapquestapi.com/geocoding/v1/address?key='+process.env.MAPQUESTAPI_KEY;
                 //vzmemo iz carsa tisto, kar potrebujemo za markerje
                 odgovor.data.forEach(function (car) {
                     console.log(car);

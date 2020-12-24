@@ -65,7 +65,7 @@ export class NearbyMapaComponent {
     //console.log(this.locations)
 
     this.cars = JSON.parse(this.locations);
-    console.log(this.cars);
+    //console.log(this.cars);
 
     this.cars.forEach((car) =>{
 

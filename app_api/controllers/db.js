@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 const Vehicle = mongoose.model('Vehicle');
 const User = mongoose.model('User');
+const Review = mongoose.model('Review');
 const vehiclesData = require('../models/vehicles-test.json');
 const usersData = require('../models/users-test.json');
 
-var userIds = new Array();
+var userArray = new Array();
 
 function Latch(limit) {
     this.limit = limit;
@@ -88,7 +89,8 @@ const addSampleData = (req, res) => {
                                 message = error;
                             }
                             else{
-                                userIds.push(upo._id);
+                                //console.log("napravio");
+                                userArray.push(upo);
                             }
                             end();
                         });
@@ -110,13 +112,14 @@ const addSampleData = (req, res) => {
 
 const addVehicles = () => {
     var barrier = new Latch(vehiclesData.length);
-
+    //console.log(userArray.length);
     barrier.async(function () {
         for (var vehicleData of vehiclesData) {
-            var x = Math.floor(Math.random() * userIds.length);
+            var x = Math.floor(Math.random() * userArray.length);
+            //console.log(x);
             const vehicle = new Vehicle();
             vehicle.images = vehicleData.images;
-            vehicle.owner_id = userIds[x];
+            vehicle.owner_id = userArray[x]._id;
             vehicle.make = vehicleData.make;
             vehicle.model = vehicleData.model;
             vehicle.typeoffuel = vehicleData.typeoffuel;
@@ -143,6 +146,15 @@ const addVehicles = () => {
             vehicle.zip = vehicleData.zip;
             vehicle.date = vehicleData.date;
             vehicle.reviews = vehicleData.reviews;
+            for (var review of vehicle.reviews) {
+                var y = Math.floor(Math.random() * userArray.length);
+                if (x == y){
+                    y = (y + 1) %  userArray.length;
+                }
+                review.user_id = userArray[y]._id;
+                review.username = userArray[y].username;
+                review.img = userArray[y].profile_picture;
+            }
             vehicle.luggage = vehicleData.luggage;
             vehicle.minage = vehicleData.minage;
 
@@ -159,7 +171,7 @@ const addVehicles = () => {
 }
 
 const deleteAllData = (req, res) => {
-    userIds.splice(0, userIds.length);
+    userArray.splice(0, userArray.length);
     Vehicle.collection.drop();
     User.collection.remove( { is_admin : false });
     res.status(200).json({"sporočilo": "Vsebina podatkovne baze je bila uspešno izbrisana."});
