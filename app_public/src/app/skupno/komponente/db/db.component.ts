@@ -15,7 +15,17 @@ export class DbComponent implements OnInit {
   public statusText: string;
   public statusType: number; //0 warning, 1 danger, 2 success
   public addSampleData():void {
-    
+    console.log("tusam 18");
+    this.statusText="Adding data in database..."
+    this.statusType = 0;
+    this.dbService.addSampleData().then(()=>{
+      this.statusType = 2;
+      this.statusText="Data added successfully!";
+    }).catch(err => {
+      this.statusType = 1;
+      this.statusText ="Error while adding data!"
+      console.error(err)
+    });
   }
 
   public deleteAllData() :void {

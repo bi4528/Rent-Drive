@@ -7,7 +7,8 @@
         "password": "Brankojelep1!",
         "profile_picture": "bro.jpeg",
         "location": "Ljubljana",
-        "favourite_vehicles_ids": []
+        "favourite_vehicles_ids": [],
+        "is_admin": false
 },
 {
         "firstname": "Josh",
@@ -18,7 +19,8 @@
         "password": "J0shsmith",
         "profile_picture": "oseba_template.jpg",
         "location": "Koper",
-        "favourite_vehicles_ids": []
+        "favourite_vehicles_ids": [],
+        "is_admin": false
 }
 
 ]
