@@ -1,6 +1,6 @@
 <div>
   <div>
-    <div style="display: block">
+    <div style="display: block" *ngIf="condition">
       <canvas baseChart
               [datasets]="barChartData"
               [labels]="barChartLabels"
@@ -10,6 +10,6 @@
               [chartType]="barChartType">
       </canvas>
     </div>
-    <button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>
+    <!--<button mat-button mat-raised-button color="primary" (click)="createLables()">Update</button>-->
   </div>
 </div>

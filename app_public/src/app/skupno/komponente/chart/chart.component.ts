@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { Label } from 'ng2-charts';
+import {BookServiceService} from "../../storitve/book-service.service";
+import {UsersDataService} from "../../storitve/users-data.service";
+import {Vehicle} from "../../razredi/vehicle";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-chart',
@@ -9,6 +13,9 @@ import { Label } from 'ng2-charts';
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit {
+
+  public condition: boolean = false;
+  private userId: string;
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -21,19 +28,62 @@ export class ChartComponent implements OnInit {
       }
     }
   };
-  public barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  public barChartLabels: Label[] = [];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   public barChartPlugins = [pluginDataLabels];
 
   public barChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+    { data: [], label: 'Rating' },
+    { data: [], label: 'Maximal Speed Rate' }
   ];
 
-  constructor() { }
+  constructor(private userService: UsersDataService, private pot: ActivatedRoute) { }
+
+  public vehicles: Vehicle [];
+
+  public getVehicles() :void{
+
+      this.userService
+        .getVehiclesOfUser(this.userId)
+        .then((veh: Vehicle[]) => {
+            this.vehicles = veh;
+            this.createLables();
+            this.condition = true;
+          }
+        )
+        .catch((resp: any) => {
+          console.log(resp);
+        })
+
+      console.log(this.vehicles);
+
+  }
+
+  public createLables() : void{
+    console.log(this.vehicles);
+    this.vehicles.forEach((value) =>{
+      //console.log(value.make);
+
+      var sum = 0;
+      var avgRating:number = 0;
+      for (var i = 0; i < value.reviews.length; i++)
+        sum += value.reviews[i].rating.match(/★/g).length;
+      if (sum > 0) {
+          avgRating = sum / value.reviews.length;
+          avgRating.toPrecision(2);
+      }
+      var speedRate;
+      speedRate = (value.maxspeed/60).toPrecision(2);
+      this.barChartLabels.push(value.make);
+      this.barChartData[0].data.push(avgRating);
+      this.barChartData[1].data.push(speedRate);
+    })
+  }
 
   ngOnInit(): void {
+    this.userId = this.pot.snapshot.paramMap.get('idUser');
+    this.getVehicles();
   }
 
   // events

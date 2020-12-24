@@ -79,7 +79,7 @@ const poti: Routes = [
     component: EditvehicleprofileComponent
   },
   {
-    path: 'chart',
+    path: 'users/profiles/:idUser/chart',
     component: ChartComponent
   },
   {
