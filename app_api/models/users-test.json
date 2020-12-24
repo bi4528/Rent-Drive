@@ -1,0 +1,24 @@
+[{
+        "firstname": "Branko",
+        "lastname": "Jurisic",
+        "username": "Brankec",
+        "phone_number": "3478198984",
+        "email": "bj1234@gmail.com",
+        "password": "Brankojelep1!",
+        "profile_picture": "bro.jpeg",
+        "location": "Ljubljana",
+        "favourite_vehicles_ids": []
+},
+{
+        "firstname": "Josh",
+        "lastname": "Smith",
+        "username": "JoshSmith213",
+        "phone_number": "+38670789654",
+        "email": "josh_smith@gmail.com",
+        "password": "J0shsmith",
+        "profile_picture": "oseba_template.jpg",
+        "location": "Koper",
+        "favourite_vehicles_ids": []
+}
+
+]
