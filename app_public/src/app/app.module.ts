@@ -36,6 +36,7 @@ import { NotFoundComponentComponent } from './skupno/komponente/not-found-compon
 import { PickupLocationPipe } from './skupno/cevi/pickup-location.pipe';
 import { ChartComponent } from './skupno/komponente/chart/chart.component';
 import {ChartsModule} from "ng2-charts";
+import { DbComponent } from './skupno/komponente/db/db.component';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import {ChartsModule} from "ng2-charts";
     EditvehicleprofileComponent,
     NotFoundComponentComponent,
     PickupLocationPipe,
-    ChartComponent
+    ChartComponent,
+    DbComponent
   ],
   imports: [
     BrowserModule,

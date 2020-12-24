@@ -20,6 +20,7 @@ import {NearbyComponent} from '../../skupno/komponente/nearby/nearby.component';
 import { EditvehicleprofileComponent } from 'src/app/skupno/komponente/editvehicleprofile/editvehicleprofile.component';
 import { NotFoundComponentComponent } from 'src/app/skupno/komponente/not-found-component/not-found-component.component';
 import {ChartComponent} from "../../skupno/komponente/chart/chart.component";
+import {DbComponent} from '../../skupno/komponente/db/db.component';
 
 
 const poti: Routes = [
@@ -81,6 +82,10 @@ const poti: Routes = [
   {
     path: 'users/profiles/:idUser/chart',
     component: ChartComponent
+  },
+  {
+    path: '/db',
+    component: DbComponent
   },
   {
     path: 'error',
