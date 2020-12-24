@@ -7,6 +7,7 @@ import { VehiclesDataService } from '../../storitve/vehicles-data.service';
 import { AuthenticationService } from '../../storitve/avtentikacija.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import {RentedDataService} from "../../storitve/rented-data.service";
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +17,7 @@ import { switchMap } from 'rxjs/operators';
 export class ProfileComponent implements OnInit {
 
   constructor(
-    private router: Router, private pot: ActivatedRoute, private usersDataService: UsersDataService, private vehiclesDataService: VehiclesDataService, private avtentikacijaStoritev: AuthenticationService) { }
+    private router: Router, private pot: ActivatedRoute, private usersDataService: UsersDataService, private vehiclesDataService: VehiclesDataService, private avtentikacijaStoritev: AuthenticationService, private rentedService: RentedDataService) { }
 
   private get_user_data = (id_of_user: String): void => {
     this.alert_error = "Searching for user";
@@ -121,6 +122,7 @@ export class ProfileComponent implements OnInit {
   }
   private get_empty_rent = (): Rent => {
     return {
+      _id: "",
       user_id: "",
       vehicle_id: "",
       date_from: new Date,
@@ -152,7 +154,9 @@ export class ProfileComponent implements OnInit {
     this.router.navigateByUrl("/vehicles/" + id_vehicle);
   }
   public delete_rent = (id_rent): void => {
-    console.log("Waiting for bojan");
+    this.rentedService.deleteRented(id_rent).then(() => {
+      this.get_rents_of_user(this.id_of_user);
+    });
   }
   public delete_vehicle = (id_vehicle): void => {
     this.vehiclesDataService.deleteVehicle(id_vehicle).then(() => {
