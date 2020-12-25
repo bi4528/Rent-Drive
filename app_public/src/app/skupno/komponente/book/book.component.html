@@ -22,9 +22,6 @@
             <a routerLink="/vehicles/{{vehicle._id}}" class="card-link text-primary" id="return-link">
               <i class="fas fa-caret-left"></i>
               Return</a>
-            <!-- <a href="/users/confirm" class="card-link text-success float-right" id="confirm-link">
-                <i class="fas fa-caret-right"></i>
-                Confirm</a> -->
             <form (ngSubmit)="bookRent()" >
               <input type="hidden" name="vehicle_id" id="vehicle_id" [(ngModel)]="vehicle._id">
               <input type="hidden" name="owner_id" id="owner_id" [(ngModel)]="vehicle.owner_id">
@@ -32,7 +29,6 @@
               <input type="hidden" name="date_from" id="date_from" [(ngModel)]="dateFrom">
               <input type="hidden" name="date_to" id="date_to" [(ngModel)]="dateTo">
               <button class="card-link text-success float-right">Confirm</button>
-              <!--<button class="btn btn-primary btn-sm float-right">Dodaj moj komentar</button>-->
             </form>
           </div>
         </div>
