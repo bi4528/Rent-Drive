@@ -75,7 +75,7 @@ export class ChartComponent implements OnInit {
       }
       var speedRate;
       speedRate = (value.maxspeed/60).toPrecision(2);
-      this.barChartLabels.push(value.make);
+      this.barChartLabels.push(value.make + " " +value.model);
       this.barChartData[0].data.push(avgRating);
       this.barChartData[1].data.push(speedRate);
     })

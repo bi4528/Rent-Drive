@@ -164,6 +164,7 @@ const addVehicles = () => {
                     message = error;
                 }
                 else {
+                    console.log(upo);
                     vehicleArray.push(upo);
                 }
                 end();
@@ -186,7 +187,7 @@ const addRented = () => {
         for (var rentData of rentedData) {
             var x = Math.floor(Math.random() * userArray.length);
             var y = Math.floor(Math.random() * vehicleArray.length);
-            if (vehicleArray[y].user_id == userArray[x]._id){
+            if (vehicleArray[y].owner_id == userArray[x]._id){
                 x = (x + 1) %  userArray.length;
             }
             const rent = new Rented();
