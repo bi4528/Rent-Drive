@@ -62,7 +62,7 @@ export class VehicleProfileComponent implements OnInit {
       this.get_user_data(this.vehicle.owner_id);
       this.setCarPhotosAndIndicators(this.vehicle.images);
       this.setAvgRating();
-    });
+    }).catch(()=>this.router.navigateByUrl("/error"));
   }
   
   public get_user_data = (id_of_user: String): void => {
