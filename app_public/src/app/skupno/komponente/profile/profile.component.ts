@@ -136,6 +136,11 @@ export class ProfileComponent implements OnInit {
   }
 
   public delete_user = (): void => {
+
+    for(let i=0; i<this.owned_cars.length; i++){
+      this.delete_vehicle(this.owned_cars[i]._id);
+    }
+
     this.usersDataService.deleteUser(this.user).then(() => {
       this.avtentikacijaStoritev.logout();
       this.router.navigateByUrl("/");

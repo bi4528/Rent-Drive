@@ -23,10 +23,19 @@ export class SearchComponent implements OnInit {
   public total_items: number;
   public current_page: number;
   public pages: number;
+  
 
   public filter = (): void => {
     if (this.keyword){
-      this.router.navigate(['/search'], { queryParams: { value: this.keyword, page: '1' } });
+      /*
+      let params = {value: this.keyword, page: 1};
+      this.calculateTotal(params);
+      this.current_page = params.page;
+      let url = "?value=" + params.value + "&page=" + params.page;
+      this.filter_text = "<H3>Filtered by keyword: \"" + this.keyword + "\"</H3>";
+      this.getVehicles(url);
+      */
+      this.router.navigate(['/search'], { queryParams: { value: this.keyword, page: 1 } });
     }
   }
   
@@ -83,13 +92,6 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /*this.vehiclesDataService
-      .getLength()
-      .then(data => {
-        this.total_items = data.number_vehicles;
-        this.pages = Math.floor(this.total_items / 12) + 1;
-      });*/
-
     this.route.queryParams
       .subscribe(params => {
         this.calculateTotal(params);
