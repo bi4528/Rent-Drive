@@ -30,7 +30,8 @@ export class EditProfileComponent implements OnInit {
     if (this.avtentikacijaStoritev.is_logged() && (this.user._id == this.avtentikacijaStoritev.get_current_user()._id || this.avtentikacijaStoritev.get_current_user().is_admin)) {
       this.alert_error = "Updating user data";
 
-      var fd = new FormData();
+      if (this.profile_picture_file!=null){
+        var fd = new FormData();
       fd.append('profile_picture', this.profile_picture_file, this.profile_picture_file.name);
       this.usersDataService.updateProfilePicture(fd).then((filename: string) => {
         this.user.profile_picture = filename;
@@ -43,7 +44,16 @@ export class EditProfileComponent implements OnInit {
             this.router.navigateByUrl("/users/profiles/" + this.user._id)
           });
       });
-
+      } else {
+        this.usersDataService
+          .updateUserData(this.user)
+          .then((user: User) => {
+            this.alert_error = (user != null) ? "" : "Failed to update user";
+            this.user = user;
+            this.id_of_user = this.user._id;
+            this.router.navigateByUrl("/users/profiles/" + this.user._id)
+          });  
+      }
     } else {
       this.alert_error = "You are not authorized for this action";
     }

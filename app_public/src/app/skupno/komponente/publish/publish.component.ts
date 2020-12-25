@@ -218,6 +218,14 @@ export class PublishComponent implements OnInit {
       this.validation_error = this.validation_error.concat("Insert valid dates.\n");
       writeError = true;
     }
+    var d1 = new Date(this.newVehicle.date[0]);
+    var d2 = new Date(this.newVehicle.date[1]);
+    var now = new Date();
+    if (d1<now || d2<now){
+      this.validation_error = this.validation_error.concat("Date already passed!\n");
+      writeError = true;
+    }
+
     console.log(this.validation_error);
     if(writeError){
       this.openModal();

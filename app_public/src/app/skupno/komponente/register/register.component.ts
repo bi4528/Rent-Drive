@@ -40,10 +40,14 @@ export class RegisterComponent implements OnInit {
     is_admin: false,
   };
 
+  public statusText:string;
+  public statusType:number;
 
   public register = (): void => {
-
+    this.statusText="Registration in progress...";
+    this.statusType = 0;
     this.modal_text = "";
+    var writeError = false;
 
     if (
       !this.user.firstname ||
@@ -51,20 +55,46 @@ export class RegisterComponent implements OnInit {
       !this.user.email ||
       !this.user.username ||
       !this.user.password ||
-      !this.repeatPassword.nativeElement.value ||
-      (this.repeatPassword.nativeElement.value != this.user.password)
+      !this.repeatPassword.nativeElement.value
     ) {
       this.modal_text = "Fill all the input fields to register successfully!";
       this.openModal();
-    } else if (!this.validationService.validate_user(this.user)) {
-      this.modal_text = "Inserted data is not valid";
-      this.openModal();
     } else {
-      this.avtentikacijaStoritev.register(this.user)
-        .then(() => {
-          this.router.navigateByUrl("/")
-        })
-        .catch(sporocilo => this.modal_text = sporocilo)
+      if (this.repeatPassword.nativeElement.value != this.user.password) {
+        this.modal_text += "Passwords not equal!\n";
+        writeError = true;
+      }
+      if (!this.validationService.validate_first_name(this.user.firstname)) {
+        this.modal_text += "First name contains only letters.\n";
+        writeError = true;
+      } if (!this.validationService.validate_last_name(this.user.lastname)) {
+        this.modal_text += "Last name contains only letters.\n";
+        writeError = true;
+      } if (!this.validationService.validate_email(this.user.email)) {
+        this.modal_text += "Email not valid!\n";
+        writeError = true;
+      } if (!this.validationService.validate_username(this.user.username)) {
+        this.modal_text += "Username contains 4-15 alphanumericals, without spaces or '_' '.' at the beginning or end\n";
+        writeError = true;
+      } 
+      if (!this.validationService.validate_password(this.user.password)) {
+        this.modal_text += "Password must contain 6 alphanumericals, at least one uppercase, at least one lowercase and at least one 'special character' (e.g. number).";
+        writeError = true;
+      }
+      this.statusText="";
+      if (writeError) this.openModal();
+      else {
+        this.avtentikacijaStoritev.register(this.user)
+          .then(() => {
+            this.statusText="Success!";
+            this.statusType = 2;
+            this.router.navigateByUrl("/")
+          })
+          .catch(sporocilo => {
+            this.modal_text = sporocilo;
+            this.openModal();
+          })
+      }
     }
   }
 

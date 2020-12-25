@@ -106,11 +106,18 @@ export class VehicleProfileComponent implements OnInit {
   public book(): void {
     var date1 = new Date((<HTMLInputElement>document.getElementById("date-from")).value);
     var date2 = new Date((<HTMLInputElement>document.getElementById("date-to")).value);
+    var today = new Date();
     if (!this.validate_dates(date1, date2)) {
       this.alert_error ="Please enter valid dates!"
       this.openModal();
     } else if (this.avtentikacijaStoritev.get_current_user()==null){
       this.alert_error = "Please log in before booking!";
+      this.openModal();
+    } else if (this.vehicle.owner_id == this.actualLoggedUser._id){
+      this.alert_error = "Can't book own vehicle.\n";
+      this.openModal();
+    } else if (date1 < today || date2 < today){
+      this.alert_error = "Unfortunately, the rent period has expired.\n" + "From: " + new Date(this.vehicle.date[0]).toLocaleDateString("en-GB") +"\n" + "To: " + new Date(this.vehicle.date[1]).toLocaleDateString("en-GB") + "\n" + "Please contact the owner if you wish to rent this vehicle.";
       this.openModal();
     } 
     else {

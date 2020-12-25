@@ -42,7 +42,7 @@ export class DbComponent implements OnInit {
 
   ngOnInit(): void {
     var user = this.authenticationService.get_current_user();
-    if (!user.is_admin) this.router.navigateByUrl("/error");
+    if (user==null || !user.is_admin) this.router.navigateByUrl("/error");
   }
 
 }
