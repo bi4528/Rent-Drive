@@ -2,10 +2,13 @@ const mongoose = require('mongoose');
 const Vehicle = mongoose.model('Vehicle');
 const User = mongoose.model('User');
 const Review = mongoose.model('Review');
+const Rented = mongoose.model('Rented');
 const vehiclesData = require('../models/vehicles-test.json');
 const usersData = require('../models/users-test.json');
+const rentedData = require('../models/rented-test.json');
 
 var userArray = new Array();
+var vehicleArray = new Array();
 
 function Latch(limit) {
     this.limit = limit;
@@ -88,11 +91,9 @@ const addSampleData = (req, res) => {
 
 const addVehicles = () => {
     var barrier = new Latch(vehiclesData.length);
-    //console.log(userArray.length);
-    barrier.async(function () {
+    barrier.async(function (end) {
         for (var vehicleData of vehiclesData) {
             var x = Math.floor(Math.random() * userArray.length);
-            //console.log(x);
             const vehicle = new Vehicle();
             vehicle.images = vehicleData.images;
             vehicle.owner_id = userArray[x]._id;
@@ -138,16 +139,54 @@ const addVehicles = () => {
                 if (error) {
                     message = error;
                 }
+                else {
+                    vehicleArray.push(upo);
+                }
+                end();
             });
 
         }
+
     });
+
+    barrier.await(function () {
+        addRented();
+    });
+}
+
+const addRented = () => {
+    var barrier = new Latch(rentedData.length);
+
+    barrier.async(function (end) {
+
+        for (var rentData of rentedData) {
+            var x = Math.floor(Math.random() * userArray.length);
+            var y = Math.floor(Math.random() * vehicleArray.length);
+            if (vehicleArray[y].user_id == userArray[x]._id){
+                x = (x + 1) %  userArray.length;
+            }
+            const rent = new Rented();
+            rent.date_from = rentData.dateFrom;
+            rent.date_to = rentData.dateTo;
+            rent.vehicle_id = vehicleArray[y]._id;
+            rent.user_id = userArray[x]._id;
+
+            rent.save(rent, (error, upo) => {
+                if (error) {
+                    message = error;
+                }
+                //end();
+            });
+        }
+    })
 
     barrier.await();
 }
 
 const deleteAllData = (req, res) => {
     userArray.splice(0, userArray.length);
+    vehicleArray.splice(0, vehicleArray.length);
+    Rented.collection.drop();
     Vehicle.collection.drop();
     User.collection.remove( { is_admin : false });
     res.status(200).json({"sporočilo": "Vsebina podatkovne baze je bila uspešno izbrisana."});
