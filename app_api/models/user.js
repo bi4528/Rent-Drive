@@ -2,6 +2,163 @@ const mongoose = require('mongoose');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *   Login:
+ *    type: object
+ *    description: Data of user for login
+ *    properties:
+ *     email:
+ *      type: string
+ *      description: email address
+ *      example: dejan@lavbic.net
+ *     password:
+ *      type: string
+ *      format: password
+ *      example: test
+ *    required:
+ *     - email
+ *     - password
+ *   UserRegister:
+ *    type: object
+ *    description: Data of user for registration
+ *    properties:
+ *     firstname:
+ *      type: string
+ *      example: Dejan
+ *     lastname:
+ *      type: string
+ *      example: Lavbič
+ *     username:
+ *      type: string
+ *      example: Dejan77
+ *     phone_number:
+ *      type: string
+ *      example: 3478198834
+ *     email:
+ *      type: string
+ *      description: email address
+ *      example: dejan@lavbic.net
+ *     location:
+ *      type: string
+ *      description: location of user
+ *      example: Ljubljana
+ *     profile_picture:
+ *      type: string
+ *      description: filename of profile picture
+ *      example: banana.jpg
+ *     favourite_vehicles_ids:
+ *      type: [string]
+ *      description: ids of favourite vehicles
+ *      example: []
+ *     password:
+ *      type: string
+ *      format: password
+ *      example: test
+ *    required:
+ *     - firstname
+ *     - lastname
+ *     - username
+ *     - email
+ *     - password
+ *   User:
+ *    type: object
+ *    description: Data of user
+ *    properties:
+ *     _id:
+ *      type: string
+ *      format: uuid
+ *      description: id
+ *      example: 5ded18eb51386c3799833191
+ *     firstname:
+ *      type: string
+ *      example: Dejan
+ *     lastname:
+ *      type: string
+ *      example: Lavbič
+ *     username:
+ *      type: string
+ *      example: Dejan77
+ *     phone_number:
+ *      type: string
+ *      example: 3478198834
+ *     email:
+ *      type: string
+ *      description: email address
+ *      example: dejan@lavbic.net
+ *     location:
+ *      type: string
+ *      description: location of user
+ *      example: Ljubljana
+ *     profile_picture:
+ *      type: string
+ *      description: filename of profile picture
+ *      example: banana.jpg
+ *     favourite_vehicles_ids:
+ *      type: [string]
+ *      description: ids of favourite vehicles
+ *      example: []
+ *     consendedValue:
+ *      type: string
+ *      example: testalnckenlfknaefnanefaenfpefnaeòf
+ *     randomValue:
+ *      type: string
+ *      example: testsjabedifneafdalebnfladeifni
+ *     is_admin:
+ *      type: boolean
+ *      example: false
+ *    required:
+ *     - firstname
+ *     - lastname
+ *     - username
+ *     - email
+ *     - consendedValue
+ *     - randomValue
+ *     - is_admin
+ *   ToggleFavouriteVehicle:
+ *    type: object
+ *    description: Like or Dislike vehicle
+ *    properties:
+ *     favourite_vehicles_id:
+ *      type: string
+ *      example: afhapejfpancanconwcpoqancpocqno
+ *    required:
+ *     - favourite_vehicles_id
+ *   AuthenticationResponse:
+ *    type: object
+ *    description: Result of successful authentication of user
+ *    properties:
+ *     token:
+ *      type: string
+ *      description: JWT token
+ *      example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZGZhMjBlZDlhZGM0MzIyNmY0NjhkZjMiLCJlbGVrdHJvbnNraU5hc2xvdiI6ImRlamFuQGxhdmJpYy5uZXQiLCJpbWUiOiJEZWphbiBMYXZiacSNIiwiZGF0dW1Qb3Rla2EiOjE1Nzc5NTU2NjMsImlhdCI6MTU3NzM1MDg2M30.PgSpqjK8qD2dHUsXKwmqzhcBOJXUUwtIOHP3Xt6tbBA
+ *    required:
+ *     - token
+ *   Error:
+ *    type: object
+ *    description: Error details
+ *    required:
+ *     - message
+ *    properties:
+ *     message:
+ *      type: string
+ *    example:
+ *     message: Paramateres are incorrect.
+ *   InformationDataOfSentEmail:
+ *    type: object
+ *    description: Information of sent email
+ *    required:
+ *     - message
+ *    properties:
+ *     message:
+ *      type: string
+ *    example:
+ *     message: TODO.
+ * 
+ */
+
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -73,6 +230,28 @@ userSchema.methods.generateJwt = function () {
         exp: parseInt(datumPoteka.getTime() / 1000, 10)
     }, process.env.JWT_PASSWORD);
 };
+
+/**
+ * @swagger
+ *  components:
+ *   examples:
+ *    UserNotFound:
+ *     summary: User not found
+ *     value:
+ *      message: User not found.
+ *    NoToken:
+ *     summary: no JWT token.
+ *     value:
+ *      message: "UnauthorizedError: No authorization token was found."
+ *    EmailNotValid:
+ *     summary: Email is not valid.
+ *     value:
+ *      message: Email is not valid.
+ *    ImageNotFound:
+ *     summary: Image is not found.
+ *     value:
+ *      message: Image is not found.
+ */
 
 
 mongoose.model('User', userSchema, 'Users');

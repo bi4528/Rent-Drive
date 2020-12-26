@@ -7,16 +7,12 @@ const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 
 const get_all_users = (req, res) => {
-    User.find({}, function (error, user) {
+    User.find({}, function (error, users) {
 
-        if (!user) {
-            return res.status(404).json({
-                "message": "User not found."
-            });
-        } else if (error) {
+        if (error) {
             return res.status(500).json(error);
         } else {
-            res.status(200).json(user);
+            res.status(200).json(users);
         }
     });
 };
@@ -34,27 +30,27 @@ const create_new_user = (req, res) => {
     var favourite_vehicles_ids = (req.body.favourite_vehicles_ids != [] ? req.body.favourite_vehicles_ids : []) || ((req.body.params != null && req.body.params.favourite_vehicles_ids != []) ? req.body.params.favourite_vehicles_ids : []);
 
     if (!validate_no_spaces(username)) {
-        res.status(404).json({
+        res.status(400).json({
             "message": "Username must be one word."
         });
     } else if (!validate_first_name(firstname)) {
-        res.status(404).json({
+        res.status(400).json({
             "message": "Firstname is not correct."
         });
     } else if (!validate_last_name(lastname)) {
-        res.status(404).json({
+        res.status(400).json({
             "message": "Lastname is not correct."
         });
     } else if (phone_number != null && !validate_phone_number(phone_number)) {
-        res.status(404).json({
+        res.status(400).json({
             "message": "Phone number is not correct."
         });
     } else if (!validate_email(email)) {
-        res.status(404).json({
+        res.status(400).json({
             "message": "Email is not correct."
         });
     } else if (!validate_password(password)) {
-        res.status(404).json({
+        res.status(400).json({
             "message": "Password is not correct."
         });
     } else {
@@ -81,7 +77,7 @@ const create_new_user = (req, res) => {
                     res.status(500).json(error);
                 }
             } else {
-                res.status(200).json({
+                res.status(201).json({
                     "token": new_user.generateJwt()
                 });
             }
@@ -91,22 +87,23 @@ const create_new_user = (req, res) => {
 };
 
 const login = (req, res) => {
-    if (!req.body.email || !req.body.password) {
+    if (!req.body.email || !req.body.password || !validate_email(req.body.email) || !validate_password(req.body.password)) {
         return res.status(400).json({
-            "message": "Zahtevani so vsi podatki"
+            "message": "Email or password are not valid."
         });
+    } else {
+        passport.authenticate('local', (error, user, informations) => {
+            if (error)
+                return res.status(500).json(error);
+            else if (user) {
+                return res.status(201).json({
+                    "token": user.generateJwt()
+                });
+            } else {
+                return res.status(401).json(informations);
+            }
+        })(req, res);
     }
-    passport.authenticate('local', (error, user, informations) => {
-        if (error)
-            return res.status(500).json(error);
-        if (user) {
-            res.status(200).json({
-                "token": user.generateJwt()
-            });
-        } else {
-            res.status(401).json(informations);
-        }
-    })(req, res);
 };
 
 
@@ -160,20 +157,18 @@ const get_user_data_by_email = (req, res) => {
 
 const upload_profile_picture = (req, res) => {
     if (!req.file) {
-        console.log("No file received");
-        res.status(404).json({
+        return res.status(404).json({
             "message": "No file found"
         });
 
     } else {
-        console.log('file received');
-        return res.status(200).json(req.file.filename);
+        return res.status(201).json(req.file.filename);
     }
 };
 
 
 const updated_profile_data = (req, res) => {
-    
+
     var firstname = req.body.firstname || req.body.params.firstname;
     var username = req.body.username || req.body.params.username;
     var lastname = req.body.lastname || req.body.params.lastname;
@@ -184,31 +179,31 @@ const updated_profile_data = (req, res) => {
     var password = (req.body.password != '' ? req.body.password : null) || ((req.body.params != null && req.body.params.password != '') ? req.body.params.password : null);
 
     if (!req.params.idUser && !req.body.params.idUser) {
-        return res.status(404).json({
+        return res.status(400).json({
             "message": "No given user id"
         });
     } else if (!validate_no_spaces(username)) {
-        res.status(404).json({
+        res.status(400).json({
             "message": "Username must be one word."
         });
     } else if (!validate_first_name(firstname)) {
-        res.status(404).json({
+        res.status(400).json({
             "message": "Firstname is not correct."
         });
     } else if (!validate_last_name(lastname)) {
-        res.status(404).json({
+        res.status(400).json({
             "message": "Lastname is not correct."
         });
     } else if (phone_number != null && phone_number != "" && !validate_phone_number(phone_number)) {
-        res.status(404).json({
+        res.status(400).json({
             "message": "Phone number is not correct."
         });
     } else if (!validate_email(email)) {
-        res.status(404).json({
+        res.status(400).json({
             "message": "Email is not correct."
         });
     } else if (password != null && !validate_password(password)) {
-        res.status(404).json({
+        res.status(400).json({
             "message": "Password is not correct."
         });
     } else {
@@ -216,7 +211,7 @@ const updated_profile_data = (req, res) => {
 
             if (!user) {
                 return res.status(404).json({
-                    "message": "No user found!"
+                    "message": "No user found."
                 });
             } else if (error) {
                 return res.status(500).json(error);
@@ -230,12 +225,12 @@ const updated_profile_data = (req, res) => {
                 if (profile_picture != null) user.profile_picture = profile_picture;
                 if (password != null) user.setPassword(password);
 
-                user.save((error, user) => {
+                user.save((error, updated_user) => {
 
                     if (error) {
-                        res.status(404).json(error);
+                        res.status(500).json(error);
                     } else {
-                        res.status(200).json(user);
+                        res.status(200).json(updated_user);
                     }
                 });
             }
@@ -260,16 +255,16 @@ const check_if_user_exists = (req, res) => {
 
 const check_if_mail_exists = (req, res) => {
 
-    if (req.params == null || req.params.email == null) {
-        return res.status(500).json("No email provided");
+    if (req.params == null || req.params.email == null || !validate_email(req.params.email)) {
+        return res.status(400).json("Email is not valid.");
     } else {
-        User.find({
+        User.findOne({
             email: req.params.email
         }).exec((napaka, user) => {
             if (napaka) {
                 return res.status(500).json(napaka);
             } else {
-                return res.status(200).json(user != null ? user.length > 0 : false);
+                return res.status(200).json(user != null);
             }
         });
     }
@@ -279,7 +274,7 @@ const toggle_favourite_vehicle = (req, res) => {
     User.findById(req.params.idUser).exec((error, user) => {
         if (!user) {
             return res.status(404).json({
-                "message": "User not found3."
+                "message": "User not found."
             });
         } else if (error) {
             return res.status(500).json(error);
@@ -291,34 +286,15 @@ const toggle_favourite_vehicle = (req, res) => {
             }
             user.save((error, user) => {
                 if (error) {
-                    res.status(404).json(error);
+                    res.status(500).json(error);
                 } else {
-                    res.status(200).json(true);
+                    res.status(201).json(user);
                 }
             });
         }
     });
 };
 
-const remove_favourite_vehicle = (req, res) => {
-    User.findById(req.params.idUser).exec((error, user) => {
-        if (!user) {
-            return res.status(404).json({
-                "message": "User not found4."
-            });
-        } else if (error) {
-            return res.status(500).json(error);
-        }
-        user.favourite_vehicles_ids.remove(req.body.favourite_vehicles_id);
-        user.save((error, user) => {
-            if (error) {
-                res.status(404).json(error);
-            } else {
-                res.status(200).json(user);
-            }
-        });
-    });
-};
 
 const get_favourite_vehicles = (req, res) => {
     User.findById(req.params.idUser).select('favourite_vehicles_ids').exec((error, user) => {
@@ -328,42 +304,44 @@ const get_favourite_vehicles = (req, res) => {
             });
         } else if (error) {
             return res.status(500).json(error);
-        }
+        } else {
 
-        Vehicle.find({
-            _id: {
-                $in: user.favourite_vehicles_ids
-            }
-        }).exec((error, vehicles) => {
-            if (!vehicles) {
-                return res.status(404).json({
-                    "message": "Favourite vehicles not found."
-                });
-            } else if (error) {
-                return res.status(500).json(error);
-            } else {
-                return res.status(200).json(vehicles);
-            }
-        });
+            Vehicle.find({
+                _id: {
+                    $in: user.favourite_vehicles_ids
+                }
+            }).exec((error, vehicles) => {
+                if (error) {
+                    return res.status(500).json(error);
+                } else {
+                    return res.status(200).json(vehicles);
+                }
+            });
+        }
     });
 };
 
 const get_vehicles_of_user = (req, res) => {
 
-
-    Vehicle.find({
-        owner_id: {
-            $in: req.params.idUser
-        }
-    }).exec((error, vehicles) => {
-        if (!vehicles) {
-            return res.status(404).json({
-                "message": "Vehicles not found."
-            });
-        } else if (error) {
+    User.findById(req.params.idUser).exec((error, user) => {
+        if (error) {
             return res.status(500).json(error);
+        } else if (!user) {
+            return res.status(404).json({
+                "message": "User not found."
+            });
         } else {
-            res.status(200).json(vehicles);
+            Vehicle.find({
+                owner_id: {
+                    $in: req.params.idUser
+                }
+            }).exec((error, vehicles) => {
+                if (error) {
+                    return res.status(500).json(error);
+                } else {
+                    return res.status(200).json(vehicles);
+                }
+            });
         }
     });
 };
@@ -374,11 +352,11 @@ const reset_password = (req, res) => {
     const email = (req.body.email != '' ? req.body.email : null) || ((req.body.params != null && req.body.params.email != '') ? req.body.params.email : null);
 
     if (!validate_password(password)) {
-        res.status(404).json({
+        res.status(400).json({
             "message": "Password not valid."
         });
     } else if (!validate_email(email)) {
-        res.status(404).json({
+        res.status(400).json({
             "message": "Email not valid."
         });
     } else {
@@ -395,13 +373,13 @@ const reset_password = (req, res) => {
 
                 user.setPassword(password);
 
-                user.save((error, _) => {
+                user.save((error, new_user) => {
 
                     if (error) {
-                        res.status(404).json(error);
+                        res.status(500).json(error);
                     } else {
 
-                        res.status(201).json(user);
+                        res.status(201).json(new_user);
                     }
                 });
             }
@@ -410,18 +388,23 @@ const reset_password = (req, res) => {
 };
 
 const get_rents_of_user = (req, res) => {
-
-    Rented.find({
-        user_id: req.params.idUser
-    }).exec((error, rents) => {
-        if (!rents) {
+    User.findById(req.params.idUser).exec((error, user) => {
+        if (!user) {
             return res.status(404).json({
-                "message": "Rents not found."
+                "message": "User not found."
             });
         } else if (error) {
             return res.status(500).json(error);
         } else {
-            res.status(200).json(rents);
+            Rented.find({
+                user_id: req.params.idUser
+            }).exec((error, rents) => {
+                if (error) {
+                    return res.status(500).json(error);
+                } else {
+                    return res.status(200).json(rents);
+                }
+            });
         }
     });
 };
@@ -430,7 +413,7 @@ const send_email_forgot_password = (req, res) => {
 
 
     if (req.params == null || req.params.email == null || !validate_email(req.params.email)) {
-        return res.status(500).json("Email not valid");
+        return res.status(400).json("Email not valid");
     } else {
         const email = req.params.email;
 
@@ -444,7 +427,7 @@ const send_email_forgot_password = (req, res) => {
             } else if (error) {
                 return res.status(500).json(error);
             } else {
-                var user = users[0]
+                var user = users[0];
 
                 var token = generateJwt_passwordrecover(email, user._id);
                 var text = 'Click on http://localhost:4200/users/reset_password/' + token + ' or https://rentdrive-sp.herokuapp.com/users/reset_password/' + token;
@@ -501,15 +484,12 @@ module.exports = {
     remove_user,
     create_new_user,
     updated_profile_data,
-    check_if_user_exists,
     check_if_mail_exists,
     get_all_users,
     toggle_favourite_vehicle,
-    remove_favourite_vehicle,
     get_favourite_vehicles,
     get_vehicles_of_user,
     reset_password,
-    get_user_data_by_email,
     get_rents_of_user,
     login,
     send_email_forgot_password,
