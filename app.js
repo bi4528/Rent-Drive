@@ -35,6 +35,7 @@ var swaggerOptions = {
   },
   apis: [
     "./app_api/routes/users.js",
+    "./app_api/routes/vehicles.js",
     "./app_api/models/user.js",
     "./app_api/models/rented.js",
     "./app_api/routes/vehicle.js",
@@ -119,15 +120,6 @@ indexApi.get("/swagger.json", (req, res) => {
   res.status(200).json(swaggerDocument);
 });
 
-/*vehicleApi.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-vehicleApi.get("/swagger.json", (req, res) => {
-  res.status(200).json(swaggerDocument);
-});
-
-rentedApi.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-rentedApi.get("/swagger.json", (req, res) => {
-  res.status(200).json(swaggerDocument);
-});*/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
