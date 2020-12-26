@@ -92,7 +92,6 @@ const addSampleData = (req, res) => {
                                 message = error;
                             }
                             else{
-                                //console.log("napravio");
                                 userArray.push(upo);
                             }
                             end();
@@ -164,7 +163,6 @@ const addVehicles = () => {
                     message = error;
                 }
                 else {
-                    console.log(upo);
                     vehicleArray.push(upo);
                 }
                 end();
@@ -213,7 +211,7 @@ const deleteAllData = (req, res) => {
     vehicleArray.splice(0, vehicleArray.length);
     Rented.collection.drop();
     Vehicle.collection.drop();
-    User.collection.remove( { is_admin : false });
+    User.collection.deleteMany( { is_admin : false });
     res.status(200).json({"sporočilo": "Vsebina podatkovne baze je bila uspešno izbrisana."});
 };
 
