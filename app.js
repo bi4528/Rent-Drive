@@ -8,7 +8,6 @@ var logger = require('morgan');
 var passport = require('passport');
 var swaggerJsdoc = require('swagger-jsdoc');
 var swaggerUi = require('swagger-ui-express');
-const multer = require("multer");
 
 var swaggerOptions = {
   swaggerDefinition: {
@@ -43,7 +42,7 @@ var swaggerOptions = {
 };
 const swaggerDocument = swaggerJsdoc(swaggerOptions);
 
-var indexRouter = require('./app_server/routes/index');
+//var indexRouter = require('./app_server/routes/index');
 //var usersRouter = require('./app_server/routes/users');
 //var vehiclesRouter = require('./app_server/routes/vehicles');
 
@@ -59,6 +58,7 @@ var dbApi = require('./app_api/routes/db');
 var app = express();
 
 // view engine setup
+/*
 app.set('views', path.join(__dirname, 'app_server','views'));
 app.set('view engine', 'hbs');
 
@@ -68,7 +68,7 @@ require('./app_server/views/helpers/stars.js');
 require('./app_server/views/helpers/featurehelper.js');
 require('./app_server/views/helpers/featurehelper2.js');
 require('./app_server/views/helpers/ifEquals.js');
-
+*/
 
 // Odprava varnostnih pomanjkljivosti
 app.disable('x-powered-by');
@@ -97,7 +97,7 @@ app.use('/api', (req, res, next) => {
   next();
 });
 
-app.use('/', indexRouter);
+//app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 //app.use('/vehicles', vehiclesRouter);
 

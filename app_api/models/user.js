@@ -63,7 +63,7 @@ userSchema.methods.checkPassword = function (geslo) {
 
 userSchema.methods.generateJwt = function () {
     const datumPoteka = new Date();
-    datumPoteka.setDate(datumPoteka.getDate() + 7);
+    datumPoteka.setDate(datumPoteka.getDate() + 7); //tle bi lahko spremenili da seja potece hitreje nego kot 7 dni
 
     return jwt.sign({
         _id: this._id,

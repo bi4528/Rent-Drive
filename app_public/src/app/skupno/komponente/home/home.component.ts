@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener  } from '@angular/core';
 import { Vehicle, Review } from '../../razredi/vehicle';
 import { VehiclesDataService } from '../../storitve/vehicles-data.service';
 import { Router } from '@angular/router';
@@ -15,9 +15,7 @@ export class HomeComponent implements OnInit {
   constructor( 
     private vehiclesDataService: VehiclesDataService,
     private router: Router,
-    private validationService: ValidationService,
-    private el: ElementRef,
-    private renderer: Renderer2,
+    private validationService: ValidationService
     )
   { }
 
@@ -57,29 +55,9 @@ export class HomeComponent implements OnInit {
       .then( data => {
         this.sporocilo = data.length > 0 ? "" : "No cars found";
         this.cars = data;
+        this.slides = this.chunk(this.cars, 4);
+        console.log(this.slides);
       });
-  }
-
-  private clickListeners: Array<(evt: MouseEvent) => void> = [];
-  ngAfterViewInit() {
-    const anchorNodes: NodeList = this.el.nativeElement.querySelectorAll('a[href]:not(.LinkRef)'); // or a.LinkPage
-    const anchors: Node[] = Array.from(anchorNodes);
-
-    for (const anchor of anchors) {
-      // Prevent losing the state and reloading the app by overriding the click event
-      const listener = this.renderer.listen(anchor, 'click', (evt: MouseEvent) => this.onLinkClicked(evt));
-      this.clickListeners.push(listener);
-    }
-  }
-
-  private onLinkClicked(evt) {
-    evt.preventDefault();
-    if (evt.srcElement) {
-      const href = evt.srcElement.getAttribute('href');
-      if (href) {
-        this.router.navigateByUrl(href);
-      }
-    }
   }
 
   @ViewChild('modal') public modalComponent: ModalComponent;
@@ -87,7 +65,29 @@ export class HomeComponent implements OnInit {
     return await this.modalComponent.open();
   }
 
+  slides: any = [[]];
+  chunk(arr, chunkSize) {
+    let R = [];
+    for (let i = 0, len = arr.length; i < len; i += chunkSize) {
+      R.push(arr.slice(i, i + chunkSize));
+    }
+    return R;
+  }
+
+  public activeslide:boolean;
+  public isActive(): string {
+    if(this.activeslide){
+      this.activeslide=false;
+      return 'active';
+    }
+    else{
+      return 'bla';
+    }
+  }
+
+
   ngOnInit(): void {
+    this.activeslide=true;
     this.getVehicles();
   }
 

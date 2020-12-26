@@ -1,8 +1,8 @@
 <main>
-    
+
     <div class="alert alert-warning" [hidden]="!sporocilo">{{sporocilo}}</div>
-    
-    <div *ngIf="!cars" id="alert" class="alert alert-danger alert-dismissible fade show" role="alert">
+
+    <div *ngIf="!slides" id="alert" class="alert alert-danger alert-dismissible fade show" role="alert">
         <p>Getting data</p>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -17,14 +17,16 @@
         <div class="lambo-image">
             <div class="form-row filter">
                 <div class="col-auto">
-                    <label><strong>Location pick-up (city):</strong><input type="text" [(ngModel)]="city" class="form-control filterCity"
-                            placeholder="City"></label>
+                    <label><strong>Location pick-up (city):</strong><input type="text" [(ngModel)]="city"
+                            class="form-control filterCity" placeholder="City"></label>
                 </div>
                 <div class="col-auto">
-                    <label><strong>Date from:</strong><input type="date" [(ngModel)]="dateFrom" class="form-control dateFrom" /></label>
+                    <label><strong>Date from:</strong><input type="date" [(ngModel)]="dateFrom"
+                            class="form-control dateFrom" /></label>
                 </div>
                 <div class="col-auto">
-                    <label><strong>Date to:</strong><input type="date" [(ngModel)]="dateTo" class="form-control dateTo" /></label>
+                    <label><strong>Date to:</strong><input type="date" [(ngModel)]="dateTo"
+                            class="form-control dateTo" /></label>
                 </div>
                 <div class="col-auto">
                     <br>
@@ -46,22 +48,29 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item mx-md-4 active">
-                        <a class="nav-link" [routerLink]="['/search']" [queryParams]="{ category: 'Hatchback', page: '1' }">Hatchback<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" [routerLink]="['/search']"
+                            [queryParams]="{ category: 'Hatchback', page: '1' }">Hatchback<span
+                                class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item mx-md-4">
-                        <a class="nav-link" [routerLink]="['/search']" [queryParams]="{ category: 'Saloon', page: '1' }">Saloon</a>
+                        <a class="nav-link" [routerLink]="['/search']"
+                            [queryParams]="{ category: 'Saloon', page: '1' }">Saloon</a>
                     </li>
                     <li class="nav-item mx-md-4">
-                        <a class="nav-link" [routerLink]="['/search']" [queryParams]="{ category: 'Caravan', page: '1' }">Caravan</a>
+                        <a class="nav-link" [routerLink]="['/search']"
+                            [queryParams]="{ category: 'Caravan', page: '1' }">Caravan</a>
                     </li>
                     <li class="nav-item mx-md-4">
-                        <a class="nav-link" [routerLink]="['/search']" [queryParams]="{ category: 'Coupe', page: '1' }">Coupe</a>
+                        <a class="nav-link" [routerLink]="['/search']"
+                            [queryParams]="{ category: 'Coupe', page: '1' }">Coupe</a>
                     </li>
                     <li class="nav-item mx-md-4">
-                        <a class="nav-link" [routerLink]="['/search']" [queryParams]="{ category: 'SUV', page: '1' }">SUV</a>
+                        <a class="nav-link" [routerLink]="['/search']"
+                            [queryParams]="{ category: 'SUV', page: '1' }">SUV</a>
                     </li>
                     <li class="nav-item mx-md-4">
-                        <a class="nav-link" [routerLink]="['/search']" [queryParams]="{ category: 'Pick-up', page: '1' }">Pick-up</a>
+                        <a class="nav-link" [routerLink]="['/search']"
+                            [queryParams]="{ category: 'Pick-up', page: '1' }">Pick-up</a>
                     </li>
                 </ul>
             </div>
@@ -82,9 +91,32 @@
 
 
         <br>
-        <div class="carousel-inner carousel-catalogue" role="listbox" *ngIf="cars" [innerHTML]="cars | carouselVehicles">
+        <!--<div class="carousel-inner carousel-catalogue" role="listbox" *ngIf="cars" [innerHTML]="cars | carouselVehicles">
+        </div>-->
+
+
+        <div *ngIf="slides">
+            <div class="carousel-inner carousel-catalogue" role="listbox">
+                <div class="carousel-item active"  *ngFor="let item of slides">
+                    <div class="visina col-md-6 col-lg-3 float-left" *ngFor="let card of item">
+                        <div class="card mb-2">
+                            <img class="card-img-top car_image_home" src="../../../assets/uploads/{{card.images[0]}}"
+                                alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title">{{card.make}} {{card.model}}</h4>
+                                <p class="card-text">{{card.description}}</p>
+                                <a routerLink="/vehicles/{{card._id}}" class="btn btn-light rounded border-secondary stretched-link">Book for only
+                                    {{card.price}}€/day</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
+
+
+
+
         <div class="controls-top carousel-controls col-12 w-100 mb-3 py-3">
             <a class="btn-floating col-6" href="#catalogue-cars" data-slide="prev"><i
                     class="fas fa-chevron-left fa-3x p-2 float-left carousel-arrows"></i></a>
