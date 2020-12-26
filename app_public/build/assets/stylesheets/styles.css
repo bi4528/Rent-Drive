@@ -1,3 +1,7 @@
+.modal-backdrop {
+  z-index: 0 !important;
+}
+
 #podatki_uporabnika {
     float: left;
     margin-right: 20px;
@@ -155,6 +159,7 @@
 
 body {
     font-family: 'Piazzolla', serif !important;
+    font-display: swap;
 }
 
 h2 {
@@ -324,6 +329,13 @@ table, th, td {
     margin-bottom:10px;
 }
 
+.fas.fa-star, .fas.fa-star-half-alt  {
+  color:#fbcc05;
+}
+
+.far.fa-star  {
+  color:#bfbfbf;
+}
 .card-link{
     font-weight: bold;
     color:rgb(125,180,108);
