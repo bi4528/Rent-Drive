@@ -37,13 +37,20 @@ firstname
     
     // Parametri
     let aplikacijaUrl = "http://localhost:4200/"; //"https://rentdrive-sp.herokuapp.com/";
+    let apiUrl = "http://localhost:3000/"; //Na koncu bo vse na url produkcije
     let seleniumStreznikUrl = "http://localhost:4444/wd/hub";
     let brskalnik, jwtZeton;
-  
+    /*
     const axios = require('axios').create({
       baseURL: aplikacijaUrl + "api/",
       timeout: 5000
     });
+    */
+   const axios = require('axios').create({
+    baseURL: apiUrl + "api/",
+    timeout: 5000
+  });
+
     
     // Obvladovanje napak
     process.on("unhandledRejection", (napaka) => {
@@ -78,7 +85,7 @@ firstname
         this.timeout(30 * 1000);
         before(() => { brskalnik.get(aplikacijaUrl); });
   
-        it("Number of cars on search", async () => {
+        it("number of cars on search", async () => {
           await pocakajStranNalozena(brskalnik, 40, "//h4");
           let povezava = await brskalnik.findElement(
             By.xpath("//a[contains(text(), 'Search')]"));
@@ -88,6 +95,22 @@ firstname
           await pocakajStranNalozena(brskalnik, 10, "//h4");
           let cars = await brskalnik.findElements(By.css(".card"));
           expect(cars).to.be.an("array").to.have.lengthOf(10);
+        });
+
+        context("does search filter like it should?", function() {
+          it("write tesla and expect 1 result", async function() {
+            let searchBar = await brskalnik.findElement(By.css("input[name='Search']"));
+            expect(searchBar).to.not.be.empty;
+            searchBar.sendKeys("Tesla");
+
+            let gumb = await brskalnik.findElement(
+              By.xpath("//button[contains(text(), 'Search')]"));
+
+            await gumb.click();
+            await pocakajStranNalozena(brskalnik, 10, "//h4[contains(text(), 'Tesla Model 3 2019')]"); //ta await ni vedno okej samo scem naj zamenjam da pocakam da se samo tesla nalozi
+            let cars = await brskalnik.findElements(By.css(".card"));
+            expect(cars).to.be.an("array").to.have.lengthOf(1);
+          });
         });
   
       });
@@ -202,19 +225,8 @@ firstname
         this.timeout(30 * 1000);
         before(() => { brskalnik.get(aplikacijaUrl); });
 
-        it("Delete ChuckNoris from database", async function() {
-          await pocakajStranNalozena(brskalnik, 40, "//h4");
-          let dockerAtlasBrisiUporabnika = 
-              "docker exec -i sp-rentdrive-mongodb bash -c " + "\"mongo " + 
-              "\\\"mongodb+srv://rentdrive-qfwjv.mongodb.net/RentDrive\\\" " + 
-              "--username app --password secure-access --eval " + 
-              "'db.Users.remove({email: \\\"chucknoris@gmail.com\\\"})'" + "\"";
-          exec(dockerAtlasBrisiUporabnika).on("close", (koda) => {
-            expect(koda).to.be.equal(0);
-          });
-        });
-
         it("Go to register", async function() {
+          await pocakajStranNalozena(brskalnik, 40, "//h4");
           let povezava = await brskalnik.findElement(
             By.xpath("//a[contains(text(), 'Register')]"));
           expect(povezava).to.not.be.empty;
@@ -244,7 +256,7 @@ firstname
           expect(repeatPassword).to.not.be.empty;
           repeatPassword.sendKeys("Test123#");
           let gumbPrijava=brskalnik.findElement(
-            By.xpath("//input[@type='submit']")); //mislim da se gumb ne klikne !!!
+            By.xpath("//input[@type='submit']"));
           await gumbPrijava.click();
         });
         
@@ -257,10 +269,36 @@ firstname
             await myProfileButton.click();
           });
         });
+      });
 
-        
 
 
+
+      describe("Delete profile", function() {
+        this.timeout(30 * 1000);
+        before(() => { brskalnik.get(aplikacijaUrl); });
+        it("go to my_profile", async function() {
+          await pocakajStranNalozena(brskalnik, 10, "//h4");
+          let myProfileButton = await brskalnik.findElement(
+            By.xpath("//a[contains(text(), 'My profile')]"));
+          expect(myProfileButton).to.not.be.empty;
+          await myProfileButton.click();
+        });
+
+        it("click on delete profile", async function() {
+          await pocakajStranNalozena(brskalnik, 10, "//h5");
+          let deleteButton = await brskalnik.findElement(
+            By.xpath("//button[contains(text(), 'Delete')]"));
+          expect(deleteButton).to.not.be.empty;
+          await deleteButton.click();
+        });
+
+        it("check if navbar has register button", async function() {
+          await pocakajStranNalozena(brskalnik, 10, "//h4");
+          let registerButton = await brskalnik.findElement(
+            By.xpath("//a[contains(text(), 'Register')]"));
+          expect(registerButton).to.not.be.empty;
+        });
       });
       
       /*
