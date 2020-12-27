@@ -243,10 +243,11 @@ firstname
           let repeatPassword = await brskalnik.findElement(By.css("input[name='repeat-password']"));
           expect(repeatPassword).to.not.be.empty;
           repeatPassword.sendKeys("Test123#");
-          brskalnik.findElement(
-            By.xpath("//input[contains(value(), 'Register')]")).click(); //mislim da se gumb ne klikne !!!
+          let gumbPrijava=brskalnik.findElement(
+            By.xpath("//input[@type='submit']")); //mislim da se gumb ne klikne !!!
+          await gumbPrijava.click();
         });
-
+        
         context("Check is Chuck is really logged in now", function() {
           it("go to my_profile", async function() {
             await pocakajStranNalozena(brskalnik, 10, "//h4");
@@ -255,8 +256,6 @@ firstname
             expect(myProfileButton).to.not.be.empty;
             await myProfileButton.click();
           });
-
-
         });
 
         
