@@ -1,5 +1,28 @@
 const mongoose = require('mongoose');
 
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *   Reviews:
+ *    description: How reviews are saved
+ *    type: object
+ *    properties:
+ *     comment:
+ *      type: string
+ *      example: Very satisfied with the car, i recommend it!
+ *     rating:
+ *      type: string
+ *      example: ★★★★☆
+ *     username:
+ *      type: string
+ *      example: Josh Smith
+ *     user_id:
+ *      type: string
+ *     img:
+ *      type: string
+ */
+
 const reviewSchema = new mongoose.Schema({
     comment: String,
     rating: String,

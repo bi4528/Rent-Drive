@@ -6,7 +6,8 @@
     "start": "node ./bin/www",
     "vehicles-import": "docker cp ./app_api/models/vehicles-test.json sp-rentdrive-mongodb:/vehicles-test.json ; docker exec -it sp-rentdrive-mongodb mongoimport --db RentDrive --collection Vehicles --mode upsert --upsertFields make --jsonArray --file vehicles-test.json; docker exec -it sp-rentdrive-mongodb rm -rf vehicles-test.json; docker exec -it sp-rentdrive-mongodb bash -c \"mongo RentDrive --eval 'db.Vehicles.find().forEach(function(dokument) { for (var i = 0; i < dokument.reviews.length; i++) { dokument.reviews[i]._id = ObjectId() } db.Vehicles.update({ \"_id\" : dokument._id }, dokument) })'\"",
     "vehicles-delete": "docker exec -it sp-rentdrive-mongodb bash -c \"mongo RentDrive --eval 'db.Vehicles.remove({})'\"",
-    "vehicles-show": "docker exec -it sp-rentdrive-mongodb bash -c \"mongo RentDrive --eval 'db.Vehicles.find()'\""
+    "vehicles-show": "docker exec -it sp-rentdrive-mongodb bash -c \"mongo RentDrive --eval 'db.Vehicles.find()'\"",
+    "test": "mocha test --bail --reporter mochawesome --reporter-options autoOpen=true,reportDir=test/porocilo,reportFilename=porocilo,json=false"
   },
   "engines": {
     "node": ">=14.15.0",
@@ -34,10 +35,15 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "path": "*",
-    "swagger-jsdoc": "*",
-    "swagger-ui-express": "*"
+    "swagger-jsdoc": "^6.0.0",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
-    "@types/leaflet": "^1.5.19"
+    "@types/leaflet": "^1.5.19",
+    "chai": "^4.2.0",
+    "chromedriver": "^87.0.4",
+    "mocha": "^8.2.1",
+    "mochawesome": "^6.2.1",
+    "selenium-webdriver": "^4.0.0-alpha.8"
   }
 }
