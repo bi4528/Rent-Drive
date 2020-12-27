@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
  *   schemas:
  *     Review:
  *       type: object
- *       description: Data of review
+ *       description: Review data
  *       properties:
  *         _id:
  *            type: string
@@ -53,15 +53,19 @@ const reviewSchema = new mongoose.Schema({
  *    type: object
  *    description: Vehicle data
  *    properties:
+ *     _id:
+ *      type: string
+ *      format: uuid
+ *      example: 5fe8902647fa2a179c83233a 
  *     images:
  *      type: array
+ *      description: array of vehicle images
  *      items:  
  *        type: string
- *        properties:
- *          description: array of vehicle images
- *          example: ["tesla1.jpg","tesla2.jpg","tesla3.jpg","tesla4.jpg","tesla5.jpg","tesla6.jpg"]
+ *        example: ["tesla1.jpg","tesla2.jpg","tesla3.jpg","tesla4.jpg","tesla5.jpg","tesla6.jpg"]
  *     owner_id:
  *        type: string
+ *        description: Unique ID of owner 
  *        format: uuid
  *        example: 5fe5fbb81f46e923281fe125
  *     make:
@@ -162,18 +166,17 @@ const reviewSchema = new mongoose.Schema({
  *         example: 9000
  *     date:
  *         type: array
+ *         description: Beginning and end of rental period
  *         items:  
  *           type: string
- *           properties:
- *             description: Beginning and end of rental period
- *             example: ["2020-12-20","2021-01-24"]
+ *           example: ["2020-12-20","2021-01-24"]
  *     reviews:
  *         type: array
+ *         description: All known reviews of vehicle 
  *         items:
  *           type: object
  *           $ref: "#/components/schemas/Review" 
- *           properties:
- *             description: All known reviews of vehicle
+ *             
  *     luggage:
  *         type: number
  *         description: Luggage space capacity of trunk in liters
@@ -202,7 +205,13 @@ const reviewSchema = new mongoose.Schema({
  *      - zip
  *      - date
  *      - luggage
- *      - minage                
+ *      - minage
+ *   VehicleCount:
+ *    type: object
+ *    description: Vehicle count
+ *    properties:
+ *     number_vehicles:
+ *      type: number               
  */
 
 const vehicleSchema = new mongoose.Schema({
@@ -297,6 +306,27 @@ const vehicleSchema = new mongoose.Schema({
     }
 });
 
+/**
+ * @swagger
+ *  components:
+ *   examples:
+ *    VehicleNotFound:
+ *     value:
+ *      message: Ne najdem avta s podanim enoličnim identifikatorjem id.
+ *    ReviewNotFound:
+ *     value:
+ *      message: Ne najdem komentarja s podanim enoličnim identifikatorjem idReview. 
+ *    VehicleCountError:
+ *     value:
+ *      message: Zgodila se je napaka pri dobivanje st avtov
+ *    ImageUploadError:
+ *     value:
+ *      message: No file found
+ *    ReviewsNotFound:
+ *     value:
+ *      message: Ni komentarja za brisanje.
+ * 
+ */
 
 mongoose.model('Vehicle', vehicleSchema, 'Vehicles');
 mongoose.model('Review', reviewSchema, 'Reviews');

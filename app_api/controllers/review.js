@@ -8,8 +8,8 @@ const reviewsAll = (req, res) => {
         .exec((err, data) => {
             if (!data) {
                 return res.status(404).json({
-                    "sporočilo":
-                        "Ne najdem avte s podanim enoličnim identifikatorjem id."
+                    "message":
+                        "Ne najdem avta s podanim enoličnim identifikatorjem id."
                 });
             }
             else if (err) {
@@ -23,7 +23,7 @@ const reviewsAll = (req, res) => {
 
 const addReview = (req, res, data) => {
     if (!data) {
-        res.status(404).json({ "sporočilo": "Ne najdem avto." });
+        res.status(404).json({ "message": "Ne najdem avta s podanim enoličnim identifikatorjem id.." });
     } else {
         data.reviews.push({
             username: req.body.username,
@@ -58,7 +58,7 @@ const reviewsUpload = (req, res) => {
             });
     } else {
         res.status(400).json({
-            "sporočilo":
+            "message":
                 "Ne najdem avto, idVehicle je obvezen parameter."
         });
     }
@@ -70,8 +70,8 @@ const reviewsFind = (req, res) => {
         .exec((err, data) => {
             if (!data) {
                 return res.status(404).json({
-                    "sporočilo":
-                        "Ne najdem avte s podanim enoličnim identifikatorjem id."
+                    "message":
+                        "Ne najdem avta s podanim enoličnim identifikatorjem id."
                 });
             }
             else if (err) {
@@ -82,8 +82,8 @@ const reviewsFind = (req, res) => {
                 const komentar = data.reviews.id(req.params.idReview);
                 if (!komentar) {
                     return res.status(404).json({
-                        "sporočilo":
-                            "Ne najdem komentarja s podanim enoličnim identifikatorjem idKomentarja."
+                        "message":
+                            "Ne najdem komentarja s podanim enoličnim identifikatorjem idReview."
                     });
                 } else {
                     res.status(200).json({
@@ -97,7 +97,7 @@ const reviewsFind = (req, res) => {
                 }
             } else {
                 return res.status(404).json({
-                    "sporočilo":
+                    "message":
                         "Ne najdem nobenega komentarja."
                 });
             }
@@ -108,7 +108,7 @@ const reviewsDelete = (req, res) => {
     const { idVehicle, idReview } = req.params;
     if (!idVehicle || !idReview) {
         return res.status(404).json({
-            "sporočilo":
+            "message":
                 "Ne najdem avto oz. komentarja, " +
                 "idVehicle in idReview sta obvezna parametra."
         });
@@ -118,13 +118,13 @@ const reviewsDelete = (req, res) => {
         .select('reviews')
         .exec((err, data) => {
             if (!data) {
-                return res.status(404).json({ "sporočilo": "Ne najdem avto." });
+                return res.status(404).json({ "message": "Ne najdem avta s podanim enoličnim identifikatorjem id." });
             } else if (err) {
                 return res.status(500).json(err);
             }
             if (data.reviews && data.reviews.length > 0) {
                 if (!data.reviews.id(idReview)) {
-                    return res.status(404).json({ "sporočilo": "Ne najdem komentarja." });
+                    return res.status(404).json({ "message": "Ne najdem komentarja s podanim enoličnim identifikatorjem idReview." });
                 } else {
                     data.reviews.id(idReview).remove();
                     data.save((err) => {
@@ -137,7 +137,7 @@ const reviewsDelete = (req, res) => {
                     });
                 }
             } else {
-                res.status(404).json({ "sporočilo": "Ni komentarja za brisanje." });
+                res.status(404).json({ "message": "Ni komentarja za brisanje." });
             }
         });
 };

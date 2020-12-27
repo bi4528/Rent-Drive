@@ -507,7 +507,7 @@ router.get('/check/exists_mail/:email', ctrlUser.check_if_mail_exists);
  *        schema:
  *         $ref: "#/components/schemas/AuthenticationResponse"
  *     "400":
- *      descriptio: Email or password are not valid.
+ *      description: Email or password are not valid.
  *     "401":
  *      description: No authorization.
  *      content:

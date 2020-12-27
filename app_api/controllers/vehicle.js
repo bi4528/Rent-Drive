@@ -14,13 +14,13 @@ const vehiclesAll = (req, res) => {
         .exec((err, dataJSON) => {
             if (!dataJSON) {
                 return res.status(404).json({
-                    "sporočilo":
-                        "Ne najdem avte."
+                    "message":
+                        "Ne najdem avtomobilov."
                 });
             }
             else if (err) {
                 console.err(err);
-                res.status(404).json({ "sporočilo": "Napaka pri poizvedbi: " + err });
+                res.status(404).json({ "message": "Napaka pri poizvedbi: " + err });
             } else {
                 //res.status(200).json(data);
                 const keyWord = req.query.value;
@@ -85,13 +85,13 @@ const returnLength = (req, res) => {
         .exec((err, dataJSON) => {
             if (!dataJSON) {
                 return res.status(404).json({
-                    "sporočilo":
+                    "message":
                         "Zgodila se je napaka pri dobivanje st avtov"
                 });
             }
             else if (err) {
                 console.err(err);
-                res.status(500).json({ "sporočilo": "Napaka pri poizvedbi: " + err });
+                res.status(500).json({ "message": "Napaka pri poizvedbi: " + err });
             } else {
                 //res.status(200).json(data);
                 const keyWord = req.query.value;
@@ -140,12 +140,12 @@ const imagesUpload = (req, res) => {
     if (!req.files) {
         console.log("No file received");
         res.status(404).json({
-            "message": "No file found"
+            "message": "No file found."
         });
 
     } else {
         console.log('file received');
-        return res.status(200).json(req.files);
+        return res.status(201).json(req.files);
     }
 }
 
@@ -201,13 +201,13 @@ const vehiclesFind = (req, res) => {
         .exec((err, data) => {
             if (!data) {
                 return res.status(404).json({
-                    "sporočilo":
-                        "Ne najdem avto s podanim enoličnim identifikatorjem id."
+                    "message":
+                        "Ne najdem avta s podanim enoličnim identifikatorjem id."
                 });
             }
             else if (err) {
                 console.err(err);
-                res.status(404).json({ "sporočilo": "Napaka pri poizvedbi: " + err });
+                res.status(404).json({ "message": "Napaka pri poizvedbi: " + err });
             } else {
                 res.status(200).json(data);
             }
@@ -217,8 +217,8 @@ const vehiclesFind = (req, res) => {
 const vehiclesUpdate = (req, res) => {
     if (!req.params.id) {
         return res.status(404).json({
-            "sporočilo":
-                "Ne najdem avto, id je obvezen parameter."
+            "message":
+                "Ne najdem avta s podanim enoličnim identifikatorjem id."
         });
     }
     Vehicle
@@ -226,7 +226,7 @@ const vehiclesUpdate = (req, res) => {
         .select('-reviews')
         .exec((err, data) => {
             if (!data) {
-                return res.status(404).json({ "sporočilo": "Ne najdem avto." });
+                return res.status(404).json({ "message": "Ne najdem avto." });
             } else if (err) {
                 return res.status(500).json(err);
             }
@@ -282,8 +282,8 @@ const vehiclesDelete = (req, res) => {
             });
     } else {
         res.status(404).json({
-            "sporočilo":
-                "Ne najdem lokacije, idVehicle je obvezen parameter."
+            "message":
+                "Ne najdem avta s podanim enoličnim identifikatorjem id."
         });
     }
 };
