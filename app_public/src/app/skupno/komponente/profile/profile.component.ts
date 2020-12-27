@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../razredi/user';
-import { Vehicle } from '../../razredi/vehicle';
+import { Review, Vehicle } from '../../razredi/vehicle';
 import { Rent } from '../../razredi/rent';
 import { UsersDataService } from '../../storitve/users-data.service';
 import { VehiclesDataService } from '../../storitve/vehicles-data.service';
@@ -48,6 +48,25 @@ export class ProfileComponent implements OnInit {
           this.show_controls = this.is_logged_or_admin_user();
         }
       });
+  }
+  
+  private get_reviews_of_user = (id_of_user: String): void => {
+    this.alert_error = "Searching for cars";
+    this.vehiclesDataService
+      .getVehicles('')
+      .then((data) => {
+        this.alert_error = (data.length > 0) ? "" : "";
+        this.vehicles_of_reviews = [];
+        this.user_reviews = [];
+        for (var i = 0;i<data.length;i++){
+          for (var j=0; j<data[i].reviews.length;j++){
+            if (data[i].reviews[j].user_id == id_of_user) {
+              this.vehicles_of_reviews.push(data[i]);
+              this.user_reviews.push(data[i].reviews[j]._id);
+            } 
+          }
+        }
+      }).catch((er)=>{console.log(er)});
   }
 
   private get_favourite_vehicles_of_user = (id_of_user: String): void => {
@@ -140,6 +159,9 @@ export class ProfileComponent implements OnInit {
     for(let i=0; i<this.owned_cars.length; i++){
       this.delete_vehicle(this.owned_cars[i]._id);
     }
+    for(let i=0; i<this.user_reviews.length;i++){
+      this.delete_review_of_user(this.vehicles_of_reviews[i],this.user_reviews[i]);
+    }
 
     this.usersDataService.deleteUser(this.user).then(() => {
       this.avtentikacijaStoritev.logout();
@@ -169,6 +191,12 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  public delete_review_of_user = (vehicle,id_review): void => {
+    this.vehiclesDataService.deleteReview(vehicle,id_review).then(() => {
+      this.get_reviews_of_user(this.id_of_user);
+    }).catch((er)=>{console.log(er)});
+  }
+
   public show_chart = (id_user): void => {
     this.router.navigateByUrl("/users/profiles/" + id_user + "/chart");
   }
@@ -177,6 +205,8 @@ export class ProfileComponent implements OnInit {
   public alert_error: String;
   public user: User;
   public owned_cars: Vehicle[];
+  public vehicles_of_reviews: Vehicle[];
+  public user_reviews: String[]
   public favourite_cars: Vehicle[];
   public rents: Rent[];
   public is_profile_of_logged_user: Boolean;
@@ -188,6 +218,7 @@ export class ProfileComponent implements OnInit {
     this.checkIfProfileIsUserLogged();
     this.get_user_data(this.id_of_user);
     this.get_vehicles_of_user(this.id_of_user);
+    if (this.id_of_user!=null) this.get_reviews_of_user(this.id_of_user);
     this.get_rents_of_user(this.id_of_user);
     this.get_favourite_vehicles_of_user(this.id_of_user);
   }
