@@ -34,7 +34,7 @@ const ctrlUser = require("../controllers/user")
  * @swagger
  * tags:
  *  - name: Users
- *    description: User managment
+ *    description: User management
  *  - name: Recover password
  *    description: Reset and recover password functions
  *  - name: Authentication

@@ -1,5 +1,41 @@
 const mongoose = require('mongoose');
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Review:
+ *       type: object
+ *       description: Data of review
+ *       properties:
+ *         _id:
+ *            type: string
+ *            format: uuid
+ *            example: 5ded18eb51386c3799833191
+ *         username:
+ *            type: string
+ *            example: joshsmith213
+ *         rating:
+ *            type: string
+ *            example: ★★★☆☆
+ *         comment:
+ *            type: string
+ *            example: Very nice car
+ *         img:
+ *            type: string
+ *            example: profilepicture.jpg
+ *         user_id:
+ *            type: string
+ *            format: uuid
+ *            example: 5fe5fbb81f46e923281fe122
+ *       required:
+ *         - username
+ *         - rating
+ *         - comment
+ *         - img
+ *         - user_id
+*/
+
 const reviewSchema = new mongoose.Schema({
     comment: String,
     rating: String,
@@ -7,6 +43,167 @@ const reviewSchema = new mongoose.Schema({
     user_id: String,
     img: String
 });
+
+
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *   Vehicle:
+ *    type: object
+ *    description: Vehicle data
+ *    properties:
+ *     images:
+ *      type: array
+ *      items:  
+ *        type: string
+ *        properties:
+ *          description: array of vehicle images
+ *          example: ["tesla1.jpg","tesla2.jpg","tesla3.jpg","tesla4.jpg","tesla5.jpg","tesla6.jpg"]
+ *     owner_id:
+ *        type: string
+ *        format: uuid
+ *        example: 5fe5fbb81f46e923281fe125
+ *     make:
+ *        type: string
+ *        description: Vehicle make
+ *        example: Subaru
+ *     model:
+ *        type: string
+ *        description: Vehicle make
+ *        example: Impreza WRX STI
+ *     typeoffuel:
+ *        type: string
+ *        description: Vehicle fuel
+ *        example: Petrol
+ *     category:
+ *        type: string
+ *        description: Vehicle category
+ *        example: Hatchback
+ *     hp:
+ *        type: number
+ *        description: Vehicle horsepower
+ *        example: 208
+ *     maxspeed:
+ *        type: number
+ *        description: Maximum speed of vehicle in kilometers per hour.
+ *        example: 270
+ *     acceleration:
+ *         type: number
+ *         description: Time (seconds) necessary to accelerate from 0 to 60 km/h.
+ *         example: 3,8
+ *     consumption:
+ *         type: number
+ *         description: Average fuel consumption (liters) per 100 km
+ *         example: 9,1
+ *     seats:
+ *         type: number
+ *         description: Number of seats in the car
+ *         example: 4
+ *     doors:
+ *         type: number
+ *         description: Number of doors in the car
+ *         example: 4
+ *     AirConditioning:
+ *         type: string
+ *         description: The car contains/doesn't contain a functioning A/C 
+ *         example: on
+ *     Navigation:
+ *         type: string
+ *         description: The car contains/doesn't contain a navigational system 
+ *         example: on
+ *     USB:
+ *         type: string
+ *         description: The car contains/doesn't contain USB ports 
+ *         example: off
+ *     AUX:
+ *         type: string
+ *         description: The car contains/doesn't contain AUX support 
+ *         example: on
+ *     parkingsensor:
+ *         type: string
+ *         description: The car contains/doesn't contain parking sensors
+ *         example: off
+ *     autopilot:
+ *         type: string
+ *         description: The car contains/doesn't contain a functioning A/C 
+ *         example: on
+ *     bluetooth:
+ *         type: string
+ *         description: The car contains/doesn't contain bluetooth support 
+ *         example: off
+ *     accessibility:
+ *         type: string
+ *         description: The car is accessible 
+ *         example: off
+ *     description:
+ *         type: string
+ *         description: A short description of the car by the owner
+ *         example: Inspired by Subaru's factory-backed FIA World Championship Rally series race cars and tuned for maximum performance, the 2021 Subaru WRX STI will overwhelm the faint of heart. In fact, the STI's turbocharged flat-four cylinder engine and firm suspension can startle even ardent driving enthusiasts.        
+ *     price:
+ *         type: number
+ *         description: Daily rental price of the car in € 
+ *         example: 70
+ *     country:
+ *         type: string
+ *         description: Country where the car is situated
+ *         example: Slovenia
+ *     city:
+ *         type: string
+ *         description: City where the car is situated
+ *         example: Murska Sobota
+ *     addres:
+ *         type: string
+ *         description: Address where the car is situated
+ *         example: Vrazova ulica 10
+ *     zip:
+ *         type: number
+ *         description: ZIP code of car location
+ *         example: 9000
+ *     date:
+ *         type: array
+ *         items:  
+ *           type: string
+ *           properties:
+ *             description: Beginning and end of rental period
+ *             example: ["2020-12-20","2021-01-24"]
+ *     reviews:
+ *         type: array
+ *         items:
+ *           type: object
+ *           $ref: "#/components/schemas/Review" 
+ *           properties:
+ *             description: All known reviews of vehicle
+ *     luggage:
+ *         type: number
+ *         description: Luggage space capacity of trunk in liters
+ *         example: 460
+ *     minage:
+ *         type: number
+ *         description: Minimum age required to drive this vehicle (requested by the owner or the authorities)
+ *         example: 21     
+ *    required:
+ *      - owner_id
+ *      - make
+ *      - model
+ *      - typeoffuel
+ *      - category
+ *      - hp
+ *      - maxspeed
+ *      - acceleration
+ *      - consumption
+ *      - seats
+ *      - doors
+ *      - description
+ *      - price
+ *      - country
+ *      - city
+ *      - addres
+ *      - zip
+ *      - date
+ *      - luggage
+ *      - minage                
+ */
 
 const vehicleSchema = new mongoose.Schema({
     images: [String],

@@ -36,6 +36,7 @@ var swaggerOptions = {
   apis: [
     "./app_api/routes/users.js",
     "./app_api/routes/vehicles.js",
+    "./app_api/models/vehicle.js",
     "./app_api/models/user.js",
     "./app_api/models/rented.js",
     "./app_api/routes/vehicle.js",
