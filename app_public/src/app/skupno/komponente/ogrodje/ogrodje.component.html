@@ -87,11 +87,11 @@
           <div class="col-md-4 ul-list">
             <ul>
               <li><a routerLink="/">Home</a></li>
-              <li><a href="/nearby">Nearby</a></li>
+              <li><a routerLink="/nearby">Nearby</a></li>
               <li *ngIf="is_user_logged()" ><a routerLink="/vehicles/publish">List your car</a></li>
-              <li *ngIf="is_user_logged()"><a href="/users/profiles/{{get_user_id()}}">My profile</a></li>
-              <li *ngIf="!is_user_logged()"><a href="/users/login">Login</a></li>
-              <li *ngIf="!is_user_logged()"><a href="/users/register">Register</a></li>
+              <li *ngIf="is_user_logged()"><a routerLink="/users/profiles/{{get_user_id()}}">My profile</a></li>
+              <li *ngIf="!is_user_logged()"><a routerLink="/users/login">Login</a></li>
+              <li *ngIf="!is_user_logged()"><a routerLink="/users/register">Register</a></li>
               <li><a routerLink="/search">Search</a></li>
             </ul>
           </div>

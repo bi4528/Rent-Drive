@@ -6,6 +6,7 @@ import { UsersDataService } from '../../storitve/users-data.service';
 import { AuthenticationService } from '../../storitve/avtentikacija.service';
 import { ValidationService } from '../../storitve/validation.service';
 import { ModalComponent } from '../modal/modal.component';
+import { HistoryService } from '../../storitve/history.service';
 declare var validate: any;
 declare var register: any;
 
@@ -20,7 +21,8 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private usersDataService: UsersDataService,
     private avtentikacijaStoritev: AuthenticationService,
-    private validationService: ValidationService
+    private validationService: ValidationService,
+    private historyService: HistoryService
   ) { }
 
   modal_text: String;
@@ -88,7 +90,9 @@ export class RegisterComponent implements OnInit {
           .then(() => {
             this.statusText="Success!";
             this.statusType = 2;
-            this.router.navigateByUrl("/")
+            this.router.navigateByUrl(
+              this.historyService.vrniPredhodnjeUrlNasloveBrezPrijaveInRegistracije()
+            )
           })
           .catch(sporocilo => {
             this.modal_text = sporocilo;
