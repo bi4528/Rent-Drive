@@ -65,7 +65,7 @@ const jwt = require('jsonwebtoken');
  *     - password
  *   User:
  *    type: object
- *    description: Data of user
+ *    description: User data
  *    properties:
  *     _id:
  *      type: string
