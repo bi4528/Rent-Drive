@@ -14,14 +14,14 @@
     "npm": ">=6.14.8"
   },
   "dependencies": {
-    "@asymmetrik/ngx-leaflet": "^8.1.0",
+    "@asymmetrik/ngx-leaflet": "*",
     "axios": "*",
-    "chart.js": "^2.9.4",
+    "chart.js": "*",
     "cookie-parser": "*",
     "debug": "*",
-    "dotenv": "^8.2.0",
+    "dotenv": "*",
     "express": "*",
-    "express-jwt": "^6.0.0",
+    "express-jwt": "*",
     "express-session": "*",
     "hbs": "*",
     "http-errors": "*",
@@ -29,21 +29,22 @@
     "mongoose": "*",
     "morgan": "*",
     "multer": "*",
-    "ng2-charts": "^2.4.2",
+    "ng2-charts": "*",
     "nodemailer": "*",
     "nodemon": "*",
-    "passport": "^0.4.1",
-    "passport-local": "^1.0.0",
+    "passport": "*",
+    "passport-local": "*",
     "path": "*",
-    "swagger-jsdoc": "^6.0.0",
-    "swagger-ui-express": "^4.1.6"
+    "swagger-jsdoc": "*",
+    "swagger-ui-express": "*",
+    "openapi-types": "*"
   },
   "devDependencies": {
-    "@types/leaflet": "^1.5.19",
-    "chai": "^4.2.0",
-    "chromedriver": "^87.0.4",
-    "mocha": "^8.2.1",
-    "mochawesome": "^6.2.1",
-    "selenium-webdriver": "^4.0.0-alpha.8"
+    "@types/leaflet": "*",
+    "chai": "*",
+    "chromedriver": "*",
+    "mocha": "*",
+    "mochawesome": "*",
+    "selenium-webdriver": "*"
   }
 }
