@@ -74,14 +74,14 @@ export class HomeComponent implements OnInit {
     return R;
   }
 
-  public activeslide:boolean;
-  public isActive(): string {
+  public activeslide=true;
+  public isActive(): boolean {
     if(this.activeslide){
       this.activeslide=false;
-      return 'active';
+      return true;
     }
     else{
-      return 'bla';
+      return false;
     }
   }
 

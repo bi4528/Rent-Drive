@@ -43,10 +43,10 @@ export class AddReviewComponent implements OnInit {
   public addNewVehicle(): void { }
 
   onFormSubmit(form: NgForm) {
-    //console.log("HELLO WELCOME");
     this.newReview.username = this.username;
     this.newReview.img = this.img;
     this.newReview.stars = form.controls['stars'].value;
+    console.log(form.controls['stars'].value);
     //this.newReview.user_id = this.id;
     if (this.newReview.comment == "") {
       this.alert_error = "Comment cannot be empty!";

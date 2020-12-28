@@ -35,7 +35,7 @@
                     <span class="input-group-text">Type of fuel:</span>
                 </div>
                 <select class="form-control" tabindex=3 name="typeoffuel" [(ngModel)]="newVehicle.typeoffuel" (change)="isElectric($event)">
-                    <option [ngValue]="1">Petrol</option>
+                    <option [ngValue]="1" selected>Petrol</option>
                     <option [ngValue]="2">Diesel</option>
                     <option [ngValue]="3">Hybrid</option>
                     <option [ngValue]="4">Electric</option>
@@ -48,7 +48,7 @@
                     <span class="input-group-text">Vehicle type:</span>
                 </div>
                 <select class="form-control" tabindex=4 name="category" [(ngModel)]="newVehicle.category">
-                    <option [ngValue]="1">Saloon</option>
+                    <option [ngValue]="1" selected>Saloon</option>
                     <option [ngValue]="2">Estate</option>
                     <option [ngValue]="3">Hatchback</option>
                     <option [ngValue]="4">Coupe</option>
@@ -117,7 +117,7 @@
                     <span class="input-group-text">Minimum age:</span>
                 </div>
                 <select class="form-control" tabindex=12 name="minage" [(ngModel)]="newVehicle.minage">
-                    <option [ngValue]="1">15</option>
+                    <option [ngValue]="1" selected>15</option>
                     <option [ngValue]="2">16</option>
                     <option [ngValue]="3">18</option>
                     <option [ngValue]="4">21</option>
@@ -225,9 +225,9 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">Available on:</span>
                 </div>
-                <input type="date" class="form-control" name="date" tabindex=20 name="datefrom"
+                <input type="date" class="form-control" tabindex=20 name="datefrom"
                     [(ngModel)]="newVehicle.date[0]">
-                <input type="date" class="form-control" name="date" tabindex=21 name="dateto"
+                <input type="date" class="form-control" tabindex=21 name="dateto"
                     [(ngModel)]="newVehicle.date[1]">
             </div>
 
