@@ -15,7 +15,7 @@
       <p *ngIf="user" id="kraj_uporabnika" class="centered">{{user.location}}</p>
       <button *ngIf="is_logged_or_admin_user()" type="button" class="btn btn-primary btn-block" (click)="edit_user()">Edit</button>
       <button *ngIf="is_profile_of_logged_user" type="button" class="btn btn-danger btn-block" (click)="logout()">Log out</button>
-      <button *ngIf="is_logged_or_admin_user()" type="button" class="btn btn-danger btn-block" (click)="delete_user()">Delete</button>
+      <button [disabled]="!jePovezava()" *ngIf="is_logged_or_admin_user()" type="button" class="btn btn-danger btn-block" (click)="delete_user()">Delete</button>
     </div>
 
     <div id="vozila_uporabnika">
@@ -27,7 +27,7 @@
           <div class="card-body">
             <h5 class="card-text">{{owned_car.make}}</h5>
               <a *ngIf="show_controls && owned_car._id" type="button" routerLink="/vehicles/{{owned_car._id}}/edit" class="btn btn-primary btn-block card_auto_najemi_button">Edit</a>
-              <button *ngIf="show_controls" type="button" (click)="delete_vehicle(owned_car._id)" class="btn btn-danger btn-block">Remove</button>
+              <button [disabled]="!jePovezava()" *ngIf="show_controls" type="button" (click)="delete_vehicle(owned_car._id)" class="btn btn-danger btn-block">Remove</button>
           </div>
         </div>
       </div>
@@ -64,8 +64,8 @@
               <br>
               to date:
               {{my_rent.date_to}}</h5>
-            <button type="button" (click)="show_vehicle(my_rent.vehicle_id)" class="btn btn-primary btn-block card_auto_najemi_button">Visit vehicle profile</button>
-            <button type="button" (click)="delete_rent(my_rent._id)" class="btn btn-primary btn-block card_auto_najemi_button">Delete this rent</button>
+            <button [disabled]="!jePovezava()" type="button" (click)="show_vehicle(my_rent.vehicle_id)" class="btn btn-primary btn-block card_auto_najemi_button">Visit vehicle profile</button>
+            <button [disabled]="!jePovezava()" type="button" (click)="delete_rent(my_rent._id)" class="btn btn-primary btn-block card_auto_najemi_button">Delete this rent</button>
           </div>
         </div>
       </div>

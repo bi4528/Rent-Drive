@@ -3,6 +3,7 @@ import { ValidationService } from '../../storitve/validation.service';
 import { UsersDataService } from '../../storitve/users-data.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ModalComponent } from '../modal/modal.component';
+import { PovezavaService } from '../../storitve/povezava.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -12,7 +13,13 @@ import { ModalComponent } from '../modal/modal.component';
 export class ForgotPasswordComponent implements OnInit {
 
   constructor(private router: Router,
-    private validationService: ValidationService, private usersDataService: UsersDataService) { }
+    private povezavaStoritev: PovezavaService,
+    private validationService: ValidationService,
+    private usersDataService: UsersDataService) { }
+
+  public jePovezava(): boolean {
+    return this.povezavaStoritev.jePovezava;
+  }
 
   public recover_password = (): void => {
     if (this.email_of_user == "") {
