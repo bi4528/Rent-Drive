@@ -156,7 +156,7 @@
         </div>
         <!-- Add review-->
         <div *ngIf="user_logged" class="row justify-content-center mx-4">
-            <input *ngIf="vehicle" (click)="showReviewForm=!showReviewForm" type="button" class="btn btn-lg btn-primary" value="Add review">
+            <input *ngIf="vehicle" (click)="showReviewForm=!showReviewForm" [disabled]="!jePovezava()" type="button" class="btn btn-lg btn-primary" value="Add review">
         </div>
         <div class="row justify-content-center mx-4">
             <div *ngIf="showReviewForm">

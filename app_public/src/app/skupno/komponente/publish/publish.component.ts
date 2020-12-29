@@ -6,6 +6,7 @@ import { AuthenticationService } from '../../storitve/avtentikacija.service';
 import { ModalComponent } from '../modal/modal.component';
 import { ValidationService } from '../../storitve/validation.service';
 import { HttpClient } from '@angular/common/http';
+import { PovezavaService } from '../../storitve/povezava.service';
 
 
 const URL = 'http://localhost:3000/upload';  //TO SE MORA SPREMENITI ODVISNO OD OKOLJE
@@ -24,7 +25,8 @@ export class PublishComponent implements OnInit {
     private router: Router,
     private avtentikacijaStoritev: AuthenticationService,
     private validationService: ValidationService,
-    private http: HttpClient
+    private http: HttpClient,
+    private povezavaStoritev: PovezavaService
     )
   { }
 
@@ -65,6 +67,10 @@ export class PublishComponent implements OnInit {
     reviews: [],
     luggage: '',
     minage: ''
+  }
+
+  public jePovezava(): boolean {
+    return this.povezavaStoritev.jePovezava;
   }
 
   private defineFuel(data:any) : void {

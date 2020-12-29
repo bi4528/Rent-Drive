@@ -236,7 +236,7 @@
                 <div class="col-1">
 
                     <a *ngIf="user_logged">
-                        <input type="submit" class="btn btn-lg btn-secondary" tabindex=21>
+                        <input type="submit" [disabled]="!jePovezava()" class="btn btn-lg btn-secondary" tabindex=21>
                     </a>
 
                 </div>

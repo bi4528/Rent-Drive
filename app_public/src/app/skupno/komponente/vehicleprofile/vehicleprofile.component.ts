@@ -7,6 +7,7 @@ import { UsersDataService } from '../../storitve/users-data.service';
 import { AuthenticationService } from '../../storitve/avtentikacija.service';
 import { ModalComponent } from '../modal/modal.component';
 import { BookServiceService } from '../../storitve/book-service.service';
+import { PovezavaService } from '../../storitve/povezava.service';
 
 @Component({
   selector: 'app-vehicleprofile',
@@ -16,7 +17,15 @@ import { BookServiceService } from '../../storitve/book-service.service';
 export class VehicleProfileComponent implements OnInit {
 
   constructor(
-    private bookService: BookServiceService,private router: Router, private pot: ActivatedRoute, private vehicleDataService: VehiclesDataService, private usersDataService: UsersDataService, private avtentikacijaStoritev: AuthenticationService, private elementRef: ElementRef) { }
+    private bookService: BookServiceService, 
+    private router: Router, 
+    private pot: ActivatedRoute,
+    private vehicleDataService: VehiclesDataService,
+    private usersDataService: UsersDataService,
+    private avtentikacijaStoritev: AuthenticationService,
+    private elementRef: ElementRef,
+    private povezavaStoritev: PovezavaService
+    ) { }
 
   public avg_rating: Number;
   public owner_id: String;
@@ -49,6 +58,10 @@ export class VehicleProfileComponent implements OnInit {
   @ViewChild('modal') public modalComponent: ModalComponent;
   async openModal() {
     return await this.modalComponent.open();
+  }
+
+  public jePovezava(): boolean {
+    return this.povezavaStoritev.jePovezava;
   }
   
   public get_vehicle_data = (vehicleId: String): void => {

@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-auto">
                     <br>
-                    <button type="button" (click)="filter()" class="btn btn-light filterbutton">Filter</button>
+                    <button type="button" (click)="filter()" [disabled]="!jePovezava()" class="btn btn-light filterbutton">Filter</button>
                 </div>
 
             </div>

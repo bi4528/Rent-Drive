@@ -4,6 +4,7 @@ import { VehiclesDataService } from '../../storitve/vehicles-data.service';
 import { Router } from '@angular/router';
 import { ValidationService } from '../../storitve/validation.service';
 import { ModalComponent } from '../modal/modal.component';
+import { PovezavaService } from '../../storitve/povezava.service';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ export class HomeComponent implements OnInit {
   constructor( 
     private vehiclesDataService: VehiclesDataService,
     private router: Router,
-    private validationService: ValidationService
+    private validationService: ValidationService,
+    private povezavaStoritev: PovezavaService
     )
   { }
 
@@ -46,6 +48,10 @@ export class HomeComponent implements OnInit {
     else {
       this.router.navigate(['/search'], {queryParams: {city: this.city, dateFrom: this.dateFrom, dateTo: this.dateTo, page: "1"} });
     }
+  }
+
+  public jePovezava(): boolean {
+    return this.povezavaStoritev.jePovezava;
   }
 
   private getVehicles = () : void => {
