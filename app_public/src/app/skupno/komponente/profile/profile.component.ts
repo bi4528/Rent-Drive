@@ -7,7 +7,8 @@ import { VehiclesDataService } from '../../storitve/vehicles-data.service';
 import { AuthenticationService } from '../../storitve/avtentikacija.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import {RentedDataService} from "../../storitve/rented-data.service";
+import { RentedDataService } from "../../storitve/rented-data.service";
+import { PovezavaService } from '../../storitve/povezava.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +18,13 @@ import {RentedDataService} from "../../storitve/rented-data.service";
 export class ProfileComponent implements OnInit {
 
   constructor(
-    private router: Router, private pot: ActivatedRoute, private usersDataService: UsersDataService, private vehiclesDataService: VehiclesDataService, private avtentikacijaStoritev: AuthenticationService, private rentedService: RentedDataService) { }
+    private router: Router,
+    private pot: ActivatedRoute,
+    private usersDataService: UsersDataService,
+    private vehiclesDataService: VehiclesDataService,
+    private povezavaStoritev: PovezavaService,
+    private avtentikacijaStoritev: AuthenticationService,
+    private rentedService: RentedDataService) { }
 
   private get_user_data = (id_of_user: String): void => {
     this.alert_error = "Searching for user";
@@ -29,72 +36,84 @@ export class ProfileComponent implements OnInit {
       }).catch(() => { this.router.navigateByUrl("/error"); });
   }
 
+  public jePovezava(): boolean {
+    return this.povezavaStoritev.jePovezava;
+  }
 
   private get_vehicles_of_user = (id_of_user: String): void => {
-    this.alert_error = "Searching for cars";
-    this.usersDataService
-      .getVehiclesOfUser(id_of_user)
-      .then((data: Vehicle[]) => {
+    if (this.jePovezava()) {
+      this.alert_error = "Searching for cars";
+      this.usersDataService
+        .getVehiclesOfUser(id_of_user)
+        .then((data: Vehicle[]) => {
 
-        this.alert_error = (data.length > 0) ? "" : "";
-        this.owned_cars = data;
-        if (this.owned_cars.length == 0) {
-          var empty_vehicle = this.get_empty_vehicle();
-          empty_vehicle.make = "Add your vehicle";
-          empty_vehicle.images.push("car_1.jpg");
-          this.owned_cars = [empty_vehicle];
-          this.show_controls = false;
-        } else {
-          this.show_controls = this.is_logged_or_admin_user();
-        }
-      });
-  }
-  
-  private get_reviews_of_user = (id_of_user: String): void => {
-    this.alert_error = "Searching for cars";
-    this.vehiclesDataService
-      .getVehicles('')
-      .then((data) => {
-        this.alert_error = (data.length > 0) ? "" : "";
-        this.vehicles_of_reviews = [];
-        this.user_reviews = [];
-        for (var i = 0;i<data.length;i++){
-          for (var j=0; j<data[i].reviews.length;j++){
-            if (data[i].reviews[j].user_id == id_of_user) {
-              this.vehicles_of_reviews.push(data[i]);
-              this.user_reviews.push(data[i].reviews[j]._id);
-            } 
+          this.alert_error = (data.length > 0) ? "" : "";
+          this.owned_cars = data;
+          if (this.owned_cars.length == 0) {
+            var empty_vehicle = this.get_empty_vehicle();
+            empty_vehicle.make = "Add your vehicle";
+            empty_vehicle.images.push("car_1.jpg");
+            this.owned_cars = [empty_vehicle];
+            this.show_controls = false;
+          } else {
+            this.show_controls = this.is_logged_or_admin_user();
           }
-        }
-      }).catch((er)=>{console.log(er)});
+        });
+    }
+  }
+
+  private get_reviews_of_user = (id_of_user: String): void => {
+    if (this.jePovezava()) {
+      this.alert_error = "Searching for cars";
+      this.vehiclesDataService
+        .getVehicles('')
+        .then((data) => {
+          this.alert_error = (data.length > 0) ? "" : "";
+          this.vehicles_of_reviews = [];
+          this.user_reviews = [];
+          for (var i = 0; i < data.length; i++) {
+            for (var j = 0; j < data[i].reviews.length; j++) {
+              if (data[i].reviews[j].user_id == id_of_user) {
+                this.vehicles_of_reviews.push(data[i]);
+                this.user_reviews.push(data[i].reviews[j]._id);
+              }
+            }
+          }
+        }).catch((er) => { console.log(er) });
+    }
   }
 
   private get_favourite_vehicles_of_user = (id_of_user: String): void => {
 
-    this.alert_error = "Searching for favourite vehicles";
-    this.usersDataService
-      .getFavouriteVehiclesOfUser(id_of_user)
-      .then((data: Vehicle[]) => {
-        this.alert_error = (data.length > 0) ? "" : "";
-        this.favourite_cars = data;
-        if (this.favourite_cars.length == 0) {
-          var empty_vehicle = this.get_empty_vehicle();
-          empty_vehicle.make = "Add a favourite vehicle";
-          empty_vehicle.images.push("car_1.jpg");
-          this.favourite_cars = [empty_vehicle];
-        }
-      });
+    if (this.jePovezava()) {
+      this.alert_error = "Searching for favourite vehicles";
+      this.usersDataService
+        .getFavouriteVehiclesOfUser(id_of_user)
+        .then((data: Vehicle[]) => {
+          this.alert_error = (data.length > 0) ? "" : "";
+          this.favourite_cars = data;
+          if (this.favourite_cars.length == 0) {
+            var empty_vehicle = this.get_empty_vehicle();
+            empty_vehicle.make = "Add a favourite vehicle";
+            empty_vehicle.images.push("car_1.jpg");
+            this.favourite_cars = [empty_vehicle];
+          }
+        });
+    }
   }
 
   private get_rents_of_user = (id_of_user: String): void => {
-    if (this.is_logged_or_admin_user()) {
-      this.alert_error = "Searching for rents";
-      this.usersDataService
-        .getRentsOfUser(id_of_user)
-        .then((data: Rent[]) => {
-          this.alert_error = (data.length > 0) ? "" : "No rents found";
-          this.rents = data;
-        });
+
+    if (this.jePovezava()) {
+      if (this.is_logged_or_admin_user()) {
+        this.alert_error = "Searching for rents";
+        this.usersDataService
+          .getRentsOfUser(id_of_user)
+          .then((data: Rent[]) => {
+            this.alert_error = (data.length > 0) ? "" : "No rents found";
+            this.rents = data;
+          });
+      }
     }
   }
 
@@ -139,15 +158,6 @@ export class ProfileComponent implements OnInit {
       minage: 0,
     };
   }
-  private get_empty_rent = (): Rent => {
-    return {
-      _id: "",
-      user_id: "",
-      vehicle_id: "",
-      date_from: new Date,
-      date_to: new Date,
-    };
-  }
 
   public logout = (): void => {
     this.avtentikacijaStoritev.logout();
@@ -156,17 +166,20 @@ export class ProfileComponent implements OnInit {
 
   public delete_user = (): void => {
 
-    for(let i=0; i<this.owned_cars.length; i++){
-      this.delete_vehicle(this.owned_cars[i]._id);
-    }
-    for(let i=0; i<this.user_reviews.length;i++){
-      this.delete_review_of_user(this.vehicles_of_reviews[i],this.user_reviews[i]);
-    }
+    if (this.jePovezava()) {
 
-    this.usersDataService.deleteUser(this.user).then(() => {
-      this.avtentikacijaStoritev.logout();
-      this.router.navigateByUrl("/");
-    });
+      for (let i = 0; i < this.owned_cars.length; i++) {
+        this.delete_vehicle(this.owned_cars[i]._id);
+      }
+      for (let i = 0; i < this.user_reviews.length; i++) {
+        this.delete_review_of_user(this.vehicles_of_reviews[i], this.user_reviews[i]);
+      }
+
+      this.usersDataService.deleteUser(this.user).then(() => {
+        this.avtentikacijaStoritev.logout();
+        this.router.navigateByUrl("/");
+      });
+    }
   }
 
   public is_logged_or_admin_user(): Boolean {
@@ -181,20 +194,29 @@ export class ProfileComponent implements OnInit {
     this.router.navigateByUrl("/vehicles/" + id_vehicle);
   }
   public delete_rent = (id_rent): void => {
-    this.rentedService.deleteRented(id_rent).then(() => {
-      this.get_rents_of_user(this.id_of_user);
-    });
+
+    if (this.jePovezava()) {
+      this.rentedService.deleteRented(id_rent).then(() => {
+        this.get_rents_of_user(this.id_of_user);
+      });
+    }
   }
   public delete_vehicle = (id_vehicle): void => {
-    this.vehiclesDataService.deleteVehicle(id_vehicle).then(() => {
-      this.get_vehicles_of_user(this.id_of_user);
-    });
+
+    if (this.jePovezava()) {
+      this.vehiclesDataService.deleteVehicle(id_vehicle).then(() => {
+        this.get_vehicles_of_user(this.id_of_user);
+      });
+    }
   }
 
-  public delete_review_of_user = (vehicle,id_review): void => {
-    this.vehiclesDataService.deleteReview(vehicle,id_review).then(() => {
-      this.get_reviews_of_user(this.id_of_user);
-    }).catch((er)=>{console.log(er)});
+  public delete_review_of_user = (vehicle, id_review): void => {
+
+    if (this.jePovezava()) {
+      this.vehiclesDataService.deleteReview(vehicle, id_review).then(() => {
+        this.get_reviews_of_user(this.id_of_user);
+      }).catch((er) => { console.log(er) });
+    }
   }
 
   public show_chart = (id_user): void => {
@@ -218,7 +240,7 @@ export class ProfileComponent implements OnInit {
     this.checkIfProfileIsUserLogged();
     this.get_user_data(this.id_of_user);
     this.get_vehicles_of_user(this.id_of_user);
-    if (this.id_of_user!=null) this.get_reviews_of_user(this.id_of_user);
+    if (this.id_of_user != null) this.get_reviews_of_user(this.id_of_user);
     this.get_rents_of_user(this.id_of_user);
     this.get_favourite_vehicles_of_user(this.id_of_user);
   }

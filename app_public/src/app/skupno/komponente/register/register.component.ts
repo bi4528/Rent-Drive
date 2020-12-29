@@ -1,8 +1,6 @@
-import { InjectFlags } from '@angular/compiler/src/core';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../razredi/user';
-import { UsersDataService } from '../../storitve/users-data.service';
 import { AuthenticationService } from '../../storitve/avtentikacija.service';
 import { ValidationService } from '../../storitve/validation.service';
 import { ModalComponent } from '../modal/modal.component';

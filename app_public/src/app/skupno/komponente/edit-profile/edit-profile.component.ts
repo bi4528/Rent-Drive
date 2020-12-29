@@ -3,6 +3,7 @@ import { UsersDataService } from '../../storitve/users-data.service';
 import { User } from '../../razredi/user';
 import { AuthenticationService } from '../../storitve/avtentikacija.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { PovezavaService } from '../../storitve/povezava.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -12,7 +13,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class EditProfileComponent implements OnInit {
 
   constructor(private pot: ActivatedRoute,
-    private router: Router, private usersDataService: UsersDataService, private avtentikacijaStoritev: AuthenticationService) { }
+    private povezavaStoritev: PovezavaService,
+    private router: Router,
+    private usersDataService: UsersDataService,
+    private avtentikacijaStoritev: AuthenticationService) { }
 
   private get_user_data = (id_of_user: String): void => {
     this.alert_error = "Searching for user";
@@ -23,6 +27,9 @@ export class EditProfileComponent implements OnInit {
         this.alert_error = (data != null) ? "" : "No user found";
         this.user = data;
       });
+  }
+  public jePovezava(): boolean {
+    return this.povezavaStoritev.jePovezava;
   }
 
   public update_user_data = (): void => {

@@ -44,9 +44,6 @@
                 aria-hidden="true">account_box</i>
               My profile</a>
           </li>
-          <li *ngIf="!is_user_logged() && !jePovezava()" class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link disabled"><i class="fas fa-exclamation-triangle ni-povezave"></i>Register</a>
-          </li>
           <li *ngIf="!is_user_logged()" class="nav-item mx-md-2" role="presentation">
             <a class="nav-link" routerLink="/users/register"><i class="material-icons fa-fw align-middle"
                 aria-hidden="true">account_box</i> Register</a>
@@ -58,6 +55,9 @@
           <li class="nav-item mx-md-2" role="presentation">
             <a class="nav-link" [routerLink]="['/search']" [queryParams]="{ page: '1' }"><i class="material-icons fa-fw align-middle"
                 aria-hidden="true">search</i> Search</a>
+          </li>
+          <li *ngIf="!jePovezava()" class="nav-item mx-md-2" role="presentation">
+            <a class="nav-link disabled"><i class="fas fa-exclamation-triangle ni-povezave"></i>No connection</a>
           </li>
         </ul>
       </div>
