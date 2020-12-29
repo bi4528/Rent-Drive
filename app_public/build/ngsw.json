@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1609243363137,
+  "timestamp": 1609248951314,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main.12b953a52a7e1faa41ad.js",
+        "/main.a6a614499c80ed9fa58d.js",
         "/manifest.webmanifest",
         "/polyfills.b3b05dce4f05c03b56a3.js",
         "/runtime.0e49e2b53282f40c8925.js",
@@ -154,7 +154,12 @@
         "/marker-shadow.a0c6cc1401c107b501ef.png"
       ],
       "patterns": [
-        "https:\\/\\/fonts\\.googleapis\\.com\\/.*"
+        "https:\\/\\/fonts\\.googleapis\\.com\\/.*",
+        "https:\\/\\/stackpath\\.bootstrapcdn\\.com\\/.*",
+        "https:\\/\\/cdnjs\\.cloudflare\\.com\\/.*",
+        "https:\\/\\/use\\.fontawesome\\.com\\/.*",
+        "\\/https: \\/\\/code\\.jquery\\.com\\/.*",
+        "https:\\/\\/cdn\\.jsdelivr\\.net\\/.*"
       ]
     }
   ],
@@ -215,7 +220,7 @@
     "/assets/images/forgot-password-bg.jpg": "0a768ca4c0786e932602e2e9b3fe344b120e30ab",
     "/assets/images/franka-potente-8052.jpg": "c817bb852ff6ba4e832f6388eefb0036145c7e6b",
     "/assets/images/koledar.png": "4e99c83e65df8626267288fdf5e20812a653ccc1",
-    "/assets/images/lambo.jpg": "3e36b5609aa85f662b06b019962487a13c6240e5",
+    "/assets/images/lambo.jpg": "4978cb5cf25af34c3bb797f90df305c8104bfe5b",
     "/assets/images/lj-center.jpg": "49b56c5cc18cf471276c73df9f2f8cb415d6a0b3",
     "/assets/images/login-bg.jpg": "567191e5e99534d8ea5e1ee45d3093e0dbd8406a",
     "/assets/images/maserati.jpg": "a4f9c04b7aa5c3c39ed5a872482663acbeed4f1a",
@@ -294,10 +299,10 @@
     "/assets/uploads/timothy.jpg": "d06518d8d60b64d8b73b157fa67c75aa9d11aa7b",
     "/assets/uploads/x5.jpg": "e400099f6dac61b654417aa3483bbe3074c01771",
     "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/index.html": "79a3aa5300036895d3bbdab8745d562ce2384da9",
+    "/index.html": "d805b4da4f0386dda3d81b46f1cb303e3e7b8cab",
     "/layers-2x.8f2c4d11474275fbc161.png": "152a162333e46d24f9d89f566312fc0c64011dee",
     "/layers.416d91365b44e4b4f477.png": "c9e7528e491a39232ba24a2706c6c739d6fb0f06",
-    "/main.12b953a52a7e1faa41ad.js": "82dc7f922704e6255434ae3f96bede3543efe8f4",
+    "/main.a6a614499c80ed9fa58d.js": "32a7a4f4ae145acb85649985d03c45936b96d225",
     "/manifest.webmanifest": "9a9d6f0d7b03f29e565195a1eb47e7b74628bd6a",
     "/marker-icon-2x.680f69f3c2e6b90c1812.png": "cf3a536596b1f58e0ac805404183c8e6d6bdacb5",
     "/marker-icon.2b3e1faf89f94a483539.png": "60a90bcbb2b42b7ddb4556db94eb7c1084b0e5da",
