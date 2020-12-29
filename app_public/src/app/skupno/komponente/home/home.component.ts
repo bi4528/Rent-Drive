@@ -66,28 +66,26 @@ export class HomeComponent implements OnInit {
   }
 
   slides: any = [[]];
+  public activeslide=[];
   chunk(arr, chunkSize) {
     let R = [];
     for (let i = 0, len = arr.length; i < len; i += chunkSize) {
       R.push(arr.slice(i, i + chunkSize));
     }
+    for (let i=0; i<this.slides.length; i++){
+      if (i==0){
+        this.activeslide.push('active');
+      }
+      else{
+        this.activeslide.push('');
+      }    
+    }
     return R;
   }
 
-  public activeslide=true;
-  public isActive(): boolean {
-    if(this.activeslide){
-      this.activeslide=false;
-      return true;
-    }
-    else{
-      return false;
-    }
-  }
 
 
   ngOnInit(): void {
-    this.activeslide=true;
     this.getVehicles();
   }
 

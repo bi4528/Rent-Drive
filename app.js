@@ -35,13 +35,13 @@ var swaggerOptions = {
     ]
   },
   apis: [
-    "./app_api/routes/users.js",
-    "./app_api/routes/vehicles.js",
-    "./app_api/models/vehicle.js",
     "./app_api/models/user.js",
     "./app_api/models/rented.js",
-    "./app_api/routes/vehicle.js",
-    "./app_api/routes/nearby.js"
+    "./app_api/models/vehicle.js",
+    "./app_api/routes/vehicles.js",
+    "./app_api/routes/nearby.js",
+    "./app_api/routes/rented.js",
+    "./app_api/routes/users.js"
   ]
 };
 const swaggerDocument = swaggerJsdoc(swaggerOptions);
@@ -53,7 +53,6 @@ const swaggerDocument = swaggerJsdoc(swaggerOptions);
 
 require('./app_api/models/db');
 require('./app_api/configuration/passport');
-var indexApi = require('./app_api/routes/index');
 var usersApi = require('./app_api/routes/users');
 var vehicleApi = require('./app_api/routes/vehicles');
 var rentedApi = require('./app_api/routes/rented');
@@ -126,8 +125,8 @@ app.use('/api', (req, res, next) => {
 //app.use('/users', usersRouter);
 //app.use('/vehicles', vehiclesRouter);
 
-app.use('/api', indexApi);
-app.use('/api/users', usersApi);
+
+app.use('/api/users', usersApi); // /api/docs
 app.use('/api/vehicles', vehicleApi);
 app.use('/api/rented', rentedApi);
 app.use('/api/nearby', nearbyApi);
@@ -137,11 +136,20 @@ app.use('/api/db', dbApi);
 app.get('*', (req, res, next) => {
   res.sendFile(path.join(__dirname, 'app_public', 'build', 'index.html'));
 });
-indexApi.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-indexApi.get("/swagger.json", (req, res) => {
+usersApi.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+usersApi.get("/swagger.json", (req, res) => {
   res.status(200).json(swaggerDocument);
 });
 
+vehicleApi.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+vehicleApi.get("/swagger.json", (req, res) => {
+  res.status(200).json(swaggerDocument);
+});
+
+rentedApi.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+rentedApi.get("/swagger.json", (req, res) => {
+  res.status(200).json(swaggerDocument);
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
