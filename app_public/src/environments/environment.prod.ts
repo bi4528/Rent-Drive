@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
-  apiUrl: 'https://rentdrive-sp.herokuapp.com/api'
+  apiUrl: 'https://rentdrive-sp.herokuapp.com/api',
+  production: true
 };
