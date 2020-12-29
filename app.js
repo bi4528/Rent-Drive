@@ -8,6 +8,7 @@ var logger = require('morgan');
 var passport = require('passport');
 var swaggerJsdoc = require('swagger-jsdoc');
 var swaggerUi = require('swagger-ui-express');
+var compression = require('compression');
 
 var swaggerOptions = {
   swaggerDefinition: {
@@ -97,6 +98,16 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(compression({
+  level: 6,
+  threshold: 10 * 1000,
+  filter: (req, res) => {
+    if(req.headers['x-no-compression']){
+      return false;
+    }
+    return compression.filter(req, res);
+  }
+}))
 //app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.static(path.join(__dirname, 'app_public', 'build'), {index: false})); //should disable indexing directory??

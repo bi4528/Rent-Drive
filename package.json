@@ -17,6 +17,7 @@
     "@asymmetrik/ngx-leaflet": "*",
     "axios": "*",
     "chart.js": "*",
+    "compression": "^1.7.4",
     "cookie-parser": "*",
     "debug": "*",
     "dotenv": "*",
@@ -32,12 +33,12 @@
     "ng2-charts": "*",
     "nodemailer": "*",
     "nodemon": "*",
+    "openapi-types": "*",
     "passport": "*",
     "passport-local": "*",
     "path": "*",
     "swagger-jsdoc": "*",
-    "swagger-ui-express": "*",
-    "openapi-types": "*"
+    "swagger-ui-express": "*"
   },
   "devDependencies": {
     "@types/leaflet": "*",
