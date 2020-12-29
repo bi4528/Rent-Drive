@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1609237291743,
+  "timestamp": 1609238262113,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -154,7 +154,23 @@
       "patterns": []
     }
   ],
-  "dataGroups": [],
+  "dataGroups": [
+    {
+      "name": "rentdrive-api",
+      "patterns": [
+        "http:\\/\\/localhost:3000\\/.*",
+        "https:\\/\\/rentdrive-sp\\.herokuapp\\.com\\/api\\/.*"
+      ],
+      "strategy": "freshness",
+      "maxSize": 20,
+      "maxAge": 3600000,
+      "timeoutMs": 5000,
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "version": 1
+    }
+  ],
   "hashTable": {
     "/assets/favicon/android-chrome-192x192.png": "6dad01f5a615c07bc69a2630408e94da3d8a1a73",
     "/assets/favicon/android-chrome.png": "4d76a55f26ec26c96049a037211568e1d33a5b13",
