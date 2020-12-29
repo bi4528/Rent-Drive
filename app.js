@@ -74,6 +74,16 @@ require('./app_server/views/helpers/featurehelper2.js');
 require('./app_server/views/helpers/ifEquals.js');
 */
 
+// Preusmeritev na HTTPS na Heroku
+if (process.env.NODE_ENV === 'production') {
+  app.use((req, res, next) => {
+    if (req.header('x-forwarded-proto') !== 'https')
+      res.redirect(`https://${req.header('host')}${req.url}`);
+    else
+      next();
+  });
+}
+
 // Odprava varnostnih pomanjkljivosti
 app.disable('x-powered-by');
 app.use((req, res, next) => {
