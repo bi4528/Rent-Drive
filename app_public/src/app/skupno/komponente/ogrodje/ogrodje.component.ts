@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthenticationService} from '../../storitve/avtentikacija.service'
+import { AuthenticationService } from '../../storitve/avtentikacija.service'
+import { PovezavaService } from '../../storitve/povezava.service';
 
 @Component({
   selector: 'app-ogrodje',
@@ -8,7 +9,12 @@ import {AuthenticationService} from '../../storitve/avtentikacija.service'
 })
 export class OgrodjeComponent implements OnInit {
 
-  constructor(private authenticationService : AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService,
+    private povezavaStoritev: PovezavaService) { }
+
+  public jePovezava(): boolean {
+    return this.povezavaStoritev.jePovezava;
+  }
 
 
   public user_id: string;
@@ -19,7 +25,7 @@ export class OgrodjeComponent implements OnInit {
 
   public get_user_id(): string {
     return this.authenticationService.get_current_user()._id;
-}
+  }
   ngOnInit(): void {
     if (this.is_user_logged()) {
       this.user_id = this.authenticationService.get_current_user()._id;

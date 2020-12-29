@@ -1,122 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-  <meta name="description" content="homepage">
-  <title>Rent&amp;Drive</title>
-  
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Piazzolla:wght@200&display=swap" rel="stylesheet">
-</head>
-
-<body>
-  <nav class="navbar navbar-main navbar-expand-lg sticky-top justify-content-between">
-    <div class="container-fluid">
-      <a class="navbar-brand logo img-fluid= img-responsive m-0" routerLink="/"><img src="../../../../assets/images/Logo.png" width="170"
-          alt="Rent&Drive"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navcol-1"
-        aria-controls="navcol-1" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="sr-only">Toggle navigation</span><img src="../../../../assets/images/menu-bars-icon.png" alt="Expand">
-      </button>
-      <div class="collapse navbar-collapse" id="navcol-1">
-        <ul class="nav navbar-nav ml-auto">
-          <li class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link active" routerLink="/"><i class="material-icons fa-fw align-middle"
-                aria-hidden="true">collections</i> Catalogue</a>
-          </li>
-          <li class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" routerLink="/nearby"><i class="material-icons fa-fw align-middle"
-                aria-hidden="true">near_me</i> Nearby</a>
-          </li>
-          <li *ngIf="is_user_logged()"  class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" routerLink="/vehicles/publish"><i class="material-icons fa-fw align-middle"
-                aria-hidden="true">add_to_photos</i> List your car</a>
-          </li>
-          <li *ngIf="is_user_logged()" class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" routerLink="/users/profiles/{{get_user_id()}}"><i class="material-icons fa-fw align-middle"
-                aria-hidden="true">account_box</i>
-              My profile</a>
-          </li>
-          <li *ngIf="!is_user_logged()" class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" routerLink="/users/register"><i class="material-icons fa-fw align-middle"
-                aria-hidden="true">account_box</i> Register</a>
-          </li>
-          <li *ngIf="!is_user_logged()" class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" routerLink="/users/login"><i class="material-icons fa-fw align-middle"
-                aria-hidden="true">account_box</i> Login</a>
-          </li>
-          <li class="nav-item mx-md-2" role="presentation">
-            <a class="nav-link" [routerLink]="['/search']" [queryParams]="{ page: '1' }"><i class="material-icons fa-fw align-middle"
-                aria-hidden="true">search</i> Search</a>
-          </li>
-        </ul>
-      </div>
+<nav class="navbar navbar-main navbar-expand-lg sticky-top justify-content-between">
+  <div class="container-fluid">
+    <a class="navbar-brand logo img-fluid= img-responsive m-0" routerLink="/"><img
+        src="../../../../assets/images/Logo.png" width="170" alt="Rent&Drive" /></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navcol-1" aria-controls="navcol-1"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="sr-only">Toggle navigation</span><img src="../../../../assets/images/menu-bars-icon.png"
+        alt="Expand" />
+    </button>
+    <div class="collapse navbar-collapse" id="navcol-1">
+      <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item mx-md-2" role="presentation">
+          <a class="nav-link active" routerLink="/"><i class="material-icons fa-fw align-middle"
+              aria-hidden="true">collections</i>
+            Catalogue</a>
+        </li>
+        <li class="nav-item mx-md-2" role="presentation">
+          <a class="nav-link" routerLink="/nearby"><i class="material-icons fa-fw align-middle"
+              aria-hidden="true">near_me</i>
+            Nearby</a>
+        </li>
+        <li *ngIf="is_user_logged()" class="nav-item mx-md-2" role="presentation">
+          <a class="nav-link" routerLink="/vehicles/publish"><i class="material-icons fa-fw align-middle"
+              aria-hidden="true">add_to_photos</i>
+            List your car</a>
+        </li>
+        <li *ngIf="is_user_logged()" class="nav-item mx-md-2" role="presentation">
+          <a class="nav-link" routerLink="/users/profiles/{{ get_user_id() }}"><i
+              class="material-icons fa-fw align-middle" aria-hidden="true">account_box</i>
+            My profile</a>
+        </li>
+        <li *ngIf="!is_user_logged()" class="nav-item mx-md-2" role="presentation">
+          <a class="nav-link" routerLink="/users/register"><i class="material-icons fa-fw align-middle"
+              aria-hidden="true">account_box</i>
+            Register</a>
+        </li>
+        <li *ngIf="!is_user_logged()" class="nav-item mx-md-2" role="presentation">
+          <a class="nav-link" routerLink="/users/login"><i class="material-icons fa-fw align-middle"
+              aria-hidden="true">account_box</i>
+            Login</a>
+        </li>
+        <li class="nav-item mx-md-2" role="presentation">
+          <a class="nav-link" [routerLink]="['/search']" [queryParams]="{ page: '1' }"><i
+              class="material-icons fa-fw align-middle" aria-hidden="true">search</i>
+            Search</a>
+        </li>
+        <li *ngIf="!jePovezava()" class="nav-item mx-md-2" role="presentation">
+          <a class="nav-link disabled"><i class="fas fa-exclamation-triangle ni-povezave"></i>No
+            connection</a>
+        </li>
+      </ul>
     </div>
-  </nav>
-
-  <router-outlet></router-outlet>
-
-  <div class="footer-basic pt-4 w-100">
-    <footer>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-4 w-100 h-100 footer-left">
-            <img src="../../../../assets/images/Logo.png" class="footer-logo" width="200" alt="Rent&Drive">
-            <p class="pt-2">If you need any further help feel free to contact us on:</p>
-            <ul>
-              <li><a href="mailto:mi2583@student.uni-lj.si">mi2583@student.uni-lj.si</a></li>
-              <li><a href="mailto:mk9693@student.uni-lj.si">mk9693@student.uni-lj.si</a></li>
-              <li><a href="mailto:nb9762@student.uni-lj.si">nb9762@student.uni-lj.si</a></li>
-              <li><a href="mailto:bi4528@student.uni-lj.si">bi4528@student.uni-lj.si</a></li>
-            </ul>
-          </div>
-
-          <div class="col-md-4 text-center">
-            <p class="pt-4"> Never forget to respect others people personal cars. Try to keep them clean, take care of
-              them like if it was yours. Give it back the way it was given to you.
-              Also always respect the road safety regulations, rules and signs. Stay safe and have a good time.</p>
-          </div>
-
-          <div class="col-md-4 ul-list">
-            <ul>
-              <li><a routerLink="/">Home</a></li>
-              <li><a href="/nearby">Nearby</a></li>
-              <li *ngIf="is_user_logged()" ><a routerLink="/vehicles/publish">List your car</a></li>
-              <li *ngIf="is_user_logged()"><a href="/users/profiles/{{get_user_id()}}">My profile</a></li>
-              <li *ngIf="!is_user_logged()"><a href="/users/login">Login</a></li>
-              <li *ngIf="!is_user_logged()"><a href="/users/register">Register</a></li>
-              <li><a routerLink="/search">Search</a></li>
-            </ul>
-          </div>
-
-        </div>
-        <p class="copyright">Oranžni FRI (Skupina 01) © 2020</p>
-      </div>
-    </footer>
   </div>
+</nav>
 
+<router-outlet></router-outlet>
 
+<div class="footer-basic pt-4 w-100">
+  <footer>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4 w-100 h-100 footer-left">
+          <img src="../../../../assets/images/Logo.png" class="footer-logo" width="200" alt="Rent&Drive" />
+          <p class="pt-2">
+            If you need any further help feel free to contact us on:
+          </p>
+          <ul>
+            <li>
+              <a href="mailto:mi2583@student.uni-lj.si">mi2583@student.uni-lj.si</a>
+            </li>
+            <li>
+              <a href="mailto:mk9693@student.uni-lj.si">mk9693@student.uni-lj.si</a>
+            </li>
+            <li>
+              <a href="mailto:nb9762@student.uni-lj.si">nb9762@student.uni-lj.si</a>
+            </li>
+            <li>
+              <a href="mailto:bi4528@student.uni-lj.si">bi4528@student.uni-lj.si</a>
+            </li>
+          </ul>
+        </div>
 
-  <!-- Podporni knjižnici jQuery in Popper -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-    crossorigin="anonymous"></script>
+        <div class="col-md-4 text-center">
+          <p class="pt-4">
+            Never forget to respect others people personal cars. Try to keep
+            them clean, take care of them like if it was yours. Give it back the
+            way it was given to you. Also always respect the road safety
+            regulations, rules and signs. Stay safe and have a good time.
+          </p>
+        </div>
 
-  <!-- Prevedena in minimizirana JavaScript koda verzije 4.5.2 -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-    crossorigin="anonymous"></script>
-
-</body>
-
-</html>
+        <div class="col-md-4 ul-list">
+          <ul>
+            <li><a routerLink="/">Home</a></li>
+            <li><a routerLink="/nearby">Nearby</a></li>
+            <li *ngIf="is_user_logged()">
+              <a routerLink="/vehicles/publish">List your car</a>
+            </li>
+            <li *ngIf="is_user_logged()">
+              <a routerLink="/users/profiles/{{ get_user_id() }}">My profile</a>
+            </li>
+            <li *ngIf="!is_user_logged()">
+              <a routerLink="/users/login">Login</a>
+            </li>
+            <li *ngIf="!is_user_logged()">
+              <a routerLink="/users/register">Register</a>
+            </li>
+            <li><a routerLink="/search">Search</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="copyright">Oranžni FRI (Skupina 01) © 2020</p>
+    </div>
+  </footer>
+</div>

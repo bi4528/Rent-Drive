@@ -35,7 +35,7 @@
                     <i class="fas fa-key"></i>
                     <input #repeatPassword id="repeat-password" type="password" name="repeat-password" class="w-75" placeholder="repeat password" required>
                 </div>
-                <input id="submit-register" type="submit" class="btn btn-success w-75" value="Register">
+                <input id="submit-register" type="submit" class="btn btn-success w-75" [disabled]="!jePovezava()" value="Register">
                 <div class="register-el">
                     <a routerLink="/users/login">Already have an account?</a>
                 </div>
@@ -53,17 +53,3 @@
         </div>
     </div>
 </div>
-<!-- Podporni knjižnici jQuery in Popper -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-crossorigin="anonymous"></script>
-
-<!-- Prevedena in minimizirana JavaScript koda verzije 4.5.2 -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-crossorigin="anonymous"></script>
-<!--<script src="../../../../assets/javascripts/register.js"></script>-->
-<!--<script src="../../../../assets/javascripts/validate.js"></script>-->

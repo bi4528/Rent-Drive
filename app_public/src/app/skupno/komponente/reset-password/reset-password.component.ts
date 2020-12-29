@@ -3,6 +3,7 @@ import { ValidationService } from '../../storitve/validation.service';
 import { UsersDataService } from '../../storitve/users-data.service';
 import { AuthenticationService } from '../../storitve/avtentikacija.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { PovezavaService } from '../../storitve/povezava.service';
 import { User } from '../../razredi/user';
 
 @Component({
@@ -13,8 +14,12 @@ import { User } from '../../razredi/user';
 
 export class ResetPasswordComponent implements OnInit {
 
-  constructor(private router: Router, private pot: ActivatedRoute,
-    private authenticationService: AuthenticationService, private usersDataService: UsersDataService, private validationService: ValidationService) { }
+  constructor(private router: Router,
+    private pot: ActivatedRoute,
+    private povezavaStoritev: PovezavaService,
+    private authenticationService: AuthenticationService,
+    private usersDataService: UsersDataService,
+    private validationService: ValidationService) { }
 
   public token: string;
   public user: User;
@@ -36,7 +41,10 @@ export class ResetPasswordComponent implements OnInit {
         this.router.navigateByUrl("/users/login");
       });
     }
+  }
 
+  public jePovezava(): boolean {
+    return this.povezavaStoritev.jePovezava;
   }
 
   ngOnInit(): void {

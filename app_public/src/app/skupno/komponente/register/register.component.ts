@@ -1,11 +1,11 @@
-import { InjectFlags } from '@angular/compiler/src/core';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../razredi/user';
-import { UsersDataService } from '../../storitve/users-data.service';
 import { AuthenticationService } from '../../storitve/avtentikacija.service';
 import { ValidationService } from '../../storitve/validation.service';
 import { ModalComponent } from '../modal/modal.component';
+import { HistoryService } from '../../storitve/history.service';
+import { PovezavaService } from '../../storitve/povezava.service';
 declare var validate: any;
 declare var register: any;
 
@@ -18,11 +18,14 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private usersDataService: UsersDataService,
+    private povezavaStoritev: PovezavaService,
     private avtentikacijaStoritev: AuthenticationService,
-    private validationService: ValidationService
+    private validationService: ValidationService,
+    private historyService: HistoryService
   ) { }
-
+  public jePovezava(): boolean {
+    return this.povezavaStoritev.jePovezava;
+  }
   modal_text: String;
   @ViewChild("repeatPassword") repeatPassword;
 
@@ -40,11 +43,11 @@ export class RegisterComponent implements OnInit {
     is_admin: false,
   };
 
-  public statusText:string;
-  public statusType:number;
+  public statusText: string;
+  public statusType: number;
 
   public register = (): void => {
-    this.statusText="Registration in progress...";
+    this.statusText = "Registration in progress...";
     this.statusType = 0;
     this.modal_text = "";
     var writeError = false;
@@ -76,19 +79,21 @@ export class RegisterComponent implements OnInit {
       } if (!this.validationService.validate_username(this.user.username)) {
         this.modal_text += "Username contains 4-15 alphanumericals, without spaces or '_' '.' at the beginning or end\n";
         writeError = true;
-      } 
+      }
       if (!this.validationService.validate_password(this.user.password)) {
         this.modal_text += "Password must contain 6 alphanumericals, at least one uppercase, at least one lowercase and at least one 'special character' (e.g. number).";
         writeError = true;
       }
-      this.statusText="";
+      this.statusText = "";
       if (writeError) this.openModal();
       else {
         this.avtentikacijaStoritev.register(this.user)
           .then(() => {
-            this.statusText="Success!";
+            this.statusText = "Success!";
             this.statusType = 2;
-            this.router.navigateByUrl("/")
+            this.router.navigateByUrl(
+              this.historyService.vrniPredhodnjeUrlNasloveBrezPrijaveInRegistracije()
+            )
           })
           .catch(sporocilo => {
             this.modal_text = sporocilo;

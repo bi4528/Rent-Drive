@@ -86,10 +86,8 @@
               placeholder="Prosim vpišite kraj izposoje vaših vozil" aria-label="location" name="location" value="{{user.location}}">
           </div>
         </div>
-        <button type="submit" id="submit_form_button" class="hidden"></button>
+        <button [disabled]="!jePovezava()" type="submit" id="submit_form_button" class="hidden"></button>
       </form>
     </div>
   </section>
 </main>
-<script src="../../../../assets/javascripts/edit_profile.js"></script>
-<script src="../../../../assets/javascripts/validate.js"></script>

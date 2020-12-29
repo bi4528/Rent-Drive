@@ -34,7 +34,7 @@
         <label>
           <h6>Remember Me</h6>
         </label>
-        <input id="submit-login" type="submit" class="btn btn-dark w-75" value="LOG IN">
+        <input id="submit-login" type="submit" class="btn btn-dark w-75" [disabled]="!jePovezava()" value="LOG IN">
         <div class="login-el">
           <a routerLink="/users/register">Don't have an account?</a>
           <a routerLink="/users/forgot_password">Forgot password?</a>
@@ -45,11 +45,11 @@
 </div>
 <div class="container mt-4">
   <div class="row justify-content-center">
-    <a href="/" class="btn btn-info back-to-homepage">Back to homepage</a>
+    <a routerLink="/" class="btn btn-info back-to-homepage">Back to homepage</a>
   </div>
   <div class="row">
     <div class="col-12">
-      <img src="../../../assets/images/login-bg.jpg" class="img-fluid z-img" alt="...">
+      <img [hidden]="!jePovezava()" src="../../../assets/images/login-bg.jpg" class="img-fluid z-img" alt="...">
     </div>
   </div>
 </div>
