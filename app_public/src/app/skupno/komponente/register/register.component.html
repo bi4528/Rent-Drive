@@ -35,7 +35,7 @@
                     <i class="fas fa-key"></i>
                     <input #repeatPassword id="repeat-password" type="password" name="repeat-password" class="w-75" placeholder="repeat password" required>
                 </div>
-                <input id="submit-register" type="submit" class="btn btn-success w-75" value="Register">
+                <input id="submit-register" type="submit" class="btn btn-success w-75" [disabled]="!jePovezava()" value="Register">
                 <div class="register-el">
                     <a routerLink="/users/login">Already have an account?</a>
                 </div>

@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { HistoryService } from '../../storitve/history.service';
 import { ValidationService } from '../../storitve/validation.service';
 import { ModalComponent } from '../modal/modal.component';
+import { PovezavaService } from '../../storitve/povezava.service';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +17,14 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private validationService: ValidationService,
-    private router: Router, private usersDataService: UsersDataService, private avtentikacijaStoritev: AuthenticationService, private historyService: HistoryService) { }
+    private povezavaStoritev: PovezavaService,
+    private router: Router,
+    private avtentikacijaStoritev: AuthenticationService,
+    private historyService: HistoryService) { }
 
+  public jePovezava(): boolean {
+    return this.povezavaStoritev.jePovezava;
+  }
 
   public login = (): void => {
     this.status = "Trying to login...";
@@ -36,7 +43,7 @@ export class LoginComponent implements OnInit {
       this.avtentikacijaStoritev
         .login(this.user)
         .then(() => {
-          this.modal_text="";
+          this.modal_text = "";
           this.router.navigateByUrl(
             this.historyService.vrniPredhodnjeUrlNasloveBrezPrijaveInRegistracije()
           )
@@ -44,9 +51,9 @@ export class LoginComponent implements OnInit {
         .catch(message => {
           this.modal_text = "Email or password not valid!";
           this.openModal();
-        } );
+        });
     }
-    this.status="";
+    this.status = "";
     this.modal_text = "";
   }
 

@@ -37,6 +37,8 @@ import { PickupLocationPipe } from './skupno/cevi/pickup-location.pipe';
 import { ChartComponent } from './skupno/komponente/chart/chart.component';
 import {ChartsModule} from "ng2-charts";
 import { DbComponent } from './skupno/komponente/db/db.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -80,7 +82,8 @@ import { DbComponent } from './skupno/komponente/db/db.component';
     AppRoutingModule,
     NgbModule,
     LeafletModule,
-    ChartsModule
+    ChartsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [OgrodjeComponent]
