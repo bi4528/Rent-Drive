@@ -97,7 +97,7 @@
 
         <div *ngIf="slides">
             <div class="carousel-inner carousel-catalogue" role="listbox">
-                <div class="carousel-item active"  *ngFor="let item of slides">
+                <div  *ngFor="let item of slides; index as i;" class="carousel-item {{activeslide[i]}}">
                     <div class="visina col-md-6 col-lg-3 float-left" *ngFor="let card of item">
                         <div class="card mb-2">
                             <img class="card-img-top car_image_home" src="../../../assets/uploads/{{card.images[0]}}"
