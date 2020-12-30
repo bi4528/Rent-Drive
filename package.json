@@ -30,6 +30,7 @@
     "mongoose": "*",
     "morgan": "*",
     "multer": "*",
+    "multer-imager": "^4.2.0",
     "ng2-charts": "*",
     "nodemailer": "*",
     "nodemon": "*",
@@ -37,8 +38,8 @@
     "passport": "*",
     "passport-local": "*",
     "path": "*",
-    "swagger-jsdoc": "*",
-    "swagger-ui-express": "*"
+    "swagger-jsdoc": "^6.0.0",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "@types/leaflet": "*",
@@ -46,6 +47,6 @@
     "chromedriver": "*",
     "mocha": "*",
     "mochawesome": "*",
-    "selenium-webdriver": "*"
+    "selenium-webdriver": "^3.6.0"
   }
 }
