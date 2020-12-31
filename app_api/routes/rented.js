@@ -8,11 +8,6 @@ const authentication = jwt({
     userProperty: 'payload',
     algorithms: ['HS256']
 });
-const authentication_recover_password = jwt({
-    secret: process.env.JWT_PASSWORD_RECOVER,
-    userProperty: 'payload',
-    algorithms: ['HS256']
-});
 
 /* Rented */
 /**
@@ -46,7 +41,7 @@ const authentication_recover_password = jwt({
  *     - vehicle_id
  *     - date_from
  *     - date_to
- *   Error1:
+ *   ErrorAlreadyBooked:
  *    type: object
  *    description: Error details
  *    required:
@@ -87,13 +82,13 @@ router
  *      content:
  *       application/json:
  *        schema:
- *         $ref: "#/components/schemas/Error1"
+ *         $ref: "#/components/schemas/ErrorAlreadyBooked"
  *     "401":
  *      description: Unauthorized.
  *      content:
  *       application/json:
  *        schema:
- *         $ref: "#/components/schemas/Error1"
+ *         $ref: "#/components/schemas/ErrorAlreadyBooked"
  *        examples:
  *         ni zetona:
  *          $ref: "#/components/examples/NoToken"
@@ -180,7 +175,7 @@ router
  *      content:
  *       application/json:
  *        schema:
- *         $ref: "#/components/schemas/Error1"
+ *         $ref: "#/components/schemas/ErrorAlreadyBooked"
  *        examples:
  *         no token:
  *          $ref: "#/components/examples/NoToken"

@@ -67,6 +67,8 @@ router
  *    summary: Add new vehicle
  *    description: Adds new vehicle with images, owner_id, make, model, typeoffuel, category, horsepower, maxspeed, acceleration, consumption, seats, doors, airconditioning, navigation, usb, aux, parkingsensors, autopilot, bluetooth, accessibility, description, price, country, city, address, zip, date, luggage, minage.
  *    tags: [Vehicles]
+ *    security:
+ *     - jwt: []
  *    requestBody:
  *     description: Vehicle data
  *     required: true
@@ -103,6 +105,8 @@ router
  *   post:
  *    summary: Uploads images
  *    tags: [Vehicles]
+ *   security:
+ *     - jwt: []
  *    requestBody:
  *     description: Image data
  *     required: true
@@ -341,6 +345,8 @@ router
  *   post:
  *    summary: Add review for vehicle
  *    tags: [Reviews]
+ *    security:
+ *     - jwt: []
  *    parameters:
  *    - in: path
  *      name: idVehicle

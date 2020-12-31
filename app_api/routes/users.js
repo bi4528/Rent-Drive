@@ -83,6 +83,8 @@ router.route('/')
  *    summary: Add new user
  *    description: Add ** new user ** with data of firstname, lastname, username, phone_number, email, location, password, profile_picture, favourite_vehicles_ids.
  *    tags: [Users]
+ *    security:
+ *     - jwt: []
  *    requestBody:
  *     description: User data
  *     required: true
@@ -491,6 +493,8 @@ router.get('/check/exists_mail/:email', ctrlUser.check_if_mail_exists);
  *    summary: User login
  *    description: User login.
  *    tags: [Authentication]
+ *    security:
+ *     - jwt: []
  *    requestBody:
  *     description: Password and email of user
  *     required: true
