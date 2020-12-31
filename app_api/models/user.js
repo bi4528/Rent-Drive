@@ -50,7 +50,9 @@ const jwt = require('jsonwebtoken');
  *      description: filename of profile picture
  *      example: banana.jpg
  *     favourite_vehicles_ids:
- *      type: [string]
+ *      type: array
+ *      items:
+ *          $ref: "#/components/schemas/Vehicle"
  *      description: ids of favourite vehicles
  *      example: []
  *     password:
@@ -97,7 +99,9 @@ const jwt = require('jsonwebtoken');
  *      description: filename of profile picture
  *      example: banana.jpg
  *     favourite_vehicles_ids:
- *      type: [string]
+ *      type: array
+ *      items:
+ *          $ref: "#/components/schemas/Vehicle"
  *      description: ids of favourite vehicles
  *      example: []
  *     consendedValue:

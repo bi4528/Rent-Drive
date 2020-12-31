@@ -49,6 +49,10 @@ const reviewSchema = new mongoose.Schema({
  * @swagger
  * components:
  *  schemas:
+ *   ArrayOfString:
+ *    type: array
+ *    items:
+ *     type: string
  *   Vehicle:
  *    type: object
  *    description: Vehicle data
@@ -211,7 +215,7 @@ const reviewSchema = new mongoose.Schema({
  *    description: Vehicle count
  *    properties:
  *     number_vehicles:
- *      type: number               
+ *      type: number
  */
 
 const vehicleSchema = new mongoose.Schema({
@@ -325,7 +329,6 @@ const vehicleSchema = new mongoose.Schema({
  *    ReviewsNotFound:
  *     value:
  *      message: Ni komentarja za brisanje.
- * 
  */
 
 mongoose.model('Vehicle', vehicleSchema, 'Vehicles');

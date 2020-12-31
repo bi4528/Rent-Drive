@@ -4,8 +4,6 @@ const User = mongoose.model('User');
 const Vehicle = mongoose.model('Vehicle');
 
 const rentedSchema = new mongoose.Schema({
-    /*user_id: {type: mongoose.Schema.ObjectId, ref: User},
-    vehicle_id: {type: mongoose.Schema.ObjectId, ref: Vehicle},*/
     user_id: {
         type: mongoose.Schema.ObjectId,
         required: true

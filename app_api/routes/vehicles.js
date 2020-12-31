@@ -39,18 +39,6 @@ const ctrlReviews = require('../controllers/review');
  *    description: Review management
  */
 
-/**
- * Authentication scheme
- * @swagger
- * components:
- *  securitySchemes:
- *   jwt:
- *    type: http
- *    scheme: bearer
- *    in: header
- *    bearerFormat: JWT
- */
-
 router
 /**
  * @swagger
@@ -129,10 +117,9 @@ router
  *     "201":
  *      description: Succesfully added new images.
  *      content:
- *       type: array
- *       description: array of vehicle images
- *       items:  
- *        type: string
+ *       application/json:
+ *        schema:
+ *         $ref: '#/components/schemas/ArrayOfString'
  *     "401":
  *      description: Authorization error, must be logged in to create vehicle.
  *      content:
@@ -143,10 +130,11 @@ router
  *         Unauthorized:
  *          $ref: "#/components/examples/NoToken" 
  *     "404":
+ *      description: Image not found.
  *      content:
  *       application/json:
  *        schema:
- *         $ref: "#/components/schemas/Error" 
+ *         $ref: "#/components/schemas/Error"
  *        examples:
  *         No files found:
  *          $ref: "#/components/examples/ImageUploadError"  
@@ -163,15 +151,17 @@ router
  *    tags: [Vehicles]
  *    responses:
  *     "200":
+ *      description: Successfully got number.
  *      content:
  *       application/json:
  *        schema:
  *         $ref: "#/components/schemas/VehicleCount"
  *     "404":
+ *      description: Number not found.
  *      content:
  *       application/json:
  *        schema:
- *         $ref: "#/components/schemas/VehicleCountError"
+ *         $ref: "#/components/examples/VehicleCountError"
  *     "500":
  *      description: Error on server side.
  */
@@ -186,11 +176,11 @@ router.
  *    tags: [Vehicles]
  *    parameters:
  *    - in: path 
- *      name: idVehicle 
+ *      name: idVehicle
+ *      required: true
  *      description: id of vehicle 
  *      schema:
- *       type: string 
- *       required: true
+ *       type: string
  *    responses:
  *     "200":
  *      description: Successful request, vehicle data was found and returned.
@@ -317,11 +307,11 @@ router
  *    tags: [Reviews]
  *    parameters:
  *    - in: path 
- *      name: id 
+ *      name: id
+ *      required: true
  *      description: id of vehicle 
  *      schema:
- *       type: string 
- *       required: true
+ *       type: string
  *    responses:
  *     "200":
  *      description: Successful request with list of all reviews.
@@ -351,6 +341,13 @@ router
  *   post:
  *    summary: Add review for vehicle
  *    tags: [Reviews]
+ *    parameters:
+ *    - in: path
+ *      name: idVehicle
+ *      required: true
+ *      description: id of vehicle
+ *      schema:
+ *       type: string
  *    requestBody:
  *     description: Review details
  *     required: true
@@ -396,17 +393,17 @@ router
  *    tags: [Reviews]
  *    parameters:
  *    - in: path 
- *      name: idVehicle 
+ *      name: idVehicle
+ *      required: true
  *      description: id of vehicle 
  *      schema:
- *       type: string 
- *       required: true
+ *       type: string
  *    - in: path
- *      name: idReview 
+ *      name: idReview
+ *      required: true
  *      description: id of review 
  *      schema:
- *       type: string 
- *       required: true 
+ *       type: string
  *    responses:
  *     "200":
  *      description: Successful request, review was found and returned.
@@ -441,16 +438,16 @@ router
 *    parameters:
 *     - in: path
 *       name: idVehicle
+*       required: true
 *       description: id of vehicle
 *       schema:
 *        type: string
-*       required: true
 *     - in: path
-*       name: idReview 
-*       description: id of review 
+*       name: idReview
+*       required: true
+*       description: id of review
 *       schema:
-*        type: string 
-*        required: true 
+*        type: string
 *    responses:
 *     "204":
 *      description: Successfully deleted review.

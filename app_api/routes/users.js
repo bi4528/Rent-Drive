@@ -51,7 +51,6 @@ const ctrlUser = require("../controllers/user")
  *   jwt:
  *    type: http
  *    scheme: bearer
- *    in: header
  *    bearerFormat: JWT
  */
 
@@ -116,11 +115,11 @@ router.route('/:idUser')
  *    tags: [Users]
  *    parameters:
  *    - in: path 
- *      name: idUser 
+ *      name: idUser
+ *      required: true
  *      description: id of user 
  *      schema:
- *       type: string 
- *       required: true
+ *       type: string
  *    responses:
  *     "200":
  *      description: Successful request, user data was updated and returned.
@@ -235,7 +234,7 @@ router.route('/:idUser/favourite_vehicles')
  *      description: id of user 
  *      schema:
  *       type: string 
- *       required: true
+ *      required: true
  *    responses:
  *     "200":
  *      description: Successful request, vehicles were returned.
@@ -317,7 +316,7 @@ router.route('/:idUser/favourite_vehicles')
  *      description: id of user 
  *      schema:
  *       type: string 
- *       required: true
+ *      required: true
  *    responses:
  *     "200":
  *      description: Successful request, vehicles were returned.
@@ -341,12 +340,12 @@ router.route('/:idUser/vehicles').get(ctrlUser.get_vehicles_of_user);
  *    description: Get rents of user with user id idUser.
  *    tags: [Users]
  *    parameters:
- *    - in: path 
+ *    - in: path
  *      name: idUser 
  *      description: id of user 
  *      schema:
  *       type: string 
- *       required: true
+ *      required: true
  *    responses:
  *     "200":
  *      description: Successful request, vehicles were returned.
@@ -355,7 +354,7 @@ router.route('/:idUser/vehicles').get(ctrlUser.get_vehicles_of_user);
  *        schema:
  *         type: array
  *         items:
- *          $ref: "#/components/schemas/Rent"
+ *          $ref: "#/components/schemas/Rented"
  *     "401":
  *      description: No authorization.
  *      content:
@@ -386,7 +385,7 @@ router.get('/:idUser/rents', authentication, ctrlUser.get_rents_of_user);
  *      description: email of user 
  *      schema:
  *       type: string 
- *       required: true
+ *      required: true
  *    responses:
  *     "200":
  *      description: Successful request, email was sent, info data was returned.
@@ -472,7 +471,7 @@ router.post('/recover_password/:idUser', authentication_recover_password, ctrlUs
  *      description: email
  *      schema:
  *       type: string 
- *       required: true
+ *      required: true
  *    responses:
  *     "200":
  *      description: Successful request, boolean returned.
