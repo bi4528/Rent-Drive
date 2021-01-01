@@ -65,3 +65,7 @@ typings/
 
 #Build
 app_public/build/*
+
+#Slike
+*.jpg
+*.png

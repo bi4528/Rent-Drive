@@ -8,6 +8,7 @@ import {RentedDataService} from "../../storitve/rented-data.service";
 import {ConfirmServiceService} from "../../storitve/confirm-service.service";
 import { ModalComponent } from '../modal/modal.component';
 import { stringify } from '@angular/compiler/src/util';
+import {AuthenticationService} from "../../storitve/avtentikacija.service";
 
 @Component({
   selector: 'app-book',
@@ -19,7 +20,8 @@ export class BookComponent implements OnInit {
   public alert_header:string;
 
   constructor(private router: Router, private pot: ActivatedRoute, private bookService: BookServiceService,
-              private rentedService: RentedDataService, private confirmService: ConfirmServiceService){}
+              private rentedService: RentedDataService, private confirmService: ConfirmServiceService,
+              private authenticationService: AuthenticationService){}
 
   public owner: User;
   public vehicle: Vehicle;
@@ -38,13 +40,13 @@ export class BookComponent implements OnInit {
     this.vehicle = this.bookService.vehicle;
     this.dateFrom = this.bookService.dateFrom;
     this.dateTo = this.bookService.dateTo;
-    console.log(this.renter);
+    //console.log(this.renter);
   }
 
   public bookRent(): void {
     let data: Rent = {
       _id: '',
-      user_id: this.renter._id,
+      user_id: this.authenticationService.get_current_user()._id,
       vehicle_id: this.vehicle._id,
       date_from: this.dateFrom,
       date_to: this.dateTo
