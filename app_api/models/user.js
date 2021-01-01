@@ -255,6 +255,30 @@ userSchema.methods.generateJwt = function () {
  *     summary: Image is not found.
  *     value:
  *      message: Image is not found.
+ *    ErrorUserNotFound:
+ *     summary: User not found.
+ *     value:
+ *      message: "User not found."
+ *    ErrorVehicleNotFound:
+ *     summary: Vehicle not found.
+ *     value:
+ *      message: "Vehicle not found."
+ *    ErrorDates:
+ *     summary: Dates evaluated to a falsy values.
+ *     value:
+ *      message: "Dates evaluated to a falsy values."
+ *    ErrorDateFrom:
+ *     summary: Date_from evaluated to a falsy value.
+ *     value:
+ *      message: "Date_from evaluated to a falsy value."
+ *    ErrorDateTo:
+ *     summary: Date_to evaluated to a falsy value.
+ *     value:
+ *      message: "Date_to evaluated to a falsy value."
+ *    ErrorBadTime:
+ *     summary: Bad time period selected.
+ *     value:
+ *      message: "Bad time period selected!"
  */
 
 

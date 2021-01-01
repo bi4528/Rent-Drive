@@ -51,10 +51,10 @@ const create_rented = (req, res) => {
                                     date_to: req.body.date_to
                                 }, (err, data) => {
                                     if (err) {
-                                        console.log(err.errors.date_from);
+                                        //console.log(err.errors.date_from);
                                         if (err.errors.date_from && err.errors.date_to){
                                             res.status(400).json({
-                                                "message": "Dates evaluated to a falsy value"
+                                                "message": "Dates evaluated to a falsy values"
                                             });
                                         }
                                         else if (err.errors.date_from){
@@ -68,13 +68,11 @@ const create_rented = (req, res) => {
                                             });
                                         }
                                         else {
-                                            console.log("Error! Rented car wasn't saved successfully!!");
-                                            res.status(404).json({
-                                                "message": "Error! Rented car wasn't saved successfully!!"
-                                            });
+                                            //console.log("Error! Rented car wasn't saved successfully!!");
+                                            res.status(500).json(err);
                                         }
                                     } else {
-                                        console.log("Rented car saved successfully!");
+                                        //console.log("Rented car saved successfully!");
                                         return res.status(200).json(data);
                                     }
                                 });

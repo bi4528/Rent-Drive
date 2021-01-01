@@ -51,6 +51,14 @@ const authentication = jwt({
  *      type: string
  *    example:
  *     message: Car has already been booked!
+ *   ErrorBadRequest:
+ *    type: object
+ *    description: Error details
+ *    required:
+ *     - message
+ *    properties:
+ *     message:
+ *      type: string
  */
 
 router
@@ -83,6 +91,25 @@ router
  *       application/json:
  *        schema:
  *         $ref: "#/components/schemas/ErrorAlreadyBooked"
+ *     "400":
+ *      description: Bad request.
+ *      content:
+ *       application/json:
+ *        schema:
+ *         $ref: "#/components/schemas/ErrorBadRequest"
+ *        examples:
+ *         User not found:
+ *          $ref: "#/components/examples/ErrorUserNotFound"
+ *         Vehicle not found:
+ *          $ref: "#/components/examples/ErrorVehicleNotFound"
+ *         Dates evaluated to a falsy values:
+ *          $ref: "#/components/examples/ErrorDates"
+ *         Date_from evaluated to a falsy value:
+ *          $ref: "#/components/examples/ErrorDateFrom"
+ *         Date_to evaluated to a falsy value:
+ *          $ref: "#/components/examples/ErrorDateTo"
+ *         Bad time selected:
+ *          $ref: "#/components/examples/ErrorBadTime"
  *     "401":
  *      description: Unauthorized.
  *      content:
@@ -92,6 +119,8 @@ router
  *        examples:
  *         ni zetona:
  *          $ref: "#/components/examples/NoToken"
+ *     "500":
+ *      description: Iternal service error.
  */
 .post('/', authentication, ctrlRented.create_rented);
 
