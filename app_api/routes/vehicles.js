@@ -105,8 +105,8 @@ router
  *   post:
  *    summary: Uploads images
  *    tags: [Vehicles]
- *   security:
- *     - jwt: []
+ *    security:
+ *      - jwt: []
  *    requestBody:
  *     description: Image data
  *     required: true

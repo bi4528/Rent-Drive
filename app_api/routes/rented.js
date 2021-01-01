@@ -93,7 +93,7 @@ router
  *         ni zetona:
  *          $ref: "#/components/examples/NoToken"
  */
-.post('/', ctrlRented.create_rented);
+.post('/', authentication, ctrlRented.create_rented);
 
 router
 /**
@@ -182,6 +182,6 @@ router
  *     "500":
  *      description: Error while deleting user.
  */
-    .delete('/:idRented', ctrlRented.remove_rented);
+    .delete('/:idRented', authentication, ctrlRented.remove_rented);
 
 module.exports = router;

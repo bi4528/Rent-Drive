@@ -4,52 +4,94 @@ const Vehicle = mongoose.model('Vehicle');
 const User = mongoose.model('User');
 
 const create_rented = (req, res) => {
-    Rented.find({
+    var d1 = req.body.date_from;
+    var d2 = req.body.date_to;
 
-        vehicle_id: req.body.vehicle_id,
-        date_from: { $lte: req.body.date_to },
-        date_to: { $gte: req.body.date_from }
+    if (d1 > d2){
+        return res.status(400).json({
+            "message": "Bad time period selected!"
+        });
+    }
+    else{
+        User.find({
+            _id: req.body.user_id
+        }, function (error, odg){
+            if (odg == undefined || odg.length == 0) {
+                return res.status(404).json({
+                    "message": "User not found!"
+                });
+            } else if (error) {
+                return res.status(500).json(error);
+            }
+            else{
+                Vehicle.find({
+                    _id: req.body.vehicle_id
+                }, function (error, odg){
+                    if (odg == undefined || odg.length == 0) {
+                        return res.status(404).json({
+                            "message": "Vehicle not found!"
+                        });
+                    } else if (error) {
+                        return res.status(500).json(error);
+                    }
+                    else{
+                        Rented.find({
 
-    }, function (error, renta) {
-        if (renta == undefined || renta.length == 0) {
-            Rented.create({
-                user_id: req.body.user_id,
-                vehicle_id: req.body.vehicle_id,
-                date_from: req.body.date_from,
-                date_to: req.body.date_to
-            }, (err, data) => {
-                if (err) {
-                    console.log("Error! Rented car wasn't saved successfully!!");
-                    res.status(404).json({
-                        "message": "Error! Rented car wasn't saved successfully!!"
-                    });
-                } else {
-                    console.log("Rented car saved successfully!");
-                    res.status(200).json(renta);
-                }
-            });
-        } else if (error) {
-            return res.status(500).json(error);
-        } else {
-            return res.status(409).json({
-                "message": "Car is already booked."
-            });
-        }
-    });
-    /*
-    Rented.create({
-        user_id: req.body.params.my_id,
-        vehicle_id: req.body.params.vehicle_id,
-        date_from: req.body.params.date_from,
-        date_to: req.body.params.date_to
-    }, (err, data) => {
-        if (err) {
-            res.status(400).json(err);
-        } else {
-            res.status(201).json(data);
+                            vehicle_id: req.body.vehicle_id,
+                            date_from: { $lte: req.body.date_to },
+                            date_to: { $gte: req.body.date_from }
 
-        }
-    });*/
+                        }, function (error, renta) {
+                            if (renta == undefined || renta.length == 0) {
+
+                                Rented.create({
+                                    user_id: req.body.user_id,
+                                    vehicle_id: req.body.vehicle_id,
+                                    date_from: req.body.date_from,
+                                    date_to: req.body.date_to
+                                }, (err, data) => {
+                                    if (err) {
+                                        console.log(err.errors.date_from);
+                                        if (err.errors.date_from && err.errors.date_to){
+                                            res.status(400).json({
+                                                "message": "Dates evaluated to a falsy value"
+                                            });
+                                        }
+                                        else if (err.errors.date_from){
+                                            res.status(400).json({
+                                                "message": "Date_from evaluated to a falsy value"
+                                            });
+                                        }
+                                        else if (err.errors.date_to){
+                                            res.status(400).json({
+                                                "message": "Date_to evaluated to a falsy value"
+                                            });
+                                        }
+                                        else {
+                                            console.log("Error! Rented car wasn't saved successfully!!");
+                                            res.status(404).json({
+                                                "message": "Error! Rented car wasn't saved successfully!!"
+                                            });
+                                        }
+                                    } else {
+                                        console.log("Rented car saved successfully!");
+                                        return res.status(200).json(data);
+                                    }
+                                });
+                            } else if (error) {
+                                return res.status(500).json(error);
+                            } else {
+                                return res.status(409).json({
+                                    "message": "Car is already booked."
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+
+        });
+    }
 };
 
 const get_all_rented = (req, res) => {
@@ -121,7 +163,7 @@ const get_all_expired_rents_today = (req, res) => {
 };
 
 const remove_rented = (req, res) => {
-    Rented.findByIdAndRemove(req.params.idRented).exec((error) => {
+    Rented.findByIdAndRemove(req.params.idRented).exec((error, odg) => {
         if (error) {
             return res.status(500).json(error);
         } else {
