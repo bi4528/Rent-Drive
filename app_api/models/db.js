@@ -5,6 +5,9 @@ if (process.env.NODE_ENV === 'production') {
     console.log("Trying connection to Mongodb Atlas");
     dbURI = process.env.MONGODB_CLOUD_URI;
 }
+else if (process.env.NODE_ENV === 'docker') {
+    dbURI = 'mongodb://sp-rentdrive-mongodb/RentDrive';
+}
 
 mongoose.connect(dbURI, {
     useNewUrlParser: true,

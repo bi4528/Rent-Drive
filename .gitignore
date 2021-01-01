@@ -62,3 +62,6 @@ typings/
 
 # WebStorm
 .idea
+
+#Build
+app_public/build/*
