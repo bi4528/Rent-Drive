@@ -91,9 +91,8 @@ export class RegisterComponent implements OnInit {
           .then(() => {
             this.statusText = "Success!";
             this.statusType = 2;
-            this.router.navigateByUrl(
-              this.historyService.vrniPredhodnjeUrlNasloveBrezPrijaveInRegistracije()
-            )
+            this.router.navigateByUrl("/" );
+            //this.router.navigateByUrl("this.historyService.vrniPredhodnjeUrlNasloveBrezPrijaveInRegistracije()");
           })
           .catch(sporocilo => {
             this.modal_text = sporocilo;

@@ -17,15 +17,15 @@ import { PovezavaService } from '../../storitve/povezava.service';
 export class VehicleProfileComponent implements OnInit {
 
   constructor(
-    private bookService: BookServiceService, 
-    private router: Router, 
+    private bookService: BookServiceService,
+    private router: Router,
     private pot: ActivatedRoute,
     private vehicleDataService: VehiclesDataService,
     private usersDataService: UsersDataService,
     private avtentikacijaStoritev: AuthenticationService,
     private elementRef: ElementRef,
     private povezavaStoritev: PovezavaService
-    ) { }
+  ) { }
 
   public avg_rating: Number;
   public owner_id: String;
@@ -44,15 +44,21 @@ export class VehicleProfileComponent implements OnInit {
     this.vehicleId = this.pot.snapshot.paramMap.get('idVehicle');
     this.get_vehicle_data(this.vehicleId);
     this.user_logged = this.avtentikacijaStoritev.is_logged();
-    var actualLoggedUserId = this.avtentikacijaStoritev.get_current_user()._id;
-    this.usersDataService
-      .getUser(actualLoggedUserId)
-      .then((data: User) => {
-        this.alert_error = (data != null) ? "" : "No user found";
-        this.actualLoggedUser = data;
-        console.log("LOGGED ", this.actualLoggedUser);
-        if(this.actualLoggedUser.favourite_vehicles_ids.includes(this.vehicle._id)) this.is_favourite_of_logged_user=true;
-      });
+    if (this.avtentikacijaStoritev.get_current_user() != undefined) {
+      var actualLoggedUserId = this.avtentikacijaStoritev.get_current_user()._id;
+      this.usersDataService
+        .getUser(actualLoggedUserId)
+        .then((data: User) => {
+          this.alert_error = (data != null) ? "" : "No user found";
+          this.actualLoggedUser = data;
+          //console.log("LOGGED ", this.actualLoggedUser);
+          if (this.actualLoggedUser.favourite_vehicles_ids.includes(this.vehicle._id)) this.is_favourite_of_logged_user = true;
+        }).catch((er) => { console.log(er) });
+    } else {
+      this.alert_error = "No user found";
+      //console.log("NOT LOGGED");
+    }
+
   }
 
   @ViewChild('modal') public modalComponent: ModalComponent;
@@ -63,21 +69,21 @@ export class VehicleProfileComponent implements OnInit {
   public jePovezava(): boolean {
     return this.povezavaStoritev.jePovezava;
   }
-  
+
   public get_vehicle_data = (vehicleId: String): void => {
-  this.alert_error = "Searching for vehicle";
-  this.vehicleDataService
-    .getVehicle(vehicleId)
-    .then((data: Vehicle) => {
-      this.alert_error = (data != null) ? "" : "No vehicle found";
-      this.vehicle = data;
-      console.log("VEHICLE ",this.vehicle);
-      this.get_user_data(this.vehicle.owner_id);
-      this.setCarPhotosAndIndicators(this.vehicle.images);
-      this.setAvgRating();
-    }).catch(()=>this.router.navigateByUrl("/error"));
+    this.alert_error = "Searching for vehicle";
+    this.vehicleDataService
+      .getVehicle(vehicleId)
+      .then((data: Vehicle) => {
+        this.alert_error = (data != null) ? "" : "No vehicle found";
+        this.vehicle = data;
+        //console.log("VEHICLE ", this.vehicle);
+        this.get_user_data(this.vehicle.owner_id);
+        this.setCarPhotosAndIndicators(this.vehicle.images);
+        this.setAvgRating();
+      }).catch(() => this.router.navigateByUrl("/error"));
   }
-  
+
   public get_user_data = (id_of_user: String): void => {
     this.alert_error = "Searching for user";
     this.usersDataService
@@ -85,7 +91,7 @@ export class VehicleProfileComponent implements OnInit {
       .then((data: User) => {
         this.alert_error = (data != null) ? "" : "No user found";
         this.user = data;
-        console.log("OWNER ", this.user);
+        //console.log("OWNER ", this.user);
       });
   }
 
@@ -121,48 +127,48 @@ export class VehicleProfileComponent implements OnInit {
     var date2 = new Date((<HTMLInputElement>document.getElementById("date-to")).value);
     var today = new Date();
     if (!this.validate_dates(date1, date2)) {
-      this.alert_error ="Please enter valid dates!"
+      this.alert_error = "Please enter valid dates!"
       this.openModal();
-    } else if (this.avtentikacijaStoritev.get_current_user()==null){
+    } else if (this.avtentikacijaStoritev.get_current_user() == null) {
       this.alert_error = "Please log in before booking!";
       this.openModal();
-    } else if (this.vehicle.owner_id == this.actualLoggedUser._id){
+    } else if (this.vehicle.owner_id == this.actualLoggedUser._id) {
       this.alert_error = "Can't book own vehicle.\n";
       this.openModal();
-    } else if (date1 < today || date2 < today){
-      this.alert_error = "Unfortunately, the rent period has expired.\n" + "From: " + new Date(this.vehicle.date[0]).toLocaleDateString("en-GB") +"\n" + "To: " + new Date(this.vehicle.date[1]).toLocaleDateString("en-GB") + "\n" + "Please contact the owner if you wish to rent this vehicle.";
+    } else if (date1 < today || date2 < today) {
+      this.alert_error = "Unfortunately, the rent period has expired.\n" + "From: " + new Date(this.vehicle.date[0]).toLocaleDateString("en-GB") + "\n" + "To: " + new Date(this.vehicle.date[1]).toLocaleDateString("en-GB") + "\n" + "Please contact the owner if you wish to rent this vehicle.";
       this.openModal();
-    } 
+    }
     else {
       this.router.navigateByUrl("/book/" + this.vehicleId);
       this.usersDataService
-      .getUser(this.avtentikacijaStoritev.get_current_user()._id)
-      .then((data: User) => {
-        this.alert_error = (data != null) ? "" : "No user found";
-        this.actualLoggedUser = data;
-      });
-      this.bookService.book(this.user, this.actualLoggedUser, this.vehicle, date1, date2 );
+        .getUser(this.avtentikacijaStoritev.get_current_user()._id)
+        .then((data: User) => {
+          this.alert_error = (data != null) ? "" : "No user found";
+          this.actualLoggedUser = data;
+        });
+      this.bookService.book(this.user, this.actualLoggedUser, this.vehicle, date1, date2);
     }
   }
 
 
   public favorite() {
     var heart = (<HTMLInputElement>document.getElementById("favorite"));
-    if (!this.avtentikacijaStoritev.is_logged()){
+    if (!this.avtentikacijaStoritev.is_logged()) {
       this.alert_error = "To favorite a vehicle you must be logged!"
       this.openModal();
     } else if (heart.className == "far fa-heart") {
       heart.className = "fas fa-heart";
       //console.log(this.actualLoggedUser);
       this.actualLoggedUser.favourite_vehicles_ids.push(this.vehicleId);
-      this.usersDataService.update_favourite_vehicles(this.actualLoggedUser).then((success)=> {
+      this.usersDataService.update_favourite_vehicles(this.actualLoggedUser).then((success) => {
         success ? "" : "Failed to favorite vehicle!";
         this.ngOnInit();
       })
     } else {
       heart.className = "far fa-heart";
       if (this.actualLoggedUser.favourite_vehicles_ids.includes(this.vehicleId)) {
-        this.usersDataService.update_favourite_vehicles(this.actualLoggedUser).then((success)=> {
+        this.usersDataService.update_favourite_vehicles(this.actualLoggedUser).then((success) => {
           success ? "" : "Failed to unfavorite vehicle!";
           this.ngOnInit();
         })
@@ -177,7 +183,7 @@ export class VehicleProfileComponent implements OnInit {
     });
   }
 
-  closeAndUpdateReview(){
+  closeAndUpdateReview() {
     this.showReviewForm = false;
     this.ngOnInit();
   }

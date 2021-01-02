@@ -137,8 +137,8 @@
                     <tr class="review" *ngFor="let review of vehicle.reviews">
                         <td class='profile' colspan='2'>
                             <a routerLink="/users/profiles/{{review.user_id}}">
-                                <img *ngIf="review.img" class="avatar" src="../../../../assets/uploads/{{review.img}}">
-                                <img *ngIf="!review.img" class="avatar" src="../../../../assets/uploads/avatarUser.png">
+                                <img *ngIf="review.img" class="avatar" src="../../../../assets/uploads/{{review.img}}" alt="avatar">
+                                <img *ngIf="!review.img" class="avatar" src="../../../../assets/uploads/avatarUser.png" alt="avatar">
                             </a>
                             <strong> {{review.username}}</strong>
                         </td>

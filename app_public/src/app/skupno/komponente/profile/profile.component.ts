@@ -110,7 +110,7 @@ export class ProfileComponent implements OnInit {
         this.usersDataService
           .getRentsOfUser(id_of_user)
           .then((data: Rent[]) => {
-            this.alert_error = (data.length > 0) ? "" : "No rents found";
+            //this.alert_error = (data.length > 0) ? "" : "No rents found"; 
             this.rents = data;
           });
       }
@@ -119,8 +119,7 @@ export class ProfileComponent implements OnInit {
 
   private checkIfProfileIsUserLogged = (): void => {
     var current_user = this.avtentikacijaStoritev.get_current_user();
-    if (current_user == null) this.router.navigateByUrl('/error');  // user doesnt exist or deleted account
-    this.is_profile_of_logged_user = current_user._id == this.id_of_user;
+    if (current_user != null) this.is_profile_of_logged_user = current_user._id == this.id_of_user;
   }
 
   private get_empty_vehicle = (): Vehicle => {
@@ -183,6 +182,7 @@ export class ProfileComponent implements OnInit {
   }
 
   public is_logged_or_admin_user(): Boolean {
+    if (this.avtentikacijaStoritev.get_current_user()==null) return false;
     return this.avtentikacijaStoritev.get_current_user().is_admin || this.is_profile_of_logged_user;
   }
 
