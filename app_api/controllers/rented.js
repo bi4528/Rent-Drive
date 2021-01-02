@@ -4,6 +4,7 @@ const Vehicle = mongoose.model('Vehicle');
 const User = mongoose.model('User');
 
 const create_rented = (req, res) => {
+    console.log(req);
     var d1 = req.body.date_from;
     var d2 = req.body.date_to;
 

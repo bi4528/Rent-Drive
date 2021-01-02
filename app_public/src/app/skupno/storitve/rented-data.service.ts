@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Storage_Browser} from "../razredi/storage";
 import {environment} from "../../../environments/environment";
 import {Rent} from "../razredi/rent";
@@ -17,8 +17,13 @@ export class RentedDataService {
 
   public createRented(data): Promise<Rent> {
     const url: string = `${this.apiUrl}/rented/`;
+    const httpLastnosti = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.storage.getItem('rentdrive-token')}`
+      })
+    };
     return this.http
-      .post(url, data)
+      .post(url, data, httpLastnosti)
       .toPromise()
       .then(response => response as Rent)
       .catch(this.procesError);
@@ -26,8 +31,13 @@ export class RentedDataService {
 
   public deleteRented(id_of_rented): Promise<Rent> {
     const url: string = `${this.apiUrl}/rented/${id_of_rented}`;
+    const httpLastnosti = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.storage.getItem('rentdrive-token')}`
+      })
+    };
     return this.http
-      .delete(url)
+      .delete(url, httpLastnosti)
       .toPromise()
       .then(response => response as Rent)
       .catch(this.procesError);

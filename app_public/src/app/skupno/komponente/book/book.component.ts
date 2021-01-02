@@ -41,12 +41,16 @@ export class BookComponent implements OnInit {
     this.dateFrom = this.bookService.dateFrom;
     this.dateTo = this.bookService.dateTo;
     //console.log(this.renter);
+
+    if (!this.authenticationService.is_logged()){
+      this.router.navigateByUrl("/");
+    }
   }
 
   public bookRent(): void {
     let data: Rent = {
       _id: '',
-      user_id: this.authenticationService.get_current_user()._id,
+      user_id: this.renter._id,
       vehicle_id: this.vehicle._id,
       date_from: this.dateFrom,
       date_to: this.dateTo

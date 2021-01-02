@@ -22,10 +22,8 @@ export class VehiclesDataService {
       .then(response => response as Vehicle)
       .catch(this.procesError);
   }
-  
+
   public updateVehicleData(vehicle: Vehicle): Promise <Vehicle>{
-    console.log("Update");
-    console.log(vehicle);
     const url: string = `${this.apiUrl}/vehicles/${vehicle._id}`;
     const httpLastnosti = {
       headers: new HttpHeaders({
