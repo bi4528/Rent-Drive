@@ -4,6 +4,7 @@ import {MarkeriService} from "../../storitve/markeri.service";
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
+import { PovezavaService } from '../../storitve/povezava.service';
 
 
 @Component({
@@ -12,9 +13,12 @@ import 'leaflet/dist/images/marker-icon-2x.png';
 })
 export class NearbyMapaComponent {
 
-  constructor( private markeriService: MarkeriService) { }
+  constructor( private markeriService: MarkeriService, private povezavaStoritev: PovezavaService) { }
 
   public locations: any;
+  public jePovezava(): boolean {
+    return this.povezavaStoritev.jePovezava;
+  }
 
   // Open Street Map definitions
   optionsSpec: any = {

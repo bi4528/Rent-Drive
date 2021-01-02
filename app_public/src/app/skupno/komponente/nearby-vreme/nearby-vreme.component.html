@@ -29,7 +29,8 @@
 </div>
 
 <hr/>
-<button type="button" class="btn mt-auto button1" (click)="setWeather()">Show Current Weather</button>
+<button type="button" class="btn mt-auto button1" [disabled]="!jePovezava()" (click)="setWeather()">Show Current Weather <i *ngIf="!jePovezava()" class="fas fa-exclamation-triangle ni-povezave"></i></button>
+
 
 
 
