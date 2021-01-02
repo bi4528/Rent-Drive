@@ -163,7 +163,12 @@ const get_all_expired_rents_today = (req, res) => {
 
 const remove_rented = (req, res) => {
     Rented.findByIdAndRemove(req.params.idRented).exec((error, odg) => {
-        if (error) {
+        if (!odg){
+            return res.status(404).json({
+                "message": "User not found."
+            });
+        }
+        else if (error) {
             return res.status(500).json(error);
         } else {
             return res.status(204).json(null);

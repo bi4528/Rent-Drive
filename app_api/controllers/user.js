@@ -324,12 +324,12 @@ const get_favourite_vehicles = (req, res) => {
 const get_vehicles_of_user = (req, res) => {
 
     User.findById(req.params.idUser).exec((error, user) => {
-        if (error) {
-            return res.status(500).json(error);
-        } else if (!user) {
+        if (!user) {
             return res.status(404).json({
                 "message": "User not found."
             });
+        } else if (error) {
+            return res.status(500).json(error);
         } else {
             Vehicle.find({
                 owner_id: {

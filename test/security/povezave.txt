@@ -1,0 +1,13 @@
+http://localhost:3000
+http://localhost:3000/nearby
+http://localhost:3000/users/register
+http://localhost:3000/users/login
+http://localhost:3000/search?page=1
+http://localhost:3000/vehicles/5fee03825a0fa03298f8c606
+http://localhost:3000/book/5fee03825a0fa03298f8c606
+http://localhost:3000/vehicles/publish
+http://localhost:3000/users/profiles/5fef955593f2f1001979db2c
+http://localhost:3000/users/profiles/5fef533d90aae360401b51e7/chart
+http://localhost:3000/book/5fef955593f2f1001979db37/confirm
+http://localhost:3000/vehicles/5fef9cd967843d001a80482b/edit
+http://localhost:3000/users/edit/5fef533d90aae360401b51e7

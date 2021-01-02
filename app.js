@@ -113,9 +113,20 @@ app.use(express.static(path.join(__dirname, 'app_public', 'build'), {index: fals
 
 app.use(passport.initialize());
 
+//Cross-Domain Misconfiguration
+var URI = 'http://localhost:4200';
+if (process.env.NODE_ENV === 'production') {
+  console.log("Production");
+  URI = 'https://rentdrive-sp.herokuapp.com'
+}
+else if (process.env.NODE_ENV === 'docker') {
+  console.log("docker");
+  URI = 'http://localhost:3000';
+}
+
 app.use('/api', (req, res, next) => {
   //res.header('Access-Control-Allow-Origin', 'http://localhost:4200'); //should solve CORS error? (put heroku link later)
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', URI);
   res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
