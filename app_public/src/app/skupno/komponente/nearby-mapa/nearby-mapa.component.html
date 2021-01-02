@@ -14,5 +14,5 @@
 
   </div>
 </div>
-<button type="button" class="btn mt-auto button1" (click)="pridobiMarkere()">Show Available Vehicles</button>
+<button type="button" [disabled]="!jePovezava()" class="btn mt-auto button1" (click)="pridobiMarkere()">Show Available Vehicles <i *ngIf="!jePovezava()" class="fas fa-exclamation-triangle ni-povezave"></i></button>
 

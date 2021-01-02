@@ -206,7 +206,7 @@ export class VehicleProfileComponent implements OnInit {
       var dailyPriceNum = +dailyPrice;
       var price = days * dailyPriceNum + "€";
       (<HTMLInputElement>document.getElementById("price")).innerHTML = price;
-      (<HTMLInputElement>document.getElementById("submit-button")).disabled = false;;
+      if (this.jePovezava()) (<HTMLInputElement>document.getElementById("submit-button")).disabled = false;
     } else {
       document.getElementById("price").innerHTML = "";
       (<HTMLInputElement>document.getElementById("submit-button")).disabled = true;
