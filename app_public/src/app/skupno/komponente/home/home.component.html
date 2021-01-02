@@ -83,9 +83,9 @@
     <div id="catalogue-cars" class="carousel slide carousel-multi-item mt-4" data-ride="carousel">
 
         <div class="controls-top carousel-controls">
-            <a class="btn-floating" href="#catalogue-cars" data-slide="prev"><i
+            <a class="btn-floating" href="#catalogue-cars" aria-label="previous slide" data-slide="prev"><i
                     class="fas fa-long-arrow-alt-left fa-3x p-2 carousel-arrows"></i></a>
-            <a class="btn-floating" href="#catalogue-cars" data-slide="next"><i
+            <a class="btn-floating" href="#catalogue-cars" aria-label="next slide" data-slide="next"><i
                     class="fas fa-long-arrow-alt-right fa-3x p-2 carousel-arrows"></i></a>
         </div>
 
@@ -96,13 +96,13 @@
 
 
         <div *ngIf="slides">
-            <div class="carousel-inner carousel-catalogue" role="listbox">
+            <div class="carousel-inner carousel-catalogue" role="listbox" aria-label="car list">
                 <div  *ngFor="let item of slides; index as i;" class="carousel-item {{activeslide[i]}}">
-                    <div class="visina col-md-6 col-lg-3 float-left" *ngFor="let card of item">
+                    <div class="visina col-md-6 col-lg-3 float-left" *ngFor="let card of item" role="option" aria-label="car">
                         <div class="card mb-2">
                             <img class="card-img-top car_image_home" src="../../../assets/uploads/{{card.images[0]}}"
                                 alt="Card image cap">
-                            <div class="card-body">
+                            <div class="card-body" >
                                 <h4 class="card-title">{{card.make}} {{card.model}}</h4>
                                 <p class="card-text">{{card.description}}</p>
                                 <a routerLink="/vehicles/{{card._id}}" class="btn btn-light rounded border-secondary stretched-link">Book for only
@@ -118,9 +118,9 @@
 
 
         <div class="controls-top carousel-controls col-12 w-100 mb-3 py-3">
-            <a class="btn-floating col-6" href="#catalogue-cars" data-slide="prev"><i
+            <a class="btn-floating col-6" href="#catalogue-cars" aria-label="previous slide" data-slide="prev"><i
                     class="fas fa-chevron-left fa-3x p-2 float-left carousel-arrows"></i></a>
-            <a class="btn-floating col-6" href="#catalogue-cars" data-slide="next"><i
+            <a class="btn-floating col-6" href="#catalogue-cars" aria-label="previous slide" data-slide="next"><i
                     class="fas fa-chevron-right fa-3x p-2 float-right carousel-arrows"></i></a>
         </div>
 
