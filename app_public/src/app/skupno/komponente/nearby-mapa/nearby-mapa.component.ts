@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import {icon, LatLng, latLng, Layer, marker, tileLayer} from 'leaflet';
 import {MarkeriService} from "../../storitve/markeri.service";
-import 'leaflet/dist/images/marker-shadow.png';
+/*import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon.png';
-import 'leaflet/dist/images/marker-icon-2x.png';
+import 'leaflet/dist/images/marker-icon-2x.png';*/
 import { PovezavaService } from '../../storitve/povezava.service';
 
 
@@ -85,8 +85,8 @@ export class NearbyMapaComponent {
             icon: icon({
               iconSize: [ 25, 41 ],
               iconAnchor: [ 13, 41 ],
-              iconUrl: 'marker-icon.png',
-              shadowUrl: 'marker-shadow.png'
+              iconUrl: 'assets/icons/marker-icon.png',
+              shadowUrl: 'assets/icons/marker-shadow.png'
             })
           }
         );
