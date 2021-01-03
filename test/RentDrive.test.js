@@ -7,7 +7,7 @@
     const expect = require("chai").expect;
     
     // Parametri
-    let aplikacijaUrl = "http://localhost:4200/"; //"https://rentdrive-sp.herokuapp.com/";
+    let aplikacijaUrl = "https://rentdrive-sp.herokuapp.com/"; //"http://localhost:4200/"; 
     let apiUrl = "http://localhost:3000/"; //Na koncu bo vse na url produkcije
     let seleniumStreznikUrl = "http://localhost:4444/wd/hub";
     let brskalnik, jwtZeton;
@@ -18,7 +18,7 @@
     });
     */
     const axios = require('axios').create({
-    baseURL: apiUrl + "api/",
+    baseURL: aplikacijaUrl + "api/",
     timeout: 5000
     });
 
@@ -127,7 +127,7 @@
         });
 
        
-        it("write tesla and expect 1 result", async function() {
+        it("write toyota supra and expect 1 result", async function() {
           let searchBar = await brskalnik.findElement(By.css("input[name='Search']"));
           expect(searchBar).to.not.be.empty;
           searchBar.sendKeys("Toyota Supra");
@@ -389,11 +389,12 @@
         });
 
         it("check if car is in my profile", async function(){ 
-          await pocakajStranNalozena(brskalnik, 40, "//h4");
-          let povezava = await brskalnik.findElement(
-            By.xpath("//a[contains(text(), 'My profile')]"));
-          expect(povezava).to.not.be.empty;
-          await povezava.click();
+          await pocakajStranNalozena(brskalnik, 10, "//h4");
+          await brskalnik.findElement(
+            By.xpath("//a[contains(text(), 'My profile')]")).click();
+            
+
+
 
           await pocakajStranNalozena(brskalnik, 40, "//h5[contains(text(), 'Ford')]");
           let make= await brskalnik.findElement(By.xpath("//h5[contains(text(), 'Ford')]"));
