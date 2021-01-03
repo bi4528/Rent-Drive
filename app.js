@@ -115,9 +115,9 @@ app.use(passport.initialize());
 
 //Cross-Domain Misconfiguration
 var URI = 'http://localhost:4200';
-if (process.env.NODE_ENV == 'production') {
+if (process.env.NODE_ENV === 'production') {
   URI = 'https://rentdrive-sp.herokuapp.com'
-} else if (process.env.NODE_ENV == 'docker') {
+} else if (process.env.NODE_ENV === 'docker') {
   URI = 'http://localhost:3000';
 }
 

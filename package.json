@@ -39,7 +39,8 @@
     "passport-local": "*",
     "path": "*",
     "swagger-jsdoc": "*",
-    "swagger-ui-express": "*"
+    "swagger-ui-express": "*",
+    "webdriver-manager": "^12.1.7"
   },
   "devDependencies": {
     "@types/leaflet": "*",
