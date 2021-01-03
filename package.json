@@ -17,7 +17,7 @@
     "@asymmetrik/ngx-leaflet": "*",
     "axios": "*",
     "chart.js": "*",
-    "compression": "^1.7.4",
+    "compression": "*",
     "cookie-parser": "*",
     "debug": "*",
     "dotenv": "*",
@@ -26,11 +26,11 @@
     "express-session": "*",
     "hbs": "*",
     "http-errors": "*",
-    "leaflet": "^1.7.1",
+    "leaflet": "*",
     "mongoose": "*",
     "morgan": "*",
     "multer": "*",
-    "multer-imager": "^4.2.0",
+    "multer-imager": "*",
     "ng2-charts": "*",
     "nodemailer": "*",
     "nodemon": "*",
@@ -38,8 +38,8 @@
     "passport": "*",
     "passport-local": "*",
     "path": "*",
-    "swagger-jsdoc": "^6.0.0",
-    "swagger-ui-express": "^4.1.6"
+    "swagger-jsdoc": "*",
+    "swagger-ui-express": "*"
   },
   "devDependencies": {
     "@types/leaflet": "*",
@@ -47,6 +47,6 @@
     "chromedriver": "*",
     "mocha": "*",
     "mochawesome": "*",
-    "selenium-webdriver": "^3.6.0"
+    "selenium-webdriver": "*"
   }
 }
