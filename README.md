@@ -186,5 +186,5 @@ http://rentdrive-sp.herokuapp.com/
 ## 5. LP - Varnostno zaščitena progresivna aplikacija
 
 ### Avtentikacija in avtorizacija z MEAN (JWT)
-Naša aplikacija podpira tri tipa uporabnikov. Če je trenutni prijavljen uporabnik navaden potem on ima dovoljenje da spreminja (dodaja) samo podatke ki jih je on sam dodal. Takšne podatke so: avti, osebne podatke, komentarji, najeme. Če pa je trenuten uporabnik administrator potem on ima dovoljenje da spreminja vse (če se mu zdi to smisleno). Takrat so vse gumbe za brisanje in spreminjanje podatke so dostopni in vidni.  Obstajajo še guests, to so uporabniki ki niso ustvarili svoj račun in lahko gledajo avte, profile, berejo komentarji oz. imajo samo bralni dostop.
+Naša aplikacija podpira tri tipe uporabnikov. Če je trenutni prijavljeni uporabnik navadnega tipa potem ima dovoljenje zgolj da spreminja (dodaja) podatke ki jih je on sam dodal. Te podatki so: avti, osebni podatki, komentarji, najemi. Če pa je trenutni uporabnik administrator potem on ima pravice da spreminja vse (če se mu zdi to smiselno). Takrat so vsi gumbi za brisanje in spreminjanje podatkov dostopni in vidni.  Obstajajo še guest uporabniki, ki niso ustvarili računa. Oni lahko gledajo avtomobile, profile, berejo komentarje oz. imajo samo bralni dostop.
 
