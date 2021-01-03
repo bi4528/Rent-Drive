@@ -130,13 +130,14 @@
         it("write tesla and expect 1 result", async function() {
           let searchBar = await brskalnik.findElement(By.css("input[name='Search']"));
           expect(searchBar).to.not.be.empty;
-          searchBar.sendKeys("Tesla");
+          searchBar.sendKeys("Toyota Supra");
 
           let gumb = await brskalnik.findElement(
             By.xpath("//button[contains(text(), 'Search')]"));
 
           await gumb.click();
-          await pocakajStranNalozena(brskalnik, 10, "//h3[contains(text(), 'Filtered by keyword: \"Tesla\"')]");
+          //await pocakajStranNalozena(brskalnik, 10, "//h3[contains(text(), 'Filtered by keyword: \"Tesla\"')]");
+          await pocakajStranNalozena(brskalnik, 10, "//a[contains(text(), 'Book for only 139')]");
           let cars = await brskalnik.findElements(By.css(".card"));
           expect(cars).to.be.an("array").to.have.lengthOf(1);
         });

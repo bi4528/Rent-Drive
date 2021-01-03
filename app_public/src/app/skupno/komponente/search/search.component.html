@@ -7,7 +7,7 @@
         </button>
     </div>
 
-    <div class="my-3" [innerHtml]="filter_text">
+    <div class="my-3" *ngIf="cars" [innerHtml]="filter_text">
     </div>
 
     <div class="row m-2 justify-content-center">

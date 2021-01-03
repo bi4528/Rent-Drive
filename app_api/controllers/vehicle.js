@@ -29,7 +29,7 @@ const vehiclesAll = (req, res) => {
                 const dateTo = req.query.dateTo;
                 const category = req.query.category;
                 const page = req.query.page;
-                //console.log(page);
+                console.log(keyWord);
 
                 if (isEmpty(keyWord) && isEmpty(city) && isEmpty(category)) {
                     //res.status(200).json(dataJSON);
@@ -37,8 +37,10 @@ const vehiclesAll = (req, res) => {
                 }
                 else if (!isEmpty(keyWord)) {
                     newData = [];
+                   
                     dataJSON.forEach(function (item, index) {
-                        if (item.model.toLowerCase().includes(keyWord.toLowerCase()) || item.make.toLowerCase().includes(keyWord.toLowerCase())) {
+                        makemodel = item.make+" "+item.model;
+                        if (item.model.toLowerCase().includes(keyWord.toLowerCase()) || item.make.toLowerCase().includes(keyWord.toLowerCase()) || makemodel.toLowerCase().includes(keyWord.toLowerCase()) ) {
                             newData.push(item);
                         }
                     });
@@ -105,8 +107,10 @@ const returnLength = (req, res) => {
                 }
                 else if (!isEmpty(keyWord)) {
                     newData = [];
+                    
                     dataJSON.forEach(function (item, index) {
-                        if (item.model.toLowerCase().includes(keyWord.toLowerCase()) || item.make.toLowerCase().includes(keyWord.toLowerCase())) {
+                        makemodel = item.make+" "+item.model;
+                        if (item.model.toLowerCase().includes(keyWord.toLowerCase()) || item.make.toLowerCase().includes(keyWord.toLowerCase()) || makemodel.toLowerCase().includes(keyWord.toLowerCase()) ) {
                             newData.push(item);
                         }
                     });

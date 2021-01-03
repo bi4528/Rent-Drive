@@ -38,6 +38,8 @@ export class SearchComponent implements OnInit {
       this.filter_text = "<H3>Filtered by keyword: \"" + this.keyword + "\"</H3>";
       this.getVehicles(url);
       */
+      this.current_page=1;
+      console.log(this.keyword);
       this.router.navigate(['/search'], { queryParams: { value: this.keyword, page: 1 } });
     }
   }
@@ -66,7 +68,7 @@ export class SearchComponent implements OnInit {
       });
   }
 
-  private getVehicles = (url: string): void => {
+  private getVehicles = (url: string, filtered_by: string): void => {
     this.sporocilo = "Searching for cars";
 
     this.vehiclesDataService
@@ -74,6 +76,7 @@ export class SearchComponent implements OnInit {
       .then(data => {
         this.sporocilo = data.length > 0 ? "" : "No cars found";
         this.cars = data;
+        this.filter_text = filtered_by;
       });
   }
 
@@ -105,22 +108,22 @@ export class SearchComponent implements OnInit {
         this.current_page = params.page;
         if (params.city) {
           let url = "?city=" + params.city + "&dateFrom=" + params.dateFrom + "&dateTo=" + params.dateTo + "&page=" + params.page;
-          this.filter_text = "<H3>Filtered by city of pick-up: \"" + params.city + "\", date from: \"" + params.dateFrom + "\" and date to: \"" + params.dateTo + "\"</H3>";
-          this.getVehicles(url);
+          let filtertext = "<H3>Filtered by city of pick-up: \"" + params.city + "\", date from: \"" + params.dateFrom + "\" and date to: \"" + params.dateTo + "\"</H3>";
+          this.getVehicles(url, filtertext);
         }
         else if (params.category) {
           let url = "?category=" + params.category + "&page=" + params.page;
-          this.filter_text = "<H3>Filtered by category: \"" + params.category.toLowerCase() + "\"</H3>";
-          this.getVehicles(url);
+          let filtertext = "<H3>Filtered by category: \"" + params.category.toLowerCase() + "\"</H3>";
+          this.getVehicles(url, filtertext);
         }
         else if (params.value) {
           let url = "?value=" + params.value + "&page=" + params.page;
-          this.filter_text = "<H3>Filtered by keyword: \"" + this.keyword + "\"</H3>";
-          this.getVehicles(url);
+          let filtertext = "<H3>Filtered by keyword: \"" + this.keyword + "\"</H3>";
+          this.getVehicles(url, filtertext);
         }
         else {
-          this.getVehicles("?page=" + params.page);
-          this.filter_text = "";
+          let filtertext = "";
+          this.getVehicles("?page=" + params.page, filtertext);
         }
       });
   }
