@@ -195,3 +195,19 @@ Delovanje naše aplikacije smo preverili z orodjem [OWASP ZAP](https://owasp.org
 - V orodje [OWASP ZAP](https://owasp.org/www-project-zap/) uvezemo datoteko s strani [http://localhost:3000/api/swagger.json](http://localhost:3000/api/swagger.json) in seznam najpomembnejših povezav dostopen v datoteki `test/security/povezave.txt`, ampak za ponoven zagon je potrebno spremeniti id-je v povezavah, saj so odvisni od podatkovne baze.
 
 - Delovanje smo preverili preko uvoza omejene swagger.json datoteke, z ročnim preiskovanjem na povezavi [http://localhost:3000](http://localhost:3000), pregledom *Spider* in *Ajax Spider* in izvedbo napada *Attack*. Izdelali smo začetno poročilo z vranostnimi tveganji dostopno v datoteki `test/security/rentdrive-report-prej.html`. Vsa varnostna tveganja smo odpravili in naredili novo poročilo v datoteki `test/security/rentdrive-report-potem.html`.
+
+### Progresivna spletna aplikacija
+
+S pomočjo orodja Lighthouse smo nadgradili našo aplikacijo. Obstoječe slike so kompresirane, uporabljena je knjižnica za kompresijo kode in besedišča. Spremenjena je barva navigacijskeg menija zaradi boljše dostopnosti. Produkcijska verzija je skladna z načeli progresivne spletne aplikacije, http preusmerja na https, aplikacija opozori na stanje brez povezave in ustrezno takrat onemogoči določene funkcionalnosti, dodan je ServiceWorker. Dodani so tudi async in defer atributi za določene zunanje skripte in povezave, kar je nekoliko pospešilo prvotno nalaganje strani.
+
+Dodani so metapodatki "viewport" in "description" v osnovno html datoteko, kar je zvišalo SEO oceno.
+
+Možno je pohitriti tudi nameščanje zunanjih css datotek z uporabo preloada, zavedamo se da bi lahko najprej naložili kritične css komponente in šele nato naredili load nekritičnih css stilov, vendar to zaenkrat nismo implementirali.
+
+Trenutno stanje je takšno da so ocene dostopnosti, SEO, najboljših praks zelo visoke, zmeraj nad 90%, pogostokrat pa so ocenjene s kar 100%.
+Performanse se pa gibljejo okrog solidnih 75%.
+
+Test za mobilni način uporabe svetuje proti serviranju slik z nizko ločlivostjo, vendar mislimo da v tem primeru to ne predstavlja problem, ker "slika" gre za ikonico ki se prikaže pri minimiziranju navigacijske vrstice (štiri črtice). 
+
+PWA test včasih javi "napako" \
+```start_url does not respond with a 200 when offline The start_url did respond, but not via a service worker```), ki je prisotna na Google Chrome brskalniku, dočim ni prisotna na Brave in Firefoxu brskalniku.

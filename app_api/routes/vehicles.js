@@ -46,6 +46,43 @@ router
  *   get:
  *    summary: List of all vehicles
  *    tags: [Vehicles]
+ *    parameters:
+ *     - in: query
+ *       name: page
+ *       description: Returns 12 cars
+ *       schema:
+ *        type: number
+ *       example: 1
+ *     - in: query
+ *       name: value
+ *       description: keyword
+ *       schema:
+ *        type: string
+ *       example: Tesla
+ *     - in: query
+ *       name: city
+ *       description: City
+ *       schema:
+ *        type: string
+ *       example: Ljubljana
+ *     - in: query
+ *       name: category
+ *       description: Type of vehicle
+ *       schema:
+ *        type: string
+ *       example: SUV
+ *     - in: query
+ *       name: dateFrom
+ *       description: Starting date
+ *       schema:
+ *        type: string
+ *       example: "2021-01-01"
+ *     - in: query
+ *       name: dateTo
+ *       description: Ending date
+ *       schema:
+ *        type: string
+ *       example: "2021-01-05"    
  *    responses:
  *     "200":
  *      description: Successful request with list of vehicles.
@@ -153,6 +190,43 @@ router
  *   get:
  *    summary: Get number of vehicles in database
  *    tags: [Vehicles]
+ *    parameters:
+ *     - in: query
+ *       name: page
+ *       description: Returns 12 cars
+ *       schema:
+ *        type: number
+ *       example: 1
+ *     - in: query
+ *       name: value
+ *       description: keyword
+ *       schema:
+ *        type: string
+ *       example: Tesla
+ *     - in: query
+ *       name: city
+ *       description: City
+ *       schema:
+ *        type: string
+ *       example: Ljubljana
+ *     - in: query
+ *       name: category
+ *       description: Type of vehicle
+ *       schema:
+ *        type: string
+ *       example: SUV
+ *     - in: query
+ *       name: dateFrom
+ *       description: Starting date
+ *       schema:
+ *        type: string
+ *       example: "2021-01-01"
+ *     - in: query
+ *       name: dateTo
+ *       description: Ending date
+ *       schema:
+ *        type: string
+ *       example: "2020-01-05"  
  *    responses:
  *     "200":
  *      description: Successfully got number.

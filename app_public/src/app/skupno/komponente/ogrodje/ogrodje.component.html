@@ -55,7 +55,7 @@
 
 <router-outlet></router-outlet>
 
-<div class="footer-basic pt-4 w-100">
+<div class="footer-basic pt-4 w-100 mt-2">
   <footer>
     <div class="container-fluid">
       <div class="row">
@@ -65,16 +65,16 @@
             If you need any further help feel free to contact us on:
           </p>
           <ul>
-            <li>
+            <li class="my-2">
               <a href="mailto:mi2583@student.uni-lj.si">mi2583@student.uni-lj.si</a>
             </li>
-            <li>
+            <li class="my-2">
               <a href="mailto:mk9693@student.uni-lj.si">mk9693@student.uni-lj.si</a>
             </li>
-            <li>
+            <li class="my-2">
               <a href="mailto:nb9762@student.uni-lj.si">nb9762@student.uni-lj.si</a>
             </li>
-            <li>
+            <li class="my-2">
               <a href="mailto:bi4528@student.uni-lj.si">bi4528@student.uni-lj.si</a>
             </li>
           </ul>
@@ -91,21 +91,21 @@
 
         <div class="col-md-4 ul-list">
           <ul>
-            <li><a routerLink="/">Home</a></li>
-            <li><a routerLink="/nearby">Nearby</a></li>
-            <li *ngIf="is_user_logged()">
+            <li class="my-2"><a routerLink="/">Home</a></li>
+            <li class="my-2"><a routerLink="/nearby">Nearby</a></li>
+            <li class="my-2" *ngIf="is_user_logged()">
               <a routerLink="/vehicles/publish">List your car</a>
             </li>
-            <li *ngIf="is_user_logged()">
+            <li class="my-2" *ngIf="is_user_logged()">
               <a routerLink="/users/profiles/{{ get_user_id() }}">My profile</a>
             </li>
-            <li *ngIf="!is_user_logged()">
+            <li class="my-2" *ngIf="!is_user_logged()">
               <a routerLink="/users/login">Login</a>
             </li>
-            <li *ngIf="!is_user_logged()">
+            <li class="my-2" *ngIf="!is_user_logged()">
               <a routerLink="/users/register">Register</a>
             </li>
-            <li><a routerLink="/search">Search</a></li>
+            <li class="my-2"><a routerLink="/search">Search</a></li>
           </ul>
         </div>
       </div>
