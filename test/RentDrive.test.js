@@ -158,7 +158,7 @@
         await povezava.click();
       });
 
-      context("car details validation", function () {
+      context("Car details validation", function () {
         it("make and model", async function () {
           await pocakajStranNalozena(brskalnik, 10, "//h2");
           let naslov = await brskalnik.findElement(By.css(".car-name"));
@@ -229,7 +229,7 @@
         });
       });
 
-      context("reviews validation", function () {
+      context("Reviews validation", function () {
 
         it("number of reviews", async function () {
           await pocakajStranNalozena(brskalnik, 10, "//table");
@@ -407,7 +407,7 @@
       this.timeout(30 * 1000);
       before(() => { brskalnik.get(aplikacijaUrl); });
 
-      context("edit my profile", function() {
+      context("Edit my profile", function() {
         it("go to my profile and click on button edit", async function(){ 
           await pocakajStranNalozena(brskalnik, 40, "//h4");
           let povezava = await brskalnik.findElement(
@@ -452,7 +452,7 @@
       });
 
 
-      context("favourite a car", function() { 
+      context("Favourite a car", function() { 
         it("go to search, click on the Tesla, and favourite it, do the same for the Aveo", async function(){ 
           let povezava = await brskalnik.findElement(
             By.xpath("//a[contains(text(), 'Search')]"));
@@ -546,7 +546,7 @@
     });
 
     after(async () => {
-      //brskalnik.quit();
+      brskalnik.quit();
     });
 
   } catch (napaka) {
