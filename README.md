@@ -160,4 +160,6 @@ Podatki o izposojenih avtih so dostopni na naslovu [localhost:3000/api/rented](l
     - npm install leaflet
     - npm install @asymmetrik/ngx-leaflet
     - npm install --save-dev @types/leaflet
-
+    
+## 5. LP - Varnostno zaščitena progresivna aplikacija
+Delovanje naše aplikacije smo preverili z orodjem [OWASP ZAP](https://owasp.org/www-project-zap/). 

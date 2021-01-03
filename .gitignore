@@ -64,7 +64,7 @@ typings/
 .idea
 
 #Build
-app_public/build/*
+app_public/build/assets/uploads/*
 
 #Slike
 *.jpg
