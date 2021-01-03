@@ -433,7 +433,7 @@
 
           brskalnik.findElement(
             By.xpath("//button[contains(text(), 'Save')]")).click();
-          await pocakajStranNalozena(brskalnik, 40, "//span[contains(text(), 'Chuck')]");
+          await pocakajStranNalozena(brskalnik, 40, "//span[contains(text(), 'Skupina')]");
         });
 
         it("check if firstname and lastname have been changes", async function(){ 
@@ -468,7 +468,8 @@
           await pocakajStranNalozena(brskalnik, 10, "//h2");
           let heart= await brskalnik.findElements(By.css("#favorite"));
           expect(heart).to.not.be.empty;
-          await heart[0].click();
+          await heart[0].click();          
+          await pocakajStranNalozena(brskalnik, 10, "//i[@class='fas fa-heart']");
           //repetition
           povezava = await brskalnik.findElement(
             By.xpath("//a[contains(text(), 'Search')]"));
@@ -485,6 +486,7 @@
           heart= await brskalnik.findElements(By.css("#favorite"));
           expect(heart).to.not.be.empty;
           await heart[0].click();
+          await pocakajStranNalozena(brskalnik, 10, "//i[@class='fas fa-heart']");
         });
 
         it("go to my profile, check if the Tesla and Chevrolet are now in the favourte vehicles tab", async function(){ 
@@ -492,7 +494,7 @@
             By.xpath("//a[contains(text(), 'My profile')]"));
           expect(myProfileButton).to.not.be.empty;
           await myProfileButton.click();
-          await pocakajStranNalozena(brskalnik, 40, "//h5[contains(text(), 'Ford')]");
+          await pocakajStranNalozena(brskalnik, 40, "//h5[contains(text(), 'Tesla')]");
 
           let favourites = await brskalnik.findElement(
             By.xpath("//h5[contains(text(), 'Tesla')]"));
@@ -527,11 +529,12 @@
       });
 
       it("click on delete profile", async function () {
-        await pocakajStranNalozena(brskalnik, 10, "//h5[contains(text(), 'Ford')]");
+        await pocakajStranNalozena(brskalnik, 10, "//h5[contains(text(), 'Tesla')]");
         let deleteButton = await brskalnik.findElement(
           By.xpath("//button[contains(text(), 'Delete')]"));
         expect(deleteButton).to.not.be.empty;
         await deleteButton.click();
+        await pocakajStranNalozena(brskalnik, 10, "//h4");
       });
 
       it("check if navbar has register button", async function () {
