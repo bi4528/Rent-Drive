@@ -167,11 +167,15 @@ export class ProfileComponent implements OnInit {
 
     if (this.jePovezava()) {
 
-      for (let i = 0; i < this.owned_cars.length; i++) {
-        this.delete_vehicle(this.owned_cars[i]._id);
+      if(this.owned_cars){
+        for (let i = 0; i < this.owned_cars.length; i++) {
+          this.delete_vehicle(this.owned_cars[i]._id);
+        }
       }
-      for (let i = 0; i < this.user_reviews.length; i++) {
-        this.delete_review_of_user(this.vehicles_of_reviews[i], this.user_reviews[i]);
+      if(this.user_reviews){
+        for (let i = 0; i < this.user_reviews.length; i++) {
+          this.delete_review_of_user(this.vehicles_of_reviews[i], this.user_reviews[i]);
+        }
       }
 
       this.usersDataService.deleteUser(this.user).then(() => {
@@ -235,7 +239,8 @@ export class ProfileComponent implements OnInit {
   public show_controls: Boolean;
 
   ngOnInit(): void {
-
+    this.owned_cars=[];
+    this.user_reviews=[];
     this.id_of_user = this.pot.snapshot.paramMap.get('idUser');
     this.checkIfProfileIsUserLogged();
     this.get_user_data(this.id_of_user);
