@@ -84,6 +84,12 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
+//Handles robots.txt
+app.all('/robots.txt', (req, res) => {
+  res.type('text/plain')
+  res.send("User-agent: *\Allow: /");
+});
+
 // Odprava varnostnih pomanjkljivosti
 app.disable('x-powered-by');
 app.use((req, res, next) => {

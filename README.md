@@ -182,6 +182,7 @@ Podatki o izposojenih avtih so dostopni na naslovu [localhost:3000/api/rented](l
 ## 5. LP - Varnostno zaščitena progresivna aplikacija
 
 ### Avtentikacija in avtorizacija z MEAN (JWT)
+
 Naša aplikacija podpira tri tipe uporabnikov. Če je trenutno prijavljeni uporabnik navaden, potem on lahko spreminja oz. dodaja samo podatke, ki jih je on dodal sam. Takšni podatki so: avti, osebni podatki, komentarji, najemi. Če pa je trenuten uporabnik administrator, potem on lahko spreminja vse (če se mu zdi to smiselno). Takrat so mu vsi gumbi za brisanje in spreminjanje podatkov dostopni in vidni.  Obstajajo še gostje, to so uporabniki, ki niso ustvarili svojega računa in si lahko ogledajo avte, profile, berejo komentarje oz. imajo samo bralni dostop.
 
 ### Varnostni pregled
