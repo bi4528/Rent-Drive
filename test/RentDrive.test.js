@@ -7,7 +7,7 @@
     const expect = require("chai").expect;
     
     // Parametri
-    let aplikacijaUrl = "https://rentdrive-sp.herokuapp.com/";//"http://localhost:4200/"; //"https://rentdrive-sp.herokuapp.com/";
+    let aplikacijaUrl = "http://localhost:4200/"; //"https://rentdrive-sp.herokuapp.com/";
     let apiUrl = "http://localhost:3000/"; //Na koncu bo vse na url produkcije
     let seleniumStreznikUrl = "http://localhost:4444/wd/hub";
     let brskalnik, jwtZeton;
@@ -17,10 +17,10 @@
       timeout: 5000
     });
     */
-   const axios = require('axios').create({
-    baseURL: aplikacijaUrl + "api/",
+    const axios = require('axios').create({
+    baseURL: apiUrl + "api/",
     timeout: 5000
-  });
+    });
 
     
     // Obvladovanje napak

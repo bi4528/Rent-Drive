@@ -3,6 +3,7 @@ import { Vehicle, Review } from '../../razredi/vehicle';
 import { VehiclesDataService } from '../../storitve/vehicles-data.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router'
+import { PovezavaService } from '../../storitve/povezava.service';
 
 @Component({
   selector: 'app-search',
@@ -14,7 +15,9 @@ export class SearchComponent implements OnInit {
   constructor(
     private vehiclesDataService: VehiclesDataService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private povezavaStoritev: PovezavaService
+    ) { }
 
   public cars: Vehicle[];
   public sporocilo: string;
@@ -37,6 +40,10 @@ export class SearchComponent implements OnInit {
       */
       this.router.navigate(['/search'], { queryParams: { value: this.keyword, page: 1 } });
     }
+  }
+
+  public jePovezava(): boolean {
+    return this.povezavaStoritev.jePovezava;
   }
   
   public updatePage = (next_page): void => {

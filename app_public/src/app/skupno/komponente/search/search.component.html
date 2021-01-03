@@ -17,7 +17,7 @@
         </div>
         <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
 
-            <button (click)="filter()" class="btn btn-outline-success my-2 my-sm-0 searchbutton"
+            <button (click)="filter()" [disabled]="!jePovezava()" class="btn btn-outline-success my-2 my-sm-0 searchbutton"
                 type="button">Search</button>
 
         </div>
@@ -35,7 +35,7 @@
                 <div class="card-body">
                     <h4 class="card-title model">{{car.make}} {{car.model}}</h4>
                     <p class="card-text description">{{car.description}}</p>
-                    <a routerLink="/vehicles/{{car._id}}" class="btn btn-light rounded border-secondary">Book for only
+                    <a [disabled]="!jePovezava()" routerLink="/vehicles/{{car._id}}" class="btn btn-light rounded border-secondary">Book for only
                         {{car.price}}$/day</a>
                 </div>
 
