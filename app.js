@@ -123,7 +123,7 @@ if (process.env.NODE_ENV == 'production') {
 
 app.use('/api', (req, res, next) => {
   //res.header('Access-Control-Allow-Origin', 'http://localhost:4200'); //should solve CORS error? (put heroku link later)
-  res.header('Access-Control-Allow-Origin', URI);
+  res.header('Access-Control-Allow-Origin', '*');
   res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
