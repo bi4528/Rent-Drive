@@ -115,12 +115,9 @@ app.use(passport.initialize());
 
 //Cross-Domain Misconfiguration
 var URI = 'http://localhost:4200';
-if (process.env.NODE_ENV === 'production') {
-  console.log("Production");
+if (process.env.NODE_ENV == 'production') {
   URI = 'https://rentdrive-sp.herokuapp.com'
-}
-else if (process.env.NODE_ENV === 'docker') {
-  console.log("docker");
+} else if (process.env.NODE_ENV == 'docker') {
   URI = 'http://localhost:3000';
 }
 
@@ -151,21 +148,7 @@ app.get("/api/swagger.json", (req, res) => {
 //NAJ KDO POPRAVI SPODNJO FUNKCIJO NEVEM KAJ DELA by Matej
 app.get('*', (req, res, next) => {
   res.sendFile(path.join(__dirname, 'app_public', 'build', 'index.html'));
-})/*
-usersApi.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-usersApi.get("/swagger.json", (req, res) => {
-  res.status(200).json(swaggerDocument);
-});
-
-vehicleApi.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-vehicleApi.get("/swagger.json", (req, res) => {
-  res.status(200).json(swaggerDocument);
-});
-
-rentedApi.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-rentedApi.get("/swagger.json", (req, res) => {
-  res.status(200).json(swaggerDocument);
-});*/
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

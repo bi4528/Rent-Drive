@@ -505,3 +505,16 @@ table, th, td {
     color: #000;
     text-shadow: 0 0 5px #09f;
   }
+
+  .mx-md-2 .nav-link:hover {
+    color: white;
+    text-shadow:  0 0 10px #bfbfbf;
+  }
+
+  .mx-md-2 .disabled {
+    color: white !important;
+  }
+
+  .ni-povezave {
+    color: #f89406;
+  }
