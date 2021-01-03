@@ -387,14 +387,13 @@
             By.xpath("//input[@type='submit']"));
           await gumbPrijava.click();
         });
-
-        it("check if car is in my profile", async function(){ 
-          await pocakajStranNalozena(brskalnik, 10, "//h4");
-          await brskalnik.findElement(
-            By.xpath("//a[contains(text(), 'My profile')]")).click();
-            
-
-
+        
+        it("check if the car published is in my profile", async function(){ 
+          await pocakajStranNalozena(brskalnik, 40, "//h4");
+          let myProfileButton = await brskalnik.findElement(
+            By.xpath("//a[contains(text(), 'My profile')]"));
+          expect(myProfileButton).to.not.be.empty;
+          myProfileButton.click();
 
           await pocakajStranNalozena(brskalnik, 40, "//h5[contains(text(), 'Ford')]");
           let make= await brskalnik.findElement(By.xpath("//h5[contains(text(), 'Ford')]"));
