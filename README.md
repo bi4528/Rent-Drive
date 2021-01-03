@@ -155,16 +155,6 @@ Podatki o izposojenih avtih so dostopni na naslovu [localhost:3000/api/rented](l
 
 ## 4. LP - SPA aplikacija na eni strani
 
-### Prikaz zemljevida
-- Za prikaz zemljevida uporabljena je knjžnica [@asymmetrik/ngx-leaflet](https://github.com/Asymmetrik/ngx-leaflet), zaradi tega premaknite se v mapo LP-01 in zaženite naslednje ukaze:
-    - npm install leaflet
-    - npm install @asymmetrik/ngx-leaflet
-    - npm install --save-dev @types/leaflet
-    
-## 5. LP - Varnostno zaščitena progresivna aplikacija
-Delovanje naše aplikacije smo preverili z orodjem [OWASP ZAP](https://owasp.org/www-project-zap/). 
-
-
 ### Namestitev potrebnih datotek za zagon, in zagon aplikacije v lokalnem okolju
 
 1. Z ukazom v ukazni vrstici` git clone https://github.com/sp-2020-2021/LP-01` se v trenutno mapo namestijo datoteke iz oddaljenega repozitorija.
@@ -179,12 +169,28 @@ Delovanje naše aplikacije smo preverili z orodjem [OWASP ZAP](https://owasp.org
 10. Izvedemo ukaz ` npm install` s čemer se namestijo potrebne vmesnike za zagon aplikacije.
 11. Izvedemo ukaz ` ng serve --open` s čemer angular nam postreže našo aplikacijo.
 
+### Prikaz zemljevida
+- Za prikaz zemljevida uporabljena je knjžnica [@asymmetrik/ngx-leaflet](https://github.com/Asymmetrik/ngx-leaflet), zaradi tega premaknite se v mapo LP-01 in zaženite naslednje ukaze:
+    - npm install leaflet
+    - npm install @asymmetrik/ngx-leaflet
+    - npm install --save-dev @types/leaflet
+    
 ### Povezava do oddaljene spletne aplikacije
 
-http://rentdrive-sp.herokuapp.com/
-
+- http://rentdrive-sp.herokuapp.com/
+    
 ## 5. LP - Varnostno zaščitena progresivna aplikacija
 
 ### Avtentikacija in avtorizacija z MEAN (JWT)
 Naša aplikacija podpira tri tipa uporabnikov. Če je trenutni prijavljen uporabnik navaden potem on ima dovoljenje da spreminja (dodaja) samo podatke ki jih je on sam dodal. Takšne podatke so: avti, osebne podatke, komentarji, najeme. Če pa je trenuten uporabnik administrator potem on ima dovoljenje da spreminja vse (če se mu zdi to smisleno). Takrat so vse gumbe za brisanje in spreminjanje podatke so dostopni in vidni.  Obstajajo še guests, to so uporabniki ki niso ustvarili svoj račun in lahko gledajo avte, profile, berejo komentarji oz. imajo samo bralni dostop.
 
+### Varnostni pregled
+Delovanje naše aplikacije smo preverili z orodjem [OWASP ZAP](https://owasp.org/www-project-zap/). 
+- Najprej generiramo docker verzije Angular aplikacije.`ng build --configuration=docker --output-path build`
+- Odstranimo morebitno predhodno postavitev Docker vsebnikov `docker-compose down`.
+- Zahtevamo ponovno generiranje slike naše aplikacije in poženemo z ukazom `docker-compose up --build --detach`
+- Naredimo novega admina z registracijo z geslom *ADMIN_PASSWORD* iz datoteke `.env`.
+- V brskalniku gremo na povezavo [http://localhost:3000/db](http://localhost:3000/db) in z klikom na gumb *Delete smaple data* pobrišemo moribitne podatke in z potem s klikom na gum *Add smaple data* dodamo vzorčne podatke v bazo.
+- V orodje [OWASP ZAP](https://owasp.org/www-project-zap/) uvezemo datoteko s strani [http://localhost:3000/api/swagger.json](http://localhost:3000/api/swagger.json) in seznam najpomembnejših povezav dostopen v datoteki `test/security/povezave.txt`, ampak za ponoven zagon je potrebno spremeniti id-je v povezavah, saj so odvisni od podatkovne baze.
+
+- Delovanje smo preverili preko uvoza omejene swagger.json datoteke, z ročnim preiskovanjem na povezavi [http://localhost:3000](http://localhost:3000), pregledom *Spider* in *Ajax Spider* in izvedbo napada *Attack*. Izdelali smo začetno poročilo z vranostnimi tveganji dostopno v datoteki `test/security/rentdrive-report-prej.html`. Vsa varnostna tveganja smo odpravili in naredili novo poročilo v datoteki `test/security/rentdrive-report-potem.html`.
