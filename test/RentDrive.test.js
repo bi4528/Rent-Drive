@@ -1,29 +1,3 @@
-/**
- * Funkcionalni testi
- */
-/*
-1) 
-2) 
-3) 
-4) 
-5) 
-6) 
-7) 
-8) 
-9) edit vehicle
-10) ga izbrise
-11) 
-12) 
-13) odpre prvi avto v search in ga renta 
-14) pogleda v profile ce je rent
-15) izbrise rent
-16) nearby
-17) pogleda vreme
-18) 
-19) 
-20) 
-(Matej)
-*/
 (async function EduGeoCache() {
     // Knjižnice
     const { exec } = require("child_process");
@@ -33,7 +7,7 @@
     const expect = require("chai").expect;
     
     // Parametri
-    let aplikacijaUrl = "http://localhost:4200/"; //"https://rentdrive-sp.herokuapp.com/";
+    let aplikacijaUrl = "https://rentdrive-sp.herokuapp.com/";//"http://localhost:4200/"; //"https://rentdrive-sp.herokuapp.com/";
     let apiUrl = "http://localhost:3000/"; //Na koncu bo vse na url produkcije
     let seleniumStreznikUrl = "http://localhost:4444/wd/hub";
     let brskalnik, jwtZeton;
@@ -44,7 +18,7 @@
     });
     */
    const axios = require('axios').create({
-    baseURL: apiUrl + "api/",
+    baseURL: aplikacijaUrl + "api/",
     timeout: 5000
   });
 
@@ -118,12 +92,20 @@
         });
         
         context("Check is Chuck is really logged in now", function() {
+          it("check if navbar has changed", async function() {
+            await pocakajStranNalozena(brskalnik, 10, "//h4");
+            let myProfileButton = await brskalnik.findElement(
+              By.xpath("//a[contains(text(), 'My profile')]"));
+            expect(myProfileButton).to.not.be.empty;
+          });
+
           it("go to my_profile", async function() {
             await pocakajStranNalozena(brskalnik, 10, "//h4");
             let myProfileButton = await brskalnik.findElement(
               By.xpath("//a[contains(text(), 'My profile')]"));
             expect(myProfileButton).to.not.be.empty;
             await myProfileButton.click();
+            await pocakajStranNalozena(brskalnik, 40, "//h2[contains(text(), 'My vehicles')]");
           });
         });
       });
@@ -141,24 +123,24 @@
 
           await pocakajStranNalozena(brskalnik, 10, "//h4");
           let cars = await brskalnik.findElements(By.css(".card"));
-          expect(cars).to.be.an("array").to.have.lengthOf(10);
+          expect(cars).to.be.an("array").to.have.lengthOf(12);
         });
 
-        context("does search filter like it should?", function() {
-          it("write tesla and expect 1 result", async function() {
-            let searchBar = await brskalnik.findElement(By.css("input[name='Search']"));
-            expect(searchBar).to.not.be.empty;
-            searchBar.sendKeys("Tesla");
+       
+        it("write tesla and expect 1 result", async function() {
+          let searchBar = await brskalnik.findElement(By.css("input[name='Search']"));
+          expect(searchBar).to.not.be.empty;
+          searchBar.sendKeys("Tesla");
 
-            let gumb = await brskalnik.findElement(
-              By.xpath("//button[contains(text(), 'Search')]"));
+          let gumb = await brskalnik.findElement(
+            By.xpath("//button[contains(text(), 'Search')]"));
 
-            await gumb.click();
-            await pocakajStranNalozena(brskalnik, 10, "//h3[contains(text(), 'Filtered by keyword')]");
-            let cars = await brskalnik.findElements(By.css(".card"));
-            expect(cars).to.be.an("array").to.have.lengthOf(1);
-          });
+          await gumb.click();
+          await pocakajStranNalozena(brskalnik, 10, "//h3[contains(text(), 'Filtered by keyword: \"Tesla\"')]");
+          let cars = await brskalnik.findElements(By.css(".card"));
+          expect(cars).to.be.an("array").to.have.lengthOf(1);
         });
+        
   
       });
 
@@ -168,9 +150,9 @@
         
   
         it("choose Tesla Model 3", async function() {
-          await pocakajStranNalozena(brskalnik, 10, "//h4");
+          await pocakajStranNalozena(brskalnik, 10, "//a[contains(text(), 'Book for only 85')]");
           let povezava = await brskalnik.findElement(
-            By.xpath("//a[contains(text(), 'Book for only 85$/day')]"));
+            By.xpath("//a[contains(text(), 'Book for only 85')]"));
           expect(povezava).to.not.be.empty;
           await povezava.click();
         });
@@ -367,9 +349,9 @@
           //let minage = await brskalnik.findElement(By.css("select[name='minage']"));
           //expect(minage).to.not.be.empty;
           //minage.selectByIndex(1);
-          let AirConditioning = await brskalnik.findElement(By.css("input[name='AirConditioning']"));
+          /*let AirConditioning = await brskalnik.findElement(By.css("input[name='AirConditioning']"));
           expect(AirConditioning).to.not.be.empty;
-          AirConditioning.click();
+          AirConditioning.click();*/
           let description = await brskalnik.findElement(By.css("textarea[name='description']"));
           expect(description).to.not.be.empty;
           description.sendKeys("You have never seen a car like this");
@@ -390,7 +372,7 @@
           price.sendKeys("999");
           let dateFrom = await brskalnik.findElement(By.css("input[name='datefrom']"));
           expect(dateFrom).to.not.be.empty;
-          dateFrom.sendKeys("01-01-2021");
+          dateFrom.sendKeys("10-10-2021");
           let dateTo = await brskalnik.findElement(By.css("input[name='dateto']"));
           expect(dateTo).to.not.be.empty;
           dateTo.sendKeys("12-12-2021");
@@ -412,7 +394,7 @@
           expect(povezava).to.not.be.empty;
           await povezava.click();
 
-          await pocakajStranNalozena(brskalnik, 40, "//h2[contains(text(), 'My vehicles')]");
+          await pocakajStranNalozena(brskalnik, 40, "//h5[contains(text(), 'Ford')]");
           let make= await brskalnik.findElement(By.xpath("//h5[contains(text(), 'Ford')]"));
           expect(make).to.not.be.empty;
         });

@@ -28,8 +28,8 @@
         "luggage": "425",
         "minage": "18",
         "date": [
-            "2020-11-28",
-            "2021-01-30"
+            "2021-01-02",
+            "2021-02-30"
         ],
         "reviews": [
             {
@@ -59,66 +59,61 @@
         ]
     },
     {
-        "make": "Tesla",
-        "model": "Model 3 2019",
-        "hp": "450",
-		"maxspeed": "209",
-		"acceleration": "9.0",
-        "consumption": "6.8",
-    	"seats": "5",
-		"doors": "4",
-		"AirConditioning": "on",
-		"Navigation": "on",
-		"bluetooth": "on",
-		"parkingsensors": "on",
-		"USB": "on",
-		"AUX": "on",
-		"autopilot": "on",
-        "accessibility": "off",
-        "typeoffuel": "Electric",
-		"luggage": "425",
-        "minage": "18",
-        "profile_picture": "/images/oseba_template.jpg",
-		"username": "JoshSmith213",
-        "email": "josh_smith@gmail.com",
-        "number": "+38670789654",
-        "avg_rating": "4",
-        "description": "Step into the future with our beautiful electric four-door fastback sedan.",
-        "price": 85,
-        "images": ["tesla1.jpg","tesla2.jpg","tesla3.jpg","tesla4.jpg","tesla5.jpg","tesla6.jpg"],
-        "addres": "Kolodvorska 15",
+        "make": "Audi",
+        "model": "A1",
+        "description": "I love this vehicle.",
+        "price": 45,
+        "addres": "Cankarjeva 7",
+        "images": ["generic.jpg"],
         "city": "Ljubljana",
-        "zip": "1000",
         "country": "Slovenija",
         "category": "Hatchback",
+        "zip": "1000",
+        "hp": "120",
+        "maxspeed": "190",
+        "acceleration": "9",
+        "consumption": "8",
+        "seats": "5",
+        "doors": "3",
+        "accessibility":"on",
+        "AirConditioning": "on",
+        "Navigation": "on",
+        "bluetooth": "on",
+        "parkingsensors": "on",
+        "USB": "off",
+        "AUX": "off",
+        "autopilot": "off",
+        "typeoffuel": "Petrol",
+        "luggage": "225",
+        "minage": "18",
         "date": [
-            "2020-12-24",
-            "2021-01-24"
+            "2020-11-24",
+            "2021-10-24"
         ],
         "reviews": [
             {
                 "username": "Marko Šter",
                 "rating": "★★★☆☆",
                 "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
-                "img": "oseba_template_2.jpg"
+                "img": "../images/oseba_template_2.jpg"
             },
             {
                 "username": "Marko",
                 "rating": "★★★★☆",
                 "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
-                "img": "oseba_template_2.jpg"
+                "img": "../images/oseba_template_2.jpg"
             },
             {
                 "username": "Bojan",
                 "rating": "★★★★☆",
                 "comment": "Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!",
-                "img": "oseba_template_2.jpg"
+                "img": "../images/oseba_template_2.jpg"
             },
             {
                 "username": "Matej",
                 "rating": "★★★★★",
                 "comment": "The car is pure genius.",
-                "img": "oseba_template_2.jpg"
+                "img": "../images/oseba_template_2.jpg"
             }
         ]
     },
@@ -151,8 +146,8 @@
         "luggage": "40",
         "minage": "18",
         "date": [
-            "2020-12-20",
-            "2021-01-24"
+            "2021-01-20",
+            "2021-10-24"
         ],
         "reviews": [
             {
@@ -210,8 +205,8 @@
         "luggage": "425",
         "minage": "18",
         "date": [
-            "2020-12-28",
-            "2020-12-30"
+            "2021-01-28",
+            "2022-12-30"
         ],
         "reviews": [
             {
@@ -269,7 +264,7 @@
         "luggage": "425",
         "minage": "18",
         "date": [
-            "2020-12-10",
+            "2020-12-30",
             "2021-01-24"
         ],
         "reviews": [
@@ -447,7 +442,7 @@
         "minage": "18",
         "date": [
             "2020-12-10",
-            "2021-01-24"
+            "2021-03-24"
         ],
         "reviews": [
             {
@@ -565,7 +560,1192 @@
         "minage": "18",
         "date": [
             "2020-11-24",
-            "2020-12-24"
+            "2021-12-24"
+        ],
+        "reviews": [
+            {
+                "username": "Marko Šter",
+                "rating": "★★★☆☆",
+                "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Marko",
+                "rating": "★★★★☆",
+                "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Bojan",
+                "rating": "★★★★☆",
+                "comment": "Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Matej",
+                "rating": "★★★★★",
+                "comment": "The car is pure genius.",
+                "img": "../images/oseba_template_2.jpg"
+            }
+        ]
+    },
+    {
+        "make": "Renault",
+        "model": "Clio",
+        "description": "Car is perfect, small and practical",
+        "price": 42,
+        "addres": "Cankarjeva 7",
+        "images": ["generic.jpg"],
+        "city": "Ljubljana",
+        "country": "Slovenija",
+        "category": "Hatchback",
+        "zip": "1000",
+        "hp": "60",
+        "maxspeed": "180",
+        "acceleration": "9",
+        "consumption": "5.4",
+        "seats": "5",
+        "doors": "5",
+        "accessibility":"on",
+        "AirConditioning": "on",
+        "Navigation": "on",
+        "bluetooth": "on",
+        "parkingsensors": "on",
+        "USB": "off",
+        "AUX": "off",
+        "autopilot": "off",
+        "typeoffuel": "Diesel",
+        "luggage": "325",
+        "minage": "18",
+        "date": [
+            "2020-11-24",
+            "2021-10-24"
+        ],
+        "reviews": [
+            {
+                "username": "Marko Šter",
+                "rating": "★★★☆☆",
+                "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Marko",
+                "rating": "★★★★☆",
+                "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Bojan",
+                "rating": "★★★★☆",
+                "comment": "Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Matej",
+                "rating": "★★★★★",
+                "comment": "The car is pure genius.",
+                "img": "../images/oseba_template_2.jpg"
+            }
+        ]
+    },
+    {
+        "make": "Tesla",
+        "model": "Model 3 2019",
+        "hp": "450",
+		"maxspeed": "209",
+		"acceleration": "9.0",
+        "consumption": "6.8",
+    	"seats": "5",
+		"doors": "4",
+		"AirConditioning": "on",
+		"Navigation": "on",
+		"bluetooth": "on",
+		"parkingsensors": "on",
+		"USB": "on",
+		"AUX": "on",
+		"autopilot": "on",
+        "accessibility": "off",
+        "typeoffuel": "Electric",
+		"luggage": "425",
+        "minage": "18",
+        "profile_picture": "/images/oseba_template.jpg",
+		"username": "JoshSmith213",
+        "email": "josh_smith@gmail.com",
+        "number": "+38670789654",
+        "avg_rating": "4",
+        "description": "Step into the future with our beautiful electric four-door fastback sedan.",
+        "price": 85,
+        "images": ["tesla1.jpg","tesla2.jpg","tesla3.jpg","tesla4.jpg","tesla5.jpg","tesla6.jpg"],
+        "addres": "Kolodvorska 15",
+        "city": "Ljubljana",
+        "zip": "1000",
+        "country": "Slovenija",
+        "category": "Hatchback",
+        "date": [
+            "2021-01-24",
+            "2021-06-30"
+        ],
+        "reviews": [
+            {
+                "username": "Marko Šter",
+                "rating": "★★★☆☆",
+                "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
+                "img": "oseba_template_2.jpg"
+            },
+            {
+                "username": "Marko",
+                "rating": "★★★★☆",
+                "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
+                "img": "oseba_template_2.jpg"
+            },
+            {
+                "username": "Bojan",
+                "rating": "★★★★☆",
+                "comment": "Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!",
+                "img": "oseba_template_2.jpg"
+            },
+            {
+                "username": "Matej",
+                "rating": "★★★★★",
+                "comment": "The car is pure genius.",
+                "img": "oseba_template_2.jpg"
+            }
+        ]
+    },
+    {
+        "make": "Ford",
+        "model": "Mondeo",
+        "description": "Car is perfect, i really love it.",
+        "price": 53,
+        "addres": "Cankarjeva 7",
+        "images": ["generic.jpg"],
+        "city": "Ljubljana",
+        "country": "Slovenija",
+        "category": "Saloon",
+        "zip": "1000",
+        "hp": "120",
+        "maxspeed": "210",
+        "acceleration": "8",
+        "consumption": "9",
+        "seats": "5",
+        "doors": "5",
+        "accessibility":"on",
+        "AirConditioning": "on",
+        "Navigation": "on",
+        "bluetooth": "on",
+        "parkingsensors": "on",
+        "USB": "off",
+        "AUX": "off",
+        "autopilot": "off",
+        "typeoffuel": "Petrol",
+        "luggage": "425",
+        "minage": "18",
+        "date": [
+            "2020-11-24",
+            "2021-10-24"
+        ],
+        "reviews": [
+            {
+                "username": "Marko Šter",
+                "rating": "★★★☆☆",
+                "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Marko",
+                "rating": "★★★★☆",
+                "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Bojan",
+                "rating": "★★★★☆",
+                "comment": "Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Matej",
+                "rating": "★★★★★",
+                "comment": "The car is pure genius.",
+                "img": "../images/oseba_template_2.jpg"
+            }
+        ]
+    },
+    {
+        "make": "Peugeot",
+        "model": "107",
+        "description": "Small and perfect for the city",
+        "price": 25,
+        "addres": "Cankarjeva 7",
+        "images": ["generic.jpg"],
+        "city": "Ljubljana",
+        "country": "Slovenija",
+        "category": "Hatchback",
+        "zip": "1000",
+        "hp": "50",
+        "maxspeed": "160",
+        "acceleration": "12",
+        "consumption": "5",
+        "seats": "5",
+        "doors": "5",
+        "accessibility":"on",
+        "AirConditioning": "on",
+        "Navigation": "on",
+        "bluetooth": "on",
+        "parkingsensors": "on",
+        "USB": "off",
+        "AUX": "off",
+        "autopilot": "off",
+        "typeoffuel": "Diesel",
+        "luggage": "425",
+        "minage": "18",
+        "date": [
+            "2020-11-24",
+            "2021-10-24"
+        ],
+        "reviews": [
+            {
+                "username": "Marko Šter",
+                "rating": "★★★☆☆",
+                "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Marko",
+                "rating": "★★★★☆",
+                "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Bojan",
+                "rating": "★★★★☆",
+                "comment": "Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Matej",
+                "rating": "★★★★★",
+                "comment": "The car is pure genius.",
+                "img": "../images/oseba_template_2.jpg"
+            }
+        ]
+    },
+    {
+        "make": "Mercedes",
+        "model": "C-class",
+        "description": "Very good car.",
+        "price": 67,
+        "addres": "Cankarjeva 7",
+        "images": ["generic.jpg"],
+        "city": "Ljubljana",
+        "country": "Slovenija",
+        "category": "Saloon",
+        "zip": "1000",
+        "hp": "150",
+        "maxspeed": "220",
+        "acceleration": "7",
+        "consumption": "7",
+        "seats": "5",
+        "doors": "5",
+        "accessibility":"on",
+        "AirConditioning": "on",
+        "Navigation": "on",
+        "bluetooth": "on",
+        "parkingsensors": "on",
+        "USB": "off",
+        "AUX": "off",
+        "autopilot": "off",
+        "typeoffuel": "Diesel",
+        "luggage": "350",
+        "minage": "18",
+        "date": [
+            "2020-11-24",
+            "2021-10-24"
+        ],
+        "reviews": [
+            {
+                "username": "Marko Šter",
+                "rating": "★★★☆☆",
+                "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Marko",
+                "rating": "★★★★☆",
+                "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Bojan",
+                "rating": "★★★★☆",
+                "comment": "Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Matej",
+                "rating": "★★★★★",
+                "comment": "The car is pure genius.",
+                "img": "../images/oseba_template_2.jpg"
+            }
+        ]
+    },
+    {
+        "make": "BMW",
+        "model": "3 series touring",
+        "description": "My own daily driver",
+        "price": 72,
+        "addres": "Cankarjeva 7",
+        "images": ["generic.jpg"],
+        "city": "Ljubljana",
+        "country": "Slovenija",
+        "category": "Caravan",
+        "zip": "1000",
+        "hp": "190",
+        "maxspeed": "240",
+        "acceleration": "6.4",
+        "consumption": "7.2",
+        "seats": "5",
+        "doors": "5",
+        "accessibility":"on",
+        "AirConditioning": "on",
+        "Navigation": "on",
+        "bluetooth": "on",
+        "parkingsensors": "on",
+        "USB": "off",
+        "AUX": "off",
+        "autopilot": "off",
+        "typeoffuel": "Diesel",
+        "luggage": "625",
+        "minage": "18",
+        "date": [
+            "2020-11-24",
+            "2021-10-24"
+        ],
+        "reviews": [
+            {
+                "username": "Marko Šter",
+                "rating": "★★★☆☆",
+                "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Marko",
+                "rating": "★★★★☆",
+                "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Bojan",
+                "rating": "★★★★☆",
+                "comment": "Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Matej",
+                "rating": "★★★★★",
+                "comment": "The car is pure genius.",
+                "img": "../images/oseba_template_2.jpg"
+            }
+        ]
+    },
+    {
+        "make": "Kia",
+        "model": "Proceed",
+        "description": "The best from Korea.",
+        "price": 46,
+        "addres": "Cankarjeva 7",
+        "images": ["generic.jpg"],
+        "city": "Ljubljana",
+        "country": "Slovenija",
+        "category": "Estate",
+        "zip": "1000",
+        "hp": "150",
+        "maxspeed": "210",
+        "acceleration": "7.9",
+        "consumption": "11",
+        "seats": "5",
+        "doors": "5",
+        "accessibility":"on",
+        "AirConditioning": "on",
+        "Navigation": "on",
+        "bluetooth": "on",
+        "parkingsensors": "on",
+        "USB": "off",
+        "AUX": "off",
+        "autopilot": "off",
+        "typeoffuel": "LPG",
+        "luggage": "570",
+        "minage": "18",
+        "date": [
+            "2020-11-24",
+            "2021-10-24"
+        ],
+        "reviews": [
+            {
+                "username": "Marko Šter",
+                "rating": "★★★☆☆",
+                "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Marko",
+                "rating": "★★★★☆",
+                "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Bojan",
+                "rating": "★★★★☆",
+                "comment": "Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Matej",
+                "rating": "★★★★★",
+                "comment": "The car is pure genius.",
+                "img": "../images/oseba_template_2.jpg"
+            }
+        ]
+    },
+    {
+        "make": "Kia",
+        "model": "Sportage",
+        "description": "Its a big and good looking car.",
+        "price": 70,
+        "addres": "Cankarjeva 7",
+        "images": ["generic.jpg"],
+        "city": "Ljubljana",
+        "country": "Slovenija",
+        "category": "SUV",
+        "zip": "1000",
+        "hp": "160",
+        "maxspeed": "190",
+        "acceleration": "8.7",
+        "consumption": "10",
+        "seats": "5",
+        "doors": "5",
+        "accessibility":"on",
+        "AirConditioning": "on",
+        "Navigation": "on",
+        "bluetooth": "on",
+        "parkingsensors": "on",
+        "USB": "off",
+        "AUX": "off",
+        "autopilot": "off",
+        "typeoffuel": "Diesel",
+        "luggage": "425",
+        "minage": "18",
+        "date": [
+            "2020-11-24",
+            "2021-10-24"
+        ],
+        "reviews": [
+            {
+                "username": "Marko Šter",
+                "rating": "★★★☆☆",
+                "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Marko",
+                "rating": "★★★★☆",
+                "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Bojan",
+                "rating": "★★★★☆",
+                "comment": "Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Matej",
+                "rating": "★★★★★",
+                "comment": "The car is pure genius.",
+                "img": "../images/oseba_template_2.jpg"
+            }
+        ]
+    },
+    {
+        "make": "Hyundai",
+        "model": "i30",
+        "description": "Very well preserved.",
+        "price": 38,
+        "addres": "Cankarjeva 7",
+        "images": ["generic.jpg"],
+        "city": "Ljubljana",
+        "country": "Slovenija",
+        "category": "Hatchback",
+        "zip": "1000",
+        "hp": "160",
+        "maxspeed": "215",
+        "acceleration": "7.3",
+        "consumption": "7.1",
+        "seats": "5",
+        "doors": "5",
+        "accessibility":"on",
+        "AirConditioning": "on",
+        "Navigation": "on",
+        "bluetooth": "on",
+        "parkingsensors": "on",
+        "USB": "off",
+        "AUX": "off",
+        "autopilot": "off",
+        "typeoffuel": "Petrol",
+        "luggage": "390",
+        "minage": "18",
+        "date": [
+            "2020-11-24",
+            "2021-10-24"
+        ],
+        "reviews": [
+            {
+                "username": "Marko Šter",
+                "rating": "★★★☆☆",
+                "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Marko",
+                "rating": "★★★★☆",
+                "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Bojan",
+                "rating": "★★★★☆",
+                "comment": "Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Matej",
+                "rating": "★★★★★",
+                "comment": "The car is pure genius.",
+                "img": "../images/oseba_template_2.jpg"
+            }
+        ]
+    },
+    {
+        "make": "Lamborghini",
+        "model": "Urus",
+        "description": "This is a beast",
+        "price": 190,
+        "addres": "Cankarjeva 7",
+        "images": ["generic.jpg"],
+        "city": "Ljubljana",
+        "country": "Slovenija",
+        "category": "SUV",
+        "zip": "1000",
+        "hp": "550",
+        "maxspeed": "280",
+        "acceleration": "4.3",
+        "consumption": "19",
+        "seats": "5",
+        "doors": "5",
+        "accessibility":"on",
+        "AirConditioning": "on",
+        "Navigation": "on",
+        "bluetooth": "on",
+        "parkingsensors": "on",
+        "USB": "off",
+        "AUX": "off",
+        "autopilot": "off",
+        "typeoffuel": "Petrol",
+        "luggage": "425",
+        "minage": "18",
+        "date": [
+            "2020-11-24",
+            "2021-10-24"
+        ],
+        "reviews": [
+            {
+                "username": "Marko Šter",
+                "rating": "★★★☆☆",
+                "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Marko",
+                "rating": "★★★★☆",
+                "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Bojan",
+                "rating": "★★★★☆",
+                "comment": "Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Matej",
+                "rating": "★★★★★",
+                "comment": "The car is pure genius.",
+                "img": "../images/oseba_template_2.jpg"
+            }
+        ]
+    },
+    {
+        "make": "Mclaren",
+        "model": "650s",
+        "description": "A true supercar!",
+        "price": 250,
+        "addres": "Cankarjeva 7",
+        "images": ["generic.jpg"],
+        "city": "Ljubljana",
+        "country": "Slovenija",
+        "category": "Coupe",
+        "zip": "1000",
+        "hp": "600",
+        "maxspeed": "320",
+        "acceleration": "3.5",
+        "consumption": "29",
+        "seats": "2",
+        "doors": "2",
+        "accessibility":"on",
+        "AirConditioning": "on",
+        "Navigation": "on",
+        "bluetooth": "on",
+        "parkingsensors": "on",
+        "USB": "off",
+        "AUX": "off",
+        "autopilot": "off",
+        "typeoffuel": "Diesel",
+        "luggage": "100",
+        "minage": "18",
+        "date": [
+            "2020-11-24",
+            "2021-10-24"
+        ],
+        "reviews": [
+            {
+                "username": "Marko Šter",
+                "rating": "★★★☆☆",
+                "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Marko",
+                "rating": "★★★★☆",
+                "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Bojan",
+                "rating": "★★★★☆",
+                "comment": "Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Matej",
+                "rating": "★★★★★",
+                "comment": "The car is pure genius.",
+                "img": "../images/oseba_template_2.jpg"
+            }
+        ]
+    },
+    {
+        "make": "Ferrari",
+        "model": "458",
+        "description": "Italian supercar, is there something better?",
+        "price": 210,
+        "addres": "Cankarjeva 7",
+        "images": ["generic.jpg"],
+        "city": "Ljubljana",
+        "country": "Slovenija",
+        "category": "Coupe",
+        "zip": "1000",
+        "hp": "590",
+        "maxspeed": "290",
+        "acceleration": "3.8",
+        "consumption": "21",
+        "seats": "2",
+        "doors": "2",
+        "accessibility":"on",
+        "AirConditioning": "on",
+        "Navigation": "on",
+        "bluetooth": "on",
+        "parkingsensors": "on",
+        "USB": "off",
+        "AUX": "off",
+        "autopilot": "off",
+        "typeoffuel": "Petrol",
+        "luggage": "125",
+        "minage": "18",
+        "date": [
+            "2020-11-24",
+            "2021-10-24"
+        ],
+        "reviews": [
+            {
+                "username": "Marko Šter",
+                "rating": "★★★☆☆",
+                "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Marko",
+                "rating": "★★★★☆",
+                "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Bojan",
+                "rating": "★★★★☆",
+                "comment": "Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Matej",
+                "rating": "★★★★★",
+                "comment": "The car is pure genius.",
+                "img": "../images/oseba_template_2.jpg"
+            }
+        ]
+    },
+    {
+        "make": "Mercedes",
+        "model": "GTS",
+        "description": "Built like a german tank.",
+        "price": 180,
+        "addres": "Cankarjeva 7",
+        "images": ["generic.jpg"],
+        "city": "Ljubljana",
+        "country": "Slovenija",
+        "category": "Coupe",
+        "zip": "1000",
+        "hp": "620",
+        "maxspeed": "310",
+        "acceleration": "4",
+        "consumption": "26",
+        "seats": "2",
+        "doors": "2",
+        "accessibility":"on",
+        "AirConditioning": "on",
+        "Navigation": "on",
+        "bluetooth": "on",
+        "parkingsensors": "on",
+        "USB": "off",
+        "AUX": "off",
+        "autopilot": "off",
+        "typeoffuel": "Petrol",
+        "luggage": "125",
+        "minage": "18",
+        "date": [
+            "2020-11-24",
+            "2021-10-24"
+        ],
+        "reviews": [
+            {
+                "username": "Marko Šter",
+                "rating": "★★★☆☆",
+                "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Marko",
+                "rating": "★★★★☆",
+                "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Bojan",
+                "rating": "★★★★☆",
+                "comment": "Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Matej",
+                "rating": "★★★★★",
+                "comment": "The car is pure genius.",
+                "img": "../images/oseba_template_2.jpg"
+            }
+        ]
+    },
+    {
+        "make": "Subaru",
+        "model": "Forester",
+        "description": "Car is perfect, big so you do not worry about cerbs. Bunch of space inside i love it.",
+        "price": 63,
+        "addres": "Cankarjeva 7",
+        "images": ["generic.jpg"],
+        "city": "Ljubljana",
+        "country": "Slovenija",
+        "category": "SUV",
+        "zip": "1000",
+        "hp": "130",
+        "maxspeed": "190",
+        "acceleration": "8",
+        "consumption": "6",
+        "seats": "5",
+        "doors": "5",
+        "accessibility":"on",
+        "AirConditioning": "on",
+        "Navigation": "on",
+        "bluetooth": "on",
+        "parkingsensors": "on",
+        "USB": "off",
+        "AUX": "off",
+        "autopilot": "off",
+        "typeoffuel": "Diesel",
+        "luggage": "525",
+        "minage": "18",
+        "date": [
+            "2020-11-24",
+            "2021-10-24"
+        ],
+        "reviews": [
+            {
+                "username": "Marko Šter",
+                "rating": "★★★☆☆",
+                "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Marko",
+                "rating": "★★★★☆",
+                "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Bojan",
+                "rating": "★★★★☆",
+                "comment": "Wow. I recommend it to everyone!",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Matej",
+                "rating": "★★★★★",
+                "comment": "The car is pure genius.",
+                "img": "../images/oseba_template_2.jpg"
+            }
+        ]
+    },
+    {
+        "make": "Smart",
+        "model": "Forfour",
+        "description": "Cute car.",
+        "price": 36,
+        "addres": "Cankarjeva 7",
+        "images": ["generic.jpg"],
+        "city": "Ljubljana",
+        "country": "Slovenija",
+        "category": "Hatchback",
+        "zip": "1000",
+        "hp": "80",
+        "maxspeed": "180",
+        "acceleration": "8.9",
+        "consumption": "5",
+        "seats": "5",
+        "doors": "5",
+        "accessibility":"on",
+        "AirConditioning": "on",
+        "Navigation": "on",
+        "bluetooth": "on",
+        "parkingsensors": "on",
+        "USB": "off",
+        "AUX": "off",
+        "autopilot": "off",
+        "typeoffuel": "Diesel",
+        "luggage": "425",
+        "minage": "18",
+        "date": [
+            "2020-11-24",
+            "2021-10-24"
+        ],
+        "reviews": [
+            {
+                "username": "Marko Šter",
+                "rating": "★★★☆☆",
+                "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Marko",
+                "rating": "★★★★☆",
+                "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Bojan",
+                "rating": "★★★★☆",
+                "comment": "Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Matej",
+                "rating": "★★★★★",
+                "comment": "The car is pure genius.",
+                "img": "../images/oseba_template_2.jpg"
+            }
+        ]
+    },
+    {
+        "make": "Toyota",
+        "model": "Supra",
+        "description": "Its pretty much the same as the bmw z4",
+        "price": 139,
+        "addres": "Cankarjeva 7",
+        "images": ["generic.jpg"],
+        "city": "Ljubljana",
+        "country": "Slovenija",
+        "category": "Coupe",
+        "zip": "1000",
+        "hp": "290",
+        "maxspeed": "250",
+        "acceleration": "6.2",
+        "consumption": "12",
+        "seats": "2",
+        "doors": "2",
+        "accessibility":"on",
+        "AirConditioning": "on",
+        "Navigation": "on",
+        "bluetooth": "on",
+        "parkingsensors": "on",
+        "USB": "off",
+        "AUX": "off",
+        "autopilot": "off",
+        "typeoffuel": "Petrol",
+        "luggage": "225",
+        "minage": "18",
+        "date": [
+            "2020-11-24",
+            "2021-10-24"
+        ],
+        "reviews": [
+            {
+                "username": "Marko Šter",
+                "rating": "★★★☆☆",
+                "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Marko",
+                "rating": "★★★★☆",
+                "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Bojan",
+                "rating": "★★★★☆",
+                "comment": "Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Matej",
+                "rating": "★★★★★",
+                "comment": "The car is pure genius.",
+                "img": "../images/oseba_template_2.jpg"
+            }
+        ]
+    },
+    {
+        "make": "Toyota",
+        "model": "Prius",
+        "description": "Car is perfect, reliable like a toyota should be.",
+        "price": 47,
+        "addres": "Cankarjeva 7",
+        "images": ["generic.jpg"],
+        "city": "Ljubljana",
+        "country": "Slovenija",
+        "category": "Hatchback",
+        "zip": "1000",
+        "hp": "140",
+        "maxspeed": "210",
+        "acceleration": "8",
+        "consumption": "5",
+        "seats": "5",
+        "doors": "5",
+        "accessibility":"on",
+        "AirConditioning": "on",
+        "Navigation": "on",
+        "bluetooth": "on",
+        "parkingsensors": "on",
+        "USB": "off",
+        "AUX": "off",
+        "autopilot": "off",
+        "typeoffuel": "Hybrid",
+        "luggage": "425",
+        "minage": "18",
+        "date": [
+            "2020-11-24",
+            "2021-10-24"
+        ],
+        "reviews": [
+            {
+                "username": "Marko Šter",
+                "rating": "★★★☆☆",
+                "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Marko",
+                "rating": "★★★★☆",
+                "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Bojan",
+                "rating": "★★★★☆",
+                "comment": "Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Matej",
+                "rating": "★★★★★",
+                "comment": "The car is pure genius.",
+                "img": "../images/oseba_template_2.jpg"
+            }
+        ]
+    },
+    {
+        "make": "Ford",
+        "model": "F150",
+        "description": "Perfect off-roader",
+        "price": 90,
+        "addres": "Cankarjeva 7",
+        "images": ["generic.jpg"],
+        "city": "Ljubljana",
+        "country": "Slovenija",
+        "category": "Pick-up",
+        "zip": "1000",
+        "hp": "290",
+        "maxspeed": "230",
+        "acceleration": "6",
+        "consumption": "25",
+        "seats": "5",
+        "doors": "4",
+        "accessibility":"on",
+        "AirConditioning": "on",
+        "Navigation": "on",
+        "bluetooth": "on",
+        "parkingsensors": "on",
+        "USB": "off",
+        "AUX": "off",
+        "autopilot": "off",
+        "typeoffuel": "Diesel",
+        "luggage": "725",
+        "minage": "18",
+        "date": [
+            "2020-11-24",
+            "2021-10-24"
+        ],
+        "reviews": [
+            {
+                "username": "Marko Šter",
+                "rating": "★★★☆☆",
+                "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Marko",
+                "rating": "★★★★☆",
+                "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Bojan",
+                "rating": "★★★★☆",
+                "comment": "Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Matej",
+                "rating": "★★★★★",
+                "comment": "The car is pure genius.",
+                "img": "../images/oseba_template_2.jpg"
+            }
+        ]
+    },
+    {
+        "make": "Diahatsu",
+        "model": "Muira",
+        "description": "Quite a rare car",
+        "price": 29,
+        "addres": "Cankarjeva 7",
+        "images": ["generic.jpg"],
+        "city": "Ljubljana",
+        "country": "Slovenija",
+        "category": "Hatchback",
+        "zip": "1000",
+        "hp": "40",
+        "maxspeed": "140",
+        "acceleration": "15",
+        "consumption": "4",
+        "seats": "5",
+        "doors": "5",
+        "accessibility":"on",
+        "AirConditioning": "on",
+        "Navigation": "on",
+        "bluetooth": "on",
+        "parkingsensors": "on",
+        "USB": "off",
+        "AUX": "off",
+        "autopilot": "off",
+        "typeoffuel": "Petrol",
+        "luggage": "225",
+        "minage": "18",
+        "date": [
+            "2020-11-24",
+            "2021-10-24"
+        ],
+        "reviews": [
+            {
+                "username": "Marko Šter",
+                "rating": "★★★☆☆",
+                "comment": "Everything is immaculate and well kept, hats off to the renting crew, but I guess I just dont fancy electric cars it seems.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Marko",
+                "rating": "★★★★☆",
+                "comment": "The vehicle is very nice and in excellent condition. If I'm being picky I would have maybe liked some extra luggage space.",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Bojan",
+                "rating": "★★★★☆",
+                "comment": "Wow. Driving a Tesla is a revolution of its own. Shame it isn't the newest model. I recommend it to everyone!",
+                "img": "../images/oseba_template_2.jpg"
+            },
+            {
+                "username": "Matej",
+                "rating": "★★★★★",
+                "comment": "The car is pure genius.",
+                "img": "../images/oseba_template_2.jpg"
+            }
+        ]
+    },
+    {
+        "make": "Lexus",
+        "model": "LFA",
+        "description": "Pure v10 sound",
+        "price": 240,
+        "addres": "Cankarjeva 7",
+        "images": ["generic.jpg"],
+        "city": "Ljubljana",
+        "country": "Slovenija",
+        "category": "Coupe",
+        "zip": "1000",
+        "hp": "490",
+        "maxspeed": "290",
+        "acceleration": "3.6",
+        "consumption": "18",
+        "seats": "2",
+        "doors": "2",
+        "accessibility":"on",
+        "AirConditioning": "on",
+        "Navigation": "on",
+        "bluetooth": "on",
+        "parkingsensors": "on",
+        "USB": "off",
+        "AUX": "off",
+        "autopilot": "off",
+        "typeoffuel": "Petrol",
+        "luggage": "125",
+        "minage": "18",
+        "date": [
+            "2020-11-24",
+            "2021-10-24"
         ],
         "reviews": [
             {

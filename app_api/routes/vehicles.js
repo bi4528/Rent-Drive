@@ -395,7 +395,7 @@ router
  * @swagger
  *  /vehicles/{idVehicle}/reviews/{idReview}:
  *   get:
- *    summary: Get data of vehicle
+ *    summary: Get data of review
  *    tags: [Reviews]
  *    parameters:
  *    - in: path 

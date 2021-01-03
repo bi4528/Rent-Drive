@@ -161,3 +161,26 @@ Podatki o izposojenih avtih so dostopni na naslovu [localhost:3000/api/rented](l
     - npm install @asymmetrik/ngx-leaflet
     - npm install --save-dev @types/leaflet
 
+### Namestitev potrebnih datotek za zagon, in zagon aplikacije v lokalnem okolju
+
+1. Z ukazom v ukazni vrstici` git clone https://github.com/sp-2020-2021/LP-01` se v trenutno mapo namestijo datoteke iz oddaljenega repozitorija.
+2. Premaknemo se v mapo ` .\LP-01` z ukazom `cd .\LP-01`
+3. Izvedemo ukaz ` npm install` s čemer se namestijo potrebne vmesnike za zagon aplikacije.
+4. Izvedemo ukaz ` docker-compose up --no-start `
+5. Izvedemo ukaz ` docker start sp-rentdrive-mongodb `  
+6. Izvedemo ukaz da se povežemo na vsebnik `docker exec -it sp-rentdrive-mongodb mongo`, in nato izklopimo mongo ukazno vrstico s kombinacijo `Ctrl + C`
+7. Izvedemo ukaz ` nodemon ` da zaženemo strežnik.
+8. Odpremo nov terminal
+9. Premaknemo se v mapo ` .\app_public` z ukazom `cd .\app_public`
+10. Izvedemo ukaz ` npm install` s čemer se namestijo potrebne vmesnike za zagon aplikacije.
+11. Izvedemo ukaz ` ng serve --open` s čemer angular nam postreže našo aplikacijo.
+
+### Povezava do oddaljene spletne aplikacije
+
+http://rentdrive-sp.herokuapp.com/
+
+## 5. LP - Varnostno zaščitena progresivna aplikacija
+
+### Avtentikacija in avtorizacija z MEAN (JWT)
+Naša aplikacija podpira tri tipa uporabnikov. Če je trenutni prijavljen uporabnik navaden potem on ima dovoljenje da spreminja (dodaja) samo podatke ki jih je on sam dodal. Takšne podatke so: avti, osebne podatke, komentarji, najeme. Če pa je trenuten uporabnik administrator potem on ima dovoljenje da spreminja vse (če se mu zdi to smisleno). Takrat so vse gumbe za brisanje in spreminjanje podatke so dostopni in vidni.  Obstajajo še guests, to so uporabniki ki niso ustvarili svoj račun in lahko gledajo avte, profile, berejo komentarji oz. imajo samo bralni dostop.
+
