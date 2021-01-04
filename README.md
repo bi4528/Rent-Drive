@@ -208,5 +208,17 @@ Performanse se pa gibljejo okrog solidnih 75%.
 
 Test za mobilni način uporabe svetuje proti serviranju slik z nizko ločlivostjo, vendar mislimo da v tem primeru to ne predstavlja problem, ker "slika" gre za ikonico ki se prikaže pri minimiziranju navigacijske vrstice (štiri črtice). 
 
-PWA test včasih javi "napako" \
-```start_url does not respond with a 200 when offline The start_url did respond, but not via a service worker```), ki je prisotna na Google Chrome brskalniku, dočim ni prisotna na Brave in Firefoxu brskalniku.
+PWA test včasih javi "napako"
+```
+start_url does not respond with a 200 when offline The start_url did respond, but not via a service worker
+```
+ki je prisotna na Google Chrome brskalniku, dočim ni prisotna na Brave in Firefoxu brskalniku.
+
+Prav tako se zavedamo da pri SEO delu Lighthouse test na produkcijski verziji javi napako "robots.txt". Napaka se lahko odpravi z dodajanjem
+```
+app.all('/robots.txt', (req, res) => {
+  res.type('text/plain')
+  res.send("User-agent: *\Allow: /");
+});
+```
+v datoteko app.js, vendar ta sprememba ustvari varnostno luknjo (rumeno opozorilo pri OWASP ZAP testu) tako da smo se odločili izpustiti omenjeni del kode. 
