@@ -183,7 +183,7 @@ Podatki o izposojenih avtih so dostopni na naslovu [localhost:3000/api/rented](l
 
 ### Avtentikacija in avtorizacija z MEAN (JWT)
 
-Naša aplikacija podpira tri tipe uporabnikov. Če je trenutno prijavljeni uporabnik navaden, potem on lahko spreminja oz. dodaja samo podatke, ki jih je on dodal sam. Takšni podatki so: avti, osebni podatki, komentarji, najemi. Če pa je trenuten uporabnik administrator, potem on lahko spreminja vse (če se mu zdi to smiselno). Takrat so mu vsi gumbi za brisanje in spreminjanje podatkov dostopni in vidni.  Obstajajo še gostje, to so uporabniki, ki niso ustvarili svojega računa in si lahko ogledajo avte, profile, berejo komentarje oz. imajo samo bralni dostop.
+Naša aplikacija podpira tri tipe uporabnikov. Če je trenutno prijavljeni uporabnik navaden, potem on lahko spreminja oz. dodaja samo podatke, ki jih je on dodal sam. Takšni podatki so: avti, osebni podatki, komentarji, najemi. Če pa je trenuten uporabnik administrator, potem on lahko spreminja vse (če se mu zdi to smiselno). Takrat so mu vsi gumbi za brisanje in spreminjanje podatkov dostopni in vidni. Obstajajo še gostje, to so uporabniki, ki niso ustvarili svojega računa in si lahko ogledajo avte, profile, berejo komentarje oz. imajo samo bralni dostop. Uporabnik je administrator. če se registrira z ADMIN_PASSWORD. V sklopu uporabnikov smo implementirali še reset gesla z mailom. Na mail se pošlje nek url, ki vsebuje token za reset gesla. Brez tokena uporabnik ne more resetirati gesla. Ne registriran uporabnik nima pravice za določene requeste (npr. delete user za nek drugi uporabnik).
 
 ### Varnostni pregled
 Delovanje naše aplikacije smo preverili z orodjem [OWASP ZAP](https://owasp.org/www-project-zap/). 
@@ -203,6 +203,8 @@ S pomočjo orodja Lighthouse smo nadgradili našo aplikacijo. Obstoječe slike s
 Dodani so metapodatki "viewport" in "description" v osnovno html datoteko, kar je zvišalo SEO oceno.
 
 Možno je pohitriti tudi nameščanje zunanjih css datotek z uporabo preloada, zavedamo se da bi lahko najprej naložili kritične css komponente in šele nato naredili load nekritičnih css stilov, vendar to zaenkrat nismo implementirali.
+
+Zavedali smo se, da bi compresija slik (uploads) na strani apija zmanjšala velikosti slik in posledično izboljšala uporabniško izkušnjo. Tega nismo implementirali.
 
 Trenutno stanje je takšno da so ocene dostopnosti, SEO, najboljših praks zelo visoke, zmeraj nad 90%, pogostokrat pa so ocenjene s kar 100%.
 Performanse se pa gibljejo okrog solidnih 75%.
