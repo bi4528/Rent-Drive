@@ -313,6 +313,7 @@ table, th, td {
 
 .text-success, .text-danger {
     font-family: 'Piazzolla', serif;
+    font-display: swap;
 }
 
 .panel {

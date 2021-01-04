@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1609715933954,
+  "timestamp": 1609720014827,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main.14c8467303d49b4cf828.js",
+        "/main.f2fa6f0d5f9561aef640.js",
         "/manifest.webmanifest",
         "/polyfills.b3b05dce4f05c03b56a3.js",
         "/runtime.0e49e2b53282f40c8925.js",
@@ -237,7 +237,7 @@
     "/assets/javascripts/popper.min.js.map": "a4c82eb2a1d55834a318905c174d2fe375c3fed9",
     "/assets/stylesheets/Footer-Basic.css": "def4c9c148b241714c9236b926b45cba60b7439c",
     "/assets/stylesheets/book.css": "0bb45d3f30a5c0ae78f24b6e00930875877f78bd",
-    "/assets/stylesheets/styles.css": "dde4fb2734281808be90dab36d17e9ebc81b2886",
+    "/assets/stylesheets/styles.css": "278a1e15f514de56c679be2b217deaac09a09cbb",
     "/assets/uploads/508.jpg": "5f937ad3feb0c3bec4d5abb7228d71fe3ed0fde2",
     "/assets/uploads/Charles_Babbage_-_1860.jpg": "1a5966c433a59bfc70e7abdecfb49f309cec8644",
     "/assets/uploads/Garbo_in_Inspiration.jpg": "a3c209031fb22bf34ff1a2c69fd76ec7bbd80c3b",
@@ -271,10 +271,10 @@
     "/assets/uploads/timothy.jpg": "d06518d8d60b64d8b73b157fa67c75aa9d11aa7b",
     "/assets/uploads/x5.jpg": "99fad9b670229137ce1c62b03859da68699708bc",
     "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/index.html": "7a55a2eacf07fc9042d4d6b394687b4ab62edc7a",
+    "/index.html": "8cf36cc1d8f9e0f1c5f9614ab17dd73634fccff9",
     "/layers-2x.8f2c4d11474275fbc161.png": "152a162333e46d24f9d89f566312fc0c64011dee",
     "/layers.416d91365b44e4b4f477.png": "c9e7528e491a39232ba24a2706c6c739d6fb0f06",
-    "/main.14c8467303d49b4cf828.js": "4eea6507cce18374caaa6c7c327444bc318160cf",
+    "/main.f2fa6f0d5f9561aef640.js": "b871057291b75cc46b70c0bbeb76b233c19d95f1",
     "/manifest.webmanifest": "3f3ca130adb5da000e1e686feba7c963de8996ed",
     "/marker-icon.2b3e1faf89f94a483539.png": "60a90bcbb2b42b7ddb4556db94eb7c1084b0e5da",
     "/polyfills.b3b05dce4f05c03b56a3.js": "0d003992512d28c544b0a972ce2ae6b28ebbf5f6",
