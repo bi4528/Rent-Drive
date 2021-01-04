@@ -170,10 +170,7 @@ Podatki o izposojenih avtih so dostopni na naslovu [localhost:3000/api/rented](l
 11. Izvedemo ukaz ` ng serve --open` s čemer angular nam postreže našo aplikacijo.
 
 ### Prikaz zemljevida
-- Za prikaz zemljevida uporabljena je knjžnica [@asymmetrik/ngx-leaflet](https://github.com/Asymmetrik/ngx-leaflet), zaradi tega premaknite se v mapo LP-01 in zaženite naslednje ukaze:
-    - npm install leaflet
-    - npm install @asymmetrik/ngx-leaflet
-    - npm install --save-dev @types/leaflet
+- Za prikaz zemljevida uporabljena je knjžnica [@asymmetrik/ngx-leaflet](https://github.com/Asymmetrik/ngx-leaflet)
     
 ### Povezava do oddaljene spletne aplikacije
 
